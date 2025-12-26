@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timbel Coffee Kiosk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1E3A5F;
+            --primary-light: #2C5282;
+            --bg-light: #F5F5F5;
+            --bg-white: #FFFFFF;
+            --text-dark: #333333;
+            --text-gray: #888888;
+            --border: #E0E0E0;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: var(--bg-light);
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        .kiosk-container {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: var(--primary);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .home-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .home-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .category-tab {
+            flex: 1;
+            padding: 18px 20px;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .category-tab:hover {
+            color: var(--primary);
+        }
+
+        .category-tab.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .category-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        /* Menu Grid */
+        .menu-panel {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            background: var(--bg-white);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .menu-item {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px var(--shadow);
+            border-color: var(--primary-light);
+        }
+
+        .menu-item.selected {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .menu-item-image {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            background: #fafafa;
+        }
+
+        .menu-item-info {
+            padding: 14px 12px;
+        }
+
+        .menu-item-name {
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .menu-item-price {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--primary);
+        }
+
+        .menu-item-price span {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Right Panel */
+        .right-panel {
+            background: var(--bg-light);
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid var(--border);
+        }
+
+        /* Selected Items Display */
+        .selected-preview {
+            flex: 1;
+            padding: 16px;
+            background: var(--bg-white);
+            margin: 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow-y: auto;
+        }
+
+        .preview-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .preview-item-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .preview-item-info {
+            flex: 1;
+        }
+
+        .preview-item-name {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .preview-item-price {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .preview-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            width: 26px;
+            height: 26px;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .qty-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .qty-value {
+            font-weight: 600;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .remove-btn {
+            width: 26px;
+            height: 26px;
+            border: none;
+            background: #ff4444;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+
+        /* Timer & Controls */
+        .controls-section {
+            padding: 16px;
+        }
+
+        .timer-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .timer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timer-label {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .timer-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .timer-value span {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .clear-btn {
+            padding: 12px 20px;
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .clear-btn:hover {
+            background: #f0f0f0;
+        }
+
+        /* Cart Section */
+        .cart-section {
+            background: var(--bg-white);
+            padding: 16px;
+            border-radius: 12px 12px 0 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .cart-count {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .cart-summary {
+            margin-bottom: 16px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .summary-row.total {
+            font-size: 18px;
+            font-weight: 700;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+            margin-top: 12px;
+        }
+
+        .summary-row.total .amount {
+            color: var(--primary);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--text-gray);
+            border: none;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .checkout-btn.active {
+            background: var(--primary);
+        }
+
+        .checkout-btn.active:hover {
+            background: var(--primary-light);
+        }
+
+        .checkout-btn:disabled {
+            cursor: not-allowed;
+        }
+
+        /* Option Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 450px;
+            max-height: 85vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 24px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-header img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .modal-header h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .modal-header .price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .option-group {
+            margin-bottom: 24px;
+        }
+
+        .option-group-title {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .required-badge {
+            font-size: 11px;
+            padding: 3px 8px;
+            background: var(--primary);
+            border-radius: 10px;
+            color: white;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .option-btn {
+            padding: 12px 18px;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .option-btn.selected {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .option-btn .extra-price {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-left: 4px;
+        }
+
+        .modal-footer {
+            padding: 20px 24px;
+            display: flex;
+            gap: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .modal-cancel-btn {
+            flex: 1;
+            padding: 16px;
+            border: 1px solid var(--border);
+            background: white;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .modal-add-btn {
+            flex: 2;
+            padding: 16px;
+            background: var(--primary);
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .modal-add-btn:hover {
+            background: var(--primary-light);
+        }
+
+        /* Success Overlay */
+        .success-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .success-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 24px;
+        }
+
+        .success-text {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .success-subtext {
+            font-size: 16px;
+            color: var(--text-gray);
+        }
+
+        .success-joke {
+            margin-top: 32px;
+            padding: 20px 32px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 16px;
+            color: white;
+            font-size: 15px;
+            line-height: 1.6;
+            max-width: 400px;
+            text-align: center;
+            animation: fadeInUp 0.5s ease 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-joke .joke-title {
+            font-size: 13px;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .success-joke .joke-content {
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+        /* Empty State */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--text-gray);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+
+        .empty-state-text {
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .menu-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .kiosk-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .right-panel {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                max-height: 50vh;
+                border-left: none;
+                border-top: 1px solid var(--border);
+                border-radius: 20px 20px 0 0;
+                box-shadow: 0 -4px 20px var(--shadow);
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .menu-panel {
+                padding-bottom: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="kiosk-container">
+        <!-- Main Content -->
+        <div class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <span class="logo-text">Timbel Coffee Kiosk</span>
+                </div>
+                <div class="header-right">
+                    <button class="header-btn">➕</button>
+                </div>
+            </header>
+
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="season">시즌 메뉴</button>
+                <button class="category-tab" data-category="hot">커피(HOT)</button>
+                <button class="category-tab" data-category="ice">커피(ICE)</button>
+                <button class="category-tab" data-category="beverage">음료</button>
+                <button class="category-tab" data-category="dessert">디저트</button>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="menu-panel">
+                <div class="menu-grid" id="menuGrid">
+                    <!-- Items populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <!-- Selected Items Preview -->
+            <div class="selected-preview" id="selectedPreview">
+                <div class="empty-state">
+                    <div class="empty-state-icon">🛒</div>
+                    <div class="empty-state-text">메뉴를 선택해주세요</div>
+                </div>
+            </div>
+
+            <!-- Timer & Controls -->
+            <div class="controls-section">
+                <div class="timer-row">
+                    <div class="timer">
+                        <span class="timer-label">남은시간</span>
+                        <span class="timer-value" id="timerValue">60<span>초</span></span>
+                    </div>
+                    <button class="clear-btn" onclick="clearCart()">전체삭제</button>
+                </div>
+            </div>
+
+            <!-- Cart Section -->
+            <div class="cart-section">
+                <div class="cart-header">
+                    <span class="cart-title">선택한 상품</span>
+                    <span class="cart-count" id="cartCount">0개</span>
+                </div>
+                <div class="cart-summary">
+                    <div class="summary-row total">
+                        <span>총 결제금액</span>
+                        <span class="amount" id="totalAmount">0원</span>
+                    </div>
+                </div>
+                <button class="checkout-btn" id="checkoutBtn" disabled onclick="checkout()">
+                    결제하기
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal">
+            <div class="modal-header">
+                <img id="modalImage" src="" alt="">
+                <h3 id="modalName">상품명</h3>
+                <div class="price" id="modalPrice">0원</div>
+            </div>
+            <div class="modal-body">
+                <div class="option-group" id="sizeGroup">
+                    <div class="option-group-title">
+                        사이즈 <span class="required-badge">필수</span>
+                    </div>
+                    <div class="options" id="sizeOptions">
+                        <button class="option-btn selected" data-size="regular" data-extra="0">Regular</button>
+                        <button class="option-btn" data-size="large" data-extra="500">Large <span class="extra-price">+500원</span></button>
+                    </div>
+                </div>
+                <div class="option-group" id="tempGroup">
+                    <div class="option-group-title">
+                        온도 <span class="required-badge">필수</span>
+                    </div>
+                    <div class="options" id="tempOptions">
+                        <button class="option-btn selected" data-temp="hot">HOT</button>
+                        <button class="option-btn" data-temp="ice">ICE</button>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <div class="option-group-title">
+                        추가 옵션
+                    </div>
+                    <div class="options" id="extraOptions">
+                        <button class="option-btn" data-extra-option="shot" data-extra="500">샷 추가 <span class="extra-price">+500원</span></button>
+                        <button class="option-btn" data-extra-option="syrup" data-extra="300">시럽 추가 <span class="extra-price">+300원</span></button>
+                        <button class="option-btn" data-extra-option="whip" data-extra="500">휘핑크림 <span class="extra-price">+500원</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-cancel-btn" onclick="closeModal()">취소</button>
+                <button class="modal-add-btn" onclick="addToCart()">담기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Overlay -->
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-icon" id="successIcon">✅</div>
+        <div class="success-text" id="successText">주문이 완료되었습니다!</div>
+        <div class="success-subtext" id="successSubtext">잠시 후 음료가 준비됩니다</div>
+        <div class="success-joke" id="successJoke"></div>
+    </div>
+
+    <script>
+        // Menu Data with real images
+        const menuItems = [
+            // 시즌 메뉴
+            { id: 1, name: '골드망고 스무디', price: 4000, image: 'https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=300&h=300&fit=crop', category: 'season' },
+            { id: 2, name: '코코넛 커피 스무디', price: 4800, image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=300&h=300&fit=crop', category: 'season' },
+            { id: 3, name: '망고 코코넛 주스', price: 3800, image: 'https://images.unsplash.com/photo-1546173159-315724a31696?w=300&h=300&fit=crop', category: 'season' },
+            { id: 4, name: '망고 히비스 커스티', price: 5800, image: 'https://images.unsplash.com/photo-1497534446932-c925b458314e?w=300&h=300&fit=crop', category: 'season' },
+            { id: 5, name: '딸기 쿠키 프라페', price: 4900, image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=300&h=300&fit=crop', category: 'season' },
+            { id: 6, name: '흑당 버블 라떼', price: 4800, image: 'https://images.unsplash.com/photo-1558857563-b371033873b8?w=300&h=300&fit=crop', category: 'season' },
+            { id: 7, name: '흑당 라떼', price: 5000, image: 'https://images.unsplash.com/photo-1534687941688-651ccaafbff8?w=300&h=300&fit=crop', category: 'season' },
+
+            // 커피 HOT
+            { id: 10, name: '아메리카노', price: 4000, image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300&h=300&fit=crop', category: 'hot' },
+            { id: 11, name: '카페라떼', price: 4500, image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=300&h=300&fit=crop', category: 'hot' },
+            { id: 12, name: '바닐라 라떼', price: 5000, image: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=300&h=300&fit=crop', category: 'hot' },
+            { id: 13, name: '카라멜 마키아토', price: 5200, image: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=300&h=300&fit=crop', category: 'hot' },
+            { id: 14, name: '카푸치노', price: 4500, image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=300&h=300&fit=crop', category: 'hot' },
+            { id: 15, name: '에스프레소', price: 3000, image: 'https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=300&h=300&fit=crop', category: 'hot' },
+            { id: 16, name: '카페모카', price: 5000, image: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=300&h=300&fit=crop', category: 'hot' },
+            { id: 17, name: '돌체라떼', price: 5200, image: 'https://images.unsplash.com/photo-1534687941688-651ccaafbff8?w=300&h=300&fit=crop', category: 'hot' },
+
+            // 커피 ICE
+            { id: 20, name: '아이스 아메리카노', price: 4000, image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=300&h=300&fit=crop', category: 'ice' },
+            { id: 21, name: '아이스 카페라떼', price: 4500, image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=300&h=300&fit=crop', category: 'ice' },
+            { id: 22, name: '콜드브루', price: 4800, image: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=300&h=300&fit=crop', category: 'ice' },
+            { id: 23, name: '콜드브루 라떼', price: 5200, image: 'https://images.unsplash.com/photo-1592663527359-cf6642f54cff?w=300&h=300&fit=crop', category: 'ice' },
+            { id: 24, name: '바닐라 프라푸치노', price: 5500, image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=300&h=300&fit=crop', category: 'ice' },
+            { id: 25, name: '카라멜 프라푸치노', price: 5500, image: 'https://images.unsplash.com/photo-1530373239216-42518e6b4063?w=300&h=300&fit=crop', category: 'ice' },
+            { id: 26, name: '자바칩 프라푸치노', price: 5800, image: 'https://images.unsplash.com/photo-1577968897966-3d4325b36b61?w=300&h=300&fit=crop', category: 'ice' },
+
+            // 음료
+            { id: 30, name: '초코라떼', price: 4800, image: 'https://images.unsplash.com/photo-1542990253-aass58dfc992?w=300&h=300&fit=crop', category: 'beverage' },
+            { id: 31, name: '녹차라떼', price: 4800, image: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=300&h=300&fit=crop', category: 'beverage' },
+            { id: 32, name: '딸기 스무디', price: 5000, image: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=300&h=300&fit=crop', category: 'beverage' },
+            { id: 33, name: '망고 스무디', price: 5000, image: 'https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=300&h=300&fit=crop', category: 'beverage' },
+            { id: 34, name: '레몬에이드', price: 4500, image: 'https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=300&h=300&fit=crop', category: 'beverage' },
+            { id: 35, name: '자몽에이드', price: 4800, image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=300&h=300&fit=crop', category: 'beverage' },
+
+            // 디저트
+            { id: 40, name: '티라미수', price: 5500, image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=300&h=300&fit=crop', category: 'dessert', isDessert: true },
+            { id: 41, name: '치즈케이크', price: 5000, image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=300&h=300&fit=crop', category: 'dessert', isDessert: true },
+            { id: 42, name: '크루아상', price: 3500, image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=300&h=300&fit=crop', category: 'dessert', isDessert: true },
+            { id: 43, name: '마카롱 세트', price: 6000, image: 'https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=300&h=300&fit=crop', category: 'dessert', isDessert: true },
+            { id: 44, name: '초코 브라우니', price: 4000, image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=300&h=300&fit=crop', category: 'dessert', isDessert: true },
+        ];
+
+        let cart = [];
+        let currentItem = null;
+        let selectedSize = 'regular';
+        let selectedTemp = 'hot';
+        let selectedExtras = [];
+        let timerSeconds = 60;
+        let timerInterval = null;
+
+        // Render Menu
+        function renderMenu(category = 'season') {
+            const grid = document.getElementById('menuGrid');
+            const filtered = menuItems.filter(item => item.category === category);
+            
+            grid.innerHTML = filtered.map(item => `
+                <div class="menu-item" onclick="openModal(${item.id})">
+                    <img class="menu-item-image" src="${item.image}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/300x300/f5f5f5/999999?text=No+Image'">
+                    <div class="menu-item-info">
+                        <div class="menu-item-name">${item.name}</div>
+                        <div class="menu-item-price">${item.price.toLocaleString()}<span>원</span></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Category Tabs
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                renderMenu(this.dataset.category);
+            });
+        });
+
+        // Timer
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerSeconds = 60;
+            updateTimerDisplay();
+            
+            timerInterval = setInterval(() => {
+                timerSeconds--;
+                updateTimerDisplay();
+                
+                if (timerSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    clearCart();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            document.getElementById('timerValue').innerHTML = `${timerSeconds}<span>초</span>`;
+        }
+
+        function resetTimer() {
+            timerSeconds = 60;
+            updateTimerDisplay();
+        }
+
+        // Modal Functions
+        function openModal(itemId) {
+            currentItem = menuItems.find(item => item.id === itemId);
+            if (!currentItem) return;
+
+            document.getElementById('modalImage').src = currentItem.image;
+            document.getElementById('modalName').textContent = currentItem.name;
+            document.getElementById('modalPrice').textContent = `${currentItem.price.toLocaleString()}원`;
+
+            // Reset selections
+            selectedSize = 'regular';
+            selectedTemp = 'hot';
+            selectedExtras = [];
+
+            // Update UI
+            document.querySelectorAll('#sizeOptions .option-btn').forEach(btn => {
+                btn.classList.toggle('selected', btn.dataset.size === 'regular');
+            });
+            document.querySelectorAll('#tempOptions .option-btn').forEach(btn => {
+                btn.classList.toggle('selected', btn.dataset.temp === 'hot');
+            });
+            document.querySelectorAll('#extraOptions .option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+
+            // Hide options for desserts
+            const sizeGroup = document.getElementById('sizeGroup');
+            const tempGroup = document.getElementById('tempGroup');
+            if (currentItem.isDessert) {
+                sizeGroup.style.display = 'none';
+                tempGroup.style.display = 'none';
+            } else {
+                sizeGroup.style.display = 'block';
+                tempGroup.style.display = 'block';
+            }
+
+            document.getElementById('productModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('active');
+            currentItem = null;
+        }
+
+        // Size Options
+        document.querySelectorAll('#sizeOptions .option-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('#sizeOptions .option-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedSize = this.dataset.size;
+            });
+        });
+
+        // Temperature Options
+        document.querySelectorAll('#tempOptions .option-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('#tempOptions .option-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedTemp = this.dataset.temp;
+            });
+        });
+
+        // Extra Options
+        document.querySelectorAll('#extraOptions .option-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                const option = this.dataset.extraOption;
+                if (selectedExtras.includes(option)) {
+                    selectedExtras = selectedExtras.filter(e => e !== option);
+                } else {
+                    selectedExtras.push(option);
+                }
+            });
+        });
+
+        // Add to Cart
+        function addToCart() {
+            if (!currentItem) return;
+
+            const sizeBtn = document.querySelector(`#sizeOptions .option-btn[data-size="${selectedSize}"]`);
+            const sizeExtra = currentItem.isDessert ? 0 : parseInt(sizeBtn?.dataset.extra || 0);
+
+            let extrasTotal = 0;
+            selectedExtras.forEach(extra => {
+                const btn = document.querySelector(`#extraOptions .option-btn[data-extra-option="${extra}"]`);
+                extrasTotal += parseInt(btn?.dataset.extra || 0);
+            });
+
+            const totalPrice = currentItem.price + sizeExtra + extrasTotal;
+
+            const cartItem = {
+                id: Date.now(),
+                itemId: currentItem.id,
+                name: currentItem.name,
+                image: currentItem.image,
+                size: currentItem.isDessert ? '' : selectedSize,
+                temp: currentItem.isDessert ? '' : selectedTemp,
+                extras: [...selectedExtras],
+                basePrice: currentItem.price,
+                totalPrice: totalPrice,
+                quantity: 1
+            };
+
+            cart.push(cartItem);
+            updateCart();
+            closeModal();
+            resetTimer();
+            
+            if (!timerInterval) {
+                startTimer();
+            }
+        }
+
+        // Update Cart UI
+        function updateCart() {
+            const previewEl = document.getElementById('selectedPreview');
+            const cartCountEl = document.getElementById('cartCount');
+            const totalAmountEl = document.getElementById('totalAmount');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+
+            if (cart.length === 0) {
+                previewEl.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🛒</div>
+                        <div class="empty-state-text">메뉴를 선택해주세요</div>
+                    </div>
+                `;
+                cartCountEl.textContent = '0개';
+                totalAmountEl.textContent = '0원';
+                checkoutBtn.disabled = true;
+                checkoutBtn.classList.remove('active');
+                return;
+            }
+
+            const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const total = cart.reduce((sum, item) => sum + (item.totalPrice * item.quantity), 0);
+
+            previewEl.innerHTML = cart.map(item => {
+                const options = [];
+                if (item.size) options.push(item.size === 'large' ? 'Large' : 'Regular');
+                if (item.temp) options.push(item.temp === 'hot' ? 'HOT' : 'ICE');
+
+                return `
+                    <div class="preview-item">
+                        <img class="preview-item-img" src="${item.image}" alt="${item.name}">
+                        <div class="preview-item-info">
+                            <div class="preview-item-name">${item.name}${options.length ? ` (${options.join('/')})` : ''}</div>
+                            <div class="preview-item-price">${(item.totalPrice * item.quantity).toLocaleString()}원</div>
+                        </div>
+                        <div class="preview-item-controls">
+                            <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
+                            <span class="qty-value">${item.quantity}</span>
+                            <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            <button class="remove-btn" onclick="removeFromCart(${item.id})">✕</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            cartCountEl.textContent = `${totalQty}개`;
+            totalAmountEl.textContent = `${total.toLocaleString()}원`;
+            checkoutBtn.disabled = false;
+            checkoutBtn.classList.add('active');
+        }
+
+        function updateQuantity(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                removeFromCart(id);
+            } else {
+                updateCart();
+            }
+            resetTimer();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCart();
+            resetTimer();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCart();
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            timerSeconds = 60;
+            updateTimerDisplay();
+        }
+
+        // 직장인 공감 문구들 (더 웃긴 버전)
+        const officeJokes = [
+            { icon: "💀", title: "현타 주의", text: "지금 마시는 커피값이면 주식 샀어야 했는데..." },
+            { icon: "🤡", title: "자아성찰", text: "커피 없으면 일 못 해요 (원래 못 함)" },
+            { icon: "😇", title: "천사의 속삭임", text: "퇴사각이지만 일단 커피부터..." },
+            { icon: "🪦", title: "R.I.P", text: "내 열정 여기 잠들다. 커피만 남았다." },
+            { icon: "🎰", title: "도박", text: "오늘 야근 확률 99%... 커피나 걸자" },
+            { icon: "🧟", title: "좀비 모드", text: "뇌: 오프라인 / 커피: 부팅 중..." },
+            { icon: "💸", title: "가계부 분석", text: "월급의 30%가 커피... 나머지는 세금" },
+            { icon: "🤖", title: "AI 대체 불가", text: "ChatGPT도 대신 못 마시는 커피" },
+            { icon: "🔮", title: "점집 예언", text: "오늘의 운세: 커피 = 생존 / 안 마시면 = 퇴사" },
+            { icon: "🏆", title: "자랑스러운 기록", text: "올해 마신 커피로 한강 채울 수 있음" },
+            { icon: "😵", title: "TMI", text: "혈관에 피 대신 아메리카노 흐르는 중" },
+            { icon: "🎭", title: "연기대상", text: "커피 마시며 일하는 척 완벽 연기 중" },
+            { icon: "🚀", title: "스타트업 감성", text: "야근은 열정이 아니라 커피가 시킨 거임" },
+            { icon: "👻", title: "소름 주의", text: "팀장님 커피 사줄 때 = 야근 99% 확정" },
+            { icon: "🐶", title: "강아지 눈빛", text: "사장님 저 연봉 올려주세요 (커피 홀짝)" },
+            { icon: "🎪", title: "서커스단", text: "회의 중 졸다 걸려서 커피 원샷함" },
+            { icon: "🌋", title: "폭발 직전", text: "커피 마시기 전에 말 걸면 책임 못 짐" },
+            { icon: "🦴", title: "뼈 때리는", text: "열심히 일해도 커피값 버는 중..." },
+            { icon: "🎬", title: "드라마 촬영", text: "퇴사 상상하며 커피 마시는 장면 촬영 중" },
+            { icon: "🧮", title: "수학의 정석", text: "연봉 ÷ 365 ÷ 8 = 커피 한 잔 못 사먹음" },
+            { icon: "🎵", title: "오늘의 BGM", text: "♪ 월급은 통장을 스쳐 지나가고~ ♪" },
+            { icon: "🌈", title: "긍정 회로", text: "그래도 회사 다녀서 커피 마실 돈은 있잖아 (눈물)" },
+            { icon: "🦥", title: "나무늘보 모드", text: "움직이기 싫어서 커피 시킴 (1m 거리)" },
+            { icon: "📱", title: "카톡 알림", text: "'지금 뭐해?' '커피 마시며 퇴사 검색 중'" },
+            { icon: "🎁", title: "크리스마스 소원", text: "올해 소원: 야근 없는 삶 + 무한 커피" },
+        ];
+
+        // Checkout
+        function checkout() {
+            if (cart.length === 0) return;
+
+            const successOverlay = document.getElementById('successOverlay');
+            const jokeEl = document.getElementById('successJoke');
+            const iconEl = document.getElementById('successIcon');
+            
+            // 랜덤 문구 선택
+            const joke = officeJokes[Math.floor(Math.random() * officeJokes.length)];
+            
+            iconEl.textContent = joke.icon;
+            jokeEl.innerHTML = `
+                <div class="joke-title">${joke.title}</div>
+                <div class="joke-content">"${joke.text}"</div>
+            `;
+            
+            successOverlay.classList.add('active');
+
+            setTimeout(() => {
+                successOverlay.classList.remove('active');
+                clearCart();
+            }, 4000);
+        }
+
+        // Close modal on overlay click
+        document.getElementById('productModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Initialize
+        renderMenu('season');
+    </script>
+</body>
+</html>
