@@ -40,7 +40,7 @@
             overflow-x: hidden;
         }
 
-        /* Cursor Follower */
+        /* Cursor */
         .cursor {
             width: 20px;
             height: 20px;
@@ -49,7 +49,7 @@
             position: fixed;
             pointer-events: none;
             z-index: 9999;
-            transition: transform 0.1s ease, width 0.3s, height 0.3s, border-color 0.3s;
+            transition: transform 0.1s ease, width 0.3s, height 0.3s;
             transform: translate(-50%, -50%);
             mix-blend-mode: difference;
         }
@@ -224,26 +224,6 @@
             padding: 6rem 3rem;
         }
 
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 4rem;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-        }
-
-        .section-count {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -255,6 +235,7 @@
             border-radius: 24px;
             overflow: hidden;
             cursor: pointer;
+            background: var(--bg-card);
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -265,74 +246,110 @@
         .bento-item.large {
             grid-column: span 8;
             grid-row: span 2;
-            min-height: 600px;
         }
 
         .bento-item.medium {
             grid-column: span 4;
-            min-height: 300px;
         }
 
         .bento-item.wide {
             grid-column: span 6;
-            min-height: 400px;
         }
 
         .bento-item.tall {
             grid-column: span 4;
             grid-row: span 2;
+        }
+
+        /* Iframe Preview Thumbnail */
+        .bento-thumbnail {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            overflow: hidden;
+            background: #0a0a0a;
+        }
+
+        .bento-item.large .bento-thumbnail {
             min-height: 600px;
         }
 
-        .bento-thumbnail {
+        .bento-item.tall .bento-thumbnail {
+            min-height: 600px;
+        }
+
+        .bento-item.wide .bento-thumbnail {
+            min-height: 400px;
+        }
+
+        .preview-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            border: none;
+            transform: scale(0.5);
+            transform-origin: top left;
+            pointer-events: none;
+            background: #fff;
+        }
+
+        .bento-item.large .preview-frame {
+            width: 150%;
+            height: 150%;
+            transform: scale(0.667);
+        }
+
+        /* Loading state */
+        .preview-loading {
             position: absolute;
             inset: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 6rem;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            z-index: 1;
+            transition: opacity 0.5s ease;
         }
 
-        .bento-item:hover .bento-thumbnail {
-            transform: scale(1.1);
+        .preview-loading.loaded {
+            opacity: 0;
+            pointer-events: none;
         }
 
-        /* Gradient backgrounds for each category */
-        .bento-item[data-category="ai"] .bento-thumbnail {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
 
-        .bento-item[data-category="creative"] .bento-thumbnail {
-            background: linear-gradient(135deg, #2d1f3d 0%, #4a1942 50%, #6b1839 100%);
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
-        .bento-item[data-category="studio"] .bento-thumbnail {
-            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #21262d 100%);
-        }
-
-        .bento-item[data-category="corporate"] .bento-thumbnail {
-            background: linear-gradient(135deg, #1e3a5f 0%, #0d2137 50%, #0a1929 100%);
-        }
-
-        .bento-item[data-category="event"] .bento-thumbnail {
-            background: linear-gradient(135deg, #3d1a1a 0%, #4a1f1f 50%, #5c2323 100%);
-        }
-
-        .bento-item[data-category="clone"] .bento-thumbnail {
-            background: linear-gradient(135deg, #1a2f1a 0%, #1f3d1f 50%, #234a23 100%);
-        }
-
-        .bento-item[data-category="nextjs"] .bento-thumbnail {
-            background: linear-gradient(135deg, #000 0%, #111 50%, #1a1a1a 100%);
+        /* Fallback icon for non-HTML projects */
+        .preview-fallback {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
         }
 
         .bento-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 40%, transparent 70%);
             opacity: 0;
             transition: opacity 0.4s ease;
+            z-index: 2;
         }
 
         .bento-item:hover .bento-overlay {
@@ -348,6 +365,7 @@
             transform: translateY(20px);
             opacity: 0;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 3;
         }
 
         .bento-item:hover .bento-content {
@@ -414,6 +432,7 @@
             transform: scale(0.5) rotate(-45deg);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             text-decoration: none;
+            z-index: 4;
         }
 
         .bento-link svg {
@@ -623,9 +642,9 @@
             .bento-item.wide,
             .bento-item.tall {
                 grid-column: span 12;
-                min-height: 300px;
             }
-            .bento-item.large { min-height: 400px; }
+            .bento-thumbnail { min-height: 250px !important; }
+            .bento-item.large .bento-thumbnail { min-height: 350px !important; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
             .stat-card { padding: 2rem 1rem; }
             .category-divider { flex-wrap: wrap; }
@@ -638,6 +657,8 @@
             .cursor, .header { display: none; }
             .bento-content { opacity: 1; transform: none; }
             .bento-overlay { opacity: 1; }
+            .preview-frame { display: none; }
+            .preview-loading { display: flex !important; opacity: 1 !important; }
         }
     </style>
 </head>
@@ -716,7 +737,10 @@
 
         <div class="bento-grid">
             <article class="bento-item large" data-category="ai">
-                <div class="bento-thumbnail">🎙️</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="voice-ai-premium.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="voice-ai-premium.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -735,7 +759,10 @@
             </article>
 
             <article class="bento-item medium" data-category="ai">
-                <div class="bento-thumbnail">🔊</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="voxai-voice-tech.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="voxai-voice-tech.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -752,7 +779,10 @@
             </article>
 
             <article class="bento-item medium" data-category="ai">
-                <div class="bento-thumbnail">🔬</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="whisper-labs.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="whisper-labs.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -769,7 +799,10 @@
             </article>
 
             <article class="bento-item wide" data-category="ai">
-                <div class="bento-thumbnail">💻</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="nexus-ai-terminal.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="nexus-ai-terminal.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -787,7 +820,10 @@
             </article>
 
             <article class="bento-item wide" data-category="ai">
-                <div class="bento-thumbnail">🌀</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="chaos-agent.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="chaos-agent.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -805,7 +841,10 @@
             </article>
 
             <article class="bento-item medium" data-category="ai">
-                <div class="bento-thumbnail">🏢</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="llm-solution-company.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="llm-solution-company.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -822,7 +861,10 @@
             </article>
 
             <article class="bento-item medium" data-category="ai">
-                <div class="bento-thumbnail">🎮</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="timbel-ai-playground.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="timbel-ai-playground.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -853,7 +895,10 @@
 
         <div class="bento-grid">
             <article class="bento-item tall" data-category="creative">
-                <div class="bento-thumbnail">🎮</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="legendary-gaming-parody.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="legendary-gaming-parody.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -871,7 +916,10 @@
             </article>
 
             <article class="bento-item medium" data-category="creative">
-                <div class="bento-thumbnail">👻</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="corporate-horror.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="corporate-horror.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -888,7 +936,10 @@
             </article>
 
             <article class="bento-item medium" data-category="creative">
-                <div class="bento-thumbnail">💼</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="job-extinction.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="job-extinction.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -905,7 +956,10 @@
             </article>
 
             <article class="bento-item wide" data-category="creative">
-                <div class="bento-thumbnail">📝</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="stenographer-drama.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="stenographer-drama.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -937,7 +991,10 @@
 
         <div class="bento-grid">
             <article class="bento-item wide" data-category="studio">
-                <div class="bento-thumbnail">✨</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="anomaly-studio.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="anomaly-studio.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -955,7 +1012,10 @@
             </article>
 
             <article class="bento-item wide" data-category="studio">
-                <div class="bento-thumbnail">🌌</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="craft-studio-cosmic.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="craft-studio-cosmic.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -973,7 +1033,10 @@
             </article>
 
             <article class="bento-item medium" data-category="studio">
-                <div class="bento-thumbnail">🔮</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="craft-studio-experimental.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="craft-studio-experimental.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -990,7 +1053,10 @@
             </article>
 
             <article class="bento-item medium" data-category="studio">
-                <div class="bento-thumbnail">⚡</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="craft-studio-ultra.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="craft-studio-ultra.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1007,7 +1073,10 @@
             </article>
 
             <article class="bento-item medium" data-category="studio">
-                <div class="bento-thumbnail">🖤</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="void-studio.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="void-studio.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1024,7 +1093,10 @@
             </article>
 
             <article class="bento-item medium" data-category="studio">
-                <div class="bento-thumbnail">🏛️</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="agency-portfolio.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="agency-portfolio.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1055,7 +1127,10 @@
 
         <div class="bento-grid">
             <article class="bento-item large" data-category="corporate">
-                <div class="bento-thumbnail">📊</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="adriel-dashboard.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="adriel-dashboard.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1074,7 +1149,10 @@
             </article>
 
             <article class="bento-item medium" data-category="corporate">
-                <div class="bento-thumbnail">🔬</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="choicedx-renewal.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="choicedx-renewal.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1091,7 +1169,10 @@
             </article>
 
             <article class="bento-item medium" data-category="corporate">
-                <div class="bento-thumbnail">💻</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="choicetech-renewal.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="choicetech-renewal.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1108,7 +1189,10 @@
             </article>
 
             <article class="bento-item wide" data-category="corporate">
-                <div class="bento-thumbnail">🚀</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="solo-venture-2026.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="solo-venture-2026.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1126,7 +1210,10 @@
             </article>
 
             <article class="bento-item wide" data-category="corporate">
-                <div class="bento-thumbnail">📋</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="ai-test-report.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="ai-test-report.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1157,7 +1244,10 @@
 
         <div class="bento-grid">
             <article class="bento-item wide" data-category="event">
-                <div class="bento-thumbnail">🎪</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="eventus-january-2026.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="eventus-january-2026.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1175,7 +1265,10 @@
             </article>
 
             <article class="bento-item wide" data-category="event">
-                <div class="bento-thumbnail">☕</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="starbucks-january-event.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="starbucks-january-event.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1192,7 +1285,10 @@
             </article>
 
             <article class="bento-item medium" data-category="event">
-                <div class="bento-thumbnail">📆</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="marketing-calendar-2026.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="marketing-calendar-2026.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1209,7 +1305,10 @@
             </article>
 
             <article class="bento-item medium" data-category="event">
-                <div class="bento-thumbnail">✉️</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="whisper-labs-contact.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="whisper-labs-contact.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1240,7 +1339,10 @@
 
         <div class="bento-grid">
             <article class="bento-item large" data-category="clone">
-                <div class="bento-thumbnail">🍎</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="apple-style-landing.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="apple-style-landing.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1258,7 +1360,10 @@
             </article>
 
             <article class="bento-item medium" data-category="clone">
-                <div class="bento-thumbnail">🏠</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="timbel-landing.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="timbel-landing.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1275,7 +1380,10 @@
             </article>
 
             <article class="bento-item medium" data-category="clone">
-                <div class="bento-thumbnail">🎬</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="timbel-dynamic/index.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="timbel-dynamic/index.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1292,7 +1400,10 @@
             </article>
 
             <article class="bento-item medium" data-category="clone">
-                <div class="bento-thumbnail">🎨</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="ystudio-clone.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="ystudio-clone.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1309,7 +1420,10 @@
             </article>
 
             <article class="bento-item medium" data-category="clone">
-                <div class="bento-thumbnail">💼</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="orp-it-clone.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="orp-it-clone.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1326,7 +1440,10 @@
             </article>
 
             <article class="bento-item medium" data-category="clone">
-                <div class="bento-thumbnail">🛠️</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-loading"><div class="loading-spinner"></div></div>
+                    <iframe class="preview-frame" src="custom-studio.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="custom-studio.html" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1357,7 +1474,9 @@
 
         <div class="bento-grid">
             <article class="bento-item wide" data-category="nextjs">
-                <div class="bento-thumbnail">📱</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-fallback">📱</div>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="25.12.24/android-clone/README.md" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1376,7 +1495,9 @@
             </article>
 
             <article class="bento-item wide" data-category="nextjs">
-                <div class="bento-thumbnail">🏘️</div>
+                <div class="bento-thumbnail">
+                    <div class="preview-fallback">🏘️</div>
+                </div>
                 <div class="bento-overlay"></div>
                 <a href="25.12.24/lh-housing/package.json" class="bento-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -1473,6 +1594,24 @@
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
 
+        // Handle iframe loading
+        document.querySelectorAll('.preview-frame').forEach(iframe => {
+            iframe.addEventListener('load', function() {
+                const loading = this.previousElementSibling;
+                if (loading && loading.classList.contains('preview-loading')) {
+                    loading.classList.add('loaded');
+                }
+            });
+
+            // Fallback timeout
+            setTimeout(() => {
+                const loading = iframe.previousElementSibling;
+                if (loading && loading.classList.contains('preview-loading')) {
+                    loading.classList.add('loaded');
+                }
+            }, 5000);
+        });
+
         // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
@@ -1511,6 +1650,23 @@
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
+        });
+
+        // Lazy load iframes when in viewport
+        const iframeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const iframe = entry.target;
+                    if (iframe.dataset.src) {
+                        iframe.src = iframe.dataset.src;
+                    }
+                    iframeObserver.unobserve(iframe);
+                }
+            });
+        }, { rootMargin: '200px' });
+
+        document.querySelectorAll('.preview-frame').forEach(iframe => {
+            iframeObserver.observe(iframe);
         });
     </script>
 </body>
