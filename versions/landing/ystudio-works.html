@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Works - YSTUDIO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #000000;
+            --bg-secondary: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #666666;
+            --accent: #ff3c00;
+            --accent-secondary: #00ff88;
+            --accent-tertiary: #7000ff;
+            --gradient-1: linear-gradient(135deg, #ff3c00, #ff00aa, #7000ff);
+            --gradient-2: linear-gradient(45deg, #00ff88, #00d4ff, #7000ff);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--bg-dark);
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            transition: all 0.15s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+        }
+
+        .cursor.hover {
+            transform: scale(2.5);
+            background: rgba(255, 60, 0, 0.1);
+        }
+
+        .cursor.view {
+            width: 120px;
+            height: 120px;
+            border: none;
+            background: var(--accent);
+            mix-blend-mode: normal;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cursor.view::after {
+            content: 'VIEW';
+            color: var(--bg-dark);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+
+        /* Noise */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.02;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Page Transition */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            z-index: 100000;
+            animation: pageReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+
+        @keyframes pageReveal {
+            0% { transform: scaleY(1); }
+            100% { transform: scaleY(0); transform-origin: top; }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 50px;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            position: relative;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        nav a:hover::before,
+        nav a.active::before {
+            transform: scaleX(1);
+        }
+
+        nav a .nav-index {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--accent);
+            margin-right: 5px;
+        }
+
+        /* Hero */
+        .hero-works {
+            min-height: 60vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 150px 50px 100px;
+            position: relative;
+        }
+
+        .hero-works-content {
+            text-align: center;
+            max-width: 1200px;
+        }
+
+        .page-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.3s;
+        }
+
+        .hero-works-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(5rem, 15vw, 15rem);
+            font-weight: 900;
+            line-height: 0.9;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        .hero-works-title span {
+            display: inline-block;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Filter */
+        .filter-section {
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.7s;
+        }
+
+        .filter-btn {
+            padding: 15px 30px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-secondary);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: var(--accent);
+            color: var(--text-primary);
+            background: rgba(255, 60, 0, 0.1);
+        }
+
+        /* Portfolio Grid */
+        .portfolio-section {
+            padding: 50px;
+        }
+
+        .portfolio-grid {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .portfolio-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .portfolio-item.large {
+            grid-column: span 8;
+            height: 600px;
+        }
+
+        .portfolio-item.medium {
+            grid-column: span 4;
+            height: 600px;
+        }
+
+        .portfolio-item.wide {
+            grid-column: span 6;
+            height: 450px;
+        }
+
+        .portfolio-item.tall {
+            grid-column: span 4;
+            grid-row: span 2;
+            height: 100%;
+        }
+
+        .portfolio-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.1);
+        }
+
+        /* Real images for each portfolio item */
+        .portfolio-item:nth-child(1) .portfolio-image {
+            background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1200&q=80');
+        }
+
+        .portfolio-item:nth-child(2) .portfolio-image {
+            background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80');
+        }
+
+        .portfolio-item:nth-child(3) .portfolio-image {
+            background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&q=80');
+        }
+
+        .portfolio-item:nth-child(4) .portfolio-image {
+            background-image: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80');
+        }
+
+        .portfolio-item:nth-child(5) .portfolio-image {
+            background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80');
+        }
+
+        .portfolio-item:nth-child(6) .portfolio-image {
+            background-image: url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&q=80');
+        }
+
+        .portfolio-item:nth-child(7) .portfolio-image {
+            background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80');
+        }
+
+        .portfolio-item:nth-child(8) .portfolio-image {
+            background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80');
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-category {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .portfolio-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            transform: translateY(20px);
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover .portfolio-title {
+            transform: translateY(0);
+        }
+
+        .portfolio-year {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .portfolio-number {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-family: 'Space Mono', monospace;
+            font-size: 4rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.1);
+            transition: color 0.3s ease;
+            text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .portfolio-item:hover .portfolio-number {
+            color: rgba(255, 60, 0, 0.3);
+        }
+
+        /* Featured Work */
+        .featured-section {
+            padding: 150px 50px;
+            background: var(--bg-secondary);
+        }
+
+        .featured-header {
+            max-width: 1600px;
+            margin: 0 auto 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .featured-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+        }
+
+        .featured-count {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .featured-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .featured-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            padding: 100px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            align-items: center;
+        }
+
+        .featured-item:nth-child(even) {
+            direction: rtl;
+        }
+
+        .featured-item:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .featured-image {
+            position: relative;
+            height: 500px;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .featured-image-inner {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .featured-item:nth-child(1) .featured-image-inner {
+            background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1200&q=80');
+        }
+
+        .featured-item:nth-child(2) .featured-image-inner {
+            background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80');
+        }
+
+        .featured-item:hover .featured-image-inner {
+            transform: scale(1.05);
+        }
+
+        .featured-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .featured-item:hover .featured-image-overlay {
+            opacity: 1;
+        }
+
+        .play-btn {
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--text-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .play-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .featured-content {
+            padding: 40px;
+        }
+
+        .featured-meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .featured-meta-item {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+        }
+
+        .featured-meta-item span {
+            color: var(--text-secondary);
+        }
+
+        .featured-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .featured-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .featured-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .tag {
+            padding: 8px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        .featured-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            position: relative;
+        }
+
+        .featured-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .featured-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 150px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(112, 0, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .stats-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+            text-align: center;
+        }
+
+        .stat-item {
+            position: relative;
+        }
+
+        .stat-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-top: 15px;
+            letter-spacing: 0.1em;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 200px 50px;
+            background: var(--bg-secondary);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .cta-title span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-desc {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 25px 50px;
+            background: var(--gradient-1);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(255, 60, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .portfolio-item.large,
+            .portfolio-item.medium,
+            .portfolio-item.wide,
+            .portfolio-item.tall {
+                grid-column: span 6;
+                height: 400px;
+            }
+
+            .featured-item {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .featured-item:nth-child(even) {
+                direction: ltr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 30px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero-works,
+            .portfolio-section,
+            .featured-section,
+            .stats-section,
+            .cta-section {
+                padding: 100px 30px;
+            }
+
+            .filter-section {
+                padding: 30px;
+            }
+
+            .portfolio-item.large,
+            .portfolio-item.medium,
+            .portfolio-item.wide,
+            .portfolio-item.tall {
+                grid-column: span 12;
+                height: 350px;
+            }
+
+            .featured-image {
+                height: 300px;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+            }
+
+            .cursor,
+            .cursor-dot {
+                display: none;
+            }
+
+            body {
+                cursor: auto;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Transition -->
+    <div class="page-transition"></div>
+
+    <!-- Noise -->
+    <div class="noise"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Header -->
+    <header>
+        <a href="ystudio-clone.html" class="logo">YSTUDIO</a>
+        <nav>
+            <a href="ystudio-about.html"><span class="nav-index">01</span>About</a>
+            <a href="ystudio-works.html" class="active"><span class="nav-index">02</span>Works</a>
+            <a href="ystudio-contact.html"><span class="nav-index">03</span>Contact</a>
+            <a href="ystudio-lab.html"><span class="nav-index">04</span>Lab</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero-works">
+        <div class="hero-works-content">
+            <div class="page-label">OUR PORTFOLIO</div>
+            <h1 class="hero-works-title"><span>Works</span></h1>
+        </div>
+    </section>
+
+    <!-- Filter -->
+    <div class="filter-section">
+        <button class="filter-btn active" data-filter="all">ALL</button>
+        <button class="filter-btn" data-filter="web">WEB DESIGN</button>
+        <button class="filter-btn" data-filter="app">APP</button>
+        <button class="filter-btn" data-filter="brand">BRANDING</button>
+        <button class="filter-btn" data-filter="motion">MOTION</button>
+    </div>
+
+    <!-- Portfolio Grid -->
+    <section class="portfolio-section">
+        <div class="portfolio-grid">
+            <div class="portfolio-item large" data-category="app">
+                <div class="portfolio-image"></div>
+                <span class="portfolio-number">01</span>
+                <div class="portfolio-overlay">
+                    <span class="portfolio-category">MOBILE APP</span>
+                    <h3 class="portfolio-title">CGV Mobile APP</h3>
+                    <span class="portfolio-year">2025</span>
+                </div>
+            </div>
+            <div class="portfolio-item medium" data-category="web">
+                <div class="portfolio-image"></div>
+                <span class="portfolio-number">02</span>
+                <div class="portfolio-overlay">
+                    <span class="portfolio-category">WEBSITE</span>
+                    <h3 class="portfolio-title">TAEJAE Univ.</h3>
+                    <span class="portfolio-year">2024</span>
+                </div>
+            </div>
+            <div class="portfolio-item wide" data-category="brand">
+                <div class="portfolio-image"></div>
+                <span class="portfolio-number">03</span>
+                <div class="portfolio-overlay">
+                    <span class="portfolio-category">BRAND WEB</span>
+                    <h3 class="portfolio-title">Amore Counselor</h3>
+                    <span class="portfolio-year">2024</span>
+                </div>
+            </div>
+            <div class="portfolio-item wide" data-category="brand">
+                <div class="portfolio-image"></div>
+                <span class="portfolio-number">04</span>
+                <div class="portfolio-overlay">
+                    <span class="portfolio-category">BRAND IDENTITY</span>
+                    <h3 class="portfolio-title">TONEWORK</h3>
+                    <span class="portfolio-year">2024</span>
+                </div>
+            </div>
+            <div class="portfolio-item medium" data-category="web">
+                <div class="portfolio-image"></div>
+                <span class="portfolio-number">05</span>
+                <div class="portfolio-overlay">
+                    <span class="portfolio-category">WEB DESIGN</span>
+                    <h3 class="portfolio-title">Nova Studio</h3>
+                    <span class="portfolio-year">2023</span>
+                </div>
+            </div>
+            <div class="portfolio-item large" data-category="motion">
+                <div class="portfolio-image"></div>
+                <span class="portfolio-number">06</span>
+                <div class="portfolio-overlay">
+                    <span class="portfolio-category">MOTION DESIGN</span>
+                    <h3 class="portfolio-title">Pulse Media</h3>
+                    <span class="portfolio-year">2023</span>
+                </div>
+            </div>
+            <div class="portfolio-item wide" data-category="app">
+                <div class="portfolio-image"></div>
+                <span class="portfolio-number">07</span>
+                <div class="portfolio-overlay">
+                    <span class="portfolio-category">MOBILE APP</span>
+                    <h3 class="portfolio-title">FinFlow App</h3>
+                    <span class="portfolio-year">2023</span>
+                </div>
+            </div>
+            <div class="portfolio-item wide" data-category="web">
+                <div class="portfolio-image"></div>
+                <span class="portfolio-number">08</span>
+                <div class="portfolio-overlay">
+                    <span class="portfolio-category">E-COMMERCE</span>
+                    <h3 class="portfolio-title">Luxe Fashion</h3>
+                    <span class="portfolio-year">2023</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Section -->
+    <section class="featured-section">
+        <div class="featured-header">
+            <h2 class="featured-title">Featured Projects</h2>
+            <span class="featured-count">04 SELECTED WORKS</span>
+        </div>
+        <div class="featured-grid">
+            <div class="featured-item">
+                <div class="featured-image">
+                    <div class="featured-image-inner"></div>
+                    <div class="featured-image-overlay">
+                        <div class="play-btn">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="featured-content">
+                    <div class="featured-meta">
+                        <div class="featured-meta-item"><span>CLIENT</span> CGV</div>
+                        <div class="featured-meta-item"><span>YEAR</span> 2025</div>
+                    </div>
+                    <h3 class="featured-name">CGV Mobile APP</h3>
+                    <p class="featured-desc">
+                        AI 기반 개인화 추천 시스템과 혁신적인 UX로 영화 경험을 재정의했습니다.
+                        사용자 중심 디자인으로 예매부터 관람까지 완벽한 경험을 제공합니다.
+                    </p>
+                    <div class="featured-tags">
+                        <span class="tag">Mobile App</span>
+                        <span class="tag">AI Integration</span>
+                        <span class="tag">UX Design</span>
+                    </div>
+                    <a href="#" class="featured-link">
+                        View Case Study
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="featured-item">
+                <div class="featured-image">
+                    <div class="featured-image-inner"></div>
+                    <div class="featured-image-overlay">
+                        <div class="play-btn">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="featured-content">
+                    <div class="featured-meta">
+                        <div class="featured-meta-item"><span>CLIENT</span> TAEJAE</div>
+                        <div class="featured-meta-item"><span>YEAR</span> 2024</div>
+                    </div>
+                    <h3 class="featured-name">TAEJAE University</h3>
+                    <p class="featured-desc">
+                        미래 리더를 양성하는 태재대학교의 디지털 아이덴티티를 완전히 새롭게 디자인했습니다.
+                        교육의 혁신을 담은 현대적인 웹 경험.
+                    </p>
+                    <div class="featured-tags">
+                        <span class="tag">Website</span>
+                        <span class="tag">Education</span>
+                        <span class="tag">Branding</span>
+                    </div>
+                    <a href="#" class="featured-link">
+                        View Case Study
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">PROJECTS</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">CLIENTS</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">AWARDS</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">YEARS</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Have a <span>Project</span> in Mind?</h2>
+            <p class="cta-desc">다음 프로젝트를 함께 만들어 갈 준비가 되셨나요?</p>
+            <a href="ystudio-contact.html" class="btn-primary">
+                Start a Project
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-copy">© 2025 YSTUDIO. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="#">Behance</a>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 20 + 'px';
+            cursor.style.top = e.clientY - 20 + 'px';
+            cursorDot.style.left = e.clientX - 4 + 'px';
+            cursorDot.style.top = e.clientY - 4 + 'px';
+        });
+
+        document.querySelectorAll('a, button, .play-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        document.querySelectorAll('.portfolio-item, .featured-item').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('view');
+                cursorDot.style.opacity = '0';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('view');
+                cursorDot.style.opacity = '1';
+            });
+        });
+
+        // Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                portfolioItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(50px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 500);
+                    }
+                });
+            });
+        });
+
+        // Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        portfolioItems.forEach(item => observer.observe(item));
+
+        // Magnetic Effect on Portfolio Items
+        portfolioItems.forEach(item => {
+            item.addEventListener('mousemove', (e) => {
+                const rect = item.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const moveX = (x - centerX) / 20;
+                const moveY = (y - centerY) / 20;
+                
+                item.querySelector('.portfolio-image').style.transform = 
+                    `scale(1.1) translate(${moveX}px, ${moveY}px)`;
+            });
+
+            item.addEventListener('mouseleave', () => {
+                item.querySelector('.portfolio-image').style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

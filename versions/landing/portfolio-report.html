@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Portfolio Report 2024-2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #050505;
+            --bg-secondary: #0a0a0a;
+            --bg-card: #111;
+            --text-primary: #fff;
+            --text-secondary: rgba(255,255,255,0.6);
+            --text-muted: rgba(255,255,255,0.4);
+            --accent: #ff3e00;
+            --accent-2: #00ff88;
+            --accent-3: #0066ff;
+            --accent-4: #ff00aa;
+            --accent-5: #ffcc00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Syne', 'Noto Sans KR', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Cursor Follower */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease, width 0.3s, height 0.3s, border-color 0.3s;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+
+        .cursor.hover {
+            width: 60px;
+            height: 60px;
+            border-color: var(--accent-2);
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.5;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150vmax;
+            height: 150vmax;
+            background: conic-gradient(from 0deg, transparent, var(--accent) 10%, transparent 20%);
+            animation: rotate 20s linear infinite;
+            opacity: 0.03;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes rotate {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+
+        .hero h1 {
+            font-size: clamp(4rem, 12vw, 12rem);
+            font-weight: 800;
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 .stroke {
+            -webkit-text-stroke: 2px var(--text-primary);
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-number {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--accent), var(--accent-4));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .meta-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Marquee */
+        .marquee-container {
+            overflow: hidden;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .marquee {
+            display: flex;
+            animation: marquee 30s linear infinite;
+        }
+
+        .marquee-item {
+            flex-shrink: 0;
+            padding: 0 3rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+        }
+
+        .marquee-item span {
+            color: var(--accent);
+            margin-right: 1rem;
+        }
+
+        @keyframes marquee {
+            to { transform: translateX(-50%); }
+        }
+
+        /* Bento Grid */
+        .bento-section {
+            padding: 6rem 3rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .section-count {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+
+        .bento-item {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .bento-item:hover {
+            transform: scale(0.98);
+        }
+
+        .bento-item.large {
+            grid-column: span 8;
+            grid-row: span 2;
+            min-height: 600px;
+        }
+
+        .bento-item.medium {
+            grid-column: span 4;
+            min-height: 300px;
+        }
+
+        .bento-item.wide {
+            grid-column: span 6;
+            min-height: 400px;
+        }
+
+        .bento-item.tall {
+            grid-column: span 4;
+            grid-row: span 2;
+            min-height: 600px;
+        }
+
+        .bento-thumbnail {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .bento-item:hover .bento-thumbnail {
+            transform: scale(1.1);
+        }
+
+        /* Gradient backgrounds for each category */
+        .bento-item[data-category="ai"] .bento-thumbnail {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+
+        .bento-item[data-category="creative"] .bento-thumbnail {
+            background: linear-gradient(135deg, #2d1f3d 0%, #4a1942 50%, #6b1839 100%);
+        }
+
+        .bento-item[data-category="studio"] .bento-thumbnail {
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #21262d 100%);
+        }
+
+        .bento-item[data-category="corporate"] .bento-thumbnail {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0d2137 50%, #0a1929 100%);
+        }
+
+        .bento-item[data-category="event"] .bento-thumbnail {
+            background: linear-gradient(135deg, #3d1a1a 0%, #4a1f1f 50%, #5c2323 100%);
+        }
+
+        .bento-item[data-category="clone"] .bento-thumbnail {
+            background: linear-gradient(135deg, #1a2f1a 0%, #1f3d1f 50%, #234a23 100%);
+        }
+
+        .bento-item[data-category="nextjs"] .bento-thumbnail {
+            background: linear-gradient(135deg, #000 0%, #111 50%, #1a1a1a 100%);
+        }
+
+        .bento-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .bento-item:hover .bento-overlay {
+            opacity: 1;
+        }
+
+        .bento-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .bento-item:hover .bento-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .bento-category {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--accent);
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        .bento-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .bento-item.large .bento-title {
+            font-size: 2.5rem;
+        }
+
+        .bento-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .bento-tech {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-pill {
+            padding: 0.25rem 0.6rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 100px;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        .bento-link {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 50px;
+            height: 50px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.5) rotate(-45deg);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
+        }
+
+        .bento-link svg {
+            width: 20px;
+            height: 20px;
+            color: var(--bg-primary);
+        }
+
+        .bento-item:hover .bento-link {
+            opacity: 1;
+            transform: scale(1) rotate(0);
+        }
+
+        .bento-link:hover {
+            transform: scale(1.1) !important;
+        }
+
+        /* Category Divider */
+        .category-divider {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .divider-icon {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-4) 100%);
+            border-radius: 20px;
+            font-size: 2.5rem;
+        }
+
+        .divider-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .divider-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, rgba(255,255,255,0.2), transparent);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 8rem 3rem;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: 'PORTFOLIO';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20vw;
+            font-weight: 800;
+            color: rgba(255,255,255,0.02);
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-name {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-top: 0.5rem;
+        }
+
+        /* Contact */
+        .contact-section {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 3rem;
+            position: relative;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            transform: translateX(-50%);
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .contact-title {
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-bottom: 2rem;
+        }
+
+        .contact-title .stroke {
+            -webkit-text-stroke: 2px var(--text-primary);
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 2.5rem;
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 100px;
+            transition: transform 0.3s, gap 0.3s;
+        }
+
+        .contact-cta:hover {
+            transform: scale(1.05);
+            gap: 1.5rem;
+        }
+
+        .contact-cta svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .bento-item.large { grid-column: span 12; }
+            .bento-item.medium { grid-column: span 6; }
+            .bento-item.wide { grid-column: span 6; }
+            .bento-item.tall { grid-column: span 6; }
+        }
+
+        @media (max-width: 768px) {
+            .header { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            .hero { padding: 6rem 1.5rem; }
+            .hero-meta { flex-direction: column; gap: 2rem; }
+            .bento-section { padding: 3rem 1.5rem; }
+            .bento-grid { gap: 1rem; }
+            .bento-item.large,
+            .bento-item.medium,
+            .bento-item.wide,
+            .bento-item.tall {
+                grid-column: span 12;
+                min-height: 300px;
+            }
+            .bento-item.large { min-height: 400px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            .stat-card { padding: 2rem 1rem; }
+            .category-divider { flex-wrap: wrap; }
+            .divider-line { display: none; }
+            .cursor { display: none; }
+        }
+
+        /* Print */
+        @media print {
+            .cursor, .header { display: none; }
+            .bento-content { opacity: 1; transform: none; }
+            .bento-overlay { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">PORTFOLIO</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#ai">AI/Voice</a></li>
+                <li><a href="#creative">Creative</a></li>
+                <li><a href="#studio">Studio</a></li>
+                <li><a href="#corporate">Corporate</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-tag">Web Development Portfolio Report</span>
+            <h1>
+                DIGITAL<br>
+                <span class="stroke">WORKS</span><br>
+                2024—25
+            </h1>
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <span class="meta-number">35+</span>
+                    <span class="meta-label">Projects Completed</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-number">7</span>
+                    <span class="meta-label">Categories</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-number">∞</span>
+                    <span class="meta-label">Possibilities</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-container">
+        <div class="marquee">
+            <div class="marquee-item"><span>●</span> AI & Voice Technology</div>
+            <div class="marquee-item"><span>●</span> Creative Entertainment</div>
+            <div class="marquee-item"><span>●</span> Studio Portfolio</div>
+            <div class="marquee-item"><span>●</span> Corporate Business</div>
+            <div class="marquee-item"><span>●</span> Event Marketing</div>
+            <div class="marquee-item"><span>●</span> Clone Projects</div>
+            <div class="marquee-item"><span>●</span> Next.js React</div>
+            <div class="marquee-item"><span>●</span> AI & Voice Technology</div>
+            <div class="marquee-item"><span>●</span> Creative Entertainment</div>
+            <div class="marquee-item"><span>●</span> Studio Portfolio</div>
+            <div class="marquee-item"><span>●</span> Corporate Business</div>
+            <div class="marquee-item"><span>●</span> Event Marketing</div>
+        </div>
+    </div>
+
+    <!-- AI / Voice Section -->
+    <section class="bento-section" id="ai">
+        <div class="category-divider">
+            <div class="divider-icon">🤖</div>
+            <div class="divider-info">
+                <h3>AI & Voice Technology</h3>
+                <p>인공지능 및 음성 기술 프로젝트</p>
+            </div>
+            <div class="divider-line"></div>
+        </div>
+
+        <div class="bento-grid">
+            <article class="bento-item large" data-category="ai">
+                <div class="bento-thumbnail">🎙️</div>
+                <div class="bento-overlay"></div>
+                <a href="voice-ai-premium.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">Voice AI</span>
+                    <h3 class="bento-title">Voice AI Premium</h3>
+                    <p class="bento-desc">프리미엄 음성 AI 솔루션 랜딩 페이지. 고급스러운 UI와 인터랙티브 요소가 돋보이는 작업.</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML5</span>
+                        <span class="tech-pill">CSS3</span>
+                        <span class="tech-pill">JavaScript</span>
+                        <span class="tech-pill">Animation</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="ai">
+                <div class="bento-thumbnail">🔊</div>
+                <div class="bento-overlay"></div>
+                <a href="voxai-voice-tech.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">Voice Tech</span>
+                    <h3 class="bento-title">VoxAI Voice Tech</h3>
+                    <p class="bento-desc">음성 기술 전문 기업 웹사이트</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="ai">
+                <div class="bento-thumbnail">🔬</div>
+                <div class="bento-overlay"></div>
+                <a href="whisper-labs.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">AI Labs</span>
+                    <h3 class="bento-title">Whisper Labs</h3>
+                    <p class="bento-desc">AI 연구소 컨셉 미니멀 디자인</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item wide" data-category="ai">
+                <div class="bento-thumbnail">💻</div>
+                <div class="bento-overlay"></div>
+                <a href="nexus-ai-terminal.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">Terminal</span>
+                    <h3 class="bento-title">Nexus AI Terminal</h3>
+                    <p class="bento-desc">터미널 스타일의 AI 인터페이스. 개발자 친화적인 UI 디자인.</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">JavaScript</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item wide" data-category="ai">
+                <div class="bento-thumbnail">🌀</div>
+                <div class="bento-overlay"></div>
+                <a href="chaos-agent.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">AI Agent</span>
+                    <h3 class="bento-title">Chaos Agent</h3>
+                    <p class="bento-desc">AI 에이전트 솔루션. 다이내믹한 비주얼 효과.</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">Animation</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="ai">
+                <div class="bento-thumbnail">🏢</div>
+                <div class="bento-overlay"></div>
+                <a href="llm-solution-company.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">LLM</span>
+                    <h3 class="bento-title">LLM Solution Company</h3>
+                    <p class="bento-desc">대규모 언어 모델 솔루션 기업</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="ai">
+                <div class="bento-thumbnail">🎮</div>
+                <div class="bento-overlay"></div>
+                <a href="timbel-ai-playground.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">Playground</span>
+                    <h3 class="bento-title">Timbel AI Playground</h3>
+                    <p class="bento-desc">AI 플레이그라운드 인터페이스</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">JavaScript</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Creative Section -->
+    <section class="bento-section" id="creative">
+        <div class="category-divider">
+            <div class="divider-icon">🎭</div>
+            <div class="divider-info">
+                <h3>Creative & Entertainment</h3>
+                <p>크리에이티브 및 엔터테인먼트 프로젝트</p>
+            </div>
+            <div class="divider-line"></div>
+        </div>
+
+        <div class="bento-grid">
+            <article class="bento-item tall" data-category="creative">
+                <div class="bento-thumbnail">🎮</div>
+                <div class="bento-overlay"></div>
+                <a href="legendary-gaming-parody.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: var(--accent-4)">Gaming</span>
+                    <h3 class="bento-title">Legendary Gaming Parody</h3>
+                    <p class="bento-desc">게임 산업 패러디 콘텐츠 페이지. 유머러스한 크리에이티브.</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">Animation</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="creative">
+                <div class="bento-thumbnail">👻</div>
+                <div class="bento-overlay"></div>
+                <a href="corporate-horror.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: #333">Horror</span>
+                    <h3 class="bento-title">Corporate Horror</h3>
+                    <p class="bento-desc">기업 호러 테마 크리에이티브</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">Dark Theme</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="creative">
+                <div class="bento-thumbnail">💼</div>
+                <div class="bento-overlay"></div>
+                <a href="job-extinction.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: var(--accent-5); color: #000">Satire</span>
+                    <h3 class="bento-title">Job Extinction</h3>
+                    <p class="bento-desc">AI 시대 직업 변화 풍자</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">JavaScript</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item wide" data-category="creative">
+                <div class="bento-thumbnail">📝</div>
+                <div class="bento-overlay"></div>
+                <a href="stenographer-drama.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: var(--accent-3)">Drama</span>
+                    <h3 class="bento-title">Stenographer Drama</h3>
+                    <p class="bento-desc">속기사를 주제로 한 드라마틱한 스토리텔링 페이지.</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">Storytelling</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Studio Section -->
+    <section class="bento-section" id="studio">
+        <div class="category-divider">
+            <div class="divider-icon">🎨</div>
+            <div class="divider-info">
+                <h3>Studio & Portfolio</h3>
+                <p>스튜디오 및 포트폴리오 웹사이트</p>
+            </div>
+            <div class="divider-line"></div>
+        </div>
+
+        <div class="bento-grid">
+            <article class="bento-item wide" data-category="studio">
+                <div class="bento-thumbnail">✨</div>
+                <div class="bento-overlay"></div>
+                <a href="anomaly-studio.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">Studio</span>
+                    <h3 class="bento-title">Anomaly Studio</h3>
+                    <p class="bento-desc">크리에이티브 스튜디오 포트폴리오. 독특한 비주얼 아이덴티티.</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">Animation</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item wide" data-category="studio">
+                <div class="bento-thumbnail">🌌</div>
+                <div class="bento-overlay"></div>
+                <a href="craft-studio-cosmic.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: #6366f1">Cosmic</span>
+                    <h3 class="bento-title">Craft Studio Cosmic</h3>
+                    <p class="bento-desc">우주 테마 크래프트 스튜디오. 몰입감 있는 배경 효과.</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">Particles</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="studio">
+                <div class="bento-thumbnail">🔮</div>
+                <div class="bento-overlay"></div>
+                <a href="craft-studio-experimental.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: #ec4899">Experimental</span>
+                    <h3 class="bento-title">Craft Studio Experimental</h3>
+                    <p class="bento-desc">실험적 디자인 스튜디오</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">WebGL</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="studio">
+                <div class="bento-thumbnail">⚡</div>
+                <div class="bento-overlay"></div>
+                <a href="craft-studio-ultra.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: var(--accent-5); color: #000">Ultra</span>
+                    <h3 class="bento-title">Craft Studio Ultra</h3>
+                    <p class="bento-desc">하이엔드 스튜디오 포트폴리오</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="studio">
+                <div class="bento-thumbnail">🖤</div>
+                <div class="bento-overlay"></div>
+                <a href="void-studio.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: #000; border: 1px solid #333">Dark</span>
+                    <h3 class="bento-title">Void Studio</h3>
+                    <p class="bento-desc">다크 테마 미니멀 스튜디오</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">Dark Mode</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="studio">
+                <div class="bento-thumbnail">🏛️</div>
+                <div class="bento-overlay"></div>
+                <a href="agency-portfolio.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">Agency</span>
+                    <h3 class="bento-title">Agency Portfolio</h3>
+                    <p class="bento-desc">에이전시 포트폴리오 템플릿</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">Grid</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Corporate Section -->
+    <section class="bento-section" id="corporate">
+        <div class="category-divider">
+            <div class="divider-icon">🏢</div>
+            <div class="divider-info">
+                <h3>Corporate & Business</h3>
+                <p>기업 및 비즈니스 웹사이트</p>
+            </div>
+            <div class="divider-line"></div>
+        </div>
+
+        <div class="bento-grid">
+            <article class="bento-item large" data-category="corporate">
+                <div class="bento-thumbnail">📊</div>
+                <div class="bento-overlay"></div>
+                <a href="adriel-dashboard.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: var(--accent-3)">Dashboard</span>
+                    <h3 class="bento-title">Adriel Dashboard</h3>
+                    <p class="bento-desc">마케팅 대시보드 UI. 데이터 시각화 중심 디자인으로 복잡한 정보를 직관적으로 표현.</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">Charts</span>
+                        <span class="tech-pill">Data Viz</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="corporate">
+                <div class="bento-thumbnail">🔬</div>
+                <div class="bento-overlay"></div>
+                <a href="choicedx-renewal.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: var(--accent-2); color: #000">Healthcare</span>
+                    <h3 class="bento-title">ChoiceDX Renewal</h3>
+                    <p class="bento-desc">헬스케어 기업 웹사이트 리뉴얼</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">Responsive</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="corporate">
+                <div class="bento-thumbnail">💻</div>
+                <div class="bento-overlay"></div>
+                <a href="choicetech-renewal.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">Tech</span>
+                    <h3 class="bento-title">ChoiceTech Renewal</h3>
+                    <p class="bento-desc">IT 기업 웹사이트 리뉴얼</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">JavaScript</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item wide" data-category="corporate">
+                <div class="bento-thumbnail">🚀</div>
+                <div class="bento-overlay"></div>
+                <a href="solo-venture-2026.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: var(--accent-4)">Startup</span>
+                    <h3 class="bento-title">Solo Venture 2026</h3>
+                    <p class="bento-desc">1인 벤처 기업 소개 페이지. 미래지향적 디자인과 동적 요소.</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">Animation</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item wide" data-category="corporate">
+                <div class="bento-thumbnail">📋</div>
+                <div class="bento-overlay"></div>
+                <a href="ai-test-report.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">Report</span>
+                    <h3 class="bento-title">AI Test Report</h3>
+                    <p class="bento-desc">AI 테스트 결과 리포트 페이지. 명확한 정보 전달 중심 설계.</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">Data Viz</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="bento-section" id="events">
+        <div class="category-divider">
+            <div class="divider-icon">📅</div>
+            <div class="divider-info">
+                <h3>Events & Marketing</h3>
+                <p>이벤트 및 마케팅 페이지</p>
+            </div>
+            <div class="divider-line"></div>
+        </div>
+
+        <div class="bento-grid">
+            <article class="bento-item wide" data-category="event">
+                <div class="bento-thumbnail">🎪</div>
+                <div class="bento-overlay"></div>
+                <a href="eventus-january-2026.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: var(--accent)">Event</span>
+                    <h3 class="bento-title">Eventus January 2026</h3>
+                    <p class="bento-desc">2026년 1월 이벤트 프로모션 페이지. 화려한 비주얼.</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">Animation</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item wide" data-category="event">
+                <div class="bento-thumbnail">☕</div>
+                <div class="bento-overlay"></div>
+                <a href="starbucks-january-event.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: #00704A">Promotion</span>
+                    <h3 class="bento-title">Starbucks January Event</h3>
+                    <p class="bento-desc">스타벅스 스타일 프로모션 이벤트 페이지.</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">Interactive</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="event">
+                <div class="bento-thumbnail">📆</div>
+                <div class="bento-overlay"></div>
+                <a href="marketing-calendar-2026.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">Calendar</span>
+                    <h3 class="bento-title">Marketing Calendar 2026</h3>
+                    <p class="bento-desc">마케팅 캘린더 UI</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">JavaScript</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="event">
+                <div class="bento-thumbnail">✉️</div>
+                <div class="bento-overlay"></div>
+                <a href="whisper-labs-contact.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">Contact</span>
+                    <h3 class="bento-title">Whisper Labs Contact</h3>
+                    <p class="bento-desc">세련된 문의 페이지</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">Form</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Clone Section -->
+    <section class="bento-section" id="clone">
+        <div class="category-divider">
+            <div class="divider-icon">🔧</div>
+            <div class="divider-info">
+                <h3>Clone & Renewal</h3>
+                <p>클론 코딩 및 리뉴얼 프로젝트</p>
+            </div>
+            <div class="divider-line"></div>
+        </div>
+
+        <div class="bento-grid">
+            <article class="bento-item large" data-category="clone">
+                <div class="bento-thumbnail">🍎</div>
+                <div class="bento-overlay"></div>
+                <a href="apple-style-landing.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: #555">Apple Style</span>
+                    <h3 class="bento-title">Apple Style Landing</h3>
+                    <p class="bento-desc">Apple 스타일 랜딩 페이지 클론. 미니멀하고 세련된 스크롤 애니메이션 적용.</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">Scroll Animation</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="clone">
+                <div class="bento-thumbnail">🏠</div>
+                <div class="bento-overlay"></div>
+                <a href="timbel-landing.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">Timbel</span>
+                    <h3 class="bento-title">Timbel Landing</h3>
+                    <p class="bento-desc">Timbel 브랜드 랜딩 페이지</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">JavaScript</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="clone">
+                <div class="bento-thumbnail">🎬</div>
+                <div class="bento-overlay"></div>
+                <a href="timbel-dynamic/index.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: var(--accent-3)">Dynamic</span>
+                    <h3 class="bento-title">Timbel Dynamic</h3>
+                    <p class="bento-desc">다이내믹 효과 Timbel 버전</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">JavaScript</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="clone">
+                <div class="bento-thumbnail">🎨</div>
+                <div class="bento-overlay"></div>
+                <a href="ystudio-clone.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">Y Studio</span>
+                    <h3 class="bento-title">Y Studio Clone</h3>
+                    <p class="bento-desc">Y Studio 웹사이트 클론</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">Gallery</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="clone">
+                <div class="bento-thumbnail">💼</div>
+                <div class="bento-overlay"></div>
+                <a href="orp-it-clone.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">ORP IT</span>
+                    <h3 class="bento-title">ORP IT Clone</h3>
+                    <p class="bento-desc">ORP IT 기업 웹사이트 클론</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">Corporate</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item medium" data-category="clone">
+                <div class="bento-thumbnail">🛠️</div>
+                <div class="bento-overlay"></div>
+                <a href="custom-studio.html" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category">Custom</span>
+                    <h3 class="bento-title">Custom Studio</h3>
+                    <p class="bento-desc">커스텀 스튜디오 템플릿</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">Modular</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Next.js Section -->
+    <section class="bento-section" id="nextjs">
+        <div class="category-divider">
+            <div class="divider-icon">⚛️</div>
+            <div class="divider-info">
+                <h3>Next.js & React</h3>
+                <p>React 기반 웹 애플리케이션</p>
+            </div>
+            <div class="divider-line"></div>
+        </div>
+
+        <div class="bento-grid">
+            <article class="bento-item wide" data-category="nextjs">
+                <div class="bento-thumbnail">📱</div>
+                <div class="bento-overlay"></div>
+                <a href="25.12.24/android-clone/README.md" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: #3DDC84; color: #000">Next.js</span>
+                    <h3 class="bento-title">Android Clone</h3>
+                    <p class="bento-desc">Android 공식 사이트 스타일 클론. Next.js와 Tailwind CSS로 구현.</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">Next.js</span>
+                        <span class="tech-pill">React</span>
+                        <span class="tech-pill">Tailwind CSS</span>
+                        <span class="tech-pill">TypeScript</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bento-item wide" data-category="nextjs">
+                <div class="bento-thumbnail">🏘️</div>
+                <div class="bento-overlay"></div>
+                <a href="25.12.24/lh-housing/package.json" class="bento-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <div class="bento-content">
+                    <span class="bento-category" style="background: #000">Next.js</span>
+                    <h3 class="bento-title">LH Housing</h3>
+                    <p class="bento-desc">LH 주거 서비스 웹앱. 반응형 컴포넌트 설계와 최적화된 사용자 경험.</p>
+                    <div class="bento-tech">
+                        <span class="tech-pill">Next.js</span>
+                        <span class="tech-pill">React</span>
+                        <span class="tech-pill">TypeScript</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">🤖</div>
+                <div class="stat-value">7</div>
+                <div class="stat-name">AI / Voice</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎭</div>
+                <div class="stat-value">4</div>
+                <div class="stat-name">Creative</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎨</div>
+                <div class="stat-value">6</div>
+                <div class="stat-name">Studio</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🏢</div>
+                <div class="stat-value">5</div>
+                <div class="stat-name">Corporate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📅</div>
+                <div class="stat-value">4</div>
+                <div class="stat-name">Events</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🔧</div>
+                <div class="stat-value">6</div>
+                <div class="stat-name">Clone</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⚛️</div>
+                <div class="stat-value">2</div>
+                <div class="stat-name">Next.js</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📦</div>
+                <div class="stat-value">35+</div>
+                <div class="stat-name">Total</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-section" id="contact">
+        <h2 class="contact-title">
+            LET'S<br>
+            <span class="stroke">CONNECT</span>
+        </h2>
+        <a href="mailto:your-email@example.com" class="contact-cta">
+            Get in Touch
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div>© 2024-2025 Web Development Portfolio</div>
+        <div>Generated December 2024</div>
+    </footer>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('.bento-item, a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.bento-item').forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = `opacity 0.6s ease ${i * 0.05}s, transform 0.6s ease ${i * 0.05}s`;
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.stat-card').forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = `opacity 0.5s ease ${i * 0.1}s, transform 0.5s ease ${i * 0.1}s`;
+            observer.observe(el);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
