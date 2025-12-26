@@ -1,0 +1,2026 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이지스자산운용 | IGIS Asset Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        }
+
+        :root {
+            --primary-yellow: #FEE500;
+            --primary-gold: #FFB800;
+            --primary-dark: #191919;
+            --primary-black: #000000;
+            --accent-blue: #3182F6;
+            --accent-green: #00C73C;
+            --accent-red: #F04452;
+            --text-primary: #191919;
+            --text-secondary: #666666;
+            --text-tertiary: #999999;
+            --bg-white: #FFFFFF;
+            --bg-light: #F7F8FA;
+            --bg-gray: #F2F3F5;
+            --border-light: #E5E8EB;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        /* Stock Ticker */
+        .stock-ticker {
+            background: var(--primary-dark);
+            padding: 12px 0;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+        }
+
+        .ticker-wrap {
+            display: flex;
+            animation: ticker 40s linear infinite;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 32px;
+            white-space: nowrap;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        .ticker-symbol {
+            color: #FFFFFF;
+        }
+
+        .ticker-price {
+            color: var(--primary-yellow);
+        }
+
+        .ticker-change.up {
+            color: var(--accent-green);
+        }
+
+        .ticker-change.down {
+            color: var(--accent-red);
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 44px;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--primary-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 8px 0;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: var(--primary-dark);
+            border: none;
+            border-radius: 8px;
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background: #333333;
+            transform: translateY(-1px);
+        }
+
+        .lang-switch {
+            color: var(--text-tertiary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .lang-switch:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding-top: 108px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(180deg, #FFFDF5 0%, #FFFFFF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(254, 229, 0, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 184, 0, 0.1) 0%, transparent 40%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-text {
+            padding-right: 20px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 199, 60, 0.1);
+            border-radius: 20px;
+            padding: 8px 16px;
+            margin-bottom: 24px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent-green);
+        }
+
+        .hero-badge .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.9); }
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            color: var(--text-primary);
+        }
+
+        .hero-title .highlight {
+            color: var(--primary-gold);
+            position: relative;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-bottom: 40px;
+            padding: 24px 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .hero-stat-value span {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .hero-stat-label {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-primary {
+            padding: 16px 32px;
+            background: var(--primary-dark);
+            border: none;
+            border-radius: 12px;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            background: #333333;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            padding: 16px 32px;
+            background: var(--bg-light);
+            border: none;
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-gray);
+        }
+
+        /* Live Stock Panel */
+        .hero-panel {
+            background: var(--bg-white);
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .panel-title .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .panel-time {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        /* Mini Chart */
+        .mini-chart {
+            height: 140px;
+            margin-bottom: 24px;
+            position: relative;
+            background: linear-gradient(180deg, rgba(255, 184, 0, 0.05) 0%, transparent 100%);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .mini-chart svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .chart-value {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            text-align: right;
+        }
+
+        .chart-value-main {
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .chart-value-change {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .chart-value-change.up {
+            color: var(--accent-green);
+        }
+
+        /* Stock List */
+        .stock-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stock-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .stock-item:hover {
+            background: var(--bg-gray);
+        }
+
+        .stock-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .stock-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-yellow) 0%, var(--primary-gold) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            color: var(--primary-dark);
+        }
+
+        .stock-name {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .stock-category {
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        .stock-data {
+            text-align: right;
+        }
+
+        .stock-price {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .stock-change {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .stock-change.up { color: var(--accent-green); }
+        .stock-change.down { color: var(--accent-red); }
+
+        /* Section Common Styles */
+        section {
+            padding: 100px 24px;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+
+        .section-description {
+            font-size: 17px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* Performance Section */
+        .performance-section {
+            background: var(--bg-light);
+        }
+
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .performance-card {
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .performance-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-yellow);
+        }
+
+        .performance-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, rgba(255, 184, 0, 0.15) 0%, rgba(254, 229, 0, 0.1) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .performance-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--primary-gold);
+        }
+
+        .performance-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .performance-number span {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .performance-label {
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .performance-trend {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 12px;
+            padding: 6px 10px;
+            background: rgba(0, 199, 60, 0.1);
+            border-radius: 6px;
+            color: var(--accent-green);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Business Section */
+        .business-section {
+            background: var(--bg-white);
+        }
+
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .business-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .business-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-yellow);
+        }
+
+        .business-image {
+            height: 160px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .business-image-bg {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .business-image-bg.realestate {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+        }
+
+        .business-image-bg.reits {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+        }
+
+        .business-image-bg.infra {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        }
+
+        .business-image-bg.securities {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+        }
+
+        .business-image-bg svg {
+            width: 64px;
+            height: 64px;
+            stroke: var(--text-secondary);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .business-card:hover .business-image-bg svg {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .business-content {
+            padding: 24px;
+        }
+
+        .business-content h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .business-content p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            font-weight: 400;
+        }
+
+        .business-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.2s ease;
+        }
+
+        .business-link:hover {
+            gap: 10px;
+        }
+
+        /* Market Overview Section */
+        .market-section {
+            background: var(--bg-light);
+        }
+
+        .market-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .market-text h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+
+        .market-text p {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+
+        .market-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .market-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: var(--bg-white);
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .market-feature:hover {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .market-feature-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, rgba(255, 184, 0, 0.15) 0%, rgba(254, 229, 0, 0.1) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .market-feature-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--primary-gold);
+        }
+
+        .market-feature-text h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .market-feature-text p {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin: 0;
+            font-weight: 400;
+        }
+
+        /* Live Chart Display */
+        .market-chart {
+            background: var(--bg-white);
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+            padding: 28px;
+        }
+
+        .market-chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .market-chart-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        .market-chart-tabs {
+            display: flex;
+            gap: 8px;
+        }
+
+        .market-chart-tab {
+            padding: 8px 14px;
+            background: transparent;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            color: var(--text-tertiary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .market-chart-tab.active {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+            color: #FFFFFF;
+        }
+
+        .big-chart {
+            height: 240px;
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .big-chart svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .chart-metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .chart-metric {
+            text-align: center;
+            padding: 16px;
+            background: var(--bg-light);
+            border-radius: 12px;
+        }
+
+        .chart-metric-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .chart-metric-label {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        /* News Section */
+        .news-section {
+            background: var(--bg-white);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .news-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+
+        .news-image {
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-image-bg {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .news-image-bg.finance {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        }
+
+        .news-image-bg.realestate {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+        }
+
+        .news-image-bg.market {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+        }
+
+        .news-image-bg svg {
+            width: 48px;
+            height: 48px;
+            stroke: var(--text-secondary);
+            opacity: 0.5;
+        }
+
+        .news-category {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            padding: 6px 12px;
+            background: var(--primary-dark);
+            border-radius: 6px;
+            color: #FFFFFF;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .news-content {
+            padding: 24px;
+        }
+
+        .news-content h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.5;
+            color: var(--text-primary);
+            transition: color 0.2s ease;
+        }
+
+        .news-card:hover .news-content h3 {
+            color: var(--accent-blue);
+        }
+
+        .news-content p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            font-weight: 400;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news-date {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        .news-more {
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            padding: 64px 24px 32px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(4, 1fr);
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand .logo {
+            color: #FFFFFF;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand .logo span {
+            color: var(--primary-yellow);
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: #999999;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary-yellow);
+        }
+
+        .social-link svg {
+            width: 18px;
+            height: 18px;
+            fill: #999999;
+            transition: fill 0.2s ease;
+        }
+
+        .social-link:hover svg {
+            fill: var(--primary-dark);
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #FFFFFF;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: #999999;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            transition: color 0.2s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-yellow);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            color: #666666;
+            font-weight: 400;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: #666666;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-yellow);
+        }
+
+        /* Notice Banner */
+        .notice-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--primary-yellow);
+            color: var(--primary-dark);
+            padding: 14px 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            z-index: 1000;
+            transform: translateY(100%);
+            animation: slideUp 0.5s ease forwards;
+            animation-delay: 2s;
+        }
+
+        @keyframes slideUp {
+            to { transform: translateY(0); }
+        }
+
+        .notice-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .notice-close {
+            background: rgba(0, 0, 0, 0.1);
+            border: none;
+            border-radius: 6px;
+            color: var(--primary-dark);
+            cursor: pointer;
+            font-size: 18px;
+            padding: 4px 10px;
+            font-weight: 500;
+        }
+
+        .notice-close:hover {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 48px;
+            }
+
+            .hero-text {
+                padding-right: 0;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .business-grid,
+            .performance-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 40px;
+            }
+
+            .market-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stock-ticker {
+                display: none;
+            }
+
+            .nav-container {
+                top: 0;
+            }
+
+            nav {
+                padding: 0 16px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 80px;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 16px;
+                align-items: center;
+            }
+
+            section {
+                padding: 64px 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .business-grid,
+            .performance-grid,
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text-primary);
+            margin: 5px 0;
+            border-radius: 1px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Stock Ticker -->
+    <div class="stock-ticker">
+        <div class="ticker-wrap">
+            <div class="ticker-item">
+                <span class="ticker-symbol">KOSPI</span>
+                <span class="ticker-price">2,456.78</span>
+                <span class="ticker-change up">▲ 1.24%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">KOSDAQ</span>
+                <span class="ticker-price">842.15</span>
+                <span class="ticker-change up">▲ 0.87%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">S&P 500</span>
+                <span class="ticker-price">4,789.25</span>
+                <span class="ticker-change down">▼ 0.32%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">NASDAQ</span>
+                <span class="ticker-price">15,123.67</span>
+                <span class="ticker-change up">▲ 0.56%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">USD/KRW</span>
+                <span class="ticker-price">1,298.50</span>
+                <span class="ticker-change down">▼ 0.15%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">EUR/KRW</span>
+                <span class="ticker-price">1,412.30</span>
+                <span class="ticker-change up">▲ 0.28%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">BTC</span>
+                <span class="ticker-price">$43,567</span>
+                <span class="ticker-change up">▲ 2.45%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">GOLD</span>
+                <span class="ticker-price">$2,045</span>
+                <span class="ticker-change up">▲ 0.67%</span>
+            </div>
+            <!-- Duplicate for seamless loop -->
+            <div class="ticker-item">
+                <span class="ticker-symbol">KOSPI</span>
+                <span class="ticker-price">2,456.78</span>
+                <span class="ticker-change up">▲ 1.24%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">KOSDAQ</span>
+                <span class="ticker-price">842.15</span>
+                <span class="ticker-change up">▲ 0.87%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">S&P 500</span>
+                <span class="ticker-price">4,789.25</span>
+                <span class="ticker-change down">▼ 0.32%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-symbol">NASDAQ</span>
+                <span class="ticker-price">15,123.67</span>
+                <span class="ticker-change up">▲ 0.56%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <div class="logo">IGIS<span>.</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">회사소개</a></li>
+                <li><a href="#business">사업소개</a></li>
+                <li><a href="#products">투자상품</a></li>
+                <li><a href="#news">Insight & News</a></li>
+                <li><a href="#esg">ESG</a></li>
+                <li><a href="#notice">공지&공시</a></li>
+            </ul>
+            <div class="nav-right">
+                <span class="lang-switch">ENG</span>
+                <button class="nav-btn">상담 신청</button>
+                <button class="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-pattern"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    실시간 자산 운용 현황
+                </div>
+                <h1 class="hero-title">
+                    <span class="highlight">66.8조</span> 규모<br>
+                    대한민국 No.1<br>
+                    자산운용사
+                </h1>
+                <p class="hero-description">
+                    변화의 흐름 속에서도 변함없는 가치를 창출합니다.<br>
+                    2010년 창립 이후 쌓아온 전문성과 네트워크로 최적의 투자 솔루션을 제공합니다.
+                </p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">330<span>+</span></div>
+                        <div class="hero-stat-label">전문 운용 인력</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">15<span>년</span></div>
+                        <div class="hero-stat-label">운용 경험</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">1<span>위</span></div>
+                        <div class="hero-stat-label">부동산 운용사</div>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <button class="btn-primary">
+                        투자 상담 신청
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                    <button class="btn-secondary">회사 소개서</button>
+                </div>
+            </div>
+            <div class="hero-panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <span class="live-dot"></span>
+                        실시간 포트폴리오 현황
+                    </div>
+                    <div class="panel-time" id="currentTime">2024.12.26 15:30:45</div>
+                </div>
+                <div class="mini-chart">
+                    <svg viewBox="0 0 400 120" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="miniGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFB800;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#FFB800;stop-opacity:0" />
+                            </linearGradient>
+                        </defs>
+                        <path fill="url(#miniGradient)" d="M0 120 L0 80 Q40 70 80 65 T160 50 T240 35 T320 45 T400 20 L400 120 Z"/>
+                        <path fill="none" stroke="#FFB800" stroke-width="2" d="M0 80 Q40 70 80 65 T160 50 T240 35 T320 45 T400 20">
+                            <animate attributeName="d" 
+                                values="M0 80 Q40 70 80 65 T160 50 T240 35 T320 45 T400 20;
+                                        M0 75 Q40 65 80 70 T160 45 T240 40 T320 35 T400 15;
+                                        M0 80 Q40 70 80 65 T160 50 T240 35 T320 45 T400 20"
+                                dur="4s" repeatCount="indefinite"/>
+                        </path>
+                    </svg>
+                    <div class="chart-value">
+                        <div class="chart-value-main">₩66.8조</div>
+                        <div class="chart-value-change up">▲ +12.4% YoY</div>
+                    </div>
+                </div>
+                <div class="stock-list">
+                    <div class="stock-item">
+                        <div class="stock-info">
+                            <div class="stock-icon">RE</div>
+                            <div>
+                                <div class="stock-name">부동산 펀드</div>
+                                <div class="stock-category">Real Estate</div>
+                            </div>
+                        </div>
+                        <div class="stock-data">
+                            <div class="stock-price">₩32.4조</div>
+                            <div class="stock-change up">▲ 8.5%</div>
+                        </div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-info">
+                            <div class="stock-icon">RT</div>
+                            <div>
+                                <div class="stock-name">리츠</div>
+                                <div class="stock-category">REITs</div>
+                            </div>
+                        </div>
+                        <div class="stock-data">
+                            <div class="stock-price">₩18.2조</div>
+                            <div class="stock-change up">▲ 15.2%</div>
+                        </div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-info">
+                            <div class="stock-icon">IF</div>
+                            <div>
+                                <div class="stock-name">인프라</div>
+                                <div class="stock-category">Infrastructure</div>
+                            </div>
+                        </div>
+                        <div class="stock-data">
+                            <div class="stock-price">₩12.1조</div>
+                            <div class="stock-change up">▲ 22.8%</div>
+                        </div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-info">
+                            <div class="stock-icon">SC</div>
+                            <div>
+                                <div class="stock-name">증권</div>
+                                <div class="stock-category">Securities</div>
+                            </div>
+                        </div>
+                        <div class="stock-data">
+                            <div class="stock-price">₩4.1조</div>
+                            <div class="stock-change down">▼ 2.1%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Section -->
+    <section class="performance-section" id="about">
+        <div class="section-container">
+            <div class="section-header">
+                <p class="section-label">Performance</p>
+                <h2 class="section-title">압도적인 운용 실적</h2>
+                <p class="section-description">
+                    국내 최대 규모의 자산운용사로서 검증된 투자 성과를 제공합니다.
+                </p>
+            </div>
+            <div class="performance-grid">
+                <div class="performance-card">
+                    <div class="performance-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                        </svg>
+                    </div>
+                    <div class="performance-number">66.8<span>조</span></div>
+                    <div class="performance-label">총 운용자산 (AUM)</div>
+                    <div class="performance-trend">▲ +12.4% YoY</div>
+                </div>
+                <div class="performance-card">
+                    <div class="performance-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+                        </svg>
+                    </div>
+                    <div class="performance-number">330<span>+</span></div>
+                    <div class="performance-label">전문 운용 인력</div>
+                    <div class="performance-trend">▲ +15% YoY</div>
+                </div>
+                <div class="performance-card">
+                    <div class="performance-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M16 8v8M12 11v5M8 14v2M4 4h16v16H4z"/>
+                        </svg>
+                    </div>
+                    <div class="performance-number">8.7<span>%</span></div>
+                    <div class="performance-label">평균 수익률</div>
+                    <div class="performance-trend">▲ 시장 대비 +2.3%</div>
+                </div>
+                <div class="performance-card">
+                    <div class="performance-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>
+                        </svg>
+                    </div>
+                    <div class="performance-number">150<span>+</span></div>
+                    <div class="performance-label">운용 자산 수</div>
+                    <div class="performance-trend">▲ +28 건 YoY</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Section -->
+    <section class="business-section" id="business">
+        <div class="section-container">
+            <div class="section-header">
+                <p class="section-label">Our Business</p>
+                <h2 class="section-title">투자 영역</h2>
+                <p class="section-description">
+                    부동산, 리츠, 인프라, 증권 등 다양한 투자 영역에서 최적화된 솔루션을 제공합니다.
+                </p>
+            </div>
+            <div class="business-grid">
+                <div class="business-card">
+                    <div class="business-image">
+                        <div class="business-image-bg realestate">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                                <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="business-content">
+                        <h3>Real Estate</h3>
+                        <p>전통에서 혁신까지, 급변하는 시장 속에서 투자 가치를 창출합니다.</p>
+                        <a href="#" class="business-link">
+                            자세히 보기
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="business-card">
+                    <div class="business-image">
+                        <div class="business-image-bg reits">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                                <path d="M16 8v8M12 11v5M8 14v2M3 3h18v18H3zM3 9h18M9 21V9"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="business-content">
+                        <h3>REITs</h3>
+                        <p>국내외 우량 자산 기반의 상장 리츠와 특화된 사모 리츠로 안정적인 배당 수익을 창출합니다.</p>
+                        <a href="#" class="business-link">
+                            자세히 보기
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="business-card">
+                    <div class="business-image">
+                        <div class="business-image-bg infra">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="business-content">
+                        <h3>Infrastructure</h3>
+                        <p>전통과 성장 인프라를 활용해 안정적인 수익을 창출하고, 미래 변화에 대비합니다.</p>
+                        <a href="#" class="business-link">
+                            자세히 보기
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="business-card">
+                    <div class="business-image">
+                        <div class="business-image-bg securities">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="business-content">
+                        <h3>Securities</h3>
+                        <p>시황에 의존하지 않는 절대수익을 추구합니다.</p>
+                        <a href="#" class="business-link">
+                            자세히 보기
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Overview Section -->
+    <section class="market-section" id="products">
+        <div class="section-container">
+            <div class="market-content">
+                <div class="market-text">
+                    <p class="section-label">Market Overview</p>
+                    <h2>글로벌 시장을<br>선도하는 투자 전략</h2>
+                    <p>
+                        이지스자산운용은 아시아, 북미, 유럽을 아우르는 글로벌 네트워크를 구축하여
+                        세계 각지의 투자 기회를 발굴하고 고객에게 최적의 투자 솔루션을 제공합니다.
+                    </p>
+                    <div class="market-features">
+                        <div class="market-feature">
+                            <div class="market-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+                                </svg>
+                            </div>
+                            <div class="market-feature-text">
+                                <h4>글로벌 네트워크</h4>
+                                <p>아시아, 북미, 유럽 시장 커버</p>
+                            </div>
+                        </div>
+                        <div class="market-feature">
+                            <div class="market-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </div>
+                            <div class="market-feature-text">
+                                <h4>리스크 관리</h4>
+                                <p>체계적인 위험 관리 시스템</p>
+                            </div>
+                        </div>
+                        <div class="market-feature">
+                            <div class="market-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                                </svg>
+                            </div>
+                            <div class="market-feature-text">
+                                <h4>실시간 모니터링</h4>
+                                <p>24시간 시장 분석 및 대응</p>
+                            </div>
+                        </div>
+                        <div class="market-feature">
+                            <div class="market-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                                </svg>
+                            </div>
+                            <div class="market-feature-text">
+                                <h4>AI 기반 분석</h4>
+                                <p>첨단 기술 활용 투자 분석</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="market-chart">
+                    <div class="market-chart-header">
+                        <div class="market-chart-title">포트폴리오 성과 추이</div>
+                        <div class="market-chart-tabs">
+                            <button class="market-chart-tab">1M</button>
+                            <button class="market-chart-tab">3M</button>
+                            <button class="market-chart-tab active">1Y</button>
+                            <button class="market-chart-tab">ALL</button>
+                        </div>
+                    </div>
+                    <div class="big-chart">
+                        <svg viewBox="0 0 600 220" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="bigGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#FFB800;stop-opacity:0.2" />
+                                    <stop offset="100%" style="stop-color:#FFB800;stop-opacity:0" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Grid lines -->
+                            <line x1="0" y1="55" x2="600" y2="55" stroke="#E5E8EB" stroke-dasharray="5,5"/>
+                            <line x1="0" y1="110" x2="600" y2="110" stroke="#E5E8EB" stroke-dasharray="5,5"/>
+                            <line x1="0" y1="165" x2="600" y2="165" stroke="#E5E8EB" stroke-dasharray="5,5"/>
+                            <!-- Chart area -->
+                            <path fill="url(#bigGradient)" d="M0 220 L0 160 Q50 150 100 140 T200 120 T300 90 T400 100 T500 60 T600 45 L600 220 Z"/>
+                            <!-- Chart line -->
+                            <path fill="none" stroke="#FFB800" stroke-width="2.5" d="M0 160 Q50 150 100 140 T200 120 T300 90 T400 100 T500 60 T600 45">
+                                <animate attributeName="d" 
+                                    values="M0 160 Q50 150 100 140 T200 120 T300 90 T400 100 T500 60 T600 45;
+                                            M0 155 Q50 145 100 135 T200 115 T300 95 T400 95 T500 55 T600 40;
+                                            M0 160 Q50 150 100 140 T200 120 T300 90 T400 100 T500 60 T600 45"
+                                    dur="5s" repeatCount="indefinite"/>
+                            </path>
+                            <!-- Data points -->
+                            <circle cx="100" cy="140" r="4" fill="#FFB800"/>
+                            <circle cx="200" cy="120" r="4" fill="#FFB800"/>
+                            <circle cx="300" cy="90" r="4" fill="#FFB800"/>
+                            <circle cx="400" cy="100" r="4" fill="#FFB800"/>
+                            <circle cx="500" cy="60" r="4" fill="#FFB800"/>
+                            <circle cx="600" cy="45" r="5" fill="#FFB800" stroke="#FFFFFF" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="chart-metrics">
+                        <div class="chart-metric">
+                            <div class="chart-metric-value">+12.4%</div>
+                            <div class="chart-metric-label">연간 수익률</div>
+                        </div>
+                        <div class="chart-metric">
+                            <div class="chart-metric-value">0.82</div>
+                            <div class="chart-metric-label">샤프 비율</div>
+                        </div>
+                        <div class="chart-metric">
+                            <div class="chart-metric-value">-3.2%</div>
+                            <div class="chart-metric-label">최대 낙폭</div>
+                        </div>
+                        <div class="chart-metric">
+                            <div class="chart-metric-value">1.15</div>
+                            <div class="chart-metric-label">베타</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news-section" id="news">
+        <div class="section-container">
+            <div class="section-header">
+                <p class="section-label">Insight & News</p>
+                <h2 class="section-title">최신 소식</h2>
+            </div>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image">
+                        <div class="news-image-bg finance">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                            </svg>
+                        </div>
+                        <span class="news-category">Market Views</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>EXPO REAL 2025 | 뮌헨에서 본 글로벌 부동산 트렌드</h3>
+                        <p>매년 10월 열리는 유럽 최대 규모의 부동산 박람회인 EXPO REAL이 2025년에도 독일 뮌헨에서 개최되었습니다.</p>
+                        <span class="news-date">2025.10.08</span>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-image">
+                        <div class="news-image-bg realestate">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>
+                            </svg>
+                        </div>
+                        <span class="news-category">Portfolio</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>원그로브: 마곡을 대표하는 프라임 오피스</h3>
+                        <p>마곡 R&D 단지의 랜드마크로 자리잡은 원그로브의 투자 가치와 운영 현황을 소개합니다.</p>
+                        <span class="news-date">2025.02.24</span>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-image">
+                        <div class="news-image-bg market">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M16 8v8M12 11v5M8 14v2M4 4h16v16H4z"/>
+                            </svg>
+                        </div>
+                        <span class="news-category">News</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>"남산을 세계 명소로" 힐튼부지 재생사업 본격 시동</h3>
+                        <p>이지스자산운용이 서울 남산 힐튼호텔 부지 재생사업을 본격적으로 추진합니다.</p>
+                        <span class="news-date">2024.12.26</span>
+                    </div>
+                </article>
+            </div>
+            <div class="news-more">
+                <a href="#" class="business-link">
+                    View All News
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">IGIS<span>.</span></div>
+                    <p>
+                        이지스자산운용은 국내 최대 규모의 자산운용사로서<br>
+                        고객에게 변함없는 가치를 제공합니다.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>회사소개</h4>
+                    <ul>
+                        <li><a href="#">이지스자산운용 소개</a></li>
+                        <li><a href="#">조직구성</a></li>
+                        <li><a href="#">연혁</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>사업소개</h4>
+                    <ul>
+                        <li><a href="#">비즈니스</a></li>
+                        <li><a href="#">투자운용 원칙</a></li>
+                        <li><a href="#">주요 고객</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>투자상품</h4>
+                    <ul>
+                        <li><a href="#">공모펀드</a></li>
+                        <li><a href="#">리츠</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>고객지원</h4>
+                    <ul>
+                        <li><a href="#">공지사항</a></li>
+                        <li><a href="#">공시</a></li>
+                        <li><a href="#">채용</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">Copyright © IGIS Asset Management. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">개인정보처리방침</a>
+                    <a href="#">신용정보활용체제</a>
+                    <a href="#">이메일무단수집거부</a>
+                    <a href="#">고객보호포탈</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notice Banner -->
+    <div class="notice-banner" id="noticeBanner">
+        <p class="notice-text">
+            ⚠️ [안내] 이지스자산운용 사칭 관련 유의사항 - 당사 및 임직원 사칭 투자 권유에 주의하세요.
+        </p>
+        <button class="notice-close" onclick="closeNotice()">×</button>
+    </div>
+
+    <script>
+        // Update current time
+        function updateTime() {
+            const now = new Date();
+            const formatted = now.toLocaleString('ko-KR', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            }).replace(/\. /g, '.').replace(/\./g, '.').replace(',', '');
+            document.getElementById('currentTime').textContent = formatted;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav-container');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Close notice banner
+        function closeNotice() {
+            document.getElementById('noticeBanner').style.transform = 'translateY(100%)';
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Animate elements on scroll
+        document.querySelectorAll('.performance-card, .business-card, .news-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.5s ease';
+            observer.observe(el);
+        });
+
+        // Animate chart tabs
+        document.querySelectorAll('.market-chart-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.market-chart-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
