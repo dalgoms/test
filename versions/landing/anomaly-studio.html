@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIMBEL® — Where Ideas Collide | Creative Collective</title>
+    <title>Vibe Coding Portfolio — Cursor AI Solo Creations | Human + AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -60,9 +60,10 @@
             height: 8px;
             background: var(--accent);
             border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.2s cubic-bezier(0.77, 0, 0.175, 1);
-            box-shadow: 0 0 15px var(--accent), 0 0 30px rgba(0, 102, 255, 0.5);
+            left: 0;
+            top: 0;
+            transition: width 0.2s, height 0.2s, background 0.2s;
+            will-change: transform;
         }
 
         .cursor-ring {
@@ -70,10 +71,12 @@
             height: 50px;
             border: 1px solid rgba(0, 102, 255, 0.5);
             border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s, opacity 0.2s;
+            left: 0;
+            top: 0;
+            transition: width 0.2s, height 0.2s, border-color 0.2s, background 0.2s, opacity 0.2s;
             opacity: 1;
             background: transparent;
+            will-change: transform;
         }
 
         .cursor-ring.hover {
@@ -82,7 +85,6 @@
             border-color: var(--accent);
             background: rgba(0, 102, 255, 0.1);
             opacity: 1;
-            box-shadow: 0 0 30px rgba(0, 102, 255, 0.3);
         }
 
         .cursor-dot.hover {
@@ -102,18 +104,18 @@
             letter-spacing: 0.15em;
             color: var(--cream);
             opacity: 0;
-            transition: all 0.3s cubic-bezier(0.77, 0, 0.175, 1);
-            transform: translate(40px, -50%);
+            transition: opacity 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+            left: 0;
+            top: 0;
             white-space: nowrap;
             background: var(--accent);
             padding: 8px 14px;
             border-radius: 100px;
-            box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
+            will-change: transform;
         }
 
         .cursor-text.visible {
             opacity: 1;
-            transform: translate(35px, -50%);
         }
 
         .cursor-trail {
@@ -127,11 +129,13 @@
         }
 
         .cursor-ring.clicking {
-            transform: translate(-50%, -50%) scale(0.8);
+            width: 40px;
+            height: 40px;
         }
 
         .cursor-dot.clicking {
-            transform: translate(-50%, -50%) scale(1.5);
+            width: 12px;
+            height: 12px;
         }
 
         /* Hide cursor on mobile */
@@ -265,6 +269,19 @@
             z-index: 1;
         }
 
+        .logo-img {
+            height: 36px;
+            width: auto;
+            object-fit: contain;
+            transition: all 0.4s ease;
+            filter: brightness(1.1);
+        }
+
+        .logo:hover .logo-img {
+            filter: brightness(1.3) drop-shadow(0 0 8px var(--accent));
+            transform: scale(1.05);
+        }
+
         .logo-text {
             position: relative;
         }
@@ -386,10 +403,11 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) translateZ(0);
             width: 200%;
             height: 200%;
             animation: vortexRotate 60s linear infinite;
+            will-change: transform;
         }
 
         .hero-bg::after {
@@ -411,7 +429,7 @@
             stroke-width: 0.5;
             opacity: 0;
             animation: vortexPulse 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 3px var(--accent));
+            will-change: transform, opacity;
         }
 
         .vortex-ring:nth-child(1) { animation-delay: 0s; }
@@ -457,7 +475,7 @@
             background: var(--accent);
             border-radius: 50%;
             animation: particleFall 5s linear infinite;
-            box-shadow: 0 0 6px var(--accent), 0 0 12px rgba(0, 102, 255, 0.5);
+            will-change: transform, opacity;
         }
 
         @keyframes particleFall {
@@ -479,11 +497,13 @@
 
         .hero-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 2fr 1fr;
             gap: 60px;
-            align-items: end;
+            align-items: start;
             position: relative;
             z-index: 10;
+            will-change: transform, opacity;
+            min-height: 60vh;
         }
 
         .hero-title {
@@ -504,11 +524,6 @@
 
         .hero-title span:nth-child(1) { animation-delay: 0.8s; }
         .hero-title span:nth-child(2) { animation-delay: 0.9s; }
-        .hero-title span:nth-child(3) { 
-            animation-delay: 1s; 
-            color: var(--accent); 
-            text-shadow: 0 0 30px var(--accent), 0 0 60px rgba(0, 102, 255, 0.5);
-        }
 
         @keyframes slideUp {
             to { transform: translateY(0); }
@@ -534,6 +549,82 @@
             opacity: 0;
             animation: fadeIn 1s ease forwards 1.4s;
             color: rgba(255, 255, 255, 0.7);
+        }
+
+        .hero-copyright {
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 40px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1.5s;
+        }
+
+        .hero-vibe-text {
+            font-family: var(--body);
+            font-size: 14px;
+            font-weight: 500;
+            color: #ffffff;
+            margin-top: 12px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1.7s;
+            letter-spacing: 0.3px;
+        }
+
+        .hero-contact {
+            text-align: right;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1.3s;
+        }
+
+        .contact-name {
+            font-family: var(--body);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--accent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        .contact-creator {
+            font-family: var(--body);
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .contact-phone,
+        .contact-email {
+            font-family: var(--mono);
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 8px;
+        }
+
+        .contact-email {
+            margin-bottom: 0;
         }
 
         @keyframes fadeIn {
@@ -832,7 +923,26 @@
         .work-item:nth-child(3) { grid-column: span 1; }
         .work-item:nth-child(4) { grid-column: span 1; }
         .work-item:nth-child(5) { grid-column: span 1; }
-        .work-item:nth-child(6) { grid-column: span 2; }
+        .work-item:nth-child(6) { grid-column: span 1; }
+        .work-item:nth-child(7) { grid-column: span 1; }
+        .work-item:nth-child(8) { grid-column: span 1; }
+        .work-item:nth-child(9) { grid-column: span 1; }
+        .work-item:nth-child(10) { grid-column: span 1; }
+        .work-item:nth-child(11) { grid-column: span 1; }
+        .work-item:nth-child(12) { grid-column: span 1; }
+        .work-item:nth-child(13) { grid-column: span 1; }
+        .work-item:nth-child(14) { grid-column: span 1; }
+        .work-item:nth-child(15) { grid-column: span 1; }
+        .work-item:nth-child(16) { grid-column: span 1; }
+        .work-item:nth-child(17) { grid-column: span 1; }
+        .work-item:nth-child(18) { grid-column: span 1; }
+        .work-item:nth-child(19) { grid-column: span 1; }
+
+        a.work-item {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
 
         .work-image-wrapper {
             position: relative;
@@ -843,8 +953,21 @@
         .work-item:nth-child(2) .work-image-wrapper,
         .work-item:nth-child(3) .work-image-wrapper,
         .work-item:nth-child(4) .work-image-wrapper,
-        .work-item:nth-child(5) .work-image-wrapper { aspect-ratio: 4/3; }
-        .work-item:nth-child(6) .work-image-wrapper { aspect-ratio: 21/9; }
+        .work-item:nth-child(5) .work-image-wrapper,
+        .work-item:nth-child(6) .work-image-wrapper,
+        .work-item:nth-child(7) .work-image-wrapper,
+        .work-item:nth-child(8) .work-image-wrapper,
+        .work-item:nth-child(9) .work-image-wrapper,
+        .work-item:nth-child(10) .work-image-wrapper,
+        .work-item:nth-child(11) .work-image-wrapper,
+        .work-item:nth-child(12) .work-image-wrapper,
+        .work-item:nth-child(13) .work-image-wrapper,
+        .work-item:nth-child(14) .work-image-wrapper,
+        .work-item:nth-child(15) .work-image-wrapper,
+        .work-item:nth-child(16) .work-image-wrapper,
+        .work-item:nth-child(17) .work-image-wrapper,
+        .work-item:nth-child(18) .work-image-wrapper,
+        .work-item:nth-child(19) .work-image-wrapper { aspect-ratio: 4/3; }
 
         .work-image {
             width: 100%;
@@ -855,6 +978,35 @@
 
         .work-item:hover .work-image {
             transform: scale(1.05);
+        }
+
+        .work-iframe-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background: var(--charcoal);
+        }
+
+        .work-iframe {
+            width: 200%;
+            height: 200%;
+            border: none;
+            transform: scale(0.5);
+            transform-origin: top left;
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .work-item:hover .work-iframe {
+            transform: scale(0.52);
+        }
+
+        .work-iframe-overlay {
+            position: absolute;
+            inset: 0;
+            background: transparent;
+            z-index: 1;
         }
 
         .work-number {
@@ -1037,7 +1189,37 @@
             background: var(--accent);
             color: var(--bg);
             border-color: var(--accent);
-            transform: rotate(45deg);
+        }
+
+        .service-arrow .arrow-right {
+            display: block;
+        }
+
+        .service-arrow .arrow-diagonal {
+            display: none;
+        }
+
+        .service-item:hover .service-arrow .arrow-right {
+            display: none;
+        }
+
+        .service-item:hover .service-arrow .arrow-diagonal {
+            display: block;
+        }
+
+        /* SVG Icon Styles */
+        .arrow-icon {
+            flex-shrink: 0;
+        }
+
+        .view-all svg,
+        .cta-button svg,
+        .testimonial-nav svg {
+            flex-shrink: 0;
+        }
+
+        .work-arrow svg {
+            display: block;
         }
 
         /* Awards Ticker */
@@ -1317,11 +1499,21 @@
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 0.02em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .footer-logo sup {
             font-size: 14px;
             color: var(--accent);
+        }
+
+        .footer-logo-img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+            filter: brightness(1.1);
         }
 
         .footer-tagline {
@@ -1356,8 +1548,9 @@
 
         .footer-bottom {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
+            gap: 15px;
             padding-top: 40px;
         }
 
@@ -1365,6 +1558,18 @@
             font-family: var(--mono);
             font-size: 11px;
             color: rgba(255,255,255,0.4);
+        }
+
+        .vibe-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.15), rgba(51, 136, 255, 0.1));
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px !important;
+            color: var(--accent-glow) !important;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
         }
 
         .social-links {
@@ -1399,10 +1604,9 @@
             left: 0;
             height: 3px;
             background: var(--accent);
-            box-shadow: 0 0 10px var(--accent), 0 0 20px rgba(0, 102, 255, 0.5);
             width: 0%;
             z-index: 9999;
-            transition: width 0.1s ease;
+            will-change: width;
         }
 
         /* Smooth Reveal Animation */
@@ -1473,13 +1677,11 @@
                 grid-template-columns: 1fr;
             }
 
-            .work-item:nth-child(1),
-            .work-item:nth-child(6) {
+            .work-item:nth-child(n) {
                 grid-column: span 1;
             }
 
-            .work-item:nth-child(1) .work-image-wrapper,
-            .work-item:nth-child(6) .work-image-wrapper {
+            .work-item .work-image-wrapper {
                 aspect-ratio: 16/10;
             }
 
@@ -1503,7 +1705,12 @@
 
             .footer-bottom {
                 flex-direction: column;
-                gap: 20px;
+                gap: 15px;
+            }
+
+            .vibe-badge {
+                font-size: 11px !important;
+                padding: 6px 12px;
             }
         }
     </style>
@@ -1534,20 +1741,19 @@
         <div class="header-inner">
             <div class="header-left">
                 <a href="#" class="logo">
-                    <div class="logo-icon"><span>A</span></div>
-                    <span class="logo-text">TIMBEL<sup>®</sup></span>
+                    <img src="img/timbel logo.png" alt="TIMBEL" class="logo-img">
                 </a>
             </div>
             <div class="header-center">
                 <nav>
                     <a href="#about">About</a>
-                    <a href="#works" class="active">Works</a>
-                    <a href="#services">Services</a>
-                    <a href="contact.html">Contact</a>
+                    <a href="#works" class="active">Creations</a>
+                    <a href="#services">Process</a>
+                    <a href="#contact">Contact</a>
                 </nav>
             </div>
             <div class="header-right">
-                <a href="contact.html" class="header-cta" data-cursor="Contact"><span>Let's Talk</span></a>
+                <a href="#contact" class="header-cta" data-cursor="Contact"><span>Start Vibing</span></a>
             </div>
         </div>
     </header>
@@ -1579,17 +1785,19 @@
         <div class="hero-content">
             <div class="hero-left">
                 <h1 class="hero-title">
-                    <span>Where</span>
-                    <span>Ideas</span>
-                    <span>Collide</span>
+                    <span>CURSOR AI</span>
+                    <span>VIBE CODING</span>
                 </h1>
+                <p class="hero-copyright">(C) 2025</p>
+                <p class="hero-vibe-text">100% 바이브코딩으로 제작되었습니다</p>
             </div>
             <div class="hero-right">
-                <p class="hero-subtitle">Creative Collective Since 2019</p>
-                <p class="hero-desc">
-                    우리는 브랜드의 경계를 허물고, 예상치 못한 곳에서 아름다움을 발견합니다. 
-                    규칙에 얽매이지 않는 창의적 접근으로 디지털 경험을 재정의합니다.
-                </p>
+                <div class="hero-contact">
+                    <p class="contact-name">Solo Creator <span class="status-dot"></span></p>
+                    <p class="contact-creator">MADE BY SEYOUNG LEE</p>
+                    <p class="contact-phone">Since Dec 2025</p>
+                    <p class="contact-email">smile230@naver.com</p>
+                </div>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -1601,152 +1809,403 @@
     <!-- Marquee -->
     <section class="marquee-section">
         <div class="marquee-track">
-            <div class="marquee-item">BRANDING <span class="dot"></span></div>
-            <div class="marquee-item">DIGITAL DESIGN <span class="dot"></span></div>
-            <div class="marquee-item">MOTION <span class="dot"></span></div>
-            <div class="marquee-item">DEVELOPMENT <span class="dot"></span></div>
-            <div class="marquee-item">STRATEGY <span class="dot"></span></div>
-            <div class="marquee-item">BRANDING <span class="dot"></span></div>
-            <div class="marquee-item">DIGITAL DESIGN <span class="dot"></span></div>
-            <div class="marquee-item">MOTION <span class="dot"></span></div>
-            <div class="marquee-item">DEVELOPMENT <span class="dot"></span></div>
-            <div class="marquee-item">STRATEGY <span class="dot"></span></div>
+            <div class="marquee-item">VIBE CODING <span class="dot"></span></div>
+            <div class="marquee-item">CURSOR AI <span class="dot"></span></div>
+            <div class="marquee-item">PROMPT ENGINEERING <span class="dot"></span></div>
+            <div class="marquee-item">SOLO CREATION <span class="dot"></span></div>
+            <div class="marquee-item">AI COLLABORATION <span class="dot"></span></div>
+            <div class="marquee-item">VIBE CODING <span class="dot"></span></div>
+            <div class="marquee-item">CURSOR AI <span class="dot"></span></div>
+            <div class="marquee-item">PROMPT ENGINEERING <span class="dot"></span></div>
+            <div class="marquee-item">SOLO CREATION <span class="dot"></span></div>
+            <div class="marquee-item">AI COLLABORATION <span class="dot"></span></div>
         </div>
     </section>
 
     <!-- About -->
     <section class="about" id="about">
         <div class="about-left reveal">
-            <p class="about-label">// Who We Are</p>
+            <p class="about-label">// Solo Creation Journey</p>
             <h2 class="about-title">
-                We are a <em>collective</em> of designers, developers, and strategists
+                혼자서도 <em>무한한 창작</em>이 가능한 시대
             </h2>
             <p class="about-text">
-                2019년 서울에서 시작한 TIMBEL은 전통적인 에이전시의 틀을 벗어나, 
-                실험적이고 대담한 프로젝트를 추구합니다. 우리는 클라이언트가 아닌 
-                파트너와 함께 일하며, 매 프로젝트마다 새로운 도전을 두려워하지 않습니다.
+                Cursor AI와 바이브 코딩을 통해 5일 만에 19개의 웹사이트를 혼자 제작했습니다. 
+                코드를 몰라도, AI와 함께라면 상상이 현실이 됩니다.
             </p>
         </div>
         <div class="about-right reveal">
             <div class="stat-card">
-                <div class="stat-number">127+</div>
-                <div class="stat-label">Projects Completed</div>
+                <div class="stat-number">19+</div>
+                <div class="stat-label">Solo Projects</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">42</div>
-                <div class="stat-label">Awards Won</div>
+                <div class="stat-number">1</div>
+                <div class="stat-label">Human + AI</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">18</div>
-                <div class="stat-label">Team Members</div>
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Possibilities</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">6Y</div>
-                <div class="stat-label">Years of Chaos</div>
+                <div class="stat-number">5D</div>
+                <div class="stat-label">Creation Time</div>
             </div>
         </div>
     </section>
 
-    <!-- Selected Works -->
+    <!-- Solo Creations -->
     <section class="works" id="works">
         <div class="section-header reveal">
             <h2 class="section-title">
-                Selected
-                <span>Works</span>
+                Solo
+                <span>Creations</span>
             </h2>
-            <a href="#" class="view-all" data-cursor="All Works"><span>View All Projects</span> <span>→</span></a>
+            <a href="#" class="view-all" data-cursor="All Works"><span>19+ Solo Projects</span> <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
         <div class="works-grid">
-            <div class="work-item reveal" data-cursor="View Project">
+            <a href="adriel-dashboard.html" class="work-item reveal" data-cursor="View Project">
                 <span class="work-number">01</span>
                 <div class="work-image-wrapper">
-                    <img src="img/thumnail (1).png" alt="Project 1" class="work-image">
+                    <div class="work-iframe-container">
+                        <iframe src="adriel-dashboard.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
                 </div>
                 <div class="work-overlay">
                     <div class="work-meta">
-                        <span class="work-category">UI/UX Design</span>
+                        <span class="work-category">Dashboard UI</span>
                         <span class="work-year">2024</span>
                     </div>
-                    <h3 class="work-title">Envato Solution</h3>
-                    <p class="work-desc">디자인 시스템 및 프로젝트 관리 대시보드</p>
-                    <span class="work-arrow">↗</span>
+                    <h3 class="work-title">팀벨 마케팅 대시보드</h3>
+                    <p class="work-desc">실시간 데이터 시각화 및 마케팅 분석 대시보드</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
                 </div>
-            </div>
-            <div class="work-item reveal" data-cursor="View Project">
+            </a>
+            <a href="daglo-solution.html" class="work-item reveal" data-cursor="View Project">
                 <span class="work-number">02</span>
                 <div class="work-image-wrapper">
-                    <img src="img/thumnail (2).png" alt="Project 2" class="work-image">
+                    <div class="work-iframe-container">
+                        <iframe src="daglo-solution.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
                 </div>
                 <div class="work-overlay">
                     <div class="work-meta">
-                        <span class="work-category">Product Design</span>
+                        <span class="work-category">AI Solution</span>
                         <span class="work-year">2024</span>
                     </div>
-                    <h3 class="work-title">SLAB! Design System</h3>
-                    <p class="work-desc">Figma 기반 디자인 시스템 구축</p>
-                    <span class="work-arrow">↗</span>
+                    <h3 class="work-title">Timbel AI Agent</h3>
+                    <p class="work-desc">AI가 필요한 순간, Timbel AI Agent와 함께</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
                 </div>
-            </div>
-            <div class="work-item reveal" data-cursor="View Project">
+            </a>
+            <a href="explorer-canvas.html" class="work-item reveal" data-cursor="View Project">
                 <span class="work-number">03</span>
                 <div class="work-image-wrapper">
-                    <img src="img/thumnail (3).png" alt="Project 3" class="work-image">
+                    <div class="work-iframe-container">
+                        <iframe src="explorer-canvas.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
                 </div>
                 <div class="work-overlay">
                     <div class="work-meta">
-                        <span class="work-category">Web Design</span>
-                        <span class="work-year">2023</span>
+                        <span class="work-category">Interactive Experience</span>
+                        <span class="work-year">2024</span>
                     </div>
-                    <h3 class="work-title">Adobe XD Project</h3>
-                    <p class="work-desc">크로스 플랫폼 디자인 워크플로우</p>
-                    <span class="work-arrow">↗</span>
+                    <h3 class="work-title">Infinite Canvas</h3>
+                    <p class="work-desc">무한 캔버스 인터랙티브 익스피리언스</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
                 </div>
-            </div>
-            <div class="work-item reveal" data-cursor="View Project">
+            </a>
+            <a href="igis-clone.html" class="work-item reveal" data-cursor="View Project">
                 <span class="work-number">04</span>
                 <div class="work-image-wrapper">
-                    <img src="img/thumnail (4).png" alt="Project 4" class="work-image">
+                    <div class="work-iframe-container">
+                        <iframe src="igis-clone.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
                 </div>
                 <div class="work-overlay">
                     <div class="work-meta">
-                        <span class="work-category">Branding</span>
-                        <span class="work-year">2023</span>
+                        <span class="work-category">Finance</span>
+                        <span class="work-year">2024</span>
                     </div>
-                    <h3 class="work-title">Photoshop Retouch</h3>
-                    <p class="work-desc">이미지 편집 및 브랜드 에셋 제작</p>
-                    <span class="work-arrow">↗</span>
+                    <h3 class="work-title">이지스자산운용</h3>
+                    <p class="work-desc">자산운용사 기업 웹사이트 디자인</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
                 </div>
-            </div>
-            <div class="work-item reveal" data-cursor="View Project">
+            </a>
+            <a href="orp-it-clone.html" class="work-item reveal" data-cursor="View Project">
                 <span class="work-number">05</span>
                 <div class="work-image-wrapper">
-                    <img src="img/thumnail (5).png" alt="Project 5" class="work-image">
+                    <div class="work-iframe-container">
+                        <iframe src="orp-it-clone.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
                 </div>
                 <div class="work-overlay">
                     <div class="work-meta">
-                        <span class="work-category">App Design</span>
-                        <span class="work-year">2023</span>
+                        <span class="work-category">Tech Company</span>
+                        <span class="work-year">2024</span>
                     </div>
-                    <h3 class="work-title">Figma & XD Approved</h3>
-                    <p class="work-desc">모바일 앱 UI/UX 디자인</p>
-                    <span class="work-arrow">↗</span>
+                    <h3 class="work-title">NEXUS Labs</h3>
+                    <p class="work-desc">디지털 트랜스포메이션 IT 솔루션 기업</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
                 </div>
-            </div>
-            <div class="work-item reveal" data-cursor="View Project">
+            </a>
+            <a href="voxai-voice-tech.html" class="work-item reveal" data-cursor="View Project">
                 <span class="work-number">06</span>
                 <div class="work-image-wrapper">
-                    <img src="img/thumnail (6).png" alt="Project 6" class="work-image">
+                    <div class="work-iframe-container">
+                        <iframe src="voxai-voice-tech.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
                 </div>
                 <div class="work-overlay">
                     <div class="work-meta">
-                        <span class="work-category">Design System</span>
-                        <span class="work-year">2023</span>
+                        <span class="work-category">AI / Voice Tech</span>
+                        <span class="work-year">2024</span>
                     </div>
-                    <h3 class="work-title">Creative Toolkit</h3>
-                    <p class="work-desc">Figma & Photoshop 통합 워크플로우</p>
-                    <span class="work-arrow">↗</span>
+                    <h3 class="work-title">VOXAI</h3>
+                    <p class="work-desc">국내 1위 AI 음성기록 전문기업 웹사이트</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
                 </div>
-            </div>
+            </a>
+            <a href="ystudio-lab.html" class="work-item reveal" data-cursor="View Project">
+                <span class="work-number">07</span>
+                <div class="work-image-wrapper">
+                    <div class="work-iframe-container">
+                        <iframe src="ystudio-lab.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
+                </div>
+                <div class="work-overlay">
+                    <div class="work-meta">
+                        <span class="work-category">Creative Lab</span>
+                        <span class="work-year">2025</span>
+                    </div>
+                    <h3 class="work-title">YSTUDIO LAB</h3>
+                    <p class="work-desc">실험적인 아이디어와 기술의 크리에이티브 놀이터</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+                </div>
+            </a>
+            <a href="nvidia-korea-clone.html" class="work-item reveal" data-cursor="View Project">
+                <span class="work-number">08</span>
+                <div class="work-image-wrapper">
+                    <div class="work-iframe-container">
+                        <iframe src="nvidia-korea-clone.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
+                </div>
+                <div class="work-overlay">
+                    <div class="work-meta">
+                        <span class="work-category">Tech / AI</span>
+                        <span class="work-year">2025</span>
+                    </div>
+                    <h3 class="work-title">NVIDIA Korea</h3>
+                    <p class="work-desc">인공 지능 컴퓨팅 분야의 리더 웹사이트 클론</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+                </div>
+            </a>
+            <a href="timbel-ai-playground.html" class="work-item reveal" data-cursor="View Project">
+                <span class="work-number">09</span>
+                <div class="work-image-wrapper">
+                    <div class="work-iframe-container">
+                        <iframe src="timbel-ai-playground.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
+                </div>
+                <div class="work-overlay">
+                    <div class="work-meta">
+                        <span class="work-category">AI Code Assistant</span>
+                        <span class="work-year">2025</span>
+                    </div>
+                    <h3 class="work-title">Timbel AI Playground</h3>
+                    <p class="work-desc">인텔리전트 코드 어시스턴트 인터페이스</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+                </div>
+            </a>
+            <a href="eventus-january-2026.html" class="work-item reveal" data-cursor="View Project">
+                <span class="work-number">10</span>
+                <div class="work-image-wrapper">
+                    <div class="work-iframe-container">
+                        <iframe src="eventus-january-2026.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
+                </div>
+                <div class="work-overlay">
+                    <div class="work-meta">
+                        <span class="work-category">Event / Promotion</span>
+                        <span class="work-year">2026</span>
+                    </div>
+                    <h3 class="work-title">이벤터스 2026</h3>
+                    <p class="work-desc">새해 특별 프로모션 이벤트 페이지</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+                </div>
+            </a>
+            <a href="craft-studio-cosmic.html" class="work-item reveal" data-cursor="View Project">
+                <span class="work-number">11</span>
+                <div class="work-image-wrapper">
+                    <div class="work-iframe-container">
+                        <iframe src="craft-studio-cosmic.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
+                </div>
+                <div class="work-overlay">
+                    <div class="work-meta">
+                        <span class="work-category">Creative Agency</span>
+                        <span class="work-year">2025</span>
+                    </div>
+                    <h3 class="work-title">CRAFT STUDIO</h3>
+                    <p class="work-desc">코스믹 테마의 맞춤형 홈페이지 제작 서비스</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+                </div>
+            </a>
+            <a href="apple-style-landing.html" class="work-item reveal" data-cursor="View Project">
+                <span class="work-number">12</span>
+                <div class="work-image-wrapper">
+                    <div class="work-iframe-container">
+                        <iframe src="apple-style-landing.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
+                </div>
+                <div class="work-overlay">
+                    <div class="work-meta">
+                        <span class="work-category">Product Landing</span>
+                        <span class="work-year">2025</span>
+                    </div>
+                    <h3 class="work-title">Apple Style Landing</h3>
+                    <p class="work-desc">MacBook Pro 스타일 프리미엄 제품 랜딩 페이지</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+                </div>
+            </a>
+            <a href="agency-portfolio.html" class="work-item reveal" data-cursor="View Project">
+                <span class="work-number">13</span>
+                <div class="work-image-wrapper">
+                    <div class="work-iframe-container">
+                        <iframe src="agency-portfolio.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
+                </div>
+                <div class="work-overlay">
+                    <div class="work-meta">
+                        <span class="work-category">Agency Portfolio</span>
+                        <span class="work-year">2025</span>
+                    </div>
+                    <h3 class="work-title">TIMBEL STUDIO</h3>
+                    <p class="work-desc">디지털 디자인 에이전시 포트폴리오</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+                </div>
+            </a>
+            <a href="coffee-kiosk.html" class="work-item reveal" data-cursor="View Project">
+                <span class="work-number">14</span>
+                <div class="work-image-wrapper">
+                    <div class="work-iframe-container">
+                        <iframe src="coffee-kiosk.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
+                </div>
+                <div class="work-overlay">
+                    <div class="work-meta">
+                        <span class="work-category">Kiosk UI / F&B</span>
+                        <span class="work-year">2025</span>
+                    </div>
+                    <h3 class="work-title">Coffee Kiosk</h3>
+                    <p class="work-desc">터치 기반 커피 주문 키오스크 인터페이스</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+                </div>
+            </a>
+            <a href="job-extinction.html" class="work-item reveal" data-cursor="View Project">
+                <span class="work-number">15</span>
+                <div class="work-image-wrapper">
+                    <div class="work-iframe-container">
+                        <iframe src="job-extinction.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
+                </div>
+                <div class="work-overlay">
+                    <div class="work-meta">
+                        <span class="work-category">Cyberpunk / Archive</span>
+                        <span class="work-year">2050</span>
+                    </div>
+                    <h3 class="work-title">직업 대멸종 아카이브</h3>
+                    <p class="work-desc">AI 시대 미래 직업 변화를 담은 사이버펑크 아카이브</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+                </div>
+            </a>
+            <a href="legendary-gaming-parody.html" class="work-item reveal" data-cursor="View Project">
+                <span class="work-number">16</span>
+                <div class="work-image-wrapper">
+                    <div class="work-iframe-container">
+                        <iframe src="legendary-gaming-parody.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
+                </div>
+                <div class="work-overlay">
+                    <div class="work-meta">
+                        <span class="work-category">Gaming / Parody</span>
+                        <span class="work-year">2025</span>
+                    </div>
+                    <h3 class="work-title">DARK_LEGEND.exe</h3>
+                    <p class="work-desc">레트로 터미널 스타일 게이밍 패러디 사이트</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+                </div>
+            </a>
+            <a href="solo-venture-2026.html" class="work-item reveal" data-cursor="View Project">
+                <span class="work-number">17</span>
+                <div class="work-image-wrapper">
+                    <div class="work-iframe-container">
+                        <iframe src="solo-venture-2026.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
+                </div>
+                <div class="work-overlay">
+                    <div class="work-meta">
+                        <span class="work-category">Business / Startup</span>
+                        <span class="work-year">2026</span>
+                    </div>
+                    <h3 class="work-title">SOLO VENTURE 2026</h3>
+                    <p class="work-desc">동업자 없이 시작하는 1인 사업 가이드</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+                </div>
+            </a>
+            <a href="starbucks-january-event.html" class="work-item reveal" data-cursor="View Project">
+                <span class="work-number">18</span>
+                <div class="work-image-wrapper">
+                    <div class="work-iframe-container">
+                        <iframe src="starbucks-january-event.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
+                </div>
+                <div class="work-overlay">
+                    <div class="work-meta">
+                        <span class="work-category">Event / Promotion</span>
+                        <span class="work-year">2026</span>
+                    </div>
+                    <h3 class="work-title">스타벅스 새해 이벤트</h3>
+                    <p class="work-desc">2026 새해 특별 프로모션 이벤트 페이지</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+                </div>
+            </a>
+            <a href="corporate-horror.html" class="work-item reveal" data-cursor="View Project">
+                <span class="work-number">19</span>
+                <div class="work-image-wrapper">
+                    <div class="work-iframe-container">
+                        <iframe src="corporate-horror.html" class="work-iframe" loading="lazy"></iframe>
+                        <div class="work-iframe-overlay"></div>
+                    </div>
+                </div>
+                <div class="work-overlay">
+                    <div class="work-meta">
+                        <span class="work-category">Parody / Horror</span>
+                        <span class="work-year">2025</span>
+                    </div>
+                    <h3 class="work-title">워라데드</h3>
+                    <p class="work-desc">직장인 공감 블랙코미디 패러디 사이트</p>
+                    <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+                </div>
+            </a>
         </div>
     </section>
 
@@ -1754,111 +2213,111 @@
     <section class="services" id="services">
         <div class="section-header reveal">
             <h2 class="section-title">
-                What We
-                <span>Offer</span>
+                Vibe Coding
+                <span>Process</span>
             </h2>
         </div>
         <div class="services-grid">
             <div class="services-intro reveal">
-                우리는 단순히 서비스를 제공하는 것이 아닌, 문제를 해결합니다. 
-                각 프로젝트는 고유한 도전이며, 우리는 그에 맞는 맞춤형 솔루션을 제시합니다.
+                바이브 코딩의 핵심은 '완벽한 코드'가 아닌 '완성된 결과물'입니다.
+                AI에게 방향을 제시하고, 결과물을 검토하며, 반복적으로 개선해 나갑니다.
             </div>
             <div class="service-list">
                 <div class="service-item reveal" data-cursor="Explore">
                     <span class="service-number">01</span>
-                    <h3 class="service-name">Brand Strategy & Identity</h3>
-                    <span class="service-arrow">→</span>
+                    <h3 class="service-name">아이디어 → 프롬프트 변환</h3>
+                    <span class="service-arrow"><svg class="arrow-right" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg><svg class="arrow-diagonal" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
                 </div>
                 <div class="service-item reveal" data-cursor="Explore">
                     <span class="service-number">02</span>
-                    <h3 class="service-name">Digital Product Design</h3>
-                    <span class="service-arrow">→</span>
+                    <h3 class="service-name">AI와 대화하며 코딩</h3>
+                    <span class="service-arrow"><svg class="arrow-right" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg><svg class="arrow-diagonal" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
                 </div>
                 <div class="service-item reveal" data-cursor="Explore">
                     <span class="service-number">03</span>
-                    <h3 class="service-name">Motion & 3D Experience</h3>
-                    <span class="service-arrow">→</span>
+                    <h3 class="service-name">빠른 프로토타이핑</h3>
+                    <span class="service-arrow"><svg class="arrow-right" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg><svg class="arrow-diagonal" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
                 </div>
                 <div class="service-item reveal" data-cursor="Explore">
                     <span class="service-number">04</span>
-                    <h3 class="service-name">Web Development</h3>
-                    <span class="service-arrow">→</span>
+                    <h3 class="service-name">반복적 개선 & 완성</h3>
+                    <span class="service-arrow"><svg class="arrow-right" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg><svg class="arrow-diagonal" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
                 </div>
                 <div class="service-item reveal" data-cursor="Explore">
                     <span class="service-number">05</span>
-                    <h3 class="service-name">Creative Consulting</h3>
-                    <span class="service-arrow">→</span>
+                    <h3 class="service-name">창작의 민주화 실현</h3>
+                    <span class="service-arrow"><svg class="arrow-right" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg><svg class="arrow-diagonal" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Awards Ticker -->
+    <!-- Tech Stack Ticker -->
     <section class="awards-section">
         <div class="awards-ticker">
             <div class="award-item">
-                <span class="award-logo">AWWWARDS</span>
+                <span class="award-logo">CURSOR AI</span>
                 <span class="award-divider"></span>
             </div>
             <div class="award-item">
-                <span class="award-logo">FWA</span>
+                <span class="award-logo">CLAUDE</span>
                 <span class="award-divider"></span>
             </div>
             <div class="award-item">
-                <span class="award-logo">CSS DESIGN AWARDS</span>
+                <span class="award-logo">HTML/CSS/JS</span>
                 <span class="award-divider"></span>
             </div>
             <div class="award-item">
-                <span class="award-logo">RED DOT</span>
+                <span class="award-logo">TAILWIND</span>
                 <span class="award-divider"></span>
             </div>
             <div class="award-item">
-                <span class="award-logo">IF DESIGN</span>
+                <span class="award-logo">VIBE CODING</span>
                 <span class="award-divider"></span>
             </div>
             <div class="award-item">
-                <span class="award-logo">AWWWARDS</span>
+                <span class="award-logo">CURSOR AI</span>
                 <span class="award-divider"></span>
             </div>
             <div class="award-item">
-                <span class="award-logo">FWA</span>
+                <span class="award-logo">CLAUDE</span>
                 <span class="award-divider"></span>
             </div>
             <div class="award-item">
-                <span class="award-logo">CSS DESIGN AWARDS</span>
+                <span class="award-logo">HTML/CSS/JS</span>
                 <span class="award-divider"></span>
             </div>
             <div class="award-item">
-                <span class="award-logo">RED DOT</span>
+                <span class="award-logo">TAILWIND</span>
                 <span class="award-divider"></span>
             </div>
             <div class="award-item">
-                <span class="award-logo">IF DESIGN</span>
+                <span class="award-logo">VIBE CODING</span>
                 <span class="award-divider"></span>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
+    <!-- Insights -->
     <section class="testimonials">
         <div class="section-header reveal">
             <h2 class="section-title">
-                Client
-                <span>Love</span>
+                Vibe Coding
+                <span>Insights</span>
             </h2>
         </div>
         <div class="testimonial-container reveal">
             <p class="testimonial-quote">
-                TIMBEL과 함께한 프로젝트는 우리 브랜드의 전환점이 되었습니다. 
-                그들의 독창적인 접근 방식과 디테일에 대한 집착은 정말 인상적이었습니다.
+                코드를 몰라도 됩니다. 중요한 건 '무엇을 만들고 싶은가'입니다.
+                AI에게 명확하게 설명할 수 있다면, 그것은 이미 반쯤 완성된 것입니다.
             </p>
             <div class="testimonial-author">
-                <span class="author-name">KIM JIHOON</span>
-                <span class="author-role">CEO, NOVA Cosmetics</span>
+                <span class="author-name">5일간의 바이브 코딩 경험</span>
+                <span class="author-role">19개 프로젝트 Solo Creator</span>
             </div>
             <div class="testimonial-nav">
-                <button>←</button>
-                <button>→</button>
+                <button><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+                <button><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
             </div>
         </div>
     </section>
@@ -1870,14 +2329,14 @@
             <div class="shape shape-2"></div>
             <div class="shape shape-3"></div>
         </div>
-        <p class="cta-label reveal">Ready to break the rules?</p>
+        <p class="cta-label reveal">Ready to vibe with AI?</p>
         <h2 class="cta-title reveal">
-            Let's Create<br>
-            Something <em>Anomalous</em>
+            Start Your<br>
+            <em>Creation</em> Journey
         </h2>
-        <a href="contact.html" class="cta-button reveal" data-cursor="문의하기">
-            <span>Contact Us</span>
-            <span>→</span>
+        <a href="contact.html" class="cta-button reveal" data-cursor="시작하기">
+            <span>Let's Vibe</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
     </section>
 
@@ -1885,35 +2344,36 @@
     <footer>
         <div class="footer-top">
             <div class="footer-brand">
-                <div class="footer-logo">TIMBEL<sup>®</sup></div>
+                <div class="footer-logo"><img src="img/timbel logo.png" alt="TIMBEL" class="footer-logo-img"></div>
                 <p class="footer-tagline">
-                    서울을 기반으로 활동하는 크리에이티브 콜렉티브입니다. 
-                    우리는 규칙을 깨고, 경계를 허물며, 새로운 가능성을 탐구합니다.
+                    Cursor AI와 함께하는 1인 창작자의 실험실입니다.
+                    코드를 몰라도, 상상만 있다면 모든 것이 가능합니다.
                 </p>
             </div>
             <div class="footer-column">
-                <h4>Navigate</h4>
-                <a href="#">About</a>
-                <a href="#">Works</a>
-                <a href="#">Services</a>
-                <a href="#">Careers</a>
+                <h4>Explore</h4>
+                <a href="#about">About</a>
+                <a href="#work">Works</a>
+                <a href="#services">Process</a>
+                <a href="#contact">Contact</a>
             </div>
             <div class="footer-column">
-                <h4>Connect</h4>
-                <a href="#">Instagram</a>
-                <a href="#">Behance</a>
-                <a href="#">Dribbble</a>
-                <a href="#">LinkedIn</a>
+                <h4>Tools</h4>
+                <a href="https://cursor.sh" target="_blank">Cursor AI</a>
+                <a href="https://claude.ai" target="_blank">Claude</a>
+                <a href="https://tailwindcss.com" target="_blank">Tailwind CSS</a>
+                <a href="#">Vibe Coding</a>
             </div>
             <div class="footer-column">
                 <h4>Contact</h4>
-                <a href="#">hello@timbel.kr</a>
-                <a href="#">+82 2 123 4567</a>
+                <a href="mailto:smile230@naver.com">smile230@naver.com</a>
+                <a href="#">내선 2007</a>
                 <a href="#">Seoul, Korea</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2024 TIMBEL®. All Rights Reserved.</p>
+            <p class="vibe-badge">✨ 100% 바이브코딩으로 제작되었습니다</p>
+            <p>MADE BY LEE SEYOUNG</p>
             <div class="social-links">
                 <a href="#">IG</a>
                 <a href="#">BE</a>
@@ -1924,22 +2384,32 @@
     </footer>
 
     <script>
-        // Custom Cursor
+        // Custom Cursor (optimized with RAF)
         const cursorDot = document.getElementById('cursorDot');
         const cursorRing = document.getElementById('cursorRing');
         const cursorText = document.getElementById('cursorText');
         
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX + 'px';
-            const y = e.clientY + 'px';
+        let mouseX = 0, mouseY = 0;
+        let cursorRAF = null;
+        
+        function updateCursor() {
+            const x = mouseX + 'px';
+            const y = mouseY + 'px';
             
-            cursorDot.style.left = x;
-            cursorDot.style.top = y;
-            cursorRing.style.left = x;
-            cursorRing.style.top = y;
-            cursorText.style.left = x;
-            cursorText.style.top = y;
-        });
+            cursorDot.style.transform = `translate3d(calc(${x} - 50%), calc(${y} - 50%), 0)`;
+            cursorRing.style.transform = `translate3d(calc(${x} - 50%), calc(${y} - 50%), 0)`;
+            cursorText.style.transform = `translate3d(calc(${x} + 35px), calc(${y} - 50%), 0)`;
+            cursorRAF = null;
+        }
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            if (!cursorRAF) {
+                cursorRAF = requestAnimationFrame(updateCursor);
+            }
+        }, { passive: true });
         
         // Cursor hover effects
         const hoverElements = document.querySelectorAll('a, button, .work-item, .service-item, .stat-card, .magnetic');
@@ -1990,7 +2460,7 @@
             const container = document.getElementById('heroParticles');
             if (!container) return;
             
-            const particleCount = 50;
+            const particleCount = 20; // Reduced from 50 for better performance
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -2025,13 +2495,24 @@
         }
         createParticles();
 
-        // Scroll Progress
-        window.addEventListener('scroll', () => {
+        // Scroll Progress (optimized)
+        const scrollProgressEl = document.getElementById('scrollProgress');
+        let progressTicking = false;
+        
+        function updateScrollProgress() {
             const scrollTop = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
             const progress = (scrollTop / docHeight) * 100;
-            document.getElementById('scrollProgress').style.width = progress + '%';
-        });
+            scrollProgressEl.style.width = progress + '%';
+            progressTicking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!progressTicking) {
+                requestAnimationFrame(updateScrollProgress);
+                progressTicking = true;
+            }
+        }, { passive: true });
 
         // Scroll Reveal
         const revealElements = document.querySelectorAll('.reveal');
@@ -2108,25 +2589,27 @@
             });
         });
 
-        // Parallax effect for hero content only (not the section itself)
-        window.addEventListener('scroll', () => {
+        // Parallax effect for hero content only (optimized with RAF)
+        let ticking = false;
+        const heroContent = document.querySelector('.hero-content');
+        
+        function updateParallax() {
             const scrolled = window.pageYOffset;
-            const heroContent = document.querySelector('.hero-content');
             if (heroContent && scrolled < window.innerHeight) {
-                heroContent.style.transform = `translateY(${scrolled * 0.15}px)`;
+                heroContent.style.transform = `translate3d(0, ${scrolled * 0.15}px, 0)`;
                 heroContent.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
             }
-        });
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }, { passive: true });
 
-        // Service item hover effect
-        document.querySelectorAll('.service-item').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                item.querySelector('.service-arrow').textContent = '↗';
-            });
-            item.addEventListener('mouseleave', () => {
-                item.querySelector('.service-arrow').textContent = '→';
-            });
-        });
+        // Service item hover effect is now handled via CSS for SVG icons
 
         // Work item hover effect - subtle lift
         document.querySelectorAll('.work-item').forEach(item => {
@@ -2139,6 +2622,16 @@
                 item.style.transform = 'translateY(0)';
                 item.style.boxShadow = 'none';
             });
+
+            // Prevent iframe from blocking click on work items
+            const overlay = item.querySelector('.work-iframe-overlay');
+            if (overlay) {
+                overlay.addEventListener('click', (e) => {
+                    if (item.href) {
+                        window.location.href = item.href;
+                    }
+                });
+            }
         });
 
         // Header background on scroll

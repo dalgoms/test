@@ -106,9 +106,8 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-light);
+            background: #000000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
             transition: all 0.3s ease;
         }
 
@@ -117,24 +116,23 @@
         }
 
         nav {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 24px;
-            height: 64px;
+            padding: 0 48px;
+            height: 72px;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
         }
 
-        .logo span {
-            color: var(--primary-gold);
+        .logo img {
+            height: 32px;
+            width: auto;
         }
 
         .nav-links {
@@ -144,7 +142,7 @@
         }
 
         .nav-links a {
-            color: var(--text-secondary);
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
             font-size: 15px;
             font-weight: 500;
@@ -153,7 +151,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--text-primary);
+            color: #ffffff;
         }
 
         .nav-right {
@@ -187,21 +185,24 @@
             padding-top: 108px;
             display: flex;
             align-items: center;
-            background: linear-gradient(180deg, #FFFDF5 0%, #FFFFFF 100%);
+            background: url('img/investbg.jpg') center center / cover no-repeat;
             position: relative;
             overflow: hidden;
         }
 
-        .hero-bg-pattern {
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.5;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(254, 229, 0, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(255, 184, 0, 0.1) 0%, transparent 40%);
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .hero-bg-pattern {
+            display: none;
         }
 
         .hero-content {
@@ -224,13 +225,14 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(0, 199, 60, 0.1);
+            background: rgba(0, 230, 118, 0.2);
+            border: 1px solid rgba(0, 230, 118, 0.3);
             border-radius: 20px;
             padding: 8px 16px;
             margin-bottom: 24px;
             font-size: 13px;
             font-weight: 600;
-            color: var(--accent-green);
+            color: #00E676;
         }
 
         .hero-badge .dot {
@@ -252,18 +254,19 @@
             line-height: 1.3;
             margin-bottom: 24px;
             letter-spacing: -1px;
-            color: var(--text-primary);
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .hero-title .highlight {
-            color: var(--primary-gold);
+            color: #00E676;
             position: relative;
         }
 
         .hero-description {
             font-size: 18px;
             line-height: 1.7;
-            color: var(--text-secondary);
+            color: rgba(255,255,255,0.85);
             margin-bottom: 40px;
             font-weight: 400;
         }
@@ -273,8 +276,8 @@
             gap: 48px;
             margin-bottom: 40px;
             padding: 24px 0;
-            border-top: 1px solid var(--border-light);
-            border-bottom: 1px solid var(--border-light);
+            border-top: 1px solid rgba(255,255,255,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
         }
 
         .hero-stat {
@@ -285,7 +288,7 @@
             font-family: 'Inter', sans-serif;
             font-size: 32px;
             font-weight: 700;
-            color: var(--text-primary);
+            color: #ffffff;
             line-height: 1;
         }
 
@@ -296,7 +299,7 @@
 
         .hero-stat-label {
             font-size: 14px;
-            color: var(--text-tertiary);
+            color: rgba(255,255,255,0.7);
             margin-top: 8px;
             font-weight: 400;
         }
@@ -626,9 +629,21 @@
             font-weight: 600;
         }
 
-        /* Business Section */
+        /* Business Section - Dark Background */
         .business-section {
-            background: var(--bg-white);
+            background: var(--primary-dark);
+        }
+
+        .business-section .section-label {
+            color: var(--primary-gold);
+        }
+
+        .business-section .section-title {
+            color: #FFFFFF;
+        }
+
+        .business-section .section-description {
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .business-grid {
@@ -638,8 +653,8 @@
         }
 
         .business-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border-light);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             overflow: hidden;
             transition: all 0.3s ease;
@@ -647,8 +662,9 @@
 
         .business-card:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
             border-color: var(--primary-yellow);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .business-image {
@@ -708,19 +724,19 @@
             font-size: 18px;
             margin-bottom: 12px;
             font-weight: 600;
-            color: var(--text-primary);
+            color: #FFFFFF;
         }
 
         .business-content p {
             font-size: 14px;
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.7);
             line-height: 1.6;
             margin-bottom: 16px;
             font-weight: 400;
         }
 
         .business-link {
-            color: var(--accent-blue);
+            color: var(--primary-yellow);
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
@@ -732,6 +748,10 @@
 
         .business-link:hover {
             gap: 10px;
+        }
+
+        .business-link svg {
+            stroke: var(--primary-yellow);
         }
 
         /* Market Overview Section */
@@ -1701,6 +1721,668 @@
                 display: block;
             }
         }
+
+        /* ESG Section - Yellow Background */
+        .esg-section {
+            background: linear-gradient(135deg, var(--primary-yellow) 0%, #FFD54F 100%);
+        }
+
+        .esg-section .section-label {
+            color: var(--primary-dark);
+            opacity: 0.7;
+        }
+
+        .esg-section .section-title {
+            color: var(--primary-dark);
+        }
+
+        .esg-section .section-description {
+            color: var(--primary-dark);
+            opacity: 0.8;
+        }
+
+        .esg-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .esg-card {
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .esg-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-dark);
+        }
+
+        .esg-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .esg-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .esg-icon.environment {
+            background: linear-gradient(135deg, rgba(0, 199, 60, 0.15) 0%, rgba(0, 199, 60, 0.05) 100%);
+        }
+
+        .esg-icon.environment svg {
+            stroke: var(--accent-green);
+        }
+
+        .esg-icon.social {
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.15) 0%, rgba(88, 166, 255, 0.05) 100%);
+        }
+
+        .esg-icon.social svg {
+            stroke: var(--accent-blue);
+        }
+
+        .esg-icon.governance {
+            background: linear-gradient(135deg, rgba(255, 184, 0, 0.15) 0%, rgba(255, 184, 0, 0.05) 100%);
+        }
+
+        .esg-icon.governance svg {
+            stroke: var(--primary-gold);
+        }
+
+        .esg-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .esg-subtitle {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            margin-bottom: 20px;
+        }
+
+        .esg-list {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .esg-list li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .esg-list li:last-child {
+            border-bottom: none;
+        }
+
+        .esg-list li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .esg-stat {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+        }
+
+        .esg-card:hover .esg-stat {
+            background: linear-gradient(135deg, var(--primary-yellow) 0%, #FFD54F 100%);
+            border-color: var(--primary-yellow);
+        }
+
+        .esg-stat-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            display: block;
+        }
+
+        .esg-stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Notice Section */
+        .notice-section {
+            background: var(--bg-light);
+        }
+
+        .notice-content {
+            background: var(--bg-white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .notice-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .notice-tab {
+            flex: 1;
+            padding: 16px 24px;
+            background: none;
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .notice-tab:hover {
+            color: var(--text-primary);
+            background: var(--bg-light);
+        }
+
+        .notice-tab.active {
+            color: var(--primary-gold);
+        }
+
+        .notice-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary-gold);
+        }
+
+        .notice-list {
+            padding: 8px 0;
+        }
+
+        .notice-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-light);
+            transition: background 0.2s ease;
+            cursor: pointer;
+        }
+
+        .notice-item:last-child {
+            border-bottom: none;
+        }
+
+        .notice-item:hover {
+            background: var(--bg-light);
+        }
+
+        .notice-badge {
+            padding: 4px 10px;
+            background: var(--primary-dark);
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .notice-badge.disclosure {
+            background: var(--accent-blue);
+        }
+
+        .notice-item-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .notice-item-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .notice-item:hover .notice-item-content h4 {
+            color: var(--primary-gold);
+        }
+
+        .notice-item-content p {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .notice-date {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--text-tertiary);
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 992px) {
+            .esg-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .notice-item {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .notice-date {
+                width: 100%;
+                text-align: right;
+            }
+        }
+
+        /* Chatbot Styles */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 80px;
+            right: 24px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--primary-yellow) 100%);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(255, 184, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 999;
+            overflow: hidden;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(255, 184, 0, 0.5);
+        }
+
+        .chatbot-toggle img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
+
+        .chatbot-toggle .close-icon {
+            display: none;
+            font-size: 28px;
+            color: var(--primary-dark);
+            font-weight: 300;
+        }
+
+        .chatbot-toggle.active .close-icon {
+            display: block;
+        }
+
+        .chatbot-toggle.active img {
+            display: none;
+        }
+
+        .chatbot-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: badgePulse 2s infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 150px;
+            right: 24px;
+            width: 380px;
+            max-height: 560px;
+            background: var(--bg-white);
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .chatbot-window.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #2a2a2a 100%);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chatbot-header-avatar {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+        }
+
+        .chatbot-header-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .chatbot-header-info {
+            flex: 1;
+        }
+
+        .chatbot-header-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 2px;
+        }
+
+        .chatbot-header-status {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .chatbot-header-status::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-height: 340px;
+            background: var(--bg-light);
+        }
+
+        .chat-message {
+            display: flex;
+            gap: 10px;
+            animation: messageIn 0.3s ease;
+        }
+
+        @keyframes messageIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-message.bot {
+            align-items: flex-start;
+        }
+
+        .chat-message.user {
+            flex-direction: row-reverse;
+        }
+
+        .chat-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .chat-avatar .avatar-text {
+            font-size: 6px;
+            font-weight: 700;
+            color: #FFFFFF;
+            letter-spacing: 0.5px;
+        }
+
+        .chat-avatar.user-avatar {
+            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--primary-yellow) 100%);
+        }
+
+        .chat-avatar.user-avatar svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--primary-dark);
+        }
+
+        .chat-bubble {
+            max-width: 75%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .chat-message.bot .chat-bubble {
+            background: var(--bg-white);
+            color: var(--text-primary);
+            border-bottom-left-radius: 4px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .chat-message.user .chat-bubble {
+            background: var(--primary-dark);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-bubble a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .chat-bubble a:hover {
+            text-decoration: underline;
+        }
+
+        .faq-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .faq-btn {
+            padding: 10px 14px;
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .faq-btn:hover {
+            background: var(--bg-gray);
+            border-color: var(--primary-gold);
+            transform: translateX(4px);
+        }
+
+        .faq-btn .faq-icon {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary-gold);
+            background: rgba(255, 184, 0, 0.15);
+            padding: 4px 6px;
+            border-radius: 4px;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .chatbot-input-area {
+            padding: 16px;
+            background: var(--bg-white);
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--text-primary);
+            background: var(--bg-light);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .chatbot-input:focus {
+            border-color: var(--primary-gold);
+            background: var(--bg-white);
+            box-shadow: 0 0 0 3px rgba(255, 184, 0, 0.1);
+        }
+
+        .chatbot-input::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .chatbot-send {
+            width: 44px;
+            height: 44px;
+            background: var(--primary-dark);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .chatbot-send:hover {
+            background: #333333;
+            transform: scale(1.05);
+        }
+
+        .chatbot-send svg {
+            width: 20px;
+            height: 20px;
+            stroke: white;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+            background: var(--bg-white);
+            border-radius: 16px;
+            border-bottom-left-radius: 4px;
+            width: fit-content;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: var(--text-tertiary);
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typingBounce {
+            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 480px) {
+            .chatbot-window {
+                right: 12px;
+                left: 12px;
+                width: auto;
+                bottom: 140px;
+                max-height: 70vh;
+            }
+
+            .chatbot-toggle {
+                right: 16px;
+                bottom: 70px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1774,7 +2456,7 @@
     <!-- Navigation -->
     <div class="nav-container">
         <nav>
-            <div class="logo">IGIS<span>.</span></div>
+            <div class="logo"><img src="img/timbel logo.png" alt="TIMBEL" style="height: 36px; width: auto;"></div>
             <ul class="nav-links">
                 <li><a href="#about">회사소개</a></li>
                 <li><a href="#business">사업소개</a></li>
@@ -2239,6 +2921,183 @@
         </div>
     </section>
 
+    <!-- ESG Section -->
+    <section class="esg-section" id="esg">
+        <div class="section-container">
+            <div class="section-header">
+                <p class="section-label">ESG Management</p>
+                <h2 class="section-title">지속가능경영</h2>
+                <p class="section-description">
+                    TIMBEL은 환경, 사회, 지배구조를 고려한 책임투자를 실천합니다.
+                </p>
+            </div>
+            <div class="esg-grid">
+                <div class="esg-card">
+                    <div class="esg-icon environment">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <path d="M12 6v6l4 2"/>
+                            <path d="M8.5 8.5l7 7"/>
+                        </svg>
+                    </div>
+                    <h3>Environment</h3>
+                    <p class="esg-subtitle">환경</p>
+                    <ul class="esg-list">
+                        <li>친환경 건물 투자 확대</li>
+                        <li>탄소배출 저감 목표 설정</li>
+                        <li>신재생에너지 인프라 투자</li>
+                        <li>녹색건축 인증 자산 운용</li>
+                    </ul>
+                    <div class="esg-stat">
+                        <span class="esg-stat-value">32%</span>
+                        <span class="esg-stat-label">친환경 인증 자산 비율</span>
+                    </div>
+                </div>
+                <div class="esg-card">
+                    <div class="esg-icon social">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+                        </svg>
+                    </div>
+                    <h3>Social</h3>
+                    <p class="esg-subtitle">사회</p>
+                    <ul class="esg-list">
+                        <li>지역사회 상생 프로그램</li>
+                        <li>임직원 역량 개발 지원</li>
+                        <li>다양성 및 포용성 강화</li>
+                        <li>협력사 동반성장 추진</li>
+                    </ul>
+                    <div class="esg-stat">
+                        <span class="esg-stat-value">1,200+</span>
+                        <span class="esg-stat-label">사회공헌 활동 시간</span>
+                    </div>
+                </div>
+                <div class="esg-card">
+                    <div class="esg-icon governance">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <h3>Governance</h3>
+                    <p class="esg-subtitle">지배구조</p>
+                    <ul class="esg-list">
+                        <li>투명한 의사결정 체계</li>
+                        <li>윤리경영 강화</li>
+                        <li>이해관계자 소통 확대</li>
+                        <li>리스크 관리 체계 고도화</li>
+                    </ul>
+                    <div class="esg-stat">
+                        <span class="esg-stat-value">A등급</span>
+                        <span class="esg-stat-label">ESG 평가등급</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notice Section -->
+    <section class="notice-section" id="notice">
+        <div class="section-container">
+            <div class="section-header">
+                <p class="section-label">Notice & Disclosure</p>
+                <h2 class="section-title">공지 & 공시</h2>
+            </div>
+            <div class="notice-content">
+                <div class="notice-tabs">
+                    <button class="notice-tab active" onclick="switchNoticeTab('notice')">공지사항</button>
+                    <button class="notice-tab" onclick="switchNoticeTab('disclosure')">공시정보</button>
+                </div>
+                <div class="notice-list" id="noticeList">
+                    <div class="notice-item">
+                        <span class="notice-badge">공지</span>
+                        <div class="notice-item-content">
+                            <h4>2025년 신년사 - 새로운 도약을 향하여</h4>
+                            <p>2025년 새해를 맞아 TIMBEL 임직원 여러분과 투자자 여러분께 인사드립니다...</p>
+                        </div>
+                        <span class="notice-date">2025.01.02</span>
+                    </div>
+                    <div class="notice-item">
+                        <span class="notice-badge">공지</span>
+                        <div class="notice-item-content">
+                            <h4>연말연시 업무 안내 (12/30 ~ 1/1)</h4>
+                            <p>연말연시 휴무 기간 동안의 업무 처리 및 고객 상담 관련 안내드립니다...</p>
+                        </div>
+                        <span class="notice-date">2024.12.26</span>
+                    </div>
+                    <div class="notice-item">
+                        <span class="notice-badge">중요</span>
+                        <div class="notice-item-content">
+                            <h4>사칭 주의 안내 - 당사 및 임직원 사칭 투자권유 유의</h4>
+                            <p>최근 당사를 사칭한 불법 투자권유 사례가 발생하고 있어 주의를 당부드립니다...</p>
+                        </div>
+                        <span class="notice-date">2024.12.20</span>
+                    </div>
+                    <div class="notice-item">
+                        <span class="notice-badge">공지</span>
+                        <div class="notice-item-content">
+                            <h4>제12기 정기주주총회 결과 안내</h4>
+                            <p>2024년 정기주주총회가 성황리에 종료되었습니다. 주요 결의사항을 안내드립니다...</p>
+                        </div>
+                        <span class="notice-date">2024.12.15</span>
+                    </div>
+                    <div class="notice-item">
+                        <span class="notice-badge">공지</span>
+                        <div class="notice-item-content">
+                            <h4>신규 펀드 출시 안내 - TIMBEL 프라임 인프라 펀드</h4>
+                            <p>안정적인 수익을 추구하는 신규 인프라 펀드가 출시되었습니다...</p>
+                        </div>
+                        <span class="notice-date">2024.12.10</span>
+                    </div>
+                </div>
+                <div class="notice-list" id="disclosureList" style="display: none;">
+                    <div class="notice-item">
+                        <span class="notice-badge disclosure">공시</span>
+                        <div class="notice-item-content">
+                            <h4>투자신탁 결산보고서 (2024년 4분기)</h4>
+                            <p>2024년 4분기 운용 성과 및 결산 내역을 공시합니다...</p>
+                        </div>
+                        <span class="notice-date">2025.01.05</span>
+                    </div>
+                    <div class="notice-item">
+                        <span class="notice-badge disclosure">공시</span>
+                        <div class="notice-item-content">
+                            <h4>리츠 배당금 지급 공고</h4>
+                            <p>TIMBEL 프라임 리츠 2024년 하반기 배당금 지급을 공고합니다...</p>
+                        </div>
+                        <span class="notice-date">2024.12.28</span>
+                    </div>
+                    <div class="notice-item">
+                        <span class="notice-badge disclosure">공시</span>
+                        <div class="notice-item-content">
+                            <h4>자산 취득 공시 - 판교 테크원타워</h4>
+                            <p>판교 테크원타워 자산 취득 관련 주요 사항을 공시합니다...</p>
+                        </div>
+                        <span class="notice-date">2024.12.18</span>
+                    </div>
+                    <div class="notice-item">
+                        <span class="notice-badge disclosure">공시</span>
+                        <div class="notice-item-content">
+                            <h4>분기 운용보고서 (2024년 3분기)</h4>
+                            <p>2024년 3분기 펀드별 운용 현황 및 성과를 보고합니다...</p>
+                        </div>
+                        <span class="notice-date">2024.10.15</span>
+                    </div>
+                    <div class="notice-item">
+                        <span class="notice-badge disclosure">공시</span>
+                        <div class="notice-item-content">
+                            <h4>ESG 경영보고서 2024</h4>
+                            <p>2024년 ESG 경영 현황 및 성과를 담은 보고서를 공시합니다...</p>
+                        </div>
+                        <span class="notice-date">2024.09.30</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="section-container">
@@ -2259,7 +3118,7 @@
                             </div>
                             <div class="contact-info-text">
                                 <span class="contact-info-label">전화 문의</span>
-                                <span class="contact-info-value">02-1234-5678</span>
+                                <span class="contact-info-value">02-584-8181</span>
                             </div>
                         </div>
                         <div class="contact-info-item">
@@ -2271,7 +3130,7 @@
                             </div>
                             <div class="contact-info-text">
                                 <span class="contact-info-label">이메일</span>
-                                <span class="contact-info-value">contact@igisam.com</span>
+                                <span class="contact-info-value">sales@timbel.net</span>
                             </div>
                         </div>
                         <div class="contact-info-item">
@@ -2283,7 +3142,7 @@
                             </div>
                             <div class="contact-info-text">
                                 <span class="contact-info-label">주소</span>
-                                <span class="contact-info-value">서울시 영등포구 여의대로 108</span>
+                                <span class="contact-info-value">서울시 강남구 테헤란로 13길 3-94 산돌빌딩</span>
                             </div>
                         </div>
                     </div>
@@ -2341,7 +3200,7 @@
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="logo">IGIS<span>.</span></div>
+                    <div class="logo"><img src="img/timbel logo.png" alt="TIMBEL" style="height: 36px; width: auto;"></div>
                     <p>
                         이지스자산운용은 국내 최대 규모의 자산운용사로서<br>
                         고객에게 변함없는 가치를 제공합니다.
@@ -2447,6 +3306,39 @@
             ⚠️ [안내] 이지스자산운용 사칭 관련 유의사항 - 당사 및 임직원 사칭 투자 권유에 주의하세요.
         </p>
         <button class="notice-close" onclick="closeNotice()">×</button>
+    </div>
+
+    <!-- Chatbot -->
+    <button class="chatbot-toggle" id="chatbotToggle" onclick="toggleChatbot()">
+        <img src="img/timbel logo.png" alt="Chat">
+        <span class="close-icon">×</span>
+        <span class="chatbot-badge">5</span>
+    </button>
+
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <div class="chatbot-header-avatar">
+                <img src="img/timbel logo.png" alt="TIMBEL">
+            </div>
+            <div class="chatbot-header-info">
+                <div class="chatbot-header-name">TIMBEL 투자상담 AI</div>
+                <div class="chatbot-header-status">온라인 · 평균 응답시간 1분</div>
+            </div>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <!-- Messages will be added here -->
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" class="chatbot-input" id="chatbotInput" 
+                   placeholder="궁금한 점을 입력해주세요..."
+                   onkeypress="if(event.key === 'Enter') sendChatMessage()">
+            <button class="chatbot-send" onclick="sendChatMessage()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"/>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+            </button>
+        </div>
     </div>
 
     <script>
@@ -2607,6 +3499,332 @@
                 document.querySelectorAll('.market-chart-tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
             });
+        });
+
+        // Notice tab switching
+        function switchNoticeTab(type) {
+            const tabs = document.querySelectorAll('.notice-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            if (type === 'notice') {
+                tabs[0].classList.add('active');
+                document.getElementById('noticeList').style.display = 'block';
+                document.getElementById('disclosureList').style.display = 'none';
+            } else {
+                tabs[1].classList.add('active');
+                document.getElementById('noticeList').style.display = 'none';
+                document.getElementById('disclosureList').style.display = 'block';
+            }
+        }
+
+        // ========== Chatbot Functionality ==========
+        const faqData = {
+            questions: [
+                {
+                    id: 1,
+                    icon: 'Q1',
+                    question: '최소 투자 금액이 얼마인가요?',
+                    answer: '투자 상품에 따라 최소 투자 금액이 다릅니다.<br><br>• <strong>공모 리츠</strong>: 1주(약 5,000원)부터 투자 가능<br>• <strong>공모 펀드</strong>: 100만원부터 가입 가능<br>• <strong>사모 펀드</strong>: 최소 1억원 이상 (적격투자자 요건 충족 시)<br>• <strong>기관투자자 전용</strong>: 100억원 이상<br><br>자세한 상담은 <a href="#contact">문의하기</a>를 이용해주세요.'
+                },
+                {
+                    id: 2,
+                    icon: 'Q2',
+                    question: '어떤 투자 상품이 있나요?',
+                    answer: '당사는 다양한 대체투자 상품을 운용하고 있습니다.<br><br>• <strong>부동산 펀드</strong>: 오피스, 물류센터, 리테일 등<br>• <strong>리츠(REITs)</strong>: 상장 리츠 및 사모 리츠<br>• <strong>인프라 펀드</strong>: 도로, 발전소, 신재생에너지 등<br>• <strong>증권 펀드</strong>: 멀티에셋, 헤지펀드 전략<br><br>현재 총 <strong>66.8조원</strong> 규모의 자산을 운용 중입니다.'
+                },
+                {
+                    id: 3,
+                    icon: 'Q3',
+                    question: '예상 수익률은 어떻게 되나요?',
+                    answer: '상품별 예상 수익률은 다음과 같습니다 (과거 실적 기준):<br><br>• <strong>부동산 펀드</strong>: 연 5~8% (배당 + 자본차익)<br>• <strong>상장 리츠</strong>: 연 4~6% 배당수익률<br>• <strong>인프라 펀드</strong>: 연 6~10%<br>• <strong>증권 펀드</strong>: 연 8~15% (시장 상황에 따라 변동)<br><br><em>※ 과거 수익률이 미래를 보장하지 않으며, 원금 손실의 위험이 있습니다.</em>'
+                },
+                {
+                    id: 4,
+                    icon: 'Q4',
+                    question: '원금은 보장되나요?',
+                    answer: '당사의 투자 상품은 <strong>원금이 보장되지 않습니다</strong>.<br><br>투자 시 유의사항:<br>• 모든 투자에는 원금 손실의 위험이 있습니다<br>• 부동산 시장, 금리, 환율 변동에 따라 수익이 달라질 수 있습니다<br>• 펀드 환매 시 환매수수료가 발생할 수 있습니다<br><br>다만, 당사는 <strong>체계적인 리스크 관리 시스템</strong>을 통해 투자 위험을 최소화하고 있습니다.'
+                },
+                {
+                    id: 5,
+                    icon: 'Q5',
+                    question: '투자 상담은 어떻게 받나요?',
+                    answer: '투자 상담은 다음 방법으로 신청하실 수 있습니다:<br><br>• <strong>전화 상담</strong>: 02-584-8181 (평일 09:00~18:00)<br>• <strong>이메일</strong>: sales@timbel.net<br>• <strong>온라인 문의</strong>: <a href="#contact">상담 신청 폼</a> 작성<br>• <strong>방문 상담</strong>: 서울시 강남구 테헤란로 13길 3-94 산돌빌딩 (사전 예약 필요)<br><br>담당 매니저가 <strong>24시간 내</strong>에 연락드리겠습니다.'
+                }
+            ],
+            keywords: {
+                '금액': 1, '최소': 1, '얼마': 1, '돈': 1, '비용': 1,
+                '상품': 2, '종류': 2, '펀드': 2, '리츠': 2, '투자': 2,
+                '수익': 3, '수익률': 3, '배당': 3, '이익': 3, '이자': 3, '얼마나': 3,
+                '원금': 4, '보장': 4, '손실': 4, '위험': 4, '리스크': 4, '안전': 4,
+                '상담': 5, '문의': 5, '연락': 5, '전화': 5, '방문': 5, '신청': 5
+            }
+        };
+
+        let chatbotOpen = false;
+        let chatInitialized = false;
+
+        function toggleChatbot() {
+            const toggle = document.getElementById('chatbotToggle');
+            const window = document.getElementById('chatbotWindow');
+            
+            chatbotOpen = !chatbotOpen;
+            
+            if (chatbotOpen) {
+                toggle.classList.add('active');
+                window.classList.add('active');
+                
+                // Hide badge
+                const badge = toggle.querySelector('.chatbot-badge');
+                if (badge) badge.style.display = 'none';
+                
+                // Initialize chat if first time
+                if (!chatInitialized) {
+                    initializeChatbot();
+                    chatInitialized = true;
+                }
+                
+                // Focus input
+                setTimeout(() => {
+                    document.getElementById('chatbotInput').focus();
+                }, 300);
+            } else {
+                toggle.classList.remove('active');
+                window.classList.remove('active');
+            }
+        }
+
+        function initializeChatbot() {
+            const messages = document.getElementById('chatbotMessages');
+            
+            // Welcome message
+            addBotMessage('안녕하세요.<br>TIMBEL 투자상담 AI입니다.<br><br>자산운용에 관해 궁금한 점이 있으시면 물어봐주세요.');
+            
+            // Show FAQ buttons after delay
+            setTimeout(() => {
+                addFaqButtons();
+            }, 500);
+        }
+
+        function addBotMessage(text) {
+            const messages = document.getElementById('chatbotMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message bot';
+            messageDiv.innerHTML = `
+                <div class="chat-avatar">
+                    <span class="avatar-text">TIMBEL</span>
+                </div>
+                <div class="chat-bubble">${text}</div>
+            `;
+            messages.appendChild(messageDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function addUserMessage(text) {
+            const messages = document.getElementById('chatbotMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message user';
+            messageDiv.innerHTML = `
+                <div class="chat-avatar user-avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </div>
+                <div class="chat-bubble">${escapeHtml(text)}</div>
+            `;
+            messages.appendChild(messageDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function addTypingIndicator() {
+            const messages = document.getElementById('chatbotMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'chat-message bot';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="chat-avatar">
+                    <span class="avatar-text">TIMBEL</span>
+                </div>
+                <div class="typing-indicator">
+                    <span></span><span></span><span></span>
+                </div>
+            `;
+            messages.appendChild(typingDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) typing.remove();
+        }
+
+        function addFaqButtons() {
+            const messages = document.getElementById('chatbotMessages');
+            const faqDiv = document.createElement('div');
+            faqDiv.className = 'chat-message bot';
+            faqDiv.id = 'faqButtonsContainer';
+            
+            let buttonsHtml = faqData.questions.map(q => 
+                `<button class="faq-btn" onclick="handleFaqClick(${q.id})">
+                    <span class="faq-icon">${q.icon}</span>
+                    ${q.question}
+                </button>`
+            ).join('');
+            
+            faqDiv.innerHTML = `
+                <div class="chat-avatar">
+                    <span class="avatar-text">TIMBEL</span>
+                </div>
+                <div class="chat-bubble">
+                    <strong>자주 묻는 질문 TOP 5</strong>
+                    <div class="faq-buttons">
+                        ${buttonsHtml}
+                    </div>
+                </div>
+            `;
+            messages.appendChild(faqDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function handleFaqClick(id) {
+            const question = faqData.questions.find(q => q.id === id);
+            if (!question) return;
+            
+            // Remove FAQ buttons container
+            const faqContainer = document.getElementById('faqButtonsContainer');
+            if (faqContainer) faqContainer.remove();
+            
+            // Add user message
+            addUserMessage(question.question);
+            
+            // Show typing then answer
+            addTypingIndicator();
+            
+            setTimeout(() => {
+                removeTypingIndicator();
+                addBotMessage(question.answer);
+                
+                // Show follow-up options after answer
+                setTimeout(() => {
+                    addFollowUpOptions();
+                }, 300);
+            }, 800 + Math.random() * 400);
+        }
+
+        function addFollowUpOptions() {
+            const messages = document.getElementById('chatbotMessages');
+            const followUpDiv = document.createElement('div');
+            followUpDiv.className = 'chat-message bot';
+            followUpDiv.id = 'followUpContainer';
+            followUpDiv.innerHTML = `
+                <div class="chat-avatar">
+                    <span class="avatar-text">TIMBEL</span>
+                </div>
+                <div class="chat-bubble">
+                    다른 궁금한 점이 있으신가요?
+                    <div class="faq-buttons" style="margin-top: 10px;">
+                        <button class="faq-btn" onclick="showAllFaq()">
+                            <span class="faq-icon">+</span>
+                            다른 질문 보기
+                        </button>
+                        <button class="faq-btn" onclick="connectToHuman()">
+                            <span class="faq-icon">→</span>
+                            상담사 연결하기
+                        </button>
+                    </div>
+                </div>
+            `;
+            messages.appendChild(followUpDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function showAllFaq() {
+            const followUp = document.getElementById('followUpContainer');
+            if (followUp) followUp.remove();
+            
+            addUserMessage('다른 질문 보기');
+            
+            addTypingIndicator();
+            setTimeout(() => {
+                removeTypingIndicator();
+                addFaqButtons();
+            }, 500);
+        }
+
+        function connectToHuman() {
+            const followUp = document.getElementById('followUpContainer');
+            if (followUp) followUp.remove();
+            
+            addUserMessage('상담사 연결하기');
+            
+            addTypingIndicator();
+            setTimeout(() => {
+                removeTypingIndicator();
+                addBotMessage('현재 업무 시간(평일 09:00~18:00) 내에는 상담사 연결이 가능합니다.<br><br>지금 바로 상담을 원하시면 <strong>02-584-8181</strong>로 전화해주시거나, <a href="#contact">온라인 상담 신청</a>을 이용해주세요.<br><br>빠른 시일 내에 연락드리겠습니다.');
+            }, 1000);
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chatbotInput');
+            const text = input.value.trim();
+            if (!text) return;
+            
+            // Remove any existing FAQ or follow-up containers
+            const faqContainer = document.getElementById('faqButtonsContainer');
+            const followUp = document.getElementById('followUpContainer');
+            if (faqContainer) faqContainer.remove();
+            if (followUp) followUp.remove();
+            
+            addUserMessage(text);
+            input.value = '';
+            
+            // Find matching FAQ based on keywords
+            const lowerText = text.toLowerCase();
+            let matchedId = null;
+            let maxMatches = 0;
+            
+            for (const [keyword, id] of Object.entries(faqData.keywords)) {
+                if (lowerText.includes(keyword)) {
+                    const currentMatches = (matchedId === id) ? maxMatches + 1 : 1;
+                    if (currentMatches > maxMatches || matchedId === null) {
+                        maxMatches = currentMatches;
+                        matchedId = id;
+                    }
+                }
+            }
+            
+            addTypingIndicator();
+            
+            setTimeout(() => {
+                removeTypingIndicator();
+                
+                if (matchedId) {
+                    const question = faqData.questions.find(q => q.id === matchedId);
+                    addBotMessage(question.answer);
+                } else {
+                    addBotMessage('죄송합니다. 해당 질문에 대한 정확한 답변을 찾지 못했습니다.<br><br>아래 자주 묻는 질문을 참고해주시거나, <a href="#contact">문의하기</a>를 통해 직접 상담을 요청해주세요.');
+                }
+                
+                setTimeout(() => {
+                    addFollowUpOptions();
+                }, 300);
+            }, 1000 + Math.random() * 500);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Close chatbot when clicking outside
+        document.addEventListener('click', function(e) {
+            const window = document.getElementById('chatbotWindow');
+            const toggle = document.getElementById('chatbotToggle');
+            
+            if (chatbotOpen && !window.contains(e.target) && !toggle.contains(e.target)) {
+                toggleChatbot();
+            }
         });
     </script>
 </body>

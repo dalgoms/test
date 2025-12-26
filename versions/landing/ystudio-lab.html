@@ -173,24 +173,33 @@
         }
 
         .logo {
-            font-size: 1.2rem;
-            font-weight: 800;
-            letter-spacing: 0.2em;
-            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
             text-decoration: none;
             position: relative;
         }
 
-        .logo::after {
-            content: 'LAB';
-            position: absolute;
-            top: -10px;
-            right: -30px;
+        .logo-img {
+            height: 28px;
+            width: auto;
+            object-fit: contain;
+            filter: brightness(1.1);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover .logo-img {
+            filter: brightness(1.3) drop-shadow(0 0 8px var(--accent-secondary));
+        }
+
+        .logo-badge {
             font-size: 0.5rem;
             padding: 3px 8px;
             background: var(--accent-secondary);
             color: var(--bg-dark);
             border-radius: 3px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
         }
 
         nav {
@@ -931,7 +940,10 @@
 
     <!-- Header -->
     <header>
-        <a href="ystudio-clone.html" class="logo">YSTUDIO</a>
+        <a href="ystudio-clone.html" class="logo">
+            <img src="img/timbel logo.png" alt="TIMBEL" class="logo-img">
+            <span class="logo-badge">LAB</span>
+        </a>
         <nav>
             <a href="ystudio-about.html"><span class="nav-index">01</span>About</a>
             <a href="ystudio-works.html"><span class="nav-index">02</span>Works</a>

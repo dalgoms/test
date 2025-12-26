@@ -9,9 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --primary-light: #818cf8;
+            --primary: #0077FF;
+            --primary-dark: #0055DD;
+            --primary-light: #33AAFF;
             --secondary: #0ea5e9;
             --accent: #22d3ee;
             --dark: #0a0a0f;
@@ -25,10 +25,10 @@
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --text-muted: #64748b;
-            --gradient-1: linear-gradient(135deg, #6366f1 0%, #0ea5e9 100%);
+            --gradient-1: linear-gradient(135deg, #0066FF 0%, #00AAFF 100%);
             --gradient-2: linear-gradient(135deg, #22d3ee 0%, #6366f1 100%);
             --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-            --shadow-glow: 0 0 60px rgba(99, 102, 241, 0.2);
+            --shadow-glow: 0 0 60px rgba(0, 119, 255, 0.25);
         }
 
         * {
@@ -183,7 +183,7 @@
 
         .header-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 119, 255, 0.4);
         }
 
         /* ===== HERO SECTION (DARK) ===== */
@@ -195,9 +195,14 @@
             position: relative;
             padding: 120px 3rem 80px;
             overflow: hidden;
-            background: radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-                        radial-gradient(ellipse at 80% 80%, rgba(14, 165, 233, 0.1) 0%, transparent 40%),
-                        var(--dark);
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.25) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(14, 165, 233, 0.2) 0%, transparent 40%),
+                linear-gradient(to bottom, rgba(10, 10, 15, 0.3) 0%, rgba(10, 10, 15, 0.6) 100%),
+                url('img/night.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         .hero::before {
@@ -260,6 +265,117 @@
             background-clip: text;
         }
 
+        .typing-cursor {
+            display: inline-block;
+            color: var(--primary-light);
+            font-weight: 300;
+            animation: blink 1s step-end infinite;
+            margin-left: 2px;
+        }
+
+        .typing-cursor.hidden {
+            opacity: 0;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .typing-line {
+            display: inline;
+        }
+
+        /* Custom Cursor */
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease, opacity 0.3s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-glow {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(0, 119, 255, 0.4) 0%, rgba(0, 170, 255, 0.2) 50%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.15s ease-out, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+        }
+
+        .cursor-ring {
+            position: fixed;
+            width: 35px;
+            height: 35px;
+            border: 1.5px solid rgba(0, 119, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9997;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s ease-out, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Hover states */
+        .cursor-dot.hover {
+            transform: translate(-50%, -50%) scale(0.5);
+            background: var(--accent);
+        }
+
+        .cursor-glow.hover {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(0, 170, 255, 0.35) 0%, rgba(0, 119, 255, 0.15) 50%, transparent 70%);
+        }
+
+        .cursor-ring.hover {
+            width: 60px;
+            height: 60px;
+            border-color: rgba(34, 211, 238, 0.6);
+        }
+
+        /* Click state */
+        .cursor-dot.click {
+            transform: translate(-50%, -50%) scale(2);
+        }
+
+        .cursor-glow.click {
+            width: 60px;
+            height: 60px;
+        }
+
+        .cursor-ring.click {
+            width: 25px;
+            height: 25px;
+        }
+
+        /* Hide default cursor on interactive elements */
+        body {
+            cursor: none;
+        }
+
+        a, button, input, textarea, select, .portfolio-card, .service-card, .tech-item, .pain-item, .category-btn, .checkbox-item {
+            cursor: none;
+        }
+
+        /* Hide custom cursor on mobile/touch devices */
+        @media (hover: none) and (pointer: coarse) {
+            .cursor-dot, .cursor-glow, .cursor-ring {
+                display: none;
+            }
+            body, a, button, input, textarea, select {
+                cursor: auto;
+            }
+        }
+
         .hero-subtitle {
             font-size: 1.25rem;
             color: var(--text-secondary);
@@ -293,7 +409,7 @@
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 119, 255, 0.4);
         }
 
         .btn-primary .arrow {
@@ -687,6 +803,25 @@
             border-radius: 50%;
         }
 
+        .service-card.hidden {
+            display: none;
+        }
+
+        .service-card.fade-in {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* ===== PORTFOLIO SECTION (LIGHT) ===== */
         .portfolio {
             padding: 120px 3rem;
@@ -740,15 +875,27 @@
         }
 
         .portfolio-card:nth-child(1) .portfolio-bg {
-            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 50%, #0ea5e9 100%);
+            background: 
+                linear-gradient(135deg, rgba(99, 102, 241, 0.85) 0%, rgba(79, 70, 229, 0.8) 50%, rgba(14, 165, 233, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80');
+            background-size: cover;
+            background-position: center;
         }
 
         .portfolio-card:nth-child(2) .portfolio-bg {
-            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+            background: 
+                linear-gradient(135deg, rgba(14, 165, 233, 0.85) 0%, rgba(6, 182, 212, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80');
+            background-size: cover;
+            background-position: center;
         }
 
         .portfolio-card:nth-child(3) .portfolio-bg {
-            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+            background: 
+                linear-gradient(135deg, rgba(139, 92, 246, 0.85) 0%, rgba(168, 85, 247, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80');
+            background-size: cover;
+            background-position: center;
         }
 
         .portfolio-content {
@@ -1169,7 +1316,7 @@
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.35);
+            box-shadow: 0 20px 40px rgba(0, 119, 255, 0.35);
         }
 
         .submit-btn:hover::before {
@@ -1299,7 +1446,7 @@
         .quick-nav a.active {
             background: var(--primary);
             transform: scale(1.4);
-            box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+            box-shadow: 0 0 15px rgba(0, 119, 255, 0.5);
         }
 
         /* ===== RESPONSIVE ===== */
@@ -1414,12 +1561,15 @@
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-glow"></div>
+    <div class="cursor-ring"></div>
     <!-- Header -->
     <header id="header">
         <div class="header-inner">
             <a href="#" class="logo">
-                <div class="logo-icon">N</div>
-                <span class="logo-text">NEXUS Labs</span>
+                <img src="img/timbel logo.png" alt="TIMBEL" style="height: 36px; width: auto;">
             </a>
             <nav>
                 <a href="#services">서비스</a>
@@ -1451,11 +1601,11 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="hero-badge-dot"></span>
-                <span>2025 디지털 트랜스포메이션 파트너</span>
+                <span>Voice Into Value</span>
             </div>
-            <h1>
-                비즈니스의 미래를<br>
-                <span class="gradient-text">기술로 디자인</span>합니다
+            <h1 id="heroTitle">
+                <span class="typing-line" id="typingLine1"></span><br>
+                <span class="typing-line gradient-text" id="typingLine2"></span><span class="typing-line" id="typingLine3"></span><span class="typing-cursor">|</span>
             </h1>
             <p class="hero-subtitle">
                 복잡한 기술적 과제를 혁신적인 솔루션으로 전환합니다.<br>
@@ -1473,22 +1623,22 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="stats-section">
+    <section class="stats-section" id="stats">
         <div class="stats-grid">
             <div class="stat-item">
-                <div class="stat-number">200+</div>
+                <div class="stat-number" data-target="200" data-suffix="+">0+</div>
                 <div class="stat-label">완료 프로젝트</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">50+</div>
+                <div class="stat-number" data-target="50" data-suffix="+">0+</div>
                 <div class="stat-label">엔터프라이즈 클라이언트</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">98%</div>
+                <div class="stat-number" data-target="98" data-suffix="%">0%</div>
                 <div class="stat-label">클라이언트 만족도</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">15+</div>
+                <div class="stat-number" data-target="15" data-suffix="+">0+</div>
                 <div class="stat-label">기술 전문가</div>
             </div>
         </div>
@@ -1525,7 +1675,7 @@
         </div>
 
         <div class="services-categories">
-            <button class="category-btn active">
+            <button class="category-btn active" data-category="software">
                 <div class="category-icon">
                     <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2">
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
@@ -1533,7 +1683,7 @@
                 </div>
                 <h4>소프트웨어 개발</h4>
             </button>
-            <button class="category-btn">
+            <button class="category-btn" data-category="cloud">
                 <div class="category-icon">
                     <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2">
                         <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
@@ -1541,7 +1691,7 @@
                 </div>
                 <h4>클라우드 & 인프라</h4>
             </button>
-            <button class="category-btn">
+            <button class="category-btn" data-category="ai">
                 <div class="category-icon">
                     <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2">
                         <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
@@ -1555,7 +1705,8 @@
         </div>
 
         <div class="services-grid">
-            <div class="service-card">
+            <!-- 소프트웨어 개발 카테고리 -->
+            <div class="service-card" data-category="software">
                 <div class="service-icon">
                     <svg viewBox="0 0 24 24">
                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
@@ -1573,7 +1724,7 @@
                 </div>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" data-category="software">
                 <div class="service-icon">
                     <svg viewBox="0 0 24 24">
                         <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
@@ -1590,7 +1741,7 @@
                 </div>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" data-category="software">
                 <div class="service-icon">
                     <svg viewBox="0 0 24 24">
                         <polyline points="16 18 22 12 16 6"/>
@@ -1607,7 +1758,8 @@
                 </div>
             </div>
 
-            <div class="service-card">
+            <!-- 클라우드 & 인프라 카테고리 -->
+            <div class="service-card" data-category="cloud">
                 <div class="service-icon">
                     <svg viewBox="0 0 24 24">
                         <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
@@ -1623,7 +1775,42 @@
                 </div>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" data-category="cloud">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <h3>보안 & DevOps</h3>
+                <p>CI/CD 파이프라인 구축과 보안 강화로 안정적인 운영 환경을 만듭니다</p>
+                <div class="service-features">
+                    <span class="service-feature">CI/CD 자동화</span>
+                    <span class="service-feature">컨테이너화</span>
+                    <span class="service-feature">보안 점검</span>
+                    <span class="service-feature">IaC</span>
+                </div>
+            </div>
+
+            <div class="service-card" data-category="cloud">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                </div>
+                <h3>인프라 구축 & 관리</h3>
+                <p>안정적이고 확장 가능한 서버 인프라를 설계하고 관리합니다. IaC 기반 자동화 구축</p>
+                <div class="service-features">
+                    <span class="service-feature">서버 구축</span>
+                    <span class="service-feature">로드밸런싱</span>
+                    <span class="service-feature">오토스케일링</span>
+                    <span class="service-feature">백업 & 복구</span>
+                </div>
+            </div>
+
+            <!-- AI & 데이터 카테고리 -->
+            <div class="service-card" data-category="ai">
                 <div class="service-icon">
                     <svg viewBox="0 0 24 24">
                         <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
@@ -1642,19 +1829,39 @@
                 </div>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" data-category="ai">
                 <div class="service-icon">
                     <svg viewBox="0 0 24 24">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                        <line x1="12" y1="22.08" x2="12" y2="12"/>
                     </svg>
                 </div>
-                <h3>보안 & DevOps</h3>
-                <p>CI/CD 파이프라인 구축과 보안 강화로 안정적인 운영 환경을 만듭니다</p>
+                <h3>데이터 엔지니어링</h3>
+                <p>대용량 데이터 처리 파이프라인과 데이터 웨어하우스를 구축합니다</p>
                 <div class="service-features">
-                    <span class="service-feature">CI/CD 자동화</span>
-                    <span class="service-feature">컨테이너화</span>
-                    <span class="service-feature">보안 점검</span>
-                    <span class="service-feature">IaC</span>
+                    <span class="service-feature">ETL/ELT</span>
+                    <span class="service-feature">실시간 스트리밍</span>
+                    <span class="service-feature">데이터 레이크</span>
+                    <span class="service-feature">BI 대시보드</span>
+                </div>
+            </div>
+
+            <div class="service-card" data-category="ai">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24">
+                        <line x1="18" y1="20" x2="18" y2="10"/>
+                        <line x1="12" y1="20" x2="12" y2="4"/>
+                        <line x1="6" y1="20" x2="6" y2="14"/>
+                    </svg>
+                </div>
+                <h3>데이터 분석 & 시각화</h3>
+                <p>비즈니스 인사이트를 도출하는 데이터 분석과 직관적인 시각화 솔루션을 제공합니다</p>
+                <div class="service-features">
+                    <span class="service-feature">예측 분석</span>
+                    <span class="service-feature">A/B 테스팅</span>
+                    <span class="service-feature">고객 세분화</span>
+                    <span class="service-feature">리포팅 자동화</span>
                 </div>
             </div>
         </div>
@@ -1811,7 +2018,7 @@
                                 <polyline points="22,6 12,13 2,6"/>
                             </svg>
                         </div>
-                        <span>contact@nexuslabs.io</span>
+                        <span>sales@timbel.net</span>
                     </div>
                     <div class="contact-item">
                         <div class="contact-item-icon">
@@ -1819,7 +2026,7 @@
                                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                             </svg>
                         </div>
-                        <span>02-1234-5678</span>
+                        <span>02-584-8181</span>
                     </div>
                     <div class="contact-item">
                         <div class="contact-item-icon">
@@ -1828,7 +2035,7 @@
                                 <circle cx="12" cy="10" r="3"/>
                             </svg>
                         </div>
-                        <span>서울시 강남구 테헤란로 427</span>
+                        <span>서울시 강남구 테헤란로 13길 3-94</span>
                     </div>
                 </div>
             </div>
@@ -1911,8 +2118,7 @@
             <div class="footer-top">
                 <div class="footer-brand">
                     <a href="#" class="logo">
-                        <div class="logo-icon">N</div>
-                        <span class="logo-text">NEXUS Labs</span>
+                        <img src="img/timbel logo.png" alt="TIMBEL" style="height: 32px; width: auto;">
                     </a>
                     <p>기술로 비즈니스의 미래를 디자인합니다. 혁신적인 IT 솔루션으로 당신의 성장을 함께합니다.</p>
                 </div>
@@ -2018,12 +2224,40 @@
             });
         });
 
-        // Category button toggle
+        // Category button toggle with content filtering
         const categoryBtns = document.querySelectorAll('.category-btn');
+        const serviceCards = document.querySelectorAll('.service-card');
+
+        function filterServices(category) {
+            let visibleIndex = 0;
+            serviceCards.forEach((card) => {
+                const cardCategory = card.getAttribute('data-category');
+                
+                if (cardCategory === category) {
+                    card.classList.remove('hidden');
+                    card.classList.remove('fade-in');
+                    // Trigger reflow for animation
+                    void card.offsetWidth;
+                    card.classList.add('fade-in');
+                    card.style.animationDelay = `${visibleIndex * 0.1}s`;
+                    visibleIndex++;
+                } else {
+                    card.classList.add('hidden');
+                    card.classList.remove('fade-in');
+                }
+            });
+        }
+
+        // Initialize with first category
+        filterServices('software');
+
         categoryBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 categoryBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
+                
+                const category = btn.getAttribute('data-category');
+                filterServices(category);
             });
         });
 
@@ -2053,6 +2287,160 @@
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
+        });
+
+        // Stats counter animation
+        const statsSection = document.getElementById('stats');
+        const statNumbers = document.querySelectorAll('.stat-number');
+        let statsAnimated = false;
+
+        function animateStats() {
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const suffix = stat.getAttribute('data-suffix') || '';
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // 60fps
+                let current = 0;
+
+                const updateCount = () => {
+                    current += increment;
+                    if (current < target) {
+                        stat.textContent = Math.floor(current) + suffix;
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        stat.textContent = target + suffix;
+                    }
+                };
+
+                updateCount();
+            });
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !statsAnimated) {
+                    statsAnimated = true;
+                    animateStats();
+                }
+            });
+        }, { threshold: 0.3 });
+
+        statsObserver.observe(statsSection);
+
+        // Typing animation for hero title
+        const typingTexts = [
+            { element: document.getElementById('typingLine1'), text: '비즈니스의 미래를' },
+            { element: document.getElementById('typingLine2'), text: '기술로 디자인' },
+            { element: document.getElementById('typingLine3'), text: '합니다' }
+        ];
+        const cursor = document.querySelector('.typing-cursor');
+        
+        async function typeText(element, text, delay = 80) {
+            for (let i = 0; i < text.length; i++) {
+                element.textContent += text[i];
+                await new Promise(resolve => setTimeout(resolve, delay));
+            }
+        }
+
+        async function startTypingAnimation() {
+            await new Promise(resolve => setTimeout(resolve, 500)); // Initial delay
+            
+            // Type first line
+            await typeText(typingTexts[0].element, typingTexts[0].text, 80);
+            await new Promise(resolve => setTimeout(resolve, 200));
+            
+            // Type second line (gradient text)
+            await typeText(typingTexts[1].element, typingTexts[1].text, 80);
+            
+            // Type third line
+            await typeText(typingTexts[2].element, typingTexts[2].text, 80);
+            
+            // Keep cursor blinking for a moment then fade out
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            cursor.classList.add('hidden');
+        }
+
+        startTypingAnimation();
+
+        // Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorGlow = document.querySelector('.cursor-glow');
+        const cursorRing = document.querySelector('.cursor-ring');
+
+        let mouseX = 0, mouseY = 0;
+        let dotX = 0, dotY = 0;
+        let glowX = 0, glowY = 0;
+        let ringX = 0, ringY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            // Dot follows immediately
+            dotX += (mouseX - dotX) * 0.5;
+            dotY += (mouseY - dotY) * 0.5;
+            cursorDot.style.left = dotX + 'px';
+            cursorDot.style.top = dotY + 'px';
+
+            // Glow follows with slight delay
+            glowX += (mouseX - glowX) * 0.15;
+            glowY += (mouseY - glowY) * 0.15;
+            cursorGlow.style.left = glowX + 'px';
+            cursorGlow.style.top = glowY + 'px';
+
+            // Ring follows with more delay
+            ringX += (mouseX - ringX) * 0.12;
+            ringY += (mouseY - ringY) * 0.12;
+            cursorRing.style.left = ringX + 'px';
+            cursorRing.style.top = ringY + 'px';
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hover effects for interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, input, textarea, select, .portfolio-card, .service-card, .tech-item, .pain-item, .category-btn, .checkbox-item');
+        
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorDot.classList.add('hover');
+                cursorGlow.classList.add('hover');
+                cursorRing.classList.add('hover');
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                cursorDot.classList.remove('hover');
+                cursorGlow.classList.remove('hover');
+                cursorRing.classList.remove('hover');
+            });
+        });
+
+        // Click effect
+        document.addEventListener('mousedown', () => {
+            cursorDot.classList.add('click');
+            cursorGlow.classList.add('click');
+            cursorRing.classList.add('click');
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursorDot.classList.remove('click');
+            cursorGlow.classList.remove('click');
+            cursorRing.classList.remove('click');
+        });
+
+        // Hide cursor when leaving window
+        document.addEventListener('mouseleave', () => {
+            cursorDot.style.opacity = '0';
+            cursorGlow.style.opacity = '0';
+            cursorRing.style.opacity = '0';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursorDot.style.opacity = '1';
+            cursorGlow.style.opacity = '1';
+            cursorRing.style.opacity = '1';
         });
     </script>
 </body>

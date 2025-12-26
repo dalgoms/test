@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VOID STUDIO — We Break The Rules | Digital Design Agency</title>
+    <title>Vibe Coding Works — Cursor AI 창작물 컬렉션</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -54,11 +54,12 @@
         }
 
         .preloader-text {
-            font-size: 18vw;
+            font-size: clamp(48px, 10vw, 120px);
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: -0.02em;
-            overflow: hidden;
+            overflow: visible;
+            white-space: nowrap;
         }
 
         .preloader-text span {
@@ -357,12 +358,12 @@
         }
 
         .hero-title {
-            font-size: clamp(60px, 15vw, 200px);
+            font-size: clamp(48px, 10vw, 130px);
             font-weight: 800;
-            line-height: 0.85;
+            line-height: 0.9;
             text-transform: uppercase;
             letter-spacing: -0.04em;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         .hero-title .line {
@@ -409,9 +410,9 @@
         }
 
         .hero-desc {
-            max-width: 400px;
-            font-size: 16px;
-            line-height: 1.8;
+            max-width: 500px;
+            font-size: 15px;
+            line-height: 1.7;
             color: var(--gray);
             opacity: 0;
             animation: fadeIn 1s ease forwards 2.8s;
@@ -599,6 +600,9 @@
             border-radius: 20px;
             background: #12121f;
             min-height: 350px;
+            text-decoration: none;
+            display: block;
+            cursor: none;
         }
 
         .portfolio-card:nth-child(1) { grid-column: span 7; grid-row: span 2; }
@@ -607,8 +611,7 @@
         .portfolio-card:nth-child(4) { grid-column: span 4; }
         .portfolio-card:nth-child(5) { grid-column: span 4; }
         .portfolio-card:nth-child(6) { grid-column: span 4; }
-        .portfolio-card:nth-child(7) { grid-column: span 8; }
-        .portfolio-card:nth-child(8) { grid-column: span 4; }
+        .portfolio-card:nth-child(7) { grid-column: span 12; }
 
         .portfolio-card img {
             position: absolute;
@@ -623,6 +626,30 @@
 
         .portfolio-card:hover img {
             transform: scale(1.1);
+            filter: brightness(0.4);
+        }
+
+        .portfolio-card .iframe-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .portfolio-card .iframe-wrapper iframe {
+            width: 200%;
+            height: 200%;
+            transform: scale(0.5);
+            transform-origin: top left;
+            border: none;
+            pointer-events: none;
+            transition: filter 0.6s ease;
+        }
+
+        .portfolio-card:hover .iframe-wrapper iframe {
             filter: brightness(0.4);
         }
 
@@ -1616,6 +1643,281 @@
             box-shadow: inset 0 0 30px rgba(0, 102, 255, 0.1);
         }
 
+        /* Chatbot Styles */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-3) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9990;
+            box-shadow: 0 4px 20px rgba(0, 102, 255, 0.4);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(0, 102, 255, 0.6);
+        }
+
+        .chatbot-toggle svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+            transition: transform 0.3s ease;
+        }
+
+        .chatbot-toggle.active svg {
+            transform: rotate(90deg);
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 380px;
+            height: 520px;
+            background: linear-gradient(145deg, #12121f 0%, #0a0a12 100%);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            border-radius: 20px;
+            z-index: 9989;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .chatbot-window.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .chatbot-header {
+            padding: 20px;
+            background: rgba(0, 102, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 102, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chatbot-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-3) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .chatbot-info h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .chatbot-info p {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .chatbot-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .chatbot-status::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #00E676;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chatbot-messages::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .chatbot-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chatbot-messages::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+        }
+
+        .chat-message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            line-height: 1.5;
+            animation: messageIn 0.3s ease;
+        }
+
+        @keyframes messageIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-message.bot {
+            background: rgba(255,255,255,0.08);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-message.user {
+            background: var(--accent);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 0 20px 15px;
+        }
+
+        .chat-suggestion {
+            padding: 8px 14px;
+            background: rgba(0, 102, 255, 0.1);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--accent-2);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chat-suggestion:hover {
+            background: rgba(0, 102, 255, 0.2);
+            border-color: var(--accent);
+            color: var(--white);
+        }
+
+        .chatbot-input {
+            padding: 15px 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: var(--white);
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-input input::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+
+        .chatbot-input input:focus {
+            border-color: var(--accent);
+            background: rgba(0, 102, 255, 0.05);
+        }
+
+        .chatbot-input button {
+            width: 44px;
+            height: 44px;
+            background: var(--accent);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-input button:hover {
+            background: var(--accent-2);
+            transform: scale(1.05);
+        }
+
+        .chatbot-input button svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 16px;
+            border-bottom-left-radius: 4px;
+            align-self: flex-start;
+            max-width: 60px;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: rgba(255,255,255,0.4);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-8px); }
+        }
+
+        @media (max-width: 480px) {
+            .chatbot-window {
+                width: calc(100% - 20px);
+                right: 10px;
+                bottom: 100px;
+                height: 450px;
+            }
+            
+            .chatbot-toggle {
+                right: 20px;
+                bottom: 20px;
+                width: 55px;
+                height: 55px;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .portfolio-bento {
@@ -1717,7 +2019,7 @@
     <!-- Preloader -->
     <div class="preloader">
         <div class="preloader-text">
-            <span style="--i:0">V</span><span style="--i:1">O</span><span style="--i:2">I</span><span style="--i:3">D</span>
+            <span style="--i:0">c</span><span style="--i:1">r</span><span style="--i:2">e</span><span style="--i:3">a</span><span style="--i:4">t</span><span style="--i:5">i</span><span style="--i:6">v</span><span style="--i:7">e</span>
         </div>
         <div class="preloader-bar">
             <div class="preloader-progress"></div>
@@ -1731,7 +2033,7 @@
 
     <!-- Header -->
     <header>
-        <a href="#" class="logo magnetic">VOID</a>
+        <a href="#" class="logo magnetic"><img src="img/timbel logo.png" alt="TIMBEL" style="height: 32px; width: auto;"></a>
         <div class="menu-trigger magnetic">
             <span></span>
             <span></span>
@@ -1758,17 +2060,17 @@
         <div class="hero-content">
             <div class="hero-label">
                 <div class="line"></div>
-                <span>Digital Design Agency</span>
+                <span>AI-Powered Creative Lab</span>
             </div>
             <h1 class="hero-title">
-                <span class="line"><span class="word">We Break</span></span>
-                <span class="line"><span class="word">The <span class="accent">Rules</span></span></span>
-                <span class="line"><span class="word outline">Of Design</span></span>
+                <span class="line"><span class="word">Vibe</span></span>
+                <span class="line"><span class="word">Coding <span class="accent">Works</span></span></span>
+                <span class="line"><span class="word outline">Collection</span></span>
             </h1>
             <div class="hero-bottom">
                 <p class="hero-desc">
-                    삼성, SK, 카카오 등 대한민국 Top Enterprise의 디지털 혁신을 이끕니다.
-                    AI 기반 대시보드부터 클라우드 인프라까지, 기술의 한계를 재정의합니다.
+                    <strong>Cursor AI 와 Vibe Coding으로 여는 새로운 창작물 시대</strong><br><br>
+                    4일간 Cursor AI 기반 바이브코딩으로 사용성 테스트를 진행했고, 그 결과를 하나의 링크로 정리했습니다.
                 </p>
                 <div class="hero-scroll">
                     <span>Scroll</span>
@@ -1782,23 +2084,23 @@
     <section class="marquee-section">
         <div class="marquee">
             <div class="marquee-content">
-                <span class="marquee-text">Dashboard</span>
+                <span class="marquee-text">Cursor AI</span>
                 <span class="marquee-dot"></span>
-                <span class="marquee-text outline">AI Solutions</span>
+                <span class="marquee-text outline">Vibe Coding</span>
                 <span class="marquee-dot"></span>
-                <span class="marquee-text">Cloud Native</span>
+                <span class="marquee-text">Creative</span>
                 <span class="marquee-dot"></span>
-                <span class="marquee-text outline">Enterprise</span>
+                <span class="marquee-text outline">No Code</span>
                 <span class="marquee-dot"></span>
             </div>
             <div class="marquee-content">
-                <span class="marquee-text">Dashboard</span>
+                <span class="marquee-text">Cursor AI</span>
                 <span class="marquee-dot"></span>
-                <span class="marquee-text outline">AI Solutions</span>
+                <span class="marquee-text outline">Vibe Coding</span>
                 <span class="marquee-dot"></span>
-                <span class="marquee-text">Cloud Native</span>
+                <span class="marquee-text">Creative</span>
                 <span class="marquee-dot"></span>
-                <span class="marquee-text outline">Enterprise</span>
+                <span class="marquee-text outline">No Code</span>
                 <span class="marquee-dot"></span>
             </div>
         </div>
@@ -1808,7 +2110,7 @@
     <section class="work-section" id="work">
         <div class="section-header reveal-up">
             <h2 class="section-title">
-                <span>Selected</span>
+                <span>AI Generated</span>
                 <span class="italic">Works</span>
             </h2>
             <a href="#" class="view-all magnetic">
@@ -1818,123 +2120,75 @@
         </div>
 
         <div class="portfolio-bento">
-            <div class="portfolio-card reveal-scale" data-cursor="View Project">
-                <img src="anomaly-studio-deploy/img/thumnail (1).png" alt="Samsung Analytics Dashboard" class="parallax-img">
+            <a href="adriel-dashboard.html" class="portfolio-card reveal-scale" data-cursor="View Project" target="_blank">
+                <div class="iframe-wrapper">
+                    <iframe src="adriel-dashboard.html" loading="lazy"></iframe>
+                </div>
                 <div class="portfolio-card-content">
                     <span class="portfolio-card-num">01</span>
                     <span class="portfolio-card-category">Enterprise Dashboard / Data Visualization</span>
-                    <h3 class="portfolio-card-title">Samsung Analytics Platform</h3>
-                    <a href="#" class="portfolio-card-link">View Case Study <span>→</span></a>
+                    <h3 class="portfolio-card-title">Adriel Dashboard</h3>
                 </div>
-            </div>
+            </a>
 
-            <div class="portfolio-card reveal-scale" data-cursor="View Project">
-                <img src="anomaly-studio-deploy/img/thumnail (2).png" alt="NVIDIA GPU Computing" class="parallax-img">
+            <a href="orp-it-clone.html" class="portfolio-card reveal-scale" data-cursor="View Project" target="_blank">
+                <div class="iframe-wrapper">
+                    <iframe src="orp-it-clone.html" loading="lazy"></iframe>
+                </div>
                 <div class="portfolio-card-content">
                     <span class="portfolio-card-num">02</span>
-                    <span class="portfolio-card-category">AI Infrastructure / GPU Computing</span>
-                    <h3 class="portfolio-card-title">NVIDIA DGX Cloud Console</h3>
-                    <a href="#" class="portfolio-card-link">View Case Study <span>→</span></a>
+                    <span class="portfolio-card-category">IT Solutions / Enterprise</span>
+                    <h3 class="portfolio-card-title">ORP IT Clone</h3>
                 </div>
-            </div>
+            </a>
 
-            <div class="portfolio-card reveal-scale" data-cursor="View Project">
-                <img src="anomaly-studio-deploy/img/thumnail (3).png" alt="SK Hynix Data Center" class="parallax-img">
+            <a href="igis-clone.html" class="portfolio-card reveal-scale" data-cursor="View Project" target="_blank">
+                <div class="iframe-wrapper">
+                    <iframe src="igis-clone.html" loading="lazy"></iframe>
+                </div>
                 <div class="portfolio-card-content">
                     <span class="portfolio-card-num">03</span>
-                    <span class="portfolio-card-category">Cloud Infrastructure / Monitoring</span>
-                    <h3 class="portfolio-card-title">SK Hynix Memory Ops</h3>
-                    <a href="#" class="portfolio-card-link">View Case Study <span>→</span></a>
+                    <span class="portfolio-card-category">Finance / Asset Management</span>
+                    <h3 class="portfolio-card-title">IGIS Clone</h3>
                 </div>
-            </div>
-
-            <div class="portfolio-card reveal-scale" data-cursor="View Project">
-                <img src="anomaly-studio-deploy/img/thumnail (4).png" alt="Kakao Enterprise Platform" class="parallax-img">
-                <div class="portfolio-card-content">
-                    <span class="portfolio-card-num">04</span>
-                    <span class="portfolio-card-category">Enterprise SaaS / Collaboration</span>
-                    <h3 class="portfolio-card-title">Kakao Work Enterprise</h3>
-                    <a href="#" class="portfolio-card-link">View Case Study <span>→</span></a>
-                </div>
-            </div>
-
-            <div class="portfolio-card reveal-scale" data-cursor="View Project">
-                <img src="anomaly-studio-deploy/img/thumnail (5).png" alt="Real-time Analytics Dashboard" class="parallax-img">
-                <div class="portfolio-card-content">
-                    <span class="portfolio-card-num">05</span>
-                    <span class="portfolio-card-category">Real-time Analytics / BI Solution</span>
-                    <h3 class="portfolio-card-title">Naver DataLab Console</h3>
-                    <a href="#" class="portfolio-card-link">View Case Study <span>→</span></a>
-                </div>
-            </div>
-
-            <div class="portfolio-card reveal-scale" data-cursor="View Project">
-                <img src="anomaly-studio-deploy/img/thumnail (6).png" alt="AI Machine Learning" class="parallax-img">
-                <div class="portfolio-card-content">
-                    <span class="portfolio-card-num">06</span>
-                    <span class="portfolio-card-category">Generative AI / LLM Platform</span>
-                    <h3 class="portfolio-card-title">LG AI Research Studio</h3>
-                    <a href="#" class="portfolio-card-link">View Case Study <span>→</span></a>
-                </div>
-            </div>
+            </a>
 
         </div>
     </section>
 
-    <!-- Stats -->
-    <section class="stats-section">
-        <div class="stats-grid">
-            <div class="stat-card reveal-up">
-                <div class="stat-number" data-count="150">0</div>
-                <div class="stat-label">Enterprise Projects</div>
-            </div>
-            <div class="stat-card reveal-up" style="transition-delay: 0.1s">
-                <div class="stat-number" data-count="30">0</div>
-                <div class="stat-label">Fortune 500 Clients</div>
-            </div>
-            <div class="stat-card reveal-up" style="transition-delay: 0.2s">
-                <div class="stat-number" data-count="99">0</div>
-                <div class="stat-label">% Uptime SLA</div>
-            </div>
-            <div class="stat-card reveal-up" style="transition-delay: 0.3s">
-                <div class="stat-number" data-count="12">0</div>
-                <div class="stat-label">Tech Stack Expertise</div>
-            </div>
-        </div>
-    </section>
 
     <!-- Services -->
     <section class="services-section" id="services">
         <div class="section-header reveal-up">
             <h2 class="section-title">
-                <span>What</span>
-                <span class="italic">We Do</span>
+                <span>How It</span>
+                <span class="italic">Works</span>
             </h2>
         </div>
         <div class="services-list">
             <div class="service-item reveal-up">
                 <span class="service-num">01</span>
-                <h3 class="service-title">Enterprise Dashboard</h3>
+                <h3 class="service-title">아이디어 구상</h3>
                 <span class="service-arrow">→</span>
             </div>
             <div class="service-item reveal-up">
                 <span class="service-num">02</span>
-                <h3 class="service-title">AI/ML Integration</h3>
+                <h3 class="service-title">Cursor AI 프롬프트</h3>
                 <span class="service-arrow">→</span>
             </div>
             <div class="service-item reveal-up">
                 <span class="service-num">03</span>
-                <h3 class="service-title">Cloud Architecture</h3>
+                <h3 class="service-title">Vibe Coding 생성</h3>
                 <span class="service-arrow">→</span>
             </div>
             <div class="service-item reveal-up">
                 <span class="service-num">04</span>
-                <h3 class="service-title">Full-Stack Development</h3>
+                <h3 class="service-title">실시간 미리보기</h3>
                 <span class="service-arrow">→</span>
             </div>
             <div class="service-item reveal-up">
                 <span class="service-num">05</span>
-                <h3 class="service-title">Design System</h3>
+                <h3 class="service-title">완성 & 배포</h3>
                 <span class="service-arrow">→</span>
             </div>
         </div>
@@ -1944,16 +2198,16 @@
     <section class="testimonials">
         <div class="testimonial-slider reveal-up">
             <p class="testimonial-quote">
-                "VOID Studio와의 협업으로 우리 플랫폼의 사용자 경험이 완전히 달라졌습니다.
-                기술적 깊이와 디자인 감각 모두 최고 수준입니다."
+                "코딩을 몰라도 Cursor AI와 대화하며 웹사이트를 만들 수 있다니, 
+                창작의 문턱이 이렇게 낮아질 줄 몰랐습니다."
             </p>
             <div class="testimonial-author">
                 <div class="testimonial-avatar">
                     <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80" alt="Avatar">
                 </div>
                 <div class="testimonial-info">
-                    <h4>박성준</h4>
-                    <p>CTO, 카카오엔터프라이즈</p>
+                    <h4>Vibe Coder</h4>
+                    <p>AI 크리에이터</p>
                 </div>
             </div>
         </div>
@@ -1962,18 +2216,18 @@
     <!-- Contact -->
     <section class="contact-section" id="contact">
         <div class="contact-bg">
-            <span class="contact-bg-text">VOID</span>
+            <span class="contact-bg-text">VIBE</span>
         </div>
         <div class="contact-content">
             <h2 class="reveal-up">
-                <span>Let's Build</span>
-                <span class="italic">The Future</span>
-                <span>Together</span>
+                <span>Start Your</span>
+                <span class="italic">Creative</span>
+                <span>Journey</span>
             </h2>
-            <a href="mailto:enterprise@void.studio" class="contact-email reveal-up">enterprise@void.studio</a>
+            <a href="mailto:sales@timbel.net" class="contact-email reveal-up">sales@timbel.net</a>
             <div class="contact-cta reveal-up">
                 <a href="#" class="big-btn magnetic">
-                    <span>Schedule a Demo</span>
+                    <span>Try Vibe Coding</span>
                     <span>→</span>
                 </a>
             </div>
@@ -2089,7 +2343,7 @@
     <!-- Footer -->
     <footer>
         <div class="footer-top">
-            <div class="footer-logo">VOID</div>
+            <div class="footer-logo"><img src="img/timbel logo.png" alt="TIMBEL" style="height: 40px; width: auto;"></div>
             <div class="footer-links">
                 <div class="footer-col">
                     <h4>Navigation</h4>
@@ -2112,7 +2366,7 @@
                 <div class="footer-col">
                     <h4>Contact</h4>
                     <ul>
-                        <li><a href="mailto:enterprise@void.studio">enterprise@void.studio</a></li>
+                        <li><a href="mailto:sales@timbel.net">sales@timbel.net</a></li>
                         <li><a href="tel:+8221234567">+82 2 6012 0000</a></li>
                         <li><a href="https://map.naver.com/v5/search/역삼역%20산돌빌딩" target="_blank">서울시 강남구 테헤란로 27길 8 산돌빌딩</a></li>
                     </ul>
@@ -2120,7 +2374,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p class="footer-copy">© 2024 VOID Studio. All rights reserved.</p>
+            <p class="footer-copy">© 2024 TIMBEL Studio. All rights reserved.</p>
             <div class="footer-social">
                 <a href="#" class="magnetic">IG</a>
                 <a href="#" class="magnetic">BE</a>
@@ -2454,10 +2708,16 @@
         const bookingOverlay = document.querySelector('.booking-overlay');
         const scheduleBtn = document.querySelector('.big-btn');
 
-        // Schedule Demo 버튼 클릭 시 모달 열기
+        // Schedule Demo 버튼 클릭 시 챗봇 열기
         scheduleBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            openBookingModal();
+            // 챗봇 열기
+            chatbotWindow.classList.add('open');
+            chatbotToggle.classList.add('active');
+            // 상담 예약 메시지 자동 전송
+            setTimeout(() => {
+                sendMessage('상담 예약');
+            }, 300);
         });
 
         function openBookingModal() {
@@ -2519,6 +2779,182 @@
         const tomorrow = new Date(today);
         tomorrow.setDate(tomorrow.getDate() + 1);
         dateInput.min = tomorrow.toISOString().split('T')[0];
+    </script>
+
+    <!-- Chatbot -->
+    <div class="chatbot-toggle" id="chatbotToggle">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 2.98.97 4.29L2 22l5.71-.97C9.02 21.64 10.46 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm-1 15h2v-2h-2v2zm0-4h2V7h-2v6z"/>
+        </svg>
+    </div>
+
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <div class="chatbot-avatar">🤖</div>
+            <div class="chatbot-info">
+                <h4>Vibe Coding Assistant</h4>
+                <p class="chatbot-status">온라인</p>
+            </div>
+        </div>
+        <div class="chatbot-messages" id="chatMessages">
+            <div class="chat-message bot">
+                안녕하세요! 👋 Vibe Coding 챗봇입니다. 무엇을 도와드릴까요?
+            </div>
+        </div>
+        <div class="chat-suggestions" id="chatSuggestions">
+            <button class="chat-suggestion" data-question="Vibe Coding">Vibe Coding이 뭔가요?</button>
+            <button class="chat-suggestion" data-question="Cursor AI">Cursor AI 소개</button>
+            <button class="chat-suggestion" data-question="포트폴리오">만든 작품 보기</button>
+            <button class="chat-suggestion" data-question="시작하기">시작하는 방법</button>
+            <button class="chat-suggestion" data-question="연락처">연락처 알려주세요</button>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="메시지를 입력하세요..." autocomplete="off">
+            <button id="chatSend">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Chatbot FAQ Data
+        const faqData = {
+            "Vibe Coding": {
+                answer: "Vibe Coding은 AI와 대화하며 코딩하는 새로운 방식입니다! 🎵\n\n✨ <b>특징</b>\n• 코딩 지식 없이도 웹사이트 제작 가능\n• 자연어로 아이디어를 설명하면 AI가 코드 생성\n• 실시간으로 결과물 확인 및 수정\n• 창의적인 아이디어에만 집중!",
+                followUp: ["Cursor AI", "시작하기", "포트폴리오"]
+            },
+            "Cursor AI": {
+                answer: "Cursor AI는 AI 기반 코드 에디터입니다! 🤖\n\n💡 <b>주요 기능</b>\n• Claude, GPT 등 AI 모델 통합\n• 코드 자동 완성 및 생성\n• 자연어 명령으로 코딩\n• 실시간 오류 수정\n\nVibe Coding의 핵심 도구예요!",
+                followUp: ["Vibe Coding", "시작하기", "포트폴리오"]
+            },
+            "시작하기": {
+                answer: "Vibe Coding 시작하는 방법! 🚀\n\n1️⃣ Cursor AI 설치 (cursor.com)\n2️⃣ AI 모델 연결 (Claude 추천)\n3️⃣ 만들고 싶은 것을 자연어로 설명\n4️⃣ AI가 코드 생성\n5️⃣ 미리보기로 확인 & 수정\n\n코딩을 몰라도 괜찮아요!",
+                followUp: ["Vibe Coding", "Cursor AI", "포트폴리오"]
+            },
+            "포트폴리오": {
+                answer: "Vibe Coding으로 만든 작품들입니다! 🎨\n\n주요 작품:\n• Adriel Dashboard - 데이터 시각화\n• ORP IT Clone - 기업 웹사이트\n• IGIS Clone - 금융 서비스\n\n상단 'AI Generated Works' 섹션에서 확인해보세요!",
+                followUp: ["Vibe Coding", "시작하기", "Cursor AI"]
+            },
+            "연락처": {
+                answer: "연락처 정보입니다:\n\n📧 Email: sales@timbel.net\n📍 주소: 서울특별시 강남구 테헤란로 27길 8 산돌빌딩\n\n언제든 연락주세요! 😊",
+                followUp: ["Vibe Coding", "시작하기", "포트폴리오"]
+            },
+            "default": {
+                answer: "죄송합니다, 해당 질문에 대한 답변을 찾지 못했어요. 😅\n\n아래 주제 중에서 선택해주시거나, 직접 연락주시면 자세히 안내해드릴게요!\n\n📧 sales@timbel.net",
+                followUp: ["Vibe Coding", "Cursor AI", "시작하기", "포트폴리오"]
+            }
+        };
+
+        // Chatbot Elements
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const chatSend = document.getElementById('chatSend');
+        const chatSuggestions = document.getElementById('chatSuggestions');
+
+        // Toggle Chatbot
+        chatbotToggle.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('open');
+            chatbotToggle.classList.toggle('active');
+        });
+
+        // Send Message Function
+        function sendMessage(message) {
+            if (!message.trim()) return;
+
+            // Add user message
+            addMessage(message, 'user');
+            chatInput.value = '';
+
+            // Show typing indicator
+            showTyping();
+
+            // Find answer
+            setTimeout(() => {
+                removeTyping();
+                const response = findAnswer(message);
+                addMessage(response.answer, 'bot');
+                updateSuggestions(response.followUp);
+            }, 1000 + Math.random() * 500);
+        }
+
+        // Add Message to Chat
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${sender}`;
+            messageDiv.innerHTML = text.replace(/\n/g, '<br>');
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Show Typing Indicator
+        function showTyping() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = '<span></span><span></span><span></span>';
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Remove Typing Indicator
+        function removeTyping() {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) typing.remove();
+        }
+
+        // Find Answer
+        function findAnswer(question) {
+            const lowerQ = question.toLowerCase();
+            
+            if (lowerQ.includes('vibe') || lowerQ.includes('바이브') || lowerQ.includes('뭔가요') || lowerQ.includes('무엇')) {
+                return faqData["Vibe Coding"];
+            } else if (lowerQ.includes('cursor') || lowerQ.includes('커서') || lowerQ.includes('ai')) {
+                return faqData["Cursor AI"];
+            } else if (lowerQ.includes('시작') || lowerQ.includes('방법') || lowerQ.includes('어떻게')) {
+                return faqData["시작하기"];
+            } else if (lowerQ.includes('포트폴리오') || lowerQ.includes('작품') || lowerQ.includes('프로젝트') || lowerQ.includes('만든')) {
+                return faqData["포트폴리오"];
+            } else if (lowerQ.includes('연락') || lowerQ.includes('이메일') || lowerQ.includes('전화') || lowerQ.includes('주소')) {
+                return faqData["연락처"];
+            } else if (lowerQ.includes('안녕') || lowerQ.includes('하이') || lowerQ.includes('hello')) {
+                return { answer: "안녕하세요! 👋 Vibe Coding에 대해 궁금한 것이 있으신가요?", followUp: ["Vibe Coding", "Cursor AI", "시작하기"] };
+            } else if (lowerQ.includes('감사') || lowerQ.includes('고마')) {
+                return { answer: "천만에요! 😊 더 궁금한 점이 있으시면 언제든 물어보세요!", followUp: ["Vibe Coding", "포트폴리오"] };
+            }
+            
+            return faqData["default"];
+        }
+
+        // Update Suggestions
+        function updateSuggestions(suggestions) {
+            chatSuggestions.innerHTML = suggestions.map(s => 
+                `<button class="chat-suggestion" data-question="${s}">${s}</button>`
+            ).join('');
+            
+            // Re-attach event listeners
+            document.querySelectorAll('.chat-suggestion').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    sendMessage(btn.dataset.question);
+                });
+            });
+        }
+
+        // Event Listeners
+        chatSend.addEventListener('click', () => sendMessage(chatInput.value));
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage(chatInput.value);
+        });
+
+        // Suggestion Clicks
+        document.querySelectorAll('.chat-suggestion').forEach(btn => {
+            btn.addEventListener('click', () => {
+                sendMessage(btn.dataset.question);
+            });
+        });
     </script>
 </body>
 </html>
