@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>바이브 코딩 성과 보고서 | Vibe Coding Report 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        }
+
+        :root {
+            --bg: #0a0a0a;
+            --bg-card: #111111;
+            --bg-card-hover: #1a1a1a;
+            --primary: #4a9eff;
+            --primary-glow: rgba(74, 158, 255, 0.3);
+            --accent: #4a9eff;
+            --warning: rgba(255, 255, 255, 0.8);
+            --success: #4a9eff;
+            --text: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --text-dim: rgba(255, 255, 255, 0.4);
+            --border: rgba(255, 255, 255, 0.1);
+            --mono: 'Space Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .report {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* Header */
+        .report-header {
+            text-align: center;
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .report-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .report-badge {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--primary);
+            background: rgba(74, 158, 255, 0.1);
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            padding: 8px 20px;
+            border-radius: 100px;
+            margin-bottom: 30px;
+        }
+
+        .report-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text) 30%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .report-subtitle {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .report-meta {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+
+        .report-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .report-meta .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .section-number {
+            font-family: var(--mono);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            background: rgba(74, 158, 255, 0.1);
+            padding: 8px 14px;
+            border-radius: 8px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-card:nth-child(2) .stat-number { color: var(--primary); }
+        .stat-card:nth-child(3) .stat-number { color: var(--primary); }
+        .stat-card:nth-child(4) .stat-number { color: var(--primary); }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Executive Summary */
+        .summary-box {
+            background: rgba(74, 158, 255, 0.08);
+            border: 1px solid rgba(74, 158, 255, 0.15);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        .summary-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-text {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 2;
+        }
+
+        .summary-text strong {
+            color: var(--text);
+        }
+
+        /* Project Categories */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            border-color: var(--primary);
+        }
+
+        .category-icon {
+            font-family: var(--mono);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            background: rgba(74, 158, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            margin-bottom: 16px;
+        }
+
+        .category-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .category-count {
+            font-family: var(--mono);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .category-list {
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-top: 12px;
+            line-height: 1.8;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 20px 0 40px 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 24px;
+            width: 16px;
+            height: 16px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid var(--bg);
+        }
+
+        .timeline-day {
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .skill-group {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .skill-group-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .skill-name {
+            font-weight: 500;
+        }
+
+        .skill-bar {
+            width: 120px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
+        }
+
+        /* Market Position */
+        .position-chart {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .position-row {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .position-row:hover {
+            background: rgba(255, 255, 255, 0.02);
+            margin: 0 -20px;
+            padding: 24px 20px;
+            border-radius: 12px;
+        }
+
+        .position-row:last-child {
+            border-bottom: none;
+        }
+
+        .position-label {
+            width: 200px;
+            font-weight: 600;
+            flex-shrink: 0;
+            font-size: 15px;
+        }
+
+        .position-bar-container {
+            flex: 1;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .position-bar {
+            height: 100%;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 16px;
+            font-family: 'Pretendard', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .position-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.15), transparent);
+            pointer-events: none;
+        }
+
+        .position-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1));
+            pointer-events: none;
+        }
+
+        .position-bar.excellent {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+        }
+
+        .position-bar.good {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+        }
+
+        .position-bar.medium {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            box-shadow: none;
+        }
+
+        /* Quote */
+        .quote-section {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(74, 158, 255, 0.05) 100%);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-mark {
+            font-size: 120px;
+            font-weight: 800;
+            color: var(--primary);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 40px;
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .quote-author {
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Next Steps */
+        .next-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+        }
+
+        .step-week {
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .step-items {
+            list-style: none;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .step-items li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .step-items li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        .report-footer {
+            text-align: center;
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 80px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+        }
+
+        .footer-link {
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            .report {
+                padding: 20px;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .next-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .report {
+                padding: 30px 16px;
+            }
+            .report-header {
+                padding: 50px 0;
+            }
+            .report-title {
+                font-size: 2rem;
+            }
+            .report-subtitle {
+                font-size: 15px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .stat-card {
+                padding: 20px 16px;
+            }
+            .stat-number {
+                font-size: 36px;
+            }
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            .report-meta {
+                flex-direction: column;
+                gap: 12px;
+            }
+            /* Summary cards mobile */
+            .summary-box > div[style*="grid-template-columns: repeat(3, 1fr)"] {
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 10px !important;
+            }
+            .summary-box > div[style*="grid-template-columns: repeat(3, 1fr)"] > div {
+                padding: 12px 8px !important;
+            }
+            .summary-box > div[style*="grid-template-columns: repeat(3, 1fr)"] > div > div:first-child {
+                font-size: 24px !important;
+            }
+            /* Limitations grid mobile */
+            div[style*="display: grid"][style*="repeat(3, 1fr)"] {
+                grid-template-columns: 1fr !important;
+            }
+            div[style*="display: grid"][style*="repeat(2, 1fr)"][style*="gap: 16px"] {
+                grid-template-columns: 1fr !important;
+            }
+            /* Next steps timeline hide on mobile */
+            div[style*="position: absolute"][style*="height: 3px"] {
+                display: none !important;
+            }
+            .next-steps {
+                grid-template-columns: 1fr !important;
+            }
+            .position-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .position-label {
+                width: 100%;
+                font-size: 14px;
+            }
+            .position-bar-container {
+                width: 100%;
+                height: 32px;
+            }
+            .position-bar {
+                font-size: 10px;
+                padding-right: 10px;
+            }
+            .section {
+                margin-bottom: 50px;
+            }
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+                margin-bottom: 30px;
+            }
+            .section-title {
+                font-size: 22px;
+            }
+            .summary-box {
+                padding: 24px 20px;
+            }
+            .summary-title {
+                font-size: 17px;
+            }
+            .summary-text {
+                font-size: 14px;
+            }
+            /* Hero Statement tablet */
+            .summary-box > div[style*="text-align: center"][style*="margin-bottom: 30px"] p:nth-child(2) {
+                font-size: 22px !important;
+            }
+            .quote-section {
+                padding: 30px 20px;
+            }
+            .quote-text {
+                font-size: 16px !important;
+            }
+            .quote-mark {
+                font-size: 80px;
+                top: 0;
+                left: 10px;
+            }
+            .skill-bar {
+                width: 80px;
+            }
+            .position-chart {
+                padding: 20px;
+            }
+            .step-card {
+                padding: 24px 20px;
+            }
+            .category-card {
+                padding: 20px;
+            }
+            /* Learning path mobile */
+            .summary-box > div[style*="display: flex"] {
+                flex-direction: column !important;
+            }
+            .summary-box > div[style*="display: flex"] > div {
+                min-width: 100% !important;
+                flex: none !important;
+            }
+            /* Quote section mobile */
+            .quote-section {
+                padding: 40px 20px !important;
+            }
+            .quote-section > div[style*="display: inline-block"] {
+                display: block !important;
+                text-align: center !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .stat-number {
+                font-size: 36px;
+            }
+            .report-title {
+                font-size: 1.5rem;
+            }
+            .quote-text {
+                font-size: 14px !important;
+            }
+            /* Summary box 3-column to 1-column */
+            .summary-box > div[style*="grid-template-columns: repeat(3, 1fr)"] {
+                grid-template-columns: 1fr !important;
+                gap: 12px !important;
+            }
+            .summary-box > div[style*="grid-template-columns: repeat(3, 1fr)"] > div > div:first-child {
+                font-size: 28px !important;
+            }
+            /* Category tags wrap */
+            div[style*="display: flex"][style*="flex-wrap: wrap"] {
+                gap: 6px !important;
+            }
+            div[style*="display: flex"][style*="flex-wrap: wrap"] > span {
+                padding: 4px 10px !important;
+                font-size: 11px !important;
+            }
+            /* Section header */
+            .section-number {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+            /* Hero Statement mobile */
+            .summary-box > div[style*="text-align: center"][style*="margin-bottom: 30px"] p:nth-child(2) {
+                font-size: 20px !important;
+                line-height: 1.4 !important;
+            }
+            .summary-box > div[style*="text-align: center"][style*="margin-bottom: 30px"] {
+                padding: 20px 16px !important;
+            }
+            .position-chart {
+                padding: 16px;
+            }
+            .position-row {
+                padding: 16px 0;
+            }
+            .position-label {
+                font-size: 13px;
+                font-weight: 600;
+            }
+            .position-bar-container {
+                height: 28px;
+                border-radius: 8px;
+            }
+            .position-bar {
+                font-size: 9px;
+                border-radius: 8px;
+            }
+            /* Executive Summary Cards */
+            .summary-box > div:first-of-type {
+                grid-template-columns: 1fr !important;
+            }
+            /* Skills circular gauges */
+            .section > div[style*="grid-template-columns: repeat(2, 1fr)"] {
+                grid-template-columns: 1fr !important;
+            }
+            .section > div > div[style*="grid-template-columns: repeat(2, 1fr)"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+
+        /* Footer & CTA Responsive */
+        .report-footer a.cta-btn {
+            display: inline-block;
+            font-family: 'Pretendard', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #ffffff;
+            background: var(--primary);
+            padding: 24px 60px;
+            border-radius: 100px;
+            text-decoration: none;
+            box-shadow: 0 10px 40px rgba(74, 158, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .report-footer a.cta-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(74, 158, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .report-footer {
+                padding: 40px 0;
+            }
+            .report-footer a.cta-btn {
+                font-size: 15px;
+                padding: 20px 40px;
+                width: calc(100% - 40px);
+                max-width: 320px;
+                text-align: center;
+            }
+            .footer-logo {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .report-footer a.cta-btn {
+                font-size: 14px;
+                padding: 18px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="report">
+        <!-- Header -->
+        <header class="report-header">
+            <div class="report-badge">Performance Report</div>
+            <h1 class="report-title">바이브 코딩 성과 보고서</h1>
+            <p class="report-subtitle">
+                Cursor AI와 함께한 6일간의 제작 여정.<br>
+                비개발자가 AI를 활용해 달성한 성과 분석.
+            </p>
+            <div class="report-meta">
+                <span><span class="dot"></span> Creator: LEE SEYOUNG</span>
+                <span><span class="dot"></span> Period: Dec 2025 (6 Days)</span>
+                <span><span class="dot"></span> Tool: Cursor AI + 바이브 코딩</span>
+            </div>
+        </header>
+
+        <!-- Executive Summary -->
+        <section class="section">
+            <div class="summary-box">
+                <h2 class="summary-title">Executive Summary</h2>
+                
+                <!-- Hero Statement -->
+                <div style="text-align: center; margin-bottom: 30px; padding: 30px 20px; background: rgba(74, 158, 255, 0.05); border-radius: 16px; border: 1px solid rgba(74, 158, 255, 0.1);">
+                    <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 12px;">코딩 경험 0인 비개발자가</p>
+                    <p style="font-size: 28px; font-weight: 800; color: var(--text); margin-bottom: 8px;">
+                        <span style="color: var(--primary);">6일</span> 만에 
+                        <span style="color: var(--primary);">29개</span> 이상의 웹 프로젝트 완성
+                    </p>
+                    <p style="font-size: 14px; color: var(--text-dim);">Cursor AI + 바이브 코딩 방법론 활용</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px;">
+                    <div style="text-align: center; padding: 20px 16px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; border: 1px solid var(--border);">
+                        <div style="font-size: 28px; font-weight: 800; color: var(--primary);">6일</div>
+                        <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">작업 기간</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px 16px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; border: 1px solid var(--border);">
+                        <div style="font-size: 28px; font-weight: 800; color: var(--primary);">29+</div>
+                        <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">완성 프로젝트</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px 16px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; border: 1px solid var(--border);">
+                        <div style="font-size: 28px; font-weight: 800; color: var(--text);">0</div>
+                        <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">사전 코딩 경험</div>
+                    </div>
+                </div>
+                
+                <p class="summary-text" style="text-align: center; font-size: 15px;">
+                    대시보드, 랜딩페이지, 인터랙티브 게임, 이벤트 페이지 등<br>
+                    <strong>다양한 장르의 웹 프로젝트를 단기간에 완성</strong>한 사례입니다.
+                </p>
+            </div>
+
+            <!-- Learning Path -->
+            <div class="summary-box" style="background: linear-gradient(135deg, rgba(74, 158, 255, 0.08) 0%, rgba(74, 158, 255, 0.03) 100%); border-color: rgba(74, 158, 255, 0.2);">
+                <h2 class="summary-title" style="color: var(--primary);">Self-Directed Learning</h2>
+                
+                <!-- Learning Journey Timeline -->
+                <div style="display: flex; gap: 20px; margin-bottom: 24px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 200px; padding: 20px; background: rgba(0, 0, 0, 0.2); border-radius: 12px; border-left: 3px solid var(--primary);">
+                        <div style="font-size: 12px; color: var(--primary); font-weight: 700; margin-bottom: 8px; letter-spacing: 0.1em;">START</div>
+                        <div style="font-size: 15px; color: var(--text); font-weight: 600; margin-bottom: 8px;">도구 학습</div>
+                        <div style="font-size: 13px; color: var(--text-dim); line-height: 1.6;">대표님으로부터<br>"Cursor + Claude 사용법" 청취</div>
+                        <div style="font-size: 12px; color: var(--text-dim); margin-top: 10px; font-style: italic;">* Antigravity는 계정 생성/결제 필요 → Cursor 선택</div>
+                    </div>
+                    <div style="flex: 2; min-width: 280px; padding: 20px; background: rgba(0, 0, 0, 0.2); border-radius: 12px; border-left: 3px solid var(--text);">
+                        <div style="font-size: 12px; color: var(--text); font-weight: 700; margin-bottom: 8px; letter-spacing: 0.1em;">EXPANSION</div>
+                        <div style="font-size: 15px; color: var(--text); font-weight: 600; margin-bottom: 8px;">자기주도 확장</div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <span style="padding: 6px 12px; background: rgba(255, 255, 255, 0.05); border-radius: 20px; font-size: 12px; color: var(--text-muted);">GitHub 연동</span>
+                            <span style="padding: 6px 12px; background: rgba(255, 255, 255, 0.05); border-radius: 20px; font-size: 12px; color: var(--text-muted);">Pages 배포</span>
+                            <span style="padding: 6px 12px; background: rgba(255, 255, 255, 0.05); border-radius: 20px; font-size: 12px; color: var(--text-muted);">프로젝트 실험</span>
+                            <span style="padding: 6px 12px; background: rgba(255, 255, 255, 0.05); border-radius: 20px; font-size: 12px; color: var(--text-muted);">포트폴리오 구조화</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; padding: 16px 20px; background: rgba(74, 158, 255, 0.05); border-radius: 12px;">
+                    <p style="font-size: 14px; color: var(--text-muted); margin: 0;">
+                        <strong style="color: var(--primary);">핵심</strong>: 도구 사용법만 배웠을 뿐, <strong style="color: var(--text);">무엇을 만들지, 어떻게 확장할지는 100% 자기주도 학습</strong>으로 달성
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Metrics -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2 class="section-title">핵심 성과 지표</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">29+</div>
+                    <div class="stat-label">Total Projects</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Days to Complete</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">~5</div>
+                    <div class="stat-label">Projects per Day</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">9+</div>
+                    <div class="stat-label">Project Categories</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Categories -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">프로젝트 카테고리 분석</h2>
+            </div>
+            <div class="category-grid">
+                <div class="category-card" style="border-left: 3px solid var(--primary);">
+                    <div class="category-icon">01</div>
+                    <div class="category-name">기업/서비스 웹사이트</div>
+                    <div class="category-count" style="color: var(--primary);">7개</div>
+                    <div class="category-list">TIMBEL, VOXAI, NEXUS Labs, NVIDIA Korea, 이지스자산운용 등</div>
+                </div>
+                <div class="category-card" style="border-left: 3px solid var(--primary);">
+                    <div class="category-icon">02</div>
+                    <div class="category-name">대시보드 UI</div>
+                    <div class="category-count" style="color: var(--primary);">3개</div>
+                    <div class="category-list">마케팅 대시보드, VoiceGuard AI, AI Playground</div>
+                </div>
+                <div class="category-card" style="border-left: 3px solid var(--primary);">
+                    <div class="category-icon">03</div>
+                    <div class="category-name">이벤트/프로모션</div>
+                    <div class="category-count" style="color: var(--primary);">3개</div>
+                    <div class="category-list">이벤터스 2026, 스타벅스 새해 이벤트, SOLO VENTURE</div>
+                </div>
+                <div class="category-card" style="border-left: 3px solid var(--primary);">
+                    <div class="category-icon">04</div>
+                    <div class="category-name">인터랙티브 게임</div>
+                    <div class="category-count" style="color: var(--primary);">2개</div>
+                    <div class="category-list">화염 마라톤, Polar Bear Run</div>
+                </div>
+                <div class="category-card" style="border-left: 3px solid var(--primary);">
+                    <div class="category-icon">05</div>
+                    <div class="category-name">패러디/유머</div>
+                    <div class="category-count" style="color: var(--primary);">4개</div>
+                    <div class="category-list">워라데드, CHAOS-1 Agent, DARK_LEGEND.exe, 직업 대멸종</div>
+                </div>
+                <div class="category-card" style="border-left: 3px solid var(--primary);">
+                    <div class="category-icon">06</div>
+                    <div class="category-name">제품 랜딩/키오스크</div>
+                    <div class="category-count" style="color: var(--primary);">3개</div>
+                    <div class="category-list">Apple Style Landing, Coffee Kiosk, Infinite Canvas</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Insight -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2 class="section-title">핵심 인사이트</h2>
+            </div>
+            <div class="quote-section" style="position: relative; background: linear-gradient(180deg, var(--bg-card) 0%, rgba(74, 158, 255, 0.03) 100%); border-radius: 24px; padding: 60px 40px;">
+                <div style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); font-size: 100px; opacity: 0.05; color: var(--primary);">"</div>
+                
+                <p class="quote-text" style="font-size: 17px; line-height: 2; margin-bottom: 0;">
+                    이번 실험을 통해 확인한 점은,<br>
+                    AI의 효과는 코딩 숙련도 자체보다<br>
+                    <strong style="color: var(--primary);">기획과 판단이 선행될 때</strong><br>
+                    가장 크게 발휘된다는 것이었습니다.
+                </p>
+                
+                <div style="margin-top: 30px; padding: 16px 24px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border-left: 3px solid var(--text-dim); display: inline-block;">
+                    <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin: 0; text-align: left;">
+                        * 명확한 목표 인지 여부는 제작 속도뿐 아니라<br>
+                        결과물의 완성도에도 직접적인 영향을 미쳤습니다.
+                    </p>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <span class="quote-author">— 바이브 코딩 6일차의 깨달음</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Limitations -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <h2 class="section-title">한계점 및 고려사항</h2>
+            </div>
+            <div class="summary-box" style="background: rgba(255, 255, 255, 0.03); border-color: var(--border);">
+                <h2 class="summary-title" style="color: var(--text);">프로토타입 ≠ 프로덕션</h2>
+                <p class="summary-text">
+                    현재 결과물은 <strong>프론트엔드 프로토타입</strong> 수준이며, 
+                    실제 운영 중인 서비스(예: Wix 기반 웹사이트)를 대체하기에는 아래와 같은 영역에서 추가 작업이 필요합니다.
+                </p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 30px;">
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center;">
+                    <div style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 14px; font-weight: 700; color: var(--primary);">
+                        01
+                    </div>
+                    <div style="font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px;">SEO & 리다이렉트</div>
+                    <div style="font-size: 13px; color: var(--text-dim); line-height: 1.6;">URL 구조 분석<br>메타태그 이관<br>리다이렉트 설정</div>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center;">
+                    <div style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 14px; font-weight: 700; color: var(--primary);">
+                        02
+                    </div>
+                    <div style="font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px;">API 연동</div>
+                    <div style="font-size: 13px; color: var(--text-dim); line-height: 1.6;">채널별 API 통합<br>인증 시스템<br>외부 서비스 연결</div>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center;">
+                    <div style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 14px; font-weight: 700; color: var(--primary);">
+                        03
+                    </div>
+                    <div style="font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px;">자동화 & 백엔드</div>
+                    <div style="font-size: 13px; color: var(--text-dim); line-height: 1.6;">메일 자동 발송<br>오토메이션<br>DB 구축</div>
+                </div>
+            </div>
+            <div style="margin-top: 30px; padding: 30px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;">
+                <p style="font-size: 15px; color: var(--text-muted); line-height: 2; margin-bottom: 24px;">
+                    보고서에서 언급된 <strong style="color: var(--text);">SEO, API 연동, 자동화 기능</strong> 등은
+                    실제 서비스 환경에서는 필수적으로 고려되어야 하는 요소이지만,
+                    모두 <strong style="color: var(--warning);">추가적인 기획·설계·개발 시간이 수반</strong>되는 작업입니다.
+                </p>
+                
+                <p style="font-size: 15px; color: var(--text-muted); line-height: 2; margin-bottom: 24px;">
+                    특히 현재 결과물을 그대로 홈페이지에 적용하는 경우,<br>
+                    이는 단순한 <strong style="color: var(--text);">'디자인 교체'</strong>나 <strong style="color: var(--text);">'페이지 변경'</strong> 수준의 문제가 아니라
+                    다음과 같은 <strong style="color: var(--primary);">구조적 검토가 선행</strong>되어야 합니다.
+                </p>
+
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px;">
+                    <div style="padding: 24px; background: rgba(255, 255, 255, 0.02); border-radius: 16px; border: 1px solid var(--border);">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                            <span style="font-size: 12px; font-weight: 700; color: var(--primary); background: rgba(74, 158, 255, 0.1); padding: 4px 8px; border-radius: 4px;">A</span>
+                            <strong style="color: var(--text); font-size: 15px;">SEO 자산 보존</strong>
+                        </div>
+                        <p style="font-size: 13px; color: var(--text-dim); line-height: 1.7;">
+                            기존 페이지별 SEO 자산이 훼손되지 않도록 HTML 단위로 페이지를 분리·관리하고, 기존 URL 구조와 유기적으로 연결
+                        </p>
+                    </div>
+                    <div style="padding: 24px; background: rgba(255, 255, 255, 0.02); border-radius: 16px; border: 1px solid var(--border);">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                            <span style="font-size: 12px; font-weight: 700; color: var(--primary); background: rgba(74, 158, 255, 0.1); padding: 4px 8px; border-radius: 4px;">B</span>
+                            <strong style="color: var(--text); font-size: 15px;">기술적 설계</strong>
+                        </div>
+                        <p style="font-size: 13px; color: var(--text-dim); line-height: 1.7;">
+                            Wix 기반 자동 연동 기능들을 백엔드에서 어떻게 유지/대체할 것인지 기술적 설계 필요
+                        </p>
+                    </div>
+                    <div style="padding: 24px; background: rgba(255, 255, 255, 0.02); border-radius: 16px; border: 1px solid var(--border);">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                            <span style="font-size: 12px; font-weight: 700; color: var(--primary); background: rgba(74, 158, 255, 0.1); padding: 4px 8px; border-radius: 4px;">C</span>
+                            <strong style="color: var(--text); font-size: 15px;">업무 정의</strong>
+                        </div>
+                        <p style="font-size: 13px; color: var(--text-dim); line-height: 1.7;">
+                            향후 운영·수정·확장 시 누가 어떤 범위까지 담당할 것인지 명확한 역할 정의 필요
+                        </p>
+                    </div>
+                    <div style="padding: 24px; background: rgba(255, 255, 255, 0.02); border-radius: 16px; border: 1px solid var(--border);">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                            <span style="font-size: 12px; font-weight: 700; color: var(--primary); background: rgba(74, 158, 255, 0.1); padding: 4px 8px; border-radius: 4px;">D</span>
+                            <strong style="color: var(--text); font-size: 15px;">인식 정렬</strong>
+                        </div>
+                        <p style="font-size: 13px; color: var(--text-dim); line-height: 1.7;">
+                            기존 운영 방식과 단기 몰입·프로토타입 방식 간의 목표/전제에 대한 공감대 형성
+                        </p>
+                    </div>
+                </div>
+
+                <div style="padding: 24px; background: rgba(74, 158, 255, 0.08); border: 1px solid rgba(74, 158, 255, 0.2); border-radius: 12px;">
+                    <p style="font-size: 15px; color: var(--text); line-height: 2;">
+                        따라서 본 결과물을 보시고<br>
+                        <strong style="color: var(--text);">'홈페이지를 즉시 교체하자'</strong>는 가능성이 나올 수는 있으나,<br><br>
+                        본 자료는 <strong style="color: var(--primary);">AI 협업 기반 제작 방식</strong>이 실제 적용 단계에서<br>
+                        <strong>어떤 추가적인 담당과 설계가 필요한지</strong>를<br>
+                        <strong style="color: var(--primary);">논의하기 위한 자료</strong>로 이해해주시면 좋겠습니다.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Disclaimer -->
+        <section class="section">
+            <div style="padding: 24px 30px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; text-align: center;">
+                <p style="font-family: 'Pretendard', sans-serif; font-size: 14px; color: var(--text-dim); line-height: 2;">
+                    <span style="color: var(--text-dim);">*</span> 작품의 완성도는 <strong style="color: var(--text-muted);">6일간 집중 몰입</strong> 기준이며,<br>
+                    개인의 몰입도, 사전 경험, 작업 환경에 따라 결과물은 달라질 수 있습니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="report-footer">
+            <div class="footer-logo">VIBE CODING REPORT</div>
+            <p class="footer-text">Report compiled by Cursor AI + Claude | December 2025</p>
+            <p class="footer-text" style="margin-bottom: 40px;">Based on 6 days of Vibe Coding by LEE SEYOUNG</p>
+            <a href="https://dalgoms.github.io/test/versions/landing/anomaly-studio.html" 
+               target="_blank"
+               class="cta-btn">
+                포트폴리오 전체 보기 →
+            </a>
+        </footer>
+    </div>
+</body>
+</html>
