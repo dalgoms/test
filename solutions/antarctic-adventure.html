@@ -1,0 +1,2412 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>🐧 남극탐험 - Antarctic Adventure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        :root {
+            --sky-top: #1a1a4e;
+            --sky-bottom: #4a6fa5;
+            --ice-light: #e8f4fc;
+            --ice-mid: #b8d4e8;
+            --ice-dark: #7fb3d3;
+            --penguin-body: #2a2a3e;
+            --penguin-belly: #ffffff;
+            --penguin-beak: #ff9f43;
+            --penguin-feet: #ff9f43;
+            --flag-red: #e74c3c;
+            --flag-pole: #8b4513;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .game-container {
+            width: 100%;
+            max-width: 480px;
+            height: 100vh;
+            max-height: 800px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, 
+                #2040a0 0%, 
+                #4080c0 30%, 
+                #60a0d0 50%, 
+                #80c0e0 60%, 
+                #a0d0e8 65%,
+                #c0e0f0 70%,
+                #e0f0f8 100%);
+        }
+
+        /* 하늘 배경 - 오로라 효과 */
+        .aurora {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(0, 255, 150, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(100, 200, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(150, 100, 255, 0.1) 0%, transparent 60%);
+            animation: auroraMove 10s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes auroraMove {
+            0%, 100% { opacity: 0.6; transform: translateX(0); }
+            50% { opacity: 1; transform: translateX(20px); }
+        }
+
+        /* 별 */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* 빙하 배경 - 클래식 스타일 */
+        .ice-bg {
+            position: absolute;
+            bottom: 40%;
+            left: 0;
+            right: 0;
+            height: 20%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* 빙하 레이어들 */
+        .ice-layer {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(90deg, 
+                #a8d4e6 0%, #c8e4f0 10%, #a8d4e6 20%, 
+                #90c4d8 30%, #a8d4e6 40%, #c8e4f0 50%,
+                #a8d4e6 60%, #90c4d8 70%, #c8e4f0 80%,
+                #a8d4e6 90%, #c8e4f0 100%);
+        }
+
+        .ice-layer-1 {
+            bottom: 80%;
+            height: 20px;
+            background: #6090a0;
+            clip-path: polygon(0% 100%, 5% 50%, 10% 80%, 15% 30%, 20% 70%, 25% 40%, 
+                30% 90%, 35% 50%, 40% 70%, 45% 30%, 50% 60%, 55% 40%, 
+                60% 80%, 65% 50%, 70% 70%, 75% 30%, 80% 60%, 85% 40%, 
+                90% 80%, 95% 50%, 100% 70%, 100% 100%);
+        }
+
+        .ice-layer-2 {
+            bottom: 60%;
+            height: 25px;
+            background: #80a8b8;
+            clip-path: polygon(0% 100%, 3% 60%, 8% 80%, 12% 40%, 18% 70%, 22% 50%, 
+                28% 85%, 33% 55%, 38% 75%, 43% 35%, 48% 65%, 53% 45%, 
+                58% 80%, 63% 55%, 68% 75%, 73% 40%, 78% 65%, 83% 50%, 
+                88% 80%, 93% 55%, 98% 70%, 100% 100%);
+        }
+
+        .ice-layer-3 {
+            bottom: 40%;
+            height: 35px;
+            background: #a0c0d0;
+            clip-path: polygon(0% 100%, 4% 55%, 9% 75%, 14% 35%, 19% 65%, 24% 45%, 
+                29% 80%, 34% 50%, 39% 70%, 44% 30%, 49% 60%, 54% 40%, 
+                59% 75%, 64% 50%, 69% 70%, 74% 35%, 79% 60%, 84% 45%, 
+                89% 75%, 94% 50%, 100% 65%, 100% 100%);
+        }
+
+        .ice-layer-4 {
+            bottom: 20%;
+            height: 40px;
+            background: #c0d8e4;
+            clip-path: polygon(0% 100%, 6% 50%, 12% 70%, 18% 30%, 24% 60%, 30% 40%, 
+                36% 75%, 42% 45%, 48% 65%, 54% 25%, 60% 55%, 66% 35%, 
+                72% 70%, 78% 45%, 84% 65%, 90% 30%, 96% 55%, 100% 40%, 100% 100%);
+        }
+
+        .ice-layer-5 {
+            bottom: 0;
+            height: 50px;
+            background: linear-gradient(180deg, #d0e4f0 0%, #e8f4fc 100%);
+        }
+
+        /* 수평선 */
+        .horizon-line {
+            position: absolute;
+            bottom: 40%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #5080a0;
+        }
+
+        /* 빙판 도로 */
+        .ice-road {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 35%;
+            background: linear-gradient(180deg, 
+                #d0e8f4 0%, 
+                #e0f0f8 20%, 
+                #e8f4fc 50%,
+                #f0f8fc 80%,
+                #f8fcfe 100%);
+            perspective: 500px;
+            overflow: hidden;
+        }
+
+        /* 도로 라인 (3D 효과) */
+        .road-lines {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .road-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.6);
+            animation: roadMove 0.5s linear infinite;
+        }
+
+        @keyframes roadMove {
+            from { 
+                bottom: 100%; 
+                width: 4px;
+                height: 20px;
+            }
+            to { 
+                bottom: -30px; 
+                width: 20px;
+                height: 60px;
+            }
+        }
+
+        /* 상단 UI */
+        .game-ui {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 100;
+            background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, transparent 100%);
+        }
+
+        .ui-left, .ui-center, .ui-right {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .ui-right {
+            align-items: flex-end;
+        }
+
+        .ui-box {
+            font-family: 'Jua', sans-serif;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #4a9;
+            border-radius: 12px;
+            padding: 10px 16px;
+            color: #4f8;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #4f8;
+        }
+
+        .score-display {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .score-label {
+            font-size: 11px;
+            color: #8cf;
+        }
+
+        .score-value {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        /* 게임 컨트롤 버튼 (일시정지, 나가기) */
+        .game-control-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .game-ctrl-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            backdrop-filter: blur(5px);
+        }
+
+        .game-ctrl-btn:active {
+            transform: scale(0.9);
+        }
+
+        .game-ctrl-btn .ctrl-icon {
+            font-size: 18px;
+        }
+
+        .pause-btn {
+            border-color: #4af;
+            background: rgba(50, 100, 200, 0.4);
+        }
+
+        .pause-btn:hover {
+            background: rgba(50, 100, 200, 0.6);
+            box-shadow: 0 0 15px rgba(50, 150, 255, 0.5);
+        }
+
+        .exit-btn {
+            border-color: #f64;
+            background: rgba(200, 80, 50, 0.4);
+        }
+
+        .exit-btn:hover {
+            background: rgba(200, 80, 50, 0.6);
+            box-shadow: 0 0 15px rgba(255, 100, 50, 0.5);
+        }
+
+        .stage-display {
+            text-align: center;
+        }
+
+        .stage-flag {
+            font-size: 24px;
+        }
+
+        .lives-display {
+            display: flex;
+            gap: 3px;
+            align-items: center;
+        }
+
+        .life-icon {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            transition: all 0.3s;
+        }
+
+        .life-icon.lost {
+            opacity: 0.25;
+            filter: grayscale(100%);
+        }
+
+        /* 타이머 바 */
+        .timer-bar {
+            position: absolute;
+            top: 70px;
+            left: 15px;
+            right: 15px;
+            height: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid #4a9;
+        }
+
+        .timer-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4f8, #8cf);
+            border-radius: 4px;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 10px #4f8;
+        }
+
+        .timer-fill.warning {
+            background: linear-gradient(90deg, #f84, #f44);
+            box-shadow: 0 0 10px #f44;
+            animation: timerPulse 0.5s infinite;
+        }
+
+        @keyframes timerPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* 펭귄 컨테이너 */
+        .penguin-container {
+            position: absolute;
+            bottom: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            transition: left 0.15s ease-out;
+        }
+
+        .penguin {
+            width: 80px;
+            height: 100px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* GIF 스프라이트 */
+        .penguin-sprite {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+            transition: transform 0.1s ease-out;
+        }
+
+        .penguin.jumping {
+            animation: penguinJump 0.5s ease-out;
+        }
+
+        .penguin.jumping .penguin-sprite {
+            transform: rotate(-10deg);
+        }
+
+        .penguin.sliding {
+            animation: none;
+        }
+
+        .penguin.sliding .penguin-sprite {
+            transform: scaleY(0.5) translateY(25px) rotate(90deg);
+        }
+
+        @keyframes penguinJump {
+            0% { transform: translateY(0); }
+            30% { transform: translateY(-100px); }
+            50% { transform: translateY(-120px); }
+            70% { transform: translateY(-100px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* 장애물 컨테이너 */
+        .obstacles-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        /* 얼음 구멍 */
+        .ice-hole {
+            position: absolute;
+            width: 80px;
+            height: 40px;
+            animation: obstacleMove 2s linear forwards;
+        }
+
+        .ice-hole-outer {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #2a4a6a 0%, #1a3a5a 100%);
+            border-radius: 50%;
+            border: 3px solid #5a8aaa;
+            box-shadow: inset 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .ice-hole-inner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 50%;
+            background: #0a1a2a;
+            border-radius: 50%;
+        }
+
+        /* 물개 */
+        .seal {
+            position: absolute;
+            width: 70px;
+            height: 50px;
+            animation: obstacleMove 2s linear forwards;
+        }
+
+        .seal-body {
+            position: absolute;
+            bottom: 0;
+            width: 60px;
+            height: 35px;
+            background: linear-gradient(180deg, #5a4a3a 0%, #4a3a2a 100%);
+            border-radius: 50% 30% 30% 50%;
+        }
+
+        .seal-head {
+            position: absolute;
+            bottom: 15px;
+            right: -5px;
+            width: 30px;
+            height: 28px;
+            background: linear-gradient(180deg, #5a4a3a 0%, #4a3a2a 100%);
+            border-radius: 50%;
+        }
+
+        .seal-nose {
+            position: absolute;
+            top: 12px;
+            right: 2px;
+            width: 8px;
+            height: 6px;
+            background: #2a2a2a;
+            border-radius: 50%;
+        }
+
+        .seal-eye {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            width: 6px;
+            height: 6px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        .seal-whiskers {
+            position: absolute;
+            top: 15px;
+            right: 8px;
+            width: 15px;
+            height: 1px;
+            background: #3a3a3a;
+        }
+
+        .seal-whiskers::before,
+        .seal-whiskers::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 1px;
+            background: #3a3a3a;
+            left: 0;
+        }
+
+        .seal-whiskers::before { top: -3px; transform: rotate(-10deg); }
+        .seal-whiskers::after { top: 3px; transform: rotate(10deg); }
+
+        .seal-flipper {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            width: 15px;
+            height: 10px;
+            background: #4a3a2a;
+            border-radius: 50%;
+            transform: rotate(-20deg);
+            animation: flipperWave 0.5s ease-in-out infinite;
+        }
+
+        @keyframes flipperWave {
+            0%, 100% { transform: rotate(-20deg); }
+            50% { transform: rotate(-10deg); }
+        }
+
+        /* 깃발 */
+        .flag {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            animation: obstacleMove 2s linear forwards;
+        }
+
+        .flag-pole {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 50px;
+            background: linear-gradient(90deg, #6a4a2a, #8b5a3a, #6a4a2a);
+            border-radius: 2px;
+        }
+
+        .flag-cloth {
+            position: absolute;
+            top: 0;
+            left: calc(50% + 2px);
+            width: 25px;
+            height: 18px;
+            background: linear-gradient(180deg, #e74c3c 0%, #c0392b 100%);
+            clip-path: polygon(0 0, 100% 25%, 100% 75%, 0 100%);
+            animation: flagWave 0.5s ease-in-out infinite;
+            transform-origin: left center;
+        }
+
+        @keyframes flagWave {
+            0%, 100% { transform: scaleX(1); }
+            50% { transform: scaleX(0.9); }
+        }
+
+        /* 장애물 이동 애니메이션 */
+        @keyframes obstacleMove {
+            0% { 
+                bottom: 95%;
+                transform: scale(0.3) translateX(-50%);
+                opacity: 0.7;
+            }
+            100% { 
+                bottom: 5%;
+                transform: scale(1.2) translateX(-50%);
+                opacity: 1;
+            }
+        }
+
+        /* 물고기 아이템 */
+        .fish {
+            position: absolute;
+            width: 35px;
+            height: 20px;
+            animation: obstacleMove 2s linear forwards;
+        }
+
+        .fish-body {
+            width: 25px;
+            height: 15px;
+            background: linear-gradient(180deg, #6af 0%, #48d 100%);
+            border-radius: 50% 30% 30% 50%;
+            position: relative;
+        }
+
+        .fish-tail {
+            position: absolute;
+            right: -8px;
+            top: 2px;
+            width: 0;
+            height: 0;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-left: 12px solid #48d;
+        }
+
+        .fish-eye {
+            position: absolute;
+            left: 5px;
+            top: 4px;
+            width: 5px;
+            height: 5px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        /* 컨트롤 버튼 */
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 100;
+        }
+
+        .control-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.1s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .control-btn:active {
+            transform: scale(0.9);
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .direction-controls {
+            display: flex;
+            gap: 15px;
+        }
+
+        .action-controls {
+            display: flex;
+            gap: 15px;
+        }
+
+        .jump-btn {
+            background: rgba(100, 255, 150, 0.3);
+            border-color: rgba(100, 255, 150, 0.7);
+        }
+
+        .slide-btn {
+            background: rgba(100, 200, 255, 0.3);
+            border-color: rgba(100, 200, 255, 0.7);
+        }
+
+        /* 스플래시 화면 */
+        .splash-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, #0a0a2e 0%, #1a2a4a 30%, #2a4a6a 60%, #4a7a9a 100%);
+            z-index: 300;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            animation: splashFadeIn 0.5s ease-out;
+        }
+
+        .splash-screen.hidden {
+            display: none;
+        }
+
+        .splash-screen.fade-out {
+            animation: splashFadeOut 0.8s ease-out forwards;
+        }
+
+        @keyframes splashFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes splashFadeOut {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(1.1); }
+        }
+
+        .splash-logo {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .splash-penguin {
+            width: 180px;
+            height: 220px;
+            position: relative;
+            animation: splashPenguinBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes splashPenguinBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            25% { transform: translateY(-25px) scale(1.05); }
+            50% { transform: translateY(0) scale(1); }
+            75% { transform: translateY(-15px) scale(1.02); }
+        }
+
+        .splash-penguin-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(4px 8px 15px rgba(0,0,0,0.4));
+        }
+
+        /* 스플래시 타이틀 */
+        .splash-title {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: 18px;
+            color: #8cf;
+            letter-spacing: 6px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(100, 200, 255, 0.5);
+            animation: titleGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(100, 200, 255, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(100, 200, 255, 0.8), 0 0 60px rgba(100, 200, 255, 0.4); }
+        }
+
+        .splash-title-kr {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: 56px;
+            color: #fff;
+            text-shadow: 0 4px 0 #2a4a6a, 0 8px 20px rgba(0,0,0,0.5);
+            margin-bottom: 15px;
+            animation: titleFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .splash-subtitle {
+            font-family: 'Jua', sans-serif;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 50px;
+        }
+
+        .splash-start-btn {
+            font-family: 'Black Han Sans', sans-serif;
+            background: linear-gradient(180deg, #5af 0%, #38c 100%);
+            color: white;
+            font-size: 28px;
+            padding: 20px 70px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 40px rgba(90, 170, 255, 0.3);
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .splash-start-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: btnShine 3s infinite;
+        }
+
+        @keyframes btnShine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        .splash-start-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .splash-highscore {
+            margin-top: 30px;
+            font-family: 'Jua', sans-serif;
+            color: #ffd700;
+            font-size: 18px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .splash-footer {
+            position: absolute;
+            bottom: 30px;
+            font-family: 'Jua', sans-serif;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* 눈송이 장식 */
+        .splash-snowflake {
+            position: absolute;
+            color: white;
+            opacity: 0.6;
+            animation: splashSnow linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes splashSnow {
+            0% { transform: translateY(-20px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        /* 메인 화면 */
+        .main-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, #0a0a2e 0%, #1a3a5a 50%, #4a7a9a 100%);
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .main-screen.hidden {
+            display: none;
+        }
+
+        .game-title {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: 28px;
+            color: #8cf;
+            text-shadow: 0 0 20px #8cf;
+            margin-bottom: 10px;
+            text-align: center;
+            letter-spacing: 4px;
+        }
+
+        .game-title-kr {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: 48px;
+            color: #fff;
+            text-shadow: 0 0 20px #8cf, 3px 3px 0 #0a0a2e;
+            margin-bottom: 30px;
+        }
+
+        .title-penguin {
+            font-size: 80px;
+            margin-bottom: 30px;
+            animation: titleBounce 1s ease-in-out infinite;
+        }
+
+        @keyframes titleBounce {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .start-btn {
+            font-family: 'Black Han Sans', sans-serif;
+            background: linear-gradient(180deg, #4f8 0%, #2a6 100%);
+            color: #000;
+            font-size: 24px;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 30px rgba(100, 255, 150, 0.3);
+            transition: transform 0.1s;
+            margin-bottom: 30px;
+        }
+
+        .start-btn:active {
+            transform: scale(0.95);
+        }
+
+        .high-score-display {
+            font-family: 'Jua', sans-serif;
+            color: #8cf;
+            font-size: 16px;
+            text-shadow: 0 0 10px #8cf;
+        }
+
+        .instructions {
+            font-family: 'Jua', sans-serif;
+            position: absolute;
+            bottom: 40px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        /* 게임오버 화면 */
+        .gameover-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .gameover-screen.hidden {
+            display: none;
+        }
+
+        .gameover-title {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: 36px;
+            color: #f44;
+            text-shadow: 0 0 20px #f44;
+            margin-bottom: 30px;
+        }
+
+        .gameover-stats {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #4a9;
+            border-radius: 15px;
+            padding: 25px 40px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .stat-row {
+            font-family: 'Jua', sans-serif;
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 15px;
+            color: #8cf;
+            font-size: 16px;
+        }
+
+        .stat-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .stat-value {
+            font-family: 'Black Han Sans', sans-serif;
+            color: #fff;
+            font-size: 24px;
+            text-shadow: 0 0 10px #fff;
+        }
+
+        .retry-btn {
+            font-family: 'Black Han Sans', sans-serif;
+            background: linear-gradient(180deg, #4f8 0%, #2a6 100%);
+            color: #000;
+            font-size: 22px;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            margin-bottom: 15px;
+            transition: transform 0.1s;
+        }
+
+        .retry-btn:active {
+            transform: scale(0.95);
+        }
+
+        .home-btn {
+            font-family: 'Jua', sans-serif;
+            background: transparent;
+            color: #8cf;
+            font-size: 16px;
+            padding: 10px 30px;
+            border: 2px solid #4a9;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .home-btn:active {
+            background: rgba(100, 200, 255, 0.2);
+        }
+
+        /* 골 건물 (스테이지 끝) */
+        .goal-building {
+            position: absolute;
+            bottom: 12%;
+            left: 50%;
+            transform: translateX(-50%) scale(0.3);
+            z-index: 45;
+            opacity: 0;
+            transition: all 0.5s ease-out;
+            pointer-events: none;
+        }
+
+        .goal-building.approaching {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .building-structure {
+            position: relative;
+            width: 140px;
+            height: 100px;
+        }
+
+        /* 건물 본체 - 오렌지색 */
+        .building-body {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 70px;
+            background: linear-gradient(180deg, #e87020 0%, #d06018 50%, #c05010 100%);
+            border: 3px solid #a04010;
+            border-bottom: none;
+        }
+
+        /* 건물 창문 */
+        .building-window {
+            position: absolute;
+            width: 22px;
+            height: 28px;
+            background: linear-gradient(180deg, #4080c0 0%, #3070b0 50%, #2060a0 100%);
+            border: 3px solid #1050a0;
+        }
+
+        .building-window.left {
+            left: 18px;
+            top: 20px;
+        }
+
+        .building-window.right {
+            right: 18px;
+            top: 20px;
+        }
+
+        /* 건물 지붕 - 눈 */
+        .building-roof {
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 15px;
+            background: linear-gradient(180deg, #fff 0%, #e8f0f4 100%);
+            border-radius: 5px 5px 0 0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* 깃발대 */
+        .flag-pole-container {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .flag-pole-main {
+            width: 6px;
+            height: 50px;
+            background: linear-gradient(90deg, #4a4a4a 0%, #6a6a6a 50%, #4a4a4a 100%);
+            margin: 0 auto;
+        }
+
+        .flag-pole-top {
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            border-radius: 50%;
+            margin: 0 auto -3px;
+        }
+
+        /* 깃발 */
+        .goal-flag {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            width: 35px;
+            height: 25px;
+            animation: flagWaveGoal 0.5s ease-in-out infinite;
+        }
+
+        .goal-flag-cloth {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                #ffffff 0%, #ffffff 40%,
+                #c02020 40%, #c02020 60%,
+                #ffffff 60%, #ffffff 100%);
+            border: 2px solid #888;
+            position: relative;
+        }
+
+        /* 별 마크 */
+        .goal-flag-star {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffd700;
+            font-size: 12px;
+            text-shadow: 0 0 3px #000;
+        }
+
+        @keyframes flagWaveGoal {
+            0%, 100% { transform: skewY(0deg); }
+            50% { transform: skewY(-3deg); }
+        }
+
+        /* 거리 표시 바 */
+        .distance-bar {
+            position: absolute;
+            top: 85px;
+            left: 15px;
+            right: 15px;
+            height: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 6px;
+            overflow: hidden;
+            border: 2px solid #4a9;
+            z-index: 100;
+        }
+
+        .distance-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4f8, #8cf);
+            border-radius: 4px;
+            transition: width 0.1s linear;
+            position: relative;
+        }
+
+        .distance-penguin-icon {
+            position: absolute;
+            right: -8px;
+            top: -4px;
+            font-size: 14px;
+        }
+
+        .distance-goal-icon {
+            position: absolute;
+            right: 5px;
+            top: -2px;
+            font-size: 12px;
+            color: #fff;
+        }
+
+        /* 스테이지 클리어 */
+        .stage-clear {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            border: 3px solid #4f8;
+            border-radius: 20px;
+            padding: 40px 60px;
+            text-align: center;
+            z-index: 150;
+            box-shadow: 0 0 50px rgba(100, 255, 150, 0.5);
+        }
+
+        .stage-clear.hidden {
+            display: none;
+        }
+
+        .stage-clear-title {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: 32px;
+            color: #4f8;
+            text-shadow: 0 0 20px #4f8;
+            margin-bottom: 15px;
+        }
+
+        .stage-clear-bonus {
+            font-family: 'Jua', sans-serif;
+            font-size: 22px;
+            color: #ff8;
+            margin-bottom: 10px;
+        }
+
+        .stage-next {
+            font-family: 'Jua', sans-serif;
+            font-size: 16px;
+            color: #8cf;
+            animation: blink 0.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* 점수 팝업 */
+        .score-popup {
+            position: absolute;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff8;
+            text-shadow: 0 0 10px #ff8, 2px 2px 0 #000;
+            pointer-events: none;
+            animation: popupFloat 1s ease-out forwards;
+            z-index: 100;
+        }
+
+        @keyframes popupFloat {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-50px) scale(1.3); }
+        }
+
+        /* 충돌 효과 */
+        .collision-effect {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .collision-effect::before {
+            content: '💥';
+            font-size: 50px;
+            animation: collisionAnim 0.5s ease-out forwards;
+        }
+
+        @keyframes collisionAnim {
+            0% { transform: scale(0.5); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        /* 눈 내리는 효과 */
+        .snowflakes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 5;
+            overflow: hidden;
+        }
+
+        .snowflake {
+            position: absolute;
+            color: white;
+            font-size: 10px;
+            opacity: 0.8;
+            animation: snowfall linear infinite;
+        }
+
+        @keyframes snowfall {
+            0% { transform: translateY(-10px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        /* 일시정지 오버레이 */
+        .pause-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 20, 0.85);
+            z-index: 180;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .pause-overlay.hidden {
+            display: none;
+        }
+
+        .pause-box {
+            background: linear-gradient(180deg, rgba(40, 60, 100, 0.9) 0%, rgba(20, 40, 80, 0.95) 100%);
+            border: 3px solid #4af;
+            border-radius: 25px;
+            padding: 40px 50px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(50, 150, 255, 0.2);
+        }
+
+        .pause-text {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .pause-score {
+            font-family: 'Jua', sans-serif;
+            font-size: 18px;
+            color: #8cf;
+            margin-bottom: 30px;
+        }
+
+        .pause-score span {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .pause-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .resume-btn {
+            font-family: 'Black Han Sans', sans-serif;
+            background: linear-gradient(180deg, #4f8 0%, #2a6 100%);
+            color: #000;
+            font-size: 20px;
+            padding: 15px 45px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.1s;
+        }
+
+        .resume-btn:active {
+            transform: scale(0.95);
+        }
+
+        .pause-exit-btn {
+            font-family: 'Jua', sans-serif;
+            background: transparent;
+            color: #aaa;
+            font-size: 16px;
+            padding: 10px 30px;
+            border: 2px solid #666;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pause-exit-btn:hover {
+            border-color: #f64;
+            color: #f64;
+        }
+
+        /* 나가기 확인 모달 */
+        .exit-modal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 250;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .exit-modal.hidden {
+            display: none;
+        }
+
+        .exit-modal-box {
+            background: linear-gradient(180deg, #2a2a4a 0%, #1a1a3a 100%);
+            border: 3px solid #f64;
+            border-radius: 25px;
+            padding: 35px 45px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 100, 50, 0.2);
+            max-width: 320px;
+        }
+
+        .exit-modal-title {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: 28px;
+            color: #f64;
+            margin-bottom: 15px;
+        }
+
+        .exit-modal-text {
+            font-family: 'Jua', sans-serif;
+            font-size: 16px;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .exit-modal-score {
+            font-family: 'Jua', sans-serif;
+            font-size: 16px;
+            color: #8cf;
+            margin-bottom: 25px;
+        }
+
+        .exit-modal-score span {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: 22px;
+            color: #fff;
+        }
+
+        .exit-modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .exit-confirm-btn {
+            font-family: 'Black Han Sans', sans-serif;
+            background: linear-gradient(180deg, #f64 0%, #c44 100%);
+            color: #fff;
+            font-size: 18px;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .exit-confirm-btn:active {
+            transform: scale(0.95);
+        }
+
+        .exit-cancel-btn {
+            font-family: 'Black Han Sans', sans-serif;
+            background: linear-gradient(180deg, #4af 0%, #28c 100%);
+            color: #fff;
+            font-size: 18px;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .exit-cancel-btn:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <!-- 오로라 효과 -->
+        <div class="aurora"></div>
+
+        <!-- 별 -->
+        <div class="stars" id="stars"></div>
+
+        <!-- 눈 -->
+        <div class="snowflakes" id="snowflakes"></div>
+
+        <!-- 빙하 배경 -->
+        <div class="ice-bg">
+            <div class="ice-layer ice-layer-1"></div>
+            <div class="ice-layer ice-layer-2"></div>
+            <div class="ice-layer ice-layer-3"></div>
+            <div class="ice-layer ice-layer-4"></div>
+            <div class="ice-layer ice-layer-5"></div>
+        </div>
+        <div class="horizon-line"></div>
+
+        <!-- 빙판 도로 -->
+        <div class="ice-road">
+            <div class="road-lines" id="roadLines"></div>
+        </div>
+
+        <!-- 게임 UI -->
+        <div class="game-ui">
+            <div class="ui-left">
+                <div class="ui-box score-display">
+                    <div class="score-label">SCORE</div>
+                    <div class="score-value" id="scoreValue">0</div>
+                </div>
+            </div>
+            <div class="ui-center">
+                <div class="ui-box stage-display">
+                    <div class="stage-flag">🚩</div>
+                    <div id="stageValue">STAGE 1</div>
+                </div>
+            </div>
+            <div class="ui-right">
+                <div class="ui-box lives-display" id="livesDisplay">
+                    <img src="img/Balance man walk cycle.gif" class="life-icon" alt="life">
+                    <img src="img/Balance man walk cycle.gif" class="life-icon" alt="life">
+                    <img src="img/Balance man walk cycle.gif" class="life-icon" alt="life">
+                </div>
+                <div class="game-control-btns">
+                    <button class="game-ctrl-btn pause-btn" id="pauseBtn" title="일시정지">
+                        <span class="ctrl-icon">⏸️</span>
+                    </button>
+                    <button class="game-ctrl-btn exit-btn" id="exitBtn" title="나가기">
+                        <span class="ctrl-icon">🚪</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 타이머 바 -->
+        <div class="timer-bar">
+            <div class="timer-fill" id="timerFill" style="width: 100%"></div>
+        </div>
+
+        <!-- 거리 표시 바 -->
+        <div class="distance-bar">
+            <div class="distance-fill" id="distanceFill" style="width: 0%">
+                <span class="distance-penguin-icon">🐧</span>
+            </div>
+            <span class="distance-goal-icon">🏠</span>
+        </div>
+
+        <!-- 장애물 컨테이너 -->
+        <div class="obstacles-container" id="obstaclesContainer"></div>
+
+        <!-- 골 건물 -->
+        <div class="goal-building" id="goalBuilding">
+            <div class="building-structure">
+                <div class="flag-pole-container">
+                    <div class="flag-pole-top"></div>
+                    <div class="flag-pole-main"></div>
+                    <div class="goal-flag">
+                        <div class="goal-flag-cloth">
+                            <span class="goal-flag-star">★</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="building-roof"></div>
+                <div class="building-body">
+                    <div class="building-window left"></div>
+                    <div class="building-window right"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 펭귄 (GIF 캐릭터) -->
+        <div class="penguin-container" id="penguinContainer">
+            <div class="penguin" id="penguin">
+                <img src="img/Balance man walk cycle.gif" alt="펭귄" class="penguin-sprite" id="penguinSprite">
+            </div>
+        </div>
+
+        <!-- 컨트롤 -->
+        <div class="controls">
+            <div class="direction-controls">
+                <div class="control-btn" id="leftBtn">⬅️</div>
+                <div class="control-btn" id="rightBtn">➡️</div>
+            </div>
+            <div class="action-controls">
+                <div class="control-btn slide-btn" id="slideBtn">⬇️</div>
+                <div class="control-btn jump-btn" id="jumpBtn">⬆️</div>
+            </div>
+        </div>
+
+        <!-- 스플래시 화면 -->
+        <div class="splash-screen" id="splashScreen">
+            <div class="splash-snowflake" style="left: 10%; font-size: 12px; animation-duration: 8s;">❄</div>
+            <div class="splash-snowflake" style="left: 25%; font-size: 8px; animation-duration: 12s; animation-delay: 1s;">❄</div>
+            <div class="splash-snowflake" style="left: 40%; font-size: 15px; animation-duration: 10s; animation-delay: 2s;">❄</div>
+            <div class="splash-snowflake" style="left: 60%; font-size: 10px; animation-duration: 9s; animation-delay: 0.5s;">❄</div>
+            <div class="splash-snowflake" style="left: 75%; font-size: 14px; animation-duration: 11s; animation-delay: 3s;">❄</div>
+            <div class="splash-snowflake" style="left: 90%; font-size: 9px; animation-duration: 13s; animation-delay: 1.5s;">❄</div>
+            
+            <div class="splash-title">ANTARCTIC ADVENTURE</div>
+            <div class="splash-title-kr">남극탐험</div>
+            <div class="splash-subtitle">🧊 펭귄과 함께 남극을 달려요! 🧊</div>
+            
+            <div class="splash-logo">
+                <div class="splash-penguin">
+                    <img src="img/Balance man walk cycle.gif" alt="펭귄" class="splash-penguin-img">
+                </div>
+            </div>
+            
+            <button class="splash-start-btn" id="splashStartBtn">🎮 게임 시작</button>
+            
+            <div class="splash-highscore">
+                🏆 최고기록: <span id="splashHighScore">0</span>점
+            </div>
+            
+            <div class="splash-footer">
+                ⬅️ ➡️ 좌우 이동 | ⬆️ 점프 | ⬇️ 슬라이드<br>
+                © 2024 Antarctic Adventure
+            </div>
+        </div>
+
+        <!-- 메인 화면 (이제 사용 안 함, 스플래시로 대체) -->
+        <div class="main-screen hidden" id="mainScreen">
+            <div class="game-title">ANTARCTIC ADVENTURE</div>
+            <div class="game-title-kr">남극탐험</div>
+            <div class="title-penguin">🐧</div>
+            <button class="start-btn" id="startBtn">▶ 게임 시작</button>
+            <div class="high-score-display">
+                🏆 최고기록: <span id="highScoreMain">0</span>점
+            </div>
+            <div class="instructions">
+                ⬅️➡️ 좌우 이동 | ⬆️ 점프 | ⬇️ 슬라이드<br>
+                얼음 구멍과 물개를 피하고 깃발을 모으세요!
+            </div>
+        </div>
+
+        <!-- 게임오버 화면 -->
+        <div class="gameover-screen hidden" id="gameoverScreen">
+            <div class="gameover-title">GAME OVER</div>
+            <div class="gameover-stats">
+                <div class="stat-row">
+                    <span>점수</span>
+                    <span class="stat-value" id="finalScore">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>스테이지</span>
+                    <span class="stat-value" id="finalStage">1</span>
+                </div>
+                <div class="stat-row">
+                    <span>최고기록</span>
+                    <span class="stat-value" id="highScoreFinal">0</span>
+                </div>
+            </div>
+            <button class="retry-btn" id="retryBtn">🔄 다시하기</button>
+            <button class="home-btn" id="homeBtn">🏠 메인으로</button>
+        </div>
+
+        <!-- 스테이지 클리어 -->
+        <div class="stage-clear hidden" id="stageClear">
+            <div class="stage-clear-title">🎉 STAGE CLEAR!</div>
+            <div class="stage-clear-bonus" id="bonusScore">TIME BONUS: +1000</div>
+            <div class="stage-next">다음 스테이지 준비중...</div>
+        </div>
+
+        <!-- 일시정지 -->
+        <div class="pause-overlay hidden" id="pauseOverlay">
+            <div class="pause-box">
+                <div class="pause-text">⏸️ 일시정지</div>
+                <div class="pause-score">현재 점수: <span id="pauseScore">0</span></div>
+                <div class="pause-buttons">
+                    <button class="resume-btn" id="resumeBtn">▶ 계속하기</button>
+                    <button class="pause-exit-btn" id="pauseExitBtn">🏠 메인으로</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 나가기 확인 모달 -->
+        <div class="exit-modal hidden" id="exitModal">
+            <div class="exit-modal-box">
+                <div class="exit-modal-title">🚪 게임 종료</div>
+                <div class="exit-modal-text">정말 나가시겠어요?<br>현재 진행 상황이 저장되지 않습니다.</div>
+                <div class="exit-modal-score">현재 점수: <span id="exitScore">0</span></div>
+                <div class="exit-modal-buttons">
+                    <button class="exit-confirm-btn" id="exitConfirmBtn">나가기</button>
+                    <button class="exit-cancel-btn" id="exitCancelBtn">계속하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 게임 상태
+        const game = {
+            isPlaying: false,
+            isPaused: false,
+            score: 0,
+            highScore: parseInt(localStorage.getItem('antarcticHighScore')) || 0,
+            stage: 1,
+            lives: 3,
+            timeLeft: 60,
+            maxTime: 60,
+            distance: 0,
+            maxDistance: 1000, // 스테이지 거리
+            penguinX: 50, // 퍼센트
+            isJumping: false,
+            isSliding: false,
+            obstacles: [],
+            obstacleInterval: null,
+            timerInterval: null,
+            roadLineInterval: null,
+            distanceInterval: null,
+            gameSpeed: 2000,
+            spawnRate: 1500
+        };
+
+        // DOM 요소
+        const elements = {
+            splashScreen: document.getElementById('splashScreen'),
+            splashStartBtn: document.getElementById('splashStartBtn'),
+            splashHighScore: document.getElementById('splashHighScore'),
+            mainScreen: document.getElementById('mainScreen'),
+            gameoverScreen: document.getElementById('gameoverScreen'),
+            stageClear: document.getElementById('stageClear'),
+            pauseOverlay: document.getElementById('pauseOverlay'),
+            penguin: document.getElementById('penguin'),
+            penguinContainer: document.getElementById('penguinContainer'),
+            obstaclesContainer: document.getElementById('obstaclesContainer'),
+            goalBuilding: document.getElementById('goalBuilding'),
+            distanceFill: document.getElementById('distanceFill'),
+            roadLines: document.getElementById('roadLines'),
+            stars: document.getElementById('stars'),
+            snowflakes: document.getElementById('snowflakes'),
+            scoreValue: document.getElementById('scoreValue'),
+            stageValue: document.getElementById('stageValue'),
+            livesDisplay: document.getElementById('livesDisplay'),
+            timerFill: document.getElementById('timerFill'),
+            startBtn: document.getElementById('startBtn'),
+            retryBtn: document.getElementById('retryBtn'),
+            homeBtn: document.getElementById('homeBtn'),
+            resumeBtn: document.getElementById('resumeBtn'),
+            leftBtn: document.getElementById('leftBtn'),
+            rightBtn: document.getElementById('rightBtn'),
+            jumpBtn: document.getElementById('jumpBtn'),
+            slideBtn: document.getElementById('slideBtn'),
+            highScoreMain: document.getElementById('highScoreMain'),
+            finalScore: document.getElementById('finalScore'),
+            finalStage: document.getElementById('finalStage'),
+            highScoreFinal: document.getElementById('highScoreFinal'),
+            bonusScore: document.getElementById('bonusScore'),
+            pauseBtn: document.getElementById('pauseBtn'),
+            exitBtn: document.getElementById('exitBtn'),
+            exitModal: document.getElementById('exitModal'),
+            exitConfirmBtn: document.getElementById('exitConfirmBtn'),
+            exitCancelBtn: document.getElementById('exitCancelBtn')
+        };
+
+        // 초기화
+        function init() {
+            createStars();
+            createSnowflakes();
+            elements.splashHighScore.textContent = game.highScore;
+            elements.highScoreMain.textContent = game.highScore;
+            setupEventListeners();
+        }
+
+        // 별 생성
+        function createStars() {
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                elements.stars.appendChild(star);
+            }
+        }
+
+        // 눈 생성
+        function createSnowflakes() {
+            for (let i = 0; i < 30; i++) {
+                const snow = document.createElement('div');
+                snow.className = 'snowflake';
+                snow.textContent = '❄';
+                snow.style.left = `${Math.random() * 100}%`;
+                snow.style.fontSize = `${5 + Math.random() * 10}px`;
+                snow.style.animationDuration = `${5 + Math.random() * 10}s`;
+                snow.style.animationDelay = `${Math.random() * 5}s`;
+                elements.snowflakes.appendChild(snow);
+            }
+        }
+
+        // 이벤트 리스너 설정
+        function setupEventListeners() {
+            // 스플래시 시작 버튼
+            elements.splashStartBtn.addEventListener('click', () => {
+                elements.splashScreen.classList.add('fade-out');
+                setTimeout(() => {
+                    elements.splashScreen.classList.add('hidden');
+                    startGame();
+                }, 800);
+            });
+
+            // 시작 버튼
+            elements.startBtn.addEventListener('click', startGame);
+            elements.retryBtn.addEventListener('click', startGame);
+            elements.homeBtn.addEventListener('click', () => {
+                elements.gameoverScreen.classList.add('hidden');
+                elements.splashScreen.classList.remove('hidden');
+                elements.splashScreen.classList.remove('fade-out');
+            });
+            elements.resumeBtn.addEventListener('click', togglePause);
+
+            // 일시정지 버튼 (상단)
+            elements.pauseBtn.addEventListener('click', togglePause);
+
+            // 나가기 버튼 (상단)
+            elements.exitBtn.addEventListener('click', showExitModal);
+
+            // 일시정지 화면에서 메인으로 버튼
+            document.getElementById('pauseExitBtn').addEventListener('click', () => {
+                togglePause();
+                showExitModal();
+            });
+
+            // 나가기 모달 버튼들
+            elements.exitConfirmBtn.addEventListener('click', confirmExit);
+            elements.exitCancelBtn.addEventListener('click', hideExitModal);
+
+            // 컨트롤 버튼
+            elements.leftBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveLeft(); });
+            elements.rightBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveRight(); });
+            elements.jumpBtn.addEventListener('touchstart', (e) => { e.preventDefault(); jump(); });
+            elements.slideBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startSlide(); });
+            elements.slideBtn.addEventListener('touchend', (e) => { e.preventDefault(); endSlide(); });
+
+            elements.leftBtn.addEventListener('click', moveLeft);
+            elements.rightBtn.addEventListener('click', moveRight);
+            elements.jumpBtn.addEventListener('click', jump);
+            elements.slideBtn.addEventListener('mousedown', startSlide);
+            elements.slideBtn.addEventListener('mouseup', endSlide);
+
+            // 키보드
+            document.addEventListener('keydown', (e) => {
+                if (!game.isPlaying) return;
+                
+                switch(e.code) {
+                    case 'ArrowLeft':
+                    case 'KeyA':
+                        e.preventDefault();
+                        moveLeft();
+                        break;
+                    case 'ArrowRight':
+                    case 'KeyD':
+                        e.preventDefault();
+                        moveRight();
+                        break;
+                    case 'ArrowUp':
+                    case 'Space':
+                    case 'KeyW':
+                        e.preventDefault();
+                        jump();
+                        break;
+                    case 'ArrowDown':
+                    case 'KeyS':
+                        e.preventDefault();
+                        startSlide();
+                        break;
+                    case 'Escape':
+                    case 'KeyP':
+                        togglePause();
+                        break;
+                }
+            });
+
+            document.addEventListener('keyup', (e) => {
+                if (e.code === 'ArrowDown' || e.code === 'KeyS') {
+                    endSlide();
+                }
+            });
+        }
+
+        // 게임 시작
+        function startGame() {
+            game.isPlaying = true;
+            game.isPaused = false;
+            game.score = 0;
+            game.stage = 1;
+            game.lives = 3;
+            game.timeLeft = game.maxTime;
+            game.distance = 0;
+            game.maxDistance = 1000;
+            game.penguinX = 50;
+            game.gameSpeed = 2000;
+            game.spawnRate = 1500;
+            game.obstacles = [];
+
+            elements.splashScreen.classList.add('hidden');
+            elements.mainScreen.classList.add('hidden');
+            elements.gameoverScreen.classList.add('hidden');
+            elements.stageClear.classList.add('hidden');
+            elements.goalBuilding.classList.remove('approaching');
+            
+            updateUI();
+            updateDistance();
+            updatePenguinPosition();
+            clearObstacles();
+
+            // 도로 라인 생성
+            startRoadLines();
+
+            // 타이머 시작
+            game.timerInterval = setInterval(updateTimer, 100);
+
+            // 거리 업데이트 시작
+            game.distanceInterval = setInterval(updateDistanceProgress, 50);
+
+            // 장애물 스폰 시작
+            spawnObstacle();
+            game.obstacleInterval = setInterval(spawnObstacle, game.spawnRate);
+        }
+
+        // 도로 라인 애니메이션
+        function startRoadLines() {
+            game.roadLineInterval = setInterval(() => {
+                if (!game.isPlaying || game.isPaused) return;
+                
+                const line = document.createElement('div');
+                line.className = 'road-line';
+                line.style.animationDuration = `${game.gameSpeed / 4}ms`;
+                elements.roadLines.appendChild(line);
+
+                setTimeout(() => line.remove(), game.gameSpeed / 4);
+            }, 200);
+        }
+
+        // 펭귄 이동
+        function moveLeft() {
+            if (!game.isPlaying || game.isPaused) return;
+            game.penguinX = Math.max(15, game.penguinX - 15);
+            updatePenguinPosition();
+        }
+
+        function moveRight() {
+            if (!game.isPlaying || game.isPaused) return;
+            game.penguinX = Math.min(85, game.penguinX + 15);
+            updatePenguinPosition();
+        }
+
+        function updatePenguinPosition() {
+            elements.penguinContainer.style.left = `${game.penguinX}%`;
+        }
+
+        // 점프
+        function jump() {
+            if (!game.isPlaying || game.isPaused || game.isJumping) return;
+            
+            game.isJumping = true;
+            elements.penguin.classList.add('jumping');
+
+            if (navigator.vibrate) navigator.vibrate(30);
+
+            setTimeout(() => {
+                elements.penguin.classList.remove('jumping');
+                game.isJumping = false;
+            }, 600);
+        }
+
+        // 슬라이드
+        function startSlide() {
+            if (!game.isPlaying || game.isPaused || game.isJumping) return;
+            game.isSliding = true;
+            elements.penguin.classList.add('sliding');
+        }
+
+        function endSlide() {
+            game.isSliding = false;
+            elements.penguin.classList.remove('sliding');
+        }
+
+        // 장애물 스폰
+        function spawnObstacle() {
+            if (!game.isPlaying || game.isPaused) return;
+
+            const types = ['iceHole', 'seal', 'flag', 'fish'];
+            const weights = [35, 30, 20, 15]; // 확률 가중치
+            const type = weightedRandom(types, weights);
+
+            const obstacle = createObstacle(type);
+            
+            // 랜덤 위치 (좌, 중, 우)
+            const positions = [20, 50, 80];
+            const posX = positions[Math.floor(Math.random() * positions.length)];
+            obstacle.style.left = `${posX}%`;
+            obstacle.dataset.x = posX;
+            obstacle.dataset.type = type;
+
+            // 속도 조절
+            const speed = Math.max(1000, game.gameSpeed - (game.stage * 100));
+            obstacle.style.animationDuration = `${speed}ms`;
+
+            elements.obstaclesContainer.appendChild(obstacle);
+            game.obstacles.push(obstacle);
+
+            // 충돌 체크
+            const checkInterval = setInterval(() => {
+                if (!game.isPlaying) {
+                    clearInterval(checkInterval);
+                    return;
+                }
+                checkCollision(obstacle, type, checkInterval);
+            }, 50);
+
+            // 제거
+            setTimeout(() => {
+                if (obstacle.parentNode) {
+                    obstacle.remove();
+                    const idx = game.obstacles.indexOf(obstacle);
+                    if (idx > -1) game.obstacles.splice(idx, 1);
+                }
+                clearInterval(checkInterval);
+            }, speed + 100);
+        }
+
+        function weightedRandom(items, weights) {
+            const total = weights.reduce((a, b) => a + b, 0);
+            let random = Math.random() * total;
+            for (let i = 0; i < items.length; i++) {
+                if (random < weights[i]) return items[i];
+                random -= weights[i];
+            }
+            return items[0];
+        }
+
+        function createObstacle(type) {
+            const obstacle = document.createElement('div');
+            
+            switch(type) {
+                case 'iceHole':
+                    obstacle.className = 'ice-hole';
+                    obstacle.innerHTML = `
+                        <div class="ice-hole-outer">
+                            <div class="ice-hole-inner"></div>
+                        </div>
+                    `;
+                    break;
+                case 'seal':
+                    obstacle.className = 'seal';
+                    obstacle.innerHTML = `
+                        <div class="seal-body"></div>
+                        <div class="seal-head">
+                            <div class="seal-nose"></div>
+                            <div class="seal-eye"></div>
+                            <div class="seal-whiskers"></div>
+                        </div>
+                        <div class="seal-flipper"></div>
+                    `;
+                    break;
+                case 'flag':
+                    obstacle.className = 'flag';
+                    obstacle.innerHTML = `
+                        <div class="flag-pole"></div>
+                        <div class="flag-cloth"></div>
+                    `;
+                    break;
+                case 'fish':
+                    obstacle.className = 'fish';
+                    obstacle.innerHTML = `
+                        <div class="fish-body">
+                            <div class="fish-eye"></div>
+                            <div class="fish-tail"></div>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            return obstacle;
+        }
+
+        // 충돌 체크
+        function checkCollision(obstacle, type, intervalId) {
+            const obsRect = obstacle.getBoundingClientRect();
+            const penguinRect = elements.penguinContainer.getBoundingClientRect();
+
+            // 펭귄과 장애물이 같은 높이인지 확인
+            const isNearPenguin = obsRect.bottom > penguinRect.top + 20 && 
+                                  obsRect.top < penguinRect.bottom - 10;
+
+            // X축 충돌 확인
+            const isXCollision = Math.abs(parseInt(obstacle.dataset.x) - game.penguinX) < 20;
+
+            if (isNearPenguin && isXCollision) {
+                if (type === 'flag' || type === 'fish') {
+                    // 아이템 획득
+                    collectItem(obstacle, type);
+                    clearInterval(intervalId);
+                } else if (type === 'iceHole') {
+                    // 얼음 구멍 - 점프로 피해야 함
+                    if (!game.isJumping) {
+                        hitObstacle(obstacle);
+                        clearInterval(intervalId);
+                    }
+                } else if (type === 'seal') {
+                    // 물개 - 점프 또는 슬라이드로 피해야 함
+                    if (!game.isJumping && !game.isSliding) {
+                        hitObstacle(obstacle);
+                        clearInterval(intervalId);
+                    }
+                }
+            }
+        }
+
+        // 아이템 획득
+        function collectItem(obstacle, type) {
+            const points = type === 'flag' ? 500 : 200;
+            game.score += points;
+            
+            showScorePopup(obstacle, `+${points}`);
+            obstacle.remove();
+            
+            if (navigator.vibrate) navigator.vibrate([30, 20, 30]);
+            
+            updateUI();
+        }
+
+        // 장애물 충돌
+        function hitObstacle(obstacle) {
+            game.lives--;
+            
+            showCollisionEffect(obstacle);
+            obstacle.remove();
+            
+            if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+            
+            updateLives();
+            
+            if (game.lives <= 0) {
+                gameOver();
+            }
+        }
+
+        // 점수 팝업
+        function showScorePopup(element, text) {
+            const rect = element.getBoundingClientRect();
+            const container = elements.obstaclesContainer.getBoundingClientRect();
+            
+            const popup = document.createElement('div');
+            popup.className = 'score-popup';
+            popup.textContent = text;
+            popup.style.left = `${rect.left - container.left + rect.width/2}px`;
+            popup.style.top = `${rect.top - container.top}px`;
+            
+            elements.obstaclesContainer.appendChild(popup);
+            setTimeout(() => popup.remove(), 1000);
+        }
+
+        // 충돌 효과
+        function showCollisionEffect(element) {
+            const rect = element.getBoundingClientRect();
+            const container = elements.obstaclesContainer.getBoundingClientRect();
+            
+            const effect = document.createElement('div');
+            effect.className = 'collision-effect';
+            effect.style.left = `${rect.left - container.left}px`;
+            effect.style.top = `${rect.top - container.top}px`;
+            
+            elements.obstaclesContainer.appendChild(effect);
+            setTimeout(() => effect.remove(), 500);
+        }
+
+        // 타이머 업데이트
+        function updateTimer() {
+            if (game.isPaused) return;
+            
+            game.timeLeft -= 0.1;
+            const percent = (game.timeLeft / game.maxTime) * 100;
+            elements.timerFill.style.width = `${percent}%`;
+            
+            if (percent < 20) {
+                elements.timerFill.classList.add('warning');
+            } else {
+                elements.timerFill.classList.remove('warning');
+            }
+            
+            // 시간 경과에 따른 점수
+            game.score += 1;
+            updateUI();
+            
+            // 시간 초과시 게임오버
+            if (game.timeLeft <= 0) {
+                gameOver();
+            }
+        }
+
+        // 거리 진행 업데이트
+        function updateDistanceProgress() {
+            if (game.isPaused || !game.isPlaying) return;
+            
+            // 거리 증가 (스테이지가 높을수록 빠르게)
+            const speedMultiplier = 1 + (game.stage * 0.2);
+            game.distance += 2 * speedMultiplier;
+            
+            updateDistance();
+            
+            // 골 건물 나타나기 (80% 이상 진행시)
+            if (game.distance >= game.maxDistance * 0.8) {
+                elements.goalBuilding.classList.add('approaching');
+            }
+            
+            // 스테이지 클리어
+            if (game.distance >= game.maxDistance) {
+                stageClear();
+            }
+        }
+
+        // 거리 UI 업데이트
+        function updateDistance() {
+            const percent = Math.min(100, (game.distance / game.maxDistance) * 100);
+            elements.distanceFill.style.width = `${percent}%`;
+        }
+
+        // 스테이지 클리어
+        function stageClear() {
+            game.isPaused = true;
+            clearIntervals();
+            
+            const timeBonus = Math.floor(game.timeLeft * 100);
+            const stageBonus = game.stage * 500;
+            const totalBonus = timeBonus + stageBonus;
+            
+            game.score += totalBonus;
+            elements.bonusScore.textContent = `STAGE BONUS: +${totalBonus}`;
+            elements.stageClear.classList.remove('hidden');
+            
+            // 진동 피드백
+            if (navigator.vibrate) navigator.vibrate([50, 30, 50, 30, 100]);
+            
+            setTimeout(() => {
+                elements.stageClear.classList.add('hidden');
+                nextStage();
+            }, 3000);
+        }
+
+        // 다음 스테이지
+        function nextStage() {
+            game.stage++;
+            game.timeLeft = game.maxTime;
+            game.distance = 0;
+            game.maxDistance = 1000 + (game.stage * 200); // 스테이지마다 거리 증가
+            game.gameSpeed = Math.max(800, game.gameSpeed - 150);
+            game.spawnRate = Math.max(800, game.spawnRate - 100);
+            game.isPaused = false;
+            
+            clearObstacles();
+            elements.goalBuilding.classList.remove('approaching');
+            updateUI();
+            updateDistance();
+            
+            // 인터벌 재시작
+            game.timerInterval = setInterval(updateTimer, 100);
+            game.distanceInterval = setInterval(updateDistanceProgress, 50);
+            game.obstacleInterval = setInterval(spawnObstacle, game.spawnRate);
+            startRoadLines();
+        }
+
+        // UI 업데이트
+        function updateUI() {
+            elements.scoreValue.textContent = game.score;
+            elements.stageValue.textContent = `STAGE ${game.stage}`;
+        }
+
+        // 라이프 업데이트
+        function updateLives() {
+            const icons = elements.livesDisplay.querySelectorAll('.life-icon');
+            icons.forEach((icon, idx) => {
+                if (idx >= game.lives) {
+                    icon.classList.add('lost');
+                } else {
+                    icon.classList.remove('lost');
+                }
+            });
+        }
+
+        // 점프시 GIF 회전 효과
+        function updatePenguinVisual() {
+            const sprite = document.getElementById('penguinSprite');
+            if (game.isJumping) {
+                sprite.style.transform = 'rotate(-15deg)';
+            } else if (game.isSliding) {
+                sprite.style.transform = 'scaleY(0.6) rotate(10deg)';
+            } else {
+                sprite.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // 일시정지
+        function togglePause() {
+            if (!game.isPlaying) return;
+            
+            game.isPaused = !game.isPaused;
+            
+            if (game.isPaused) {
+                document.getElementById('pauseScore').textContent = game.score;
+                elements.pauseOverlay.classList.remove('hidden');
+            } else {
+                elements.pauseOverlay.classList.add('hidden');
+            }
+        }
+
+        // 나가기 모달 표시
+        function showExitModal() {
+            if (!game.isPlaying) return;
+            
+            game.isPaused = true;
+            document.getElementById('exitScore').textContent = game.score;
+            elements.pauseOverlay.classList.add('hidden');
+            elements.exitModal.classList.remove('hidden');
+        }
+
+        // 나가기 모달 숨기기
+        function hideExitModal() {
+            elements.exitModal.classList.add('hidden');
+            game.isPaused = false;
+        }
+
+        // 나가기 확정
+        function confirmExit() {
+            game.isPlaying = false;
+            clearIntervals();
+            clearObstacles();
+            
+            // 최고기록 갱신 확인
+            if (game.score > game.highScore) {
+                game.highScore = game.score;
+                localStorage.setItem('antarcticHighScore', game.highScore);
+            }
+            
+            elements.exitModal.classList.add('hidden');
+            elements.goalBuilding.classList.remove('approaching');
+            elements.splashScreen.classList.remove('hidden');
+            elements.splashScreen.classList.remove('fade-out');
+            elements.splashHighScore.textContent = game.highScore;
+        }
+
+        // 게임오버
+        function gameOver() {
+            game.isPlaying = false;
+            clearIntervals();
+            
+            // 최고기록 갱신
+            if (game.score > game.highScore) {
+                game.highScore = game.score;
+                localStorage.setItem('antarcticHighScore', game.highScore);
+            }
+            
+            elements.finalScore.textContent = game.score;
+            elements.finalStage.textContent = game.stage;
+            elements.highScoreFinal.textContent = game.highScore;
+            elements.highScoreMain.textContent = game.highScore;
+            elements.splashHighScore.textContent = game.highScore;
+            
+            setTimeout(() => {
+                elements.gameoverScreen.classList.remove('hidden');
+            }, 500);
+        }
+
+        // 인터벌 정리
+        function clearIntervals() {
+            clearInterval(game.timerInterval);
+            clearInterval(game.obstacleInterval);
+            clearInterval(game.roadLineInterval);
+            clearInterval(game.distanceInterval);
+        }
+
+        // 장애물 정리
+        function clearObstacles() {
+            game.obstacles.forEach(obs => obs.remove());
+            game.obstacles = [];
+        }
+
+        // 게임 시작
+        init();
+    </script>
+</body>
+</html>
+
