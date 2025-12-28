@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wix + Vercel 랜딩페이지 운영 가이드</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <style>
+        :root {
+            --bg-dark: #09090b;
+            --bg-card: #111113;
+            --bg-elevated: #18181b;
+            --bg-subtle: #0e0e10;
+            --text-white: #fafafa;
+            --text-gray: #a1a1aa;
+            --text-muted: #71717a;
+            --accent: #3b82f6;
+            --accent-dim: rgba(59, 130, 246, 0.1);
+            --accent-subtle: rgba(59, 130, 246, 0.06);
+            --border: #27272a;
+            --border-subtle: #1c1c1f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.8;
+        }
+
+        .mono {
+            font-family: 'Pretendard', monospace;
+            font-feature-settings: 'tnum';
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--accent-dim);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 100px;
+            font-size: 12px;
+            color: var(--accent);
+            margin-bottom: 24px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        .header h1 .highlight {
+            color: var(--accent);
+        }
+
+        .header-desc {
+            font-size: 16px;
+            color: var(--text-gray);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        /* Card */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title .icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        /* Diagram */
+        .diagram {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+            margin: 24px 0;
+        }
+
+        .diagram-title {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .diagram-content {
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--text-gray);
+        }
+
+        .diagram-box {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 12px 0;
+        }
+
+        .diagram-box.wix {
+            border-left: 3px solid var(--accent);
+        }
+
+        .diagram-box.vercel {
+            border-left: 3px solid var(--text-muted);
+        }
+
+        .diagram-box-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .diagram-box.wix .diagram-box-label { color: var(--accent); }
+        .diagram-box.vercel .diagram-box-label { color: var(--text-gray); }
+
+        /* Comparison Table */
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .compare-table th,
+        .compare-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .compare-table th {
+            background: var(--bg-elevated);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .compare-table td:first-child {
+            font-weight: 600;
+            color: var(--text-white);
+        }
+
+        .compare-table td {
+            color: var(--text-gray);
+        }
+
+        /* Tag */
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .tag.ok {
+            background: var(--accent-dim);
+            color: var(--accent);
+        }
+
+        .tag.warn {
+            background: var(--bg-elevated);
+            color: var(--text-gray);
+        }
+
+        .tag.no {
+            background: var(--bg-elevated);
+            color: var(--text-muted);
+        }
+
+        .tag.info {
+            background: var(--bg-elevated);
+            color: var(--text-gray);
+            border: 1px solid var(--border);
+        }
+
+        /* Step List */
+        .step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .step-item {
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .step-num {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+
+        .step-content {
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            padding: 20px 24px;
+        }
+
+        .step-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 16px 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            font-family: 'Pretendard', monospace;
+            font-size: 13px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .code-block .comment {
+            color: var(--text-muted);
+        }
+
+        .code-block .tag-name {
+            color: var(--accent);
+        }
+
+        .code-block .attr {
+            color: var(--text-white);
+        }
+
+        .code-block .value {
+            color: var(--text-gray);
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .summary-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .summary-item {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .summary-item-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .summary-item-value {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        /* Notice */
+        .notice {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .notice.warning {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+        }
+
+        .notice.success {
+            background: var(--accent-subtle);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+        }
+
+        .notice-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .notice-content {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .notice-content strong {
+            color: var(--text-white);
+        }
+
+        /* Folder Structure */
+        .folder-structure {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            font-family: 'Pretendard', monospace;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .folder-structure .folder {
+            color: var(--text-white);
+            font-weight: 600;
+        }
+
+        .folder-structure .file {
+            color: var(--text-gray);
+        }
+
+        .folder-structure .comment {
+            color: var(--text-muted);
+            margin-left: 12px;
+        }
+
+        /* SEO Section */
+        .seo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .seo-item {
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .seo-item-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .seo-item-title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .seo-item-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .seo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step-item {
+                grid-template-columns: 1fr;
+            }
+
+            .step-num {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .compare-table {
+                font-size: 12px;
+            }
+
+            .compare-table th,
+            .compare-table td {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-badge">OPERATION GUIDE v1.0</div>
+            <h1>
+                <span class="highlight">Wix + Vercel</span><br>
+                랜딩페이지 운영 가이드
+            </h1>
+            <p class="header-desc">
+                HTML 콘텐츠는 Vercel에서, CTA와 폼은 Wix에서.<br>
+                시즌별 빠른 교체가 가능한 하이브리드 구조
+            </p>
+        </header>
+
+        <!-- 핵심 구조 -->
+        <section class="section">
+            <div class="section-label">Structure</div>
+            <h2 class="section-title">핵심 구조 이해하기</h2>
+
+            <div class="diagram">
+                <div class="diagram-title">페이지 구성 구조</div>
+                
+                <div class="diagram-box wix">
+                    <div class="diagram-box-label">Wix 페이지 (부모)</div>
+                    <div class="diagram-content">
+                        • 페이지 URL, SEO 설정<br>
+                        • 헤더, 푸터 (선택)<br>
+                        • CTA 버튼, 폼 수집<br>
+                        • 결제, CRM 연동
+                    </div>
+                </div>
+
+                <div style="text-align: center; padding: 8px 0; color: var(--text-muted);">
+                    ↓ iframe으로 삽입 ↓
+                </div>
+
+                <div class="diagram-box vercel">
+                    <div class="diagram-box-label">Vercel HTML (자식)</div>
+                    <div class="diagram-content">
+                        • 콘텐츠, 스토리텔링<br>
+                        • 디자인, 애니메이션<br>
+                        • 시즌별 교체 대상<br>
+                        • CTA 버튼 제외
+                    </div>
+                </div>
+            </div>
+
+            <div class="notice success">
+                <div class="notice-icon">✅</div>
+                <div class="notice-content">
+                    <strong>핵심 포인트:</strong> Vercel의 HTML만 교체하면 Wix는 건드릴 필요 없이 콘텐츠가 자동 반영됩니다.
+                </div>
+            </div>
+        </section>
+
+        <!-- 언제 사용하는가 -->
+        <section class="section">
+            <div class="section-label">When to Use</div>
+            <h2 class="section-title">언제 이 방식을 사용하나요?</h2>
+
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>페이지 유형</th>
+                        <th>방식</th>
+                        <th>이유</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>광고용 랜딩페이지</td>
+                        <td><span class="tag ok">Vercel + iframe</span></td>
+                        <td>비공개 링크, 빠른 교체 필요</td>
+                    </tr>
+                    <tr>
+                        <td>시즌/이벤트 페이지</td>
+                        <td><span class="tag ok">Vercel + iframe</span></td>
+                        <td>주기적 교체, SEO 불필요</td>
+                    </tr>
+                    <tr>
+                        <td>메인 홈페이지</td>
+                        <td><span class="tag info">Wix 네이티브</span></td>
+                        <td>SEO 중요, 검색 노출 필요</td>
+                    </tr>
+                    <tr>
+                        <td>블로그/콘텐츠</td>
+                        <td><span class="tag info">Wix 네이티브</span></td>
+                        <td>SEO 매우 중요</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SEO 영향 -->
+        <section class="section">
+            <div class="section-label">SEO Impact</div>
+            <h2 class="section-title">SEO 영향은?</h2>
+
+            <div class="card">
+                <div class="card-title">
+                    <span class="icon" style="background: var(--bg-elevated); color: var(--text-gray);">⚠️</span>
+                    iframe 콘텐츠의 SEO 한계
+                </div>
+                
+                <p style="color: var(--text-gray); margin-bottom: 20px;">
+                    iframe 내부의 텍스트는 Wix 페이지의 SEO에 기여하지 않습니다.<br>
+                    검색엔진은 iframe을 별도 페이지로 인식합니다.
+                </p>
+
+                <div class="seo-grid">
+                    <div class="seo-item">
+                        <div class="seo-item-header">
+                            <span class="seo-item-title">Wix 네이티브 요소</span>
+                            <span class="tag ok">SEO 반영 ✓</span>
+                        </div>
+                        <div class="seo-item-desc">
+                            Title, Meta, Wix 텍스트, CTA 버튼
+                        </div>
+                    </div>
+                    <div class="seo-item">
+                        <div class="seo-item-header">
+                            <span class="seo-item-title">iframe 내부 콘텐츠</span>
+                            <span class="tag no">SEO 미반영 ✗</span>
+                        </div>
+                        <div class="seo-item-desc">
+                            Vercel HTML의 모든 텍스트
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notice success">
+                <div class="notice-icon">💡</div>
+                <div class="notice-content">
+                    <strong>하지만 광고 랜딩페이지는 괜찮습니다!</strong><br>
+                    광고 트래픽은 직접 링크로 유입되므로 SEO가 거의 무의미합니다.
+                    비공개 링크라면 더더욱 문제없습니다.
+                </div>
+            </div>
+        </section>
+
+        <!-- 워크플로우 -->
+        <section class="section">
+            <div class="section-label">Workflow</div>
+            <h2 class="section-title">운영 워크플로우</h2>
+
+            <div class="step-list">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <div class="step-title">HTML 제작</div>
+                        <div class="step-desc">
+                            랜딩페이지 HTML을 제작합니다.<br>
+                            <strong>CTA 버튼은 제외</strong>하고 콘텐츠만 포함합니다.
+                        </div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Vercel 배포</div>
+                        <div class="step-desc">
+                            HTML 파일을 Vercel에 배포합니다.<br>
+                            드래그앤드롭 또는 Git 연동으로 간단 배포 가능
+                        </div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Wix에 iframe 삽입</div>
+                        <div class="step-desc">
+                            Wix 페이지에 "HTML iframe" 또는 "Embed" 요소 추가<br>
+                            Vercel URL을 iframe src로 설정
+                        </div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Wix CTA 버튼 배치</div>
+                        <div class="step-desc">
+                            iframe 아래에 Wix 네이티브 버튼/폼 배치<br>
+                            Wix의 폼 수집, 결제, CRM 기능 그대로 사용
+                        </div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">5</div>
+                    <div class="step-content">
+                        <div class="step-title">시즌 교체 시</div>
+                        <div class="step-desc">
+                            Vercel의 HTML만 업데이트하면 끝!<br>
+                            Wix는 수정할 필요 없음
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 실제 코드 -->
+        <section class="section">
+            <div class="section-label">Implementation</div>
+            <h2 class="section-title">실제 구현 코드</h2>
+
+            <div class="card">
+                <div class="card-title">Wix에 삽입할 iframe 코드</div>
+                <div class="code-block">
+<pre><span class="comment">&lt;!-- Wix Embed 요소에 붙여넣기 --&gt;</span>
+<span class="tag-name">&lt;iframe</span>
+  <span class="attr">src</span>=<span class="value">"https://your-project.vercel.app/landing.html"</span>
+  <span class="attr">width</span>=<span class="value">"100%"</span>
+  <span class="attr">height</span>=<span class="value">"4000"</span>
+  <span class="attr">frameborder</span>=<span class="value">"0"</span>
+  <span class="attr">scrolling</span>=<span class="value">"no"</span>
+  <span class="attr">style</span>=<span class="value">"display: block;"</span>
+<span class="tag-name">&gt;&lt;/iframe&gt;</span></pre>
+                </div>
+
+                <div class="notice warning">
+                    <div class="notice-icon">📏</div>
+                    <div class="notice-content">
+                        <strong>높이(height) 설정 필수!</strong><br>
+                        콘텐츠 길이에 맞춰 높이를 설정하세요. PC/모바일 별도 설정 권장.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">권장 폴더 구조 (Vercel)</div>
+                <div class="folder-structure">
+<span class="folder">your-vercel-project/</span>
+├── <span class="file">index.html</span> <span class="comment">← 기본 페이지</span>
+├── <span class="file">january-landing.html</span> <span class="comment">← 1월 랜딩</span>
+├── <span class="file">february-landing.html</span> <span class="comment">← 2월 랜딩</span>
+├── <span class="file">event-special.html</span> <span class="comment">← 특별 이벤트</span>
+└── <span class="folder">assets/</span>
+    ├── <span class="file">styles.css</span>
+    └── <span class="folder">images/</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 장단점 -->
+        <section class="section">
+            <div class="section-label">Pros & Cons</div>
+            <h2 class="section-title">장단점 정리</h2>
+
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>장점</th>
+                        <th>단점/주의</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>✅ 빠른 콘텐츠 교체</td>
+                        <td>⚠️ iframe 높이 수동 설정 필요</td>
+                    </tr>
+                    <tr>
+                        <td>✅ Wix 수정 불필요</td>
+                        <td>⚠️ SEO에 기여 안 함</td>
+                    </tr>
+                    <tr>
+                        <td>✅ 완전한 디자인 자유도</td>
+                        <td>⚠️ 모바일 별도 높이 설정</td>
+                    </tr>
+                    <tr>
+                        <td>✅ Wix 폼/결제 기능 유지</td>
+                        <td>⚠️ Wix 무료 플랜 시 광고 노출</td>
+                    </tr>
+                    <tr>
+                        <td>✅ Vercel 무료 배포</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 최종 요약 -->
+        <section class="section">
+            <div class="summary-box">
+                <h2 class="summary-title">📋 최종 요약</h2>
+                
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <div class="summary-item-label">광고 랜딩페이지</div>
+                        <div class="summary-item-value">
+                            <span class="tag ok">Vercel + Wix iframe</span><br>
+                            <span style="font-size: 13px; color: var(--text-gray); margin-top: 8px; display: block;">
+                                비공개 링크, SEO 불필요, 빠른 교체
+                            </span>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-item-label">메인/SEO 페이지</div>
+                        <div class="summary-item-value">
+                            <span class="tag info">Wix 네이티브</span><br>
+                            <span style="font-size: 13px; color: var(--text-gray); margin-top: 8px; display: block;">
+                                검색 노출 필요, SEO 중요
+                            </span>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-item-label">시즌 교체 시</div>
+                        <div class="summary-item-value">
+                            Vercel HTML만 업데이트<br>
+                            <span style="font-size: 13px; color: var(--text-gray);">
+                                Wix 수정 불필요
+                            </span>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-item-label">CTA/폼 기능</div>
+                        <div class="summary-item-value">
+                            Wix 네이티브 사용<br>
+                            <span style="font-size: 13px; color: var(--text-gray);">
+                                결제, 폼 수집, CRM 연동
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="text-align: center; padding-top: 40px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 13px;">
+            <p>Wix + Vercel 하이브리드 운영 가이드 v1.0</p>
+            <p style="margin-top: 8px; font-weight: 500;">
+                광고 랜딩 = iframe 방식 ✓ | 메인 페이지 = 네이티브 ✓
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세일즈 퍼널 전략 설계 | 프리랜서 전환 프로그램</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a5;
+            --text-muted: #666669;
+            --accent-blue: #3b82f6;
+            --accent-green: #22c55e;
+            --accent-orange: #f97316;
+            --accent-red: #ef4444;
+            --accent-purple: #a855f7;
+            --accent-yellow: #eab308;
+            --border-color: #2a2a2d;
+            --gradient-blue: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            --gradient-green: linear-gradient(135deg, #22c55e, #14b8a6);
+            --gradient-orange: linear-gradient(135deg, #f97316, #ef4444);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 11, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 40px;
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 100px;
+            padding: 60px 0;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 100px;
+            font-size: 12px;
+            color: var(--accent-blue);
+            margin-bottom: 24px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Section Title */
+        .section-header {
+            margin-bottom: 48px;
+        }
+
+        .section-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 16px;
+            max-width: 700px;
+        }
+
+        /* Persona Card */
+        .persona-section {
+            margin-bottom: 120px;
+        }
+
+        .persona-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .persona-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+        }
+
+        .persona-card h3 {
+            font-size: 20px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .persona-card h3 span {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-blue);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .persona-item {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .persona-item:last-child {
+            border-bottom: none;
+        }
+
+        .persona-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .persona-value {
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        /* Barrier Analysis */
+        .barrier-section {
+            margin-bottom: 120px;
+        }
+
+        .barrier-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .barrier-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 60px 1fr 40px 1fr;
+            align-items: stretch;
+        }
+
+        .barrier-level {
+            background: var(--bg-tertiary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 0;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .barrier-level-num {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .barrier-level-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .barrier-content {
+            padding: 32px;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .barrier-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .barrier-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-red);
+            border-radius: 50%;
+        }
+
+        .barrier-quote {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-style: italic;
+            padding-left: 16px;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .barrier-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-green);
+            font-size: 20px;
+        }
+
+        .barrier-solution {
+            padding: 32px;
+            background: rgba(34, 197, 94, 0.05);
+        }
+
+        .barrier-solution-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--accent-green);
+        }
+
+        .barrier-solution-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Funnel Flow */
+        .funnel-section {
+            margin-bottom: 120px;
+        }
+
+        .funnel-container {
+            position: relative;
+        }
+
+        .funnel-stage {
+            display: grid;
+            grid-template-columns: 200px 1fr 200px;
+            gap: 32px;
+            padding: 40px 0;
+            position: relative;
+        }
+
+        .funnel-stage::before {
+            content: '';
+            position: absolute;
+            left: 100px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-blue), var(--accent-green));
+        }
+
+        .funnel-stage-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .funnel-stage-dot {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .funnel-stage-dot.ad { background: var(--gradient-blue); }
+        .funnel-stage-dot.landing { background: var(--gradient-orange); }
+        .funnel-stage-dot.consult { background: var(--gradient-green); }
+
+        .funnel-stage-name {
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 16px;
+        }
+
+        .funnel-stage-conversion {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .funnel-main-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .funnel-main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+
+        .funnel-main-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .funnel-main-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .funnel-emotion-tag {
+            padding: 6px 12px;
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            border-radius: 100px;
+            font-size: 11px;
+            color: var(--accent-orange);
+        }
+
+        .funnel-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .funnel-content-box {
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .funnel-content-box h4 {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .funnel-content-box p, .funnel-content-box ul {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .funnel-content-box ul {
+            list-style: none;
+        }
+
+        .funnel-content-box li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .funnel-content-box li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+        }
+
+        .funnel-metrics {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .funnel-metric {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .funnel-metric-value {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .funnel-metric-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Landing Structure */
+        .landing-section {
+            margin-bottom: 120px;
+        }
+
+        .landing-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .landing-block {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: 80px 1fr 400px;
+            gap: 0;
+        }
+
+        .landing-block:first-child {
+            border-radius: 16px 16px 0 0;
+        }
+
+        .landing-block:last-child {
+            border-radius: 0 0 16px 16px;
+        }
+
+        .landing-block-index {
+            background: var(--bg-tertiary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .landing-block-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-blue);
+        }
+
+        .landing-block-scroll {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .landing-block-main {
+            padding: 32px;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .landing-block-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .landing-block-content {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .landing-block-elements {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .landing-element {
+            padding: 4px 10px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-muted);
+        }
+
+        .landing-block-psychology {
+            padding: 32px;
+            background: rgba(59, 130, 246, 0.03);
+        }
+
+        .landing-psych-label {
+            font-size: 11px;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .landing-psych-before, .landing-psych-after {
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .landing-psych-before {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 3px solid var(--accent-red);
+            color: var(--text-secondary);
+        }
+
+        .landing-psych-after {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 3px solid var(--accent-green);
+            color: var(--text-secondary);
+        }
+
+        .landing-psych-trigger {
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .landing-psych-trigger::before {
+            content: '⚡';
+        }
+
+        /* Decision Matrix */
+        .decision-section {
+            margin-bottom: 120px;
+        }
+
+        .decision-table {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .decision-header {
+            display: grid;
+            grid-template-columns: 200px 1fr 1fr 1fr;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .decision-header-cell {
+            padding: 20px 24px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            border-right: 1px solid var(--border-color);
+        }
+
+        .decision-header-cell:last-child {
+            border-right: none;
+        }
+
+        .decision-row {
+            display: grid;
+            grid-template-columns: 200px 1fr 1fr 1fr;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .decision-row:last-child {
+            border-bottom: none;
+        }
+
+        .decision-cell {
+            padding: 24px;
+            border-right: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+
+        .decision-cell:last-child {
+            border-right: none;
+        }
+
+        .decision-cell:first-child {
+            background: var(--bg-tertiary);
+            font-weight: 600;
+        }
+
+        .decision-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .decision-status.fear {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--accent-red);
+        }
+
+        .decision-status.neutral {
+            background: rgba(234, 179, 8, 0.1);
+            color: var(--accent-yellow);
+        }
+
+        .decision-status.resolved {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--accent-green);
+        }
+
+        /* Ad Creative */
+        .ad-section {
+            margin-bottom: 120px;
+        }
+
+        .ad-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .ad-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .ad-card-header {
+            padding: 20px 24px;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .ad-card-type {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .ad-card-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .ad-card-body {
+            padding: 24px;
+        }
+
+        .ad-hook {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .ad-body-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .ad-cta {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--gradient-blue);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .ad-card-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Consult Flow */
+        .consult-section {
+            margin-bottom: 120px;
+        }
+
+        .consult-timeline {
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .consult-timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .consult-step {
+            position: relative;
+            margin-bottom: 48px;
+        }
+
+        .consult-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .consult-step-dot {
+            position: absolute;
+            left: -52px;
+            width: 24px;
+            height: 24px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .consult-step-time {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 8px;
+        }
+
+        .consult-step-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .consult-step-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .consult-step-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .consult-script {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            border-left: 3px solid var(--accent-purple);
+        }
+
+        .consult-script-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-purple);
+            margin-bottom: 8px;
+        }
+
+        /* ROI Calculation */
+        .roi-section {
+            margin-bottom: 120px;
+        }
+
+        .roi-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 48px;
+        }
+
+        .roi-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .roi-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .roi-subtitle {
+            color: var(--text-secondary);
+        }
+
+        .roi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .roi-item {
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .roi-item-value {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .roi-item-value.positive { color: var(--accent-green); }
+        .roi-item-value.negative { color: var(--accent-red); }
+        .roi-item-value.neutral { color: var(--accent-blue); }
+
+        .roi-item-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .roi-calculation {
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 32px;
+        }
+
+        .roi-calc-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--accent-green);
+        }
+
+        .roi-calc-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--border-color);
+            font-size: 14px;
+        }
+
+        .roi-calc-row:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        /* Summary */
+        .summary-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 64px;
+            text-align: center;
+        }
+
+        .summary-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 24px;
+        }
+
+        .summary-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .summary-flow-item {
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 24px 32px;
+            text-align: center;
+        }
+
+        .summary-flow-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .summary-flow-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .summary-flow-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .summary-flow-arrow {
+            font-size: 24px;
+            color: var(--accent-blue);
+        }
+
+        .summary-insight {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .summary-insight strong {
+            color: var(--accent-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .funnel-stage {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .funnel-stage::before {
+                display: none;
+            }
+            
+            .landing-block {
+                grid-template-columns: 1fr;
+            }
+            
+            .barrier-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .decision-header,
+            .decision-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .roi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .ad-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .persona-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 100px 20px 60px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .summary-flow {
+                flex-direction: column;
+            }
+            
+            .summary-flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="nav-title">FUNNEL_STRATEGY_v1.0</div>
+            <div class="nav-links">
+                <a href="#persona">타겟</a>
+                <a href="#barrier">장벽분석</a>
+                <a href="#funnel">퍼널구조</a>
+                <a href="#landing">랜딩설계</a>
+                <a href="#consult">상담설계</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-badge">SALES FUNNEL STRATEGY</div>
+            <h1>
+                300만원 결정을 내리게 하는<br>
+                <span>의사결정 이동 구조</span>
+            </h1>
+            <p class="hero-desc">
+                "프리랜서가 되고 싶지만 망설이는 사람"이 
+                합리적 판단 끝에 투자를 결정하도록 
+                광고 → 랜딩 → 상담 퍼널을 설계합니다.
+            </p>
+        </section>
+
+        <!-- Persona Section -->
+        <section class="persona-section" id="persona">
+            <div class="section-header">
+                <span class="section-number">01 / TARGET PERSONA</span>
+                <h2 class="section-title">타겟 페르소나 정의</h2>
+                <p class="section-desc">
+                    구매를 망설이는 이유를 정확히 알아야 설득 구조를 설계할 수 있습니다.
+                </p>
+            </div>
+
+            <div class="persona-grid">
+                <div class="persona-card">
+                    <h3><span>👤</span> 핵심 타겟</h3>
+                    <div class="persona-item">
+                        <div class="persona-label">나이 / 성별</div>
+                        <div class="persona-value">28-38세, 성별 무관</div>
+                    </div>
+                    <div class="persona-item">
+                        <div class="persona-label">현재 상황</div>
+                        <div class="persona-value">회사원 3-8년차, 번아웃 경험 or 현재 진행형</div>
+                    </div>
+                    <div class="persona-item">
+                        <div class="persona-label">월 가처분소득</div>
+                        <div class="persona-value">200-400만원 (저축 가능 but 여유롭진 않음)</div>
+                    </div>
+                    <div class="persona-item">
+                        <div class="persona-label">프리랜서 관심 계기</div>
+                        <div class="persona-value">유튜브/블로그에서 "월 500 벌었다" 후기 반복 노출</div>
+                    </div>
+                    <div class="persona-item">
+                        <div class="persona-label">스킬 보유 여부</div>
+                        <div class="persona-value">있음(디자인/개발/마케팅/글쓰기) but 시장성 불확실</div>
+                    </div>
+                </div>
+
+                <div class="persona-card">
+                    <h3><span>🧠</span> 심리 상태</h3>
+                    <div class="persona-item">
+                        <div class="persona-label">핵심 욕구</div>
+                        <div class="persona-value">"내 시간을 내가 통제하고 싶다"</div>
+                    </div>
+                    <div class="persona-item">
+                        <div class="persona-label">두려움</div>
+                        <div class="persona-value">"막상 나가면 일 못 구하면 어쩌지?"</div>
+                    </div>
+                    <div class="persona-item">
+                        <div class="persona-label">불신</div>
+                        <div class="persona-value">"강의/코칭은 다 똑같이 뻔한 말 아닌가?"</div>
+                    </div>
+                    <div class="persona-item">
+                        <div class="persona-label">자기 합리화</div>
+                        <div class="persona-value">"조금 더 준비하고 나가자" (무한 반복)</div>
+                    </div>
+                    <div class="persona-item">
+                        <div class="persona-label">결정 트리거</div>
+                        <div class="persona-value">"내 또래가 성공했다" or "나만 모르는 방법이 있다"</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Barrier Section -->
+        <section class="barrier-section" id="barrier">
+            <div class="section-header">
+                <span class="section-number">02 / BARRIER ANALYSIS</span>
+                <h2 class="section-title">심리적 장벽과 해소 전략</h2>
+                <p class="section-desc">
+                    300만원 결정을 가로막는 5가지 장벽을 순서대로 해소해야 합니다.
+                </p>
+            </div>
+
+            <div class="barrier-flow">
+                <div class="barrier-card">
+                    <div class="barrier-level">
+                        <div class="barrier-level-num">1</div>
+                        <div class="barrier-level-label">LEVEL</div>
+                    </div>
+                    <div class="barrier-content">
+                        <div class="barrier-title">실패 공포</div>
+                        <div class="barrier-quote">"300만원 쓰고 안 되면 그냥 돈 버린 거잖아"</div>
+                    </div>
+                    <div class="barrier-arrow">→</div>
+                    <div class="barrier-solution">
+                        <div class="barrier-solution-title">환불 보장 + 성과 연동</div>
+                        <div class="barrier-solution-desc">첫 3개월 수익 0원이면 전액 환불. 리스크를 우리가 짊어집니다.</div>
+                    </div>
+                </div>
+
+                <div class="barrier-card">
+                    <div class="barrier-level">
+                        <div class="barrier-level-num">2</div>
+                        <div class="barrier-level-label">LEVEL</div>
+                    </div>
+                    <div class="barrier-content">
+                        <div class="barrier-title">정보 과잉으로 인한 마비</div>
+                        <div class="barrier-quote">"뭐가 맞는 방법인지 모르겠어. 다 말이 달라"</div>
+                    </div>
+                    <div class="barrier-arrow">→</div>
+                    <div class="barrier-solution">
+                        <div class="barrier-solution-title">단 하나의 로드맵</div>
+                        <div class="barrier-solution-desc">"우리는 딱 한 가지만 합니다. 입증된 방식 하나."</div>
+                    </div>
+                </div>
+
+                <div class="barrier-card">
+                    <div class="barrier-level">
+                        <div class="barrier-level-num">3</div>
+                        <div class="barrier-level-label">LEVEL</div>
+                    </div>
+                    <div class="barrier-content">
+                        <div class="barrier-title">나만 안 될 것 같은 불안</div>
+                        <div class="barrier-quote">"저 사람들은 원래 잘하는 사람들 아니야?"</div>
+                    </div>
+                    <div class="barrier-arrow">→</div>
+                    <div class="barrier-solution">
+                        <div class="barrier-solution-title">동류의식 증거</div>
+                        <div class="barrier-solution-desc">"김과장, 32세, 디자인 비전공. 4개월 만에 월 380만원" - 구체적 동일 조건 케이스</div>
+                    </div>
+                </div>
+
+                <div class="barrier-card">
+                    <div class="barrier-level">
+                        <div class="barrier-level-num">4</div>
+                        <div class="barrier-level-label">LEVEL</div>
+                    </div>
+                    <div class="barrier-content">
+                        <div class="barrier-title">가격 저항</div>
+                        <div class="barrier-quote">"300만원이면... 괜찮은 노트북 한 대 값인데"</div>
+                    </div>
+                    <div class="barrier-arrow">→</div>
+                    <div class="barrier-solution">
+                        <div class="barrier-solution-title">기회비용 프레이밍</div>
+                        <div class="barrier-solution-desc">"6개월 더 고민하면 1,800만원 월급 기회비용. 지금 300 vs 나중 1,800"</div>
+                    </div>
+                </div>
+
+                <div class="barrier-card">
+                    <div class="barrier-level">
+                        <div class="barrier-level-num">5</div>
+                        <div class="barrier-level-label">LEVEL</div>
+                    </div>
+                    <div class="barrier-content">
+                        <div class="barrier-title">결정 회피</div>
+                        <div class="barrier-quote">"조금 더 알아보고 결정할게요"</div>
+                    </div>
+                    <div class="barrier-arrow">→</div>
+                    <div class="barrier-solution">
+                        <div class="barrier-solution-title">데드라인 + 즉시 가치</div>
+                        <div class="barrier-solution-desc">상담 후 24시간 결제 시 1:1 포트폴리오 컨설팅(50만원 상당) 추가</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Funnel Section -->
+        <section class="funnel-section" id="funnel">
+            <div class="section-header">
+                <span class="section-number">03 / FUNNEL STRUCTURE</span>
+                <h2 class="section-title">광고 → 랜딩 → 상담 퍼널 구조</h2>
+                <p class="section-desc">
+                    각 단계별 목표와 심리 변화, 예상 전환율입니다.
+                </p>
+            </div>
+
+            <div class="funnel-container">
+                <!-- Stage 1: Ad -->
+                <div class="funnel-stage">
+                    <div class="funnel-stage-indicator">
+                        <div class="funnel-stage-dot ad">1</div>
+                        <div class="funnel-stage-name">광고</div>
+                        <div class="funnel-stage-conversion">CTR 3-5%</div>
+                    </div>
+                    
+                    <div class="funnel-main-content">
+                        <div class="funnel-main-header">
+                            <div>
+                                <div class="funnel-main-title">문제 자각 + 호기심 유발</div>
+                                <div class="funnel-main-subtitle">스크롤 멈춤 → 클릭까지 3초</div>
+                            </div>
+                            <div class="funnel-emotion-tag">😫 현재 고통</div>
+                        </div>
+                        <div class="funnel-content-grid">
+                            <div class="funnel-content-box">
+                                <h4>핵심 메시지</h4>
+                                <p>"회사 다니면서 프리랜서 준비? 그래서 2년째 준비만 하고 있죠"</p>
+                            </div>
+                            <div class="funnel-content-box">
+                                <h4>타겟 채널</h4>
+                                <ul>
+                                    <li>인스타그램 (퇴근 후 7-11PM)</li>
+                                    <li>유튜브 (재테크/자기계발 채널)</li>
+                                    <li>페이스북 (30대 직장인 그룹)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="funnel-metrics">
+                        <div class="funnel-metric">
+                            <div class="funnel-metric-value">10,000</div>
+                            <div class="funnel-metric-label">노출</div>
+                        </div>
+                        <div class="funnel-metric">
+                            <div class="funnel-metric-value">400</div>
+                            <div class="funnel-metric-label">클릭</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 2: Landing -->
+                <div class="funnel-stage">
+                    <div class="funnel-stage-indicator">
+                        <div class="funnel-stage-dot landing">2</div>
+                        <div class="funnel-stage-name">랜딩</div>
+                        <div class="funnel-stage-conversion">CVR 8-12%</div>
+                    </div>
+                    
+                    <div class="funnel-main-content">
+                        <div class="funnel-main-header">
+                            <div>
+                                <div class="funnel-main-title">신뢰 구축 + 행동 유도</div>
+                                <div class="funnel-main-subtitle">평균 체류시간 4분, 스크롤 깊이 85%</div>
+                            </div>
+                            <div class="funnel-emotion-tag">🤔 검증 모드</div>
+                        </div>
+                        <div class="funnel-content-grid">
+                            <div class="funnel-content-box">
+                                <h4>전환 목표</h4>
+                                <p>무료 상담 신청 폼 제출 (이름, 연락처, 현재 상황)</p>
+                            </div>
+                            <div class="funnel-content-box">
+                                <h4>페이지 구성</h4>
+                                <ul>
+                                    <li>공감 → 증거 → 방법론 → CTA</li>
+                                    <li>스크롤 트리거 기반 CTA 반복</li>
+                                    <li>중간 이탈 방지 팝업</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="funnel-metrics">
+                        <div class="funnel-metric">
+                            <div class="funnel-metric-value">400</div>
+                            <div class="funnel-metric-label">유입</div>
+                        </div>
+                        <div class="funnel-metric">
+                            <div class="funnel-metric-value">40</div>
+                            <div class="funnel-metric-label">신청</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 3: Consult -->
+                <div class="funnel-stage">
+                    <div class="funnel-stage-indicator">
+                        <div class="funnel-stage-dot consult">3</div>
+                        <div class="funnel-stage-name">상담</div>
+                        <div class="funnel-stage-conversion">Close 20-30%</div>
+                    </div>
+                    
+                    <div class="funnel-main-content">
+                        <div class="funnel-main-header">
+                            <div>
+                                <div class="funnel-main-title">맞춤 진단 + 결정 촉구</div>
+                                <div class="funnel-main-subtitle">30분 통화, 구조화된 스크립트</div>
+                            </div>
+                            <div class="funnel-emotion-tag">🎯 결정 모드</div>
+                        </div>
+                        <div class="funnel-content-grid">
+                            <div class="funnel-content-box">
+                                <h4>상담 목표</h4>
+                                <p>결제 완료 or 명확한 거절 (애매한 보류 최소화)</p>
+                            </div>
+                            <div class="funnel-content-box">
+                                <h4>핵심 전략</h4>
+                                <ul>
+                                    <li>개인 상황 깊이 파악 (공감 레버리지)</li>
+                                    <li>맞춤 로드맵 제시 (구체성)</li>
+                                    <li>한정 혜택으로 즉시 결정 유도</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="funnel-metrics">
+                        <div class="funnel-metric">
+                            <div class="funnel-metric-value">40</div>
+                            <div class="funnel-metric-label">상담</div>
+                        </div>
+                        <div class="funnel-metric">
+                            <div class="funnel-metric-value">10</div>
+                            <div class="funnel-metric-label">결제</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Landing Structure Section -->
+        <section class="landing-section" id="landing">
+            <div class="section-header">
+                <span class="section-number">04 / LANDING PAGE STRUCTURE</span>
+                <h2 class="section-title">랜딩 페이지 상세 설계</h2>
+                <p class="section-desc">
+                    스크롤 위치별 심리 상태 변화와 해당 블록의 역할입니다.
+                </p>
+            </div>
+
+            <div class="landing-flow">
+                <div class="landing-block">
+                    <div class="landing-block-index">
+                        <div class="landing-block-num">01</div>
+                        <div class="landing-block-scroll">0%</div>
+                    </div>
+                    <div class="landing-block-main">
+                        <div class="landing-block-title">히어로: 문제 정의</div>
+                        <div class="landing-block-content">
+                            "회사 다니면서 프리랜서 준비한다는 게,<br>
+                            결국 아무것도 안 하는 거라는 걸 알고 계시죠?"
+                        </div>
+                        <div class="landing-block-elements">
+                            <span class="landing-element">헤드라인</span>
+                            <span class="landing-element">서브헤드</span>
+                            <span class="landing-element">CTA버튼(무료상담)</span>
+                        </div>
+                    </div>
+                    <div class="landing-block-psychology">
+                        <div class="landing-psych-label">심리 변화</div>
+                        <div class="landing-psych-before">"또 광고네" → 스크롤 하려다 멈춤</div>
+                        <div class="landing-psych-after">"어... 나 얘기하는 거 맞네"</div>
+                        <div class="landing-psych-trigger">Trigger: 구체적 상황 묘사로 자기 투영</div>
+                    </div>
+                </div>
+
+                <div class="landing-block">
+                    <div class="landing-block-index">
+                        <div class="landing-block-num">02</div>
+                        <div class="landing-block-scroll">15%</div>
+                    </div>
+                    <div class="landing-block-main">
+                        <div class="landing-block-title">고통 증폭</div>
+                        <div class="landing-block-content">
+                            "6개월 후에도 같은 자리에 있을 건가요?"<br>
+                            - 현재 상태 유지의 기회비용 시각화<br>
+                            - 시간이 지날수록 불리해지는 시장 상황
+                        </div>
+                        <div class="landing-block-elements">
+                            <span class="landing-element">타임라인 그래픽</span>
+                            <span class="landing-element">기회비용 계산기</span>
+                        </div>
+                    </div>
+                    <div class="landing-block-psychology">
+                        <div class="landing-psych-label">심리 변화</div>
+                        <div class="landing-psych-before">"뭐 급할 건 없잖아"</div>
+                        <div class="landing-psych-after">"근데 진짜 이러다가 늙겠다..."</div>
+                        <div class="landing-psych-trigger">Trigger: 손실 회피 심리 자극</div>
+                    </div>
+                </div>
+
+                <div class="landing-block">
+                    <div class="landing-block-index">
+                        <div class="landing-block-num">03</div>
+                        <div class="landing-block-scroll">30%</div>
+                    </div>
+                    <div class="landing-block-main">
+                        <div class="landing-block-title">희망 제시 (Before/After)</div>
+                        <div class="landing-block-content">
+                            "김현수, 34세, 삼성전자 6년차"<br>
+                            Before: 월급 380만원, 주 60시간 근무<br>
+                            After: 월 수익 520만원, 하루 5시간 자유근무
+                        </div>
+                        <div class="landing-block-elements">
+                            <span class="landing-element">실제 인물 사진</span>
+                            <span class="landing-element">수익 인증 스크린샷</span>
+                            <span class="landing-element">Before/After 카드</span>
+                        </div>
+                    </div>
+                    <div class="landing-block-psychology">
+                        <div class="landing-psych-label">심리 변화</div>
+                        <div class="landing-psych-before">"저 사람들은 원래 잘하는 사람 아냐?"</div>
+                        <div class="landing-psych-after">"와 삼성 다니다 나온 사람도 있네? 나도 가능하려나..."</div>
+                        <div class="landing-psych-trigger">Trigger: 동류의식 + 구체적 숫자</div>
+                    </div>
+                </div>
+
+                <div class="landing-block">
+                    <div class="landing-block-index">
+                        <div class="landing-block-num">04</div>
+                        <div class="landing-block-scroll">45%</div>
+                    </div>
+                    <div class="landing-block-main">
+                        <div class="landing-block-title">방법론 개요</div>
+                        <div class="landing-block-content">
+                            "3단계 프리랜서 런칭 시스템"<br>
+                            1단계: 스킬 상품화 (4주)<br>
+                            2단계: 첫 클라이언트 확보 (4주)<br>
+                            3단계: 수익 구조 안정화 (4주)
+                        </div>
+                        <div class="landing-block-elements">
+                            <span class="landing-element">3단계 다이어그램</span>
+                            <span class="landing-element">각 단계별 핵심 활동</span>
+                        </div>
+                    </div>
+                    <div class="landing-block-psychology">
+                        <div class="landing-psych-label">심리 변화</div>
+                        <div class="landing-psych-before">"뭘 배우는 건데? 또 이론만 잔뜩?"</div>
+                        <div class="landing-psych-after">"오 구조가 명확하네. 12주면 빠르네"</div>
+                        <div class="landing-psych-trigger">Trigger: 명확성 + 빠른 결과 기대</div>
+                    </div>
+                </div>
+
+                <div class="landing-block">
+                    <div class="landing-block-index">
+                        <div class="landing-block-num">05</div>
+                        <div class="landing-block-scroll">55%</div>
+                    </div>
+                    <div class="landing-block-main">
+                        <div class="landing-block-title">사회적 증거 집중</div>
+                        <div class="landing-block-content">
+                            - 수강생 후기 캐러셀 (최소 5개, 영상 포함)<br>
+                            - "지금까지 847명이 수료했습니다"<br>
+                            - 수익 인증 갤러리
+                        </div>
+                        <div class="landing-block-elements">
+                            <span class="landing-element">후기 슬라이더</span>
+                            <span class="landing-element">숫자 카운터</span>
+                            <span class="landing-element">인증 갤러리</span>
+                        </div>
+                    </div>
+                    <div class="landing-block-psychology">
+                        <div class="landing-psych-label">심리 변화</div>
+                        <div class="landing-psych-before">"후기가 진짜일까?"</div>
+                        <div class="landing-psych-after">"이 정도면... 뭔가 있긴 있나 보네"</div>
+                        <div class="landing-psych-trigger">Trigger: 군중 심리 + 구체적 증거</div>
+                    </div>
+                </div>
+
+                <div class="landing-block">
+                    <div class="landing-block-index">
+                        <div class="landing-block-num">06</div>
+                        <div class="landing-block-scroll">70%</div>
+                    </div>
+                    <div class="landing-block-main">
+                        <div class="landing-block-title">리스크 제거</div>
+                        <div class="landing-block-content">
+                            "100% 환불 보장"<br>
+                            3개월 내 월 100만원 수익 미달성 시 전액 환불.<br>
+                            조건: 주어진 과제 80% 이상 완료자에 한함.
+                        </div>
+                        <div class="landing-block-elements">
+                            <span class="landing-element">보장 뱃지</span>
+                            <span class="landing-element">환불 조건 명시</span>
+                        </div>
+                    </div>
+                    <div class="landing-block-psychology">
+                        <div class="landing-psych-label">심리 변화</div>
+                        <div class="landing-psych-before">"300만원 날리면 어쩌지..."</div>
+                        <div class="landing-psych-after">"환불도 되네? 그럼 손해는 없겠다"</div>
+                        <div class="landing-psych-trigger">Trigger: 리스크 반전 (Risk Reversal)</div>
+                    </div>
+                </div>
+
+                <div class="landing-block">
+                    <div class="landing-block-index">
+                        <div class="landing-block-num">07</div>
+                        <div class="landing-block-scroll">80%</div>
+                    </div>
+                    <div class="landing-block-main">
+                        <div class="landing-block-title">가격 프레이밍</div>
+                        <div class="landing-block-content">
+                            "하루 커피 두 잔 값으로 인생을 바꾸세요"<br>
+                            300만원 ÷ 12주 ÷ 7일 = 하루 3,571원<br>
+                            비교: 비슷한 오프라인 부트캠프 1,200만원
+                        </div>
+                        <div class="landing-block-elements">
+                            <span class="landing-element">가격 비교 표</span>
+                            <span class="landing-element">일일 환산 계산</span>
+                        </div>
+                    </div>
+                    <div class="landing-block-psychology">
+                        <div class="landing-psych-label">심리 변화</div>
+                        <div class="landing-psych-before">"300만원은 좀 부담되는데..."</div>
+                        <div class="landing-psych-after">"하루 3천원이면... 생각보다 싸네"</div>
+                        <div class="landing-psych-trigger">Trigger: 앵커링 + 분할 프레이밍</div>
+                    </div>
+                </div>
+
+                <div class="landing-block">
+                    <div class="landing-block-index">
+                        <div class="landing-block-num">08</div>
+                        <div class="landing-block-scroll">90%</div>
+                    </div>
+                    <div class="landing-block-main">
+                        <div class="landing-block-title">최종 CTA + 긴급성</div>
+                        <div class="landing-block-content">
+                            "무료 상담 신청하기"<br>
+                            이번 주 상담 가능 인원: 5명 (현재 3명 남음)<br>
+                            상담 후 24시간 내 결제 시 1:1 멘토링 1회 추가 제공
+                        </div>
+                        <div class="landing-block-elements">
+                            <span class="landing-element">폼 임베드</span>
+                            <span class="landing-element">카운트다운</span>
+                            <span class="landing-element">한정 뱃지</span>
+                        </div>
+                    </div>
+                    <div class="landing-block-psychology">
+                        <div class="landing-psych-label">심리 변화</div>
+                        <div class="landing-psych-before">"일단 북마크해두고 나중에..."</div>
+                        <div class="landing-psych-after">"지금 신청 안 하면 놓칠 수도 있겠다"</div>
+                        <div class="landing-psych-trigger">Trigger: 희소성 + 즉시 보상</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Creative Section -->
+        <section class="ad-section" id="ad">
+            <div class="section-header">
+                <span class="section-number">05 / AD CREATIVE</span>
+                <h2 class="section-title">광고 크리에이티브 설계</h2>
+                <p class="section-desc">
+                    타겟의 현재 감정 상태에 따른 3가지 광고 유형입니다.
+                </p>
+            </div>
+
+            <div class="ad-grid">
+                <div class="ad-card">
+                    <div class="ad-card-header">
+                        <div class="ad-card-type">Pain Point 공략형</div>
+                        <div class="ad-card-title">현재 고통 자극</div>
+                    </div>
+                    <div class="ad-card-body">
+                        <div class="ad-hook">"월요일 아침, 또 출근해야 한다는 생각에 눈 뜨기 싫었던 적 있으시죠?"</div>
+                        <div class="ad-body-text">
+                            퇴사 후 프리랜서로 월 500 버는 사람들의 비밀.<br>
+                            그들은 '준비'가 아니라 '실행'을 먼저 했습니다.
+                        </div>
+                        <div class="ad-cta">무료 상담 받기 →</div>
+                    </div>
+                    <div class="ad-card-footer">
+                        <span>Target: 번아웃 진행형</span>
+                        <span>Format: 카드뉴스</span>
+                    </div>
+                </div>
+
+                <div class="ad-card">
+                    <div class="ad-card-header">
+                        <div class="ad-card-type">Social Proof형</div>
+                        <div class="ad-card-title">성공 사례 제시</div>
+                    </div>
+                    <div class="ad-card-body">
+                        <div class="ad-hook">"삼성 6년차 김과장, 퇴사 4개월 만에 월 520만원"</div>
+                        <div class="ad-body-text">
+                            그가 쓴 방법은 단순했습니다.<br>
+                            '잘하는 것'을 '팔리는 것'으로 바꾼 것뿐.<br>
+                            당신도 이미 가지고 있는 게 있습니다.
+                        </div>
+                        <div class="ad-cta">무료 진단받기 →</div>
+                    </div>
+                    <div class="ad-card-footer">
+                        <span>Target: 정보 수집 단계</span>
+                        <span>Format: 영상 15초</span>
+                    </div>
+                </div>
+
+                <div class="ad-card">
+                    <div class="ad-card-header">
+                        <div class="ad-card-type">Urgency형</div>
+                        <div class="ad-card-title">기회비용 자극</div>
+                    </div>
+                    <div class="ad-card-body">
+                        <div class="ad-hook">"프리랜서 준비만 2년째?<br>그 2년 동안 잃은 건 시간만이 아닙니다"</div>
+                        <div class="ad-body-text">
+                            1년 = 월급 12번 = 평균 4,200만원<br>
+                            지금 시작하면 6개월 후 첫 수익.<br>
+                            다음 달에 시작하면 7개월 후.
+                        </div>
+                        <div class="ad-cta">오늘 시작하기 →</div>
+                    </div>
+                    <div class="ad-card-footer">
+                        <span>Target: 무한 준비형</span>
+                        <span>Format: 정적 이미지</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Consult Flow Section -->
+        <section class="consult-section" id="consult">
+            <div class="section-header">
+                <span class="section-number">06 / CONSULTATION DESIGN</span>
+                <h2 class="section-title">상담 플로우 설계</h2>
+                <p class="section-desc">
+                    30분 상담에서 결제까지 이끄는 구조화된 대화 흐름입니다.
+                </p>
+            </div>
+
+            <div class="consult-timeline">
+                <div class="consult-step">
+                    <div class="consult-step-dot">1</div>
+                    <div class="consult-step-time">0:00 - 3:00</div>
+                    <div class="consult-step-content">
+                        <div class="consult-step-title">라포 형성 (Rapport Building)</div>
+                        <div class="consult-step-desc">
+                            이름 확인, 가벼운 인사. "바쁘신 와중에 시간 내주셔서 감사합니다"<br>
+                            목적: 긴장 해소 + 신뢰 기반 마련
+                        </div>
+                        <div class="consult-script">
+                            <div class="consult-script-label">스크립트</div>
+                            "OO님, 반갑습니다. 저는 OO 담당 OOO입니다. 오늘 편하게 대화 나누시면 됩니다. 제가 먼저 현재 상황 몇 가지 여쭤보고, 맞춤 방향 제안드릴게요."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="consult-step">
+                    <div class="consult-step-dot">2</div>
+                    <div class="consult-step-time">3:00 - 10:00</div>
+                    <div class="consult-step-content">
+                        <div class="consult-step-title">상황 진단 (Discovery)</div>
+                        <div class="consult-step-desc">
+                            현재 직장, 보유 스킬, 프리랜서 관심 계기, 가장 큰 걱정 파악<br>
+                            목적: 구체적 상황 파악 + 공감 레버리지 확보
+                        </div>
+                        <div class="consult-script">
+                            <div class="consult-script-label">핵심 질문</div>
+                            "지금 하시는 일이 어떤 건가요?" → "프리랜서에 관심 갖게 된 계기가 있으실까요?" → "막상 시작하려니까 가장 걸리는 게 뭐예요?"
+                        </div>
+                    </div>
+                </div>
+
+                <div class="consult-step">
+                    <div class="consult-step-dot">3</div>
+                    <div class="consult-step-time">10:00 - 15:00</div>
+                    <div class="consult-step-content">
+                        <div class="consult-step-title">고통 증폭 (Agitation)</div>
+                        <div class="consult-step-desc">
+                            현재 상태 유지 시 미래 시나리오 제시, 기회비용 계산<br>
+                            목적: 현상 유지의 비용을 체감하게 함
+                        </div>
+                        <div class="consult-script">
+                            <div class="consult-script-label">스크립트</div>
+                            "그러면 지금 상태로 1년 더 다니시면... 월급 12번 받으시는 거죠. 근데 그 1년 동안 프리랜서 수익은 0원이고요. 그게 진짜 원하시는 건가요?"
+                        </div>
+                    </div>
+                </div>
+
+                <div class="consult-step">
+                    <div class="consult-step-dot">4</div>
+                    <div class="consult-step-time">15:00 - 22:00</div>
+                    <div class="consult-step-content">
+                        <div class="consult-step-title">솔루션 제시 (Presentation)</div>
+                        <div class="consult-step-desc">
+                            맞춤형 로드맵 제시, 비슷한 상황 성공 사례 공유<br>
+                            목적: "나도 가능하겠다" 확신 형성
+                        </div>
+                        <div class="consult-script">
+                            <div class="consult-script-label">스크립트</div>
+                            "OO님 상황이면, OOO 방식이 딱 맞으실 것 같아요. 저희 수강생 중에 비슷하게 OO 다니시다가 나오신 분 계시거든요. 그분이 4개월 만에 월 380 찍으셨어요. 하신 거 그대로 따라가시면 됩니다."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="consult-step">
+                    <div class="consult-step-dot">5</div>
+                    <div class="consult-step-time">22:00 - 27:00</div>
+                    <div class="consult-step-content">
+                        <div class="consult-step-title">반론 처리 (Objection Handling)</div>
+                        <div class="consult-step-desc">
+                            예상 반론에 대한 준비된 답변: 가격, 시간, 효과 불확실<br>
+                            목적: 마지막 장벽 제거
+                        </div>
+                        <div class="consult-script">
+                            <div class="consult-script-label">반론별 대응</div>
+                            "비싸요" → "하루 3,500원이에요. 커피 두 잔이요. 그리고 3개월 내 100만원 못 벌면 환불해드려요."<br><br>
+                            "시간이 없어요" → "주 5시간이면 됩니다. 출퇴근 시간 활용하시는 분도 많아요."<br><br>
+                            "더 알아보고요" → "물론이요. 근데 오늘 결정하시면 1:1 멘토링 1회 추가예요. 50만원 가치입니다."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="consult-step">
+                    <div class="consult-step-dot">6</div>
+                    <div class="consult-step-time">27:00 - 30:00</div>
+                    <div class="consult-step-content">
+                        <div class="consult-step-title">클로징 (Closing)</div>
+                        <div class="consult-step-desc">
+                            결제 유도 또는 명확한 다음 스텝 제시<br>
+                            목적: 애매한 보류 없이 YES/NO 확정
+                        </div>
+                        <div class="consult-script">
+                            <div class="consult-script-label">스크립트</div>
+                            "자, 정리하면요. OO님은 OOO 방식으로 12주 프로그램 진행하시면 됩니다. 지금 바로 시작하실 거예요, 아니면 다음 기수 기다리실 거예요? 참고로 다음 기수는 3주 뒤고, 오늘 혜택은 오늘까지입니다."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Decision Matrix -->
+        <section class="decision-section" id="decision">
+            <div class="section-header">
+                <span class="section-number">07 / DECISION MATRIX</span>
+                <h2 class="section-title">의사결정 이동 추적</h2>
+                <p class="section-desc">
+                    각 퍼널 단계에서 타겟의 심리 상태가 어떻게 변화하는지 추적합니다.
+                </p>
+            </div>
+
+            <div class="decision-table">
+                <div class="decision-header">
+                    <div class="decision-header-cell">심리적 장벽</div>
+                    <div class="decision-header-cell">광고 단계</div>
+                    <div class="decision-header-cell">랜딩 단계</div>
+                    <div class="decision-header-cell">상담 단계</div>
+                </div>
+                
+                <div class="decision-row">
+                    <div class="decision-cell">실패 공포</div>
+                    <div class="decision-cell"><span class="decision-status fear">● 높음</span><br>아직 해소 안됨</div>
+                    <div class="decision-cell"><span class="decision-status neutral">● 중간</span><br>환불 보장 제시</div>
+                    <div class="decision-cell"><span class="decision-status resolved">● 해소</span><br>맞춤 로드맵으로 확신</div>
+                </div>
+
+                <div class="decision-row">
+                    <div class="decision-cell">정보 과잉 마비</div>
+                    <div class="decision-cell"><span class="decision-status fear">● 높음</span><br>의심 상태</div>
+                    <div class="decision-cell"><span class="decision-status resolved">● 해소</span><br>단일 방법론 강조</div>
+                    <div class="decision-cell"><span class="decision-status resolved">● 해소</span><br>구체적 스텝 확인</div>
+                </div>
+
+                <div class="decision-row">
+                    <div class="decision-cell">나만 안 될 것 같음</div>
+                    <div class="decision-cell"><span class="decision-status fear">● 높음</span><br>타인 성공 = 남의 일</div>
+                    <div class="decision-cell"><span class="decision-status neutral">● 중간</span><br>동류 케이스로 연결</div>
+                    <div class="decision-cell"><span class="decision-status resolved">● 해소</span><br>"OO님 상황이랑 똑같아요"</div>
+                </div>
+
+                <div class="decision-row">
+                    <div class="decision-cell">가격 저항</div>
+                    <div class="decision-cell"><span class="decision-status neutral">● 미발생</span><br>가격 노출 전</div>
+                    <div class="decision-cell"><span class="decision-status neutral">● 중간</span><br>분할/비교 프레이밍</div>
+                    <div class="decision-cell"><span class="decision-status resolved">● 해소</span><br>기회비용 대비 제시</div>
+                </div>
+
+                <div class="decision-row">
+                    <div class="decision-cell">결정 회피</div>
+                    <div class="decision-cell"><span class="decision-status neutral">● 미발생</span><br>아직 관심 단계</div>
+                    <div class="decision-cell"><span class="decision-status neutral">● 중간</span><br>희소성 + 긴급성</div>
+                    <div class="decision-cell"><span class="decision-status resolved">● 해소</span><br>YES/NO 2지선다 압박</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROI Calculation -->
+        <section class="roi-section">
+            <div class="section-header">
+                <span class="section-number">08 / ROI PROJECTION</span>
+                <h2 class="section-title">예상 퍼널 성과</h2>
+                <p class="section-desc">
+                    월 광고비 500만원 기준 예상 수익률입니다.
+                </p>
+            </div>
+
+            <div class="roi-card">
+                <div class="roi-header">
+                    <div class="roi-title">월간 퍼널 예상 실적</div>
+                    <div class="roi-subtitle">광고비 500만원 / CPC 1,250원 / 상품가 300만원 기준</div>
+                </div>
+
+                <div class="roi-grid">
+                    <div class="roi-item">
+                        <div class="roi-item-value neutral">4,000</div>
+                        <div class="roi-item-label">랜딩 유입</div>
+                    </div>
+                    <div class="roi-item">
+                        <div class="roi-item-value neutral">400</div>
+                        <div class="roi-item-label">상담 신청 (10%)</div>
+                    </div>
+                    <div class="roi-item">
+                        <div class="roi-item-value neutral">320</div>
+                        <div class="roi-item-label">실제 상담 (80%)</div>
+                    </div>
+                    <div class="roi-item">
+                        <div class="roi-item-value positive">80</div>
+                        <div class="roi-item-label">결제 완료 (25%)</div>
+                    </div>
+                </div>
+
+                <div class="roi-calculation">
+                    <div class="roi-calc-title">▼ 수익 계산</div>
+                    <div class="roi-calc-row">
+                        <span>총 결제 건수</span>
+                        <span>80건</span>
+                    </div>
+                    <div class="roi-calc-row">
+                        <span>결제 단가</span>
+                        <span>3,000,000원</span>
+                    </div>
+                    <div class="roi-calc-row">
+                        <span>총 매출</span>
+                        <span>240,000,000원</span>
+                    </div>
+                    <div class="roi-calc-row">
+                        <span>광고비</span>
+                        <span>-5,000,000원</span>
+                    </div>
+                    <div class="roi-calc-row">
+                        <span>ROAS (광고수익비)</span>
+                        <span>4,800%</span>
+                    </div>
+                    <div class="roi-calc-row">
+                        <span>CPA (획득당비용)</span>
+                        <span>62,500원</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <section class="summary-section">
+            <h2 class="summary-title">퍼널 핵심 원칙 요약</h2>
+            
+            <div class="summary-flow">
+                <div class="summary-flow-item">
+                    <div class="summary-flow-icon">😫</div>
+                    <div class="summary-flow-title">문제 자각</div>
+                    <div class="summary-flow-desc">"나 이러다 늙겠다"</div>
+                </div>
+                <div class="summary-flow-arrow">→</div>
+                <div class="summary-flow-item">
+                    <div class="summary-flow-icon">🤔</div>
+                    <div class="summary-flow-title">해결책 탐색</div>
+                    <div class="summary-flow-desc">"방법이 있다고?"</div>
+                </div>
+                <div class="summary-flow-arrow">→</div>
+                <div class="summary-flow-item">
+                    <div class="summary-flow-icon">😮</div>
+                    <div class="summary-flow-title">증거 확인</div>
+                    <div class="summary-flow-desc">"진짜 된 사람 있네"</div>
+                </div>
+                <div class="summary-flow-arrow">→</div>
+                <div class="summary-flow-item">
+                    <div class="summary-flow-icon">🤩</div>
+                    <div class="summary-flow-title">확신 형성</div>
+                    <div class="summary-flow-desc">"나도 되겠다"</div>
+                </div>
+                <div class="summary-flow-arrow">→</div>
+                <div class="summary-flow-item">
+                    <div class="summary-flow-icon">✅</div>
+                    <div class="summary-flow-title">행동 결정</div>
+                    <div class="summary-flow-desc">"지금 신청하자"</div>
+                </div>
+            </div>
+
+            <p class="summary-insight">
+                이 퍼널의 핵심은 <strong>"예쁘게 만드는 것"이 아니라 "결정을 이동시키는 것"</strong>입니다.<br><br>
+                타겟의 머릿속에서는 "해야 하나 말아야 하나"가 끊임없이 충돌합니다.<br>
+                우리의 역할은 <strong>불확실성을 제거하고, 실패 리스크를 반전시키고, 지금 결정해야 할 이유를 만드는 것</strong>입니다.<br><br>
+                모든 문장, 모든 섹션, 모든 CTA는 <strong>하나의 질문에 답해야 합니다:</strong><br>
+                "이 순간, 타겟의 머릿속에서 무슨 생각이 들까? 그리고 그 생각을 어떻게 다음 단계로 이동시킬까?"
+            </p>
+        </section>
+    </div>
+
+    <script>
+        // Smooth scroll for nav links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply initial styles and observe
+        document.querySelectorAll('.persona-card, .barrier-card, .funnel-stage, .landing-block, .ad-card, .consult-step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+

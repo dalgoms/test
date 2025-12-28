@@ -1,0 +1,1928 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 콘텐츠 마케팅 워크스페이스</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4A90E2;
+            --primary-light: #6BA5E7;
+            --primary-dark: #2E5C8A;
+            --primary-glow: rgba(74, 144, 226, 0.2);
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #1a1d2e;
+            --bg-tertiary: #242840;
+            --bg-card: #1a1d2e;
+            --bg-elevated: #2a2e45;
+            
+            --text-primary: #FFFFFF;
+            --text-secondary: #A0A0A0;
+            --text-muted: #6B7280;
+            
+            --border: #2a2e45;
+            --border-light: rgba(255, 255, 255, 0.08);
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Pretendard', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            font-size: 14px;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 32px;
+            height: 72px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            z-index: 100;
+        }
+
+        .header-left { 
+            display: flex; 
+            align-items: center; 
+            gap: 16px;
+        }
+        
+        .logo img { height: 32px; width: auto; }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            padding-left: 16px;
+            border-left: 1px solid var(--border);
+        }
+
+        .header-right { display: flex; align-items: center; gap: 12px; }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            width: 220px;
+        }
+
+        .search-box:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
+        .search-box i { color: var(--text-muted); font-size: 18px; }
+        .search-box input { flex: 1; background: none; border: none; color: var(--text-primary); font-size: 14px; outline: none; }
+
+        .header-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .header-link:hover { background: var(--primary-glow); color: var(--primary); border-color: var(--primary); }
+        .header-link i { font-size: 16px; }
+
+        /* Main */
+        .main { padding: 32px; max-width: 1400px; margin: 0 auto; }
+
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            padding: 4px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .category-tab {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            background: transparent;
+            text-align: center;
+        }
+
+        .category-tab:hover { color: var(--text-primary); background: var(--bg-tertiary); }
+        .category-tab.active { color: white; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); }
+
+        .category-tab .count {
+            display: inline-block;
+            margin-left: 6px;
+            padding: 2px 8px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            font-size: 11px;
+        }
+
+        /* Quick Add */
+        .quick-add {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .quick-add-input {
+            flex: 1;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 18px;
+            font-size: 15px;
+            color: var(--text-primary);
+            outline: none;
+        }
+
+        .quick-add-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
+
+        .quick-add-select {
+            padding: 14px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .quick-add-btn {
+            padding: 14px 24px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .quick-add-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px var(--primary-glow); }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .stat-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .stat-card.active { border-color: var(--primary); background: var(--primary-glow); }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .stat-value { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+        .stat-label { font-size: 13px; color: var(--text-secondary); }
+
+        /* Content Grid */
+        .content-grid { display: grid; grid-template-columns: 260px 1fr; gap: 24px; }
+
+        /* Month List */
+        .month-list {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px;
+            height: fit-content;
+            position: sticky;
+            top: 96px;
+        }
+
+        .month-list-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+        }
+
+        .month-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .month-item:hover { background: var(--bg-tertiary); }
+        .month-item.active { background: var(--primary-glow); }
+
+        .month-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .month-name { flex: 1; font-size: 14px; font-weight: 500; }
+        .month-count { font-size: 12px; color: var(--text-muted); background: var(--bg-tertiary); padding: 3px 8px; border-radius: 6px; }
+
+        /* Item Section */
+        .item-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title { display: flex; align-items: center; gap: 12px; font-size: 18px; font-weight: 600; }
+
+        .section-badge {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        /* Item Table */
+        .item-row {
+            display: grid;
+            grid-template-columns: 50px 1fr 100px 120px 100px 50px;
+            align-items: center;
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .item-row:hover { background: var(--bg-tertiary); }
+
+        .item-checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .item-checkbox.checked { background: var(--success); border-color: var(--success); }
+        .item-checkbox.checked::after { content: '✓'; color: white; font-size: 12px; font-weight: 700; }
+
+        .item-info { display: flex; flex-direction: column; gap: 4px; }
+
+        .item-title-input {
+            background: transparent;
+            border: none;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+            outline: none;
+            width: 100%;
+        }
+
+        .item-meta { display: flex; gap: 6px; flex-wrap: wrap; }
+        .meta-tag { font-size: 11px; padding: 2px 8px; background: var(--bg-tertiary); border-radius: 4px; color: var(--text-secondary); }
+
+        .item-date { font-size: 13px; color: var(--text-secondary); }
+
+        .item-status { padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500; text-align: center; }
+        .status-idea { background: rgba(139, 92, 246, 0.15); color: #A78BFA; }
+        .status-planning { background: rgba(245, 158, 11, 0.15); color: #FBBF24; }
+        .status-confirmed { background: rgba(16, 185, 129, 0.15); color: #34D399; }
+        .status-completed { background: rgba(107, 114, 128, 0.15); color: #9CA3AF; }
+        .status-progress { background: rgba(74, 144, 226, 0.15); color: #6BA5E7; }
+
+        .item-extra { font-size: 13px; color: var(--text-secondary); text-align: center; }
+
+        .item-menu {
+            opacity: 0;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .item-row:hover .item-menu { opacity: 1; }
+
+        /* Add Row */
+        .add-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 24px;
+            color: var(--text-muted);
+            cursor: text;
+        }
+
+        .add-row:hover { background: var(--bg-tertiary); }
+        .add-row input { flex: 1; background: transparent; border: none; color: var(--text-primary); font-size: 14px; outline: none; }
+
+        /* Editor Panel */
+        .editor-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 200; }
+        .editor-overlay.active { display: block; }
+
+        .editor-panel {
+            display: none;
+            position: fixed;
+            right: 0; top: 0; bottom: 0;
+            width: 560px;
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border);
+            z-index: 300;
+            overflow-y: auto;
+        }
+
+        .editor-panel.active { display: block; }
+
+        .editor-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--bg-secondary);
+            z-index: 10;
+        }
+
+        .editor-status-select {
+            padding: 10px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            cursor: pointer;
+            min-width: 120px;
+            height: 40px;
+        }
+
+        .editor-close {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .editor-close:hover { background: var(--danger); color: white; }
+
+        .editor-content { padding: 24px; overflow-x: hidden; }
+
+        .editor-title {
+            font-size: 26px;
+            font-weight: 700;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            outline: none;
+            width: 100%;
+            margin-bottom: 24px;
+        }
+
+        .editor-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .editor-meta.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+        .editor-meta-item { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+        .editor-meta-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; }
+        .editor-meta-input {
+            padding: 10px 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .editor-meta-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
+
+        .editor-section { margin-bottom: 20px; }
+        .editor-section-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .editor-section-label i { font-size: 16px; }
+
+        .editor-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 14px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 14px;
+            line-height: 1.7;
+            resize: vertical;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .editor-textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
+
+        .editor-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 14px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            min-height: 52px;
+        }
+
+        .editor-keyword-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: var(--primary-glow);
+            border-radius: 6px;
+            font-size: 13px;
+            color: var(--primary-light);
+        }
+
+        .editor-keyword-remove { cursor: pointer; opacity: 0.6; }
+        .editor-keyword-remove:hover { opacity: 1; }
+
+        .keyword-input { border: none; background: transparent; color: var(--text-primary); font-size: 13px; outline: none; min-width: 100px; flex: 1; }
+
+        .editor-actions {
+            display: flex;
+            gap: 12px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            margin-top: 24px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+        }
+
+        .btn:hover { background: var(--bg-elevated); color: var(--text-primary); }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border: none; color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 16px var(--primary-glow); }
+        .btn-danger { color: var(--danger); border-color: rgba(239, 68, 68, 0.3); }
+        .btn-danger:hover { background: rgba(239, 68, 68, 0.15); }
+
+        /* Modal - Toss Style */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            background: rgba(0, 0, 0, 0.6); 
+            backdrop-filter: blur(4px);
+            z-index: 400; 
+            align-items: flex-end; 
+            justify-content: center;
+            padding: 0;
+        }
+        
+        .modal.active { display: flex; }
+        
+        .modal-content { 
+            background: var(--bg-secondary); 
+            border: none;
+            border-radius: 24px 24px 0 0; 
+            padding: 0;
+            width: 100%;
+            max-width: 480px;
+            max-height: 85vh; 
+            overflow: hidden;
+            transform: translateY(100%);
+            animation: slideUp 0.3s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to { transform: translateY(0); }
+        }
+
+        .modal-handle {
+            width: 36px;
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            margin: 12px auto 0;
+        }
+
+        .modal-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .modal-title { 
+            font-size: 18px; 
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .modal-close { 
+            width: 32px;
+            height: 32px;
+            border: none; 
+            background: var(--bg-tertiary);
+            border-radius: 50%;
+            font-size: 18px; 
+            cursor: pointer; 
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            max-height: calc(85vh - 180px);
+        }
+        
+        .export-preview { 
+            background: #0d1117; 
+            color: #c9d1d9; 
+            padding: 20px; 
+            border-radius: 16px; 
+            font-family: 'SF Mono', 'Fira Code', monospace; 
+            font-size: 12px; 
+            white-space: pre-wrap; 
+            max-height: 280px; 
+            overflow-y: auto;
+            line-height: 1.6;
+        }
+        
+        .modal-actions { 
+            display: flex; 
+            flex-direction: column;
+            gap: 8px; 
+            padding: 16px 24px 32px;
+            background: var(--bg-secondary);
+        }
+
+        .modal-actions .btn {
+            width: 100%;
+            justify-content: center;
+            padding: 16px 24px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .modal-actions .btn-primary {
+            background: var(--primary);
+            box-shadow: none;
+        }
+
+        .modal-actions .btn-primary:hover {
+            background: var(--primary-light);
+            transform: none;
+        }
+
+        .modal-actions .btn-secondary {
+            background: var(--bg-tertiary);
+            border: none;
+            color: var(--text-secondary);
+        }
+
+        .modal-actions .btn-secondary:hover {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+        }
+
+        /* Confirm Modal - Toss Style (Center) */
+        .confirm-modal {
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .confirm-modal .confirm-content {
+            max-width: 340px;
+            text-align: center;
+            border-radius: 24px;
+            transform: scale(0.9);
+            opacity: 0;
+            animation: popIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes popIn {
+            to { 
+                transform: scale(1); 
+                opacity: 1;
+            }
+        }
+
+        .confirm-modal .modal-handle {
+            display: none;
+        }
+
+        .confirm-body {
+            padding: 32px 24px 24px;
+        }
+
+        .confirm-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 20px;
+        }
+
+        .confirm-icon.warning {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+
+        .confirm-icon.info {
+            background: var(--primary-glow);
+            color: var(--primary);
+        }
+
+        .confirm-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .confirm-message {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .confirm-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 16px 24px 32px;
+        }
+
+        .confirm-actions .btn {
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+        }
+
+        .btn-confirm-cancel {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+        }
+
+        .btn-confirm-cancel:hover {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+        }
+
+        .btn-confirm-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-confirm-danger:hover {
+            background: #dc2626;
+        }
+
+        .btn-confirm-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-confirm-primary:hover {
+            background: var(--primary-light);
+        }
+
+        /* Toast - Toss Style */
+        .toast { 
+            position: fixed; 
+            bottom: 40px; 
+            left: 50%; 
+            transform: translateX(-50%) translateY(20px); 
+            background: #1a1d2e;
+            border: none;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            color: var(--text-primary); 
+            padding: 16px 24px; 
+            border-radius: 16px; 
+            font-size: 15px;
+            font-weight: 500;
+            z-index: 500; 
+            opacity: 0; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            display: flex; 
+            align-items: center; 
+            gap: 12px;
+        }
+        
+        .toast.show { 
+            transform: translateX(-50%) translateY(0); 
+            opacity: 1; 
+        }
+        
+        .toast i { 
+            width: 24px;
+            height: 24px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px; 
+            color: white;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+        /* Select / Dropdown Styling */
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: var(--bg-tertiary);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A0A0A0'%3E%3Cpath d='M12 16l-6-6h12z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            padding-right: 36px !important;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+            outline: none;
+        }
+
+        select:hover {
+            border-color: var(--primary);
+        }
+
+        select option {
+            background: #1a1d2e;
+            color: var(--text-primary);
+            padding: 12px 16px;
+            font-size: 14px;
+            border: none;
+        }
+
+        select option:hover,
+        select option:focus,
+        select option:checked {
+            background: var(--primary-glow);
+            color: var(--primary);
+        }
+
+        /* Dropdown focus/active border color */
+        select:focus,
+        select:active {
+            border-color: #5B9BD5;
+            box-shadow: 0 0 0 3px rgba(91, 155, 213, 0.2);
+        }
+
+        .quick-add-select {
+            border: 1px solid #3d5a80;
+        }
+
+        .quick-add-select:focus {
+            border-color: #5B9BD5;
+        }
+
+        /* Quick Add Select */
+        .quick-add-select {
+            min-width: 80px;
+        }
+
+        /* Editor Status Select */
+        .editor-status-select {
+            min-width: 120px;
+            height: 40px;
+            padding: 10px 36px 10px 16px !important;
+        }
+
+        /* Editor Meta Select */
+        select.editor-meta-input {
+            width: 100%;
+            padding: 10px 36px 10px 12px !important;
+        }
+
+        /* View Toggle */
+        .view-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            padding: 4px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            margin-bottom: 24px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .view-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .view-btn:hover { color: var(--text-primary); }
+        .view-btn.active { background: var(--primary); color: white; }
+        .view-btn i { font-size: 18px; }
+
+        /* Calendar */
+        .calendar-container { display: none; }
+        .calendar-container.active { display: block; }
+        .list-container.hidden { display: none; }
+
+        .calendar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .calendar-nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .calendar-nav-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.2s;
+        }
+
+        .calendar-nav-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+        .calendar-title { font-size: 24px; font-weight: 700; }
+
+        .calendar-today-btn {
+            padding: 10px 20px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .calendar-today-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+        .calendar-grid {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .calendar-weekday {
+            padding: 14px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .calendar-weekday:first-child { color: #EF4444; }
+        .calendar-weekday:last-child { color: #3B82F6; }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+
+        .calendar-day {
+            min-height: 120px;
+            padding: 8px;
+            border-right: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .calendar-day:nth-child(7n) { border-right: none; }
+        .calendar-day:hover { background: var(--bg-tertiary); }
+        .calendar-day.other-month { opacity: 0.4; }
+        .calendar-day.today { background: var(--primary-glow); }
+
+        .calendar-day-number {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .calendar-day:nth-child(7n+1) .calendar-day-number { color: #EF4444; }
+        .calendar-day:nth-child(7n) .calendar-day-number { color: #3B82F6; }
+        .calendar-day.other-month .calendar-day-number { color: var(--text-muted); }
+
+        .calendar-events { display: flex; flex-direction: column; gap: 4px; }
+
+        .calendar-event {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .calendar-event:hover { transform: translateX(2px); }
+        .calendar-event.seminar { background: rgba(74, 144, 226, 0.2); color: #6BA5E7; border-left: 3px solid #4A90E2; }
+        .calendar-event.press { background: rgba(16, 185, 129, 0.2); color: #34D399; border-left: 3px solid #10B981; }
+        .calendar-event.no-date { opacity: 0.7; border-left-style: dashed; font-style: italic; }
+
+        .calendar-more {
+            font-size: 11px;
+            color: var(--text-muted);
+            padding: 2px 8px;
+            cursor: pointer;
+        }
+
+        .calendar-more:hover { color: var(--primary); }
+
+        /* Credit */
+        .credit {
+            position: fixed;
+            bottom: 16px;
+            right: 24px;
+            font-size: 11px;
+            color: var(--text-muted);
+            opacity: 0.5;
+            transition: opacity 0.2s;
+            z-index: 50;
+        }
+
+        .credit:hover {
+            opacity: 1;
+        }
+
+        .credit span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        @media print {
+            .header, .quick-add, .month-list, .item-menu, .add-row, .editor-panel, .editor-overlay, .modal, .category-tabs, .view-toggle, .calendar-container, .credit { display: none !important; }
+            .main { padding: 20px; max-width: 100%; }
+            .content-grid { grid-template-columns: 1fr; }
+            .list-container.hidden { display: block !important; }
+            body { background: white; color: black; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <div class="logo"><img src="img/timbel logo.png" alt="Logo"></div>
+            <span class="header-title">콘텐츠 워크스페이스</span>
+        </div>
+        <div class="header-right">
+            <div class="search-box">
+                <i class="ri-search-line"></i>
+                <input type="text" placeholder="검색..." id="searchInput" oninput="searchItems()">
+            </div>
+            <a class="header-link" onclick="shareLink()"><i class="ri-share-line"></i> 공유</a>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Category Tabs -->
+        <div class="category-tabs">
+            <button class="category-tab active" onclick="changeCategory('seminar')">기획안 (이벤터스 외)<span class="count" id="countSeminar">0</span></button>
+            <button class="category-tab" onclick="changeCategory('press')">언론보도<span class="count" id="countPress">0</span></button>
+        </div>
+
+        <!-- Quick Add -->
+        <div class="quick-add">
+            <input type="text" class="quick-add-input" id="quickInput" placeholder="새 항목 추가... (Enter)" onkeydown="if(event.key==='Enter')quickAdd()">
+            <select class="quick-add-select" id="quickMonth">
+                <option value="1">1월</option><option value="2">2월</option><option value="3">3월</option>
+                <option value="4">4월</option><option value="5">5월</option><option value="6">6월</option>
+                <option value="7">7월</option><option value="8">8월</option><option value="9">9월</option>
+                <option value="10">10월</option><option value="11">11월</option><option value="12">12월</option>
+            </select>
+            <button class="quick-add-btn" onclick="quickAdd()">추가</button>
+        </div>
+
+        <!-- View Toggle -->
+        <div class="view-toggle">
+            <button class="view-btn active" onclick="switchView('list')"><i class="ri-list-check"></i> 리스트</button>
+            <button class="view-btn" onclick="switchView('calendar')"><i class="ri-calendar-line"></i> 캘린더</button>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card active" onclick="filterByStatus('all')">
+                <div class="stat-icon" style="background:var(--primary-glow);color:var(--primary)"><i class="ri-folder-line"></i></div>
+                <div class="stat-value" id="statAll">0</div>
+                <div class="stat-label">전체</div>
+            </div>
+            <div class="stat-card" onclick="filterByStatus('idea')">
+                <div class="stat-icon" style="background:rgba(139,92,246,0.15);color:#A78BFA"><i class="ri-lightbulb-line"></i></div>
+                <div class="stat-value" id="statIdea">0</div>
+                <div class="stat-label">아이디어</div>
+            </div>
+            <div class="stat-card" onclick="filterByStatus('progress')">
+                <div class="stat-icon" style="background:rgba(74,144,226,0.15);color:#6BA5E7"><i class="ri-loader-4-line"></i></div>
+                <div class="stat-value" id="statProgress">0</div>
+                <div class="stat-label">진행중</div>
+            </div>
+            <div class="stat-card" onclick="filterByStatus('completed')">
+                <div class="stat-icon" style="background:rgba(107,114,128,0.15);color:#9CA3AF"><i class="ri-check-double-line"></i></div>
+                <div class="stat-value" id="statCompleted">0</div>
+                <div class="stat-label">완료</div>
+            </div>
+        </div>
+
+        <!-- List View -->
+        <div class="list-container" id="listContainer">
+            <div class="content-grid">
+                <aside class="month-list">
+                    <div class="month-list-title">월별 보기</div>
+                    <div id="monthNav"></div>
+                </aside>
+                <div id="itemList"></div>
+            </div>
+        </div>
+
+        <!-- Calendar View -->
+        <div class="calendar-container" id="calendarContainer">
+            <div class="calendar-header">
+                <div class="calendar-nav">
+                    <button class="calendar-nav-btn" onclick="changeMonth(-1)"><i class="ri-arrow-left-s-line"></i></button>
+                    <h2 class="calendar-title" id="calendarTitle">2026년 1월</h2>
+                    <button class="calendar-nav-btn" onclick="changeMonth(1)"><i class="ri-arrow-right-s-line"></i></button>
+                </div>
+                <button class="calendar-today-btn" onclick="goToToday()">오늘</button>
+            </div>
+            <div class="calendar-grid">
+                <div class="calendar-weekdays">
+                    <div class="calendar-weekday">일</div>
+                    <div class="calendar-weekday">월</div>
+                    <div class="calendar-weekday">화</div>
+                    <div class="calendar-weekday">수</div>
+                    <div class="calendar-weekday">목</div>
+                    <div class="calendar-weekday">금</div>
+                    <div class="calendar-weekday">토</div>
+                </div>
+                <div class="calendar-days" id="calendarDays"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Editor Panel -->
+    <div class="editor-overlay" onclick="closeEditor()"></div>
+    <div class="editor-panel" id="editorPanel">
+        <div class="editor-header">
+            <select class="editor-status-select" id="editorStatus" onchange="updateEditorStatus()"></select>
+            <button class="editor-close" onclick="closeEditor()"><i class="ri-close-line"></i></button>
+        </div>
+        <div class="editor-content" id="editorContent"></div>
+    </div>
+
+    <!-- Export Modal - Toss Style -->
+    <div class="modal" id="exportModal" onclick="if(event.target===this)closeModal()">
+        <div class="modal-content">
+            <div class="modal-handle"></div>
+            <div class="modal-header">
+                <h3 class="modal-title">내보내기</h3>
+                <button class="modal-close" onclick="closeModal()"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="modal-body">
+                <pre class="export-preview" id="exportPreview"></pre>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="copyExport()">클립보드에 복사</button>
+                <button class="btn btn-secondary" onclick="downloadExport()">파일로 다운로드</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Modal - Toss Style -->
+    <div class="modal confirm-modal" id="confirmModal">
+        <div class="modal-content confirm-content">
+            <div class="modal-handle"></div>
+            <div class="confirm-body">
+                <div class="confirm-icon" id="confirmIcon">
+                    <i class="ri-delete-bin-line"></i>
+                </div>
+                <h3 class="confirm-title" id="confirmTitle">삭제하시겠습니까?</h3>
+                <p class="confirm-message" id="confirmMessage">이 작업은 되돌릴 수 없습니다.</p>
+            </div>
+            <div class="confirm-actions">
+                <button class="btn btn-confirm-cancel" id="confirmCancel">취소</button>
+                <button class="btn btn-confirm-danger" id="confirmOk">삭제</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast - Toss Style -->
+    <div class="toast" id="toast">
+        <i class="ri-check-line"></i>
+        <span id="toastMsg"></span>
+    </div>
+
+    <!-- Credit -->
+    <div class="credit">made by <span>SEYOUNG LEE</span></div>
+
+    <script>
+        // Data
+        let data = { seminar: [], press: [] };
+        let currentCategory = 'seminar';
+        let currentFilter = 'all';
+        let currentId = null;
+        let currentKeywords = [];
+
+        const categoryConfig = {
+            seminar: {
+                name: '기획안 (이벤터스 외)',
+                icon: 'ri-file-list-3-line',
+                color: '#4A90E2',
+                statuses: ['idea', 'planning', 'confirmed', 'completed'],
+                statusLabels: { idea: '아이디어', planning: '기획중', confirmed: '확정', completed: '완료' },
+                fields: ['date', 'time', 'attendees', 'goal', 'outline', 'keywords', 'notes']
+            },
+            press: {
+                name: '언론보도',
+                icon: 'ri-newspaper-line',
+                color: '#10B981',
+                statuses: ['idea', 'planning', 'progress', 'completed'],
+                statusLabels: { idea: '기획', planning: '컨택중', progress: '배포완료', completed: '게재완료' },
+                fields: ['pressType', 'media', 'mediaType', 'reporter', 'reporterContact', 'releaseDate', 'embargo', 'publishDate', 'keyMessage', 'quote', 'link', 'ave', 'tone', 'notes'],
+                pressTypes: ['신제품', '인사발표', '실적발표', '이벤트', '제휴/협력', '수상/인증', '위기관리', '기타'],
+                mediaTypes: ['종합일간지', '경제지', '업계전문지', '온라인매체', 'TV/방송', '통신사'],
+                tones: ['긍정', '중립', '부정', '미확인']
+            }
+        };
+
+        const monthColors = ['#EF4444','#F97316','#EAB308','#22C55E','#14B8A6','#0EA5E9','#3B82F6','#8B5CF6','#A855F7','#D946EF','#EC4899','#6B7280'];
+
+        // Init
+        function init() {
+            loadData();
+            if (!data.seminar.length) {
+                data.seminar = [
+                    { id: 1, title: '2026 비즈니스 트렌드', month: 1, date: '2026-01-08', time: '19:00-21:00', status: 'completed', attendees: '150명', goal: '트렌드 파악', outline: '', keywords: ['AI', '트렌드'], notes: '' },
+                    { id: 2, title: 'AI 업무 자동화', month: 1, date: '2026-01-15', time: '19:00-21:00', status: 'confirmed', attendees: '200명', goal: '', outline: '', keywords: ['AI'], notes: '' },
+                    { id: 3, title: 'OKR 워크숍', month: 2, date: '', time: '', status: 'planning', attendees: '', goal: '', outline: '', keywords: [], notes: '' }
+                ];
+                data.press = [
+                    { id: 1, title: 'AI 서비스 런칭 보도자료', month: 1, status: 'completed', pressType: '신제품', media: '조선일보', mediaType: '종합일간지', reporter: '김민수 기자', reporterContact: 'kim@chosun.com', releaseDate: '2026-01-08', embargo: '', publishDate: '2026-01-10', keyMessage: 'AI 기반 업무 자동화 솔루션 정식 출시', quote: '', link: 'https://example.com/news/1', ave: '1,500만원', tone: '긍정', notes: '' },
+                    { id: 2, title: '시리즈A 투자 유치', month: 2, status: 'planning', pressType: '실적발표', media: '', mediaType: '', reporter: '', reporterContact: '', releaseDate: '', embargo: '', publishDate: '', keyMessage: '', quote: '', link: '', ave: '', tone: '', notes: '' }
+                ];
+                saveData();
+            }
+            render();
+        }
+
+        function saveData() { localStorage.setItem('content-marketing-data', JSON.stringify(data)); }
+        function loadData() { const d = localStorage.getItem('content-marketing-data'); if(d) data = JSON.parse(d); }
+
+        function render() {
+            updateCounts();
+            renderList();
+            renderMonthNav();
+        }
+
+        function updateCounts() {
+            const items = data[currentCategory];
+            const counts = { all: items.length, idea: 0, planning: 0, progress: 0, confirmed: 0, completed: 0 };
+            items.forEach(i => counts[i.status] = (counts[i.status] || 0) + 1);
+
+            document.getElementById('statAll').textContent = counts.all;
+            document.getElementById('statIdea').textContent = counts.idea + (counts.planning || 0);
+            document.getElementById('statProgress').textContent = (counts.progress || 0) + (counts.confirmed || 0);
+            document.getElementById('statCompleted').textContent = counts.completed;
+
+            // Category counts
+            Object.keys(data).forEach(cat => {
+                const el = document.getElementById('count' + cat.charAt(0).toUpperCase() + cat.slice(1));
+                if (el) el.textContent = data[cat].length;
+            });
+        }
+
+        function renderList() {
+            const config = categoryConfig[currentCategory];
+            let items = data[currentCategory];
+
+            if (currentFilter !== 'all') {
+                if (currentFilter.startsWith('month-')) {
+                    items = items.filter(i => i.month === parseInt(currentFilter.split('-')[1]));
+                } else {
+                    items = items.filter(i => i.status === currentFilter || (currentFilter === 'progress' && i.status === 'confirmed'));
+                }
+            }
+
+            const byMonth = {};
+            items.forEach(i => { if (!byMonth[i.month]) byMonth[i.month] = []; byMonth[i.month].push(i); });
+
+            let html = '';
+            Object.keys(byMonth).sort((a,b) => a-b).forEach(month => {
+                html += `
+                <div class="item-section" id="month-${month}">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <div class="section-badge" style="background:${monthColors[month-1]}20;color:${monthColors[month-1]}">${month}</div>
+                            <span>${month}월</span>
+                        </div>
+                        <span style="font-size:13px;color:var(--text-muted)">${byMonth[month].length}개</span>
+                    </div>
+                    ${byMonth[month].map(i => renderRow(i, config)).join('')}
+                    <div class="add-row"><i class="ri-add-line"></i><input placeholder="새 항목 추가..." onkeydown="addInline(event, ${month})"></div>
+                </div>`;
+            });
+
+            document.getElementById('itemList').innerHTML = html || '<div style="text-align:center;padding:60px;color:var(--text-muted)">항목이 없습니다.</div>';
+        }
+
+        function renderRow(item, config) {
+            // 언론보도는 게재일, 세미나는 날짜 표시
+            const dateField = currentCategory === 'press' ? (item.publishDate || item.releaseDate) : item.date;
+            const dateStr = dateField ? new Date(dateField).toLocaleDateString('ko-KR', {month:'short', day:'numeric'}) : '-';
+            const statusClass = 'status-' + item.status;
+            const extra = getExtraInfo(item);
+            
+            // 추가 정보: 세미나=참가자, 언론보도=AVE
+            const extraInfo = currentCategory === 'press' ? (item.ave || item.media || '-') : (item.attendees || '-');
+
+            return `
+            <div class="item-row" onclick="openEditor(${item.id})">
+                <div class="item-checkbox ${item.status==='completed'?'checked':''}" onclick="event.stopPropagation();toggleComplete(${item.id})"></div>
+                <div class="item-info">
+                    <input type="text" class="item-title-input" value="${item.title}" onclick="event.stopPropagation()" onchange="updateTitle(${item.id}, this.value)">
+                    <div class="item-meta">${extra.map(e => `<span class="meta-tag">${e}</span>`).join('')}</div>
+                </div>
+                <div class="item-date">${dateStr}</div>
+                <div class="item-status ${statusClass}">${config.statusLabels[item.status]}</div>
+                <div class="item-extra">${extraInfo}</div>
+                <button class="item-menu" onclick="event.stopPropagation();openEditor(${item.id})"><i class="ri-more-line"></i></button>
+            </div>`;
+        }
+
+        function getExtraInfo(item) {
+            const extras = [];
+            if (item.keywords?.length) extras.push(...item.keywords.slice(0, 2));
+            if (item.pressType) extras.push(item.pressType);
+            if (item.media) extras.push(item.media);
+            if (item.tone) extras.push(item.tone);
+            return extras.slice(0, 3);
+        }
+
+        function renderMonthNav() {
+            let html = '';
+            for (let m = 1; m <= 12; m++) {
+                const count = data[currentCategory].filter(i => i.month === m).length;
+                html += `<div class="month-item ${currentFilter === 'month-'+m ? 'active' : ''}" onclick="filterByMonth(${m})">
+                    <div class="month-dot" style="background:${monthColors[m-1]}"></div>
+                    <span class="month-name">${m}월</span>
+                    <span class="month-count">${count}</span>
+                </div>`;
+            }
+            document.getElementById('monthNav').innerHTML = html;
+        }
+
+        function changeCategory(cat) {
+            currentCategory = cat;
+            currentFilter = 'all';
+            document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.category-tab[onclick="changeCategory('${cat}')"]`).classList.add('active');
+            render();
+        }
+
+        function filterByStatus(status) {
+            currentFilter = status;
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.stat-card').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.month-item').forEach(m => m.classList.remove('active'));
+            event?.target?.classList?.add('active');
+            render();
+        }
+
+        function filterByMonth(month) {
+            currentFilter = 'month-' + month;
+            document.querySelectorAll('.month-item').forEach(m => m.classList.remove('active'));
+            event.target.closest('.month-item').classList.add('active');
+            render();
+        }
+
+        function quickAdd() {
+            const title = document.getElementById('quickInput').value.trim();
+            const month = parseInt(document.getElementById('quickMonth').value);
+            if (!title) return;
+
+            const items = data[currentCategory];
+            const newId = Math.max(0, ...items.map(i => i.id)) + 1;
+            const newItem = { id: newId, title, month, date: '', status: 'idea' };
+
+            // Add default fields
+            if (currentCategory === 'seminar') Object.assign(newItem, { time: '', attendees: '', goal: '', outline: '', keywords: [], notes: '' });
+            if (currentCategory === 'press') Object.assign(newItem, { pressType: '', media: '', mediaType: '', reporter: '', reporterContact: '', releaseDate: '', embargo: '', publishDate: '', keyMessage: '', quote: '', link: '', ave: '', tone: '', notes: '' });
+
+            items.push(newItem);
+            saveData();
+            render();
+            document.getElementById('quickInput').value = '';
+            showToast('항목이 추가되었습니다');
+        }
+
+        function addInline(e, month) {
+            if (e.key !== 'Enter') return;
+            document.getElementById('quickMonth').value = month;
+            document.getElementById('quickInput').value = e.target.value;
+            quickAdd();
+            e.target.value = '';
+        }
+
+        function updateTitle(id, title) {
+            const item = data[currentCategory].find(i => i.id === id);
+            if (item) { item.title = title; saveData(); }
+        }
+
+        function toggleComplete(id) {
+            const item = data[currentCategory].find(i => i.id === id);
+            if (item) {
+                item.status = item.status === 'completed' ? 'planning' : 'completed';
+                saveData();
+                render();
+            }
+        }
+
+        function searchItems() {
+            const q = document.getElementById('searchInput').value.toLowerCase();
+            document.querySelectorAll('.item-row').forEach(row => {
+                row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+            });
+        }
+
+        // Editor
+        function openEditor(id) {
+            currentId = id;
+            const item = data[currentCategory].find(i => i.id === id);
+            if (!item) return;
+
+            const config = categoryConfig[currentCategory];
+
+            // Status select
+            const statusSelect = document.getElementById('editorStatus');
+            statusSelect.innerHTML = config.statuses.map(s => `<option value="${s}" ${item.status===s?'selected':''}>${config.statusLabels[s]}</option>`).join('');
+
+            // Build editor content
+            let html = `<input type="text" class="editor-title" id="editorTitle" value="${item.title}" placeholder="제목">`;
+
+            // Meta fields based on category
+            if (currentCategory === 'seminar') {
+                html += `<div class="editor-meta cols-3">
+                    <div class="editor-meta-item"><span class="editor-meta-label">날짜</span><input type="date" class="editor-meta-input" id="editorDate" value="${item.date || ''}"></div>
+                    <div class="editor-meta-item"><span class="editor-meta-label">시간</span><input type="text" class="editor-meta-input" id="editorTime" value="${item.time || ''}" placeholder="19:00-21:00"></div>
+                    <div class="editor-meta-item"><span class="editor-meta-label">예상 참가</span><input type="text" class="editor-meta-input" id="editorAttendees" value="${item.attendees || ''}" placeholder="100명"></div>
+                </div>`;
+                html += buildSection('goal', '목표', item.goal);
+                html += buildSection('outline', '진행 개요', item.outline);
+                html += buildKeywords(item.keywords);
+            } else if (currentCategory === 'press') {
+                // 보도자료 유형 & 매체 정보
+                html += `<div class="editor-section-label" style="margin-top:0">기본 정보</div>
+                <div class="editor-meta">
+                    <div class="editor-meta-item"><span class="editor-meta-label">보도자료 유형</span>
+                        <select class="editor-meta-input" id="editorPressType">
+                            <option value="">선택</option>
+                            ${config.pressTypes.map(t => `<option value="${t}" ${item.pressType===t?'selected':''}>${t}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="editor-meta-item"><span class="editor-meta-label">매체 유형</span>
+                        <select class="editor-meta-input" id="editorMediaType">
+                            <option value="">선택</option>
+                            ${config.mediaTypes.map(t => `<option value="${t}" ${item.mediaType===t?'selected':''}>${t}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="editor-meta-item"><span class="editor-meta-label">매체명</span><input type="text" class="editor-meta-input" id="editorMedia" value="${item.media || ''}" placeholder="조선일보, 한경 등"></div>
+                </div>`;
+                
+                // 기자 정보
+                html += `<div class="editor-section-label">기자 정보</div>
+                <div class="editor-meta">
+                    <div class="editor-meta-item"><span class="editor-meta-label">기자명</span><input type="text" class="editor-meta-input" id="editorReporter" value="${item.reporter || ''}" placeholder="홍길동 기자"></div>
+                    <div class="editor-meta-item"><span class="editor-meta-label">연락처 (이메일/전화)</span><input type="text" class="editor-meta-input" id="editorReporterContact" value="${item.reporterContact || ''}" placeholder="email@media.com / 010-0000-0000"></div>
+                </div>`;
+                
+                // 일정 정보
+                html += `<div class="editor-section-label">일정</div>
+                <div class="editor-meta cols-3">
+                    <div class="editor-meta-item"><span class="editor-meta-label">배포일</span><input type="date" class="editor-meta-input" id="editorReleaseDate" value="${item.releaseDate || ''}"></div>
+                    <div class="editor-meta-item"><span class="editor-meta-label">엠바고</span><input type="text" class="editor-meta-input" id="editorEmbargo" value="${item.embargo || ''}" placeholder="1/10 오전 6시"></div>
+                    <div class="editor-meta-item"><span class="editor-meta-label">게재일</span><input type="date" class="editor-meta-input" id="editorPublishDate" value="${item.publishDate || ''}"></div>
+                </div>`;
+                
+                // 핵심 메시지 & 인용문
+                html += buildSection('keyMessage', '핵심 메시지 (Key Message)', item.keyMessage);
+                html += buildSection('quote', '인용문 (Quote)', item.quote);
+                
+                // 결과 분석
+                html += `<div class="editor-section-label">결과 분석</div>
+                <div class="editor-meta cols-3">
+                    <div class="editor-meta-item"><span class="editor-meta-label">게재 링크</span><input type="url" class="editor-meta-input" id="editorLink" value="${item.link || ''}" placeholder="https://..."></div>
+                    <div class="editor-meta-item"><span class="editor-meta-label">광고환산가치 (AVE)</span><input type="text" class="editor-meta-input" id="editorAve" value="${item.ave || ''}" placeholder="1,500만원"></div>
+                    <div class="editor-meta-item"><span class="editor-meta-label">톤앤매너</span>
+                        <select class="editor-meta-input" id="editorTone">
+                            <option value="">선택</option>
+                            ${config.tones.map(t => `<option value="${t}" ${item.tone===t?'selected':''}>${t}</option>`).join('')}
+                        </select>
+                    </div>
+                </div>`;
+            }
+
+            html += buildSection('notes', '메모', item.notes);
+            html += `<div class="editor-actions">
+                <button class="btn btn-primary" onclick="saveEditor()"><i class="ri-save-line"></i> 저장</button>
+                <button class="btn" onclick="exportSingle()"><i class="ri-share-forward-line"></i> 내보내기</button>
+                <button class="btn btn-danger" onclick="deleteItem()" style="margin-left:auto"><i class="ri-delete-bin-line"></i> 삭제</button>
+            </div>`;
+
+            document.getElementById('editorContent').innerHTML = html;
+            currentKeywords = [...(item.keywords || [])];
+            if (currentCategory === 'seminar') renderKeywords();
+
+            document.querySelector('.editor-overlay').classList.add('active');
+            document.getElementById('editorPanel').classList.add('active');
+        }
+
+        function buildSection(id, label, value) {
+            return `<div class="editor-section">
+                <div class="editor-section-label">${label}</div>
+                <textarea class="editor-textarea" id="editor${id.charAt(0).toUpperCase()+id.slice(1)}">${value || ''}</textarea>
+            </div>`;
+        }
+
+        function buildKeywords(keywords) {
+            return `<div class="editor-section">
+                <div class="editor-section-label">키워드</div>
+                <div class="editor-keywords" id="editorKeywords" onclick="document.getElementById('keywordInput')?.focus()">
+                    <input type="text" class="keyword-input" id="keywordInput" placeholder="Enter로 추가..." onkeydown="addKeyword(event)">
+                </div>
+            </div>`;
+        }
+
+        function renderKeywords() {
+            const container = document.getElementById('editorKeywords');
+            if (!container) return;
+            container.innerHTML = currentKeywords.map((k, i) => `<span class="editor-keyword-tag">${k}<span class="editor-keyword-remove" onclick="removeKeyword(${i})">×</span></span>`).join('') +
+                '<input type="text" class="keyword-input" id="keywordInput" placeholder="Enter로 추가..." onkeydown="addKeyword(event)">';
+        }
+
+        function addKeyword(e) {
+            if (e.key !== 'Enter') return;
+            const v = e.target.value.trim();
+            if (v && !currentKeywords.includes(v)) { currentKeywords.push(v); renderKeywords(); }
+            e.target.value = '';
+        }
+
+        function removeKeyword(i) { currentKeywords.splice(i, 1); renderKeywords(); }
+
+        function closeEditor() {
+            document.querySelector('.editor-overlay').classList.remove('active');
+            document.getElementById('editorPanel').classList.remove('active');
+            currentId = null;
+        }
+
+        function saveEditor() {
+            if (!currentId) return;
+            const item = data[currentCategory].find(i => i.id === currentId);
+            if (!item) return;
+
+            item.title = document.getElementById('editorTitle')?.value || item.title;
+            item.status = document.getElementById('editorStatus')?.value || item.status;
+            item.date = document.getElementById('editorDate')?.value || '';
+            item.notes = document.getElementById('editorNotes')?.value || '';
+
+            if (currentCategory === 'seminar') {
+                item.time = document.getElementById('editorTime')?.value || '';
+                item.attendees = document.getElementById('editorAttendees')?.value || '';
+                item.goal = document.getElementById('editorGoal')?.value || '';
+                item.outline = document.getElementById('editorOutline')?.value || '';
+                item.keywords = [...currentKeywords];
+            } else if (currentCategory === 'press') {
+                item.pressType = document.getElementById('editorPressType')?.value || '';
+                item.mediaType = document.getElementById('editorMediaType')?.value || '';
+                item.media = document.getElementById('editorMedia')?.value || '';
+                item.reporter = document.getElementById('editorReporter')?.value || '';
+                item.reporterContact = document.getElementById('editorReporterContact')?.value || '';
+                item.releaseDate = document.getElementById('editorReleaseDate')?.value || '';
+                item.embargo = document.getElementById('editorEmbargo')?.value || '';
+                item.publishDate = document.getElementById('editorPublishDate')?.value || '';
+                item.keyMessage = document.getElementById('editorKeyMessage')?.value || '';
+                item.quote = document.getElementById('editorQuote')?.value || '';
+                item.link = document.getElementById('editorLink')?.value || '';
+                item.ave = document.getElementById('editorAve')?.value || '';
+                item.tone = document.getElementById('editorTone')?.value || '';
+            }
+
+            saveData();
+            render();
+            showToast('저장되었습니다');
+        }
+
+        function updateEditorStatus() {
+            if (currentId) {
+                const item = data[currentCategory].find(i => i.id === currentId);
+                if (item) { item.status = document.getElementById('editorStatus').value; saveData(); render(); }
+            }
+        }
+
+        function deleteItem() {
+            if (!currentId) return;
+            showConfirm({
+                icon: 'ri-delete-bin-line',
+                iconType: 'danger',
+                title: '삭제하시겠습니까?',
+                message: '삭제된 항목은 복구할 수 없습니다.',
+                confirmText: '삭제',
+                cancelText: '취소',
+                onConfirm: () => {
+                    data[currentCategory] = data[currentCategory].filter(i => i.id !== currentId);
+                    saveData();
+                    closeEditor();
+                    render();
+                    showToast('삭제되었습니다');
+                }
+            });
+        }
+
+        // Custom Confirm Modal
+        function showConfirm({ icon, iconType, title, message, confirmText, cancelText, onConfirm, onCancel }) {
+            const modal = document.getElementById('confirmModal');
+            const iconEl = document.getElementById('confirmIcon');
+            const titleEl = document.getElementById('confirmTitle');
+            const messageEl = document.getElementById('confirmMessage');
+            const okBtn = document.getElementById('confirmOk');
+            const cancelBtn = document.getElementById('confirmCancel');
+
+            iconEl.innerHTML = `<i class="${icon || 'ri-question-line'}"></i>`;
+            iconEl.className = 'confirm-icon' + (iconType === 'warning' ? ' warning' : iconType === 'info' ? ' info' : '');
+            titleEl.textContent = title || '확인';
+            messageEl.textContent = message || '';
+            okBtn.textContent = confirmText || '확인';
+            cancelBtn.textContent = cancelText || '취소';
+
+            // Button styles based on type
+            okBtn.className = 'btn ' + (iconType === 'danger' ? 'btn-confirm-danger' : 'btn-confirm-primary');
+
+            modal.classList.add('active');
+
+            const handleConfirm = () => {
+                modal.classList.remove('active');
+                if (onConfirm) onConfirm();
+                cleanup();
+            };
+
+            const handleCancel = () => {
+                modal.classList.remove('active');
+                if (onCancel) onCancel();
+                cleanup();
+            };
+
+            const handleBackdrop = (e) => {
+                if (e.target === modal) handleCancel();
+            };
+
+            const cleanup = () => {
+                okBtn.removeEventListener('click', handleConfirm);
+                cancelBtn.removeEventListener('click', handleCancel);
+                modal.removeEventListener('click', handleBackdrop);
+            };
+
+            okBtn.addEventListener('click', handleConfirm);
+            cancelBtn.addEventListener('click', handleCancel);
+            modal.addEventListener('click', handleBackdrop);
+        }
+
+        function exportSingle() {
+            if (!currentId) return;
+            const item = data[currentCategory].find(i => i.id === currentId);
+            if (item) showExportModal(generateMarkdown([item]));
+        }
+
+        function exportAll() {
+            showExportModal(generateMarkdown(data[currentCategory]));
+        }
+
+        function generateMarkdown(items) {
+            const config = categoryConfig[currentCategory];
+            let md = `# ${config.name}\n\n생성일: ${new Date().toLocaleDateString('ko-KR')}\n\n---\n\n`;
+            items.forEach(item => {
+                md += `## ${item.title}\n\n- **상태**: ${config.statusLabels[item.status]}\n`;
+                if (item.date) md += `- **날짜**: ${item.date}\n`;
+                Object.keys(item).forEach(k => {
+                    if (!['id','title','month','date','status'].includes(k) && item[k]) {
+                        if (Array.isArray(item[k])) md += `- **${k}**: ${item[k].join(', ')}\n`;
+                        else md += `- **${k}**: ${item[k]}\n`;
+                    }
+                });
+                md += `\n---\n\n`;
+            });
+            return md;
+        }
+
+        function showExportModal(content) {
+            document.getElementById('exportPreview').textContent = content;
+            document.getElementById('exportModal').classList.add('active');
+        }
+
+        function closeModal() { document.getElementById('exportModal').classList.remove('active'); }
+
+        function copyExport() {
+            navigator.clipboard.writeText(document.getElementById('exportPreview').textContent);
+            showToast('복사되었습니다');
+        }
+
+        function downloadExport() {
+            const blob = new Blob([document.getElementById('exportPreview').textContent], { type: 'text/markdown' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+            a.download = `${categoryConfig[currentCategory].name}.md`; a.click();
+        }
+
+        function shareLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => showToast('링크가 복사되었습니다'));
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2500);
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') { closeEditor(); closeModal(); }
+        });
+
+        // Calendar
+        let currentView = 'list';
+        let calendarYear = 2026;
+        let calendarMonth = 0; // 0-indexed
+
+        function switchView(view) {
+            currentView = view;
+            document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.view-btn[onclick="switchView('${view}')"]`).classList.add('active');
+            
+            if (view === 'list') {
+                document.getElementById('listContainer').classList.remove('hidden');
+                document.getElementById('calendarContainer').classList.remove('active');
+            } else {
+                document.getElementById('listContainer').classList.add('hidden');
+                document.getElementById('calendarContainer').classList.add('active');
+                renderCalendar();
+            }
+        }
+
+        function changeMonth(delta) {
+            calendarMonth += delta;
+            if (calendarMonth > 11) { calendarMonth = 0; calendarYear++; }
+            if (calendarMonth < 0) { calendarMonth = 11; calendarYear--; }
+            renderCalendar();
+        }
+
+        function goToToday() {
+            const today = new Date();
+            calendarYear = today.getFullYear();
+            calendarMonth = today.getMonth();
+            renderCalendar();
+        }
+
+        function renderCalendar() {
+            document.getElementById('calendarTitle').textContent = `${calendarYear}년 ${calendarMonth + 1}월`;
+            
+            const firstDay = new Date(calendarYear, calendarMonth, 1);
+            const lastDay = new Date(calendarYear, calendarMonth + 1, 0);
+            const startDate = new Date(firstDay);
+            startDate.setDate(startDate.getDate() - firstDay.getDay());
+            
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            // Get all events for this month
+            const events = getAllEvents();
+            
+            let html = '';
+            let currentDate = new Date(startDate);
+            
+            for (let i = 0; i < 42; i++) {
+                const isOtherMonth = currentDate.getMonth() !== calendarMonth;
+                const isToday = currentDate.getTime() === today.getTime();
+                const dateStr = currentDate.toISOString().split('T')[0];
+                
+                const dayEvents = events.filter(e => e.date === dateStr);
+                
+                html += `<div class="calendar-day ${isOtherMonth ? 'other-month' : ''} ${isToday ? 'today' : ''}" data-date="${dateStr}">
+                    <div class="calendar-day-number">${currentDate.getDate()}</div>
+                    <div class="calendar-events">
+                        ${dayEvents.slice(0, 3).map(e => `
+                            <div class="calendar-event ${e.category} ${e.hasExactDate ? '' : 'no-date'}" onclick="event.stopPropagation();openEditorByCategory('${e.category}', ${e.id})" title="${e.title}${e.hasExactDate ? '' : ' (날짜 미정)'}">
+                                ${e.title}
+                            </div>
+                        `).join('')}
+                        ${dayEvents.length > 3 ? `<div class="calendar-more">+${dayEvents.length - 3}개 더보기</div>` : ''}
+                    </div>
+                </div>`;
+                
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+            
+            document.getElementById('calendarDays').innerHTML = html;
+        }
+
+        function getAllEvents() {
+            const events = [];
+            
+            // 세미나/기획안 이벤트
+            data.seminar.forEach(item => {
+                let eventDate = item.date;
+                // 날짜가 없으면 월(month) 기준으로 해당 월 1일에 배치
+                if (!eventDate && item.month) {
+                    eventDate = `${calendarYear}-${String(item.month).padStart(2, '0')}-01`;
+                }
+                if (eventDate) {
+                    events.push({ 
+                        id: item.id, 
+                        title: item.title, 
+                        date: eventDate, 
+                        category: 'seminar', 
+                        status: item.status,
+                        hasExactDate: !!item.date 
+                    });
+                }
+            });
+            
+            // 언론보도 이벤트 (게재일 또는 배포일)
+            data.press.forEach(item => {
+                let eventDate = item.publishDate || item.releaseDate;
+                // 날짜가 없으면 월(month) 기준으로 해당 월 1일에 배치
+                if (!eventDate && item.month) {
+                    eventDate = `${calendarYear}-${String(item.month).padStart(2, '0')}-01`;
+                }
+                if (eventDate) {
+                    events.push({ 
+                        id: item.id, 
+                        title: item.title, 
+                        date: eventDate, 
+                        category: 'press', 
+                        status: item.status,
+                        hasExactDate: !!(item.publishDate || item.releaseDate)
+                    });
+                }
+            });
+            
+            return events.sort((a, b) => a.date.localeCompare(b.date));
+        }
+
+        function openEditorByCategory(category, id) {
+            currentCategory = category;
+            document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.category-tab[onclick="changeCategory('${category}')"]`).classList.add('active');
+            render();
+            openEditor(id);
+        }
+
+        init();
+    </script>
+</body>
+</html>
