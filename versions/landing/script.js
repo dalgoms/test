@@ -1,67 +1,137 @@
-// ====================================
-// CloudX - Enterprise Cloud Platform
-// JavaScript Functionality
-// ====================================
+/**
+ * ============================================
+ * 속기사 랜딩페이지 - 인터랙션
+ * ============================================
+ */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize all components
-    initHeader();
+    // FAQ 아코디언
+    initFAQ();
+    
+    // 체크리스트 인터랙션
+    initChecklist();
+    
+    // 폼 핸들링
+    initForm();
+    
+    // 스크롤 애니메이션
     initScrollAnimations();
-    initScrollToTop();
-    initMobileMenu();
-    initParallaxEffects();
+    
+    // 통계 바 애니메이션
+    initStatBars();
 });
 
-// ====================================
-// Header Scroll Effect
-// ====================================
-function initHeader() {
-    const header = document.querySelector('.header');
-    let lastScroll = 0;
+/**
+ * FAQ 아코디언
+ */
+function initFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
     
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
         
-        // Add scrolled class
-        if (currentScroll > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        
-        lastScroll = currentScroll;
+        question.addEventListener('click', () => {
+            // 다른 FAQ 닫기
+            faqItems.forEach(other => {
+                if (other !== item && other.classList.contains('open')) {
+                    other.classList.remove('open');
+                }
+            });
+            
+            // 현재 FAQ 토글
+            item.classList.toggle('open');
+        });
     });
 }
 
-// ====================================
-// Scroll Animations
-// ====================================
-function initScrollAnimations() {
-    // Elements to animate on scroll
-    const animateElements = document.querySelectorAll(`
-        .section-header,
-        .service-card,
-        .solution-main,
-        .solution-card,
-        .dc-feature,
-        .partner-logo,
-        .news-card,
-        .cert-item
-    `);
+/**
+ * 공감 체크리스트
+ */
+function initChecklist() {
+    const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+    let checkedCount = 0;
     
-    // Create Intersection Observer
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                checkedCount++;
+                checkbox.parentElement.style.background = 'var(--accent-light)';
+            } else {
+                checkedCount--;
+                checkbox.parentElement.style.background = '';
+            }
+            
+            // 2개 이상 체크 시 공감 메시지 강조
+            const empathyMessage = document.querySelector('.empathy-message');
+            if (empathyMessage && checkedCount >= 2) {
+                empathyMessage.classList.add('highlighted');
+                empathyMessage.style.animation = 'pulse 0.5s ease';
+            }
+        });
+    });
+}
+
+/**
+ * 상담 신청 폼
+ */
+function initForm() {
+    const form = document.getElementById('consultForm');
+    
+    if (!form) return;
+    
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const method = document.getElementById('contact-method').value;
+        const question = document.getElementById('question').value;
+        
+        // 기본 유효성 검사
+        if (!name || !phone) {
+            alert('이름과 연락처를 입력해주세요.');
+            return;
+        }
+        
+        // 실제로는 API 호출
+        console.log('상담 신청:', { name, phone, method, question });
+        
+        // 성공 메시지
+        showSuccessMessage();
+    });
+}
+
+/**
+ * 성공 메시지 표시
+ */
+function showSuccessMessage() {
+    const form = document.getElementById('consultForm');
+    
+    form.innerHTML = `
+        <div class="success-message" style="text-align: center; padding: 40px 20px;">
+            <div style="font-size: 3rem; margin-bottom: 16px;">✅</div>
+            <h3 style="margin-bottom: 12px;">상담 신청 완료!</h3>
+            <p style="color: var(--text-secondary);">
+                입력하신 연락처로 24시간 내 연락드리겠습니다.<br>
+                (카톡/문자로 먼저 안내드려요)
+            </p>
+        </div>
+    `;
+}
+
+/**
+ * 스크롤 시 애니메이션
+ */
+function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll(
+        '.cause-card, .step-card, .case-card, .safety-item, .benefit-item'
+    );
+    
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Add delay based on index for stagger effect
-                const delay = entry.target.dataset.delay || index * 100;
-                
-                setTimeout(() => {
-                    entry.target.classList.add('animate-fade-in-up');
-                    entry.target.style.opacity = '1';
-                }, delay % 400);
-                
-                observer.unobserve(entry.target);
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
             }
         });
     }, {
@@ -69,251 +139,92 @@ function initScrollAnimations() {
         rootMargin: '0px 0px -50px 0px'
     });
     
-    // Observe elements
-    animateElements.forEach((el, index) => {
+    animatedElements.forEach(el => {
         el.style.opacity = '0';
-        el.dataset.delay = (index % 4) * 100;
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         observer.observe(el);
     });
 }
 
-// ====================================
-// Scroll to Top Button
-// ====================================
-function initScrollToTop() {
-    const scrollTopBtn = document.getElementById('scrollTop');
+/**
+ * 통계 바 애니메이션
+ */
+function initStatBars() {
+    const statBars = document.querySelectorAll('.stat-fill');
     
-    if (!scrollTopBtn) return;
-    
-    // Show/hide button based on scroll position
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 400) {
-            scrollTopBtn.classList.add('visible');
-        } else {
-            scrollTopBtn.classList.remove('visible');
-        }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bar = entry.target;
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                
+                setTimeout(() => {
+                    bar.style.transition = 'width 1s ease-out';
+                    bar.style.width = width;
+                }, 100);
+                
+                observer.unobserve(bar);
+            }
+        });
+    }, {
+        threshold: 0.5
     });
     
-    // Scroll to top on click
-    scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+    statBars.forEach(bar => {
+        observer.observe(bar);
     });
 }
 
-// ====================================
-// Mobile Menu
-// ====================================
-function initMobileMenu() {
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const nav = document.querySelector('.nav');
-    
-    if (!mobileMenuBtn) return;
-    
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenuBtn.classList.toggle('active');
-        nav.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
-    });
-    
-    // Close menu on link click
-    const navLinks = document.querySelectorAll('.nav-item > a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenuBtn.classList.remove('active');
-            nav.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        });
-    });
-}
-
-// ====================================
-// Parallax Effects
-// ====================================
-function initParallaxEffects() {
-    const glows = document.querySelectorAll('.hero-glow');
-    const particles = document.querySelectorAll('.hero-particles span');
-    
-    window.addEventListener('mousemove', (e) => {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
-        
-        // Move glow elements
-        glows.forEach((glow, index) => {
-            const speed = (index + 1) * 20;
-            const moveX = (x - 0.5) * speed;
-            const moveY = (y - 0.5) * speed;
-            glow.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        });
-        
-        // Move particles
-        particles.forEach((particle, index) => {
-            const speed = (index + 1) * 10;
-            const moveX = (x - 0.5) * speed;
-            const moveY = (y - 0.5) * speed;
-            particle.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        });
-    });
-}
-
-// ====================================
-// Smooth Scroll for Anchor Links
-// ====================================
+/**
+ * 부드러운 스크롤 (CTA 버튼용)
+ */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        
-        if (href === '#') return;
-        
+    anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        
-        const target = document.querySelector(href);
+        const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            const headerHeight = document.querySelector('.header').offsetHeight;
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
         }
     });
 });
 
-// ====================================
-// Counter Animation for Stats
-// ====================================
-function animateCounter(element, target, duration = 2000) {
-    const start = 0;
-    const increment = target / (duration / 16);
-    let current = start;
+/**
+ * 트래킹 이벤트 (실제 구현 시 GA/GTM 연동)
+ */
+function trackEvent(category, action, label) {
+    console.log('Track:', { category, action, label });
     
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            element.textContent = target;
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(current);
-        }
-    }, 16);
+    // Google Analytics 예시
+    // gtag('event', action, {
+    //     'event_category': category,
+    //     'event_label': label
+    // });
 }
 
-// ====================================
-// Intersection Observer for Stats
-// ====================================
-const statNumbers = document.querySelectorAll('.stat-number');
-const statsObserver = new IntersectionObserver((entries) => {
+// CTA 클릭 트래킹
+document.querySelectorAll('.cta-button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        trackEvent('CTA', 'click', btn.textContent.trim());
+    });
+});
+
+// 섹션 도달 트래킹
+const sections = document.querySelectorAll('section');
+const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            const text = entry.target.textContent;
-            const number = parseFloat(text.replace(/[^0-9.]/g, ''));
-            
-            // Only animate if it's a simple number
-            if (!isNaN(number) && number > 0 && number < 10000) {
-                const suffix = text.replace(/[0-9.]/g, '');
-                let current = 0;
-                const duration = 2000;
-                const increment = number / (duration / 16);
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= number) {
-                        entry.target.textContent = text;
-                        clearInterval(timer);
-                    } else {
-                        entry.target.textContent = Math.floor(current) + suffix;
-                    }
-                }, 16);
-            }
-            
-            statsObserver.unobserve(entry.target);
+            const sectionClass = entry.target.className.split(' ')[0];
+            trackEvent('Section', 'view', sectionClass);
         }
     });
-}, { threshold: 0.5 });
+}, { threshold: 0.3 });
 
-statNumbers.forEach(stat => statsObserver.observe(stat));
-
-// ====================================
-// Typing Effect (Optional)
-// ====================================
-function typeWriter(element, text, speed = 50) {
-    let i = 0;
-    element.textContent = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
-
-// ====================================
-// Card Hover 3D Effect
-// ====================================
-document.querySelectorAll('.service-card, .solution-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-        
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-    });
+sections.forEach(section => {
+    sectionObserver.observe(section);
 });
 
-// ====================================
-// Page Load Animation
-// ====================================
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-    
-    // Animate hero elements
-    const heroElements = document.querySelectorAll('.hero-badge, .hero-title, .hero-subtitle, .hero-cta-group, .hero-stats');
-    heroElements.forEach((el, index) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        
-        setTimeout(() => {
-            el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-        }, 200 + index * 150);
-    });
-});
-
-// ====================================
-// Dropdown Menu Enhancement
-// ====================================
-document.querySelectorAll('.nav-item.has-dropdown').forEach(item => {
-    const dropdown = item.querySelector('.dropdown-menu');
-    
-    item.addEventListener('mouseenter', () => {
-        dropdown.style.transform = 'translateX(-50%) translateY(0)';
-    });
-    
-    item.addEventListener('mouseleave', () => {
-        dropdown.style.transform = 'translateX(-50%) translateY(10px)';
-    });
-});
-
-// ====================================
-// Console log for branding
-// ====================================
-console.log('%c CloudX ', 'background: linear-gradient(135deg, #00D4FF 0%, #FF00E5 100%); color: #000; font-size: 24px; font-weight: bold; padding: 10px 20px; border-radius: 8px;');
-console.log('%c Enterprise Cloud Platform ', 'color: #00D4FF; font-size: 14px;');
