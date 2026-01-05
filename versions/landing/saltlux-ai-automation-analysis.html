@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 자동화 시장 분석 | 기능 경쟁에서 책임 구조 경쟁으로의 이동</title>
+    <meta name="description" content="AI 자동화 및 마케팅 자동화 솔루션의 구조적 변화와 판단 기준을 정리한 시장 분석 참고 자료">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        :root {
+            --primary: #3182f6;
+            --primary-dark: #1b64da;
+            --primary-light: #6ba3f7;
+            --primary-lighter: #e8f3ff;
+            --secondary: #00d4ff;
+            --text-primary: #191f28;
+            --text-secondary: #8b95a1;
+            --text-light: #b0b8c1;
+            --bg-white: #ffffff;
+            --bg-light: #f7f8fa;
+            --bg-gray: #f2f4f6;
+            --border-color: #e5e8eb;
+            --success: #3182f6;
+            --error: #f04452;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --font-kr: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            --spacing-2xl: 64px;
+            --spacing-3xl: 96px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-kr);
+            color: var(--text-primary);
+            background: var(--bg-white);
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            letter-spacing: -0.01em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            width: 100%;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: var(--spacing-3xl) 0;
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .header .subtitle {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-top: var(--spacing-sm);
+            font-weight: 400;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xl);
+            color: var(--text-primary);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 3px solid var(--primary);
+            display: inline-block;
+        }
+
+        .section-subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: var(--spacing-xl) 0 var(--spacing-md) 0;
+            color: var(--primary-dark);
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--spacing-xl) 0;
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .comparison-table thead {
+            background: var(--primary);
+            color: white;
+        }
+
+        .comparison-table th {
+            padding: var(--spacing-md);
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th:first-child {
+            width: 180px;
+        }
+
+        .comparison-table td {
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: var(--bg-light);
+        }
+
+        .comparison-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Insight Box */
+        .insight-box {
+            background: linear-gradient(135deg, var(--primary-lighter) 0%, white 100%);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            margin: var(--spacing-xl) 0;
+        }
+
+        .insight-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .insight-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+
+        .insight-content ul {
+            margin-top: var(--spacing-md);
+            padding-left: var(--spacing-lg);
+        }
+
+        .insight-content li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Case Study Card */
+        .case-card {
+            background: var(--bg-white);
+            border: 2px solid var(--border-color);
+            border-left: 4px solid var(--primary);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-md);
+            margin: var(--spacing-lg) 0;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .case-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .case-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .case-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .case-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            margin-top: var(--spacing-md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .case-link:hover {
+            background: var(--primary-dark);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        .case-link:active {
+            transform: translateY(0);
+        }
+
+        /* Analysis Item */
+        .analysis-item {
+            background: var(--bg-white);
+            border: 2px solid var(--border-color);
+            border-left: 4px solid var(--primary);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin: var(--spacing-lg) 0;
+            transition: var(--transition);
+        }
+
+        .analysis-item:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .analysis-item-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .analysis-item-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .analysis-item-content ul {
+            margin-top: var(--spacing-md);
+            padding-left: var(--spacing-lg);
+        }
+
+        .analysis-item-content li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Flow Diagram */
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: var(--spacing-xl) 0;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+
+        .flow-step {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            position: relative;
+        }
+
+        .flow-step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto var(--spacing-sm);
+        }
+
+        .flow-step-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .flow-step-desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Conclusion */
+        .conclusion {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: var(--spacing-3xl);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-3xl) 0;
+            text-align: center;
+        }
+
+        .conclusion-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .conclusion-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            opacity: 0.95;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Context Box */
+        .context-box {
+            background: var(--bg-light);
+            border-left: 4px solid var(--primary);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-xl) 0;
+            border-radius: var(--radius-md);
+        }
+
+        .context-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .context-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .context-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Executive Summary Box */
+        .executive-summary {
+            background: var(--bg-light);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            margin: var(--spacing-xl) 0;
+        }
+
+        .executive-summary-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .executive-summary-content {
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .executive-summary-content ul {
+            margin-top: var(--spacing-md);
+            padding-left: var(--spacing-lg);
+        }
+
+        .executive-summary-content li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--spacing-md);
+            }
+
+            .header {
+                padding: var(--spacing-xl) 0;
+                margin-bottom: var(--spacing-xl);
+            }
+
+            .header h1 {
+                font-size: 1.75rem;
+                margin-bottom: var(--spacing-sm);
+            }
+
+            .header p {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+
+            .section {
+                margin-bottom: var(--spacing-xl);
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: var(--spacing-lg);
+                padding-bottom: var(--spacing-sm);
+                width: 100%;
+            }
+
+            .section-subtitle {
+                font-size: 1.25rem;
+                margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
+            }
+
+            .comparison-table {
+                font-size: 0.75rem;
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .comparison-table thead {
+                display: none;
+            }
+
+            .comparison-table tbody {
+                display: block;
+            }
+
+            .comparison-table tr {
+                display: block;
+                margin-bottom: var(--spacing-md);
+                border: 1px solid var(--border-color);
+                border-radius: var(--radius-md);
+                overflow: hidden;
+            }
+
+            .comparison-table td {
+                display: flex;
+                padding: var(--spacing-sm);
+                text-align: left;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .comparison-table td:first-child {
+                background: var(--primary-lighter);
+                font-weight: 700;
+                font-size: 1rem;
+                border-bottom: 2px solid var(--primary);
+            }
+
+            .comparison-table td:before {
+                content: attr(data-label);
+                font-weight: 700;
+                min-width: 120px;
+                margin-right: var(--spacing-sm);
+                color: var(--primary-dark);
+            }
+
+            .comparison-table td:first-child:before {
+                display: none;
+            }
+
+            .comparison-table td:last-child {
+                border-bottom: none;
+            }
+
+            .flow-diagram {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+            }
+
+            .flow-step {
+                min-width: 100%;
+                margin-bottom: var(--spacing-md);
+            }
+
+            .conclusion {
+                padding: var(--spacing-xl);
+                margin: var(--spacing-xl) 0;
+            }
+
+            .conclusion-title {
+                font-size: 1.5rem;
+                margin-bottom: var(--spacing-md);
+            }
+
+            .conclusion-text {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            .case-link {
+                padding: 10px 20px;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <h1>AI 자동화 시장 분석</h1>
+            <p>기능 경쟁에서 책임 구조 경쟁으로의 이동</p>
+            <div class="subtitle">시장 분석 참고 자료 | 마케팅 자동화 솔루션 판단 기준</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Section 1: 이 문서의 목적 -->
+        <section class="section">
+            <h2 class="section-title">1. 이 문서의 목적</h2>
+
+            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-xl); line-height: 1.85; font-size: 1rem;">
+                이 문서는 최근 확산되고 있는 AI 자동화 및 마케팅 자동화 솔루션을
+                <strong>'도입 여부'의 문제가 아닌, 조직과 업무 차원에서 어떻게 판단해야 하는가</strong>라는 관점에서 정리한 시장 분석 참고 자료다.
+            </p>
+
+            <div class="insight-box">
+                <div class="insight-title">문서의 성격</div>
+                <div class="insight-content">
+                    <ul>
+                        <li>특정 솔루션을 추천하거나 결론을 제시하지 않음</li>
+                        <li>AI 자동화 시장에서 경쟁의 중심이 어떻게 이동하고 있는지</li>
+                        <li>자동화 도입 시 조직 내부에 남는 책임과 역할이 어떻게 달라지는지에 대한 판단 기준을 제공하는 데 목적이 있음</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: AI 자동화 시장의 변화 배경 -->
+        <section class="section">
+            <h2 class="section-title">2. AI 자동화 시장의 변화 배경</h2>
+
+            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-xl); line-height: 1.85; font-size: 1rem;">
+                AI 자동화 기술은 이미 성숙 단계에 진입했다.
+                콘텐츠 생성, 편집, 분석, 리포트 작성 등 다양한 영역에서 자동화 툴과 서비스가 빠르게 보급되고 있다.
+            </p>
+
+            <div class="analysis-item">
+                <div class="analysis-item-title">현업 적용 과정에서 반복적으로 발생하는 문제</div>
+                <div class="analysis-item-content">
+                    그러나 실제 현업 적용 과정에서는 다음과 같은 구조적 문제가 반복된다:
+                    <ul>
+                        <li><strong>자동화된 결과물의 품질을 누가 검증하는가</strong></li>
+                        <li><strong>결과에 대한 최종 책임은 누구에게 있는가</strong></li>
+                        <li><strong>자동화 이후에도 남는 전략 판단과 의사결정은 누가 담당하는가</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="context-box">
+                <div class="context-title">경쟁의 핵심 요소 이동</div>
+                <div class="context-content">
+                    이로 인해 최근 시장에서는
+                    <strong>"무엇을 자동화할 수 있는가"보다
+                    "자동화 이후의 책임을 어떻게 설계하는가"</strong>가
+                    경쟁의 핵심 요소로 이동하고 있다.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: 자동화 모델의 진화 구조 -->
+        <section class="section">
+            <h2 class="section-title">3. 자동화 모델의 진화 구조</h2>
+
+            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-xl); line-height: 1.85; font-size: 1rem;">
+                AI 자동화는 단일 형태가 아니라, 책임 구조에 따라 다음과 같은 단계로 진화하고 있다.
+            </p>
+
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <div class="flow-step-number">①</div>
+                    <div class="flow-step-title">툴 중심 자동화</div>
+                    <div class="flow-step-desc">기능과 도구 제공 중심<br>사용자가 직접 활용<br>결과와 품질 책임은 전적으로 사용자에게 귀속</div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-number">②</div>
+                    <div class="flow-step-title">결과물 중심 자동화</div>
+                    <div class="flow-step-desc">콘텐츠·보고서·산출물 생성<br>일부 책임이 서비스 제공자에게 이동<br>최종 판단과 검증 책임은 여전히 사용자 몫</div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-number">③</div>
+                    <div class="flow-step-title">운영 단위 자동화</div>
+                    <div class="flow-step-desc">개별 작업이 아닌 업무 흐름 전체를 자동화<br>결과물뿐 아니라 품질·성과에 대한 책임 구조가 명확<br>자동화가 개인 활용 단계를 넘어 조직 운영 단위로 확장</div>
+                </div>
+            </div>
+
+            <div class="analysis-item" style="margin-top: var(--spacing-xl);">
+                <div class="analysis-item-title">현재 시장 위치</div>
+                <div class="analysis-item-content">
+                    현재 AI 자동화 시장은
+                    ② 결과물 중심 자동화에서 ③ 운영 단위 자동화로 이동하는 과도기에 있으며,
+                    이 과정에서 책임 설계가 핵심 경쟁 요소로 부상하고 있다.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: 참고 사례 분석 -->
+        <section class="section">
+            <h2 class="section-title">4. 참고 사례 분석</h2>
+            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md); line-height: 1.85; font-size: 1rem;">
+                Saltlux · Goover / Ploonet Studio
+            </p>
+
+            <div class="case-card">
+                <div class="case-title">Goover – AI 에이전트 기반 업무 자동화 서비스</div>
+                <div class="case-description">
+                    <strong>자동화 범위:</strong> 검색 → 리서치 → 분석 → 요약 → 리포트 생성
+                    <br><br>
+                    <strong>사용자 개입:</strong> 요구사항 입력에 한정
+                    <br><br>
+                    <strong>제공 방식:</strong> 기능이 아닌 리서치 업무 결과 단위 제공
+                    <br><br>
+                    <strong>구조적 특징:</strong> 사용자가 도구를 조작하지 않아도 업무 결과를 받는 구조
+                </div>
+                <a href="https://intro.goover.ai/" target="_blank" rel="noopener noreferrer" class="case-link">
+                    <span>Goover 서비스 확인</span>
+                    <span>→</span>
+                </a>
+            </div>
+
+            <div class="case-card" style="margin-top: var(--spacing-xl);">
+                <div class="case-title">Ploonet Studio – AI 도입 전 과정 운영 프레임워크</div>
+                <div class="case-description">
+                    <strong>자동화 범위:</strong> AI 전략 수립 → 프로토타입 → 본 사업화
+                    <br><br>
+                    <strong>사용자 개입:</strong> 목표·요구사항 정의 중심
+                    <br><br>
+                    <strong>제공 방식:</strong> 솔루션 판매가 아닌 AI 전환 전 과정에 대한 책임 구조
+                    <br><br>
+                    <strong>구조적 특징:</strong> 기업의 AI 도입을 '운영 단위'로 인수하는 모델
+                </div>
+                <a href="https://www.ploonet.com/studio" target="_blank" rel="noopener noreferrer" class="case-link">
+                    <span>Ploonet Studio 확인</span>
+                    <span>→</span>
+                </a>
+            </div>
+
+            <div class="analysis-item" style="margin-top: var(--spacing-xl);">
+                <div class="analysis-item-title">사례의 시장 구조적 의미</div>
+                <div class="analysis-item-content">
+                    자동화가 기능 제공에서 업무 결과 제공으로 이동한다.
+                    검색·분석·요약·리포트가 하나의 흐름으로 연결된다.
+                    사용자 개입은 줄고, 서비스 제공자의 책임은 확대된다.
+                    <br><br>
+                    이는 자동화 경쟁의 중심이
+                    기술 수준이 아닌 '업무 책임 구조'로 이동하고 있음을 보여준다.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: 영상·콘텐츠 자동화 시장과의 구조 비교 -->
+        <section class="section">
+            <h2 class="section-title">5. 영상·콘텐츠 자동화 시장과의 구조 비교</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>툴 중심 자동화</th>
+                        <th>자동화 + 대행</th>
+                        <th>운영 단위 자동화</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>제공 가치</strong></td>
+                        <td>기능</td>
+                        <td>결과물</td>
+                        <td>업무 단위</td>
+                    </tr>
+                    <tr>
+                        <td><strong>자동화 범위</strong></td>
+                        <td>일부 작업</td>
+                        <td>작업 + 검수</td>
+                        <td>전체 흐름</td>
+                    </tr>
+                    <tr>
+                        <td><strong>사용자 개입</strong></td>
+                        <td>높음</td>
+                        <td>중간</td>
+                        <td>낮음</td>
+                    </tr>
+                    <tr>
+                        <td><strong>책임 주체</strong></td>
+                        <td>사용자</td>
+                        <td>일부 서비스</td>
+                        <td>명확한 운영 주체</td>
+                    </tr>
+                    <tr>
+                        <td><strong>확장 방식</strong></td>
+                        <td>사용자 증가</td>
+                        <td>인력 확장</td>
+                        <td>구조 확장</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="analysis-item" style="margin-top: var(--spacing-xl);">
+                <div class="analysis-item-title">비교의 목적</div>
+                <div class="analysis-item-content">
+                    이 비교는 우열 판단이 아니라,
+                    자동화 모델에 따라 조직이 부담해야 할 책임과 운영 구조가 어떻게 달라지는지를 설명하기 위한 구조적 비교다.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: 마케팅 자동화 솔루션 검토 시 핵심 판단 관점 -->
+        <section class="section">
+            <h2 class="section-title">6. 마케팅 자동화 솔루션 검토 시 핵심 판단 관점</h2>
+
+            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-xl); line-height: 1.85; font-size: 1rem;">
+                이러한 시장 흐름을 바탕으로 볼 때,
+                마케팅 자동화 솔루션 검토 시 다음 질문이 중요해진다.
+            </p>
+
+            <div class="analysis-item">
+                <div class="analysis-item-title">핵심 질문</div>
+                <div class="analysis-item-content">
+                    <ul>
+                        <li><strong>해당 솔루션은 툴 제공 / 결과 제공 / 운영 단위 자동화 중 어디에 해당하는가</strong></li>
+                        <li><strong>자동화 이후 발생하는 품질 관리·전략 판단·성과 책임은 어디에 남는가</strong></li>
+                        <li><strong>자동화가 확장될수록 조직 내부 역할과 책임은 어떻게 변화하는가</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="context-box">
+                <div class="context-title">의사결정의 본질</div>
+                <div class="context-content">
+                    이는 단순한 솔루션 선택 문제가 아니라,
+                    <strong>조직과 업무 책임 구조를 어떻게 설계할 것인가</strong>에 대한 문제에 가깝다.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: 정리 -->
+        <section class="section">
+            <h2 class="section-title">7. 정리</h2>
+
+            <div class="analysis-item">
+                <div class="analysis-item-title">AI 자동화는 더 이상 선택이 아닌 전제 조건</div>
+                <div class="analysis-item-content">
+                    경쟁의 본질은
+                    <strong>"무엇을 자동화할 수 있는가" →
+                    "자동화 이후의 결과를 누가 책임질 수 있는가"</strong>로 이동하고 있다.
+                    <br><br>
+                    자동화 전략은 기술 도입이 아니라 책임 구조 설계의 문제이다.
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <div class="insight-title">문서 활용</div>
+                <div class="insight-content">
+                    본 문서는 마케팅 자동화를 포함한 AI 자동화 관련 의사결정 시,
+                    기능 비교를 넘어선 구조적 판단 기준을 제공하는 참고 자료로 활용될 수 있다.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: 시장 동향 참고 -->
+        <section class="section">
+            <h2 class="section-title">8. 시장 동향 참고: 글로벌 언론·리서치에서 관찰되는 자동화 경쟁의 변화</h2>
+
+            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-xl); line-height: 1.85; font-size: 1rem;">
+                AI 자동화 시장의 변화는 개별 기업의 주장이나 특정 서비스의 방향성에 국한되지 않는다.
+                최근 글로벌 컨설팅 리포트 및 주요 언론 보도에서도 자동화 경쟁의 중심이 기술 보유에서 업무 책임·운영 구조로 이동하고 있음을 반복적으로 언급하고 있다.
+            </p>
+
+            <h3 class="section-subtitle">8.1 자동화 확산과 조직 운영 구조 변화</h3>
+
+            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg); line-height: 1.85; font-size: 1rem;">
+                다수의 글로벌 리포트는 기업들이 인력 확장보다 자동화·AI 기반 운영 구조로 이동하고 있음을 지적한다.
+                이는 자동화가 단순 효율 도구를 넘어 업무 단위 재설계와 책임 구조 변화로 이어지고 있음을 의미한다.
+            </p>
+
+            <div class="case-card">
+                <div class="case-title">Goldman Sachs 인용 보도</div>
+                <div class="case-description">
+                    인력 채용보다 자동화 도입을 우선하는 기업이 증가하며,
+                    AI 기반 자동화가 조직 구조와 역할 재편의 핵심 변수로 작용하고 있음을 분석
+                    <br><br>
+                    <em>(Business Today, Automation over hiring: AI-led restructuring)</em>
+                </div>
+                <a href="https://www.businesstoday.in/technology/news/story/automation-over-hiring-goldman-sachs-report-explains-why-2026-could-see-another-wave-of-ai-led-layoffs-509334-2026-01-04" target="_blank" rel="noopener noreferrer" class="case-link">
+                    <span>Goldman Sachs 인용 보도 확인</span>
+                    <span>→</span>
+                </a>
+            </div>
+
+            <div class="case-card" style="margin-top: var(--spacing-lg);">
+                <div class="case-title">McKinsey Global Institute</div>
+                <div class="case-description">
+                    AI 에이전트와 자동화 기술은 개별 작업 자동화를 넘어
+                    업무 흐름 전체를 재구성하고, 사람과 AI 간 역할·책임 분담을 재정의하는 단계로 진입했다고 분석
+                    <br><br>
+                    <em>(Agents, robots, and us: Skill partnerships in the age of AI)</em>
+                </div>
+                <a href="https://www.mckinsey.com/mgi/our-research/agents-robots-and-us-skill-partnerships-in-the-age-of-ai" target="_blank" rel="noopener noreferrer" class="case-link">
+                    <span>McKinsey 리포트 확인</span>
+                    <span>→</span>
+                </a>
+            </div>
+
+            <div class="case-card" style="margin-top: var(--spacing-lg);">
+                <div class="case-title">BCG 관련 보도 (Business Insider)</div>
+                <div class="case-description">
+                    컨설팅 조직 내부에서 AI를 단순 도구가 아닌
+                    <strong>'제품·업무를 만들어내는 운영 공정(assembly line)'</strong>으로 정착시키는 사례를 소개
+                    <br><br>
+                    → 자동화의 경쟁력이 기술 자체가 아니라 운영 방식에 있음을 시사
+                </div>
+                <a href="https://www.businessinsider.com/bcg-boston-consulting-group-ai-products-development-agents-2025-12" target="_blank" rel="noopener noreferrer" class="case-link">
+                    <span>BCG 보도 확인</span>
+                    <span>→</span>
+                </a>
+            </div>
+
+            <h3 class="section-subtitle">8.2 자동화 경쟁의 핵심: 기능이 아닌 운영 모델</h3>
+
+            <div class="analysis-item">
+                <div class="analysis-item-title">공통적으로 지적하는 바</div>
+                <div class="analysis-item-content">
+                    이러한 자료들이 공통적으로 지적하는 바는 다음과 같다:
+                    <ul>
+                        <li>AI 기술 자체는 빠르게 보편화되고 있음</li>
+                        <li>차별화는 "무엇을 자동화하는가"가 아니라 <strong>"자동화 이후의 결과를 누가 책임지고 운영하는가"</strong>에서 발생</li>
+                        <li>자동화는 툴 경쟁 단계를 넘어 업무 단위·운영 단위 경쟁으로 이동 중</li>
+                    </ul>
+                    <br>
+                    이는 본 리포트에서 정의한 '툴 → 대행 → 운영' 진화 구조와 동일한 흐름으로 해석할 수 있다.
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">8.3 영상·콘텐츠 자동화 시장에 대한 시사점</h3>
+
+            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg); line-height: 1.85; font-size: 1rem;">
+                글로벌 시장 분석을 종합하면, 영상·콘텐츠 자동화 영역 역시 다음과 같은 방향으로 수렴하고 있다.
+            </p>
+
+            <div class="analysis-item">
+                <div class="analysis-item-title">영상·콘텐츠 자동화 시장의 진화 방향</div>
+                <div class="analysis-item-content">
+                    <ul>
+                        <li><strong>단순 편집 툴 제공:</strong> → 가격·기능 경쟁 심화</li>
+                        <li><strong>자동 생성 서비스:</strong> → 결과물 책임은 있으나 확장성은 인력에 의존</li>
+                        <li><strong>자동화된 편집·운영 공정을 인수하는 모델:</strong> → 품질·속도·단가·확장성을 동시에 설계할 수 있는 구조</li>
+                    </ul>
+                    <br>
+                    이러한 맥락에서,
+                    영상·콘텐츠 자동화 시장의 다음 경쟁 레이어는
+                    <strong>'툴을 잘 만드는 회사'가 아니라
+                    '자동화된 업무 단위를 안정적으로 운영하는 회사'</strong>로 이동하고 있다고 볼 수 있다.
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">8.4 참고 자료 링크 (시장 동향 확인용)</h3>
+
+            <div class="analysis-item">
+                <div class="analysis-item-title">참고 자료</div>
+                <div class="analysis-item-content">
+                    <ul>
+                        <li><strong>Goldman Sachs 인용 보도 (Business Today):</strong> 
+                            <a href="https://www.businesstoday.in/technology/news/story/automation-over-hiring-goldman-sachs-report-explains-why-2026-could-see-another-wave-of-ai-led-layoffs-509334-2026-01-04" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">
+                                Automation over hiring: AI-led restructuring
+                            </a>
+                        </li>
+                        <li><strong>McKinsey Global Institute:</strong> 
+                            <a href="https://www.mckinsey.com/mgi/our-research/agents-robots-and-us-skill-partnerships-in-the-age-of-ai" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">
+                                Agents, robots, and us: Skill partnerships in the age of AI
+                            </a>
+                        </li>
+                        <li><strong>Business Insider – BCG AI 운영 모델 사례:</strong> 
+                            <a href="https://www.businessinsider.com/bcg-boston-consulting-group-ai-products-development-agents-2025-12" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">
+                                BCG AI products development agents
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Executive Summary -->
+        <div class="executive-summary">
+            <div class="executive-summary-title">핵심 요약 (경영진 공유용)</div>
+            <div class="executive-summary-content">
+                <ul>
+                    <li><strong>AI 자동화 경쟁은 기능이 아니라 책임 구조의 경쟁</strong></li>
+                    <li><strong>자동화 도입보다 중요한 것은 자동화 이후의 역할·책임 설계</strong></li>
+                    <li><strong>이 문서는 마케팅 자동화 솔루션 검토 시 판단 프레임을 제공하는 참고 자료임</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer style="padding: var(--spacing-xl) 0; text-align: center; color: var(--text-secondary); border-top: 1px solid var(--border-color); margin-top: var(--spacing-3xl);">
+        <div class="container">
+            <p style="margin-top: var(--spacing-sm); font-size: 0.875rem; opacity: 0.7;">
+                이 문서는 시장 변화와 구조적 의미를 설명하는 분석 문서이며, 특정 솔루션을 추천하거나 반대하지 않습니다.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
