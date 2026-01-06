@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스마트 사이니지 - 운영형 안내 시스템 | 팀벨</title>
+    <meta name="description" content="시설·민원·서비스 현장의 안내 콘텐츠를 중앙에서 관리하고 상황에 맞게 송출할 수 있는 운영형 사이니지.">
+    <link rel="stylesheet" href="/assets/css/globals.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/pages/services.css">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="/" class="header-logo"><img src="/assets/img/timbel-logo.png" alt="Timbel"></a>
+            <nav class="nav" role="menubar"></nav>
+            <div class="header-cta"><a href="#cta" class="btn btn-primary">도입 문의</a></div>
+            <button class="mobile-toggle" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <main>
+        <!-- ============================= -->
+        <!-- HERO -->
+        <!-- ============================= -->
+        <section id="hero" class="section service-hero">
+            <div class="container">
+                <h1 class="hero-title">
+                    현장 안내를 운영 가능한 형태로 만드는<br>
+                    <span class="text-timbel-blue">스마트 사이니지</span>
+                </h1>
+                <p class="hero-subtitle">
+                    스마트 사이니지는 시설·민원·서비스 현장의 안내 콘텐츠를<br>
+                    중앙에서 관리하고 상황에 맞게 송출할 수 있도록 지원하는 운영형 사이니지입니다.
+                </p>
+                <div class="hero-cta">
+                    <a href="#cta" class="btn btn-primary">운영 환경 적용 가능 여부 문의</a>
+                    <a href="#cases" class="btn btn-outline">활용 시나리오 보기</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================= -->
+        <!-- FIT - 적합한 조직 -->
+        <!-- ============================= -->
+        <section id="fit" class="section">
+            <div class="container">
+                <h2>이런 조직에 적합합니다</h2>
+                
+                <ul class="fit-list">
+                    <li>
+                        <span class="fit-icon">✓</span>
+                        <span>지점/시설이 많아 안내 콘텐츠 관리가 어려운 조직</span>
+                    </li>
+                    <li>
+                        <span class="fit-icon">✓</span>
+                        <span>안내 문구·운영 시간이 자주 바뀌는 환경</span>
+                    </li>
+                    <li>
+                        <span class="fit-icon">✓</span>
+                        <span>현장 인력 없이도 안내를 표준화해야 하는 기관</span>
+                    </li>
+                    <li>
+                        <span class="fit-icon">✓</span>
+                        <span>비상 공지/상황 안내를 즉시 송출해야 하는 조직</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============================= -->
+        <!-- PAIN - 기존 사이니지 운영의 한계 -->
+        <!-- ============================= -->
+        <section id="pain" class="section section-dark">
+            <div class="container">
+                <h2>기존 사이니지 운영의 한계</h2>
+                
+                <ul class="pain-list-simple">
+                    <li>
+                        <span class="pain-marker">×</span>
+                        <span>콘텐츠 배포가 수동이라 업데이트가 느립니다</span>
+                    </li>
+                    <li>
+                        <span class="pain-marker">×</span>
+                        <span>지점별로 안내 품질이 달라집니다</span>
+                    </li>
+                    <li>
+                        <span class="pain-marker">×</span>
+                        <span>긴급 공지를 즉시 반영하기 어렵습니다</span>
+                    </li>
+                    <li>
+                        <span class="pain-marker">×</span>
+                        <span>어떤 콘텐츠가 언제 송출됐는지 추적이 어렵습니다</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============================= -->
+        <!-- FLOW - 운영 흐름 -->
+        <!-- ============================= -->
+        <section id="flow" class="section">
+            <div class="container">
+                <h2>운영 흐름</h2>
+                
+                <ol class="flow-steps">
+                    <li class="flow-step">
+                        <div class="flow-num">1</div>
+                        <div class="flow-content">
+                            <strong>콘텐츠 템플릿 정의</strong>
+                            <p>안내/공지/이벤트 등 운영 목적별 템플릿을 정리합니다.</p>
+                        </div>
+                    </li>
+                    <li class="flow-step">
+                        <div class="flow-num">2</div>
+                        <div class="flow-content">
+                            <strong>중앙 관리</strong>
+                            <p>콘텐츠를 등록하고 지점·디스플레이별로 배포 정책을 설정합니다.</p>
+                        </div>
+                    </li>
+                    <li class="flow-step">
+                        <div class="flow-num">3</div>
+                        <div class="flow-content">
+                            <strong>송출 및 제어</strong>
+                            <p>시간/상황 조건에 맞춰 송출하고 필요 시 즉시 전환합니다.</p>
+                        </div>
+                    </li>
+                    <li class="flow-step">
+                        <div class="flow-num">4</div>
+                        <div class="flow-content">
+                            <strong>운영 이력 관리</strong>
+                            <p>게시/수정/송출 이력을 관리해 운영 투명성을 확보합니다.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ============================= -->
+        <!-- SECURITY - 보안과 운영 통제 -->
+        <!-- ============================= -->
+        <section id="security" class="section section-dark">
+            <div class="container">
+                <h2>보안과 운영 통제</h2>
+                
+                <ul class="security-points">
+                    <li>
+                        <span class="security-icon">👥</span>
+                        <span>권한 분리(등록/승인/게시) 운영 가능</span>
+                    </li>
+                    <li>
+                        <span class="security-icon">🔑</span>
+                        <span>지점·디스플레이 단위 접근 통제</span>
+                    </li>
+                    <li>
+                        <span class="security-icon">📋</span>
+                        <span>운영 로그·게시 이력 관리</span>
+                    </li>
+                    <li>
+                        <span class="security-icon">🛡️</span>
+                        <span>조직 보안 정책에 맞춘 배포 방식 협의 가능</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============================= -->
+        <!-- OUTCOMES - 도입 후 기대 효과 -->
+        <!-- ============================= -->
+        <section id="outcomes" class="section">
+            <div class="container">
+                <h2>도입 후 기대 효과</h2>
+                
+                <div class="outcome-cards">
+                    <div class="outcome-card-simple">
+                        <span class="outcome-icon">📐</span>
+                        <p>지점/시설 안내 콘텐츠 표준화</p>
+                    </div>
+                    <div class="outcome-card-simple">
+                        <span class="outcome-icon">⏱️</span>
+                        <p>업데이트 리드타임 단축</p>
+                    </div>
+                    <div class="outcome-card-simple">
+                        <span class="outcome-icon">🚨</span>
+                        <p>긴급 공지 대응 속도 개선</p>
+                    </div>
+                    <div class="outcome-card-simple">
+                        <span class="outcome-icon">📊</span>
+                        <p>운영 이력 기반의 관리 체계 확보</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================= -->
+        <!-- ADOPTION - 도입 방식 -->
+        <!-- ============================= -->
+        <section id="adoption" class="section section-dark">
+            <div class="container">
+                <h2>도입 방식</h2>
+                
+                <ul class="adoption-points">
+                    <li>단일 지점/단일 화면 파일럿 가능</li>
+                    <li>시설/지점 확장에 따른 단계적 도입</li>
+                    <li>기존 디스플레이/단말과 연동 가능</li>
+                    <li>운영 담당자 교육 및 운영 매뉴얼 제공</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============================= -->
+        <!-- CASES - 활용 시나리오 -->
+        <!-- ============================= -->
+        <section id="cases" class="section">
+            <div class="container">
+                <h2>활용 시나리오</h2>
+                
+                <div class="case-cards-simple">
+                    <div class="case-card-simple">
+                        <span class="case-label">공공</span>
+                        <span class="case-title">청사/민원실 안내 표준화</span>
+                    </div>
+                    <div class="case-card-simple">
+                        <span class="case-label">금융</span>
+                        <span class="case-title">다지점 금융기관 안내 통합</span>
+                    </div>
+                    <div class="case-card-simple">
+                        <span class="case-label">시설</span>
+                        <span class="case-title">병원/교통시설 실시간 안내</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================= -->
+        <!-- FAQ -->
+        <!-- ============================= -->
+        <section id="faq" class="section section-dark">
+            <div class="container">
+                <h2>자주 묻는 질문</h2>
+                
+                <div class="faq-list">
+                    <details class="faq-item faq-item-dark">
+                        <summary><span class="faq-q">Q</span>기존 디스플레이도 사용할 수 있나요?</summary>
+                        <div class="faq-answer">
+                            <p>가능합니다. 현장 환경에 맞춰 연동 방식을 협의할 수 있습니다.</p>
+                        </div>
+                    </details>
+                    
+                    <details class="faq-item faq-item-dark">
+                        <summary><span class="faq-q">Q</span>긴급 공지는 얼마나 빠르게 반영되나요?</summary>
+                        <div class="faq-answer">
+                            <p>운영 환경에 따라 다르며, 즉시 송출을 전제로 구성됩니다.</p>
+                        </div>
+                    </details>
+                    
+                    <details class="faq-item faq-item-dark">
+                        <summary><span class="faq-q">Q</span>지점별로 다른 콘텐츠를 보여줄 수 있나요?</summary>
+                        <div class="faq-answer">
+                            <p>가능합니다. 지점/디스플레이 단위로 배포 정책을 설정할 수 있습니다.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================= -->
+        <!-- CTA -->
+        <!-- ============================= -->
+        <section id="cta" class="section section-cta">
+            <div class="container">
+                <h2>
+                    현장 안내 운영 체계가 필요한지,<br>
+                    <span class="text-white">파일럿부터 확인해보세요</span>
+                </h2>
+                <div class="cta-buttons">
+                    <a href="/company/contact.html" class="btn btn-white">운영 환경 적용 문의</a>
+                    <a href="/company/contact.html" class="btn btn-outline-white">파일럿 상담 요청</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer"></footer>
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>
+

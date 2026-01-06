@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문의하기 - 팀벨</title>
+    <meta name="description" content="AI 음성 솔루션 도입 문의, 기술 상담, 파트너십 문의. 팀벨 연락처 안내.">
+    <link rel="stylesheet" href="/assets/css/globals.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/pages/company.css">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="/" class="header-logo"><img src="/assets/img/timbel-logo.png" alt="Timbel"></a>
+            <nav class="nav" role="menubar"></nav>
+            <div class="header-cta"><a href="#form" class="btn btn-primary">문의하기</a></div>
+            <button class="mobile-toggle" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="section contact-hero">
+            <div class="container">
+                <div class="section-eyebrow">
+                    <span class="section-eyebrow-line"></span>
+                    <span class="section-eyebrow-text">Contact</span>
+                </div>
+                <h1>
+                    도입 검토부터 기술 상담까지<br>
+                    <span class="text-timbel-blue">전문가가 답변드립니다</span>
+                </h1>
+                <p class="contact-hero-desc">
+                    영업 목적의 연락은 드리지 않습니다.<br>
+                    검토에 필요한 정보만 안내합니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Options -->
+        <section class="section">
+            <div class="container">
+                <div class="contact-options">
+                    <div class="contact-option">
+                        <div class="contact-icon">📋</div>
+                        <h3>도입 문의</h3>
+                        <p>솔루션 도입 검토, PoC 신청,<br>견적 요청</p>
+                        <a href="#form" class="btn btn-primary">문의하기</a>
+                    </div>
+                    
+                    <div class="contact-option">
+                        <div class="contact-icon">⚙️</div>
+                        <h3>기술 상담</h3>
+                        <p>API 연동, 온프레미스 구축,<br>기술 스펙 확인</p>
+                        <a href="#form" class="btn btn-outline">문의하기</a>
+                    </div>
+                    
+                    <div class="contact-option">
+                        <div class="contact-icon">🤝</div>
+                        <h3>파트너십</h3>
+                        <p>리셀러, OEM, 기술 제휴<br>파트너십 문의</p>
+                        <a href="#form" class="btn btn-outline">문의하기</a>
+                    </div>
+                    
+                    <div class="contact-option">
+                        <div class="contact-icon">📰</div>
+                        <h3>홍보/취재</h3>
+                        <p>보도자료, 인터뷰,<br>미디어 문의</p>
+                        <a href="mailto:pr@timbel.net" class="btn btn-outline">이메일 보내기</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section id="form" class="section section-alt">
+            <div class="container">
+                <div class="form-container">
+                    <h2>문의하기</h2>
+                    <p class="form-desc">
+                        아래 양식을 작성해 주시면 1영업일 내에 답변드립니다.
+                    </p>
+                    
+                    <form class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="company">기관/회사명 <span class="required">*</span></label>
+                                <input type="text" id="company" name="company" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">담당자명 <span class="required">*</span></label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">이메일 <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">연락처</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="inquiry-type">문의 유형 <span class="required">*</span></label>
+                            <select id="inquiry-type" name="inquiry-type" required>
+                                <option value="">선택해 주세요</option>
+                                <option value="도입문의">솔루션 도입 문의</option>
+                                <option value="기술상담">기술 상담</option>
+                                <option value="PoC신청">PoC 신청</option>
+                                <option value="견적요청">견적 요청</option>
+                                <option value="파트너십">파트너십 문의</option>
+                                <option value="기타">기타</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product">관심 솔루션</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="product" value="SORIZAVA">
+                                    <span>SORIZAVA 속기</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="product" value="바로노트">
+                                    <span>바로노트 회의록</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="product" value="TEXTAR">
+                                    <span>TEXTAR 자막</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="product" value="CLIPDESK">
+                                    <span>CLIPDESK 영상편집</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="product" value="AICC">
+                                    <span>AICC 컨택센터</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="product" value="HAIV엔진">
+                                    <span>HAIV 엔진 (API)</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">문의 내용 <span class="required">*</span></label>
+                            <textarea id="message" name="message" rows="5" required placeholder="도입 목적, 현재 환경, 궁금한 점 등을 작성해 주세요."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="privacy" required>
+                                <span><a href="#" target="_blank">개인정보 처리방침</a>에 동의합니다. <span class="required">*</span></span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg">문의 보내기</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Office Location -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">오시는 길</h2>
+                
+                <div class="location-info">
+                    <div class="location-card">
+                        <h3>본사</h3>
+                        <div class="location-details">
+                            <div class="detail-item">
+                                <span class="detail-label">주소</span>
+                                <span class="detail-value">서울시 강남구 테헤란로 000, 00빌딩 00층</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">이메일</span>
+                                <span class="detail-value">contact@timbel.net</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">대표번호</span>
+                                <span class="detail-value">02-0000-0000</span>
+                            </div>
+                        </div>
+                        <div class="location-map">
+                            <div class="map-placeholder">[지도]</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer"></footer>
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>

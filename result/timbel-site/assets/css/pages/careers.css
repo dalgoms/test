@@ -1,0 +1,323 @@
+/* ========================================
+   Careers Page Styles
+   ======================================== */
+
+/* ==================== HERO ==================== */
+.careers-hero {
+    background: linear-gradient(180deg, var(--timbel-navy) 0%, #0A1830 100%);
+    color: var(--white);
+    padding-top: calc(var(--header-height) + var(--space-16));
+    padding-bottom: var(--space-16);
+    text-align: center;
+}
+
+.careers-hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: var(--space-4);
+}
+
+.careers-hero-desc {
+    font-size: var(--text-lg);
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ==================== SECTIONS ==================== */
+.section {
+    padding: var(--space-16) 0;
+}
+
+.section-alt {
+    background-color: var(--gray-50);
+}
+
+.section-title {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 700;
+    margin-bottom: var(--space-8);
+    text-align: center;
+}
+
+.section-desc {
+    font-size: var(--text-lg);
+    color: var(--gray-600);
+    text-align: center;
+    margin-bottom: var(--space-10);
+}
+
+/* ==================== WHY GRID ==================== */
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-6);
+}
+
+.why-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: var(--space-6);
+    text-align: center;
+}
+
+.why-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+}
+
+.why-card h3 {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+}
+
+.why-card p {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+}
+
+/* ==================== BENEFITS ==================== */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-6);
+}
+
+.benefit-category {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: var(--space-5);
+}
+
+.benefit-category h3 {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--timbel-blue);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.benefit-category ul {
+    list-style: none;
+}
+
+.benefit-category li {
+    font-size: var(--text-sm);
+    color: var(--gray-700);
+    padding: var(--space-2) 0;
+    padding-left: var(--space-4);
+    position: relative;
+}
+
+.benefit-category li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--timbel-blue);
+    font-size: var(--text-xs);
+}
+
+/* ==================== POSITIONS ==================== */
+.positions-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.position-category {
+    margin-bottom: var(--space-10);
+}
+
+.position-category h3 {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--gray-500);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.position-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-5);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    margin-bottom: var(--space-3);
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition-fast);
+}
+
+.position-card:hover {
+    border-color: var(--timbel-blue);
+    background-color: var(--gray-50);
+}
+
+.position-info h4 {
+    font-size: var(--text-base);
+    font-weight: 600;
+    margin-bottom: var(--space-1);
+}
+
+.position-info p {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+}
+
+.position-meta {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.position-type,
+.position-location {
+    font-size: var(--text-xs);
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: var(--gray-100);
+    color: var(--gray-600);
+}
+
+.positions-note {
+    text-align: center;
+    padding: var(--space-8);
+    background: var(--gray-50);
+    border-radius: 12px;
+    margin-top: var(--space-8);
+}
+
+.positions-note p {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-4);
+}
+
+/* ==================== PROCESS ==================== */
+.process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+}
+
+.process-step {
+    flex: 1;
+    min-width: 150px;
+    max-width: 180px;
+    text-align: center;
+    padding: var(--space-4);
+}
+
+.process-step .step-number {
+    width: 40px;
+    height: 40px;
+    background: var(--timbel-blue);
+    color: var(--white);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-base);
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+}
+
+.process-step h3 {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+}
+
+.process-step p {
+    font-size: var(--text-xs);
+    color: var(--gray-500);
+}
+
+/* ==================== CTA SECTION ==================== */
+.section-cta {
+    background: linear-gradient(135deg, var(--timbel-navy) 0%, #0A1830 100%);
+    color: var(--white);
+    text-align: center;
+}
+
+.section-cta h2 {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 700;
+    margin-bottom: var(--space-6);
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+/* ==================== BUTTONS ==================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3) var(--space-6);
+    border-radius: 8px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--timbel-blue);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--timbel-blue-dark);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border-color: var(--gray-300);
+    color: var(--gray-700);
+}
+
+.btn-outline:hover {
+    border-color: var(--timbel-blue);
+    color: var(--timbel-blue);
+}
+
+.btn-white {
+    background-color: var(--white);
+    color: var(--timbel-navy);
+}
+
+.btn-white:hover {
+    background-color: var(--gray-100);
+}
+
+.btn-outline-white {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-outline-white:hover {
+    border-color: var(--white);
+    color: var(--white);
+}
+
+/* ==================== UTILITIES ==================== */
+.text-timbel-blue {
+    color: var(--timbel-blue);
+}
+
+.text-white {
+    color: var(--white);
+}

@@ -1,0 +1,355 @@
+/* ========================================
+   Clients Page Styles
+   ======================================== */
+
+/* ==================== HERO ==================== */
+.clients-hero {
+    background: linear-gradient(180deg, var(--timbel-navy) 0%, #0A1830 100%);
+    color: var(--white);
+    padding-top: calc(var(--header-height) + var(--space-16));
+    padding-bottom: var(--space-16);
+    text-align: center;
+}
+
+.clients-hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: var(--space-4);
+}
+
+.clients-hero-desc {
+    font-size: var(--text-lg);
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto var(--space-10);
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-10);
+    flex-wrap: wrap;
+}
+
+.hero-stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+}
+
+.stat-number .unit {
+    font-size: 0.5em;
+    font-weight: 600;
+}
+
+.stat-label {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: var(--space-2);
+}
+
+/* ==================== SECTIONS ==================== */
+.section {
+    padding: var(--space-16) 0;
+}
+
+.section-alt {
+    background-color: var(--gray-50);
+}
+
+/* ==================== CLIENT SECTION HEADER ==================== */
+.client-section-header {
+    margin-bottom: var(--space-8);
+}
+
+.client-section-header h2 {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+}
+
+.client-section-header p {
+    font-size: var(--text-lg);
+    color: var(--gray-500);
+}
+
+/* ==================== CLIENT LOGOS GRID ==================== */
+.client-logos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-10);
+}
+
+.client-logo-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: var(--space-4);
+    text-align: center;
+}
+
+.section-alt .client-logo-card {
+    background: var(--white);
+}
+
+.logo-placeholder {
+    height: 60px;
+    background: var(--gray-100);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-sm);
+    color: var(--gray-500);
+    margin-bottom: var(--space-2);
+}
+
+.client-label {
+    font-size: var(--text-xs);
+    color: var(--gray-500);
+}
+
+/* ==================== CLIENT CASE ==================== */
+.client-case {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: var(--space-8);
+    margin-top: var(--space-8);
+}
+
+.section-alt .client-case {
+    background: var(--white);
+}
+
+.case-header {
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.case-badge {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--timbel-blue);
+    background: var(--timbel-blue-light);
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: var(--space-2);
+}
+
+.case-header h3 {
+    font-size: var(--text-xl);
+    font-weight: 700;
+}
+
+.case-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+}
+
+.case-section h4 {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    margin-bottom: var(--space-2);
+}
+
+.case-section p {
+    font-size: var(--text-sm);
+    color: var(--gray-700);
+}
+
+.case-section ul {
+    list-style: none;
+    font-size: var(--text-sm);
+    color: var(--gray-700);
+}
+
+.case-section li {
+    padding-left: var(--space-4);
+    position: relative;
+    margin-bottom: var(--space-1);
+}
+
+.case-section li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--timbel-blue);
+    font-weight: 600;
+}
+
+.case-quote {
+    background: var(--gray-50);
+    border-left: 3px solid var(--timbel-blue);
+    padding: var(--space-4) var(--space-6);
+    font-style: italic;
+    color: var(--gray-700);
+    margin: 0;
+}
+
+.case-quote cite {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--gray-500);
+    font-style: normal;
+    margin-top: var(--space-2);
+}
+
+/* ==================== TESTIMONIALS ==================== */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-10);
+}
+
+.testimonial-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: var(--space-6);
+}
+
+.testimonial-industry {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--timbel-blue);
+    background: var(--timbel-blue-light);
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: var(--space-4);
+}
+
+.testimonial-card blockquote {
+    font-size: var(--text-base);
+    color: var(--gray-700);
+    line-height: 1.6;
+    margin-bottom: var(--space-4);
+}
+
+.testimonial-result {
+    background: var(--gray-50);
+    padding: var(--space-3);
+    border-radius: 8px;
+    margin-bottom: var(--space-4);
+}
+
+.testimonial-result .result-label {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--gray-500);
+    margin-bottom: 2px;
+}
+
+.testimonial-result .result-value {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--gray-900);
+}
+
+.testimonial-card cite {
+    font-size: var(--text-sm);
+    color: var(--gray-500);
+    font-style: normal;
+}
+
+/* ==================== DOWNLOAD SECTION ==================== */
+.download-section {
+    text-align: center;
+}
+
+.download-content h2 {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+}
+
+.download-content p {
+    font-size: var(--text-base);
+    color: var(--gray-600);
+    margin-bottom: var(--space-6);
+}
+
+/* ==================== CTA SECTION ==================== */
+.section-cta {
+    background: linear-gradient(135deg, var(--timbel-navy) 0%, #0A1830 100%);
+    color: var(--white);
+    text-align: center;
+}
+
+.section-cta h2 {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+}
+
+.cta-desc {
+    font-size: var(--text-base);
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 500px;
+    margin: 0 auto var(--space-8);
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+/* ==================== BUTTONS ==================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3) var(--space-6);
+    border-radius: 8px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--timbel-blue);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--timbel-blue-dark);
+}
+
+.btn-white {
+    background-color: var(--white);
+    color: var(--timbel-navy);
+}
+
+.btn-white:hover {
+    background-color: var(--gray-100);
+}
+
+/* ==================== UTILITIES ==================== */
+.text-timbel-blue {
+    color: var(--timbel-blue);
+}
+
+.text-white {
+    color: var(--white);
+}
