@@ -1,0 +1,5194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIMBEL | Voice into Value</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* TIMBEL Brand Colors */
+            --timbel-blue: #0078FF;
+            --timbel-blue-dark: #0060CC;
+            --timbel-blue-light: #E6F3FF;
+            --timbel-navy: #0A1628;
+            --timbel-navy-light: #1A2B45;
+            
+            /* Neutral */
+            --white: #FFFFFF;
+            --gray-50: #FAFBFC;
+            --gray-100: #F4F5F7;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            
+            /* Typography Scale */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            --text-5xl: 3rem;
+            --text-6xl: 3.75rem;
+            --text-7xl: 4.5rem;
+            --text-8xl: 6rem;
+            --text-9xl: 8rem;
+            
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            --space-24: 6rem;
+            --space-32: 8rem;
+            
+            /* Transitions */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 800ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            color: var(--gray-900);
+            background: var(--white);
+            line-height: 1.7;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--timbel-blue);
+            color: var(--white);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--timbel-blue);
+            border-radius: 4px;
+        }
+
+        /* ==================== LAYOUT CONTAINER ==================== */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding-left: var(--space-6);
+            padding-right: var(--space-6);
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding-left: var(--space-8);
+                padding-right: var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding-left: var(--space-12);
+                padding-right: var(--space-12);
+            }
+        }
+
+        /* ==================== HEADER ==================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: var(--space-4) var(--space-6);
+            background: var(--gray-900);
+            transition: all var(--transition-base);
+        }
+
+        @media (min-width: 768px) {
+            .header {
+                padding: var(--space-4) var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .header {
+                padding: var(--space-4) var(--space-12);
+            }
+        }
+
+        .header.scrolled {
+            background: var(--gray-900);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .header-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 28px;
+            width: auto;
+            transition: all var(--transition-fast);
+            filter: brightness(0) invert(1);
+        }
+
+        @media (min-width: 768px) {
+            .logo-img {
+                height: 32px;
+            }
+        }
+
+        .nav {
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .nav {
+                display: flex;
+                align-items: center;
+                gap: var(--space-6);
+            }
+        }
+
+        .nav > a.nav-link,
+        .nav-item > .nav-link {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+            position: relative;
+            padding: var(--space-3) 0;
+        }
+
+        .nav > a.nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--timbel-blue);
+            transition: width var(--transition-base);
+        }
+
+        .nav > a.nav-link:hover,
+        .nav-item:hover > .nav-link {
+            color: var(--white);
+        }
+
+        .nav > a.nav-link:hover::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .header-cta {
+                display: block;
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-5);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--timbel-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--timbel-blue-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gray-700);
+            border: 1.5px solid var(--gray-300);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--timbel-blue);
+            color: var(--timbel-blue);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--gray-600);
+        }
+
+        .btn-ghost:hover {
+            background: var(--gray-100);
+        }
+
+        .btn-large {
+            padding: var(--space-4) var(--space-8);
+            font-size: var(--text-base);
+        }
+
+        .mobile-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--space-2);
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-toggle {
+                display: none;
+            }
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            transition: all var(--transition-fast);
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--timbel-navy);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: var(--space-6);
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .hero-content {
+                padding-left: var(--space-8);
+                padding-right: var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-content {
+                padding-left: var(--space-12);
+                padding-right: var(--space-12);
+            }
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-5);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-label-line {
+            display: none;
+        }
+
+        .hero-label-text {
+            font-size: var(--text-xs);
+            font-weight: 500;
+            color: var(--timbel-blue);
+            letter-spacing: 0.05em;
+            padding: var(--space-2) var(--space-4);
+            background: rgba(0, 120, 255, 0.1);
+            border-radius: 100px;
+        }
+
+        @media (min-width: 768px) {
+            .hero-label-text {
+                font-size: var(--text-sm);
+            }
+        }
+
+        /* 히어로 라벨 배지 */
+        .hero-label-badge {
+            width: 8px;
+            height: 8px;
+            background: var(--timbel-blue);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+
+        /* 히어로 메트릭스 */
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-6);
+            margin-top: var(--space-12);
+            padding-top: var(--space-10);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 640px) {
+            .hero-metrics {
+                grid-template-columns: 1fr;
+                gap: var(--space-8);
+                text-align: center;
+            }
+        }
+
+        .hero-metric {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+            text-align: center;
+        }
+
+        .hero-metric-number {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        @media (min-width: 768px) {
+            .hero-metric-number {
+                font-size: var(--text-4xl);
+            }
+        }
+
+        .hero-metric-unit {
+            font-size: var(--text-xl);
+            color: var(--timbel-blue);
+        }
+
+        @media (min-width: 768px) {
+            .hero-metric-unit {
+                font-size: var(--text-2xl);
+            }
+        }
+
+        .hero-metric-desc {
+            font-size: var(--text-xs);
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.5;
+        }
+
+        @media (min-width: 768px) {
+            .hero-metric-desc {
+                font-size: var(--text-sm);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(2.25rem, 6vw, 4rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-5);
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .hero-title-line {
+            display: block;
+        }
+
+        .hero-title-accent {
+            color: var(--timbel-blue);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+            margin: 0 auto var(--space-8);
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+            line-height: 1.8;
+        }
+
+        .hero-subtitle strong {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+            align-items: center;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        @media (min-width: 640px) {
+            .hero-cta {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        .btn-hero {
+            padding: var(--space-3) var(--space-6);
+            font-size: var(--text-sm);
+            border-radius: 100px;
+            transition: all var(--transition-fast);
+        }
+
+        .btn-hero-primary {
+            background: var(--timbel-blue);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .btn-hero-primary:hover {
+            background: var(--timbel-blue-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-hero-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-hero-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: var(--space-8);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        .hero-scroll-text {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 400;
+        }
+
+        .hero-scroll-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-scroll-icon svg {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==================== BRAND STATEMENT ==================== */
+        .brand-statement {
+            padding: var(--space-16) var(--space-6);
+            background: var(--white);
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .brand-statement {
+                padding: var(--space-20) var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .brand-statement {
+                padding: var(--space-24) var(--space-12);
+            }
+        }
+
+        .brand-statement-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .brand-tagline {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--timbel-blue);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-4);
+        }
+
+        @media (min-width: 768px) {
+            .brand-tagline {
+                font-size: var(--text-sm);
+                margin-bottom: var(--space-5);
+            }
+        }
+
+        .brand-headline {
+            font-size: clamp(1.5rem, 4vw, 2.75rem);
+            font-weight: 700;
+            color: var(--gray-900);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            max-width: 800px;
+        }
+
+        .brand-headline em {
+            font-style: normal;
+            color: var(--timbel-blue);
+        }
+
+        /* ==================== STATS SECTION ==================== */
+        .stats {
+            padding: var(--space-12) var(--space-6);
+            background: var(--gray-50);
+        }
+
+        @media (min-width: 768px) {
+            .stats {
+                padding: var(--space-16) var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .stats {
+                padding: var(--space-16) var(--space-12);
+            }
+        }
+
+        .stats-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-4);
+        }
+
+        @media (min-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: var(--space-6);
+            }
+        }
+
+        .stat-item {
+            text-align: left;
+            padding: var(--space-4);
+        }
+
+        @media (min-width: 768px) {
+            .stat-item {
+                padding: var(--space-6);
+            }
+        }
+
+        .stat-number {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--timbel-blue);
+            line-height: 1;
+            margin-bottom: var(--space-1);
+        }
+
+        @media (min-width: 768px) {
+            .stat-number {
+                margin-bottom: var(--space-2);
+            }
+        }
+
+        .stat-label {
+            font-size: var(--text-xs);
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+
+        @media (min-width: 768px) {
+            .stat-label {
+                font-size: var(--text-sm);
+            }
+        }
+
+        /* ==================== SERVICES SECTION ==================== */
+        .services {
+            padding: var(--space-20) var(--space-6);
+            background: var(--white);
+        }
+
+        @media (min-width: 768px) {
+            .services {
+                padding: var(--space-24) var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services {
+                padding: var(--space-32) var(--space-12);
+            }
+        }
+
+        .services-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: var(--space-10);
+        }
+
+        @media (min-width: 768px) {
+            .section-header {
+                margin-bottom: var(--space-12);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .section-header {
+                margin-bottom: var(--space-16);
+            }
+        }
+
+        .section-label {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--timbel-blue);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-3);
+        }
+
+        @media (min-width: 768px) {
+            .section-label {
+                font-size: var(--text-sm);
+                margin-bottom: var(--space-4);
+            }
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--gray-900);
+            letter-spacing: -0.02em;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-4);
+        }
+
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-5);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: var(--space-6);
+            }
+        }
+
+        .service-card {
+            position: relative;
+            background: var(--gray-50);
+            border-radius: 20px;
+            padding: var(--space-6);
+            overflow: hidden;
+            transition: all var(--transition-base);
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            height: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .service-card {
+                padding: var(--space-8);
+                border-radius: 24px;
+            }
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--timbel-blue) 0%, var(--timbel-blue-dark) 100%);
+            opacity: 0;
+            transition: opacity var(--transition-base);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover .service-icon,
+        .service-card:hover .service-title,
+        .service-card:hover .service-desc,
+        .service-card:hover .service-arrow {
+            color: var(--white);
+        }
+
+        .service-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-6);
+            transition: color var(--transition-base);
+        }
+
+        .service-title {
+            font-size: var(--text-lg);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-2);
+            transition: color var(--transition-base);
+        }
+
+        @media (min-width: 768px) {
+            .service-title {
+                font-size: var(--text-xl);
+                margin-bottom: var(--space-3);
+            }
+        }
+
+        .service-desc {
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+            line-height: 1.6;
+            margin-bottom: var(--space-4);
+            transition: color var(--transition-base);
+        }
+
+        @media (min-width: 768px) {
+            .service-desc {
+                margin-bottom: var(--space-6);
+            }
+        }
+
+        .service-arrow {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--timbel-blue);
+            transition: all var(--transition-base);
+        }
+
+        .service-arrow svg {
+            transition: transform var(--transition-base);
+        }
+
+        .service-card:hover .service-arrow svg {
+            transform: translateX(4px);
+        }
+
+        /* Featured Service */
+        .service-featured {
+            grid-column: span 1;
+        }
+
+        @media (min-width: 768px) {
+            .service-featured {
+                grid-column: span 2;
+            }
+        }
+
+        .service-featured .service-card {
+            background: linear-gradient(135deg, var(--timbel-navy) 0%, var(--timbel-navy-light) 100%);
+            min-height: 280px;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        @media (min-width: 768px) {
+            .service-featured .service-card {
+                min-height: 320px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .service-featured .service-card {
+                min-height: 360px;
+            }
+        }
+
+        .service-featured .service-icon,
+        .service-featured .service-title,
+        .service-featured .service-desc {
+            color: var(--white);
+        }
+
+        .service-featured .service-desc {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .service-featured .service-arrow {
+            color: var(--white);
+        }
+
+        .service-featured .service-card::before {
+            display: none;
+        }
+
+        .service-featured-badge {
+            position: absolute;
+            top: var(--space-6);
+            left: var(--space-6);
+            padding: var(--space-2) var(--space-4);
+            background: var(--timbel-blue);
+            color: var(--white);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            border-radius: 100px;
+        }
+
+        /* ==================== TECHNOLOGY SECTION ==================== */
+        .technology {
+            padding: var(--space-20) var(--space-6);
+            background: var(--timbel-navy);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .technology {
+                padding: var(--space-24) var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .technology {
+                padding: var(--space-32) var(--space-12);
+            }
+        }
+
+        .technology::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0, 102, 255, 0.2) 0%, transparent 70%);
+        }
+
+        .technology-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .technology .section-label {
+            color: var(--timbel-blue);
+        }
+
+        .technology .section-title {
+            color: var(--white);
+            margin-bottom: var(--space-4);
+        }
+
+        .technology-desc {
+            font-size: var(--text-base);
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 500px;
+            margin-bottom: var(--space-10);
+        }
+
+        @media (min-width: 768px) {
+            .technology-desc {
+                font-size: var(--text-lg);
+                margin-bottom: var(--space-12);
+            }
+        }
+
+        .tech-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-4);
+        }
+
+        @media (min-width: 768px) {
+            .tech-features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-5);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .tech-features {
+                grid-template-columns: repeat(3, 1fr);
+                gap: var(--space-6);
+            }
+        }
+
+        .tech-feature {
+            padding: var(--space-5);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            transition: all var(--transition-base);
+        }
+
+        @media (min-width: 768px) {
+            .tech-feature {
+                padding: var(--space-6);
+                border-radius: 20px;
+            }
+        }
+
+        .tech-feature:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--timbel-blue);
+            transform: translateY(-4px);
+        }
+
+        .tech-feature-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--timbel-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-4);
+        }
+
+        @media (min-width: 768px) {
+            .tech-feature-icon {
+                width: 52px;
+                height: 52px;
+                border-radius: 14px;
+                margin-bottom: var(--space-5);
+            }
+        }
+
+        .tech-feature-icon svg {
+            width: 22px;
+            height: 22px;
+            color: var(--white);
+        }
+
+        @media (min-width: 768px) {
+            .tech-feature-icon svg {
+                width: 26px;
+                height: 26px;
+            }
+        }
+
+        .tech-feature-title {
+            font-size: var(--text-base);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--space-2);
+        }
+
+        @media (min-width: 768px) {
+            .tech-feature-title {
+                font-size: var(--text-lg);
+                margin-bottom: var(--space-3);
+            }
+        }
+
+        .tech-feature-desc {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+
+        /* ==================== CLIENTS SECTION ==================== */
+        .clients {
+            padding: var(--space-20) var(--space-6);
+            background: var(--white);
+        }
+
+        @media (min-width: 768px) {
+            .clients {
+                padding: var(--space-24) var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .clients {
+                padding: var(--space-32) var(--space-12);
+            }
+        }
+
+        .clients-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .clients-header {
+            text-align: left;
+            margin-bottom: var(--space-10);
+        }
+
+        @media (min-width: 768px) {
+            .clients-header {
+                margin-bottom: var(--space-12);
+            }
+        }
+
+        .clients-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-10);
+        }
+
+        @media (min-width: 768px) {
+            .clients-logos {
+                gap: var(--space-6);
+                margin-bottom: var(--space-12);
+            }
+        }
+
+        .client-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-2) var(--space-4);
+            opacity: 0.5;
+            transition: opacity var(--transition-base);
+            font-size: var(--text-sm);
+            font-weight: 700;
+            color: var(--gray-400);
+        }
+
+        @media (min-width: 768px) {
+            .client-logo {
+                padding: var(--space-3) var(--space-5);
+                font-size: var(--text-base);
+            }
+        }
+
+        .client-logo:hover {
+            opacity: 1;
+            color: var(--gray-700);
+        }
+
+        /* Testimonial */
+        .testimonial {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial-quote {
+            font-size: clamp(1rem, 2vw, 1.375rem);
+            font-weight: 500;
+            color: var(--gray-700);
+            line-height: 1.7;
+            margin-bottom: var(--space-6);
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-1);
+        }
+
+        .testimonial-name {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .testimonial-role {
+            font-size: var(--text-xs);
+            color: var(--gray-500);
+        }
+
+        /* ==================== CTA SECTION ==================== */
+        .cta {
+            padding: var(--space-16) var(--space-6);
+            background: linear-gradient(135deg, var(--timbel-blue) 0%, var(--timbel-blue-dark) 100%);
+            text-align: left;
+        }
+
+        @media (min-width: 768px) {
+            .cta {
+                padding: var(--space-20) var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .cta {
+                padding: var(--space-24) var(--space-12);
+            }
+        }
+
+        .cta-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-4);
+        }
+
+        .cta-desc {
+            font-size: var(--text-base);
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: var(--space-8);
+        }
+
+        @media (min-width: 768px) {
+            .cta-desc {
+                font-size: var(--text-lg);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+            align-items: flex-start;
+        }
+
+        @media (min-width: 640px) {
+            .cta-buttons {
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: var(--space-4);
+            }
+        }
+
+        .btn-cta {
+            padding: var(--space-3) var(--space-8);
+            font-size: var(--text-sm);
+            border-radius: 100px;
+        }
+
+        @media (min-width: 768px) {
+            .btn-cta {
+                padding: var(--space-4) var(--space-10);
+                font-size: var(--text-base);
+            }
+        }
+
+        .btn-cta-primary {
+            background: var(--white);
+            color: var(--timbel-blue);
+            font-weight: 600;
+        }
+
+        .btn-cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-cta-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-cta-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--white);
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            background: var(--gray-900);
+            color: var(--white);
+            padding: var(--space-20) var(--space-6) var(--space-10);
+        }
+
+        @media (min-width: 768px) {
+            .footer {
+                padding: var(--space-20) var(--space-8) var(--space-10);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer {
+                padding: var(--space-20) var(--space-12) var(--space-10);
+            }
+        }
+
+        .footer-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-12);
+            margin-bottom: var(--space-16);
+        }
+
+        @media (min-width: 768px) {
+            .footer-top {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+            }
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+
+        .footer-logo-mark {
+            width: 40px;
+            height: 40px;
+            background: var(--timbel-blue);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: var(--text-lg);
+        }
+
+        .footer-logo-text {
+            font-size: var(--text-xl);
+            font-weight: 700;
+        }
+
+        .footer-logo-text span {
+            color: var(--timbel-blue);
+        }
+
+        .footer-tagline {
+            font-size: var(--text-sm);
+            color: var(--gray-400);
+            line-height: 1.6;
+        }
+
+        .footer-section h4 {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: var(--space-6);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .footer-links a {
+            font-size: var(--text-sm);
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            padding-top: var(--space-10);
+            border-top: 1px solid var(--gray-800);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .footer-copyright {
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: var(--space-6);
+        }
+
+        .footer-legal a {
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .footer-legal a:hover {
+            color: var(--white);
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ==================== MOBILE MENU ==================== */
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: var(--white);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            padding: var(--space-20) var(--space-8);
+            transform: translateX(100%);
+            transition: transform var(--transition-smooth);
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+
+        .mobile-menu-link {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            text-decoration: none;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: var(--space-6);
+            right: var(--space-6);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--space-2);
+        }
+
+        /* ==================== MEGA MENU ==================== */
+        .nav-item {
+            position: static;
+        }
+
+        .nav-item .nav-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+
+        .nav-item .nav-link svg {
+            width: 12px;
+            height: 12px;
+            transition: transform var(--transition-fast);
+        }
+
+        .nav-item:hover .nav-link svg {
+            transform: rotate(180deg);
+        }
+
+        .mega-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all var(--transition-base);
+            z-index: 999;
+            border-top: 1px solid var(--gray-200);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            padding: 0 var(--space-6);
+        }
+
+        @media (min-width: 768px) {
+            .mega-menu {
+                padding: 0 var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .mega-menu {
+                padding: 0 var(--space-12);
+            }
+        }
+
+        .nav-item:hover .mega-menu,
+        .mega-menu:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .mega-menu-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: var(--space-8) 0;
+            display: grid;
+            grid-template-columns: 220px 1fr 1fr 1fr;
+            gap: var(--space-8);
+        }
+
+        .mega-menu-intro {
+            border-right: 1px solid var(--gray-200);
+            padding-right: var(--space-8);
+        }
+
+        .mega-menu-intro h3 {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            line-height: 1.4;
+            margin-bottom: var(--space-3);
+        }
+
+        .mega-menu-intro p {
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        .mega-menu-section h4 {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--timbel-blue);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-4);
+        }
+
+        .mega-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+
+        .mega-menu-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-2) 0;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+
+        .mega-menu-link-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--gray-100);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all var(--transition-fast);
+            flex-shrink: 0;
+        }
+
+        .mega-menu-link-icon svg {
+            width: 16px;
+            height: 16px;
+            color: var(--timbel-blue);
+            transition: color var(--transition-fast);
+        }
+
+        .mega-menu-link:hover .mega-menu-link-icon {
+            background: var(--timbel-blue);
+        }
+
+        .mega-menu-link:hover .mega-menu-link-icon svg {
+            color: var(--white);
+        }
+
+        .mega-menu-link-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .mega-menu-link-title {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--gray-900);
+            transition: color var(--transition-fast);
+        }
+
+        .mega-menu-link:hover .mega-menu-link-title {
+            color: var(--timbel-blue);
+        }
+
+        .mega-menu-link-desc {
+            font-size: 11px;
+            color: var(--gray-400);
+        }
+
+        .mega-menu-simple {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .mega-menu-simple a {
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+            text-decoration: none;
+            padding: var(--space-2) 0;
+            transition: color var(--transition-fast);
+            line-height: 1.4;
+        }
+
+        .mega-menu-simple a:hover {
+            color: var(--timbel-blue);
+        }
+
+        /* ==================== UNIFIED FOOTER ==================== */
+        .footer {
+            background: var(--timbel-navy);
+            color: var(--white);
+            padding: 0;
+        }
+
+        /* 상단: 신뢰 배지 + 연락처 */
+        .footer-trust {
+            background: rgba(0, 120, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-trust-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: var(--space-4) var(--space-6);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-trust-inner {
+                padding: var(--space-4) var(--space-8);
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-trust-inner {
+                padding: var(--space-4) var(--space-12);
+            }
+        }
+
+        .footer-trust-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+            justify-content: center;
+        }
+
+        .footer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.05);
+            padding: var(--space-2) var(--space-3);
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-badge svg {
+            color: var(--timbel-blue);
+        }
+
+        .footer-trust-contact {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .footer-phone {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--white);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .footer-phone:hover {
+            color: var(--timbel-blue);
+        }
+
+        .footer-email {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .footer-email:hover {
+            color: var(--white);
+        }
+
+        /* 중단: 내비게이션 */
+        .footer-main {
+            padding: var(--space-10) var(--space-6);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        @media (min-width: 768px) {
+            .footer-main {
+                padding: var(--space-12) var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-main {
+                padding: var(--space-12) var(--space-12);
+            }
+        }
+
+        .footer-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
+            margin-bottom: 0;
+        }
+
+        @media (min-width: 768px) {
+            .footer-top {
+                grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+                gap: var(--space-8);
+            }
+        }
+
+        .footer-brand {
+            max-width: 240px;
+            grid-column: span 2;
+        }
+
+        @media (min-width: 768px) {
+            .footer-brand {
+                grid-column: span 1;
+            }
+        }
+
+        .footer-logo {
+            margin-bottom: var(--space-3);
+        }
+
+        .footer-logo-img {
+            height: 24px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        @media (min-width: 768px) {
+            .footer-logo-img {
+                height: 28px;
+            }
+        }
+
+        .footer-tagline {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.6;
+        }
+
+        .footer-tagline-sub {
+            display: block;
+            margin-top: var(--space-1);
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .footer-section h4 {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--timbel-blue);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-5);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .footer-links a {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        /* 하단: 법적/운영 정보 바 */
+        .footer-bottom-bar {
+            padding: var(--space-6) var(--space-6);
+            background: rgba(0, 0, 0, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom-bar {
+                padding: var(--space-6) var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-bottom-bar {
+                padding: var(--space-6) var(--space-12);
+            }
+        }
+
+        .footer-bottom-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+            align-items: flex-start;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom-inner {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+        }
+
+        .footer-company-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+
+        .footer-company-info p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.35);
+            line-height: 1.6;
+        }
+
+        .footer-company-info strong {
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+        }
+
+        .footer-divider {
+            display: inline-block;
+            margin: 0 var(--space-2);
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-legal-links {
+            display: flex;
+            gap: var(--space-4);
+            flex-shrink: 0;
+        }
+
+        .footer-legal-links a {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .footer-legal-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-legal-links a.highlight {
+            color: var(--timbel-blue);
+            font-weight: 500;
+        }
+
+        /* 최하단: 저작권 */
+        .footer-copyright {
+            padding: var(--space-4) var(--space-6);
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 768px) {
+            .footer-copyright {
+                padding: var(--space-4) var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-copyright {
+                padding: var(--space-4) var(--space-12);
+            }
+        }
+
+        .footer-copyright-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-copyright-inner {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .footer-copyright-inner > span {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: var(--space-2);
+        }
+
+        .footer-social a {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.4);
+            transition: all var(--transition-fast);
+        }
+
+        .footer-social a:hover {
+            background: var(--timbel-blue);
+            color: var(--white);
+        }
+
+        /* ==================== NEW ABOUT SECTION ==================== */
+        .about-section {
+            padding: var(--space-20) var(--space-6);
+            background: var(--timbel-navy);
+        }
+
+        @media (min-width: 768px) {
+            .about-section {
+                padding: var(--space-24) var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .about-section {
+                padding: var(--space-32) var(--space-12);
+            }
+        }
+
+        .about-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            gap: var(--space-12);
+        }
+
+        @media (min-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-16);
+                align-items: start;
+            }
+        }
+
+        .about-content .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-6);
+        }
+
+        .about-content .section-eyebrow-line {
+            width: 32px;
+            height: 1px;
+            background: var(--timbel-blue);
+        }
+
+        .about-content .section-eyebrow-text {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--timbel-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .about-headline {
+            font-size: clamp(1.875rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: var(--space-6);
+        }
+
+        .about-headline .highlight {
+            color: var(--timbel-blue);
+        }
+
+        .about-subcopy {
+            font-size: var(--text-lg);
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+            margin-bottom: var(--space-8);
+        }
+
+        .about-subcopy strong {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        .about-bridge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.5);
+            transition: color var(--transition-fast);
+        }
+
+        .about-bridge:hover {
+            color: var(--timbel-blue);
+        }
+
+        .about-bridge svg {
+            transition: transform var(--transition-fast);
+        }
+
+        .about-bridge:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* About Metrics */
+        .about-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-4);
+        }
+
+        .about-metric-card {
+            position: relative;
+            padding: var(--space-6);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            transition: all var(--transition-fast);
+        }
+
+        .about-metric-card:hover {
+            border-color: rgba(0, 120, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .about-metric-value {
+            display: flex;
+            align-items: baseline;
+            gap: 2px;
+            margin-bottom: var(--space-2);
+        }
+
+        .about-metric-number {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .about-metric-unit {
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--timbel-blue);
+        }
+
+        .about-metric-label {
+            font-size: var(--text-xs);
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-2);
+        }
+
+        .about-metric-definition {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.5;
+        }
+
+        .about-metric-info {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background var(--transition-fast);
+        }
+
+        .about-metric-info:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .about-metric-info svg {
+            width: 12px;
+            height: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .about-metric-tooltip {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            right: 0;
+            width: 220px;
+            padding: var(--space-3);
+            background: var(--gray-900);
+            border: 1px solid var(--gray-700);
+            border-radius: 8px;
+            font-size: var(--text-xs);
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(4px);
+            transition: all var(--transition-fast);
+            z-index: 10;
+        }
+
+        .about-metric-info:hover .about-metric-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* ==================== NEW SERVICES SECTION ==================== */
+        .services-new {
+            padding: var(--space-20) var(--space-6);
+            background: var(--timbel-navy);
+        }
+
+        @media (min-width: 768px) {
+            .services-new {
+                padding: var(--space-24) var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-new {
+                padding: var(--space-32) var(--space-12);
+            }
+        }
+
+        .services-new-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services-header-new {
+            margin-bottom: var(--space-16);
+        }
+
+        .services-header-new .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-4);
+        }
+
+        .services-header-new .section-eyebrow-line {
+            width: 32px;
+            height: 1px;
+            background: var(--timbel-blue);
+        }
+
+        .services-header-new .section-eyebrow-text {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--timbel-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .services-header-new h2 {
+            font-size: clamp(1.875rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--space-4);
+        }
+
+        .services-header-new p {
+            font-size: var(--text-lg);
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+        }
+
+        .services-header-new p strong {
+            color: var(--white);
+        }
+
+        /* Core Platform Card */
+        .core-platform {
+            position: relative;
+            padding: var(--space-8) var(--space-8);
+            background: linear-gradient(135deg, rgba(0, 120, 255, 0.1) 0%, rgba(30, 41, 59, 0.5) 100%);
+            border: 1px solid rgba(0, 120, 255, 0.2);
+            border-radius: 24px;
+            margin-bottom: var(--space-16);
+        }
+
+        .core-platform-badge {
+            position: absolute;
+            top: -12px;
+            left: var(--space-8);
+            padding: var(--space-2) var(--space-4);
+            background: var(--timbel-blue);
+            color: var(--white);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 100px;
+        }
+
+        .core-platform-grid {
+            display: grid;
+            gap: var(--space-8);
+        }
+
+        @media (min-width: 1024px) {
+            .core-platform-grid {
+                grid-template-columns: 1fr auto;
+                align-items: center;
+            }
+        }
+
+        .core-platform h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--space-4);
+        }
+
+        .core-platform-meta {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: var(--space-6);
+        }
+
+        .core-platform-box {
+            padding: var(--space-4);
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            margin-bottom: var(--space-6);
+        }
+
+        .core-platform-problem,
+        .core-platform-solution {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+        }
+
+        .core-platform-problem {
+            margin-bottom: var(--space-3);
+        }
+
+        .core-platform-problem .icon,
+        .core-platform-solution .icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-xs);
+        }
+
+        .core-platform-problem .icon {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .core-platform-solution .icon {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+
+        .core-platform-problem p,
+        .core-platform-solution p {
+            font-size: var(--text-sm);
+            line-height: 1.5;
+        }
+
+        .core-platform-problem p {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .core-platform-solution p {
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .core-platform-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            background: var(--timbel-blue);
+            color: var(--white);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+
+        .core-platform-cta:hover {
+            background: var(--timbel-blue-dark);
+        }
+
+        .core-platform-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+        }
+
+        .core-platform-feature {
+            padding: var(--space-2) var(--space-4);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Service Group */
+        .service-group {
+            margin-bottom: var(--space-12);
+        }
+
+        .service-group-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+
+        .service-group-badge {
+            padding: var(--space-1) var(--space-3);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            font-size: var(--text-xs);
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .service-group-desc {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .service-group-grid {
+            display: grid;
+            gap: var(--space-4);
+        }
+
+        @media (min-width: 768px) {
+            .service-group-grid.cols-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .service-group-grid.cols-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Service Card New */
+        .service-card-new {
+            padding: var(--space-6);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            transition: all var(--transition-fast);
+        }
+
+        .service-card-new:hover {
+            border-color: rgba(0, 120, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .service-card-new h4 {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: var(--space-4);
+        }
+
+        .service-card-new-meta {
+            margin-bottom: var(--space-3);
+        }
+
+        .service-card-new-meta span {
+            font-size: var(--text-xs);
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .service-card-new-meta p {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: var(--space-1);
+        }
+
+        .service-card-new-flow {
+            padding: var(--space-3);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            margin-bottom: var(--space-4);
+        }
+
+        .service-card-new-flow .problem,
+        .service-card-new-flow .outcome {
+            font-size: var(--text-sm);
+        }
+
+        .service-card-new-flow .problem span,
+        .service-card-new-flow .outcome span {
+            font-size: var(--text-xs);
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .service-card-new-flow .problem p {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .service-card-new-flow .divider {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin: var(--space-2) 0;
+        }
+
+        .service-card-new-flow .divider span {
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .service-card-new-flow .divider svg {
+            width: 16px;
+            height: 16px;
+            color: var(--timbel-blue);
+        }
+
+        .service-card-new-flow .outcome span {
+            color: #22c55e;
+        }
+
+        .service-card-new-flow .outcome p {
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .service-card-new-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-sm);
+            color: var(--timbel-blue);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+
+        .service-card-new-cta:hover {
+            color: #3b9fff;
+        }
+
+        .service-card-new-cta svg {
+            transition: transform var(--transition-fast);
+        }
+
+        .service-card-new-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        .services-bottom-cta {
+            text-align: center;
+            margin-top: var(--space-16);
+        }
+
+        .services-bottom-cta p {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: var(--space-4);
+        }
+
+        .services-bottom-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            color: var(--timbel-blue);
+            font-size: var(--text-sm);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .services-bottom-cta a:hover {
+            color: #3b9fff;
+        }
+
+        /* ==================== NEW TECHNOLOGY SECTION ==================== */
+        .technology-new {
+            padding: var(--space-20) var(--space-6);
+            background: var(--gray-900);
+        }
+
+        @media (min-width: 768px) {
+            .technology-new {
+                padding: var(--space-24) var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .technology-new {
+                padding: var(--space-32) var(--space-12);
+            }
+        }
+
+        .technology-new-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .technology-header-new {
+            text-align: center;
+            margin-bottom: var(--space-12);
+        }
+
+        .technology-header-new .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-4);
+        }
+
+        .technology-header-new .section-eyebrow-line {
+            width: 32px;
+            height: 1px;
+            background: var(--timbel-blue);
+        }
+
+        .technology-header-new .section-eyebrow-text {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--timbel-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .technology-header-new h2 {
+            font-size: clamp(1.875rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--space-6);
+        }
+
+        .technology-header-new p {
+            font-size: var(--text-lg);
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .technology-header-new p strong {
+            color: var(--white);
+        }
+
+        .technology-header-new p .highlight {
+            color: var(--timbel-blue);
+        }
+
+        /* Decision Pillars Summary */
+        .decision-pillars {
+            display: grid;
+            gap: var(--space-4);
+            margin-bottom: var(--space-12);
+        }
+
+        @media (min-width: 768px) {
+            .decision-pillars {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .decision-pillar {
+            padding: var(--space-5);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            transition: all var(--transition-fast);
+            text-decoration: none;
+        }
+
+        .decision-pillar:hover {
+            border-color: rgba(0, 120, 255, 0.3);
+        }
+
+        .decision-pillar-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-2);
+        }
+
+        .decision-pillar-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--timbel-blue);
+            border-radius: 50%;
+            transition: transform var(--transition-fast);
+        }
+
+        .decision-pillar:hover .decision-pillar-dot {
+            transform: scale(1.25);
+        }
+
+        .decision-pillar-label {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .decision-pillar-question {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: var(--space-1);
+        }
+
+        .decision-pillar-desc {
+            font-size: var(--text-xs);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Pillar Section */
+        .pillar-section {
+            margin-bottom: var(--space-16);
+        }
+
+        .pillar-section-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+
+        .pillar-section-num {
+            padding: var(--space-1) var(--space-3);
+            background: var(--timbel-blue);
+            color: var(--white);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            border-radius: 100px;
+        }
+
+        .pillar-section-title {
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .pillar-section-question {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .pillar-grid {
+            display: grid;
+            gap: var(--space-6);
+        }
+
+        @media (min-width: 768px) {
+            .pillar-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Tech Card New */
+        .tech-card-new {
+            padding: var(--space-6);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            transition: all var(--transition-fast);
+        }
+
+        .tech-card-new:hover {
+            border-color: rgba(0, 120, 255, 0.3);
+        }
+
+        .tech-card-new-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: var(--space-4);
+        }
+
+        .tech-card-new-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 120, 255, 0.1);
+            border: 1px solid rgba(0, 120, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tech-card-new-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--timbel-blue);
+        }
+
+        .tech-card-new-badge {
+            padding: var(--space-1) var(--space-2);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            font-size: var(--text-xs);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .tech-card-new h4 {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: var(--space-4);
+        }
+
+        .tech-card-new-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .tech-card-new-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tech-card-new-item span {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2px;
+        }
+
+        .tech-card-new-item.why span {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .tech-card-new-item.why p {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .tech-card-new-item.approach span {
+            color: var(--timbel-blue);
+        }
+
+        .tech-card-new-item.approach p {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .tech-card-new-divider {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .tech-card-new-divider span {
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .tech-card-new-divider svg {
+            width: 16px;
+            height: 16px;
+            color: var(--timbel-blue);
+        }
+
+        .tech-card-new-outcome {
+            padding-top: var(--space-3);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .tech-card-new-outcome span {
+            font-size: var(--text-xs);
+            color: #22c55e;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tech-card-new-outcome p {
+            font-size: var(--text-sm);
+            color: var(--white);
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .technology-bottom-cta {
+            padding: var(--space-8);
+            background: linear-gradient(135deg, rgba(0, 120, 255, 0.1) 0%, rgba(30, 41, 59, 0.5) 100%);
+            border: 1px solid rgba(0, 120, 255, 0.2);
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .technology-bottom-cta p {
+            font-size: var(--text-lg);
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: var(--space-4);
+        }
+
+        .technology-bottom-cta .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+            align-items: center;
+        }
+
+        @media (min-width: 640px) {
+            .technology-bottom-cta .buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        .technology-bottom-cta .btn-tech-primary {
+            padding: var(--space-3) var(--space-6);
+            background: var(--timbel-blue);
+            color: var(--white);
+            font-weight: 600;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+
+        .technology-bottom-cta .btn-tech-primary:hover {
+            background: var(--timbel-blue-dark);
+        }
+
+        .technology-bottom-cta .btn-tech-secondary {
+            padding: var(--space-3) var(--space-6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            border-radius: 100px;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+
+        .technology-bottom-cta .btn-tech-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            color: var(--white);
+        }
+
+        /* ==================== NEW CLIENTS SECTION ==================== */
+        .clients-new {
+            padding: var(--space-20) var(--space-6);
+            background: var(--timbel-navy);
+        }
+
+        @media (min-width: 768px) {
+            .clients-new {
+                padding: var(--space-24) var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .clients-new {
+                padding: var(--space-32) var(--space-12);
+            }
+        }
+
+        .clients-new-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .clients-header-new {
+            text-align: center;
+            margin-bottom: var(--space-12);
+        }
+
+        .clients-header-new .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-4);
+        }
+
+        .clients-header-new .section-eyebrow-line {
+            width: 32px;
+            height: 1px;
+            background: var(--timbel-blue);
+        }
+
+        .clients-header-new .section-eyebrow-text {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--timbel-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .clients-header-new h2 {
+            font-size: clamp(1.875rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--space-4);
+        }
+
+        .clients-header-new h2 .highlight {
+            color: var(--timbel-blue);
+        }
+
+        .clients-header-new p {
+            font-size: var(--text-lg);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Client Logo Groups */
+        .client-logo-groups {
+            margin-bottom: var(--space-12);
+        }
+
+        .client-logo-group {
+            margin-bottom: var(--space-8);
+        }
+
+        .client-logo-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .client-logo-group-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+
+        .client-logo-group-label {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--white);
+        }
+
+        .client-logo-group-desc {
+            font-size: var(--text-xs);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .client-logo-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+        }
+
+        .client-logo-item {
+            padding: var(--space-3) var(--space-5);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-fast);
+        }
+
+        .client-logo-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Client Stats */
+        .client-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-6);
+            padding: var(--space-6);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            margin-bottom: var(--space-12);
+        }
+
+        .client-stat {
+            text-align: center;
+        }
+
+        .client-stat:not(:last-child) {
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .client-stat-number {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--space-1);
+        }
+
+        .client-stat-label {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Testimonials */
+        .testimonials-new {
+            margin-bottom: var(--space-12);
+        }
+
+        .testimonials-new h3 {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: var(--space-6);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            gap: var(--space-6);
+        }
+
+        @media (min-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .testimonial-card-new {
+            padding: var(--space-6);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            transition: all var(--transition-fast);
+        }
+
+        .testimonial-card-new:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .testimonial-industry {
+            display: inline-block;
+            padding: var(--space-1) var(--space-3);
+            border-radius: 100px;
+            font-size: var(--text-xs);
+            font-weight: 500;
+            margin-bottom: var(--space-4);
+        }
+
+        .testimonial-industry.blue {
+            background: rgba(0, 120, 255, 0.1);
+            color: var(--timbel-blue);
+            border: 1px solid rgba(0, 120, 255, 0.2);
+        }
+
+        .testimonial-industry.green {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .testimonial-industry.purple {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .testimonial-card-new blockquote {
+            margin-bottom: var(--space-4);
+        }
+
+        .testimonial-card-new .quote-icon {
+            width: 32px;
+            height: 32px;
+            color: rgba(255, 255, 255, 0.1);
+            margin-bottom: var(--space-2);
+        }
+
+        .testimonial-card-new blockquote p {
+            font-size: var(--text-base);
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        .testimonial-result {
+            padding: var(--space-3);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            margin-bottom: var(--space-4);
+        }
+
+        .testimonial-result span {
+            font-size: var(--text-xs);
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .testimonial-result p {
+            font-size: var(--text-sm);
+            color: var(--white);
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .testimonial-author-new {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .testimonial-author-avatar {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .testimonial-author-avatar svg {
+            width: 20px;
+            height: 20px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .testimonial-author-name {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Clients CTA */
+        .clients-cta {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+            padding: var(--space-8);
+            background: linear-gradient(135deg, rgba(0, 120, 255, 0.05) 0%, rgba(30, 41, 59, 0.3) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .clients-cta {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .clients-cta-text {
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .clients-cta-text {
+                text-align: left;
+            }
+        }
+
+        .clients-cta-text p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: var(--space-1);
+        }
+
+        .clients-cta-text span {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .clients-cta-buttons {
+            display: flex;
+            gap: var(--space-3);
+            flex-shrink: 0;
+        }
+
+        .clients-cta .btn-clients-primary {
+            padding: var(--space-3) var(--space-6);
+            background: var(--timbel-blue);
+            color: var(--white);
+            font-weight: 600;
+            border-radius: 100px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all var(--transition-fast);
+        }
+
+        .clients-cta .btn-clients-primary:hover {
+            background: var(--timbel-blue-dark);
+        }
+
+        .clients-cta .btn-clients-secondary {
+            padding: var(--space-3) var(--space-6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            border-radius: 100px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all var(--transition-fast);
+        }
+
+        .clients-cta .btn-clients-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            color: var(--white);
+        }
+
+        /* ==================== NEW CTA SECTION ==================== */
+        .cta-new {
+            padding: var(--space-20) var(--space-6);
+            background: var(--gray-900);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .cta-new {
+                padding: var(--space-24) var(--space-8);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .cta-new {
+                padding: var(--space-32) var(--space-12);
+            }
+        }
+
+        .cta-new::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(0, 120, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-new-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-new-content {
+            text-align: center;
+            margin-bottom: var(--space-12);
+        }
+
+        .cta-new-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-6);
+        }
+
+        .cta-new-eyebrow-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--timbel-blue);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .cta-new-eyebrow-text {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--timbel-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .cta-new h2 {
+            font-size: clamp(1.875rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--space-6);
+        }
+
+        .cta-new h2 .highlight {
+            color: var(--timbel-blue);
+        }
+
+        .cta-new-subcopy {
+            font-size: var(--text-lg);
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+            margin-bottom: var(--space-8);
+        }
+
+        .cta-new-subcopy strong {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Reassurance Badges */
+        .cta-reassurances {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-10);
+        }
+
+        .cta-reassurance {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .cta-reassurance svg {
+            width: 16px;
+            height: 16px;
+            color: var(--timbel-blue);
+        }
+
+        /* Process Steps */
+        .cta-process {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-4);
+            padding: var(--space-6);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            margin-bottom: var(--space-12);
+        }
+
+        .cta-process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            right: -8px;
+            width: 16px;
+            height: 16px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%234B5563'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 5l7 7-7 7'/%3E%3C/svg%3E") center/contain no-repeat;
+        }
+
+        @media (max-width: 640px) {
+            .cta-process-step:not(:last-child)::after {
+                display: none;
+            }
+        }
+
+        .cta-process-num {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--timbel-blue);
+            margin-bottom: var(--space-1);
+        }
+
+        .cta-process-label {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--white);
+            margin-bottom: 2px;
+        }
+
+        .cta-process-desc {
+            font-size: var(--text-xs);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* CTA Buttons */
+        .cta-new-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .cta-new .btn-cta-primary {
+            width: 100%;
+            max-width: 320px;
+            padding: var(--space-4) var(--space-8);
+            background: var(--timbel-blue);
+            color: var(--white);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            border-radius: 100px;
+            text-decoration: none;
+            text-align: center;
+            transition: all var(--transition-fast);
+        }
+
+        .cta-new .btn-cta-primary:hover {
+            background: var(--timbel-blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 120, 255, 0.25);
+        }
+
+        .cta-new .btn-cta-secondary {
+            width: 100%;
+            max-width: 320px;
+            padding: var(--space-4) var(--space-8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+            border-radius: 100px;
+            text-decoration: none;
+            text-align: center;
+            transition: all var(--transition-fast);
+        }
+
+        .cta-new .btn-cta-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            color: var(--white);
+        }
+
+        .cta-phone {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            margin-top: var(--space-2);
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .cta-phone svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .cta-phone a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+        }
+
+        .cta-phone a:hover {
+            color: var(--white);
+        }
+
+        .cta-trust-note {
+            text-align: center;
+            font-size: var(--text-xs);
+            color: rgba(255, 255, 255, 0.3);
+            margin-top: var(--space-8);
+        }
+
+        /* ==================== HEADER PHONE ==================== */
+        .header-phone {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .header-phone:hover {
+            color: var(--white);
+        }
+
+        /* ==================== MOBILE MENU ACCORDION ==================== */
+        .mobile-menu-accordion {
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .mobile-menu-accordion summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-4) 0;
+            font-size: var(--text-base);
+            font-weight: 500;
+            color: var(--gray-900);
+            cursor: pointer;
+            list-style: none;
+        }
+
+        .mobile-menu-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .mobile-menu-accordion summary::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E") center/contain no-repeat;
+            transition: transform var(--transition-fast);
+        }
+
+        .mobile-menu-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .mobile-menu-accordion-content {
+            padding: 0 0 var(--space-4) var(--space-4);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .mobile-menu-accordion-content a {
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .mobile-menu-accordion-content a:hover {
+            color: var(--timbel-blue);
+        }
+
+        .mobile-menu-cta {
+            display: block;
+            text-align: center;
+            padding: var(--space-4);
+            background: var(--timbel-blue);
+            color: var(--white) !important;
+            font-weight: 600;
+            border-radius: 8px;
+            margin-top: var(--space-4);
+        }
+
+        .mobile-menu-cta:hover {
+            background: var(--timbel-blue-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <img src="img/timbel logo.png" alt="Timbel" class="logo-img">
+            </a>
+
+            <nav class="nav">
+                <!-- 서비스 메뉴 (WHAT YOU USE) -->
+                <div class="nav-item">
+                    <a href="#services" class="nav-link">
+                        서비스
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-inner">
+                            <div class="mega-menu-intro">
+                                <h3>업무 목적에 맞는<br>AI 음성 서비스</h3>
+                                <p>회의록부터 자막, 컨택센터까지 — 필요한 기능만 선택하세요</p>
+                            </div>
+                            <div class="mega-menu-section">
+                                <h4>Use Case Services</h4>
+                                <div class="mega-menu-links">
+                                    <a href="#" class="mega-menu-link">
+                                        <span class="mega-menu-link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                                <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01"/>
+                                                <path d="M6 12h.01M10 12h.01M14 12h.01M18 12h.01"/>
+                                                <path d="M8 16h8"/>
+                                            </svg>
+                                        </span>
+                                        <span class="mega-menu-link-text">
+                                            <span class="mega-menu-link-title">SORIZAVA 속기</span>
+                                            <span class="mega-menu-link-desc">공공기관 AI 속기 솔루션</span>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="mega-menu-link">
+                                        <span class="mega-menu-link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                <polyline points="14 2 14 8 20 8"/>
+                                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                            </svg>
+                                        </span>
+                                        <span class="mega-menu-link-text">
+                                            <span class="mega-menu-link-title">바로노트 회의록</span>
+                                            <span class="mega-menu-link-desc">기업용 AI 회의록 서비스</span>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="mega-menu-link">
+                                        <span class="mega-menu-link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <circle cx="12" cy="12" r="10"/>
+                                                <line x1="2" y1="12" x2="22" y2="12"/>
+                                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                                            </svg>
+                                        </span>
+                                        <span class="mega-menu-link-text">
+                                            <span class="mega-menu-link-title">TEXTAR 자막·번역</span>
+                                            <span class="mega-menu-link-desc">30개 언어 자막 생성</span>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="mega-menu-link">
+                                        <span class="mega-menu-link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <rect x="2" y="2" width="20" height="20" rx="2.18"/>
+                                                <line x1="7" y1="2" x2="7" y2="22"/>
+                                                <line x1="17" y1="2" x2="17" y2="22"/>
+                                                <line x1="2" y1="12" x2="22" y2="12"/>
+                                            </svg>
+                                        </span>
+                                        <span class="mega-menu-link-text">
+                                            <span class="mega-menu-link-title">CLIPDESK 영상편집</span>
+                                            <span class="mega-menu-link-desc">텍스트 기반 영상 편집</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mega-menu-section">
+                                <h4>Industry Solutions</h4>
+                                <div class="mega-menu-links">
+                                    <a href="#" class="mega-menu-link">
+                                        <span class="mega-menu-link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                            </svg>
+                                        </span>
+                                        <span class="mega-menu-link-text">
+                                            <span class="mega-menu-link-title">AICC 컨택센터</span>
+                                            <span class="mega-menu-link-desc">상담 분석 자동화</span>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="mega-menu-link">
+                                        <span class="mega-menu-link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                                <circle cx="9" cy="7" r="4"/>
+                                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                            </svg>
+                                        </span>
+                                        <span class="mega-menu-link-text">
+                                            <span class="mega-menu-link-title">수어 아바타</span>
+                                            <span class="mega-menu-link-desc">실시간 수어 통역</span>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="mega-menu-link">
+                                        <span class="mega-menu-link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                                <line x1="12" y1="17" x2="12" y2="21"/>
+                                            </svg>
+                                        </span>
+                                        <span class="mega-menu-link-text">
+                                            <span class="mega-menu-link-title">스마트 사이니지</span>
+                                            <span class="mega-menu-link-desc">음성 안내 키오스크</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 기술 메뉴 (WHY IT WORKS) -->
+                <div class="nav-item">
+                    <a href="#technology" class="nav-link">
+                        기술
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-inner">
+                            <div class="mega-menu-intro">
+                                <h3>공공·대기업 기준을<br>통과한 AI 음성 기술</h3>
+                                <p>GS인증 1등급 · On-Premise · 97.8% 정확도</p>
+                            </div>
+                            <div class="mega-menu-section">
+                                <h4>핵심 기술</h4>
+                                <div class="mega-menu-links">
+                                    <a href="#" class="mega-menu-link">
+                                        <span class="mega-menu-link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+                                                <path d="M19 10v1a7 7 0 0 1-14 0v-1"/>
+                                                <line x1="12" y1="18" x2="12" y2="22"/>
+                                            </svg>
+                                        </span>
+                                        <span class="mega-menu-link-text">
+                                            <span class="mega-menu-link-title">STT 음성인식</span>
+                                            <span class="mega-menu-link-desc">97.8% 한국어 정확도</span>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="mega-menu-link">
+                                        <span class="mega-menu-link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                                                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                                            </svg>
+                                        </span>
+                                        <span class="mega-menu-link-text">
+                                            <span class="mega-menu-link-title">TTS 음성합성</span>
+                                            <span class="mega-menu-link-desc">자연스러운 AI 보이스</span>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="mega-menu-link">
+                                        <span class="mega-menu-link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                                <circle cx="9" cy="7" r="4"/>
+                                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                            </svg>
+                                        </span>
+                                        <span class="mega-menu-link-text">
+                                            <span class="mega-menu-link-title">화자 분리</span>
+                                            <span class="mega-menu-link-desc">최대 20명 자동 인식</span>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="mega-menu-link">
+                                        <span class="mega-menu-link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <circle cx="12" cy="12" r="10"/>
+                                                <line x1="2" y1="12" x2="22" y2="12"/>
+                                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                                            </svg>
+                                        </span>
+                                        <span class="mega-menu-link-text">
+                                            <span class="mega-menu-link-title">실시간 번역</span>
+                                            <span class="mega-menu-link-desc">30개 언어 지원</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mega-menu-section">
+                                <h4>인증 & 검증</h4>
+                                <div class="mega-menu-simple">
+                                    <a href="#">GS인증 1등급</a>
+                                    <a href="#">ISO 27001</a>
+                                    <a href="#">특허 현황</a>
+                                    <a href="#">기술 백서</a>
+                                </div>
+                            </div>
+                            <div class="mega-menu-section">
+                                <h4>기술 지원</h4>
+                                <div class="mega-menu-simple">
+                                    <a href="#">API 문서</a>
+                                    <a href="#">On-Premise 가이드</a>
+                                    <a href="#">기술 문의</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 고객사례 메뉴 (PROOF) -->
+                <div class="nav-item">
+                    <a href="#clients" class="nav-link">
+                        고객사례
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-inner">
+                            <div class="mega-menu-intro">
+                                <h3>180+ 공공·금융·<br>대기업 레퍼런스</h3>
+                                <p>국회, 대법원, KB국민은행, KBS 등</p>
+                            </div>
+                            <div class="mega-menu-section">
+                                <h4>산업별 사례</h4>
+                                <div class="mega-menu-simple">
+                                    <a href="#clients">공공기관</a>
+                                    <a href="#clients">금융</a>
+                                    <a href="#clients">방송·미디어</a>
+                                    <a href="#clients">기업</a>
+                                </div>
+                            </div>
+                            <div class="mega-menu-section">
+                                <h4>대표 성공 사례</h4>
+                                <div class="mega-menu-links">
+                                    <a href="#" class="mega-menu-link">
+                                        <span class="mega-menu-link-text">
+                                            <span class="mega-menu-link-title">국회 속기 시스템</span>
+                                            <span class="mega-menu-link-desc">속기 인력 60% 절감</span>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="mega-menu-link">
+                                        <span class="mega-menu-link-text">
+                                            <span class="mega-menu-link-title">KB국민은행</span>
+                                            <span class="mega-menu-link-desc">보안 심사 2주 단축</span>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="mega-menu-link">
+                                        <span class="mega-menu-link-text">
+                                            <span class="mega-menu-link-title">KBS 실시간 자막</span>
+                                            <span class="mega-menu-link-desc">지연 0.3초 이내</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mega-menu-section">
+                                <h4>검증 리소스</h4>
+                                <div class="mega-menu-simple">
+                                    <a href="#">고객 후기</a>
+                                    <a href="#">사례집 다운로드</a>
+                                    <a href="#">ROI 분석</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 회사소개 메뉴 (TRUST) -->
+                <div class="nav-item">
+                    <a href="#" class="nav-link">
+                        회사소개
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-inner">
+                            <div class="mega-menu-intro">
+                                <h3>2001년 설립<br>24년 운영</h3>
+                                <p>음성인식 기술만 연구해온 전문 기업</p>
+                            </div>
+                            <div class="mega-menu-section">
+                                <h4>회사 개요</h4>
+                                <div class="mega-menu-simple">
+                                    <a href="#">팀벨 소개</a>
+                                    <a href="#">연혁</a>
+                                    <a href="#">조직 구성</a>
+                                </div>
+                            </div>
+                            <div class="mega-menu-section">
+                                <h4>활동</h4>
+                                <div class="mega-menu-simple">
+                                    <a href="#">보도자료</a>
+                                    <a href="#">블로그</a>
+                                    <a href="#">이벤트</a>
+                                </div>
+                            </div>
+                            <div class="mega-menu-section">
+                                <h4>운영 거점</h4>
+                                <div class="mega-menu-simple">
+                                    <a href="#">서울 본사</a>
+                                    <a href="#">해외 법인</a>
+                                    <a href="#">파트너사</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#" class="nav-link">채용</a>
+            </nav>
+
+            <div class="header-cta">
+                <a href="#contact" class="btn btn-primary">문의하기</a>
+            </div>
+
+            <button class="mobile-toggle" aria-label="메뉴" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+        </button>
+        <div class="mobile-menu-links">
+            <details class="mobile-menu-accordion">
+                <summary>서비스</summary>
+                <div class="mobile-menu-accordion-content">
+                    <a href="#">SORIZAVA 속기</a>
+                    <a href="#">바로노트 회의록</a>
+                    <a href="#">TEXTAR 자막·번역</a>
+                    <a href="#">CLIPDESK 영상편집</a>
+                    <a href="#">AICC 컨택센터</a>
+                </div>
+            </details>
+            <details class="mobile-menu-accordion">
+                <summary>기술</summary>
+                <div class="mobile-menu-accordion-content">
+                    <a href="#">STT 음성인식</a>
+                    <a href="#">TTS 음성합성</a>
+                    <a href="#">GS인증 1등급</a>
+                    <a href="#">API 문서</a>
+                </div>
+            </details>
+            <details class="mobile-menu-accordion">
+                <summary>고객사례</summary>
+                <div class="mobile-menu-accordion-content">
+                    <a href="#clients">공공기관</a>
+                    <a href="#clients">금융</a>
+                    <a href="#clients">방송·미디어</a>
+                    <a href="#">사례집 다운로드</a>
+                </div>
+            </details>
+            <details class="mobile-menu-accordion">
+                <summary>회사소개</summary>
+                <div class="mobile-menu-accordion-content">
+                    <a href="#">팀벨 소개</a>
+                    <a href="#">연혁</a>
+                    <a href="#">보도자료</a>
+                </div>
+            </details>
+            <a href="#" class="mobile-menu-link" onclick="toggleMobileMenu()">채용</a>
+            <a href="#contact" class="mobile-menu-link mobile-menu-cta" onclick="toggleMobileMenu()">문의하기</a>
+        </div>
+        <div class="mobile-menu-sub" style="margin-top: auto; padding-top: 2rem; border-top: 1px solid var(--gray-200);">
+            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                <a href="mailto:timbel@timbel.net" style="font-size: 0.875rem; color: var(--gray-600); text-decoration: none;">timbel@timbel.net</a>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--gray-400);">© 2025 TIMBEL CORP.</p>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-label">
+                <span class="hero-label-badge"></span>
+                <span class="hero-label-text">GS인증 1등급 · 조달청 등록</span>
+            </div>
+
+            <h1 class="hero-title">
+                <span class="hero-title-line">회의가 끝나면</span>
+                <span class="hero-title-line"><span class="hero-title-accent">기록도 완성됩니다</span></span>
+            </h1>
+
+            <p class="hero-subtitle">
+                24년간 음성인식 기술만 연구했습니다.<br>
+                국내 속기·회의록 시장 <strong>점유율 90%</strong>,<br>
+                공공기관과 기업이 팀벨을 선택하는 이유입니다.
+            </p>
+
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-hero btn-hero-primary">무료 데모 신청하기</a>
+                <a href="#clients" class="btn btn-hero btn-hero-outline">도입 사례 확인하기</a>
+            </div>
+
+            <div class="hero-metrics">
+                <div class="hero-metric">
+                    <span class="hero-metric-number">24<span class="hero-metric-unit">년</span></span>
+                    <span class="hero-metric-desc">1999년부터 축적된<br>음성인식 핵심 기술력</span>
+                </div>
+                <div class="hero-metric">
+                    <span class="hero-metric-number">90<span class="hero-metric-unit">%</span></span>
+                    <span class="hero-metric-desc">국회·법원·지자체가 선택한<br>국내 시장 점유율</span>
+                </div>
+                <div class="hero-metric">
+                    <span class="hero-metric-number">100<span class="hero-metric-unit">%</span></span>
+                    <span class="hero-metric-desc">외부 연동 없는<br>온프레미스 구축 지원</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-scroll">
+            <span class="hero-scroll-text">팀벨이 해결하는 문제</span>
+            <div class="hero-scroll-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-inner">
+            <div class="about-grid">
+                <!-- Left: Copy -->
+                <div class="about-content reveal">
+                    <div class="section-eyebrow">
+                        <span class="section-eyebrow-line"></span>
+                        <span class="section-eyebrow-text">Why Timbel</span>
+                    </div>
+                    
+                    <h2 class="about-headline">
+                        데이터가 외부로<br>
+                        <span class="highlight">나가지 않습니다</span>
+                    </h2>
+                    
+                    <p class="about-subcopy">
+                        국회·법원·금융기관이 선택한 이유는 기술력만이 아닙니다.<br>
+                        <strong>온프레미스 구축</strong>으로 음성 데이터가 조직 내부에서만 처리됩니다.
+                    </p>
+                    
+                    <a href="#services" class="about-bridge">
+                        아래에서 팀벨의 핵심 기술과 서비스를 확인하세요
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Right: Metrics -->
+                <div class="about-metrics reveal reveal-delay-1">
+                    <div class="about-metric-card">
+                        <div class="about-metric-value">
+                            <span class="about-metric-number">24</span>
+                            <span class="about-metric-unit">년</span>
+                        </div>
+                        <div class="about-metric-label">Years</div>
+                        <p class="about-metric-definition">1999년 창립 이래 축적된 기술력</p>
+                        <div class="about-metric-info">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <div class="about-metric-tooltip">
+                                팀벨은 1999년 설립 후 음성인식·속기 기술만 연구해왔습니다
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-metric-card">
+                        <div class="about-metric-value">
+                            <span class="about-metric-number">90</span>
+                            <span class="about-metric-unit">%</span>
+                        </div>
+                        <div class="about-metric-label">Market Share</div>
+                        <p class="about-metric-definition">국내 속기 솔루션 시장 점유율</p>
+                        <div class="about-metric-info">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <div class="about-metric-tooltip">
+                                국회, 법원, 지방의회 등 공공기관 속기 시장 기준 (2024)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-metric-card">
+                        <div class="about-metric-value">
+                            <span class="about-metric-number">180</span>
+                            <span class="about-metric-unit">+</span>
+                        </div>
+                        <div class="about-metric-label">Clients</div>
+                        <p class="about-metric-definition">도입 완료된 기관·기업 수</p>
+                        <div class="about-metric-info">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <div class="about-metric-tooltip">
+                                공공기관, 금융, 제조, 방송사 등 다양한 산업군 포함
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-metric-card">
+                        <div class="about-metric-value">
+                            <span class="about-metric-number">97.8</span>
+                            <span class="about-metric-unit">%</span>
+                        </div>
+                        <div class="about-metric-label">Accuracy</div>
+                        <p class="about-metric-definition">AI 음성인식 평균 정확도</p>
+                        <div class="about-metric-info">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <div class="about-metric-tooltip">
+                                표준 한국어 기준, 전문가 교정 전 AI 단독 인식률
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-new" id="services">
+        <div class="services-new-inner">
+            <!-- Section Header -->
+            <div class="services-header-new reveal">
+                <div class="section-eyebrow">
+                    <span class="section-eyebrow-line"></span>
+                    <span class="section-eyebrow-text">Our Platform</span>
+                </div>
+                <h2>하나의 엔진, 다양한 솔루션</h2>
+                <p>모든 서비스는 <strong>HAIV AI 음성 엔진</strong> 위에서 동작합니다.<br>필요한 기능만 선택해 도입하거나, 전체 스택을 통합 구축할 수 있습니다.</p>
+            </div>
+
+            <!-- Core Platform -->
+            <div class="core-platform reveal reveal-delay-1">
+                <span class="core-platform-badge">Core Platform</span>
+                <div class="core-platform-grid">
+                    <div class="core-platform-content">
+                        <h3>HAIV AI 엔진</h3>
+                        <p class="core-platform-meta">대상: AI 음성 기술을 자체 서비스에 통합하려는 기업</p>
+                        
+                        <div class="core-platform-box">
+                            <div class="core-platform-problem">
+                                <span class="icon">✕</span>
+                                <p>외부 API 의존 시 보안 리스크와 비용 부담</p>
+                            </div>
+                            <div class="core-platform-solution">
+                                <span class="icon">✓</span>
+                                <p>온프레미스로 음성인식(STT)·음성합성(TTS) 기능을 내재화</p>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="core-platform-cta">
+                            엔진 스펙 확인하기
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="core-platform-features">
+                        <span class="core-platform-feature">GS인증 1등급</span>
+                        <span class="core-platform-feature">온프레미스 구축</span>
+                        <span class="core-platform-feature">97.8% 인식률</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Use Cases -->
+            <div class="service-group reveal">
+                <div class="service-group-header">
+                    <span class="service-group-badge">Core Use Cases</span>
+                    <span class="service-group-desc">가장 많이 도입되는 핵심 솔루션</span>
+                </div>
+                
+                <div class="service-group-grid cols-2">
+                    <div class="service-card-new">
+                        <h4>SORIZAVA 속기</h4>
+                        <div class="service-card-new-meta">
+                            <span>대상</span>
+                            <p>국회, 법원, 지자체 속기 담당자</p>
+                        </div>
+                        <div class="service-card-new-flow">
+                            <div class="problem">
+                                <span>해결하는 문제</span>
+                                <p>수기 속기의 시간·인력 한계</p>
+                            </div>
+                            <div class="divider">
+                                <span></span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span></span>
+                            </div>
+                            <div class="outcome">
+                                <span>도입 결과</span>
+                                <p>실시간 속기록 자동 생성, 전문가 교정 연계</p>
+                            </div>
+                        </div>
+                        <a href="#" class="service-card-new-cta">
+                            공공기관 도입 사례 보기
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="service-card-new">
+                        <h4>회의록 솔루션</h4>
+                        <div class="service-card-new-meta">
+                            <span>대상</span>
+                            <p>회의가 잦은 기업·기관 실무자</p>
+                        </div>
+                        <div class="service-card-new-flow">
+                            <div class="problem">
+                                <span>해결하는 문제</span>
+                                <p>회의 내용 정리에 드는 반복 업무</p>
+                            </div>
+                            <div class="divider">
+                                <span></span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span></span>
+                            </div>
+                            <div class="outcome">
+                                <span>도입 결과</span>
+                                <p>회의 종료 후 5분 내 요약·기록 완성</p>
+                            </div>
+                        </div>
+                        <a href="#" class="service-card-new-cta">
+                            회의록 샘플 확인하기
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extension Solutions -->
+            <div class="service-group reveal">
+                <div class="service-group-header">
+                    <span class="service-group-badge">Extension Solutions</span>
+                    <span class="service-group-desc">업무 환경에 따라 확장 가능한 솔루션</span>
+                </div>
+                
+                <div class="service-group-grid cols-3">
+                    <div class="service-card-new">
+                        <h4>TEXTAR 자막·번역</h4>
+                        <div class="service-card-new-meta">
+                            <span>대상</span>
+                            <p>방송사, 콘텐츠 제작사</p>
+                        </div>
+                        <div class="service-card-new-flow">
+                            <div class="problem">
+                                <span>해결하는 문제</span>
+                                <p>다국어 콘텐츠 제작 시간 과다</p>
+                            </div>
+                            <div class="divider">
+                                <span></span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span></span>
+                            </div>
+                            <div class="outcome">
+                                <span>도입 결과</span>
+                                <p>30개 언어 자막을 한 번에 생성</p>
+                            </div>
+                        </div>
+                        <a href="#" class="service-card-new-cta">
+                            지원 언어 목록 보기
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="service-card-new">
+                        <h4>CLIPDESK 영상편집</h4>
+                        <div class="service-card-new-meta">
+                            <span>대상</span>
+                            <p>방송국, 미디어 편집팀</p>
+                        </div>
+                        <div class="service-card-new-flow">
+                            <div class="problem">
+                                <span>해결하는 문제</span>
+                                <p>자막 기반 편집점 찾기 비효율</p>
+                            </div>
+                            <div class="divider">
+                                <span></span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span></span>
+                            </div>
+                            <div class="outcome">
+                                <span>도입 결과</span>
+                                <p>텍스트 검색으로 영상 편집 시간 단축</p>
+                            </div>
+                        </div>
+                        <a href="#" class="service-card-new-cta">
+                            편집 워크플로우 보기
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="service-card-new">
+                        <h4>AICC 컨택센터</h4>
+                        <div class="service-card-new-meta">
+                            <span>대상</span>
+                            <p>고객센터 운영 기업</p>
+                        </div>
+                        <div class="service-card-new-flow">
+                            <div class="problem">
+                                <span>해결하는 문제</span>
+                                <p>상담 품질 분석의 수작업 한계</p>
+                            </div>
+                            <div class="divider">
+                                <span></span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span></span>
+                            </div>
+                            <div class="outcome">
+                                <span>도입 결과</span>
+                                <p>전 통화 자동 분석, 이슈 탐지</p>
+                            </div>
+                        </div>
+                        <a href="#" class="service-card-new-cta">
+                            분석 리포트 샘플 보기
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom CTA -->
+            <div class="services-bottom-cta reveal">
+                <p>어떤 솔루션이 필요한지 모르겠다면?</p>
+                <a href="#contact">
+                    맞춤 컨설팅 받기
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="technology-new" id="technology">
+        <div class="technology-new-inner">
+            <!-- Section Header -->
+            <div class="technology-header-new reveal">
+                <div class="section-eyebrow">
+                    <span class="section-eyebrow-line"></span>
+                    <span class="section-eyebrow-text">Technology</span>
+                    <span class="section-eyebrow-line"></span>
+                </div>
+                <h2>왜 HAIV 엔진인가</h2>
+                <p>
+                    AI 음성 엔진 선택 기준은 세 가지입니다.<br>
+                    <strong>보안 정책을 통과하는가, 정확하게 기록하는가, 실시간으로 동작하는가.</strong><br>
+                    <span class="highlight">HAIV는 세 가지 모두를 만족합니다.</span>
+                </p>
+            </div>
+
+            <!-- Decision Pillars Summary -->
+            <div class="decision-pillars reveal">
+                <a href="#pillar-trust" class="decision-pillar">
+                    <div class="decision-pillar-header">
+                        <span class="decision-pillar-dot"></span>
+                        <span class="decision-pillar-label">신뢰·보안</span>
+                    </div>
+                    <p class="decision-pillar-question">"보안 심사를 통과할 수 있는가?"</p>
+                    <p class="decision-pillar-desc">공공기관·대기업 도입의 첫 번째 관문</p>
+                </a>
+                
+                <a href="#pillar-accuracy" class="decision-pillar">
+                    <div class="decision-pillar-header">
+                        <span class="decision-pillar-dot"></span>
+                        <span class="decision-pillar-label">정확한 기록</span>
+                    </div>
+                    <p class="decision-pillar-question">"실제 업무에 쓸 수 있는 수준인가?"</p>
+                    <p class="decision-pillar-desc">후처리 없이 바로 활용 가능한 품질</p>
+                </a>
+                
+                <a href="#pillar-realtime" class="decision-pillar">
+                    <div class="decision-pillar-header">
+                        <span class="decision-pillar-dot"></span>
+                        <span class="decision-pillar-label">실시간 운영</span>
+                    </div>
+                    <p class="decision-pillar-question">"현장에서 지연 없이 동작하는가?"</p>
+                    <p class="decision-pillar-desc">회의·방송·컨택센터의 실시간 요구 충족</p>
+                </a>
+            </div>
+
+            <!-- Pillar 1: 신뢰·보안 -->
+            <div class="pillar-section reveal" id="pillar-trust">
+                <div class="pillar-section-header">
+                    <span class="pillar-section-num">01</span>
+                    <span class="pillar-section-title">신뢰·보안</span>
+                    <span class="pillar-section-question">— 보안 심사를 통과할 수 있는가?</span>
+                </div>
+                <div class="pillar-grid">
+                    <div class="tech-card-new">
+                        <div class="tech-card-new-header">
+                            <div class="tech-card-new-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <h4>GS인증 1등급</h4>
+                        <div class="tech-card-new-content">
+                            <div class="tech-card-new-item why">
+                                <span>Why it matters</span>
+                                <p>공공조달 납품과 대기업 도입의 필수 조건</p>
+                            </div>
+                            <div class="tech-card-new-divider">
+                                <span></span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span></span>
+                            </div>
+                            <div class="tech-card-new-item approach">
+                                <span>HAIV Approach</span>
+                                <p>국가 공인 시험기관의 기능·성능·보안 심사 통과</p>
+                            </div>
+                            <div class="tech-card-new-outcome">
+                                <span>Outcome</span>
+                                <p>보안 심사 기간 단축, 조달청 등록 납품 가능</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-card-new">
+                        <div class="tech-card-new-header">
+                            <div class="tech-card-new-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <h4>온프레미스 구축</h4>
+                        <div class="tech-card-new-content">
+                            <div class="tech-card-new-item why">
+                                <span>Why it matters</span>
+                                <p>음성 데이터는 민감 정보, 외부 전송 불가 환경 존재</p>
+                            </div>
+                            <div class="tech-card-new-divider">
+                                <span></span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span></span>
+                            </div>
+                            <div class="tech-card-new-item approach">
+                                <span>HAIV Approach</span>
+                                <p>고객 인프라 내 완전 폐쇄망 설치, 외부 API 없이 운영</p>
+                            </div>
+                            <div class="tech-card-new-outcome">
+                                <span>Outcome</span>
+                                <p>데이터 주권 100% 확보, 컴플라이언스 충족</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pillar 2: 정확한 기록 -->
+            <div class="pillar-section reveal" id="pillar-accuracy">
+                <div class="pillar-section-header">
+                    <span class="pillar-section-num">02</span>
+                    <span class="pillar-section-title">정확한 기록</span>
+                    <span class="pillar-section-question">— 실제 업무에 쓸 수 있는 수준인가?</span>
+                </div>
+                <div class="pillar-grid">
+                    <div class="tech-card-new">
+                        <div class="tech-card-new-header">
+                            <div class="tech-card-new-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <span class="tech-card-new-badge">표준 한국어 기준</span>
+                        </div>
+                        <h4>97.8% 인식률</h4>
+                        <div class="tech-card-new-content">
+                            <div class="tech-card-new-item why">
+                                <span>Why it matters</span>
+                                <p>낮은 정확도는 후처리 비용과 신뢰도 저하로 이어짐</p>
+                            </div>
+                            <div class="tech-card-new-divider">
+                                <span></span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span></span>
+                            </div>
+                            <div class="tech-card-new-item approach">
+                                <span>HAIV Approach</span>
+                                <p>50,000시간+ 한국어 학습, 전문가 교정 데이터 반영</p>
+                            </div>
+                            <div class="tech-card-new-outcome">
+                                <span>Outcome</span>
+                                <p>교정 없이 바로 활용 가능한 기록 품질</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-card-new">
+                        <div class="tech-card-new-header">
+                            <div class="tech-card-new-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <span class="tech-card-new-badge">+15% 향상</span>
+                        </div>
+                        <h4>도메인 특화 튜닝</h4>
+                        <div class="tech-card-new-content">
+                            <div class="tech-card-new-item why">
+                                <span>Why it matters</span>
+                                <p>일반 모델은 전문 용어·고유명사에서 오인식 급증</p>
+                            </div>
+                            <div class="tech-card-new-divider">
+                                <span></span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span></span>
+                            </div>
+                            <div class="tech-card-new-item approach">
+                                <span>HAIV Approach</span>
+                                <p>법률·의료·금융 등 산업별 커스텀 사전·모델 제공</p>
+                            </div>
+                            <div class="tech-card-new-outcome">
+                                <span>Outcome</span>
+                                <p>해당 분야 전문 용어 인식률 대폭 향상</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pillar 3: 실시간 운영 -->
+            <div class="pillar-section reveal" id="pillar-realtime">
+                <div class="pillar-section-header">
+                    <span class="pillar-section-num">03</span>
+                    <span class="pillar-section-title">실시간 운영</span>
+                    <span class="pillar-section-question">— 현장에서 지연 없이 동작하는가?</span>
+                </div>
+                <div class="pillar-grid">
+                    <div class="tech-card-new">
+                        <div class="tech-card-new-header">
+                            <div class="tech-card-new-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <span class="tech-card-new-badge">GPU 서버 기준</span>
+                        </div>
+                        <h4>200ms 저지연</h4>
+                        <div class="tech-card-new-content">
+                            <div class="tech-card-new-item why">
+                                <span>Why it matters</span>
+                                <p>자막·속기는 0.5초 지연도 사용자 경험 저하</p>
+                            </div>
+                            <div class="tech-card-new-divider">
+                                <span></span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span></span>
+                            </div>
+                            <div class="tech-card-new-item approach">
+                                <span>HAIV Approach</span>
+                                <p>엣지 최적화 추론, 평균 응답 200ms 이하 달성</p>
+                            </div>
+                            <div class="tech-card-new-outcome">
+                                <span>Outcome</span>
+                                <p>실시간 자막·속기 서비스 구현 가능</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-card-new">
+                        <div class="tech-card-new-header">
+                            <div class="tech-card-new-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <span class="tech-card-new-badge">1,000채널+</span>
+                        </div>
+                        <h4>무제한 확장</h4>
+                        <div class="tech-card-new-content">
+                            <div class="tech-card-new-item why">
+                                <span>Why it matters</span>
+                                <p>대규모 회의·컨택센터는 동시 처리 수요 급증</p>
+                            </div>
+                            <div class="tech-card-new-divider">
+                                <span></span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span></span>
+                            </div>
+                            <div class="tech-card-new-item approach">
+                                <span>HAIV Approach</span>
+                                <p>쿠버네티스 기반 오토스케일링, 채널당 독립 처리</p>
+                            </div>
+                            <div class="tech-card-new-outcome">
+                                <span>Outcome</span>
+                                <p>1,000채널 동시 처리에도 성능 저하 없음</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom CTA -->
+            <div class="technology-bottom-cta reveal">
+                <p>기술 스펙을 더 자세히 확인하고 싶으신가요?</p>
+                <div class="buttons">
+                    <a href="#" class="btn-tech-primary">기술 백서 다운로드</a>
+                    <a href="#contact" class="btn-tech-secondary">기술 상담 요청</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section class="clients-new" id="clients">
+        <div class="clients-new-inner">
+            <!-- Section Header -->
+            <div class="clients-header-new reveal">
+                <div class="section-eyebrow">
+                    <span class="section-eyebrow-line"></span>
+                    <span class="section-eyebrow-text">Trusted By</span>
+                    <span class="section-eyebrow-line"></span>
+                </div>
+                <h2>
+                    국회부터 금융까지,<br>
+                    <span class="highlight">검증된 환경에서 운영 중</span>
+                </h2>
+                <p>보안 심사가 까다로운 기관일수록 HAIV를 선택합니다.</p>
+            </div>
+
+            <!-- Client Logo Groups -->
+            <div class="client-logo-groups reveal">
+                <div class="client-logo-group">
+                    <div class="client-logo-group-header">
+                        <span class="client-logo-group-label">공공기관</span>
+                        <span class="client-logo-group-desc">— 법적 기록이 필요한 곳</span>
+                    </div>
+                    <div class="client-logo-list">
+                        <div class="client-logo-item">국회</div>
+                        <div class="client-logo-item">대법원</div>
+                        <div class="client-logo-item">행정안전부</div>
+                        <div class="client-logo-item">서울시의회</div>
+                        <div class="client-logo-item">경기도의회</div>
+                        <div class="client-logo-item">부산시의회</div>
+                    </div>
+                </div>
+                
+                <div class="client-logo-group">
+                    <div class="client-logo-group-header">
+                        <span class="client-logo-group-label">금융</span>
+                        <span class="client-logo-group-desc">— 정보보안 1등급 환경</span>
+                    </div>
+                    <div class="client-logo-list">
+                        <div class="client-logo-item">KB국민은행</div>
+                        <div class="client-logo-item">신한은행</div>
+                        <div class="client-logo-item">하나은행</div>
+                        <div class="client-logo-item">삼성증권</div>
+                        <div class="client-logo-item">NH투자증권</div>
+                    </div>
+                </div>
+                
+                <div class="client-logo-group">
+                    <div class="client-logo-group-header">
+                        <span class="client-logo-group-label">기업·방송</span>
+                        <span class="client-logo-group-desc">— 실시간 정확도가 필수인 현장</span>
+                    </div>
+                    <div class="client-logo-list">
+                        <div class="client-logo-item">KBS</div>
+                        <div class="client-logo-item">MBC</div>
+                        <div class="client-logo-item">SBS</div>
+                        <div class="client-logo-item">JTBC</div>
+                        <div class="client-logo-item">삼성전자</div>
+                        <div class="client-logo-item">LG전자</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Client Stats -->
+            <div class="client-stats reveal">
+                <div class="client-stat">
+                    <div class="client-stat-number">180+</div>
+                    <div class="client-stat-label">도입 기관·기업</div>
+                </div>
+                <div class="client-stat">
+                    <div class="client-stat-number">90%</div>
+                    <div class="client-stat-label">공공 속기 시장 점유</div>
+                </div>
+                <div class="client-stat">
+                    <div class="client-stat-number">24년</div>
+                    <div class="client-stat-label">연속 운영 실적</div>
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="testimonials-new reveal">
+                <h3>도입 담당자들의 이야기</h3>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card-new">
+                        <span class="testimonial-industry blue">공공</span>
+                        <blockquote>
+                            <svg class="quote-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                            </svg>
+                            <p>속기사 인력 부족 문제를 AI로 해결하면서도 법적 효력을 유지할 수 있었습니다.</p>
+                        </blockquote>
+                        <div class="testimonial-result">
+                            <span>도입 결과</span>
+                            <p>속기 인력 의존도 60% 감소</p>
+                        </div>
+                        <div class="testimonial-author-new">
+                            <div class="testimonial-author-avatar">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                </svg>
+                            </div>
+                            <span class="testimonial-author-name">지방의회 회의운영팀장</span>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card-new">
+                        <span class="testimonial-industry green">금융</span>
+                        <blockquote>
+                            <svg class="quote-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                            </svg>
+                            <p>외부 API 사용 불가 환경에서 유일하게 도입 가능한 솔루션이었습니다.</p>
+                        </blockquote>
+                        <div class="testimonial-result">
+                            <span>도입 결과</span>
+                            <p>보안 심사 2개월 → 2주 단축</p>
+                        </div>
+                        <div class="testimonial-author-new">
+                            <div class="testimonial-author-avatar">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                </svg>
+                            </div>
+                            <span class="testimonial-author-name">금융사 IT보안팀</span>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card-new">
+                        <span class="testimonial-industry purple">방송</span>
+                        <blockquote>
+                            <svg class="quote-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                            </svg>
+                            <p>생방송 자막 지연이 0.3초 이내로 줄어 시청자 불만이 사라졌습니다.</p>
+                        </blockquote>
+                        <div class="testimonial-result">
+                            <span>도입 결과</span>
+                            <p>자막 오류 클레임 90% 감소</p>
+                        </div>
+                        <div class="testimonial-author-new">
+                            <div class="testimonial-author-avatar">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                </svg>
+                            </div>
+                            <span class="testimonial-author-name">방송국 기술감독</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clients CTA -->
+            <div class="clients-cta reveal">
+                <div class="clients-cta-text">
+                    <p>우리 조직과 비슷한 사례가 있는지 궁금하신가요?</p>
+                    <span>산업별·규모별 도입 사례를 확인해보세요.</span>
+                </div>
+                <div class="clients-cta-buttons">
+                    <a href="#" class="btn-clients-primary">산업별 도입 사례 확인하기</a>
+                    <a href="#contact" class="btn-clients-secondary">맞춤 상담받기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-new" id="contact">
+        <div class="cta-new-inner">
+            <!-- Content -->
+            <div class="cta-new-content reveal">
+                <div class="cta-new-eyebrow">
+                    <span class="cta-new-eyebrow-dot"></span>
+                    <span class="cta-new-eyebrow-text">Get Started</span>
+                </div>
+                
+                <h2>
+                    도입 전,<br>
+                    <span class="highlight">먼저 확인하세요</span>
+                </h2>
+                
+                <p class="cta-new-subcopy">
+                    보안 환경에 맞는지, 기존 시스템과 연동 가능한지,<br>
+                    PoC 없이 판단하기 어렵습니다.<br>
+                    <strong>180개 기관이 거쳐온 검증된 도입 프로세스</strong>를 안내해드립니다.
+                </p>
+
+                <!-- Reassurance Badges -->
+                <div class="cta-reassurances">
+                    <div class="cta-reassurance">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        GS인증 1등급 · 조달청 등록
+                    </div>
+                    <div class="cta-reassurance">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        온프레미스 구축 지원
+                    </div>
+                    <div class="cta-reassurance">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        PoC · 단계적 도입 가능
+                    </div>
+                </div>
+            </div>
+
+            <!-- Process Steps -->
+            <div class="cta-process reveal">
+                <div class="cta-process-step">
+                    <div class="cta-process-num">01</div>
+                    <div class="cta-process-label">적합성 확인</div>
+                    <div class="cta-process-desc">환경·요구사항 검토</div>
+                </div>
+                <div class="cta-process-step">
+                    <div class="cta-process-num">02</div>
+                    <div class="cta-process-label">PoC 진행</div>
+                    <div class="cta-process-desc">실제 환경 테스트</div>
+                </div>
+                <div class="cta-process-step">
+                    <div class="cta-process-num">03</div>
+                    <div class="cta-process-label">단계적 도입</div>
+                    <div class="cta-process-desc">리스크 최소화 확장</div>
+                </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="cta-new-buttons reveal">
+                <a href="mailto:sales@timbel.net" class="btn-cta-primary">우리 조직에 맞는지 확인하기</a>
+                <a href="mailto:sales@timbel.net" class="btn-cta-secondary">도입 상담 요청하기</a>
+            </div>
+
+            <p class="cta-trust-note">
+                * 상담 요청 시 영업 목적의 연락은 드리지 않습니다. 검토에 필요한 정보만 안내합니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- 상단: 신뢰 요약 + 빠른 연락 -->
+        <div class="footer-trust">
+            <div class="footer-trust-inner">
+                <div class="footer-trust-badges">
+                    <span class="footer-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                        GS인증 1등급
+                    </span>
+                    <span class="footer-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2"/>
+                            <path d="M7 11V7a5 5 0 0110 0v4"/>
+                        </svg>
+                        온프레미스 구축
+                    </span>
+                    <span class="footer-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        조달청 등록
+                    </span>
+                </div>
+                <div class="footer-trust-contact">
+                    <a href="mailto:sales@timbel.net" class="footer-email">sales@timbel.net</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 중단: 내비게이션 -->
+        <div class="footer-main">
+            <div class="footer-inner">
+                <div class="footer-top">
+                    <!-- 브랜드 -->
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <img src="img/timbel logo.png" alt="Timbel" class="footer-logo-img">
+                        </div>
+                        <p class="footer-tagline">
+                            AI 음성기록 솔루션 전문기업<br>
+                            <span class="footer-tagline-sub">Since 2001 · 24년 기술력</span>
+                        </p>
+                    </div>
+
+                    <!-- 서비스 (카테고리 요약) -->
+                    <div class="footer-section">
+                        <h4>서비스</h4>
+                        <div class="footer-links">
+                            <a href="#">회의록·속기</a>
+                            <a href="#">자막·번역</a>
+                            <a href="#">컨택센터(AICC)</a>
+                            <a href="#">전체 서비스 보기</a>
+                        </div>
+                    </div>
+
+                    <!-- 기술 (보안/검증 중심) -->
+                    <div class="footer-section">
+                        <h4>기술 & 인증</h4>
+                        <div class="footer-links">
+                            <a href="#">GS인증 · ISO27001</a>
+                            <a href="#">On-Premise 구축</a>
+                            <a href="#">API · 개발자 문서</a>
+                            <a href="#">기술 백서</a>
+                        </div>
+                    </div>
+
+                    <!-- 고객 (검증 자료) -->
+                    <div class="footer-section">
+                        <h4>고객 & 사례</h4>
+                        <div class="footer-links">
+                            <a href="#">도입 고객사</a>
+                            <a href="#">사례집 다운로드</a>
+                            <a href="#">도입 문의</a>
+                        </div>
+                    </div>
+
+                    <!-- 회사 (운영/공식 정보) -->
+                    <div class="footer-section">
+                        <h4>회사</h4>
+                        <div class="footer-links">
+                            <a href="#">회사 소개</a>
+                            <a href="#">채용 정보</a>
+                            <a href="#">보도자료</a>
+                            <a href="#">오시는 길</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 하단: 법적/운영 정보 바 -->
+        <div class="footer-bottom-bar">
+            <div class="footer-bottom-inner">
+                <div class="footer-company-info">
+                    <p>
+                        <strong>(주)팀벨</strong>
+                        <span class="footer-divider">|</span>
+                        대표이사: 김기용
+                        <span class="footer-divider">|</span>
+                        사업자등록번호: 214-87-00000
+                    </p>
+                    <p>
+                        서울특별시 서초구 강남대로 94길 66 산돌빌딩
+                        <span class="footer-divider">|</span>
+                        통신판매업: 2020-서울서초-0000
+                    </p>
+                </div>
+                <div class="footer-legal-links">
+                    <a href="#" class="highlight">개인정보처리방침</a>
+                    <a href="#">이용약관</a>
+                    <a href="#">이메일무단수집거부</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 최하단: 저작권 -->
+        <div class="footer-copyright">
+            <div class="footer-copyright-inner">
+                <span>© 2025 TIMBEL CORP. All Rights Reserved.</span>
+                <div class="footer-social">
+                    <a href="https://timbel.net" target="_blank" aria-label="Website">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="LinkedIn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                            <rect x="2" y="9" width="4" height="12"/>
+                            <circle cx="4" cy="4" r="2"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="YouTube">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        const hero = document.getElementById('hero');
+        
+        function updateHeader() {
+            const heroBottom = hero.offsetTop + hero.offsetHeight;
+            const scrollY = window.scrollY;
+            
+            if (scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+        }
+        
+        window.addEventListener('scroll', updateHeader);
+        updateHeader(); // Initial call
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Reveal on scroll
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate numbers
+        const statNumbers = document.querySelectorAll('.stat-number');
+        
+        const animateNumber = (el) => {
+            const text = el.textContent;
+            const hasPlus = text.includes('+');
+            const hasPercent = text.includes('%');
+            const num = parseFloat(text.replace(/[^0-9.]/g, ''));
+            
+            let current = 0;
+            const increment = num / 50;
+            const suffix = hasPlus ? '+' : hasPercent ? '%' : '';
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= num) {
+                    current = num;
+                    clearInterval(timer);
+                }
+                el.textContent = (Number.isInteger(num) ? Math.floor(current) : current.toFixed(1)) + suffix;
+            }, 30);
+        };
+
+        const numberObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateNumber(entry.target);
+                    numberObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(el => numberObserver.observe(el));
+    </script>
+</body>
+</html>
+
