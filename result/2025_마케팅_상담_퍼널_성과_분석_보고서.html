@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025년 마케팅·상담 퍼널 성과 및 구조 분석 보고서</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --color-primary: #3182F6;
+            --color-success: #00D084;
+            --color-danger: #F04452;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+            color: #191F28;
+            background: #F8F9FA;
+            padding: 0;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            padding: 0;
+        }
+
+        h1 {
+            color: #191F28;
+            padding: 48px 40px 32px 40px;
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.4;
+            letter-spacing: -0.02em;
+            border-bottom: 1px solid #E5E8EB;
+        }
+
+        h2 {
+            color: #191F28;
+            margin: 0;
+            padding: 32px 40px 16px 40px;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.5;
+            letter-spacing: -0.01em;
+            border-bottom: 1px solid #F0F2F5;
+        }
+
+        h3 {
+            color: #191F28;
+            margin: 0;
+            padding: 24px 40px 12px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.5;
+            letter-spacing: -0.01em;
+        }
+
+        h4 {
+            color: #4E5968;
+            margin: 24px 40px 8px 40px;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        p {
+            margin: 0 40px 16px 40px;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+            color: #4E5968;
+            font-size: 14px;
+        }
+
+        .executive-summary {
+            background: #FFFFFF;
+            padding: 32px 40px;
+            margin: 0;
+            border-bottom: 1px solid #E5E8EB;
+        }
+
+        .executive-summary h2 {
+            color: #191F28;
+            border: none;
+            padding: 0 0 20px 0;
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .executive-summary p {
+            color: #4E5968;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+            margin: 0 0 16px 0;
+            font-size: 14px;
+        }
+
+
+        .meta-info {
+            margin-bottom: 32px;
+            color: #8B95A1;
+            font-size: 15px;
+        }
+
+        .meta-info p {
+            margin-bottom: 8px;
+        }
+
+        table {
+            width: calc(100% - 80px);
+            margin: 0 40px 24px 40px;
+            border-collapse: collapse;
+            background: #FFFFFF;
+            border: 1px solid #E5E8EB;
+            border-radius: 8px;
+            overflow: hidden;
+            font-size: 14px;
+        }
+
+        th {
+            background: #F8F9FA;
+            color: #191F28;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: -0.01em;
+            line-height: 1.5;
+            border-bottom: 1px solid #E5E8EB;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #F0F2F5;
+            line-height: 1.6;
+            color: #4E5968;
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .metric-positive {
+            color: var(--color-success);
+            font-weight: 600;
+        }
+
+        .metric-warning {
+            color: var(--color-danger);
+            font-weight: 600;
+        }
+
+        .metric-negative {
+            color: var(--color-danger);
+            font-weight: 600;
+        }
+
+        .chart-container {
+            margin: 24px 40px;
+            padding: 24px;
+            background: #FFFFFF;
+            border: 1px solid #E5E8EB;
+            border-radius: 8px;
+        }
+
+        .mermaid {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .insight-box {
+            background: #F8F9FA;
+            border-left: 3px solid var(--color-primary);
+            padding: 20px;
+            margin: 0 40px 24px 40px;
+            border-radius: 0;
+        }
+
+        .insight-box h4, .success-box h4, .warning-box h4, .danger-box h4 {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .success-box {
+            background: #F8F9FA;
+            border-left: 3px solid var(--color-success);
+            padding: 20px;
+            margin: 0 40px 24px 40px;
+            border-radius: 0;
+        }
+
+        .warning-box {
+            background: #F8F9FA;
+            border-left: 3px solid var(--color-danger);
+            padding: 20px;
+            margin: 0 40px 24px 40px;
+            border-radius: 0;
+        }
+
+        .danger-box {
+            background: #F8F9FA;
+            border-left: 3px solid var(--color-danger);
+            padding: 20px;
+            margin: 0 40px 24px 40px;
+            border-radius: 0;
+        }
+
+        .timeline-item {
+            margin: 32px 0;
+            padding: 24px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .timeline-item h4 {
+            color: var(--color-primary);
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .timeline-item p {
+            margin-bottom: 12px;
+        }
+
+        .timeline-item ul, .timeline-item ol {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: rgba(49, 130, 246, 0.15);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: #E5E8EB;
+            margin: 0;
+            border: none;
+        }
+
+        /* KPI Dashboard 스타일 */
+        .metric-card {
+            background: #FFFFFF;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 0;
+            border: 1px solid #E5E8EB;
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 8px 0;
+            letter-spacing: -0.03em;
+            color: #191F28;
+        }
+
+        .metric-label {
+            font-size: 1.1em;
+            color: #4E5968;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .metric-description {
+            font-size: 0.95em;
+            color: #8B95A1;
+            margin-top: 12px;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin: 0 40px 24px 40px;
+            padding: 0;
+        }
+
+        .progress-bar-container {
+            margin: 12px 0 0 0;
+            background: #F0F2F5;
+            border-radius: 4px;
+            height: 6px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .progress-bar-primary {
+            background: var(--color-primary);
+        }
+
+        .progress-bar-success {
+            background: var(--color-success);
+        }
+
+        .progress-bar-danger {
+            background: var(--color-danger);
+        }
+
+        .comparison-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px;
+            background: white;
+            border-radius: 12px;
+            margin: 16px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .comparison-item {
+            flex: 1;
+            text-align: center;
+            padding: 0 16px;
+        }
+
+        .comparison-item:not(:last-child) {
+            border-right: 2px solid #e5e8eb;
+        }
+
+        .comparison-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 8px 0;
+        }
+
+        .comparison-label {
+            font-size: 0.9em;
+            color: #8B95A1;
+        }
+
+        .funnel-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 40px 24px 40px;
+            padding: 24px;
+            background: #FFFFFF;
+            border: 1px solid #E5E8EB;
+            border-radius: 8px;
+        }
+
+        .funnel-stage {
+            padding: 20px;
+            margin: 0;
+            border-radius: 6px;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+            position: relative;
+            min-width: 300px;
+        }
+
+        .funnel-stage-1 {
+            background: var(--color-success);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .funnel-stage-2 {
+            background: #FFA500;
+            width: 90%;
+            max-width: 540px;
+        }
+
+        .funnel-stage-3 {
+            background: var(--color-primary);
+            width: 90%;
+            max-width: 540px;
+        }
+
+        .funnel-stage-4 {
+            background: var(--color-danger);
+            width: 90%;
+            max-width: 540px;
+        }
+
+        .funnel-stage::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+        }
+
+        .funnel-stage-1::after {
+            border-top: 8px solid var(--color-success);
+        }
+
+        .funnel-stage-2::after {
+            border-top: 8px solid #FFA500;
+        }
+
+        .funnel-stage-3::after {
+            border-top: 8px solid var(--color-primary);
+        }
+
+        .funnel-stage-4::after {
+            border-top: 8px solid var(--color-danger);
+            display: none;
+        }
+
+        .stat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+            margin: 8px;
+        }
+
+        .stat-badge-success {
+            border-left: 4px solid var(--color-success);
+        }
+
+        .stat-badge-warning {
+            border-left: 4px solid var(--color-danger);
+        }
+
+        .timeline-visual {
+            position: relative;
+            padding: 40px 0;
+            margin: 40px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-danger) 100%);
+            transform: translateX(-50%);
+        }
+
+        .timeline-node {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin: 40px 0;
+            z-index: 1;
+        }
+
+        .timeline-node-left {
+            flex-direction: row;
+        }
+
+        .timeline-node-right {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 0 24px;
+        }
+
+        .timeline-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            border: 4px solid white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+
+        ul, ol {
+            margin-left: 24px;
+            margin-top: 12px;
+            margin-bottom: 16px;
+            padding-left: 8px;
+        }
+
+        li {
+            margin: 10px 0;
+            line-height: 1.75;
+            letter-spacing: -0.01em;
+        }
+
+        @media print {
+            @page {
+                size: A4 landscape;
+                margin: 1.5cm;
+            }
+            
+            body {
+                background: white;
+                padding: 0;
+                font-size: 14px;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            
+            /* 제목 페이지 */
+            h1 {
+                page-break-after: always;
+                margin-bottom: 0;
+                padding-bottom: 20px;
+            }
+            
+            /* Executive Summary는 새 페이지 */
+            .executive-summary {
+                page-break-after: always;
+                margin-bottom: 0;
+            }
+            
+            /* 각 주요 섹션(h2)은 새 페이지에서 시작 */
+            h2 {
+                page-break-before: always;
+                page-break-after: avoid;
+                margin-top: 0;
+            }
+            
+            /* 섹션 구분선 제거 */
+            .section-divider {
+                display: none;
+            }
+            
+            /* 차트와 다이어그램은 페이지 내에서 분리되지 않도록 */
+            .chart-container,
+            .mermaid {
+                page-break-inside: avoid;
+                page-break-after: avoid;
+            }
+            
+            /* 테이블은 페이지 내에서 분리되지 않도록 */
+            table {
+                page-break-inside: avoid;
+            }
+            
+            /* 박스 요소들도 페이지 내에서 분리되지 않도록 */
+            .success-box,
+            .warning-box,
+            .danger-box,
+            .insight-box,
+            .timeline-item {
+                page-break-inside: avoid;
+            }
+            
+            /* h3, h4는 페이지와 분리되지 않도록 */
+            h3, h4 {
+                page-break-after: avoid;
+            }
+            
+            /* 메타 정보는 제목과 함께 */
+            .meta-info {
+                page-break-after: avoid;
+            }
+            
+            /* 푸터는 마지막 페이지에 */
+            .footer {
+                page-break-before: always;
+            }
+            
+            /* 배경색 제거 (인쇄 시) */
+            .executive-summary,
+            .success-box,
+            .warning-box,
+            .danger-box,
+            .insight-box,
+            .timeline-item {
+                background: white !important;
+                border: 2px solid #ddd;
+            }
+            
+            .executive-summary {
+                background: #f8f9fa !important;
+                border: 2px solid var(--color-primary);
+            }
+            
+            /* 색상은 유지하되 테두리로 구분 */
+            .success-box {
+                border-left: 5px solid var(--color-success);
+            }
+            
+            .warning-box,
+            .danger-box {
+                border-left: 5px solid var(--color-danger);
+            }
+            
+            .insight-box {
+                border-left: 5px solid var(--color-primary);
+            }
+        }
+
+            @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            table {
+                font-size: 0.9em;
+            }
+            .metric-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .metric-value {
+                font-size: 2.5em !important;
+            }
+            .comparison-card {
+                flex-direction: column;
+            }
+            .comparison-item:not(:last-child) {
+                border-right: none;
+                border-bottom: 2px solid #e5e8eb;
+                padding-bottom: 16px;
+                margin-bottom: 16px;
+            }
+            .funnel-visual .funnel-stage {
+                width: 100% !important;
+            }
+            /* 상담카드 운영 구조 섹션 반응형 */
+            div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+            div[style*="display: flex"][style*="justify-content: space-between"] {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            2025년 마케팅·상담 퍼널 성과 및 구조 분석 보고서
+        </h1>
+        
+        <div style="padding: 0 40px 24px 40px; border-bottom: 1px solid #E5E8EB;">
+            <div style="display: flex; gap: 32px; color: #8B95A1; font-size: 13px;">
+                <span><strong style="color: #4E5968;">작성일</strong>: 2025년</span>
+                <span><strong style="color: #4E5968;">분석 기간</strong>: 2025년 1월 ~ 12월</span>
+                <span><strong style="color: #4E5968;">보고서 유형</strong>: 전략 성과 분석</span>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="executive-summary">
+            <h2>Executive Summary</h2>
+            <p>
+                본 보고서는 2025년 한 해 동안의 마케팅·상담 퍼널 전반의 성과를 정량적 데이터와 정성적 개입 내용을 종합하여 분석한 전략 보고서입니다.
+            </p>
+            <p style="margin-top: 20px;">
+                <strong>핵심 결론</strong>: 광고 성과 자체는 ROAS 354%를 기록하며 양호한 수준을 유지했으나, 카드 이후 전환 단계에서 구조적 병목이 발생하여 전체 퍼널 효율이 저하되었습니다. 이는 단순 광고 운영의 문제가 아닌, 조직 내 KPI 구조와 실제 퍼널 처리 용량 간의 불일치에서 기인한 것으로 분석됩니다.
+            </p>
+        </div>
+
+        <h2>상담카드 생성까지의 운영 구조</h2>
+
+        <div style="background: linear-gradient(135deg, rgba(49, 130, 246, 0.05) 0%, rgba(49, 130, 246, 0.02) 100%); padding: 32px; border-radius: 16px; margin: 32px 0; border: 2px solid var(--color-primary);">
+            <p style="font-size: 1.1em; line-height: 1.8; color: #191F28; margin-bottom: 32px; text-align: center; font-weight: 500;">
+                상담카드 1건은 단일 행동의 결과가 아니라, 지속적인 퍼널 운영과 단계별 개선의 누적 결과이며, 2025년 10월 이후에는 상담 효율을 높이기 위한 추가 개입까지 확장되었다.
+            </p>
+
+            <div style="background: white; padding: 32px; border-radius: 12px; margin-bottom: 32px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+                <h3 style="color: var(--color-primary); margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+                    기본 퍼널 구조 (기존 운영 영역 · 연중 상시 운영)
+                </h3>
+                
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin: 32px 0;">
+                    <div style="flex: 1; min-width: 150px; text-align: center; padding: 20px; background: linear-gradient(135deg, rgba(49, 130, 246, 0.1) 0%, rgba(49, 130, 246, 0.05) 100%); border-radius: 12px; border: 2px solid var(--color-primary);">
+                        <div style="font-size: 1.1em; color: #8B95A1; margin-bottom: 8px;">1단계</div>
+                        <div style="font-size: 1.3em; font-weight: 700; color: var(--color-primary);">광고 유입 (소재)</div>
+                    </div>
+                    <span style="color: #8B95A1; font-size: 14px; padding: 0 8px;">→</span>
+                    <div style="flex: 1; min-width: 150px; text-align: center; padding: 20px; background: linear-gradient(135deg, rgba(49, 130, 246, 0.1) 0%, rgba(49, 130, 246, 0.05) 100%); border-radius: 12px; border: 2px solid var(--color-primary);">
+                        <div style="font-size: 1.1em; color: #8B95A1; margin-bottom: 8px;">2단계</div>
+                        <div style="font-size: 1.3em; font-weight: 700; color: var(--color-primary);">랜딩페이지</div>
+                    </div>
+                    <span style="color: #8B95A1; font-size: 14px; padding: 0 8px;">→</span>
+                    <div style="flex: 1; min-width: 150px; text-align: center; padding: 20px; background: linear-gradient(135deg, rgba(49, 130, 246, 0.1) 0%, rgba(49, 130, 246, 0.05) 100%); border-radius: 12px; border: 2px solid var(--color-primary);">
+                        <div style="font-size: 1.1em; color: #8B95A1; margin-bottom: 8px;">3단계</div>
+                        <div style="font-size: 1.3em; font-weight: 700; color: var(--color-primary);">상담카드 작성</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 0 4px;">
+                        <div style="width: 2px; height: 24px; background: repeating-linear-gradient(to bottom, #FF9800 0px, #FF9800 3px, transparent 3px, transparent 6px);"></div>
+                        <div style="background: #FFFFFF; padding: 4px 8px; border: 1px solid #FF9800; border-radius: 8px; font-size: 0.75em; font-weight: 600; color: #E65100; white-space: nowrap;">
+                            공동 책임
+                        </div>
+                        <div style="width: 2px; height: 24px; background: repeating-linear-gradient(to bottom, #FF9800 0px, #FF9800 3px, transparent 3px, transparent 6px);"></div>
+                    </div>
+                    <div style="flex: 1; min-width: 150px; text-align: center; padding: 20px; background: linear-gradient(135deg, rgba(0, 208, 132, 0.1) 0%, rgba(0, 208, 132, 0.05) 100%); border-radius: 12px; border: 2px solid var(--color-success);">
+                        <div style="font-size: 1.1em; color: #8B95A1; margin-bottom: 8px;">4단계</div>
+                        <div style="font-size: 1.3em; font-weight: 700; color: var(--color-success);">상담 연결</div>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; padding: 16px; background: #F8F9FA; border-radius: 8px;">
+                    <div style="text-align: left;">
+                        <div style="font-size: 0.85em; color: #8B95A1; margin-bottom: 4px; font-weight: 600;">1-3단계: 마케팅 책임 구간</div>
+                        <div style="font-size: 0.9em; color: #4E5968;">상시 운영 영역</div>
+                    </div>
+                    <div style="text-align: left;">
+                        <div style="font-size: 0.85em; color: #E65100; margin-bottom: 4px; font-weight: 600;">3-4단계: 공동 책임 구간</div>
+                        <div style="font-size: 0.9em; color: #4E5968;">마케팅 + 상담 운영</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;">
+                <div style="background: white; padding: 28px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 4px solid var(--color-primary);">
+                    <h3 style="color: var(--color-primary); margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+                        기존 운영 영역 수행 작업
+                    </h3>
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f8f9fa; border-radius: 8px;">
+                            <div>
+                                <div style="font-weight: 600; color: #191F28; margin-bottom: 4px;">광고 소재 제작</div>
+                                <div style="font-size: 0.9em; color: #8B95A1;">연간 상시 운영</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 2em; font-weight: 700; color: var(--color-primary);">약 400</div>
+                                <div style="font-size: 0.9em; color: #8B95A1;">건</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f8f9fa; border-radius: 8px;">
+                            <div>
+                                <div style="font-weight: 600; color: #191F28; margin-bottom: 4px;">랜딩페이지 교체</div>
+                                <div style="font-size: 0.9em; color: #8B95A1;">월간 정기 운영</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 2em; font-weight: 700; color: var(--color-primary);">월 12</div>
+                                <div style="font-size: 0.9em; color: #8B95A1;">회</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f8f9fa; border-radius: 8px;">
+                            <div>
+                                <div style="font-weight: 600; color: #191F28; margin-bottom: 4px;">세부 AB 테스트 기반 교체</div>
+                                <div style="font-size: 0.9em; color: #8B95A1;">PC / Mobile 분리 운영</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 2em; font-weight: 700; color: var(--color-primary);">연 38</div>
+                                <div style="font-size: 0.9em; color: #8B95A1;">회</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f8f9fa; border-radius: 8px;">
+                            <div>
+                                <div style="font-weight: 600; color: #191F28; margin-bottom: 4px;">상담신청 페이지 CG값 코드</div>
+                                <div style="font-size: 0.9em; color: #8B95A1;">개발 및 교체 적용</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 2em; font-weight: 700; color: var(--color-primary);">총 8</div>
+                                <div style="font-size: 0.9em; color: #8B95A1;">회</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f8f9fa; border-radius: 8px;">
+                            <div>
+                                <div style="font-weight: 600; color: #191F28; margin-bottom: 4px;">알림톡 간소화 구조</div>
+                                <div style="font-size: 0.9em; color: #8B95A1;">적용</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 2em; font-weight: 700; color: var(--color-primary);">2</div>
+                                <div style="font-size: 0.9em; color: #8B95A1;">회</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #e5e8eb;">
+                        <p style="font-size: 0.9em; color: #8B95A1; line-height: 1.6; margin: 0;">
+                            <strong style="color: #191F28;">※ 카드 수는 결과 지표이며, 위 작업들은 결과를 만들어내는 운영 지표</strong>
+                        </p>
+                    </div>
+                    <div style="margin-top: 24px; padding: 16px; background: rgba(49, 130, 246, 0.05); border-radius: 8px; border-left: 4px solid var(--color-primary);">
+                        <div style="font-size: 0.85em; color: #8B95A1; margin-bottom: 8px;">[이미지 캡션 제안]</div>
+                        <div style="font-size: 0.9em; color: #4E5968; line-height: 1.6;">
+                            <strong>기존 운영 영역 시각화:</strong> 광고 소재 제작 프로세스, 랜딩페이지 A/B 테스트 대시보드, CG값 추적 시스템 화면, 알림톡 자동화 플로우 다이어그램
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 28px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 4px solid var(--color-danger); position: relative;">
+                    <div style="position: absolute; top: 16px; right: 16px; background: var(--color-danger); color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85em; font-weight: 600;">
+                        2024.10 이후 확장
+                    </div>
+                    <h3 style="color: var(--color-danger); margin-bottom: 20px; margin-top: 8px; display: flex; align-items: center; gap: 12px;">
+                        추가 확장 개입 영역
+                    </h3>
+                    <div style="background: rgba(240, 68, 82, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--color-danger);">
+                        <div style="font-weight: 600; color: var(--color-danger); margin-bottom: 8px;">목적</div>
+                        <div style="color: #4E5968; line-height: 1.6;">상담 전환율 및 상담 품질 개선</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div style="padding: 20px; background: linear-gradient(135deg, rgba(240, 68, 82, 0.08) 0%, rgba(240, 68, 82, 0.03) 100%); border-radius: 8px; border: 1px solid rgba(240, 68, 82, 0.2);">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+                                <div>
+                                    <div style="font-weight: 600; color: #191F28; margin-bottom: 4px;">상담 오프닝 영상 제작</div>
+                                    <div style="font-size: 0.9em; color: #8B95A1;">모션그래픽</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 1.8em; font-weight: 700; color: var(--color-danger);">1</div>
+                                    <div style="font-size: 0.9em; color: #8B95A1;">건</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 20px; background: linear-gradient(135deg, rgba(240, 68, 82, 0.08) 0%, rgba(240, 68, 82, 0.03) 100%); border-radius: 8px; border: 1px solid rgba(240, 68, 82, 0.2);">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+                                <div>
+                                    <div style="font-weight: 600; color: #191F28; margin-bottom: 4px;">상담자료 PPT</div>
+                                    <div style="font-size: 0.9em; color: #8B95A1; line-height: 1.5;">
+                                        · 프리랜서 / 취업용 분리<br/>
+                                        · PC / 모바일 버전 각각 제작<br/>
+                                        · 기획·디자인·배포
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 1.8em; font-weight: 700; color: var(--color-danger);">4</div>
+                                    <div style="font-size: 0.9em; color: #8B95A1;">건</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px; padding: 16px; background: rgba(240, 68, 82, 0.1); border-radius: 8px; border-left: 4px solid var(--color-danger);">
+                        <div style="font-weight: 600; color: var(--color-danger); margin-bottom: 8px;">역할 확장 범위</div>
+                        <p style="font-size: 0.9em; color: #4E5968; line-height: 1.6; margin: 0;">
+                            기존 유입·전환 퍼널을 넘어 <strong style="color: var(--color-danger);">"상담 시작 단계"까지</strong> 역할이 확장되었음
+                        </p>
+                    </div>
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #e5e8eb;">
+                        <p style="font-size: 0.9em; color: #8B95A1; line-height: 1.6; margin: 0;">
+                            <strong style="color: #191F28;">※ 10월 이후 개입은 기존 홍보 역할을 넘어 상담 효율과 매출 전환에 직접 영향을 주는 확장 업무</strong>
+                        </p>
+                    </div>
+                    <div style="margin-top: 24px; padding: 16px; background: rgba(240, 68, 82, 0.05); border-radius: 8px; border-left: 4px solid var(--color-danger);">
+                        <div style="font-size: 0.85em; color: #8B95A1; margin-bottom: 8px;">[이미지 캡션 제안]</div>
+                        <div style="font-size: 0.9em; color: #4E5968; line-height: 1.6;">
+                            <strong>확장 개입 영역 시각화:</strong> 상담 오프닝 영상 스틸컷, 상담자료 PPT 화면 (프리랜서/취업용, PC/모바일 버전), 상담 시작 단계까지의 확장된 퍼널 다이어그램
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, rgba(49, 130, 246, 0.1) 0%, rgba(49, 130, 246, 0.05) 100%); padding: 28px; border-radius: 12px; border: 2px solid var(--color-primary); margin-top: 32px;">
+                <div style="text-align: center; margin-bottom: 16px;">
+                    <div style="font-size: 0.9em; color: #8B95A1; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 8px;">임원용 핵심 정리</div>
+                    <div style="font-size: 1.3em; font-weight: 700; color: #191F28; line-height: 1.6;">
+                        상담카드 1건 생성은 <span style="color: var(--color-primary);">연간 약 300건의 광고 소재 제작, 월 12회의 랜딩페이지 교체, 연 38회의 AB 테스트</span> 등 지속적인 운영 작업의 누적 결과이며, 
+                        <span style="color: var(--color-danger);">2025년 10월 이후에는 상담 효율 개선을 위해 상담 시작 단계까지 역할이 확장</span>되었다.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>
+            연간 핵심 수치 요약
+        </h2>
+
+        <h3>1.1 전체 성과 지표</h3>
+        <div class="metric-grid">
+            <div class="metric-card" style="border-top: 4px solid var(--color-primary);">
+                <div class="metric-label">총 카드 수</div>
+                <div class="metric-value" style="color: var(--color-primary);">23,985</div>
+                <div class="metric-description">건</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar progress-bar-primary" style="width: 100%;">100%</div>
+                </div>
+            </div>
+            <div class="metric-card" style="border-top: 4px solid var(--color-success);">
+                <div class="metric-label">총 판매 대수</div>
+                <div class="metric-value" style="color: var(--color-success);">1,868</div>
+                <div class="metric-description">대</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar progress-bar-success" style="width: 7.79%;">7.79%</div>
+                </div>
+            </div>
+            <div class="metric-card" style="border-top: 4px solid var(--color-primary);">
+                <div class="metric-label">총 매출 (VAT 제외)</div>
+                <div class="metric-value" style="color: var(--color-primary);">509.5</div>
+                <div class="metric-description">억원</div>
+            </div>
+            <div class="metric-card" style="border-top: 4px solid var(--color-danger);">
+                <div class="metric-label">총 광고비</div>
+                <div class="metric-value" style="color: var(--color-danger);">143.9</div>
+                <div class="metric-description">억원</div>
+            </div>
+        </div>
+        
+        <div class="funnel-visual">
+            <div class="funnel-stage funnel-stage-1">
+                <div style="font-size: 1.5em; margin-bottom: 8px;">1단계: 광고 유입 (소재)</div>
+                <div style="font-size: 2em; font-weight: 700;">23,985건</div>
+            </div>
+            <div class="funnel-stage funnel-stage-2">
+                <div style="font-size: 1.3em; margin-bottom: 8px;">2단계: 랜딩페이지</div>
+                <div style="font-size: 1.8em; font-weight: 700;">23,985건</div>
+            </div>
+            <div class="funnel-stage funnel-stage-3">
+                <div style="font-size: 1.3em; margin-bottom: 8px;">3단계: 상담카드 작성</div>
+                <div style="font-size: 1.8em; font-weight: 700;">23,985건</div>
+            </div>
+            <div class="funnel-stage funnel-stage-4">
+                <div style="font-size: 1.3em; margin-bottom: 8px;">4단계: 상담 연결</div>
+                <div style="font-size: 1.8em; font-weight: 700;">1,868대 (7.79%)</div>
+            </div>
+        </div>
+
+        <h3>1.2 효율 지표</h3>
+        <div class="metric-grid">
+            <div class="metric-card" style="border-top: 4px solid var(--color-danger);">
+                <div class="metric-label">카드 → 판매 전환율</div>
+                <div class="metric-value" style="color: var(--color-danger);">7.79<span style="font-size: 0.5em;">%</span></div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar progress-bar-danger" style="width: 7.79%;">7.79%</div>
+                </div>
+                <div class="stat-badge stat-badge-warning" style="margin-top: 16px;">
+                    낮음
+                </div>
+            </div>
+            <div class="metric-card" style="border-top: 4px solid var(--color-success);">
+                <div class="metric-label">ROAS</div>
+                <div class="metric-value" style="color: var(--color-success);">354<span style="font-size: 0.5em;">%</span></div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar progress-bar-success" style="width: 70.8%;">354%</div>
+                </div>
+                <div class="stat-badge stat-badge-success" style="margin-top: 16px;">
+                    우수
+                </div>
+            </div>
+            <div class="metric-card" style="border-top: 4px solid var(--color-success);">
+                <div class="metric-label">CPL (카드 1건당 광고비)</div>
+                <div class="metric-value" style="color: var(--color-success); font-size: 2.5em;">59,970<span style="font-size: 0.6em;">원</span></div>
+                <div class="stat-badge stat-badge-success" style="margin-top: 16px;">
+                    양호
+                </div>
+            </div>
+            <div class="metric-card" style="border-top: 4px solid var(--color-danger);">
+                <div class="metric-label">CPA (판매 1대당 광고비)</div>
+                <div class="metric-value" style="color: var(--color-danger); font-size: 2.5em;">770,000<span style="font-size: 0.6em;">원</span></div>
+                <div class="stat-badge stat-badge-warning" style="margin-top: 16px;">
+                    높음
+                </div>
+            </div>
+        </div>
+        
+        <div class="comparison-card">
+            <div class="comparison-item">
+                <div class="comparison-label">광고비 비중</div>
+                <div class="comparison-value" style="color: var(--color-success);">28.3%</div>
+                <div class="progress-bar-container" style="margin-top: 12px;">
+                    <div class="progress-bar progress-bar-success" style="width: 28.3%;"></div>
+                </div>
+            </div>
+            <div class="comparison-item">
+                <div class="comparison-label">대당 평균 매출</div>
+                <div class="comparison-value" style="color: var(--color-primary);">272.7</div>
+                <div class="comparison-label">만원</div>
+            </div>
+        </div>
+
+        <h3>1.3 핵심 성과 해석</h3>
+        <div class="metric-grid" style="grid-template-columns: 1fr 1fr;">
+            <div class="metric-card" style="border-top: 4px solid var(--color-success); background: linear-gradient(135deg, rgba(0, 208, 132, 0.05) 0%, white 100%);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                    <h4 style="margin: 0; color: var(--color-success);">광고 단계 성과: 양호</h4>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <div>
+                        <div style="font-size: 2.5em; font-weight: 700; color: var(--color-success);">354<span style="font-size: 0.4em;">%</span></div>
+                        <div style="color: #8B95A1; font-size: 0.9em;">ROAS (목표 대비 우수)</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.8em; font-weight: 700; color: var(--color-success);">28.3<span style="font-size: 0.5em;">%</span></div>
+                        <div style="color: #8B95A1; font-size: 0.9em;">광고비 비중 (적정 수준)</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.5em; font-weight: 700; color: var(--color-success);">59,970<span style="font-size: 0.6em;">원</span></div>
+                        <div style="color: #8B95A1; font-size: 0.9em;">CPL (효율적)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="metric-card" style="border-top: 4px solid var(--color-danger); background: linear-gradient(135deg, rgba(240, 68, 82, 0.05) 0%, white 100%);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                    <h4 style="margin: 0; color: var(--color-danger);">전환 단계 성과: 개선 필요</h4>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <div>
+                        <div style="font-size: 2.5em; font-weight: 700; color: var(--color-danger);">7.79<span style="font-size: 0.4em;">%</span></div>
+                        <div style="color: #8B95A1; font-size: 0.9em;">전환율 (목표 대비 낮음)</div>
+                        <div class="progress-bar-container" style="margin-top: 8px;">
+                            <div class="progress-bar progress-bar-danger" style="width: 7.79%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.8em; font-weight: 700; color: var(--color-danger);">770,000<span style="font-size: 0.6em;">원</span></div>
+                        <div style="color: #8B95A1; font-size: 0.9em;">CPA (목표 대비 높음)</div>
+                    </div>
+                    <div style="background: rgba(240, 68, 82, 0.1); padding: 12px; border-radius: 8px;">
+                        <div style="font-size: 1.2em; font-weight: 600; color: var(--color-danger);">92.21% 손실</div>
+                        <div style="color: #8B95A1; font-size: 0.85em; margin-top: 4px;">카드 이후 대규모 손실 발생</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="background: linear-gradient(135deg, rgba(49, 130, 246, 0.1) 0%, rgba(49, 130, 246, 0.05) 100%); padding: 24px; border-radius: 12px; margin: 24px 0; border-left: 4px solid var(--color-primary);">
+            <p style="margin: 0; font-size: 1.1em; font-weight: 600; color: #191F28;">
+                <strong>결론</strong>: 광고 자체의 수익성은 유지되고 있으나, <span style="background: rgba(49, 130, 246, 0.2); padding: 4px 8px; border-radius: 4px;">카드 이후 전환 단계에서 대규모 손실이 발생</span>하고 있음을 확인.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--color-primary); color: white; border-radius: 50%; font-weight: bold; font-size: 14px; margin-right: 8px;">1-2</span>
+            상담카드 생성까지의 마케팅 퍼널 구조
+        </h2>
+
+        <div style="background: linear-gradient(135deg, rgba(49, 130, 246, 0.1) 0%, rgba(49, 130, 246, 0.05) 100%); padding: 24px; border-radius: 12px; margin: 24px 0; border-left: 4px solid var(--color-primary);">
+            <p style="margin: 0; font-size: 1.05em; line-height: 1.8; color: #191F28;">
+                상담카드 1건은 단일 행동의 결과가 아니라, 지속적인 퍼널 운영과 단계별 개선의 누적 결과입니다. 2025년 10월 이후에는 기존 홍보 역할을 넘어 상담 효율을 높이기 위한 추가 개입 영역이 확장되었습니다. 본 섹션은 상담카드 생성까지의 기본 퍼널 구조(기존 운영 영역)와 10월 이후 추가 확장 개입 영역을 명확히 구분하여 정리합니다.
+            </p>
+        </div>
+
+        <h3>1-2.1 기본 퍼널 구조 (기존 운영 영역)</h3>
+        <p style="color: #4E5968; margin-bottom: 20px;">
+            다음 구조는 연중 상시 운영된 홍보마케팅팀의 핵심 책임 구간입니다.
+        </p>
+
+        <div style="background: #f8f9fa; padding: 30px; border-radius: 12px; margin: 24px 0;">
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div style="display: flex; align-items: center; gap: 16px; padding: 16px; background: white; border-radius: 8px; border-left: 4px solid var(--color-primary);">
+                    <div style="width: 40px; height: 40px; background: var(--color-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">1</div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 1.1em; color: #191F28; margin-bottom: 4px;">광고 유입 (소재)</div>
+                        <div style="color: #8B95A1; font-size: 0.95em;">다양한 채널을 통한 잠재고객 유입</div>
+                    </div>
+                </div>
+                <div style="text-align: center; color: #8B95A1;">
+                    <span style="color: #8B95A1;">↓</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 16px; padding: 16px; background: white; border-radius: 8px; border-left: 4px solid var(--color-primary);">
+                    <div style="width: 40px; height: 40px; background: var(--color-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">2</div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 1.1em; color: #191F28; margin-bottom: 4px;">랜딩페이지</div>
+                        <div style="color: #8B95A1; font-size: 0.95em;">월 12회 교체 운영</div>
+                    </div>
+                </div>
+                <div style="text-align: center; color: #8B95A1;">
+                    <span style="color: #8B95A1;">↓</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 16px; padding: 16px; background: white; border-radius: 8px; border-left: 4px solid var(--color-primary);">
+                    <div style="width: 40px; height: 40px; background: var(--color-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">3</div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 1.1em; color: #191F28; margin-bottom: 4px;">상담카드 작성</div>
+                        <div style="color: #8B95A1; font-size: 0.95em;">AB 테스트, 상담신청 페이지 CG값 코드 개발 및 교체</div>
+                    </div>
+                </div>
+                <div style="text-align: center; color: #8B95A1; position: relative; padding: 8px 0;">
+                    <div style="width: 100%; height: 1px; background: repeating-linear-gradient(to right, #E5E8EB 0px, #E5E8EB 4px, transparent 4px, transparent 8px); margin: 8px 0;"></div>
+                    <div style="display: inline-block; background: #FFFFFF; padding: 4px 12px; border: 1px solid #FF9800; border-radius: 12px; font-size: 0.85em; font-weight: 600; color: #E65100; margin-top: 4px;">
+                        공동 책임 구간
+                    </div>
+                    <div style="width: 100%; height: 1px; background: repeating-linear-gradient(to right, #E5E8EB 0px, #E5E8EB 4px, transparent 4px, transparent 8px); margin: 8px 0;"></div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 16px; padding: 16px; background: white; border-radius: 8px; border-left: 4px solid var(--color-success);">
+                    <div style="width: 40px; height: 40px; background: var(--color-success); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">4</div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 1.1em; color: #191F28; margin-bottom: 4px;">상담 연결</div>
+                        <div style="color: #8B95A1; font-size: 0.95em;">상담 수요(마케팅) + 상담 처리 용량(운영)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: #F8F9FA; padding: 24px; border-radius: 8px; margin: 24px 40px; border-left: 3px solid #4E5968;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                <div>
+                    <div style="font-weight: 600; font-size: 0.9em; color: #8B95A1; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">1-3단계: 마케팅 책임 구간</div>
+                    <p style="margin: 0; color: #4E5968; font-size: 0.95em; line-height: 1.6;">
+                        상시 운영 영역. 광고 유입부터 상담카드 작성까지의 전 과정을 마케팅팀이 단독 통제합니다.
+                    </p>
+                </div>
+                <div>
+                    <div style="font-weight: 600; font-size: 0.9em; color: #E65100; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">3-4단계: 공동 책임 구간</div>
+                    <p style="margin: 0; color: #4E5968; font-size: 0.95em; line-height: 1.6;">
+                        상담 수요(마케팅)와 상담 처리 용량(운영)이 만나는 구간. 상담 연결 성과는 상담 인력, 응답 속도, 운영 용량(capacity)에 의해 상한선이 결정됩니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: #FFFFFF; padding: 24px; border-radius: 8px; margin: 24px 40px; border: 1px solid #E5E8EB;">
+            <h4 style="margin: 0 0 16px 0; color: #191F28; font-size: 14px; font-weight: 600;">3-4단계 사이 병목 발생 시 운영 방식</h4>
+            <p style="margin: 0 0 12px 0; color: #4E5968; font-size: 14px; line-height: 1.7;">
+                3-4단계 사이 병목 발생 시, 마케팅팀은 1단계(광고 유입)로 되돌아가 타겟, 메시지, 소재 전략을 변경하고, AB 테스트를 통해 카드 품질 및 전환 가능성을 개선해왔습니다.
+            </p>
+            <p style="margin: 0; color: #4E5968; font-size: 14px; line-height: 1.7;">
+                다만 3-4단계는 마케팅 단독 통제 구간이 아니라, 상담 수요(마케팅)와 상담 처리 용량(운영)이 만나는 공동 책임 구간입니다. 상담 연결 성과는 상담 인력, 응답 속도, 운영 용량(capacity)에 의해 상한선이 결정될 수 있습니다.
+            </p>
+        </div>
+
+        <h3>1-2.2 기존 운영 영역의 실제 수행 작업 (정량 지표)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 40%;">작업 영역</th>
+                    <th style="width: 30%;">수행 내용</th>
+                    <th style="width: 30%;">실적</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>광고 소재 제작</strong></td>
+                    <td>다양한 채널별 광고 소재 개발 및 제작</td>
+                    <td><strong>연간 약 300건</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>랜딩페이지 교체</strong></td>
+                    <td>타겟 및 캠페인에 맞춘 랜딩페이지 운영</td>
+                    <td><strong>월 12회</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>세부 AB 테스트</strong></td>
+                    <td>PC / Mobile 환경별 최적화 테스트</td>
+                    <td><strong>연 38회</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>CG값 추적 시스템</strong></td>
+                    <td>상담신청 페이지 CG값 코드 개발 및 적용</td>
+                    <td><strong>총 8회</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>알림톡 구조 개선</strong></td>
+                    <td>알림톡 간소화 구조 적용</td>
+                    <td><strong>2회</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="background: rgba(240, 68, 82, 0.05); padding: 20px; border-radius: 8px; margin: 24px 0; border-left: 4px solid var(--color-danger);">
+            <p style="margin: 0; color: #191F28; font-size: 0.95em; line-height: 1.7;">
+                <strong>중요</strong>: 상담카드 수는 <strong>결과 지표</strong>이며, 위 작업들은 결과를 만들어내는 <strong>운영 지표</strong>입니다. 23,985건의 카드는 위 운영 작업들의 누적 성과입니다.
+            </p>
+        </div>
+
+        <h3>1-2.3 2025년 10월 이후 추가 확장 개입 영역</h3>
+        
+        <div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.1) 0%, rgba(255, 152, 0, 0.05) 100%); padding: 24px; border-radius: 12px; margin: 24px 0; border-left: 4px solid #FF9800;">
+            <p style="margin: 0 0 16px 0; font-weight: 600; font-size: 1.1em; color: #191F28;">
+                목적: 상담 전환율 및 상담 품질 개선
+            </p>
+            <p style="margin: 0; color: #4E5968; line-height: 1.7;">
+                2025년 10월 이후 기존 유입·전환 퍼널을 넘어 <strong>"상담 시작 단계"</strong>까지 홍보마케팅팀의 역할이 확장되었습니다.
+            </p>
+        </div>
+
+        <div style="background: #fff8e1; padding: 30px; border-radius: 12px; margin: 24px 0; border: 2px dashed #FF9800;">
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+                <div style="display: flex; align-items: flex-start; gap: 16px; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="width: 36px; height: 36px; background: #FF9800; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; font-size: 0.9em;">A</div>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 1.1em; color: #191F28; margin-bottom: 8px;">상담 오프닝 영상 제작</div>
+                        <div style="color: #4E5968; margin-bottom: 12px;">상담 시작 단계 고객 경험 개선을 위한 영상 콘텐츠</div>
+                        <div style="display: inline-block; background: rgba(255, 152, 0, 0.1); padding: 6px 12px; border-radius: 6px; font-size: 0.9em; color: #E65100; font-weight: 600;">
+                            실적: 1건 (모션그래픽)
+                        </div>
+                        <div style="margin-top: 12px; font-size: 0.85em; color: #8B95A1; font-style: italic;">
+                            [이미지 캡션: 상담 오프닝 영상 제작 프로세스 및 최종 산출물]
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: flex-start; gap: 16px; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="width: 36px; height: 36px; background: #FF9800; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; font-size: 0.9em;">B</div>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 1.1em; color: #191F28; margin-bottom: 8px;">상담자료 PPT 기획·디자인·배포</div>
+                        <div style="color: #4E5968; margin-bottom: 12px;">상담 효율 향상을 위한 자료 표준화</div>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 12px;">
+                            <div style="background: rgba(255, 152, 0, 0.1); padding: 12px; border-radius: 6px;">
+                                <div style="font-size: 0.85em; color: #8B95A1; margin-bottom: 4px;">구분</div>
+                                <div style="font-weight: 600; color: #E65100;">프리랜서 / 취업용 분리</div>
+                            </div>
+                            <div style="background: rgba(255, 152, 0, 0.1); padding: 12px; border-radius: 6px;">
+                                <div style="font-size: 0.85em; color: #8B95A1; margin-bottom: 4px;">버전</div>
+                                <div style="font-weight: 600; color: #E65100;">PC / 모바일 각각 제작</div>
+                            </div>
+                        </div>
+                        <div style="display: inline-block; background: rgba(255, 152, 0, 0.1); padding: 6px 12px; border-radius: 6px; font-size: 0.9em; color: #E65100; font-weight: 600;">
+                            실적: 4건
+                        </div>
+                        <div style="margin-top: 12px; font-size: 0.85em; color: #8B95A1; font-style: italic;">
+                            [이미지 캡션: 상담자료 PPT 기획 프로세스, 디자인 산출물, 배포 시스템]
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.15) 0%, rgba(255, 152, 0, 0.08) 100%); padding: 24px; border-radius: 12px; margin: 24px 0; border-left: 4px solid #FF9800;">
+            <p style="margin: 0; color: #191F28; font-size: 1.05em; line-height: 1.8; font-weight: 600;">
+                <strong>확장 영역의 의미</strong>: 2025년 10월 이후 개입은 기존 홍보 역할을 넘어 <span style="background: rgba(255, 152, 0, 0.2); padding: 4px 8px; border-radius: 4px;">상담 효율과 매출 전환에 직접 영향을 주는 확장 업무</span>입니다.
+            </p>
+        </div>
+
+        <div style="background: linear-gradient(135deg, rgba(49, 130, 246, 0.1) 0%, rgba(49, 130, 246, 0.05) 100%); padding: 24px; border-radius: 12px; margin: 32px 0; border: 2px solid var(--color-primary);">
+            <div style="display: flex; align-items: flex-start; gap: 16px;">
+                <div>
+                    <div style="font-weight: 700; font-size: 1.1em; color: #191F28; margin-bottom: 12px;">임원용 핵심 정리</div>
+                    <p style="margin: 0; color: #191F28; line-height: 1.8; font-size: 1.05em;">
+                        상담카드 23,985건은 <strong>연간 300건의 광고 소재 제작, 월 12회의 랜딩페이지 교체, 연 38회의 AB 테스트</strong> 등 지속적인 퍼널 운영의 누적 결과입니다. 2025년 10월 이후에는 상담 시작 단계까지 역할이 확장되어 상담 효율과 매출 전환에 직접 기여하는 구조로 진화했습니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>
+            월별 추이 분석
+        </h2>
+
+        <h3>2.1 월별 카드 수 / 판매 대수 추이</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>월</th>
+                    <th>카드 수</th>
+                    <th>판매 대수</th>
+                    <th>전환율</th>
+                    <th>추이</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1월</td>
+                    <td>1,469</td>
+                    <td>207</td>
+                    <td>14.09%</td>
+                    <td style="color: var(--color-success);">↑</td>
+                </tr>
+                <tr>
+                    <td>2월</td>
+                    <td>1,209</td>
+                    <td>178</td>
+                    <td>14.72%</td>
+                    <td style="color: var(--color-danger);">↓</td>
+                </tr>
+                <tr>
+                    <td>3월</td>
+                    <td>1,241</td>
+                    <td>181</td>
+                    <td>14.58%</td>
+                    <td style="color: var(--color-success);">↑</td>
+                </tr>
+                <tr style="background: rgba(240, 68, 82, 0.1);">
+                    <td><strong>4월</strong></td>
+                    <td><strong>2,060</strong></td>
+                    <td><strong>147</strong></td>
+                    <td><strong>7.14%</strong></td>
+                    <td><strong style="color: var(--color-danger);">급증</strong></td>
+                </tr>
+                <tr>
+                    <td>5월</td>
+                    <td>2,244</td>
+                    <td>144</td>
+                    <td>6.42%</td>
+                    <td style="color: var(--color-danger);">●</td>
+                </tr>
+                <tr>
+                    <td>6월</td>
+                    <td>2,296</td>
+                    <td>129</td>
+                    <td>5.62%</td>
+                    <td style="color: var(--color-danger);">●</td>
+                </tr>
+                <tr>
+                    <td>7월</td>
+                    <td>2,072</td>
+                    <td>171</td>
+                    <td>8.25%</td>
+                    <td style="color: var(--color-primary);">●</td>
+                </tr>
+                <tr>
+                    <td>8월</td>
+                    <td>1,995</td>
+                    <td>165</td>
+                    <td>8.27%</td>
+                    <td style="color: var(--color-primary);">●</td>
+                </tr>
+                <tr>
+                    <td>9월</td>
+                    <td>1,622</td>
+                    <td>161</td>
+                    <td>9.93%</td>
+                    <td style="color: var(--color-primary);">●</td>
+                </tr>
+                <tr>
+                    <td>10월</td>
+                    <td>1,496</td>
+                    <td>100</td>
+                    <td>6.68%</td>
+                    <td style="color: var(--color-danger);">●</td>
+                </tr>
+                <tr style="background: rgba(240, 68, 82, 0.1);">
+                    <td><strong>11월</strong></td>
+                    <td><strong>3,078</strong></td>
+                    <td><strong>112</strong></td>
+                    <td><strong>3.64%</strong></td>
+                    <td><strong style="color: var(--color-danger);">급증</strong></td>
+                </tr>
+                <tr>
+                    <td>12월</td>
+                    <td>3,203</td>
+                    <td>151</td>
+                    <td>4.71%</td>
+                    <td style="color: var(--color-danger);">●</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>2.2 월별 추이 시각화</h3>
+        <div class="chart-container">
+            <canvas id="monthlyTrendChart"></canvas>
+        </div>
+
+        <h3>2.3 전환율 추이 분석</h3>
+        <div class="chart-container">
+            <canvas id="conversionRateChart"></canvas>
+        </div>
+
+        <h3>2.4 핵심 관찰 포인트</h3>
+        
+        <div class="metric-grid" style="grid-template-columns: 1fr 1fr; margin: 32px 0;">
+            <div class="metric-card" style="border-top: 4px solid var(--color-danger); background: linear-gradient(135deg, rgba(240, 68, 82, 0.1) 0%, white 100%);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <h4 style="margin: 0; color: var(--color-danger);">4월 중순: 전환율 급락 시점</h4>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span style="color: #8B95A1; font-size: 0.9em;">카드 수</span>
+                            <span style="font-weight: 600; color: var(--color-danger);">+66%</span>
+                        </div>
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div style="font-size: 1.2em; color: #8B95A1;">1,241</div>
+                            <div style="font-size: 1.5em; font-weight: 700; color: var(--color-danger);">2,060</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span style="color: #8B95A1; font-size: 0.9em;">판매 대수</span>
+                            <span style="font-weight: 600; color: var(--color-danger);">-19%</span>
+                        </div>
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div style="font-size: 1.2em; color: #8B95A1;">181</div>
+                            <div style="font-size: 1.5em; font-weight: 700; color: var(--color-danger);">147</div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(240, 68, 82, 0.15); padding: 16px; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 0.9em; color: #8B95A1; margin-bottom: 4px;">전환율</div>
+                        <div style="font-size: 2em; font-weight: 700; color: var(--color-danger);">14.58% → 7.14%</div>
+                        <div style="font-size: 1.2em; font-weight: 600; color: var(--color-danger); margin-top: 4px;">-51% 급락</div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #e5e8eb;">
+                    <p style="margin: 0; font-size: 0.9em; color: #4E5968; line-height: 1.6;">
+                        <strong style="color: var(--color-danger);">원인</strong>: 카드 유입 실험 본격화로 카드 수 급증. 상담·전환 구조가 증가 속도를 따라가지 못함. <span style="background: rgba(240, 68, 82, 0.15); padding: 2px 6px; border-radius: 4px; font-weight: 600;">중간 전환 병목(capacity mismatch)</span> 발생.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="metric-card" style="border-top: 4px solid var(--color-danger); background: linear-gradient(135deg, rgba(240, 68, 82, 0.1) 0%, white 100%);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <h4 style="margin: 0; color: var(--color-danger);">11월: 최대 유입 vs 최저 전환율</h4>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="background: rgba(240, 68, 82, 0.1); padding: 20px; border-radius: 12px; text-align: center;">
+                        <div style="font-size: 0.9em; color: #8B95A1; margin-bottom: 8px;">카드 수 (연간 최대)</div>
+                        <div style="font-size: 3em; font-weight: 700; color: var(--color-danger);">3,078</div>
+                        <div style="font-size: 0.85em; color: #8B95A1; margin-top: 4px;">건</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div style="text-align: center; padding: 16px; background: rgba(240, 68, 82, 0.05); border-radius: 8px;">
+                            <div style="font-size: 0.85em; color: #8B95A1; margin-bottom: 4px;">판매 대수</div>
+                            <div style="font-size: 2em; font-weight: 700; color: var(--color-danger);">112</div>
+                            <div style="font-size: 0.8em; color: #8B95A1;">대</div>
+                        </div>
+                        <div style="text-align: center; padding: 16px; background: rgba(240, 68, 82, 0.05); border-radius: 8px;">
+                            <div style="font-size: 0.85em; color: #8B95A1; margin-bottom: 4px;">전환율 (연간 최저)</div>
+                            <div style="font-size: 2em; font-weight: 700; color: var(--color-danger);">3.64<span style="font-size: 0.5em;">%</span></div>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar progress-bar-danger" style="width: 3.64%;">3.64%</div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #e5e8eb;">
+                    <p style="margin: 0; font-size: 0.9em; color: #4E5968; line-height: 1.6;">
+                        <strong style="color: var(--color-danger);">원인</strong>: 카드 질 저하, 전환율 구조적 하락, 내부 리소스 소모 가속.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>
+            연간 타임라인별 역할 변화와 개입 내용
+        </h2>
+
+        <h3>3.1 타임라인 다이어그램</h3>
+        <div class="mermaid">
+gantt
+    title 2025년 마케팅·상담 퍼널 개입 타임라인
+    dateFormat YYYY-MM
+    section 인프라 구축
+    CG값 추적 코드 개발           :2025-02, 1M
+    section 카드 수 증가 실험
+    카드 유입 테스트 본격화        :2025-04, 3M
+    KPI 전환 구간 (카드수 중심)    :2025-04, 3M
+    KPI 확장 (카드수 > 상담수)     :2025-07, 4M
+    KPI 확장 (상담수 > 판매수)     :2025-10, 3M
+    section 병목 개입
+    상담 자료 개선 요청 (카드 수 증가 대응) :2025-04, 7M
+    상담·전환 병목 구간 개입       :2025-07, 4M
+    전환 흐름 분석                 :2025-07, 4M
+    상담 자료 제작 (기획-디자인 전면 개편) :2025-10, 1M
+    section 전면 재설계
+    상담팀 영역 전면 재설계        :2025-10, 1M
+    알림톡 자동화 구축             :2025-10, 1M
+    section 전략 공유
+    전략적 한계 공유               :crit, 2025-12, 1M
+        </div>
+
+        <h3>3.2 단계별 상세 분석</h3>
+
+        <div class="timeline-item">
+            <h4>① 2월: 성과 측정 인프라 구축 단계</h4>
+            <p><strong>목표</strong>: 상담 성과를 '카드 수'가 아닌 <strong>상담 단위(C.G 값)</strong>로 측정</p>
+            <p><strong>실행 내용</strong>:</p>
+            <ul>
+                <li>협회(소리자바 사업부): 120만 원 지불 후 CG값 세팅</li>
+                <li>Wix 홍보·마케팅팀: GPT + Wix Velo 활용, 상담 신청 페이지에 CG값 추적 세팅 무료 구축 (1주일 테스트)</li>
+            </ul>
+            <p><strong>의미</strong>: 단순 운영이 아닌 <span class="highlight">성과 측정 기준 고도화 선행 투자</span>. 정량적 성과 평가의 기반 마련.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h4>② 4월 중순 ~ 6월: 카드 수 유입 테스트 및 KPI 전환 구간</h4>
+            <p><strong>배경</strong>: 조직 내 KPI가 '카드 수 중심'으로 강하게 작동</p>
+            <p><strong>실행 내용</strong>:</p>
+            <ul>
+                <li>신소재 대량 개발</li>
+                <li>타겟 · 소재 · 랜딩 페이지 정합성 강화</li>
+                <li>카드 수 증가에 따른 <strong>상담 자료 개선 요청</strong> 시작</li>
+            </ul>
+            <p><strong>결과</strong>:</p>
+            <ul>
+                <li>카드 수 폭발적 증가 (2,000건 이상 유지)</li>
+                <li>4월: 1,241건 → 2,060건 (+66%)</li>
+                <li>5월: 2,244건</li>
+                <li>6월: 2,296건</li>
+            </ul>
+            <p><strong>의미</strong>: 카드 수 증가는 우연이 아닌 <span class="highlight">조직 요구에 따른 전략적 실행 결과</span>. ⚠️ 단, 상담·전환 구조는 카드 증가 속도를 따라가지 못함. 이 시점부터 상담 자료 개선 필요성이 제기됨.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h4>③ 7월 ~ 10월: KPI 확장 및 상담·전환 병목 구간 개입</h4>
+            <p><strong>KPI 확장</strong>: 카드 수 중심 KPI가 <strong>상담수로 확장</strong></p>
+            <p><strong>문제점</strong>:</p>
+            <ul>
+                <li>상담 지연</li>
+                <li>노쇼 증가</li>
+                <li>설득 구조 한계</li>
+                <li>상담팀 처리 용량 문제 노출</li>
+            </ul>
+            <p><strong>홍보마케팅팀 개입 내용</strong>:</p>
+            <ul>
+                <li>전환 흐름 분석</li>
+                <li>설득 구조 보완</li>
+                <li>상담 자료 개선 요청 지속 (4월부터 시작된 요청)</li>
+            </ul>
+            <p><strong>의미</strong>: 이 시점부터 홍보마케팅팀은 <span class="highlight">단순 광고 조직이 아닌 '퍼널 개선자' 역할 수행</span>. KPI가 카드수에서 상담수로 확장되며 전환 단계에 대한 책임 범위가 넓어짐. 상담 자료 개선 요청이 지속되나 실제 제작은 이후 단계로 이어짐.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h4>④ 10월: 상담 자료 제작 (기획-디자인 전면 개편) 및 KPI 추가 확장</h4>
+            <p><strong>상담 자료 제작 (기획-디자인 전면 개편)</strong>: 4월부터 지속된 개선 요청의 결과물 제작 (10월)</p>
+            <p><strong>KPI 확장</strong>: 상담수 중심 KPI가 <strong>판매수까지 확장</strong></p>
+            <p><strong>배경</strong>: 재논의를 통해 홍보마케팅팀 개입 범위 공식 확장</p>
+            <p><strong>개입 내용</strong>:</p>
+            <ul>
+                <li><strong>상담 자료 제작 (기획-디자인 전면 개편)</strong> (10월, 4월부터의 요청 결과)</li>
+                <li>상담 자료 기획</li>
+                <li>상담용 영상 기획 및 제작</li>
+                <li>CTA 이후 흐름 재설계</li>
+                <li>알림톡 자동화 구축</li>
+            </ul>
+            <p><strong>의미</strong>: 4월부터 지속된 상담 자료 개선 요청이 실제 제작으로 이어짐. KPI가 판매수까지 확장되며 홍보마케팅팀의 책임 범위가 퍼널 전반으로 확대됨. 광고 운영 ❌ 리드 생성 ❌ 콘텐츠 지원 ❌ → <span class="highlight">퍼널 전반 구조 설계 및 운영 개입</span>.</p>
+        </div>
+
+        <div class="danger-box">
+            <h4>⑤ 12월: 전략적 한계 공유 및 구조 리스크 선언</h4>
+            <p><strong>공식 공유 내용</strong>: 시장 변화로 인해 기존 광고·전환 세팅은 더 이상 지속 가능하지 않음</p>
+            <p><strong>주요 이슈</strong>:</p>
+            <ul>
+                <li>카드 질 저하</li>
+                <li>전환율 구조적 하락</li>
+                <li>내부 리소스 소모 가속</li>
+            </ul>
+            <p><strong>의미</strong>: 성과 실패 선언이 아니라 <span class="highlight">전략적 리스크에 대한 사전 경고</span>.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>
+            핵심 인사이트 도출
+        </h2>
+
+        <h3>4.1 퍼널 구조 분석</h3>
+        <div class="mermaid">
+flowchart TD
+    A[광고 유입] -->|23,985건| B[카드 생성]
+    B -->|7.79% 전환| C[판매 완료]
+    B -->|92.21% 손실| D[전환 실패]
+    
+    style A fill:#90EE90
+    style B fill:#FFD700
+    style C fill:#87CEEB
+    style D fill:#FF6B6B
+    
+    E[광고 단계] -->|ROAS 354%| F[양호]
+    G[전환 단계] -->|전환율 7.79%| H[병목]
+        </div>
+
+        <h3>4.2 핵심 인사이트 요약</h3>
+
+        <div class="success-box">
+            <h4>광고 성과 자체는 실패하지 않음</h4>
+            <table style="margin-top: 15px;">
+                <thead>
+                    <tr>
+                        <th>지표</th>
+                        <th>수치</th>
+                        <th>평가</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ROAS</td>
+                        <td>354%</td>
+                        <td><span class="metric-positive">우수</span></td>
+                    </tr>
+                    <tr>
+                        <td>광고비 비중</td>
+                        <td>28.3%</td>
+                        <td><span class="metric-positive">적정</span></td>
+                    </tr>
+                    <tr>
+                        <td>CPL</td>
+                        <td>59,970원</td>
+                        <td><span class="metric-positive">효율적</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="metric-card" style="border-top: 4px solid var(--color-danger); background: linear-gradient(135deg, rgba(240, 68, 82, 0.05) 0%, white 100%);">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+                <h4 style="margin: 0; color: var(--color-danger); font-size: 1.5em;">문제는 카드 이후 전환 구조</h4>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+                <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 4px solid var(--color-danger);">
+                    <div style="font-size: 2em; font-weight: 700; color: var(--color-danger); margin-bottom: 8px;">1</div>
+                    <div style="font-weight: 600; color: #191F28; margin-bottom: 12px; font-size: 1.1em;">상담 처리 용량</div>
+                    <div style="color: #4E5968; font-size: 0.9em; line-height: 1.6;">
+                        <div style="margin-bottom: 8px;">• 카드 수 증가에 비해 상담팀 처리 용량 부족</div>
+                        <div style="display: flex; align-items: center; gap: 8px; color: var(--color-danger); font-weight: 600;">
+                            상담 지연 → 노쇼 증가
+                        </div>
+                    </div>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 4px solid var(--color-danger);">
+                    <div style="font-size: 2em; font-weight: 700; color: var(--color-danger); margin-bottom: 8px;">2</div>
+                    <div style="font-weight: 600; color: #191F28; margin-bottom: 12px; font-size: 1.1em;">설득 구조</div>
+                    <div style="color: #4E5968; font-size: 0.9em; line-height: 1.6;">
+                        <div style="margin-bottom: 8px;">• 기존 설득 구조의 한계 노출</div>
+                        <div style="display: flex; align-items: center; gap: 8px; color: var(--color-primary); font-weight: 600;">
+                            홍보마케팅팀 개입으로 보완
+                        </div>
+                    </div>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 4px solid var(--color-danger);">
+                    <div style="font-size: 2em; font-weight: 700; color: var(--color-danger); margin-bottom: 8px;">3</div>
+                    <div style="font-weight: 600; color: #191F28; margin-bottom: 12px; font-size: 1.1em;">후속 CTA</div>
+                    <div style="color: #4E5968; font-size: 0.9em; line-height: 1.6;">
+                        <div style="margin-bottom: 8px;">• CTA 이후 흐름 미흡</div>
+                        <div style="display: flex; align-items: center; gap: 8px; color: var(--color-primary); font-weight: 600;">
+                            10월 전면 재설계 완료
+                        </div>
+                    </div>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 4px solid var(--color-danger);">
+                    <div style="font-size: 2em; font-weight: 700; color: var(--color-danger); margin-bottom: 8px;">4</div>
+                    <div style="font-weight: 600; color: #191F28; margin-bottom: 12px; font-size: 1.1em;">자동화 미흡</div>
+                    <div style="color: #4E5968; font-size: 0.9em; line-height: 1.6;">
+                        <div style="margin-bottom: 8px;">• 알림톡 자동화 등 시스템 부재</div>
+                        <div style="display: flex; align-items: center; gap: 8px; color: var(--color-primary); font-weight: 600;">
+                            10월 자동화 구축 완료
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="insight-box">
+            <h4>카드 수 증가는 의도된 결과</h4>
+            <ul>
+                <li>조직 KPI 요구에 따른 전략적 실행</li>
+                <li>카드 수 증가 자체는 성공</li>
+                <li><strong>그 과정에서 구조적 한계가 명확히 드러남</strong></li>
+            </ul>
+        </div>
+
+        <div class="metric-card" style="border-top: 4px solid var(--color-success); background: linear-gradient(135deg, rgba(0, 208, 132, 0.05) 0%, white 100%);">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+                <h4 style="margin: 0; color: var(--color-success); font-size: 1.5em;">홍보마케팅팀의 역할 확장</h4>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 200px; text-align: center; padding: 24px; background: rgba(0, 208, 132, 0.1); border-radius: 12px;">
+                    <div style="font-size: 1.2em; color: #8B95A1; margin-bottom: 12px;">이전</div>
+                    <div style="font-size: 1.5em; font-weight: 600; color: #4E5968;">단순 광고 운영</div>
+                </div>
+                <div style="flex: 0 0 auto;">
+                </div>
+                <div style="flex: 1; min-width: 200px; text-align: center; padding: 24px; background: rgba(0, 208, 132, 0.15); border-radius: 12px; border: 2px solid var(--color-success);">
+                    <div style="font-size: 1.2em; color: #8B95A1; margin-bottom: 12px;">이후</div>
+                    <div style="font-size: 1.5em; font-weight: 700; color: var(--color-success);">퍼널 전반 구조 개선자</div>
+                </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px;">
+                <div style="text-align: center; padding: 16px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <div style="font-size: 0.9em; color: #4E5968; font-weight: 600;">구조적 문제 적극 개입</div>
+                </div>
+                <div style="text-align: center; padding: 16px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <div style="font-size: 0.9em; color: #4E5968; font-weight: 600;">역할 범위 공식 확장</div>
+                </div>
+                <div style="text-align: center; padding: 16px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <div style="font-size: 0.9em; color: #4E5968; font-weight: 600;">구조 방어 수행</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>
+            연간 성과 평가 및 결론
+        </h2>
+
+        <h3>5.1 성과 평가 프레임워크</h3>
+        <p>본 연간 성과는 <strong>단일 지표로 평가할 수 없으며</strong>, 다음 4가지 관점에서 종합 평가되어야 합니다:</p>
+        <div class="mermaid">
+mindmap
+  root((2025년 성과 평가))
+    정량적 성과
+      ROAS 354%
+      매출 50억원
+      판매 1,868대
+    역할 확장
+      광고 운영
+      퍼널 개선
+      구조 설계
+    인프라 구축
+      CG값 추적
+      성과 측정 고도화
+    전략적 리스크 관리
+      한계 공유
+      사전 경고
+        </div>
+
+        <h3>5.2 핵심 결론</h3>
+        
+        <div class="metric-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin: 32px 0;">
+            <div class="metric-card" style="border-top: 4px solid var(--color-success); background: linear-gradient(135deg, rgba(0, 208, 132, 0.05) 0%, white 100%);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                    <h4 style="margin: 0; color: var(--color-success);">성과 측정 인프라 구축</h4>
+                </div>
+                <div style="font-size: 2.5em; font-weight: 700; color: var(--color-success); margin: 16px 0; text-align: center;">CG</div>
+                <p style="color: #4E5968; line-height: 1.6; margin: 0;">CG값 추적 시스템 구축으로 정량적 성과 평가 기반 마련. 단순 운영이 아닌 선행 투자 단계 완료.</p>
+            </div>
+            
+            <div class="metric-card" style="border-top: 4px solid var(--color-success); background: linear-gradient(135deg, rgba(0, 208, 132, 0.05) 0%, white 100%);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                    <h4 style="margin: 0; color: var(--color-success);">광고 성과 유지</h4>
+                </div>
+                <div style="font-size: 2.5em; font-weight: 700; color: var(--color-success); margin: 16px 0; text-align: center;">354<span style="font-size: 0.4em;">%</span></div>
+                <p style="color: #4E5968; line-height: 1.6; margin: 0;">ROAS 354% 기록으로 광고 자체의 수익성 유지. 광고비 비중 28.3%로 적정 수준 유지.</p>
+            </div>
+            
+            <div class="metric-card" style="border-top: 4px solid var(--color-danger); background: linear-gradient(135deg, rgba(240, 68, 82, 0.05) 0%, white 100%);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                    <h4 style="margin: 0; color: var(--color-danger);">전환 구조 병목 발견</h4>
+                </div>
+                <div style="font-size: 2.5em; font-weight: 700; color: var(--color-danger); margin: 16px 0; text-align: center;">7.79<span style="font-size: 0.4em;">%</span></div>
+                <div class="progress-bar-container" style="margin: 12px 0;">
+                    <div class="progress-bar progress-bar-danger" style="width: 7.79%;"></div>
+                </div>
+                <p style="color: #4E5968; line-height: 1.6; margin: 0;">카드 이후 전환율 7.79%로 구조적 병목 확인. 상담 처리 용량, 설득 구조, CTA, 자동화 등 4가지 문제 영역 식별.</p>
+            </div>
+            
+            <div class="metric-card" style="border-top: 4px solid var(--color-success); background: linear-gradient(135deg, rgba(0, 208, 132, 0.05) 0%, white 100%);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                    <h4 style="margin: 0; color: var(--color-success);">역할 확장 및 구조 개입</h4>
+                </div>
+                <div style="display: flex; justify-content: center; gap: 8px; margin: 16px 0;">
+                </div>
+                <p style="color: #4E5968; line-height: 1.6; margin: 0;">홍보마케팅팀이 단순 광고 조직에서 퍼널 전반 구조 개선자로 역할 확장. 구조적 문제에 대한 적극적 개입 및 개선 시도.</p>
+            </div>
+            
+            <div class="metric-card" style="border-top: 4px solid var(--color-danger); background: linear-gradient(135deg, rgba(240, 68, 82, 0.05) 0%, white 100%);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                    <h4 style="margin: 0; color: var(--color-danger);">전략적 한계 공유</h4>
+                </div>
+                <div style="font-size: 2em; font-weight: 700; color: var(--color-danger); margin: 16px 0; text-align: center;">12월</div>
+                <p style="color: #4E5968; line-height: 1.6; margin: 0;">시장 변화에 따른 기존 세팅의 지속 불가능성 사전 경고. 성과 실패가 아닌 전략적 리스크 관리 차원의 공유.</p>
+            </div>
+        </div>
+
+        <h3>5.3 조직 구조적 문제</h3>
+        <div class="metric-card" style="border-top: 4px solid var(--color-danger); background: linear-gradient(135deg, rgba(240, 68, 82, 0.05) 0%, white 100%);">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+                <h4 style="margin: 0; color: var(--color-danger); font-size: 1.5em;">핵심 이슈: 성과 책임과 KPI가 분리되지 않은 조직 구조</h4>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin: 32px 0;">
+                <div style="width: 100%; max-width: 500px; background: linear-gradient(135deg, rgba(49, 130, 246, 0.1) 0%, rgba(49, 130, 246, 0.05) 100%); padding: 20px; border-radius: 12px; text-align: center; border: 2px solid var(--color-primary);">
+                    <div style="font-size: 0.9em; color: #8B95A1; margin-bottom: 8px;">조직 KPI</div>
+                    <div style="font-size: 1.8em; font-weight: 700; color: var(--color-primary);">카드 수 중심</div>
+                </div>
+                <div style="width: 100%; max-width: 500px; background: linear-gradient(135deg, rgba(0, 208, 132, 0.1) 0%, rgba(0, 208, 132, 0.05) 100%); padding: 20px; border-radius: 12px; text-align: center; border: 2px solid var(--color-success);">
+                    <div style="font-size: 0.9em; color: #8B95A1; margin-bottom: 8px;">홍보마케팅팀</div>
+                    <div style="font-size: 1.8em; font-weight: 700; color: var(--color-success);">카드 수 증가 성공</div>
+                </div>
+                <div style="width: 100%; max-width: 500px; background: linear-gradient(135deg, rgba(240, 68, 82, 0.1) 0%, rgba(240, 68, 82, 0.05) 100%); padding: 20px; border-radius: 12px; text-align: center; border: 2px solid var(--color-danger);">
+                    <div style="font-size: 0.9em; color: #8B95A1; margin-bottom: 8px;">상담팀</div>
+                    <div style="font-size: 1.8em; font-weight: 700; color: var(--color-danger);">처리 용량 부족</div>
+                </div>
+                <div style="width: 100%; max-width: 500px; background: linear-gradient(135deg, rgba(240, 68, 82, 0.15) 0%, rgba(240, 68, 82, 0.1) 100%); padding: 24px; border-radius: 12px; text-align: center; border: 3px solid var(--color-danger);">
+                    <div style="font-size: 0.9em; color: #8B95A1; margin-bottom: 8px;">결과</div>
+                    <div style="font-size: 2em; font-weight: 700; color: var(--color-danger);">전환율 급락</div>
+                    <div style="font-size: 1.2em; font-weight: 600; color: var(--color-danger); margin-top: 8px;">7.79%</div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(240, 68, 82, 0.1); padding: 24px; border-radius: 12px; margin-top: 32px; border-left: 4px solid var(--color-danger);">
+                <div style="font-weight: 600; color: var(--color-danger); margin-bottom: 16px; font-size: 1.1em;">문제점</div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+                    <div style="background: white; padding: 16px; border-radius: 8px;">
+                        <div style="display: flex; align-items: start; gap: 12px;">
+                            <div style="color: #4E5968; line-height: 1.6;">
+                                카드 수 증가에 대한 책임은 <strong style="color: var(--color-primary);">홍보마케팅팀</strong>에 있으나
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background: white; padding: 16px; border-radius: 8px;">
+                        <div style="display: flex; align-items: start; gap: 12px;">
+                            <div style="color: #4E5968; line-height: 1.6;">
+                                전환율 저하에 대한 책임은 <strong style="color: var(--color-danger);">상담팀</strong>에 있음
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(240, 68, 82, 0.15); padding: 16px; border-radius: 8px; grid-column: 1 / -1;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="color: #191F28; line-height: 1.6; font-weight: 600;">
+                                <strong style="color: var(--color-danger);">두 팀 간의 KPI와 책임이 분리되지 않음</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>5.4 향후 개선 방향 제언</h3>
+
+        <div class="insight-box">
+            <h4>1. KPI 구조 재설계</h4>
+            <ul>
+                <li>카드 수 중심 KPI에서 <strong>전환율 중심 KPI</strong>로 전환</li>
+                <li>홍보마케팅팀과 상담팀의 공동 책임 구조 수립</li>
+            </ul>
+        </div>
+
+        <div class="insight-box">
+            <h4>2. 전환 구조 역량 강화</h4>
+            <ul>
+                <li>상담 처리 용량 확대</li>
+                <li>설득 구조 고도화</li>
+                <li>CTA 이후 흐름 최적화</li>
+                <li>자동화 시스템 확대</li>
+            </ul>
+        </div>
+
+        <div class="insight-box">
+            <h4>3. 퍼널 전반 모니터링</h4>
+            <ul>
+                <li>CG값 추적 시스템을 활용한 실시간 모니터링</li>
+                <li>단계별 전환율 추적 및 개선</li>
+            </ul>
+        </div>
+
+        <div class="insight-box">
+            <h4>4. 전략적 리스크 관리</h4>
+            <ul>
+                <li>시장 변화에 대한 지속적 모니터링</li>
+                <li>구조적 한계에 대한 사전 경고 체계 구축</li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>
+            부록: 주요 수치 요약표
+        </h2>
+
+        <h3>A. 연간 핵심 지표</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>구분</th>
+                    <th>지표</th>
+                    <th>수치</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2"><strong>입력</strong></td>
+                    <td>총 카드 수</td>
+                    <td>23,985건</td>
+                </tr>
+                <tr>
+                    <td>총 광고비</td>
+                    <td>1,438,773,752원</td>
+                </tr>
+                <tr>
+                    <td rowspan="2"><strong>출력</strong></td>
+                    <td>총 판매 대수</td>
+                    <td>1,868대</td>
+                </tr>
+                <tr>
+                    <td>총 매출 (VAT 제외)</td>
+                    <td>5,095,132,727원</td>
+                </tr>
+                <tr>
+                    <td rowspan="4"><strong>효율</strong></td>
+                    <td>전환율</td>
+                    <td>7.79%</td>
+                </tr>
+                <tr>
+                    <td>ROAS</td>
+                    <td>354%</td>
+                </tr>
+                <tr>
+                    <td>CPL</td>
+                    <td>59,970원</td>
+                </tr>
+                <tr>
+                    <td>CPA</td>
+                    <td>770,000원</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>B. 월별 카드 수 Top 3</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>순위</th>
+                    <th>월</th>
+                    <th>카드 수</th>
+                    <th>판매 대수</th>
+                    <th>전환율</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1위</td>
+                    <td>12월</td>
+                    <td>3,203</td>
+                    <td>151</td>
+                    <td>4.71%</td>
+                </tr>
+                <tr>
+                    <td>2위</td>
+                    <td>11월</td>
+                    <td>3,078</td>
+                    <td>112</td>
+                    <td>3.64%</td>
+                </tr>
+                <tr>
+                    <td>3위</td>
+                    <td>6월</td>
+                    <td>2,296</td>
+                    <td>129</td>
+                    <td>5.62%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>C. 월별 전환율 Top 3</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>순위</th>
+                    <th>월</th>
+                    <th>전환율</th>
+                    <th>카드 수</th>
+                    <th>판매 대수</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1위</td>
+                    <td>2월</td>
+                    <td>14.72%</td>
+                    <td>1,209</td>
+                    <td>178</td>
+                </tr>
+                <tr>
+                    <td>2위</td>
+                    <td>1월</td>
+                    <td>14.09%</td>
+                    <td>1,469</td>
+                    <td>207</td>
+                </tr>
+                <tr>
+                    <td>3위</td>
+                    <td>3월</td>
+                    <td>14.58%</td>
+                    <td>1,241</td>
+                    <td>181</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <p><strong>보고서 작성</strong>: 홍보마케팅팀</p>
+            <p><strong>검토일</strong>: 2025년 12월</p>
+            <p><strong>다음 검토 예정일</strong>: 2026년 1분기</p>
+        </div>
+    </div>
+
+    <script>
+        // Mermaid 초기화
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+
+        // 월별 추이 차트
+        const monthlyTrendCtx = document.getElementById('monthlyTrendChart');
+        if (monthlyTrendCtx) {
+            new Chart(monthlyTrendCtx, {
+                type: 'line',
+                data: {
+                    labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                    datasets: [{
+                        label: '카드 수',
+                        data: [1469, 1209, 1241, 2060, 2244, 2296, 2072, 1995, 1622, 1496, 3078, 3203],
+                        borderColor: '#3182F6',
+                        backgroundColor: 'rgba(49, 130, 246, 0.1)',
+                        tension: 0.4,
+                        yAxisID: 'y'
+                    }, {
+                        label: '판매 대수',
+                        data: [207, 178, 181, 147, 144, 129, 171, 165, 161, 100, 112, 151],
+                        borderColor: '#00D084',
+                        backgroundColor: 'rgba(0, 208, 132, 0.1)',
+                        tension: 0.4,
+                        yAxisID: 'y'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '월별 카드 수 vs 판매 대수 추이',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '건수'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 전환율 추이 차트
+        const conversionRateCtx = document.getElementById('conversionRateChart');
+        if (conversionRateCtx) {
+            new Chart(conversionRateCtx, {
+                type: 'line',
+                data: {
+                    labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                    datasets: [{
+                        label: '전환율 (%)',
+                        data: [14.09, 14.72, 14.58, 7.14, 6.42, 5.62, 8.25, 8.27, 9.93, 6.68, 3.64, 4.71],
+                        borderColor: '#F04452',
+                        backgroundColor: 'rgba(240, 68, 82, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '월별 전환율 추이 (%)',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 16,
+                            title: {
+                                display: true,
+                                text: '전환율 (%)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
