@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소리자바 | 나에게 맞는 속기 유형 찾기</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#0F172A', light: '#1E293B' },
+                        accent: { DEFAULT: '#E63946', light: '#FF6B6B' },
+                        cream: { DEFAULT: '#FAF9F6', warm: '#F5F3EF' },
+                        muted: '#64748B',
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans KR', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+        }
+        .animate-fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
+        .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        .animate-pulse-once { animation: pulse 0.5s ease-out; }
+        .question-card { transition: all 0.3s ease; }
+        .question-card:hover { transform: translateY(-2px); }
+        .option-btn.selected { 
+            border-color: #E63946 !important; 
+            background: rgba(230, 57, 70, 0.05) !important;
+        }
+        .option-btn.selected .check-icon { display: flex !important; }
+        .progress-fill { transition: width 0.5s ease; }
+        .type-badge {
+            background: linear-gradient(135deg, #E63946 0%, #FF6B6B 100%);
+        }
+        .result-card {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+        }
+    </style>
+</head>
+<body class="bg-cream min-h-screen">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-cream/95 backdrop-blur-lg border-b border-gray-100">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <a href="#" class="flex items-center gap-2">
+                    <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                    <span class="font-serif text-xl font-bold text-primary">소리자바</span>
+                </a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#test" class="text-sm font-medium text-accent">유형 테스트</a>
+                    <a href="#types" class="text-sm font-medium text-muted hover:text-primary">속기 유형</a>
+                    <a href="#visit" class="text-sm font-medium text-muted hover:text-primary">무료체험</a>
+                    <a href="#visit" class="px-6 py-2.5 bg-primary text-white rounded-full text-sm font-semibold hover:bg-primary-light transition-all">
+                        방문 상담
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[80vh] flex items-center justify-center px-4 pt-20">
+        <div class="absolute inset-0 bg-gradient-to-b from-cream-warm to-cream"></div>
+        <div class="absolute top-20 left-10 w-72 h-72 bg-accent/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+
+        <div class="relative max-w-4xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm mb-6 animate-fade-in-up">
+                <span class="text-lg">✨</span>
+                <span class="text-sm text-muted">3분 만에 알아보는</span>
+            </div>
+
+            <h1 class="text-4xl md:text-6xl font-bold text-primary mb-6 animate-fade-in-up" style="animation-delay: 0.1s">
+                나에게 맞는<br>
+                <span class="font-serif text-accent">속기 유형</span>은?
+            </h1>
+
+            <p class="text-lg md:text-xl text-muted mb-8 max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s">
+                속기사가 궁금하신가요?<br>
+                8가지 질문으로 나에게 맞는 속기 스타일을 찾아보세요.
+            </p>
+
+            <a href="#test" class="inline-flex items-center gap-2 px-10 py-4 bg-accent text-white rounded-full text-lg font-semibold hover:bg-accent-light transition-all animate-fade-in-up" style="animation-delay: 0.3s">
+                테스트 시작하기
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Test Section -->
+    <section id="test" class="py-20 px-4 bg-white">
+        <div class="max-w-2xl mx-auto">
+            <!-- Test Container -->
+            <div id="testContainer">
+                <!-- Progress -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-between text-sm text-muted mb-2">
+                        <span>질문 <span id="currentQ">1</span> / 8</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="h-3 bg-cream rounded-full overflow-hidden">
+                        <div id="progressBar" class="progress-fill h-full bg-gradient-to-r from-accent to-accent-light rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Questions will be rendered here -->
+                <div id="questionArea"></div>
+
+                <!-- Navigation -->
+                <div class="flex items-center justify-between mt-8">
+                    <button id="prevBtn" onclick="prevQuestion()" class="px-6 py-3 text-muted hover:text-primary transition-all disabled:opacity-30" disabled>
+                        ← 이전
+                    </button>
+                    <button id="nextBtn" onclick="nextQuestion()" class="px-8 py-3 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-all disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        다음 →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Result Container (Hidden initially) -->
+            <div id="resultContainer" class="hidden">
+                <!-- Results will be rendered here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Types Overview -->
+    <section id="types" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">4가지 속기 유형</h2>
+                <p class="text-muted">당신은 어떤 유형일까요?</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Type 1 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <div class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full mb-3">실시간형</div>
+                    <h3 class="font-bold text-primary text-lg mb-2">라이브 스프린터</h3>
+                    <p class="text-sm text-muted">현장의 긴장감을 즐기는 당신! 회의, 세미나, 토론회에서 빛나는 실시간 속기 전문가</p>
+                </div>
+
+                <!-- Type 2 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all">
+                    <div class="text-4xl mb-4">🎬</div>
+                    <div class="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded-full mb-3">영상형</div>
+                    <h3 class="font-bold text-primary text-lg mb-2">콘텐츠 크리에이터</h3>
+                    <p class="text-sm text-muted">영상과 소리의 조화! 유튜브, 방송, 영화 자막을 만드는 디지털 아티스트</p>
+                </div>
+
+                <!-- Type 3 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all">
+                    <div class="text-4xl mb-4">⚖️</div>
+                    <div class="inline-block px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-full mb-3">전문형</div>
+                    <h3 class="font-bold text-primary text-lg mb-2">프로 스페셜리스트</h3>
+                    <p class="text-sm text-muted">정확함이 생명! 법원, 의회, 공공기관에서 활약하는 전문 속기사</p>
+                </div>
+
+                <!-- Type 4 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all">
+                    <div class="text-4xl mb-4">📚</div>
+                    <div class="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full mb-3">교육형</div>
+                    <h3 class="font-bold text-primary text-lg mb-2">에듀 서포터</h3>
+                    <p class="text-sm text-muted">배움을 돕는 손! 강의, 교육 콘텐츠를 기록하는 지식 전달자</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Section -->
+    <section id="visit" class="py-20 px-4 bg-primary text-white relative overflow-hidden">
+        <div class="absolute -right-20 -top-20 w-80 h-80 bg-accent/20 rounded-full blur-3xl"></div>
+        <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+
+        <div class="max-w-4xl mx-auto relative text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                속기가 궁금하다면<br>
+                <span class="text-accent-light">직접 체험해보세요</span>
+            </h2>
+            <p class="text-white/70 mb-8">
+                전국 6개 지사에서 현직 속기사가<br>
+                무료 상담과 체험을 도와드려요.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-3 mb-8">
+                <span class="px-4 py-2 bg-white/10 rounded-full text-sm">강남</span>
+                <span class="px-4 py-2 bg-white/10 rounded-full text-sm">가산</span>
+                <span class="px-4 py-2 bg-white/10 rounded-full text-sm">대전</span>
+                <span class="px-4 py-2 bg-white/10 rounded-full text-sm">대구</span>
+                <span class="px-4 py-2 bg-white/10 rounded-full text-sm">광주</span>
+                <span class="px-4 py-2 bg-white/10 rounded-full text-sm">부산</span>
+            </div>
+
+            <a href="#test" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary rounded-full font-semibold hover:bg-cream transition-all">
+                테스트 먼저 해보기
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12 px-4 border-t border-white/10">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <span class="w-2 h-2 bg-accent rounded-full"></span>
+                <span class="font-serif text-xl font-bold">소리자바</span>
+            </div>
+            <p class="text-white/60 text-sm mb-6">속기사를 꿈꾸는 당신을 응원합니다</p>
+            <p class="text-white/40 text-xs">© 2026 소리자바. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Questions Data
+        const questions = [
+            {
+                id: 1,
+                question: "새로운 일을 시작할 때 나는?",
+                emoji: "🚀",
+                options: [
+                    { text: "바로 실행! 일단 해보면서 배운다", type: "live" },
+                    { text: "충분히 준비하고 계획을 세운 후 시작", type: "pro" },
+                    { text: "관련 영상이나 자료를 먼저 찾아본다", type: "content" },
+                    { text: "전문가나 선배에게 조언을 구한다", type: "edu" }
+                ]
+            },
+            {
+                id: 2,
+                question: "친구들이 말하는 나의 장점은?",
+                emoji: "💪",
+                options: [
+                    { text: "순발력이 좋고 위기 대처 능력이 뛰어남", type: "live" },
+                    { text: "꼼꼼하고 실수가 거의 없음", type: "pro" },
+                    { text: "창의적이고 센스가 있음", type: "content" },
+                    { text: "설명을 잘 하고 이해시키는 능력이 좋음", type: "edu" }
+                ]
+            },
+            {
+                id: 3,
+                question: "스트레스를 받는 상황은?",
+                emoji: "😰",
+                options: [
+                    { text: "너무 느리게 진행되거나 지루할 때", type: "live" },
+                    { text: "마감이 촉박하거나 정확도가 떨어질 때", type: "pro" },
+                    { text: "반복적이고 창의성이 없는 작업을 할 때", type: "content" },
+                    { text: "혼자 해결해야 하거나 소통이 안 될 때", type: "edu" }
+                ]
+            },
+            {
+                id: 4,
+                question: "평소 즐겨보는 콘텐츠는?",
+                emoji: "📺",
+                options: [
+                    { text: "라이브 방송, 스포츠 중계, 뉴스", type: "live" },
+                    { text: "다큐멘터리, 시사 프로그램", type: "pro" },
+                    { text: "유튜브, 넷플릭스, 예능/드라마", type: "content" },
+                    { text: "강의, TED, 교육 콘텐츠", type: "edu" }
+                ]
+            },
+            {
+                id: 5,
+                question: "일할 때 선호하는 환경은?",
+                emoji: "🏢",
+                options: [
+                    { text: "현장에서 사람들과 함께, 긴장감 있게", type: "live" },
+                    { text: "조용하고 집중할 수 있는 공간에서", type: "pro" },
+                    { text: "자유롭게, 내 페이스대로", type: "content" },
+                    { text: "체계적인 시스템 안에서 안정적으로", type: "edu" }
+                ]
+            },
+            {
+                id: 6,
+                question: "타이핑에 대한 나의 생각은?",
+                emoji: "⌨️",
+                options: [
+                    { text: "빠르게 치는 게 중요! 속도가 생명", type: "live" },
+                    { text: "정확하게 치는 게 우선, 속도는 그다음", type: "pro" },
+                    { text: "타이핑보다 내용을 잘 정리하는 게 중요", type: "content" },
+                    { text: "꾸준히 연습하면 누구나 잘할 수 있다고 생각", type: "edu" }
+                ]
+            },
+            {
+                id: 7,
+                question: "성취감을 느끼는 순간은?",
+                emoji: "🎉",
+                options: [
+                    { text: "어려운 상황을 실시간으로 해결했을 때", type: "live" },
+                    { text: "완벽하게 오류 없이 마무리했을 때", type: "pro" },
+                    { text: "내가 만든 결과물이 많은 사람에게 보여질 때", type: "content" },
+                    { text: "누군가에게 도움이 되었다는 걸 알았을 때", type: "edu" }
+                ]
+            },
+            {
+                id: 8,
+                question: "5년 후 나의 모습은?",
+                emoji: "🔮",
+                options: [
+                    { text: "다양한 현장을 누비는 프리랜서", type: "live" },
+                    { text: "한 분야의 인정받는 전문가", type: "pro" },
+                    { text: "크리에이터 또는 미디어 관련 직종", type: "content" },
+                    { text: "안정적인 직장에서 전문성을 쌓는 중", type: "edu" }
+                ]
+            }
+        ];
+
+        // Results Data
+        const results = {
+            live: {
+                type: "라이브 스프린터",
+                emoji: "⚡",
+                color: "blue",
+                tagline: "현장의 긴장감이 나를 빛나게 해!",
+                description: "당신은 실시간의 짜릿함을 즐기는 타입이에요. 회의, 세미나, 토론회 등 현장에서 빠르게 상황을 파악하고 기록하는 능력이 뛰어나요. 예측 불가능한 상황에서 오히려 집중력이 올라가는 당신, 실시간 속기가 딱이에요!",
+                jobs: ["국회/지방의회 속기", "기업 회의 속기", "세미나/컨퍼런스", "토론회/포럼"],
+                strengths: ["순발력", "집중력", "위기 대처", "멀티태스킹"],
+                tips: "처음엔 속도가 안 나와도 괜찮아요. 꾸준히 연습하면 손이 먼저 움직이게 됩니다!"
+            },
+            content: {
+                type: "콘텐츠 크리에이터",
+                emoji: "🎬",
+                color: "purple",
+                tagline: "영상에 생명을 불어넣는 자막의 마법사!",
+                description: "당신은 창의적이고 디테일에 강한 타입이에요. 영상의 분위기를 살리는 자막, 감정을 전달하는 타이밍 조절까지! 콘텐츠의 완성도를 높이는 데 재능이 있어요. 유튜브, 방송, OTT 자막 작업이 잘 맞을 거예요.",
+                jobs: ["유튜브 자막", "방송 자막", "OTT 번역/자막", "영화/드라마 자막"],
+                strengths: ["창의성", "디테일", "감각", "끈기"],
+                tips: "자막은 단순 번역이 아니에요. 영상의 맥락을 이해하고 시청자 입장에서 생각해보세요!"
+            },
+            pro: {
+                type: "프로 스페셜리스트",
+                emoji: "⚖️",
+                color: "amber",
+                tagline: "정확함으로 신뢰를 쌓는 전문가!",
+                description: "당신은 꼼꼼하고 책임감이 강한 타입이에요. '대충'이란 단어가 사전에 없는 당신! 법원, 의회 등 한 글자의 오차도 허용되지 않는 곳에서 빛을 발해요. 전문 용어 학습에도 거부감이 없다면 최고의 전문 속기사가 될 수 있어요.",
+                jobs: ["법원 속기", "의회 속기", "공청회/청문회", "공공기관 회의록"],
+                strengths: ["정확성", "책임감", "전문성", "집중력"],
+                tips: "전문 분야 속기는 용어 학습이 중요해요. 관심 분야를 정하고 관련 지식을 쌓아보세요!"
+            },
+            edu: {
+                type: "에듀 서포터",
+                emoji: "📚",
+                color: "green",
+                tagline: "배움의 다리를 놓는 지식 전달자!",
+                description: "당신은 따뜻하고 소통을 중시하는 타입이에요. 누군가의 배움을 돕는 일에 보람을 느끼고, 복잡한 내용도 이해하기 쉽게 정리하는 능력이 있어요. 교육 콘텐츠, 강의 자막, 학습 자료 제작이 잘 맞을 거예요.",
+                jobs: ["온라인 강의 자막", "교육 콘텐츠 제작", "학습 자료 정리", "실시간 강의 기록"],
+                strengths: ["소통능력", "이해력", "정리력", "공감능력"],
+                tips: "교육 분야는 내용 이해가 핵심이에요. 관심 있는 분야의 강의를 많이 들어보세요!"
+            }
+        };
+
+        let currentQuestion = 0;
+        let answers = {};
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderQuestion();
+        });
+
+        function renderQuestion() {
+            const q = questions[currentQuestion];
+            const questionArea = document.getElementById('questionArea');
+            
+            let optionsHTML = q.options.map((opt, idx) => `
+                <button 
+                    onclick="selectOption(${idx}, '${opt.type}')"
+                    class="option-btn w-full p-4 rounded-xl border-2 border-gray-200 text-left hover:border-accent/50 transition-all bg-white group relative"
+                    data-index="${idx}"
+                >
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 bg-cream rounded-full flex items-center justify-center text-sm font-bold text-muted group-hover:bg-accent/10 group-hover:text-accent transition-all">
+                            ${String.fromCharCode(65 + idx)}
+                        </span>
+                        <span class="font-medium text-primary">${opt.text}</span>
+                    </div>
+                    <div class="check-icon hidden absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 bg-accent rounded-full items-center justify-center">
+                        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                </button>
+            `).join('');
+
+            questionArea.innerHTML = `
+                <div class="question-card animate-fade-in">
+                    <div class="text-center mb-8">
+                        <span class="text-5xl mb-4 block">${q.emoji}</span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-primary">
+                            ${q.question}
+                        </h2>
+                    </div>
+                    <div class="space-y-3">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+
+            // Update progress
+            document.getElementById('currentQ').textContent = currentQuestion + 1;
+            const progress = ((currentQuestion) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('progressPercent').textContent = Math.round(progress) + '%';
+
+            // Update buttons
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            document.getElementById('nextBtn').disabled = !answers[currentQuestion];
+            
+            // Update next button text
+            if (currentQuestion === questions.length - 1) {
+                document.getElementById('nextBtn').textContent = '결과 보기 🎉';
+            } else {
+                document.getElementById('nextBtn').textContent = '다음 →';
+            }
+
+            // Restore selection if exists
+            if (answers[currentQuestion] !== undefined) {
+                const selectedBtn = document.querySelector(`[data-index="${answers[currentQuestion].index}"]`);
+                if (selectedBtn) selectedBtn.classList.add('selected');
+            }
+        }
+
+        function selectOption(index, type) {
+            // Remove previous selection
+            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+            
+            // Add new selection
+            const selectedBtn = document.querySelector(`[data-index="${index}"]`);
+            selectedBtn.classList.add('selected');
+            selectedBtn.classList.add('animate-pulse-once');
+            
+            // Save answer
+            answers[currentQuestion] = { index, type };
+            
+            // Enable next button
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                renderQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+            }
+        }
+
+        function calculateResult() {
+            const typeCounts = { live: 0, content: 0, pro: 0, edu: 0 };
+            
+            Object.values(answers).forEach(answer => {
+                typeCounts[answer.type]++;
+            });
+
+            // Find the dominant type
+            let maxType = 'live';
+            let maxCount = 0;
+            
+            for (const [type, count] of Object.entries(typeCounts)) {
+                if (count > maxCount) {
+                    maxCount = count;
+                    maxType = type;
+                }
+            }
+
+            return { dominantType: maxType, counts: typeCounts };
+        }
+
+        function showResult() {
+            const { dominantType, counts } = calculateResult();
+            const result = results[dominantType];
+            
+            // Hide test container
+            document.getElementById('testContainer').classList.add('hidden');
+            
+            // Show result container
+            const resultContainer = document.getElementById('resultContainer');
+            resultContainer.classList.remove('hidden');
+
+            const colorClasses = {
+                blue: { bg: 'bg-blue-500', light: 'bg-blue-100', text: 'text-blue-700' },
+                purple: { bg: 'bg-purple-500', light: 'bg-purple-100', text: 'text-purple-700' },
+                amber: { bg: 'bg-amber-500', light: 'bg-amber-100', text: 'text-amber-700' },
+                green: { bg: 'bg-green-500', light: 'bg-green-100', text: 'text-green-700' }
+            };
+            const colors = colorClasses[result.color];
+
+            resultContainer.innerHTML = `
+                <div class="animate-fade-in-up">
+                    <!-- Result Header -->
+                    <div class="result-card text-white rounded-3xl p-8 md:p-12 text-center mb-8">
+                        <div class="inline-block px-4 py-1 bg-white/20 rounded-full text-sm mb-4">
+                            🎊 테스트 완료!
+                        </div>
+                        <div class="text-6xl mb-4">${result.emoji}</div>
+                        <div class="type-badge inline-block px-6 py-2 rounded-full text-white font-bold text-lg mb-4">
+                            ${result.type}
+                        </div>
+                        <p class="text-xl text-white/90 font-medium">${result.tagline}</p>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="bg-white rounded-2xl p-6 mb-6 shadow-sm">
+                        <h3 class="font-bold text-primary mb-3">📋 당신의 속기 성향</h3>
+                        <p class="text-muted leading-relaxed">${result.description}</p>
+                    </div>
+
+                    <!-- Strengths -->
+                    <div class="bg-white rounded-2xl p-6 mb-6 shadow-sm">
+                        <h3 class="font-bold text-primary mb-4">💪 이런 점이 강점이에요</h3>
+                        <div class="flex flex-wrap gap-2">
+                            ${result.strengths.map(s => `<span class="${colors.light} ${colors.text} px-4 py-2 rounded-full text-sm font-medium">${s}</span>`).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Jobs -->
+                    <div class="bg-white rounded-2xl p-6 mb-6 shadow-sm">
+                        <h3 class="font-bold text-primary mb-4">💼 추천 속기 분야</h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            ${result.jobs.map(job => `
+                                <div class="flex items-center gap-2 p-3 bg-cream rounded-xl">
+                                    <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-sm text-primary">${job}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Tip -->
+                    <div class="${colors.light} rounded-2xl p-6 mb-8">
+                        <h3 class="font-bold ${colors.text} mb-2">💡 시작 팁</h3>
+                        <p class="text-sm ${colors.text}">${result.tips}</p>
+                    </div>
+
+                    <!-- Type Distribution -->
+                    <div class="bg-white rounded-2xl p-6 mb-8 shadow-sm">
+                        <h3 class="font-bold text-primary mb-4">📊 내 유형 분포</h3>
+                        <div class="space-y-3">
+                            ${Object.entries(counts).map(([type, count]) => {
+                                const percent = (count / 8) * 100;
+                                const r = results[type];
+                                const c = colorClasses[r.color];
+                                return `
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-6 text-center">${r.emoji}</span>
+                                        <div class="flex-1 h-4 bg-gray-100 rounded-full overflow-hidden">
+                                            <div class="${c.bg} h-full rounded-full transition-all duration-1000" style="width: ${percent}%"></div>
+                                        </div>
+                                        <span class="text-sm text-muted w-12 text-right">${Math.round(percent)}%</span>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <div class="text-center space-y-4">
+                        <button onclick="restartTest()" class="w-full py-4 border-2 border-primary text-primary rounded-full font-semibold hover:bg-primary hover:text-white transition-all">
+                            다시 테스트하기
+                        </button>
+                        <a href="#visit" class="block w-full py-4 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-all">
+                            무료 체험 신청하기 →
+                        </a>
+                        <p class="text-sm text-muted">실제로 속기 체험해보고 결정하세요!</p>
+                    </div>
+                </div>
+            `;
+
+            // Scroll to result
+            resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function restartTest() {
+            currentQuestion = 0;
+            answers = {};
+            
+            document.getElementById('resultContainer').classList.add('hidden');
+            document.getElementById('testContainer').classList.remove('hidden');
+            
+            renderQuestion();
+            
+            document.getElementById('test').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
