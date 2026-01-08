@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLIPDESK 영상편집 - AI 영상 편집 솔루션 | 팀벨</title>
+    <meta name="description" content="AI 자동 하이라이트 추출, 자막 삽입, 챕터 분리. 영상 편집 시간을 80% 단축.">
+    <link rel="stylesheet" href="/assets/css/globals.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/pages/services.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="/" class="header-logo">
+                <img src="/assets/img/timbel-logo.png" alt="Timbel">
+            </a>
+
+            <nav class="nav" role="menubar">
+                <!-- 서비스 -->
+                <div class="nav-item">
+                    <button class="nav-link" aria-expanded="false" aria-haspopup="true">
+                        서비스
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="mega-menu">
+                        <div class="mega-menu-inner">
+                            <div class="mega-menu-intro">
+                                <h3>업무 목적에 맞는 AI 음성 서비스</h3>
+                                <p>회의록부터 자막, 컨택센터까지 — 필요한 기능만 선택하세요</p>
+                            </div>
+                            <div class="mega-menu-sections">
+                                <div class="mega-menu-section">
+                                    <h4>Use Case Services</h4>
+                                    <div class="mega-menu-links">
+                                        <a href="/services/sorizava.html" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">SORIZAVA 속기</span>
+                                                <span class="mega-menu-link-desc">공공기관 AI 속기 솔루션</span>
+                                            </span>
+                                        </a>
+                                        <a href="/services/baronote.html" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">바로노트 회의록</span>
+                                                <span class="mega-menu-link-desc">기업용 AI 회의록 솔루션</span>
+                                            </span>
+                                        </a>
+                                        <a href="/services/textar.html" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">TEXTAR 자막·번역</span>
+                                                <span class="mega-menu-link-desc">다국어 자막 자동 생성</span>
+                                            </span>
+                                        </a>
+                                        <a href="/services/clipdesk.html" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">CLIPDESK 영상편집</span>
+                                                <span class="mega-menu-link-desc">AI 기반 영상 편집</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mega-menu-section">
+                                    <h4>Industry Solutions</h4>
+                                    <div class="mega-menu-links">
+                                        <a href="/services/aicc.html" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">AICC 컨택센터</span>
+                                                <span class="mega-menu-link-desc">AI 고객센터 솔루션</span>
+                                            </span>
+                                        </a>
+                                        <a href="/services/sign-language-avatar.html" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">수어 아바타</span>
+                                                <span class="mega-menu-link-desc">접근성 안내 서비스</span>
+                                            </span>
+                                        </a>
+                                        <a href="/services/smart-signage.html" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">스마트 사이니지</span>
+                                                <span class="mega-menu-link-desc">운영형 안내 시스템</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 기술 -->
+                <div class="nav-item">
+                    <button class="nav-link" aria-expanded="false" aria-haspopup="true">
+                        기술
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="mega-menu">
+                        <div class="mega-menu-inner">
+                            <div class="mega-menu-intro">
+                                <h3>공공·대기업 기준을 통과한 AI 음성 기술</h3>
+                                <p>GS인증 1등급, 온프레미스 구축 지원</p>
+                            </div>
+                            <div class="mega-menu-sections">
+                                <div class="mega-menu-section">
+                                    <h4>Core Technology</h4>
+                                    <div class="mega-menu-links">
+                                        <a href="/technology/index.html" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">HAIV AI 엔진</span>
+                                                <span class="mega-menu-link-desc">STT · TTS · 화자분리</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mega-menu-section">
+                                    <h4>인증 & 검증</h4>
+                                    <div class="mega-menu-links">
+                                        <a href="/technology/index.html#certifications" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">GS인증 · ISO27001</span>
+                                                <span class="mega-menu-link-desc">공인 인증 현황</span>
+                                            </span>
+                                        </a>
+                                        <a href="/technology/index.html#onpremise" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">On-Premise 구축</span>
+                                                <span class="mega-menu-link-desc">보안 환경 맞춤 배포</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 고객사례 -->
+                <div class="nav-item">
+                    <button class="nav-link" aria-expanded="false" aria-haspopup="true">
+                        고객사례
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="mega-menu">
+                        <div class="mega-menu-inner">
+                            <div class="mega-menu-intro">
+                                <h3>180+ 공공·금융·대기업 레퍼런스</h3>
+                                <p>보안 심사가 까다로운 기관일수록 HAIV를 선택합니다</p>
+                            </div>
+                            <div class="mega-menu-sections">
+                                <div class="mega-menu-section">
+                                    <h4>산업별 사례</h4>
+                                    <div class="mega-menu-links">
+                                        <a href="/clients/index.html#public" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">공공기관</span>
+                                                <span class="mega-menu-link-desc">국회, 법원, 지자체</span>
+                                            </span>
+                                        </a>
+                                        <a href="/clients/index.html#finance" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">금융기관</span>
+                                                <span class="mega-menu-link-desc">은행, 증권, 보험</span>
+                                            </span>
+                                        </a>
+                                        <a href="/clients/index.html#enterprise" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">대기업</span>
+                                                <span class="mega-menu-link-desc">제조, IT, 유통</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 회사소개 -->
+                <div class="nav-item">
+                    <button class="nav-link" aria-expanded="false" aria-haspopup="true">
+                        회사소개
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="mega-menu">
+                        <div class="mega-menu-inner">
+                            <div class="mega-menu-intro">
+                                <h3>2001년 설립 · 24년 운영</h3>
+                                <p>AI 음성기록 솔루션 전문기업</p>
+                            </div>
+                            <div class="mega-menu-sections">
+                                <div class="mega-menu-section">
+                                    <h4>회사</h4>
+                                    <div class="mega-menu-links">
+                                        <a href="/company/index.html" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">회사 소개</span>
+                                                <span class="mega-menu-link-desc">비전과 미션</span>
+                                            </span>
+                                        </a>
+                                        <a href="/company/history.html" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">연혁</span>
+                                                <span class="mega-menu-link-desc">24년의 역사</span>
+                                            </span>
+                                        </a>
+                                        <a href="/careers/index.html" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">채용</span>
+                                                <span class="mega-menu-link-desc">함께할 동료를 찾습니다</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mega-menu-section">
+                                    <h4>문의</h4>
+                                    <div class="mega-menu-links">
+                                        <a href="/company/contact.html" class="mega-menu-link">
+                                            <span class="mega-menu-link-content">
+                                                <span class="mega-menu-link-title">오시는 길</span>
+                                                <span class="mega-menu-link-desc">위치 및 연락처</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="header-cta">
+                <a href="/company/contact.html" class="btn btn-primary">문의하기</a>
+            </div>
+
+            <button class="mobile-toggle" aria-label="메뉴 열기" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="메뉴 닫기">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+        </button>
+        <nav class="mobile-menu-nav">
+            <details class="mobile-menu-item">
+                <summary>서비스</summary>
+                <div class="mobile-menu-links">
+                    <a href="/services/sorizava.html">SORIZAVA 속기</a>
+                    <a href="/services/baronote.html">바로노트 회의록</a>
+                    <a href="/services/textar.html">TEXTAR 자막·번역</a>
+                    <a href="/services/clipdesk.html">CLIPDESK 영상편집</a>
+                    <a href="/services/aicc.html">AICC 컨택센터</a>
+                    <a href="/services/sign-language-avatar.html">수어 아바타</a>
+                    <a href="/services/smart-signage.html">스마트 사이니지</a>
+                </div>
+            </details>
+            <details class="mobile-menu-item">
+                <summary>기술</summary>
+                <div class="mobile-menu-links">
+                    <a href="/technology/index.html">HAIV AI 엔진</a>
+                    <a href="/technology/index.html#certifications">인증 현황</a>
+                </div>
+            </details>
+            <details class="mobile-menu-item">
+                <summary>고객사례</summary>
+                <div class="mobile-menu-links">
+                    <a href="/clients/index.html">전체 사례</a>
+                </div>
+            </details>
+            <details class="mobile-menu-item">
+                <summary>회사소개</summary>
+                <div class="mobile-menu-links">
+                    <a href="/company/index.html">회사 소개</a>
+                    <a href="/company/history.html">연혁</a>
+                    <a href="/careers/index.html">채용</a>
+                    <a href="/company/contact.html">오시는 길</a>
+                </div>
+            </details>
+        </nav>
+        <div class="mobile-menu-cta">
+            <a href="/company/contact.html" class="btn btn-primary">문의하기</a>
+        </div>
+    </div>
+
+    <main>
+        <!-- ========================================
+             #1. HERO - 대상 + 상황 (차별화: 영상 콘텐츠팀)
+        ======================================== -->
+        <section id="hero" class="section service-hero">
+            <div class="container">
+                <div class="hero-badge">교육·마케팅 영상 담당자를 위한</div>
+                <h1 class="hero-title">
+                    2시간 웨비나 영상,<br>
+                    <span class="text-timbel-blue">핵심 10분만 뽑아드립니다</span>
+                </h1>
+                <p class="hero-subtitle">
+                    긴 영상 처음부터 끝까지 보면서 편집점 찾는 거 그만.<br>
+                    CLIPDESK는 영상 올리면 <strong>하이라이트를 자동으로 추출</strong>합니다.<br>
+                    자막, 챕터, 썸네일까지 한 번에. 숏폼 대량 생산 가능.
+                </p>
+                <div class="hero-proof">
+                    <span class="proof-item"><strong>하이라이트</strong> 자동 추출</span>
+                    <span class="proof-divider">|</span>
+                    <span class="proof-item"><strong>자막</strong> 자동 삽입</span>
+                    <span class="proof-divider">|</span>
+                    <span class="proof-item"><strong>챕터</strong> 자동 분리</span>
+                </div>
+                <div class="hero-cta">
+                    <a href="#cta" class="btn btn-primary">무료 데모 요청</a>
+                    <a href="#how-it-works" class="btn btn-outline">작동 방식 보기</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             #2. WHO IT'S FOR
+        ======================================== -->
+        <section id="who" class="section">
+            <div class="container">
+                <div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Who It's For</span></div>
+                <h2>이런 상황이라면 CLIPDESK</h2>
+                
+                <div class="who-grid">
+                    <div class="who-card">
+                        <h3>교육·세미나 운영팀</h3>
+                        <p>2시간 강의 영상을 챕터로 나누고<br>핵심만 뽑아 공유해야 하는 곳</p>
+                        <ul class="who-checklist">
+                            <li>긴 강의 → 10분 요약본 필요</li>
+                            <li>챕터별 목차 제공 필요</li>
+                            <li>매주 반복되는 업로드</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="who-card">
+                        <h3>마케팅·콘텐츠팀</h3>
+                        <p>인터뷰, 이벤트 영상에서<br>SNS용 클립을 뽑아야 하는 곳</p>
+                        <ul class="who-checklist">
+                            <li>숏폼 클립 대량 필요</li>
+                            <li>명언, 인사이트 구간 추출</li>
+                            <li>편집 인력 없이 진행</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="who-card">
+                        <h3>미디어·방송</h3>
+                        <p>방송 영상에서 클립을<br>빠르게 뽑아 배포해야 하는 곳</p>
+                        <ul class="who-checklist">
+                            <li>뉴스·예능 클립 즉시 배포</li>
+                            <li>하이라이트 실시간 제작</li>
+                            <li>24시간 운영 부담</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             #3. CURRENT PAIN - 영상 편집 실제 문제
+        ======================================== -->
+        <section id="pain" class="section section-alt">
+            <div class="container">
+                <div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Current Challenges</span></div>
+                <h2>영상 편집 현장의 현실</h2>
+                
+                <div class="pain-stats">
+                    <div class="pain-stat">
+                        <span class="pain-stat-number">2<span class="unit">시간</span></span>
+                        <span class="pain-stat-label">2시간 영상에서 편집점 찾는 시간</span>
+                    </div>
+                    <div class="pain-stat">
+                        <span class="pain-stat-number">150<span class="unit">만원</span></span>
+                        <span class="pain-stat-label">영상 1편 외주 편집 비용</span>
+                    </div>
+                    <div class="pain-stat">
+                        <span class="pain-stat-number">3~5<span class="unit">일</span></span>
+                        <span class="pain-stat-label">외주 편집 결과물 수령까지</span>
+                    </div>
+                </div>
+                
+                <div class="pain-list-section">
+                    <h3>영상 담당자가 매일 겪는 문제</h3>
+                    <div class="pain-items">
+                        <div class="pain-item">
+                            <span class="pain-icon">✕</span>
+                            <div>
+                                <strong>"2시간 웨비나 영상 전체를 봐야 핵심을 찾아요"</strong>
+                                <p>편집점 찾는 데만 2시간. 편집은 또 2시간. 4시간 날림.</p>
+                            </div>
+                        </div>
+                        <div class="pain-item">
+                            <span class="pain-icon">✕</span>
+                            <div>
+                                <strong>"매주 웨비나인데, 편집 외주 맡기면 예산 초과에요"</strong>
+                                <p>1편 150만원. 월 4편이면 600만원. 감당 불가.</p>
+                            </div>
+                        </div>
+                        <div class="pain-item">
+                            <span class="pain-icon">✕</span>
+                            <div>
+                                <strong>"자막 넣으려면 또 타이핑해야 해요"</strong>
+                                <p>영상 편집 따로, 자막 제작 따로. 이중 작업.</p>
+                            </div>
+                        </div>
+                        <div class="pain-item">
+                            <span class="pain-icon">✕</span>
+                            <div>
+                                <strong>"YouTube 챕터 만들려고 시작점 일일이 찾아요"</strong>
+                                <p>00:00 인트로, 05:32 첫 번째 주제... 수작업 타임스탬프.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             #4. HOW IT WORKS - 3~4단계 업무 흐름
+        ======================================== -->
+        <section id="how-it-works" class="section">
+            <div class="container">
+                <div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">How It Works</span></div>
+                <h2>CLIPDESK 작업 흐름</h2>
+                
+                <div class="workflow-4step">
+                    <div class="workflow-step-box">
+                        <div class="step-num">1</div>
+                        <h3>영상 업로드</h3>
+                        <p>원본 영상 파일 업로드.<br>클라우드 링크도 가능.</p>
+                        <span class="step-time">1분</span>
+                    </div>
+                    
+                    <div class="workflow-arrow-box">→</div>
+                    
+                    <div class="workflow-step-box">
+                        <div class="step-num">2</div>
+                        <h3>AI 분석</h3>
+                        <p>음성 + 영상 분석으로<br>핵심 구간, 전환점 탐지.</p>
+                        <span class="step-time">영상 길이의 1/3</span>
+                    </div>
+                    
+                    <div class="workflow-arrow-box">→</div>
+                    
+                    <div class="workflow-step-box">
+                        <div class="step-num">3</div>
+                        <h3>결과 확인·수정</h3>
+                        <p>하이라이트, 챕터, 자막<br>웹 에디터에서 조정.</p>
+                        <span class="step-time">필요 시</span>
+                    </div>
+                    
+                    <div class="workflow-arrow-box">→</div>
+                    
+                    <div class="workflow-step-box">
+                        <div class="step-num">4</div>
+                        <h3>내보내기</h3>
+                        <p>플랫폼별 규격으로 출력.<br>자막 번인 옵션.</p>
+                        <span class="step-time">렌더링</span>
+                    </div>
+                </div>
+                
+                <div class="features-highlight">
+                    <h3>자동으로 생성되는 것</h3>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <strong>하이라이트 클립</strong>
+                            <p>박수, 웃음, 강조 구간 자동 추출</p>
+                        </div>
+                        <div class="feature-item">
+                            <strong>챕터 구분</strong>
+                            <p>주제 전환점 탐지 → 타임스탬프</p>
+                        </div>
+                        <div class="feature-item">
+                            <strong>자막</strong>
+                            <p>음성인식 기반 자동 생성</p>
+                        </div>
+                        <div class="feature-item">
+                            <strong>썸네일 후보</strong>
+                            <p>영상 내 최적 프레임 추천</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             #5. SECURITY - 영상 편집 특화 포인트
+        ======================================== -->
+        <section id="security" class="section section-alt">
+            <div class="container">
+                <div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Output & Control</span></div>
+                <h2>출력 포맷 및 통제</h2>
+                
+                <div class="security-priority">
+                    <div class="security-main">
+                        <div class="security-badge-lg">최우선</div>
+                        <h3>사내 교육 영상 유출 방지</h3>
+                        <p>
+                            임원 메시지, 신제품 교육, 인수합병 설명 영상이 유출되면 안 됩니다.<br>
+                            CLIPDESK는 <strong>온프레미스 버전</strong>으로 사내 서버에서만 처리 가능합니다.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="output-grid">
+                    <div class="output-item">
+                        <strong>영상 포맷</strong>
+                        <p>MP4, MOV, WebM</p>
+                    </div>
+                    <div class="output-item">
+                        <strong>해상도</strong>
+                        <p>4K, 1080p, 720p</p>
+                    </div>
+                    <div class="output-item">
+                        <strong>비율</strong>
+                        <p>16:9, 9:16, 1:1</p>
+                    </div>
+                    <div class="output-item">
+                        <strong>자막</strong>
+                        <p>SRT, VTT, 번인</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             #6. OUTCOMES - 측정 2개 + 정성 2개
+        ======================================== -->
+        <section id="outcomes" class="section">
+            <div class="container">
+                <div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Outcomes</span></div>
+                <h2>도입 기업의 실제 변화</h2>
+                
+                <div class="outcomes-dual">
+                    <div class="outcomes-measurable">
+                        <h3>측정 가능한 변화</h3>
+                        <div class="outcome-card-row">
+                            <div class="outcome-card">
+                                <div class="outcome-number">80<span class="unit">%</span></div>
+                                <div class="outcome-label">편집 시간 단축</div>
+                                <p class="outcome-context">4시간 → 45분 이내</p>
+                            </div>
+                            <div class="outcome-card">
+                                <div class="outcome-number">5<span class="unit">배</span></div>
+                                <div class="outcome-label">콘텐츠 생산량 증가</div>
+                                <p class="outcome-context">동일 인력 기준</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="outcomes-qualitative">
+                        <h3>담당자가 체감하는 변화</h3>
+                        <div class="qualitative-list">
+                            <div class="qualitative-item">
+                                <span class="q-icon">✓</span>
+                                <div>
+                                    <strong>"영상 전체를 안 봐도 돼요"</strong>
+                                    <p>AI가 찾은 하이라이트만 확인하고 선택하면 끝</p>
+                                </div>
+                            </div>
+                            <div class="qualitative-item">
+                                <span class="q-icon">✓</span>
+                                <div>
+                                    <strong>"편집 외주 안 맡겨도 괜찮아졌어요"</strong>
+                                    <p>기획자가 직접 클립 생성 가능. 의도 전달 오류 없음.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             #7. ADOPTION
+        ======================================== -->
+        <section id="adoption" class="section section-alt">
+            <div class="container">
+                <div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Get Started</span></div>
+                <h2>시작 방법</h2>
+                
+                <div class="adoption-simple">
+                    <div class="adoption-step">
+                        <span class="step-num">1</span>
+                        <h3>데모 요청</h3>
+                        <p>샘플 영상으로 결과물 확인</p>
+                    </div>
+                    <div class="adoption-step">
+                        <span class="step-num">2</span>
+                        <h3>파일럿 운영</h3>
+                        <p>실제 업무에 2주간 적용</p>
+                    </div>
+                    <div class="adoption-step">
+                        <span class="step-num">3</span>
+                        <h3>본 도입</h3>
+                        <p>사용량 기반 또는 라이선스</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             #8. CASES
+        ======================================== -->
+        <section id="cases" class="section">
+            <div class="container">
+                <div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">Used By</span></div>
+                <h2>사용 중인 기업</h2>
+                
+                <div class="cases-logos">
+                    <div class="case-logo">[교육 플랫폼]</div>
+                    <div class="case-logo">[마케팅 에이전시]</div>
+                    <div class="case-logo">[미디어사]</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             #9. FAQ - CLIPDESK 전용 6문항
+        ======================================== -->
+        <section id="faq" class="section section-alt">
+            <div class="container">
+                <div class="section-eyebrow"><span class="section-eyebrow-line"></span><span class="section-eyebrow-text">FAQ</span></div>
+                <h2>자주 묻는 질문</h2>
+                
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary><span class="faq-q">Q</span>어떤 기준으로 하이라이트를 추출하나요?</summary>
+                        <div class="faq-answer">
+                            <p>음성 톤 변화(강조, 흥분), 청중 반응(박수, 웃음), 특정 키워드, 화면 전환 등을 종합 분석합니다. "이 부분이 중요해요"라고 말하면 해당 구간이 자동 추출됩니다.</p>
+                        </div>
+                    </details>
+                    
+                    <details class="faq-item">
+                        <summary><span class="faq-q">Q</span>추출 기준을 우리 회사에 맞게 설정할 수 있나요?</summary>
+                        <div class="faq-answer">
+                            <p>네, 추출할 키워드, 최소/최대 클립 길이, 제외할 구간 등을 설정할 수 있습니다. 예를 들어 "질문 있으시면"이 나오면 해당 구간을 제외하는 식입니다.</p>
+                        </div>
+                    </details>
+                    
+                    <details class="faq-item">
+                        <summary><span class="faq-q">Q</span>3시간 웨비나도 처리 가능한가요?</summary>
+                        <div class="faq-answer">
+                            <p>네, 영상 길이에 제한이 없습니다. 3시간 영상도 약 1시간 내에 분석이 완료됩니다. 긴 영상일수록 시간 절감 효과가 큽니다.</p>
+                        </div>
+                    </details>
+                    
+                    <details class="faq-item">
+                        <summary><span class="faq-q">Q</span>YouTube 챕터용 타임스탬프도 나오나요?</summary>
+                        <div class="faq-answer">
+                            <p>네, 챕터 구분 결과를 YouTube 설명란에 바로 복사할 수 있는 형식(00:00 제목)으로 출력합니다. 챕터 제목도 자동 생성됩니다.</p>
+                        </div>
+                    </details>
+                    
+                    <details class="faq-item">
+                        <summary><span class="faq-q">Q</span>세로 영상(9:16)으로도 출력 가능한가요?</summary>
+                        <div class="faq-answer">
+                            <p>네, 인스타그램 릴스, 틱톡, 유튜브 쇼츠용 9:16 비율로 자동 변환 출력됩니다. 화면 중심이 자동으로 잡히고, 자막 위치도 최적화됩니다.</p>
+                        </div>
+                    </details>
+                    
+                    <details class="faq-item">
+                        <summary><span class="faq-q">Q</span>사내 교육 영상인데 유출 걱정은요?</summary>
+                        <div class="faq-answer">
+                            <p>온프레미스 버전으로 사내 서버에서만 처리 가능합니다. 클라우드 버전도 처리 후 자동 삭제 설정이 가능하고, 접근 권한을 세분화할 수 있습니다.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             #10. CTA
+        ======================================== -->
+        <section id="cta" class="section section-cta">
+            <div class="container">
+                <h2>
+                    샘플 영상 보내주세요<br>
+                    <span class="text-white">하이라이트를 뽑아 드립니다</span>
+                </h2>
+                <p class="cta-desc">
+                    무료 데모로 결과물을 직접 확인해보세요.
+                </p>
+                <div class="cta-buttons">
+                    <a href="/company/contact.html" class="btn btn-white">무료 데모 요청</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-trust">
+            <div class="footer-trust-inner">
+                <div class="footer-trust-badges">
+                    <span class="footer-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                        GS인증 1등급
+                    </span>
+                    <span class="footer-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2"/>
+                            <path d="M7 11V7a5 5 0 0110 0v4"/>
+                        </svg>
+                        온프레미스 구축
+                    </span>
+                    <span class="footer-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        조달청 등록
+                    </span>
+                </div>
+                <div class="footer-trust-contact">
+                    <a href="mailto:sales@timbel.net" class="footer-email">sales@timbel.net</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-main">
+            <div class="footer-inner">
+                <div class="footer-top">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <img src="/assets/img/timbel-logo.png" alt="Timbel" class="footer-logo-img">
+                        </div>
+                        <p class="footer-tagline">
+                            AI 음성기록 솔루션 전문기업<br>
+                            <span class="footer-tagline-sub">Since 2001 · 24년 기술력</span>
+                        </p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>서비스</h4>
+                        <div class="footer-links">
+                            <a href="/services/index.html">회의록·속기</a>
+                            <a href="/services/textar.html">자막·번역</a>
+                            <a href="/services/aicc.html">컨택센터(AICC)</a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>기술 & 인증</h4>
+                        <div class="footer-links">
+                            <a href="/technology/index.html">GS인증 · ISO27001</a>
+                            <a href="/technology/index.html#onpremise">On-Premise 구축</a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>고객 & 사례</h4>
+                        <div class="footer-links">
+                            <a href="/clients/index.html">도입 고객사</a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>회사</h4>
+                        <div class="footer-links">
+                            <a href="/company/index.html">회사 소개</a>
+                            <a href="/careers/index.html">채용 정보</a>
+                            <a href="/company/contact.html">오시는 길</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            <div class="footer-bottom-inner">
+                <div class="footer-company-info">
+                    <p>
+                        <strong>(주)팀벨</strong>
+                        <span class="footer-divider">|</span>
+                        대표이사: 홍길동
+                        <span class="footer-divider">|</span>
+                        사업자등록번호: 000-00-00000
+                    </p>
+                    <p>
+                        서울특별시 서초구 강남대로 00길 00 팀벨빌딩
+                        <span class="footer-divider">|</span>
+                        통신판매업: 2020-서울서초-0000
+                    </p>
+                </div>
+                <div class="footer-legal-links">
+                    <a href="#" class="highlight">개인정보처리방침</a>
+                    <a href="#">이용약관</a>
+                    <a href="#">이메일무단수집거부</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copyright">
+            <div class="footer-copyright-inner">
+                <span>© 2025 TIMBEL CORP. All Rights Reserved.</span>
+                <div class="footer-social">
+                    <a href="https://timbel.net" target="_blank" aria-label="Website">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/mega-menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>국회 회의록 시스템 도입 사례 | Timbel</title>
+    <meta name="description" content="대한민국 국회의 AI 기반 회의록 시스템 도입 사례입니다. SORIZAVA와 HAIV를 통해 회의록 작성 시간을 60% 단축했습니다.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="timbel.css">
+    <link rel="stylesheet" href="service-page.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="timbel-brand.html" class="logo">
+                <div class="logo-text">
+                    <span class="logo-main"><span class="logo-blue">Tim</span><span class="logo-black">bel</span></span>
+                </div>
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="timbel-brand.html">홈</a></li>
+                    <li class="nav-item"><a href="cases.html">도입 사례</a></li>
+                    <li class="nav-item"><a href="technology.html">기술</a></li>
+                    <li class="nav-item"><a href="about.html">회사 소개</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#contact" class="btn-contact">도입 문의</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="service-page case-detail-page">
+        <!-- Hero Section -->
+        <section class="case-hero public">
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <a href="cases.html" class="back-link">← 도입 사례로 돌아가기</a>
+                <span class="case-category">공공기관</span>
+                <h1 class="hero-title">국회 회의록 시스템</h1>
+                <p class="hero-subtitle">
+                    대한민국 국회 본회의 및 상임위원회의<br>
+                    실시간 AI 회의록 작성 시스템 구축
+                </p>
+                <div class="case-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">고객</span>
+                        <span class="meta-value">국회사무처</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">솔루션</span>
+                        <span class="meta-value">SORIZAVA + HAIV</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">기간</span>
+                        <span class="meta-value">2020 ~ 현재</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview -->
+        <section class="case-overview">
+            <div class="container">
+                <div class="overview-grid">
+                    <div class="overview-content">
+                        <h2>프로젝트 개요</h2>
+                        <p>
+                            대한민국 국회는 연간 수천 건의 회의가 진행되며, 모든 회의 내용은 
+                            정확하게 기록되어 국민에게 공개되어야 합니다. 기존에는 속기사가 
+                            수작업으로 회의록을 작성했으나, 방대한 양과 긴박한 일정으로 인해 
+                            많은 어려움이 있었습니다.
+                        </p>
+                        <p>
+                            팀벨은 SORIZAVA 속기 시스템과 HAIV AI 음성인식 엔진을 결합하여 
+                            실시간 회의록 작성 시스템을 구축함으로써, 속기사의 업무 효율을 
+                            크게 향상시키고 회의록 품질을 높였습니다.
+                        </p>
+                    </div>
+                    <div class="overview-stats">
+                        <div class="stat-card">
+                            <span class="stat-number">60%</span>
+                            <span class="stat-label">작업 시간 단축</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">98%</span>
+                            <span class="stat-label">음성인식 정확도</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">24시간</span>
+                            <span class="stat-label">이내 회의록 공개</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Challenge -->
+        <section class="case-challenge">
+            <div class="container">
+                <h2 class="section-title">도입 전 과제</h2>
+                <div class="challenge-grid">
+                    <div class="challenge-item">
+                        <div class="challenge-icon">⏰</div>
+                        <h4>긴 작업 시간</h4>
+                        <p>1시간 회의록 작성에 평균 4~5시간 소요, 속기사 업무 과부하</p>
+                    </div>
+                    <div class="challenge-item">
+                        <div class="challenge-icon">📝</div>
+                        <h4>수작업 의존</h4>
+                        <p>모든 발언을 수동으로 입력, 오타 및 누락 발생 가능성</p>
+                    </div>
+                    <div class="challenge-item">
+                        <div class="challenge-icon">👥</div>
+                        <h4>화자 식별 어려움</h4>
+                        <p>다수 발언자 구분이 어려워 편집 시간 증가</p>
+                    </div>
+                    <div class="challenge-item">
+                        <div class="challenge-icon">🔍</div>
+                        <h4>검색 불편</h4>
+                        <p>과거 회의록 검색 및 참조가 어려운 구조</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution -->
+        <section class="case-solution">
+            <div class="container">
+                <h2 class="section-title">솔루션 구성</h2>
+                <div class="solution-grid">
+                    <div class="solution-card">
+                        <div class="solution-badge">SORIZAVA</div>
+                        <h3>AI 속기 시스템</h3>
+                        <ul>
+                            <li>전문 속기키보드를 통한 고속 입력</li>
+                            <li>AI 보조로 입력 속도 향상</li>
+                            <li>실시간 자동 완성 및 교정</li>
+                            <li>전문 용어 사전 탑재</li>
+                        </ul>
+                    </div>
+                    <div class="solution-card">
+                        <div class="solution-badge">HAIV</div>
+                        <h3>음성인식 엔진</h3>
+                        <ul>
+                            <li>실시간 STT(Speech-to-Text)</li>
+                            <li>화자 분리(Speaker Diarization)</li>
+                            <li>국회 전문 용어 인식 최적화</li>
+                            <li>소음 환경 대응 기술</li>
+                        </ul>
+                    </div>
+                    <div class="solution-card">
+                        <div class="solution-badge">통합 플랫폼</div>
+                        <h3>회의록 관리 시스템</h3>
+                        <ul>
+                            <li>실시간 회의록 편집 인터페이스</li>
+                            <li>다중 사용자 동시 작업</li>
+                            <li>버전 관리 및 이력 추적</li>
+                            <li>검색 및 아카이빙 기능</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results -->
+        <section class="case-results">
+            <div class="container">
+                <h2 class="section-title center">도입 효과</h2>
+                <div class="results-grid">
+                    <div class="result-item">
+                        <div class="result-before">
+                            <span class="label">Before</span>
+                            <span class="value">4~5시간</span>
+                            <span class="desc">1시간 회의록 작성 시간</span>
+                        </div>
+                        <div class="result-arrow">→</div>
+                        <div class="result-after">
+                            <span class="label">After</span>
+                            <span class="value">1.5~2시간</span>
+                            <span class="desc">60% 시간 단축</span>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-before">
+                            <span class="label">Before</span>
+                            <span class="value">48시간+</span>
+                            <span class="desc">회의록 공개 소요 시간</span>
+                        </div>
+                        <div class="result-arrow">→</div>
+                        <div class="result-after">
+                            <span class="label">After</span>
+                            <span class="value">24시간</span>
+                            <span class="desc">당일 또는 익일 공개</span>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-before">
+                            <span class="label">Before</span>
+                            <span class="value">수동</span>
+                            <span class="desc">화자 구분 방식</span>
+                        </div>
+                        <div class="result-arrow">→</div>
+                        <div class="result-after">
+                            <span class="label">After</span>
+                            <span class="value">자동</span>
+                            <span class="desc">AI 화자 분리</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonial -->
+        <section class="case-testimonial">
+            <div class="container">
+                <div class="testimonial-card">
+                    <blockquote>
+                        "팀벨 솔루션 도입 후 회의록 작성 업무가 크게 개선되었습니다. 
+                        특히 AI 음성인식의 정확도가 높아 속기사들의 작업 부담이 줄었고, 
+                        국민에게 더 빠르게 회의록을 제공할 수 있게 되었습니다."
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <span class="author-name">김○○ 서기관</span>
+                        <span class="author-title">국회사무처 기록관리과</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Cases -->
+        <section class="related-cases">
+            <div class="container">
+                <h2 class="section-title">관련 사례</h2>
+                <div class="related-grid">
+                    <a href="case-finance.html" class="related-card">
+                        <span class="related-category">금융</span>
+                        <h4>KB국민은행 콜센터</h4>
+                        <p>콜센터 상담 음성인식 시스템</p>
+                    </a>
+                    <a href="case-broadcast.html" class="related-card">
+                        <span class="related-category">방송</span>
+                        <h4>KBS 실시간 자막</h4>
+                        <p>생방송 실시간 자막 송출 시스템</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="service-cta" id="contact">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>공공기관 AI 솔루션이 필요하신가요?</h2>
+                    <p>GS인증 1등급 솔루션으로 공공조달 도입이 용이합니다.</p>
+                    <div class="cta-buttons">
+                        <a href="mailto:timbel@timbel.net" class="btn-primary">도입 상담 신청</a>
+                        <a href="tel:02-584-8181" class="btn-outline">02-584-8181</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="service-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text" style="font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 700;">
+                        <span style="color: #0066FF;">Tim</span><span style="color: #fff;">bel</span>
+                    </span>
+                </div>
+                <div class="footer-links">
+                    <a href="cases.html">도입 사례</a>
+                    <a href="technology.html">기술</a>
+                    <a href="about.html">회사 소개</a>
+                    <a href="contact.html">문의</a>
+                </div>
+                <div class="footer-contact">
+                    <p>서울특별시 서초구 서초동 1685-8 산돌빌딩</p>
+                    <p>timbel@timbel.net | 02-584-8181</p>
+                </div>
+                <p class="copyright">©2026 TIMBEL CORP. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        /* Case Detail Page Styles */
+        .case-detail-page .section-label {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        /* Hero */
+        .case-hero {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            padding: 160px 0 100px;
+            color: var(--text-white);
+        }
+
+        .case-hero.public { background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%); }
+        .case-hero.finance { background: linear-gradient(135deg, #1a202c 0%, #4a5568 100%); }
+        .case-hero.broadcast { background: linear-gradient(135deg, #742a2a 0%, #c53030 100%); }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .case-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 24px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--text-white);
+        }
+
+        .case-category {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .case-hero .hero-title {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .case-hero .hero-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .case-meta {
+            display: flex;
+            gap: 48px;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 4px;
+        }
+
+        .meta-value {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* Overview */
+        .case-overview {
+            padding: 100px 0;
+            background: var(--bg-white);
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .overview-content h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+        }
+
+        .overview-content p {
+            font-size: 16px;
+            color: var(--text-body);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .overview-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .stat-card {
+            padding: 32px;
+            background: var(--bg-light);
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .stat-card .stat-number {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .stat-card .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Challenge */
+        .case-challenge {
+            padding: 100px 0;
+            background: var(--bg-light);
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .challenge-item {
+            padding: 32px;
+            background: var(--bg-white);
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .challenge-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .challenge-item h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .challenge-item p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Solution */
+        .case-solution {
+            padding: 100px 0;
+            background: var(--bg-white);
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .solution-card {
+            padding: 40px;
+            background: var(--bg-light);
+            border-radius: 20px;
+        }
+
+        .solution-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .solution-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .solution-card ul {
+            list-style: none;
+        }
+
+        .solution-card li {
+            font-size: 14px;
+            color: var(--text-body);
+            padding: 10px 0;
+            padding-left: 20px;
+            position: relative;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .solution-card li:last-child {
+            border-bottom: none;
+        }
+
+        .solution-card li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Results */
+        .case-results {
+            padding: 100px 0;
+            background: var(--bg-dark);
+            color: var(--text-white);
+        }
+
+        .case-results .section-title {
+            color: var(--text-white);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .result-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 32px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+        }
+
+        .result-before,
+        .result-after {
+            flex: 1;
+            text-align: center;
+        }
+
+        .result-before .label,
+        .result-after .label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            opacity: 0.6;
+        }
+
+        .result-before .value,
+        .result-after .value {
+            display: block;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .result-after .value {
+            color: var(--primary);
+        }
+
+        .result-before .desc,
+        .result-after .desc {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .result-arrow {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        /* Testimonial */
+        .case-testimonial {
+            padding: 100px 0;
+            background: var(--bg-light);
+        }
+
+        .testimonial-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px;
+            background: var(--bg-white);
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial-card blockquote {
+            font-size: 20px;
+            color: var(--text-body);
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 32px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .author-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .author-title {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Related Cases */
+        .related-cases {
+            padding: 100px 0;
+            background: var(--bg-white);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .related-card {
+            padding: 32px;
+            background: var(--bg-light);
+            border-radius: 16px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .related-category {
+            display: inline-block;
+            padding: 4px 10px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .related-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .related-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .overview-stats {
+                flex-direction: row;
+            }
+
+            .challenge-grid,
+            .solution-grid,
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .case-meta {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .overview-stats {
+                flex-direction: column;
+            }
+
+            .challenge-grid,
+            .solution-grid,
+            .results-grid,
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .result-item {
+                flex-direction: column;
+            }
+
+            .result-arrow {
+                transform: rotate(90deg);
+            }
+
+            .testimonial-card {
+                padding: 40px 24px;
+            }
+
+            .testimonial-card blockquote {
+                font-size: 16px;
+            }
+        }
+    </style>
+</body>
+</html>
+

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OG Image Template - Timbel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* OG Image: 1200x630px */
+        .og-card {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #0A0F1C 0%, #0F1729 50%, #0A0F1C 100%);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        /* Background decoration */
+        .og-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .og-card::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        /* Grid pattern */
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.5;
+        }
+        
+        /* Content */
+        .og-content {
+            position: relative;
+            z-index: 10;
+            padding: 80px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        /* Logo */
+        .og-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+        }
+        
+        .og-logo .blue { color: #0066FF; }
+        .og-logo .white { color: #fff; }
+        
+        /* Main text */
+        .og-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .og-badge {
+            display: inline-block;
+            background: rgba(0, 102, 255, 0.2);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            color: #60A5FA;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 32px;
+            width: fit-content;
+        }
+        
+        .og-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        
+        .og-title .gradient {
+            background: linear-gradient(135deg, #0066FF, #60A5FA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .og-subtitle {
+            font-size: 28px;
+            color: rgba(255,255,255,0.7);
+            font-weight: 400;
+        }
+        
+        /* Footer */
+        .og-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        
+        .og-stats {
+            display: flex;
+            gap: 48px;
+        }
+        
+        .stat-item {
+            text-align: left;
+        }
+        
+        .stat-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #0066FF;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 4px;
+        }
+        
+        .og-url {
+            font-size: 20px;
+            color: rgba(255,255,255,0.4);
+        }
+        
+        /* Sound wave decoration */
+        .sound-wave {
+            position: absolute;
+            right: 80px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            height: 200px;
+        }
+        
+        .wave-bar {
+            width: 6px;
+            background: linear-gradient(to top, #0066FF, #60A5FA);
+            border-radius: 3px;
+            animation: none;
+        }
+        
+        .wave-bar:nth-child(1) { height: 40%; }
+        .wave-bar:nth-child(2) { height: 70%; }
+        .wave-bar:nth-child(3) { height: 100%; }
+        .wave-bar:nth-child(4) { height: 60%; }
+        .wave-bar:nth-child(5) { height: 85%; }
+        .wave-bar:nth-child(6) { height: 45%; }
+        .wave-bar:nth-child(7) { height: 75%; }
+        .wave-bar:nth-child(8) { height: 55%; }
+    </style>
+</head>
+<body>
+    <div class="og-card">
+        <div class="grid-pattern"></div>
+        
+        <div class="sound-wave">
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+        </div>
+        
+        <div class="og-content">
+            <div class="og-logo">
+                <span class="blue">Tim</span><span class="white">bel</span>
+            </div>
+            
+            <div class="og-main">
+                <div class="og-badge">AI 음성 솔루션 전문기업</div>
+                <h1 class="og-title">
+                    VOICE <span class="gradient">INTO</span><br>VALUE
+                </h1>
+                <p class="og-subtitle">음성을 가치로 바꾸는 AI 기술</p>
+            </div>
+            
+            <div class="og-footer">
+                <div class="og-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">24+</div>
+                        <div class="stat-label">Years</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">90%</div>
+                        <div class="stat-label">Market Share</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1,500+</div>
+                        <div class="stat-label">Professionals</div>
+                    </div>
+                </div>
+                <div class="og-url">timbel.net</div>
+            </div>
+        </div>
+    </div>
+    
+    <p style="margin-top: 20px; color: #666; font-family: sans-serif;">
+        ※ 이 HTML을 브라우저에서 열고 스크린샷(1200x630px)을 캡처하여 <code>og-image.png</code>로 저장하세요.
+    </p>
+</body>
+</html>
+
