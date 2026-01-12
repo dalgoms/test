@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 홍보마케팅팀 퍼널 운영 현황</title>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --accent: #3b82f6;
+            --neutral: #f1f5f9;
+            --neutral-dark: #e2e8f0;
+            --text: #334155;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background: var(--neutral);
+            color: var(--primary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Header */
+        header {
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--neutral-dark);
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        header .meta {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Section */
+        .section {
+            background: #fff;
+            border: 1px solid var(--neutral-dark);
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--neutral-dark);
+        }
+
+        /* Premise Box */
+        .premise-box {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .premise-box h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 12px;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .premise-box p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+
+        /* Role Table */
+        .role-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 0.85rem;
+        }
+
+        .role-table th {
+            background: var(--neutral);
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-light);
+            border-bottom: 1px solid var(--neutral-dark);
+        }
+
+        .role-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--neutral-dark);
+            color: var(--text);
+        }
+
+        .role-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* KPI Box */
+        .kpi-box {
+            background: var(--neutral);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 12px 0;
+        }
+
+        .kpi-box h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .kpi-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--neutral-dark);
+            font-size: 0.85rem;
+        }
+
+        .kpi-item:last-child {
+            border-bottom: none;
+        }
+
+        .kpi-item .label {
+            color: var(--text);
+        }
+
+        .kpi-item .target {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: var(--primary);
+            border-radius: 10px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .warning-box h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 14px;
+        }
+
+        .warning-box ul {
+            list-style: none;
+        }
+
+        .warning-box li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .warning-box li::before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: rgba(255,255,255,0.5);
+            font-weight: bold;
+        }
+
+        /* Funnel Stage */
+        .funnel-list {
+            margin: 12px 0;
+        }
+
+        .funnel-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--neutral-dark);
+        }
+
+        .funnel-item:last-child {
+            border-bottom: none;
+        }
+
+        .funnel-num {
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .funnel-item.baseline .funnel-num {
+            background: var(--primary);
+        }
+
+        .funnel-content {
+            flex: 1;
+        }
+
+        .funnel-content h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .funnel-content p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Action Grid */
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        @media (max-width: 600px) {
+            .action-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .action-card {
+            background: var(--neutral);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .action-card.primary {
+            border: 2px solid var(--accent);
+        }
+
+        .action-card h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .action-card ul {
+            list-style: none;
+        }
+
+        .action-card li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+
+        .action-card.primary li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .action-card:not(.primary) li::before {
+            content: "·";
+            position: absolute;
+            left: 4px;
+            color: var(--text-light);
+        }
+
+        /* Criteria Table */
+        .criteria-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 0.85rem;
+        }
+
+        .criteria-table th {
+            background: var(--neutral);
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .criteria-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--neutral-dark);
+            color: var(--text);
+        }
+
+        .criteria-table td:first-child {
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: var(--neutral);
+            border: 2px solid var(--accent);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .summary-box h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .summary-box p {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Note */
+        .note {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            padding: 12px;
+            background: var(--neutral);
+            border-radius: 6px;
+            margin-top: 12px;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: var(--neutral-dark);
+            margin: 16px 0;
+        }
+
+        /* Team Section */
+        .team-section {
+            background: var(--neutral);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 12px 0;
+        }
+
+        .team-section h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .team-section p {
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>2026 홍보마케팅팀 퍼널 운영 현황</h1>
+            <p class="meta">홍보마케팅팀 ㅣ 2026.01.12 오후 4시 기준</p>
+        </header>
+
+        <!-- 현황 요약 (Executive Summary) -->
+        <div style="background: linear-gradient(135deg, var(--primary) 0%, #334155 100%); border-radius: 12px; padding: 28px; margin-bottom: 24px; color: #fff;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+                <h2 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin: 0; border: none; padding: 0;">현황 요약</h2>
+                <span style="font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-left: auto;">2026.01.01 ~ 01.12 기준</span>
+            </div>
+
+            <!-- 핵심 지표 -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px;">
+                <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; text-align: center;">
+                    <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-bottom: 6px;">누적 카드 유입</p>
+                    <p style="font-size: 1.8rem; font-weight: 700; color: #fff;">627<span style="font-size: 0.9rem; font-weight: 400;">건</span></p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; text-align: center;">
+                    <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-bottom: 6px;">1/1~1/5 평균</p>
+                    <p style="font-size: 1.8rem; font-weight: 700; color: rgba(255,255,255,0.6);">35<span style="font-size: 0.9rem; font-weight: 400;">건/일</span></p>
+                </div>
+                <div style="background: rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 16px; text-align: center; border: 1px solid rgba(59, 130, 246, 0.5);">
+                    <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-bottom: 6px;">1/8 이후 평균</p>
+                    <p style="font-size: 1.8rem; font-weight: 700; color: #60a5fa;">72<span style="font-size: 0.9rem; font-weight: 400;">건/일</span></p>
+                    <p style="font-size: 0.7rem; color: #60a5fa; margin-top: 4px;">▲ 2배 상승</p>
+                </div>
+            </div>
+
+            <!-- 일별 추이 (간략) -->
+            <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;">
+                <p style="font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-bottom: 10px;">일별 카드 유입 추이</p>
+                <div style="display: flex; align-items: flex-end; gap: 6px; height: 60px;">
+                    <div style="flex: 1; background: rgba(255,255,255,0.2); height: 22%; border-radius: 3px 3px 0 0;" title="1/1: 19건"></div>
+                    <div style="flex: 1; background: rgba(255,255,255,0.2); height: 56%; border-radius: 3px 3px 0 0;" title="1/2: 49건"></div>
+                    <div style="flex: 1; background: rgba(255,255,255,0.2); height: 45%; border-radius: 3px 3px 0 0;" title="1/3: 40건"></div>
+                    <div style="flex: 1; background: rgba(255,255,255,0.2); height: 36%; border-radius: 3px 3px 0 0;" title="1/4: 32건"></div>
+                    <div style="flex: 1; background: rgba(255,255,255,0.2); height: 40%; border-radius: 3px 3px 0 0;" title="1/5: 35건"></div>
+                    <div style="flex: 1; background: rgba(255,255,255,0.3); height: 52%; border-radius: 3px 3px 0 0;" title="1/6: 46건"></div>
+                    <div style="flex: 1; background: rgba(255,255,255,0.3); height: 52%; border-radius: 3px 3px 0 0;" title="1/7: 46건"></div>
+                    <div style="flex: 1; background: #3b82f6; height: 76%; border-radius: 3px 3px 0 0;" title="1/8: 67건"></div>
+                    <div style="flex: 1; background: #3b82f6; height: 83%; border-radius: 3px 3px 0 0;" title="1/9: 73건"></div>
+                    <div style="flex: 1; background: #3b82f6; height: 100%; border-radius: 3px 3px 0 0;" title="1/10: 88건"></div>
+                    <div style="flex: 1; background: #3b82f6; height: 80%; border-radius: 3px 3px 0 0;" title="1/11: 70건"></div>
+                    <div style="flex: 1; background: #3b82f6; height: 70%; border-radius: 3px 3px 0 0;" title="1/12: 62건"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 6px;">
+                    <span style="font-size: 0.65rem; color: rgba(255,255,255,0.4);">1/1</span>
+                    <span style="font-size: 0.65rem; color: rgba(255,255,255,0.4);">1/8 세팅 조정</span>
+                    <span style="font-size: 0.65rem; color: rgba(255,255,255,0.4);">1/12</span>
+                </div>
+            </div>
+
+            <!-- 핵심 메시지 -->
+            <div style="background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 14px 16px;">
+                <p style="font-size: 0.85rem; color: #fff; line-height: 1.6; margin: 0;">
+                    <strong style="color: #60a5fa;">요약:</strong> 카드 유입 안정화 후 방문 상담카드 수 확장 진행 (테스트 필요)
+                </p>
+            </div>
+        </div>
+
+        <!-- 일별 카드 유입 상세 -->
+        <div class="section">
+            <h2>일별 카드 유입 및 변경 이력</h2>
+            <p style="font-size: 0.8rem; color: var(--text-light); margin-bottom: 16px;">2026.01.01 ~ 01.12 | 노란색 강조 = 주요 조정일</p>
+            
+            <table class="role-table" style="font-size: 0.8rem;">
+                <thead>
+                    <tr>
+                        <th style="width: 12%;">날짜</th>
+                        <th style="width: 12%;">일일 카드</th>
+                        <th style="width: 12%;">누적</th>
+                        <th style="width: 64%;">변경 이력 / 이슈</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1/1 (목)</td>
+                        <td><strong>19</strong></td>
+                        <td>19</td>
+                        <td style="color: var(--text-light);">-</td>
+                    </tr>
+                    <tr>
+                        <td>1/2 (금)</td>
+                        <td><strong>49</strong></td>
+                        <td>68</td>
+                        <td style="color: var(--text-light);">-</td>
+                    </tr>
+                    <tr>
+                        <td>1/3 (토)</td>
+                        <td><strong>40</strong></td>
+                        <td>108</td>
+                        <td style="color: var(--text-light);">-</td>
+                    </tr>
+                    <tr>
+                        <td>1/4 (일)</td>
+                        <td><strong>32</strong></td>
+                        <td>140</td>
+                        <td style="color: var(--text-light);">-</td>
+                    </tr>
+                    <tr>
+                        <td>1/5 (월)</td>
+                        <td><strong>35</strong></td>
+                        <td>175</td>
+                        <td style="color: var(--text-light);">-</td>
+                    </tr>
+                    <tr style="background: rgba(250, 204, 21, 0.15);">
+                        <td>1/6 (화)</td>
+                        <td><strong>46</strong></td>
+                        <td>221</td>
+                        <td>
+                            <span style="color: var(--accent);">[메타]</span> 15:45 소재 교체 (2,3,23,24번)<br>
+                            <span style="color: var(--accent);">[랜딩]</span> 15:53 프리랜서, 전문직, 라이브 랜딩 수정
+                        </td>
+                    </tr>
+                    <tr style="background: rgba(250, 204, 21, 0.15);">
+                        <td>1/7 (수)</td>
+                        <td><strong>46</strong></td>
+                        <td>267</td>
+                        <td>
+                            <span style="color: var(--accent);">[랜딩]</span> 18:27 프리랜서, 라이브 랜딩 수정 (12월 세팅 버전)
+                        </td>
+                    </tr>
+                    <tr style="background: rgba(250, 204, 21, 0.25);">
+                        <td><strong style="color: var(--primary);">1/8 (목)</strong></td>
+                        <td><strong style="color: var(--accent);">67</strong></td>
+                        <td>334</td>
+                        <td>
+                            <span style="color: var(--accent);">[메타]</span> 11:30 소재 교체 (2,5,6번)<br>
+                            <span style="color: var(--accent);">[메타]</span> 12:00 소재 교체 (21,22,23,24번)<br>
+                            <span style="color: #ef4444;">※ 실시간 랜딩 유입 모니터링 + 반복 조정 세팅</span>
+                        </td>
+                    </tr>
+                    <tr style="background: rgba(250, 204, 21, 0.15);">
+                        <td>1/9 (금)</td>
+                        <td><strong style="color: var(--accent);">73</strong></td>
+                        <td>407</td>
+                        <td>
+                            <span style="color: var(--accent);">[랜딩]</span> 20:00 프리랜서, 전문직, 라이브 랜딩 (영상/문구 교체)<br>
+                            <span style="color: #ef4444;">※ 실시간 랜딩 유입 모니터링 + 반복 조정으로 안정화</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1/10 (토)</td>
+                        <td><strong style="color: var(--accent);">88</strong></td>
+                        <td>495</td>
+                        <td style="color: var(--text-light);">- (최고치 기록)</td>
+                    </tr>
+                    <tr>
+                        <td>1/11 (토)</td>
+                        <td><strong>70</strong></td>
+                        <td>565</td>
+                        <td style="color: var(--text-light);">-</td>
+                    </tr>
+                    <tr style="background: rgba(250, 204, 21, 0.15);">
+                        <td>1/12 (월)</td>
+                        <td><strong>62</strong></td>
+                        <td>627</td>
+                        <td>
+                            <span style="color: var(--accent);">[랜딩]</span> 12:30 전체 3건 하단 CTA 방문 유도 섹션 추가
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="note" style="margin-top: 16px; border-left: 3px solid var(--accent);">
+                <strong>해석:</strong> 1/6~1/8 집중 조정 이후 일일 카드 유입이 2배 수준으로 상승. 기존 효과 검증된 세팅도 즉시 성과를 보장하지 않으며, 실시간 모니터링 기반 반복 조정이 필수.
+            </div>
+        </div>
+
+        <!-- 전제 조건 -->
+        <div class="premise-box">
+            <h2>운영 전제</h2>
+            <p>
+                현재 시장은 <strong>즉시 실행 가능한 메시지</strong>에 더 많이 반응한다.<br>
+                이는 의사결정 시간축이 단축된 상태를 반영하며, 전문직 가치의 하락이 아니다.<br><br>
+                사용자는 광고 클릭 시점에서 결정보다 <strong>해당성 확인</strong>을 원하며,<br>
+                실제 확신은 개인 상황이 적용되는 상담 과정에서 형성된다.<br>
+                따라서 광고나 랜딩에서 확신을 완성하려는 시도는 이 퍼널 구조에서는 효과적으로 작동하지 않는다.
+            </p>
+        </div>
+
+        <!-- 고객 선택 경로 시각화 -->
+        <div class="section" style="padding: 0; overflow: hidden;">
+            <div style="padding: 16px 20px 12px; background: #fff;">
+                <p style="font-size: 0.8rem; color: var(--text-light); margin: 0;">참고: 고객 의사결정 흐름 시각화</p>
+            </div>
+            <img src="img/고객선택경로.png" alt="고객 선택 경로 - 가벼운 선택만 하는 이유와 퍼널 설계 전략" style="width: 100%; display: block;">
+        </div>
+
+        <!-- 캠페인 역할 분리 -->
+        <div class="section">
+            <h2>1. 캠페인 역할 분리</h2>
+
+            <div style="margin-bottom: 16px; padding: 14px 18px; background: rgba(59, 130, 246, 0.08); border: 2px solid var(--accent); border-radius: 8px; display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 0.85rem; font-weight: 600; color: var(--primary);">📎 광고 소재 원본</span>
+                <a href="https://alibizgroup.sharepoint.com/:x:/s/marketing/IQCKn4-Um0rER5nYSNIOmO8YASZH5YXMiKzBjNSGXgS0oqM?e=SWXxKx" target="_blank" style="font-size: 0.85rem; font-weight: 600; color: var(--accent); text-decoration: none; padding: 6px 12px; background: var(--accent); color: #fff; border-radius: 6px;">SharePoint에서 보기 →</a>
+            </div>
+            
+            <table class="role-table">
+                <thead>
+                    <tr>
+                        <th style="width: 30%;">구분</th>
+                        <th style="width: 35%;">프리랜서 캠페인</th>
+                        <th style="width: 35%;">전문직 캠페인</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>퍼널 역할</td>
+                        <td>상단 유입 (인지 확장)</td>
+                        <td>중·하단 필터 (전환 가속)</td>
+                    </tr>
+                    <tr>
+                        <td>평가 기준</td>
+                        <td>카드 유입 볼륨</td>
+                        <td>전환 속도 / 1회 전환률</td>
+                    </tr>
+                    <tr>
+                        <td>현재 CPC</td>
+                        <td>₩247</td>
+                        <td>₩134</td>
+                    </tr>
+                    <tr>
+                        <td>현재 클릭</td>
+                        <td>59,002건</td>
+                        <td>30,208건</td>
+                    </tr>
+                    <tr style="background: rgba(59, 130, 246, 0.08);">
+                        <td style="font-weight: 600; color: var(--primary);">🔗 랜딩 페이지</td>
+                        <td>
+                            <a href="https://www.sorizava.com/non" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">sorizava.com/non</a><br>
+                            <a href="https://www.sorizava.com/livesteno" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">sorizava.com/livesteno</a>
+                        </td>
+                        <td>
+                            <a href="https://www.sorizava.com/start" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">sorizava.com/start</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="note">
+                두 캠페인은 역할이 다르므로 동일 KPI로 비교하지 않는다.
+            </p>
+        </div>
+
+        <!-- 분석 기준선 -->
+        <div class="section">
+            <h2>2. 분석 기준선: 상담 카드 안정적 유입 > 방문 전환 유도 강화순</h2>
+            
+            <div class="funnel-list">
+                <div class="funnel-item">
+                    <div class="funnel-num">1</div>
+                    <div class="funnel-content">
+                        <h4>광고 → 랜딩</h4>
+                        <p>사용자가 "확인해 볼 만한 상태"로 진입</p>
+                    </div>
+                </div>
+                <div class="funnel-item">
+                    <div class="funnel-num">2</div>
+                    <div class="funnel-content">
+                        <h4>랜딩 → 상담 카드</h4>
+                        <p>비교, 안심, 판단 유보 후 상담 신청</p>
+                    </div>
+                </div>
+                <div class="funnel-item baseline">
+                    <div class="funnel-num">★</div>
+                    <div class="funnel-content">
+                        <h4>상담 카드 유입 = 첫 번째 분석 기준선</h4>
+                        <p>이 단계가 안정되기 전까지 하위 단계 분석은 시기상조</p>
+                    </div>
+                </div>
+                <div class="funnel-item">
+                    <div class="funnel-num">3</div>
+                    <div class="funnel-content">
+                        <h4>카드 → 상담 방식 선택</h4>
+                        <p>비대면 선택 = 정상적인 진입 패턴</p>
+                    </div>
+                </div>
+                <div class="funnel-item">
+                    <div class="funnel-num">4</div>
+                    <div class="funnel-content">
+                        <h4>상담 → 전환</h4>
+                        <p>확신 형성, 방문 제안, 최종 전환</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-box">
+                <h3>운영 원칙</h3>
+                <p>
+                    <strong>상담 카드 유입이 안정화되기 전까지</strong><br>
+                    방문/비대면 비율, 부재율, 전환 품질 분석은 유효하지 않다.<br>
+                    앞단이 정렬되지 않은 상태에서 뒷단을 조정하면 전체 볼륨이 감소한다.
+                </p>
+            </div>
+
+            <!-- 운영 원칙 근거 -->
+            <div style="background: var(--neutral); border-radius: 8px; padding: 20px; margin-top: 16px;">
+                <h4 style="font-size: 0.85rem; font-weight: 600; color: var(--primary); margin-bottom: 14px;">근거: 카드 유입은 '분석 가능한 최소 행동 단위'다</h4>
+                
+                <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+                    <span style="font-size: 0.8rem; padding: 4px 10px; background: #fff; border-radius: 4px; color: var(--text);">광고 클릭 = 관심</span>
+                    <span style="font-size: 0.8rem; color: var(--text-light);">→</span>
+                    <span style="font-size: 0.8rem; padding: 4px 10px; background: #fff; border-radius: 4px; color: var(--text);">랜딩 체류 = 탐색</span>
+                    <span style="font-size: 0.8rem; color: var(--text-light);">→</span>
+                    <span style="font-size: 0.8rem; padding: 4px 10px; background: var(--accent); border-radius: 4px; color: #fff; font-weight: 600;">상담 카드 = 의사결정 진입</span>
+                </div>
+
+                <p style="font-size: 0.85rem; color: var(--text); margin-bottom: 12px;">
+                    방문/비대면은 <strong>이미 의사결정에 들어온 사람들만의 하위 선택</strong>이다.
+                </p>
+
+                <div style="background: #fff; border-radius: 6px; padding: 14px; margin-bottom: 12px;">
+                    <p style="font-size: 0.8rem; color: var(--text-light); margin-bottom: 8px;">카드가 불안정하면:</p>
+                    <ul style="list-style: none; margin: 0; padding: 0;">
+                        <li style="font-size: 0.85rem; color: var(--text); padding: 4px 0; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0;">•</span> 방문 비율 → 표본 부족</li>
+                        <li style="font-size: 0.85rem; color: var(--text); padding: 4px 0; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0;">•</span> 비대면 비율 → 왜곡</li>
+                        <li style="font-size: 0.85rem; color: var(--text); padding: 4px 0; padding-left: 16px; position: relative;"><span style="position: absolute; left: 0;">•</span> 부재율 → 우연값에 가까움</li>
+                    </ul>
+                </div>
+
+                <p style="font-size: 0.85rem; color: var(--primary); font-weight: 500; text-align: center; padding: 10px; background: rgba(59, 130, 246, 0.08); border-radius: 6px;">
+                    = 표본이 없는 상태에서 분포를 분석하는 것과 같다
+                </p>
+            </div>
+
+            <!-- 구조적 한계 -->
+            <div style="margin-top: 16px; padding: 16px 20px; background: var(--primary); border-radius: 8px;">
+                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.9); line-height: 1.6;">
+                    <strong style="color: #fff;">카드 유입 1건</strong>은 <strong style="color: #fff;">소재 + 랜딩</strong>이 제대로 맞물려야 전환이 이뤄지는 구조.<br>
+                    → 소재만 교체한다고 카드 수가 늘거나 방문 수가 늘어날 수 없다.
+                </p>
+            </div>
+        </div>
+
+        <!-- 실행 우선순위 -->
+        <div class="section">
+            <h2>3. 실행 우선순위</h2>
+
+            <div class="action-grid">
+                <div class="action-card primary">
+                    <h4>1차 세팅 및 안정화 (필수)</h4>
+                    <ul>
+                        <li>상담 카드 유입을 1차 KPI로 설정</li>
+                        <li>광고 → 랜딩 기대치 정렬 점검</li>
+                        <li>캠페인 역할 분리 유지</li>
+                        <li>비대면 상담 품질 강화</li>
+                    </ul>
+                </div>
+                <div class="action-card">
+                    <h4>카드 안정화 후 실행</h4>
+                    <ul>
+                        <li>방문 / 비대면 비율 분석</li>
+                        <li>상담 방식별 전환 성과 비교</li>
+                        <li>부재율 / 노쇼율 구조 분석</li>
+                        <li>전환 스크립트 최적화</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 1차 세팅 중요성 근거 -->
+            <div style="margin-top: 16px; padding: 16px 20px; background: rgba(239, 68, 68, 0.08); border-left: 3px solid #ef4444; border-radius: 0 8px 8px 0;">
+                <p style="font-size: 0.8rem; color: #f87171; margin-bottom: 8px;">왜 1차 세팅 및 안정화가 필수인가</p>
+                <p style="font-size: 0.85rem; color: var(--text); line-height: 1.6;">
+                    <strong style="color: #ef4444;">⚠ "무조건 성과가 올라온다"는 보장은 잘못된 가설</strong><br><br>
+                    매달 효율이 높았던 소재·랜딩도 <strong>성과가 그대로 유지되는 구조가 아니다.</strong><br><br>
+                    <strong style="color: #ef4444;">실제 사례 (1/8):</strong> 기존에 효과가 검증된 랜딩 페이지로 교체했음에도 카드 수가 상승하지 않음 → 실시간 유입량 확인을 통해 디자인/세팅을 반복 조정 → 시간당 유입 수 기준으로 퍼널 재정렬 후 안정화 단계를 거쳐 정상화
+                </p>
+            </div>
+        </div>
+
+        <!-- 랜딩 페이지 방문 유도 장치 -->
+        <div class="section">
+            <h2>4. 랜딩 페이지 방문 유도 장치</h2>
+            <p style="font-size: 0.85rem; color: var(--text); margin-bottom: 16px;">
+                비대면 선택이 기본 진입 패턴임을 인정하면서, 방문 상담의 추가 가치를 자연스럽게 제안하는 구조
+            </p>
+            <div style="border-radius: 8px; overflow: hidden; border: 1px solid var(--neutral-dark);">
+                <img src="img/방문상담 유도용 장치 추가.png" alt="방문 상담 유도용 장치 - 랜딩 페이지 적용 예시" style="width: 100%; display: block;">
+            </div>
+            <p class="note">
+                방문 상담 선택 시 추가 혜택(속기 키보드 체험, 실제 업무 환경 체감 등)을 명시하여 자발적 선택 유도
+            </p>
+        </div>
+
+        <!-- 핵심 정리 -->
+        <div style="background: var(--primary); border-radius: 10px; padding: 24px; margin-top: 24px;">
+            <h3 style="font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 16px;">핵심 정리</h3>
+            <ul style="list-style: none; margin: 0; padding: 0;">
+                <li style="padding: 10px 0; padding-left: 28px; position: relative; font-size: 0.9rem; color: rgba(255,255,255,0.9); border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span style="position: absolute; left: 0; color: var(--accent);">✓</span>
+                    카드 유입이 안정화되기 전까지, 방문/비대면 분석은 유효하지 않다
+                </li>
+                <li style="padding: 10px 0; padding-left: 28px; position: relative; font-size: 0.9rem; color: rgba(255,255,255,0.9); border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span style="position: absolute; left: 0; color: var(--accent);">✓</span>
+                    프리랜서 = 볼륨 / 전문직 = 전환 속도 → 동일 KPI 비교 금지
+                </li>
+                <li style="padding: 10px 0; padding-left: 28px; position: relative; font-size: 0.9rem; color: rgba(255,255,255,0.9); border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span style="position: absolute; left: 0; color: var(--accent);">✓</span>
+                    비대면 선호는 문제가 아니라 정상 진입 패턴이다
+                </li>
+                <li style="padding: 10px 0; padding-left: 28px; position: relative; font-size: 0.9rem; color: rgba(255,255,255,0.9); border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span style="position: absolute; left: 0; color: var(--accent);">✓</span>
+                    소재만 바꾼다고 카드 수가 늘지 않는다 (소재 + 랜딩 정렬 필수)
+                </li>
+                <li style="padding: 10px 0; padding-left: 28px; position: relative; font-size: 0.9rem; color: rgba(255,255,255,0.9);">
+                    <span style="position: absolute; left: 0; color: var(--accent);">✓</span>
+                    검증된 세팅도 성과 유지 보장 안 됨 → 실시간 모니터링 + 반복 조정 필수
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
