@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>취준생 직장인 커리어 올인원 허브</title>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #f5f6f7;
+            --bg-white: #ffffff;
+            --bg-secondary: #f0f1f3;
+            --bg-hover: #e8e9eb;
+            --naver-green: #03c75a;
+            --naver-green-dark: #02b350;
+            --naver-green-light: #e8f7ef;
+            --google-blue: #4285f4;
+            --youtube-red: #ff0000;
+            --daangn-orange: #ff6f0f;
+            --text-primary: #1e1e1e;
+            --text-secondary: #606060;
+            --text-muted: #919191;
+            --text-caption: #a0a0a0;
+            --border-color: #e5e5e5;
+            --border-light: #f0f0f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-lg: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* 스크롤바 투명 */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
+        * { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.15) transparent; }
+
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 60px;
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 24px;
+            z-index: 1000;
+        }
+
+        .logo { 
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+        
+        .header-right {
+            position: absolute;
+            right: 24px;
+            display: flex; 
+            align-items: center; 
+            gap: 12px;
+        }
+        .logo-text { font-size: 15px; font-weight: 600; color: var(--text-secondary); }
+        .logo-text span { color: var(--naver-green); font-weight: 700; }
+        .live-badge {
+            display: flex; align-items: center; gap: 6px;
+            padding: 6px 12px; background: #fff0f0; border-radius: 20px;
+        }
+        .live-dot {
+            width: 6px; height: 6px; background: #ff3b3b; border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .live-text { font-size: 12px; font-weight: 600; color: #ff3b3b; }
+        .current-time { font-size: 13px; color: var(--text-muted); }
+
+        .main-container {
+            padding-top: 80px; padding-bottom: 40px;
+            max-width: 1200px; margin: 0 auto;
+        }
+
+        .search-section { padding: 0 20px; margin-bottom: 24px; }
+        .search-box {
+            background: var(--bg-white); border-radius: 12px;
+            padding: 20px 24px; box-shadow: var(--shadow-sm);
+        }
+        .search-container { display: flex; gap: 10px; max-width: 700px; }
+        .search-input-wrapper { flex: 1; position: relative; }
+        .search-input {
+            width: 100%; padding: 14px 16px 14px 46px;
+            background: var(--bg-secondary); border: 2px solid transparent;
+            border-radius: 10px; font-size: 15px; color: var(--text-primary);
+            font-family: inherit; transition: all 0.2s ease;
+        }
+        .search-input:focus { outline: none; border-color: var(--naver-green); background: var(--bg-white); }
+        .search-input::placeholder { color: var(--text-muted); }
+        .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        .search-icon svg { width: 18px; height: 18px; }
+        .search-btn {
+            padding: 14px 28px; background: var(--naver-green); border: none;
+            border-radius: 10px; font-size: 15px; font-weight: 600; color: white;
+            cursor: pointer; transition: all 0.2s ease;
+        }
+        .search-btn:hover { background: var(--naver-green-dark); }
+
+        /* 실용 도구 버튼 */
+        .tools-section { padding: 0 20px; margin-bottom: 24px; }
+        .tools-container {
+            display: flex; gap: 12px; flex-wrap: wrap;
+        }
+        .tool-btn {
+            display: flex; align-items: center; gap: 8px;
+            padding: 12px 20px; background: var(--bg-white);
+            border: 1px solid var(--border-color); border-radius: 10px;
+            font-size: 14px; font-weight: 500; color: var(--text-secondary);
+            cursor: pointer; transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        .tool-btn:hover { border-color: var(--naver-green); color: var(--naver-green); background: var(--naver-green-light); }
+        .tool-btn svg { width: 18px; height: 18px; }
+        .tool-btn.active { background: var(--naver-green); color: white; border-color: var(--naver-green); }
+
+        .stats-row {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 12px; padding: 0 20px; margin-bottom: 24px;
+        }
+        @media (max-width: 768px) { .stats-row { grid-template-columns: repeat(2, 1fr); } }
+
+        .stat-card {
+            background: var(--bg-white); border-radius: 12px;
+            padding: 18px 20px; box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
+        .stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .stat-label { font-size: 12px; font-weight: 500; color: var(--text-muted); margin-bottom: 8px; }
+        .stat-value { font-size: 26px; font-weight: 700; }
+        .stat-card:nth-child(1) .stat-value { color: var(--naver-green); }
+        .stat-card:nth-child(2) .stat-value { color: var(--naver-green); }
+        .stat-card:nth-child(3) .stat-value { color: var(--youtube-red); }
+        .stat-card:nth-child(4) .stat-value { color: var(--daangn-orange); }
+        .stat-desc { font-size: 12px; color: var(--text-caption); margin-top: 4px; }
+
+        .filter-section { padding: 0 20px; margin-bottom: 20px; }
+        .filter-tabs {
+            display: flex; gap: 8px; background: var(--bg-white);
+            padding: 8px; border-radius: 12px; box-shadow: var(--shadow-sm);
+        }
+        .filter-tab {
+            padding: 10px 18px; background: transparent; border: none;
+            font-size: 14px; font-weight: 500; color: var(--text-secondary);
+            cursor: pointer; border-radius: 8px; font-family: inherit;
+            transition: all 0.2s ease;
+        }
+        .filter-tab:hover { background: var(--bg-secondary); color: var(--text-primary); }
+        .filter-tab.active { background: var(--naver-green); color: white; font-weight: 600; }
+        .filter-tab .count { margin-left: 4px; font-size: 12px; opacity: 0.8; }
+
+        .content-grid {
+            display: grid; grid-template-columns: 1fr 320px;
+            gap: 20px; padding: 0 20px;
+        }
+        @media (max-width: 1000px) { .content-grid { grid-template-columns: 1fr; } }
+
+        .feed-section { display: flex; flex-direction: column; gap: 12px; }
+        .feed-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 4px; margin-bottom: 4px;
+        }
+        .feed-title { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+        .feed-count { font-size: 14px; color: var(--text-muted); font-weight: 400; margin-left: 8px; }
+        .feed-controls { display: flex; gap: 4px; }
+        .feed-control-btn {
+            padding: 6px 12px; background: var(--bg-white);
+            border: 1px solid var(--border-color); border-radius: 6px;
+            color: var(--text-secondary); font-size: 13px; font-weight: 500;
+            cursor: pointer; font-family: inherit; transition: all 0.2s ease;
+        }
+        .feed-control-btn:hover { background: var(--bg-secondary); }
+        .feed-control-btn.active { background: var(--naver-green-light); border-color: var(--naver-green); color: var(--naver-green); }
+
+        .issue-card {
+            display: block; background: var(--bg-white); border-radius: 12px;
+            padding: 20px; box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease; cursor: pointer; position: relative;
+        }
+        .issue-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .issue-card.bookmarked { border-left: 3px solid var(--naver-green); }
+
+        .issue-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .issue-source { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 4px; }
+        .issue-source.naver { background: var(--naver-green-light); color: var(--naver-green); }
+        .issue-source.google { background: #e8f0fe; color: var(--google-blue); }
+        .issue-source.youtube { background: #ffe8e8; color: var(--youtube-red); }
+        .issue-source.daangn { background: #fff3e8; color: var(--daangn-orange); }
+        .issue-time { font-size: 12px; color: var(--text-caption); }
+        .issue-badge { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; }
+        .issue-badge.hot { background: #ff3b3b; color: white; }
+        .issue-badge.breaking { background: var(--naver-green); color: white; }
+
+        .bookmark-btn {
+            position: absolute; top: 16px; right: 16px;
+            width: 32px; height: 32px; border-radius: 50%;
+            background: var(--bg-secondary); border: none;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s ease; color: var(--text-muted);
+        }
+        .bookmark-btn:hover { background: var(--naver-green-light); color: var(--naver-green); }
+        .bookmark-btn.active { background: var(--naver-green); color: white; }
+        .bookmark-btn svg { width: 16px; height: 16px; }
+
+        .issue-title { font-size: 16px; font-weight: 600; line-height: 1.5; margin-bottom: 8px; color: var(--text-primary); padding-right: 40px; }
+        .issue-card:hover .issue-title { color: var(--naver-green); }
+        .issue-summary { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 14px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .issue-keywords { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+        .keyword { padding: 4px 10px; background: var(--bg-secondary); border-radius: 4px; font-size: 12px; color: var(--text-secondary); transition: all 0.2s ease; }
+        .issue-card:hover .keyword { background: var(--naver-green-light); color: var(--naver-green); }
+        .issue-stats { display: flex; align-items: center; gap: 16px; padding-top: 14px; border-top: 1px solid var(--border-light); }
+        .issue-stat { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--text-caption); }
+        .issue-stat svg { width: 14px; height: 14px; }
+        .issue-stat.growth { color: var(--naver-green); font-weight: 600; }
+
+        .sidebar { display: flex; flex-direction: column; gap: 16px; }
+        .sidebar-card { background: var(--bg-white); border-radius: 12px; padding: 20px; box-shadow: var(--shadow-sm); }
+        .sidebar-title { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--naver-green); }
+
+        .trending-list { display: flex; flex-direction: column; }
+        .trending-item { display: flex; align-items: center; gap: 12px; padding: 10px 8px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; }
+        .trending-item:hover { background: var(--bg-secondary); }
+        .trending-rank { font-size: 14px; font-weight: 700; width: 20px; text-align: center; }
+        .trending-item:nth-child(-n+3) .trending-rank { color: var(--naver-green); }
+        .trending-item:nth-child(n+4) .trending-rank { color: var(--text-muted); }
+        .trending-keyword { flex: 1; font-size: 14px; font-weight: 500; color: var(--text-primary); }
+        .trending-trend { font-size: 11px; font-weight: 600; padding: 2px 6px; border-radius: 4px; }
+        .trending-trend.up { background: #e8f7ef; color: var(--naver-green); }
+        .trending-trend.down { background: #ffe8e8; color: #ff3b3b; }
+        .trending-trend.new { background: #e8f0fe; color: var(--google-blue); }
+
+        .source-stats { display: flex; flex-direction: column; gap: 12px; }
+        .source-item { display: flex; align-items: center; gap: 12px; }
+        .source-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+        .source-icon.naver { background: var(--naver-green-light); color: var(--naver-green); }
+        .source-icon.google { background: #e8f0fe; color: var(--google-blue); }
+        .source-icon.youtube { background: #ffe8e8; color: var(--youtube-red); }
+        .source-icon.daangn { background: #fff3e8; color: var(--daangn-orange); }
+        .source-info { flex: 1; }
+        .source-name { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+        .source-bar { height: 4px; background: var(--bg-secondary); border-radius: 2px; overflow: hidden; }
+        .source-bar-fill { height: 100%; border-radius: 2px; }
+        .source-bar-fill.naver { background: var(--naver-green); }
+        .source-bar-fill.google { background: var(--google-blue); }
+        .source-bar-fill.youtube { background: var(--youtube-red); }
+        .source-bar-fill.daangn { background: var(--daangn-orange); }
+        .source-count { font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+
+        .category-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .category-tag { padding: 8px 14px; background: var(--bg-secondary); border-radius: 20px; font-size: 13px; font-weight: 500; color: var(--text-secondary); cursor: pointer; transition: all 0.2s ease; }
+        .category-tag:hover { background: var(--naver-green-light); color: var(--naver-green); }
+
+        /* 북마크 섹션 */
+        .bookmark-list { display: flex; flex-direction: column; gap: 8px; }
+        .bookmark-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px; background: var(--bg-secondary); border-radius: 8px;
+            cursor: pointer; transition: all 0.2s ease;
+        }
+        .bookmark-item:hover { background: var(--bg-hover); }
+        .bookmark-item-title { flex: 1; font-size: 13px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .bookmark-item-remove { color: var(--text-muted); cursor: pointer; padding: 4px; }
+        .bookmark-item-remove:hover { color: #ff3b3b; }
+        .bookmark-empty { font-size: 13px; color: var(--text-muted); text-align: center; padding: 20px; }
+
+        .quick-actions { position: fixed; bottom: 24px; right: 24px; display: flex; flex-direction: column; gap: 8px; z-index: 100; }
+        .quick-action-btn { width: 44px; height: 44px; border-radius: 50%; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; box-shadow: var(--shadow-md); }
+        .quick-action-btn svg { width: 18px; height: 18px; }
+        .quick-action-btn.primary { background: var(--naver-green); color: white; }
+        .quick-action-btn.primary:hover { background: var(--naver-green-dark); transform: scale(1.05); }
+        .quick-action-btn.secondary { background: var(--bg-white); color: var(--text-secondary); border: 1px solid var(--border-color); }
+        .quick-action-btn.secondary:hover { background: var(--bg-secondary); color: var(--text-primary); }
+
+        /* 모달 */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5); z-index: 2000;
+            display: none; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: var(--bg-white); border-radius: 16px;
+            width: 100%; max-width: 480px; max-height: 90vh;
+            overflow: auto; box-shadow: var(--shadow-lg);
+        }
+        .modal-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 24px; border-bottom: 1px solid var(--border-color);
+        }
+        .modal-title { font-size: 18px; font-weight: 700; }
+        .modal-close {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: var(--bg-secondary); border: none;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            color: var(--text-secondary); transition: all 0.2s ease;
+        }
+        .modal-close:hover { background: var(--bg-hover); color: var(--text-primary); }
+        .modal-body { padding: 24px; }
+
+        /* 연봉 계산기 */
+        .calc-section { margin-bottom: 24px; }
+        .calc-label { font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; }
+        .calc-input-group { display: flex; gap: 8px; margin-bottom: 16px; }
+        .calc-input {
+            flex: 1; padding: 12px 16px; border: 1px solid var(--border-color);
+            border-radius: 8px; font-size: 16px; font-family: inherit;
+            transition: all 0.2s ease;
+        }
+        .calc-input:focus { outline: none; border-color: var(--naver-green); }
+        .calc-unit {
+            padding: 12px 16px; background: var(--bg-secondary);
+            border-radius: 8px; font-size: 14px; font-weight: 500;
+            color: var(--text-secondary); white-space: nowrap;
+        }
+        .calc-result {
+            background: var(--naver-green-light); border-radius: 12px;
+            padding: 20px; margin-top: 16px;
+        }
+        .calc-result-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .calc-result-row:last-child { margin-bottom: 0; }
+        .calc-result-label { font-size: 14px; color: var(--text-secondary); }
+        .calc-result-value { font-size: 16px; font-weight: 700; color: var(--naver-green); }
+        .calc-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+        .calc-tab {
+            flex: 1; padding: 10px; border: 1px solid var(--border-color);
+            border-radius: 8px; background: var(--bg-white); cursor: pointer;
+            font-size: 14px; font-weight: 500; text-align: center;
+            font-family: inherit; transition: all 0.2s ease;
+        }
+        .calc-tab.active { background: var(--naver-green); color: white; border-color: var(--naver-green); }
+
+        /* 자소서 글자수 카운터 */
+        .counter-textarea {
+            width: 100%; height: 200px; padding: 16px;
+            border: 1px solid var(--border-color); border-radius: 12px;
+            font-size: 15px; font-family: inherit; resize: vertical;
+            line-height: 1.6;
+        }
+        .counter-textarea:focus { outline: none; border-color: var(--naver-green); }
+        .counter-stats {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 12px; margin-top: 16px;
+        }
+        .counter-stat {
+            background: var(--bg-secondary); border-radius: 10px;
+            padding: 16px; text-align: center;
+        }
+        .counter-stat-value { font-size: 24px; font-weight: 700; color: var(--naver-green); }
+        .counter-stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+        .counter-limit {
+            margin-top: 16px; display: flex; align-items: center; gap: 12px;
+        }
+        .counter-limit-input {
+            width: 100px; padding: 8px 12px; border: 1px solid var(--border-color);
+            border-radius: 6px; font-size: 14px; font-family: inherit;
+        }
+        .counter-progress {
+            flex: 1; height: 8px; background: var(--bg-secondary);
+            border-radius: 4px; overflow: hidden;
+        }
+        .counter-progress-bar {
+            height: 100%; background: var(--naver-green);
+            transition: width 0.3s ease;
+        }
+        .counter-progress-bar.warning { background: #f5c518; }
+        .counter-progress-bar.danger { background: #ff3b3b; }
+
+        /* 태블릿 */
+        @media (max-width: 768px) {
+            .header { padding: 0 16px; }
+            .main-container { padding-top: 70px; }
+            .search-section, .tools-section, .stats-row, .filter-section, .content-grid { padding-left: 12px; padding-right: 12px; }
+            .issue-title { font-size: 15px; }
+            .tools-container { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
+            .tool-btn { flex-shrink: 0; padding: 10px 16px; font-size: 13px; }
+            .filter-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .filter-tab { flex-shrink: 0; padding: 8px 14px; font-size: 13px; }
+            .sidebar { margin-top: 20px; }
+        }
+
+        /* 모바일 */
+        @media (max-width: 480px) {
+            .header { height: auto; min-height: 56px; padding: 10px 12px; flex-wrap: wrap; justify-content: center; gap: 6px; }
+            .logo { position: static; transform: none; width: 100%; text-align: center; order: 1; }
+            .logo-text { font-size: 13px; line-height: 1.4; white-space: normal; }
+            .header-right { position: static; gap: 8px; order: 2; }
+            .live-badge { padding: 4px 8px; }
+            .live-text { font-size: 10px; }
+            .current-time { font-size: 11px; }
+            
+            .main-container { padding-top: 90px; padding-bottom: 30px; }
+            .search-section, .tools-section, .stats-row, .filter-section, .content-grid { padding-left: 10px; padding-right: 10px; }
+            
+            .search-box { padding: 14px 16px; border-radius: 10px; }
+            .search-container { flex-direction: column; gap: 8px; }
+            .search-input { padding: 12px 14px 12px 40px; font-size: 14px; }
+            .search-icon { left: 14px; }
+            .search-icon svg { width: 16px; height: 16px; }
+            .search-btn { padding: 12px 20px; font-size: 14px; }
+            
+            .tools-container { gap: 8px; margin: 0 -10px; padding: 0 10px 8px; }
+            .tool-btn { padding: 8px 12px; font-size: 12px; gap: 6px; border-radius: 8px; }
+            .tool-btn svg { width: 16px; height: 16px; }
+            
+            .stats-row { gap: 8px; margin-bottom: 16px; }
+            .stat-card { padding: 14px 16px; border-radius: 10px; }
+            .stat-label { font-size: 11px; margin-bottom: 6px; }
+            .stat-value { font-size: 22px; }
+            .stat-desc { font-size: 11px; }
+            
+            .filter-section { margin-bottom: 16px; }
+            .filter-tabs { padding: 6px; border-radius: 10px; gap: 6px; }
+            .filter-tab { padding: 8px 12px; font-size: 12px; border-radius: 6px; }
+            .filter-tab .count { font-size: 11px; }
+            
+            .feed-section { gap: 10px; }
+            .feed-header { margin-bottom: 2px; }
+            .feed-title { font-size: 15px; }
+            .feed-count { font-size: 13px; }
+            .feed-control-btn { padding: 5px 10px; font-size: 12px; }
+            
+            .issue-card { padding: 16px; border-radius: 10px; }
+            .issue-meta { gap: 8px; margin-bottom: 10px; }
+            .issue-source { font-size: 11px; padding: 3px 8px; }
+            .issue-time { font-size: 11px; }
+            .issue-badge { font-size: 10px; padding: 2px 6px; }
+            .bookmark-btn { width: 28px; height: 28px; top: 12px; right: 12px; }
+            .bookmark-btn svg { width: 14px; height: 14px; }
+            .issue-title { font-size: 14px; padding-right: 36px; margin-bottom: 6px; }
+            .issue-summary { font-size: 13px; margin-bottom: 10px; }
+            .issue-keywords { gap: 4px; margin-bottom: 0; }
+            .keyword { padding: 3px 8px; font-size: 11px; }
+            
+            .sidebar { gap: 12px; }
+            .sidebar-card { padding: 16px; border-radius: 10px; }
+            .sidebar-title { font-size: 14px; margin-bottom: 12px; padding-bottom: 10px; }
+            .trending-item { padding: 8px 6px; gap: 10px; }
+            .trending-rank { font-size: 13px; }
+            .trending-keyword { font-size: 13px; }
+            .trending-trend { font-size: 10px; padding: 2px 5px; }
+            .source-item { gap: 10px; }
+            .source-icon { width: 24px; height: 24px; font-size: 10px; }
+            .source-name { font-size: 12px; }
+            .source-count { font-size: 12px; }
+            .category-tag { padding: 6px 12px; font-size: 12px; }
+            
+            .quick-actions { bottom: 16px; right: 16px; gap: 6px; }
+            .quick-action-btn { width: 40px; height: 40px; }
+            .quick-action-btn svg { width: 16px; height: 16px; }
+            
+            .site-footer { padding: 20px 16px; margin-top: 30px; font-size: 12px; }
+            
+            /* 모달 모바일 최적화 */
+            .modal { max-width: 100%; margin: 0 10px; border-radius: 12px; max-height: 85vh; }
+            .modal-header { padding: 16px 18px; }
+            .modal-title { font-size: 16px; }
+            .modal-close { width: 28px; height: 28px; }
+            .modal-body { padding: 18px; }
+            .calc-label { font-size: 12px; }
+            .calc-input { padding: 10px 14px; font-size: 15px; }
+            .calc-unit { padding: 10px 12px; font-size: 13px; }
+            .calc-result { padding: 16px; }
+            .calc-result-label { font-size: 13px; }
+            .calc-result-value { font-size: 15px; }
+            .calc-tabs { gap: 6px; }
+            .calc-tab { padding: 8px; font-size: 13px; }
+            .counter-textarea { height: 160px; font-size: 14px; padding: 14px; }
+            .counter-stats { gap: 8px; }
+            .counter-stat { padding: 12px; }
+            .counter-stat-value { font-size: 20px; }
+            .counter-stat-label { font-size: 11px; }
+            .counter-limit { gap: 8px; }
+            .counter-limit-input { width: 80px; padding: 6px 10px; font-size: 13px; }
+            .dday-item { padding: 12px; }
+            .dday-item-title { font-size: 13px; }
+            .dday-item-date { font-size: 11px; }
+            .dday-item-count { font-size: 18px; }
+            .dday-add input { padding: 8px 12px; font-size: 13px; }
+            .dday-add-btn { padding: 8px 16px; font-size: 13px; }
+            .interview-question-box { padding: 20px; min-height: 100px; }
+            .interview-question { font-size: 16px; }
+            .interview-cat-btn { padding: 6px 12px; font-size: 12px; }
+            .interview-next-btn { padding: 12px; font-size: 15px; }
+        }
+
+        /* 아주 작은 화면 */
+        @media (max-width: 360px) {
+            .logo-text { font-size: 11px; }
+            .header-right { gap: 6px; }
+            .live-badge { padding: 3px 6px; }
+            .current-time { display: none; }
+            .stat-value { font-size: 20px; }
+            .tool-btn { padding: 6px 10px; font-size: 11px; }
+        }
+
+        .issue-card.hidden { display: none; }
+
+        .site-footer {
+            text-align: center;
+            padding: 24px 20px;
+            margin-top: 40px;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-white);
+        }
+
+        /* 다크모드 */
+        body.dark-mode {
+            --bg-primary: #1a1a1a;
+            --bg-white: #242424;
+            --bg-secondary: #2d2d2d;
+            --bg-hover: #363636;
+            --text-primary: #e8e8e8;
+            --text-secondary: #b0b0b0;
+            --text-muted: #808080;
+            --text-caption: #666666;
+            --border-color: #3d3d3d;
+            --border-light: #333333;
+        }
+
+        /* D-Day 리스트 */
+        .dday-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+        .dday-item { display: flex; align-items: center; gap: 12px; padding: 14px; background: var(--bg-secondary); border-radius: 10px; }
+        .dday-item-info { flex: 1; }
+        .dday-item-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .dday-item-date { font-size: 12px; color: var(--text-muted); }
+        .dday-item-count { font-size: 20px; font-weight: 700; color: var(--naver-green); }
+        .dday-item-count.past { color: var(--text-muted); }
+        .dday-item-remove { padding: 6px; cursor: pointer; color: var(--text-muted); border-radius: 4px; }
+        .dday-item-remove:hover { background: var(--bg-hover); color: #ff3b3b; }
+        .dday-add { display: flex; flex-direction: column; gap: 12px; padding-top: 16px; border-top: 1px solid var(--border-color); }
+        .dday-add-row { display: flex; gap: 8px; }
+        .dday-add input { flex: 1; padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; font-family: inherit; background: var(--bg-white); color: var(--text-primary); }
+        .dday-add input:focus { outline: none; border-color: var(--naver-green); }
+        .dday-add-btn { padding: 10px 20px; background: var(--naver-green); border: none; border-radius: 8px; color: white; font-weight: 600; cursor: pointer; font-family: inherit; }
+        .dday-add-btn:hover { background: var(--naver-green-dark); }
+
+        /* 면접 질문 */
+        .interview-question-box { background: var(--naver-green-light); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 20px; min-height: 120px; display: flex; align-items: center; justify-content: center; }
+        .interview-question { font-size: 18px; font-weight: 600; color: var(--text-primary); line-height: 1.6; }
+        .interview-category { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+        .interview-cat-btn { padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 20px; background: var(--bg-white); font-size: 13px; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+        .interview-cat-btn:hover, .interview-cat-btn.active { background: var(--naver-green); color: white; border-color: var(--naver-green); }
+        .interview-next-btn { width: 100%; padding: 14px; background: var(--naver-green); border: none; border-radius: 10px; color: white; font-size: 16px; font-weight: 600; cursor: pointer; font-family: inherit; }
+        .interview-next-btn:hover { background: var(--naver-green-dark); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <span class="logo-text">취준생 직장인 <span>커리어 올인원 허브</span></span>
+        </div>
+        <div class="header-right">
+            <span class="current-time" id="currentTime"></span>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <section class="search-section">
+            <div class="search-box">
+                <div class="search-container">
+                    <div class="search-input-wrapper">
+                        <span class="search-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </span>
+                        <input type="text" class="search-input" id="searchInput" placeholder="키워드로 검색하세요 (예: 삼성 채용, 연봉, 자소서)">
+                    </div>
+                    <button class="search-btn" id="searchBtn">검색</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 실용 도구 버튼 -->
+        <section class="tools-section">
+            <div class="tools-container">
+                <button class="tool-btn" id="salaryCalcBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+                    연봉 계산기
+                </button>
+                <button class="tool-btn" id="severanceCalcBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    퇴직금
+                </button>
+                <button class="tool-btn" id="unemploymentCalcBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                    실업급여
+                </button>
+                <button class="tool-btn" id="annualLeaveCalcBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    연차 계산기
+                </button>
+                <button class="tool-btn" id="ddayCalcBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    D-Day
+                </button>
+                <button class="tool-btn" id="interviewBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    면접 질문
+                </button>
+                <button class="tool-btn" id="charCountBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    자소서 글자수
+                </button>
+                <button class="tool-btn" id="bookmarkViewBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                    북마크 <span id="bookmarkCount">(0)</span>
+                </button>
+                <button class="tool-btn" id="darkModeBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    다크모드
+                </button>
+            </div>
+        </section>
+
+        <section class="stats-row" id="statsRow"></section>
+        <section class="filter-section"><div class="filter-tabs" id="filterTabs"></div></section>
+
+        <div class="content-grid">
+            <div class="feed-section">
+                <div class="feed-header">
+                    <h2 class="feed-title">실시간 이슈<span class="feed-count" id="totalFeedCount"></span></h2>
+                    <div class="feed-controls">
+                        <button class="feed-control-btn active" data-sort="latest">최신순</button>
+                        <button class="feed-control-btn" data-sort="popular">인기순</button>
+                    </div>
+                </div>
+                <div id="feedContainer"></div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">실시간 인기 검색어</h3>
+                    <div class="trending-list" id="trendingList"></div>
+                </div>
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">채널별 현황</h3>
+                    <div class="source-stats" id="sourceStats"></div>
+                </div>
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">인기 키워드</h3>
+                    <div class="category-tags" id="categoryTags"></div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <div class="quick-actions">
+        <button class="quick-action-btn secondary" id="scrollTopBtn" title="맨 위로">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        </button>
+        <button class="quick-action-btn primary" id="refreshBtn" title="새로고침">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+        </button>
+    </div>
+
+    <footer class="site-footer">
+        <span>Made by Seyoung Lee</span>
+    </footer>
+
+    <!-- 연봉 계산기 모달 -->
+    <div class="modal-overlay" id="salaryModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">연봉 계산기</h3>
+                <button class="modal-close" onclick="closeModal('salaryModal')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="calc-tabs">
+                    <button class="calc-tab active" data-calc="annual">연봉 → 월급</button>
+                    <button class="calc-tab" data-calc="hourly">시급 → 월급</button>
+                </div>
+                
+                <div id="annualCalc">
+                    <div class="calc-section">
+                        <div class="calc-label">연봉 (세전)</div>
+                        <div class="calc-input-group">
+                            <input type="number" class="calc-input" id="annualSalary" placeholder="3000">
+                            <span class="calc-unit">만원</span>
+                        </div>
+                    </div>
+                    <div class="calc-result" id="annualResult">
+                        <div class="calc-result-row">
+                            <span class="calc-result-label">월급 (세전)</span>
+                            <span class="calc-result-value" id="monthlyGross">-</span>
+                        </div>
+                        <div class="calc-result-row">
+                            <span class="calc-result-label">월급 (세후 예상)</span>
+                            <span class="calc-result-value" id="monthlyNet">-</span>
+                        </div>
+                        <div class="calc-result-row">
+                            <span class="calc-result-label">시급 환산</span>
+                            <span class="calc-result-value" id="hourlyRate">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="hourlyCalc" style="display:none;">
+                    <div class="calc-section">
+                        <div class="calc-label">시급</div>
+                        <div class="calc-input-group">
+                            <input type="number" class="calc-input" id="hourlyWage" placeholder="10030">
+                            <span class="calc-unit">원</span>
+                        </div>
+                        <div class="calc-label" style="margin-top:16px;">주당 근무시간</div>
+                        <div class="calc-input-group">
+                            <input type="number" class="calc-input" id="weeklyHours" placeholder="40" value="40">
+                            <span class="calc-unit">시간</span>
+                        </div>
+                    </div>
+                    <div class="calc-result">
+                        <div class="calc-result-row">
+                            <span class="calc-result-label">월급 (세전)</span>
+                            <span class="calc-result-value" id="hourlyMonthly">-</span>
+                        </div>
+                        <div class="calc-result-row">
+                            <span class="calc-result-label">주휴수당 포함</span>
+                            <span class="calc-result-value" id="hourlyWithBonus">-</span>
+                        </div>
+                        <div class="calc-result-row">
+                            <span class="calc-result-label">연봉 환산</span>
+                            <span class="calc-result-value" id="hourlyAnnual">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 자소서 글자수 카운터 모달 -->
+    <div class="modal-overlay" id="charCountModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">자소서 글자수 카운터</h3>
+                <button class="modal-close" onclick="closeModal('charCountModal')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <textarea class="counter-textarea" id="charTextarea" placeholder="자기소개서 내용을 붙여넣거나 작성하세요..."></textarea>
+                <div class="counter-stats">
+                    <div class="counter-stat">
+                        <div class="counter-stat-value" id="charWithSpace">0</div>
+                        <div class="counter-stat-label">공백 포함</div>
+                    </div>
+                    <div class="counter-stat">
+                        <div class="counter-stat-value" id="charWithoutSpace">0</div>
+                        <div class="counter-stat-label">공백 제외</div>
+                    </div>
+                    <div class="counter-stat">
+                        <div class="counter-stat-value" id="wordCount">0</div>
+                        <div class="counter-stat-label">단어 수</div>
+                    </div>
+                    <div class="counter-stat">
+                        <div class="counter-stat-value" id="lineCount">0</div>
+                        <div class="counter-stat-label">줄 수</div>
+                    </div>
+                </div>
+                <div class="counter-limit">
+                    <span style="font-size:13px;color:var(--text-secondary);">글자 제한:</span>
+                    <input type="number" class="counter-limit-input" id="charLimit" placeholder="500" value="500">
+                    <div class="counter-progress">
+                        <div class="counter-progress-bar" id="charProgress" style="width:0%"></div>
+                    </div>
+                    <span id="charPercent" style="font-size:13px;font-weight:600;color:var(--naver-green);">0%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 북마크 모달 -->
+    <div class="modal-overlay" id="bookmarkModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">북마크한 뉴스</h3>
+                <button class="modal-close" onclick="closeModal('bookmarkModal')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="bookmark-list" id="bookmarkList">
+                    <div class="bookmark-empty">북마크한 뉴스가 없습니다.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 퇴직금 계산기 모달 -->
+    <div class="modal-overlay" id="severanceModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">퇴직금 계산기</h3>
+                <button class="modal-close" onclick="closeModal('severanceModal')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="calc-section">
+                    <div class="calc-label">입사일</div>
+                    <div class="calc-input-group"><input type="date" class="calc-input" id="severanceStartDate"></div>
+                    <div class="calc-label" style="margin-top:16px;">퇴사일</div>
+                    <div class="calc-input-group"><input type="date" class="calc-input" id="severanceEndDate"></div>
+                    <div class="calc-label" style="margin-top:16px;">최근 3개월 평균 월급 (세전)</div>
+                    <div class="calc-input-group"><input type="number" class="calc-input" id="severanceAvgSalary" placeholder="300"><span class="calc-unit">만원</span></div>
+                </div>
+                <div class="calc-result">
+                    <div class="calc-result-row"><span class="calc-result-label">근속기간</span><span class="calc-result-value" id="severanceYears">-</span></div>
+                    <div class="calc-result-row"><span class="calc-result-label">예상 퇴직금</span><span class="calc-result-value" id="severanceAmount">-</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 실업급여 계산기 모달 -->
+    <div class="modal-overlay" id="unemploymentModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">실업급여 계산기</h3>
+                <button class="modal-close" onclick="closeModal('unemploymentModal')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="calc-section">
+                    <div class="calc-label">나이</div>
+                    <div class="calc-input-group"><input type="number" class="calc-input" id="unemploymentAge" placeholder="30"><span class="calc-unit">세</span></div>
+                    <div class="calc-label" style="margin-top:16px;">고용보험 가입기간</div>
+                    <div class="calc-input-group"><input type="number" class="calc-input" id="unemploymentMonths" placeholder="24"><span class="calc-unit">개월</span></div>
+                    <div class="calc-label" style="margin-top:16px;">퇴직 전 3개월 평균 일급</div>
+                    <div class="calc-input-group"><input type="number" class="calc-input" id="unemploymentDailyWage" placeholder="80000"><span class="calc-unit">원</span></div>
+                </div>
+                <div class="calc-result">
+                    <div class="calc-result-row"><span class="calc-result-label">1일 실업급여</span><span class="calc-result-value" id="unemploymentDaily">-</span></div>
+                    <div class="calc-result-row"><span class="calc-result-label">수급기간</span><span class="calc-result-value" id="unemploymentDays">-</span></div>
+                    <div class="calc-result-row"><span class="calc-result-label">총 예상 수령액</span><span class="calc-result-value" id="unemploymentTotal">-</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 연차 계산기 모달 -->
+    <div class="modal-overlay" id="annualLeaveModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">연차 계산기</h3>
+                <button class="modal-close" onclick="closeModal('annualLeaveModal')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="calc-section">
+                    <div class="calc-label">입사일</div>
+                    <div class="calc-input-group"><input type="date" class="calc-input" id="annualLeaveStartDate"></div>
+                </div>
+                <div class="calc-result">
+                    <div class="calc-result-row"><span class="calc-result-label">근속기간</span><span class="calc-result-value" id="annualLeaveYears">-</span></div>
+                    <div class="calc-result-row"><span class="calc-result-label">총 발생 연차</span><span class="calc-result-value" id="annualLeaveTotal">-</span></div>
+                    <div class="calc-result-row"><span class="calc-result-label">올해 연차</span><span class="calc-result-value" id="annualLeaveThisYear">-</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- D-Day 모달 -->
+    <div class="modal-overlay" id="ddayModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">D-Day 카운터</h3>
+                <button class="modal-close" onclick="closeModal('ddayModal')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="dday-list" id="ddayList"></div>
+                <div class="dday-add">
+                    <div class="dday-add-row"><input type="text" id="ddayTitle" placeholder="일정 이름 (예: 삼성 서류 마감)"></div>
+                    <div class="dday-add-row"><input type="date" id="ddayDate"><button class="dday-add-btn" onclick="addDday()">추가</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 면접 질문 모달 -->
+    <div class="modal-overlay" id="interviewModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">면접 질문 랜덤 생성기</h3>
+                <button class="modal-close" onclick="closeModal('interviewModal')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="interview-category" id="interviewCategory"></div>
+                <div class="interview-question-box"><div class="interview-question" id="interviewQuestion">카테고리를 선택하고 버튼을 눌러주세요</div></div>
+                <button class="interview-next-btn" onclick="nextInterviewQuestion()">다음 질문</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 데이터
+        const issueData = [
+            { id: 1, source: 'naver', sourceName: '네이버뉴스', url: 'https://search.naver.com/search.naver?where=news&query=삼성전자+채용', title: '삼성전자 2026 상반기 채용 소식', summary: '삼성전자 채용 관련 최신 뉴스를 확인하세요.', keywords: ['삼성전자', '채용', '공채'], timestamp: 2, views: 15420, comments: 892, growth: 285, isHot: false, isBreaking: true },
+            { id: 2, source: 'naver', sourceName: '네이버뉴스', url: 'https://search.naver.com/search.naver?where=news&query=2026+최저임금', title: '2026년 최저임금 관련 뉴스', summary: '2026년 최저임금 인상률, 월급 환산액 등 최신 정보입니다.', keywords: ['최저임금', '2026', '급여'], timestamp: 18, views: 28340, comments: 3421, growth: 156, isHot: true, isBreaking: false },
+            { id: 3, source: 'naver', sourceName: '네이버뉴스', url: 'https://search.naver.com/search.naver?where=news&query=공기업+채용+2026', title: '2026 공기업 채용 일정 및 정보', summary: '주요 공기업 채용 일정과 NCS 시험 정보입니다.', keywords: ['공기업', 'NCS', '공공기관'], timestamp: 35, views: 12890, comments: 1567, growth: 89, isHot: false, isBreaking: false },
+            { id: 4, source: 'naver', sourceName: '네이버뉴스', url: 'https://search.naver.com/search.naver?where=news&query=연봉협상', title: '연봉협상 시즌 관련 뉴스', summary: '연봉협상 전략, 평균 인상률 정보입니다.', keywords: ['연봉협상', '직장인', '연봉인상'], timestamp: 52, views: 19870, comments: 2890, growth: 124, isHot: true, isBreaking: false },
+            { id: 5, source: 'naver', sourceName: '네이버뉴스', url: 'https://search.naver.com/search.naver?where=news&query=개발자+채용', title: 'IT 개발자 채용 시장 동향', summary: 'IT 개발자 채용 시장 회복세 관련 뉴스입니다.', keywords: ['개발자', 'IT취업', '채용'], timestamp: 78, views: 8920, comments: 1234, growth: 67, isHot: false, isBreaking: false },
+            { id: 6, source: 'google', sourceName: '구글뉴스', url: 'https://www.google.com/search?q=AI+일자리+전망&tbm=nws', title: 'AI와 일자리 전망 관련 뉴스', summary: 'AI로 인한 일자리 변화 글로벌 뉴스입니다.', keywords: ['AI', '일자리', '미래직업'], timestamp: 25, views: 34560, comments: 4521, growth: 234, isHot: true, isBreaking: false },
+            { id: 7, source: 'google', sourceName: '구글뉴스', url: 'https://www.google.com/search?q=해외취업+한국인&tbm=nws', title: '한국인 해외취업 관련 뉴스', summary: '해외 취업 정보와 비자 관련 뉴스입니다.', keywords: ['해외취업', '워킹비자', '글로벌'], timestamp: 45, views: 12340, comments: 1890, growth: 98, isHot: false, isBreaking: false },
+            { id: 8, source: 'google', sourceName: '구글뉴스', url: 'https://www.google.com/search?q=퇴직금+계산&tbm=nws', title: '퇴직금 관련 뉴스 및 정보', summary: '퇴직금 계산법, 퇴직연금 정보입니다.', keywords: ['퇴직금', '퇴직연금', '노동법'], timestamp: 68, views: 15670, comments: 2134, growth: 76, isHot: false, isBreaking: false },
+            { id: 9, source: 'youtube', sourceName: '유튜브', url: 'https://www.youtube.com/results?search_query=자소서+작성법', title: '자소서 작성법 영상 모음', summary: '합격하는 자기소개서 작성 노하우 영상입니다.', keywords: ['자소서', '자기소개서', '취업준비'], timestamp: 8, views: 89340, comments: 3421, growth: 345, isHot: true, isBreaking: false },
+            { id: 10, source: 'youtube', sourceName: '유튜브', url: 'https://www.youtube.com/results?search_query=면접+질문+답변', title: '면접 질문과 답변 영상', summary: '면접 질문과 모범 답변 영상 모음입니다.', keywords: ['면접', '면접질문', '취업면접'], timestamp: 22, views: 156780, comments: 5670, growth: 412, isHot: true, isBreaking: false },
+            { id: 11, source: 'youtube', sourceName: '유튜브', url: 'https://www.youtube.com/results?search_query=퇴사+브이로그', title: '퇴사 브이로그 영상', summary: '직장인들의 퇴사 이야기입니다.', keywords: ['퇴사', '브이로그', '직장인'], timestamp: 42, views: 234560, comments: 8920, growth: 189, isHot: false, isBreaking: false },
+            { id: 12, source: 'youtube', sourceName: '유튜브', url: 'https://www.youtube.com/results?search_query=이직+준비+방법', title: '이직 준비 가이드 영상', summary: '이직 준비 과정 영상 모음입니다.', keywords: ['이직', '이직준비', '경력이직'], timestamp: 65, views: 67890, comments: 2340, growth: 134, isHot: false, isBreaking: false },
+            { id: 13, source: 'daangn', sourceName: '당근', url: 'https://www.daangn.com/jobs', title: '당근 알바 - 내 근처 일자리', summary: '동네 기반 알바, 파트타임 일자리입니다.', keywords: ['알바', '파트타임', '구인'], timestamp: 15, views: 8920, comments: 1230, growth: 156, isHot: true, isBreaking: false },
+            { id: 14, source: 'daangn', sourceName: '당근', url: 'https://www.daangn.com/jobs', title: '당근 알바 - 주말/단기 일자리', summary: '주말 알바, 단기 아르바이트 정보입니다.', keywords: ['단기알바', '주말알바', '일당'], timestamp: 38, views: 5670, comments: 890, growth: 89, isHot: false, isBreaking: false },
+            { id: 15, source: 'daangn', sourceName: '당근', url: 'https://www.daangn.com/jobs', title: '당근 알바 - 야간/심야 일자리', summary: '야간 알바, 심야 아르바이트 정보입니다.', keywords: ['야간알바', '심야알바', '편의점'], timestamp: 58, views: 4230, comments: 567, growth: 45, isHot: false, isBreaking: false }
+        ];
+
+        const trendingKeywords = [
+            { keyword: '삼성전자 채용', url: 'https://search.naver.com/search.naver?where=news&query=삼성전자+채용', trend: 'new' },
+            { keyword: '공채 일정 2026', url: 'https://search.naver.com/search.naver?where=news&query=공채+일정+2026', trend: 'up', change: 5 },
+            { keyword: '자소서 작성법', url: 'https://www.youtube.com/results?search_query=자소서+작성법', trend: 'up', change: 2 },
+            { keyword: '연봉협상', url: 'https://search.naver.com/search.naver?where=news&query=연봉협상', trend: 'up', change: 3 },
+            { keyword: '최저임금 2026', url: 'https://search.naver.com/search.naver?where=news&query=최저임금+2026', trend: 'new' },
+            { keyword: '면접 질문', url: 'https://www.youtube.com/results?search_query=면접+질문+답변', trend: 'down', change: 1 },
+            { keyword: '퇴직금 계산', url: 'https://www.google.com/search?q=퇴직금+계산', trend: 'up', change: 4 },
+            { keyword: 'AI 일자리', url: 'https://www.google.com/search?q=AI+일자리&tbm=nws', trend: 'up', change: 8 }
+        ];
+
+        const categoryLinks = [
+            { name: '대기업 채용', url: 'https://search.naver.com/search.naver?where=news&query=대기업+채용' },
+            { name: '공기업 NCS', url: 'https://search.naver.com/search.naver?where=news&query=공기업+NCS' },
+            { name: '자소서 예시', url: 'https://www.youtube.com/results?search_query=자소서+예시' },
+            { name: '면접 준비', url: 'https://www.youtube.com/results?search_query=면접+준비' },
+            { name: '연봉 정보', url: 'https://search.naver.com/search.naver?where=news&query=직종별+연봉' },
+            { name: '이직 팁', url: 'https://www.youtube.com/results?search_query=이직+팁' },
+            { name: '알바 구인', url: 'https://www.daangn.com/jobs' },
+            { name: '퇴사 후기', url: 'https://www.youtube.com/results?search_query=퇴사+후기' }
+        ];
+
+        // 상태
+        const pageLoadTime = new Date();
+        let currentFilter = 'all';
+        let currentSort = 'latest';
+        let bookmarks = JSON.parse(localStorage.getItem('jobNewsBookmarks') || '[]');
+
+        // 유틸
+        function getSourceCounts() {
+            const c = { all: issueData.length, naver: 0, google: 0, youtube: 0, daangn: 0 };
+            issueData.forEach(i => c[i.source]++);
+            return c;
+        }
+        function formatTimeAgo(m) { return m < 1 ? '방금 전' : m < 60 ? `${m}분 전` : m < 1440 ? `${Math.floor(m/60)}시간 전` : `${Math.floor(m/1440)}일 전`; }
+        function formatNumber(n) { return n >= 10000 ? (n/10000).toFixed(1)+'만' : n >= 1000 ? (n/1000).toFixed(1)+'천' : n.toLocaleString(); }
+        function formatMoney(n) { return n.toLocaleString() + '원'; }
+
+        // 모달
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        // 북마크
+        function toggleBookmark(id, e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const idx = bookmarks.indexOf(id);
+            if (idx > -1) bookmarks.splice(idx, 1);
+            else bookmarks.push(id);
+            localStorage.setItem('jobNewsBookmarks', JSON.stringify(bookmarks));
+            renderFeed();
+            updateBookmarkCount();
+        }
+        function updateBookmarkCount() {
+            document.getElementById('bookmarkCount').textContent = `(${bookmarks.length})`;
+        }
+        function renderBookmarkModal() {
+            const list = document.getElementById('bookmarkList');
+            if (bookmarks.length === 0) {
+                list.innerHTML = '<div class="bookmark-empty">북마크한 뉴스가 없습니다.</div>';
+                return;
+            }
+            list.innerHTML = bookmarks.map(id => {
+                const item = issueData.find(i => i.id === id);
+                if (!item) return '';
+                return `<div class="bookmark-item" onclick="window.open('${item.url}','_blank')">
+                    <span class="bookmark-item-title">${item.title}</span>
+                    <span class="bookmark-item-remove" onclick="removeBookmark(${id},event)">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </span>
+                </div>`;
+            }).join('');
+        }
+        function removeBookmark(id, e) {
+            e.stopPropagation();
+            bookmarks = bookmarks.filter(b => b !== id);
+            localStorage.setItem('jobNewsBookmarks', JSON.stringify(bookmarks));
+            renderFeed();
+            updateBookmarkCount();
+            renderBookmarkModal();
+        }
+
+        // 연봉 계산기
+        function calcAnnualSalary() {
+            const annual = parseFloat(document.getElementById('annualSalary').value);
+            if (!annual || annual <= 0) {
+                document.getElementById('monthlyGross').textContent = '-';
+                document.getElementById('monthlyNet').textContent = '-';
+                document.getElementById('hourlyRate').textContent = '-';
+                return;
+            }
+            const monthlyGross = Math.round(annual * 10000 / 12);
+            const taxRate = annual <= 1400 ? 0.06 : annual <= 5000 ? 0.15 : annual <= 8800 ? 0.24 : 0.35;
+            const monthlyNet = Math.round(monthlyGross * (1 - taxRate * 0.5));
+            const hourlyRate = Math.round(annual * 10000 / 12 / 209);
+            document.getElementById('monthlyGross').textContent = formatMoney(monthlyGross);
+            document.getElementById('monthlyNet').textContent = '약 ' + formatMoney(monthlyNet);
+            document.getElementById('hourlyRate').textContent = formatMoney(hourlyRate);
+        }
+        function calcHourlyWage() {
+            const hourly = parseFloat(document.getElementById('hourlyWage').value);
+            const hours = parseFloat(document.getElementById('weeklyHours').value) || 40;
+            if (!hourly || hourly <= 0) {
+                document.getElementById('hourlyMonthly').textContent = '-';
+                document.getElementById('hourlyWithBonus').textContent = '-';
+                document.getElementById('hourlyAnnual').textContent = '-';
+                return;
+            }
+            const monthlyBase = Math.round(hourly * hours * 4.345);
+            const weeklyBonus = hours >= 15 ? hourly * 8 : 0;
+            const monthlyWithBonus = Math.round(monthlyBase + weeklyBonus * 4.345);
+            const annual = Math.round(monthlyWithBonus * 12 / 10000);
+            document.getElementById('hourlyMonthly').textContent = formatMoney(monthlyBase);
+            document.getElementById('hourlyWithBonus').textContent = formatMoney(monthlyWithBonus);
+            document.getElementById('hourlyAnnual').textContent = annual + '만원';
+        }
+
+        // 글자수 카운터
+        function countChars() {
+            const text = document.getElementById('charTextarea').value;
+            const withSpace = text.length;
+            const withoutSpace = text.replace(/\s/g, '').length;
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            const lines = text ? text.split('\n').length : 0;
+            const limit = parseInt(document.getElementById('charLimit').value) || 500;
+            const percent = Math.min(100, Math.round(withoutSpace / limit * 100));
+            
+            document.getElementById('charWithSpace').textContent = withSpace;
+            document.getElementById('charWithoutSpace').textContent = withoutSpace;
+            document.getElementById('wordCount').textContent = words;
+            document.getElementById('lineCount').textContent = lines;
+            document.getElementById('charPercent').textContent = percent + '%';
+            
+            const bar = document.getElementById('charProgress');
+            bar.style.width = percent + '%';
+            bar.className = 'counter-progress-bar' + (percent >= 100 ? ' danger' : percent >= 80 ? ' warning' : '');
+            document.getElementById('charPercent').style.color = percent >= 100 ? '#ff3b3b' : percent >= 80 ? '#f5c518' : 'var(--naver-green)';
+        }
+
+        // 퇴직금 계산기
+        function calcSeverance() {
+            const start = document.getElementById('severanceStartDate').value;
+            const end = document.getElementById('severanceEndDate').value;
+            const avgSalary = parseFloat(document.getElementById('severanceAvgSalary').value);
+            if (!start || !end || !avgSalary) {
+                document.getElementById('severanceYears').textContent = '-';
+                document.getElementById('severanceAmount').textContent = '-';
+                return;
+            }
+            const days = Math.floor((new Date(end) - new Date(start)) / (1000*60*60*24));
+            const years = days / 365;
+            const severance = Math.round(avgSalary * 10000 * years);
+            document.getElementById('severanceYears').textContent = `${Math.floor(years)}년 ${Math.floor((years % 1) * 12)}개월`;
+            document.getElementById('severanceAmount').textContent = severance.toLocaleString() + '원';
+        }
+
+        // 실업급여 계산기
+        function calcUnemployment() {
+            const age = parseInt(document.getElementById('unemploymentAge').value);
+            const months = parseInt(document.getElementById('unemploymentMonths').value);
+            const dailyWage = parseInt(document.getElementById('unemploymentDailyWage').value);
+            if (!age || !months || !dailyWage) {
+                document.getElementById('unemploymentDaily').textContent = '-';
+                document.getElementById('unemploymentDays').textContent = '-';
+                document.getElementById('unemploymentTotal').textContent = '-';
+                return;
+            }
+            const daily = Math.min(Math.round(dailyWage * 0.6), 66000);
+            const dailyMin = 63104;
+            const finalDaily = Math.max(daily, dailyMin);
+            let days = 120;
+            if (months >= 12) days = 150;
+            if (months >= 36) days = 180;
+            if (months >= 60) days = 210;
+            if (months >= 120) days = 240;
+            if (age >= 50 && months >= 12) days = Math.max(days, 180);
+            if (age >= 50 && months >= 36) days = Math.max(days, 210);
+            if (age >= 50 && months >= 120) days = Math.max(days, 270);
+            document.getElementById('unemploymentDaily').textContent = finalDaily.toLocaleString() + '원';
+            document.getElementById('unemploymentDays').textContent = days + '일';
+            document.getElementById('unemploymentTotal').textContent = (finalDaily * days).toLocaleString() + '원';
+        }
+
+        // 연차 계산기
+        function calcAnnualLeave() {
+            const start = document.getElementById('annualLeaveStartDate').value;
+            if (!start) {
+                document.getElementById('annualLeaveYears').textContent = '-';
+                document.getElementById('annualLeaveTotal').textContent = '-';
+                document.getElementById('annualLeaveThisYear').textContent = '-';
+                return;
+            }
+            const today = new Date();
+            const startDate = new Date(start);
+            const months = Math.floor((today - startDate) / (1000*60*60*24*30));
+            const years = Math.floor(months / 12);
+            let total = 0, thisYear = 0;
+            if (months < 12) { total = Math.min(months, 11); thisYear = total; }
+            else {
+                total = 11;
+                for (let i = 1; i <= years; i++) { total += Math.min(15 + Math.floor((i-1)/2), 25); }
+                thisYear = Math.min(15 + Math.floor((years-1)/2), 25);
+            }
+            document.getElementById('annualLeaveYears').textContent = `${years}년 ${months % 12}개월`;
+            document.getElementById('annualLeaveTotal').textContent = total + '일';
+            document.getElementById('annualLeaveThisYear').textContent = thisYear + '일';
+        }
+
+        // D-Day
+        let ddays = JSON.parse(localStorage.getItem('jobHubDdays') || '[]');
+        function renderDdays() {
+            const list = document.getElementById('ddayList');
+            if (ddays.length === 0) { list.innerHTML = '<div class="bookmark-empty">등록된 D-Day가 없습니다.</div>'; return; }
+            const today = new Date(); today.setHours(0,0,0,0);
+            list.innerHTML = ddays.map((d,i) => {
+                const target = new Date(d.date); target.setHours(0,0,0,0);
+                const diff = Math.ceil((target - today) / (1000*60*60*24));
+                const countText = diff === 0 ? 'D-Day' : diff > 0 ? `D-${diff}` : `D+${Math.abs(diff)}`;
+                return `<div class="dday-item"><div class="dday-item-info"><div class="dday-item-title">${d.title}</div><div class="dday-item-date">${d.date}</div></div><div class="dday-item-count ${diff<0?'past':''}">${countText}</div><div class="dday-item-remove" onclick="removeDday(${i})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></div>`;
+            }).join('');
+        }
+        function addDday() {
+            const title = document.getElementById('ddayTitle').value.trim();
+            const date = document.getElementById('ddayDate').value;
+            if (!title || !date) return;
+            ddays.push({title, date}); ddays.sort((a,b) => new Date(a.date) - new Date(b.date));
+            localStorage.setItem('jobHubDdays', JSON.stringify(ddays));
+            document.getElementById('ddayTitle').value = ''; document.getElementById('ddayDate').value = '';
+            renderDdays();
+        }
+        function removeDday(i) { ddays.splice(i,1); localStorage.setItem('jobHubDdays', JSON.stringify(ddays)); renderDdays(); }
+
+        // 면접 질문
+        const interviewQuestions = {
+            '자기소개': ['1분 자기소개 해주세요.', '본인의 강점 3가지를 말씀해주세요.', '본인의 단점은 무엇인가요?', '살면서 가장 힘들었던 경험은?', '본인을 한 단어로 표현한다면?'],
+            '지원동기': ['왜 우리 회사에 지원하셨나요?', '이 직무를 선택한 이유는?', '입사 후 어떤 일을 하고 싶나요?', '우리 회사에 대해 아는 대로 말씀해주세요.', '경쟁사 대비 우리 회사의 장점은?'],
+            '경험': ['팀 프로젝트 경험을 말씀해주세요.', '갈등 상황을 해결한 경험이 있나요?', '리더십을 발휘한 경험이 있나요?', '실패 경험과 극복 과정을 말씀해주세요.', '가장 성취감을 느꼈던 경험은?'],
+            '역량': ['본인의 전문성을 어필해주세요.', '업무에 필요한 역량을 갖추고 있나요?', '새로운 기술을 배운 경험이 있나요?', '문제 해결 능력을 보여줄 사례가 있나요?', '스트레스 관리는 어떻게 하시나요?'],
+            '포부': ['5년 후 어떤 모습이고 싶나요?', '입사 후 목표가 있다면?', '어떤 사람으로 성장하고 싶나요?', '워라밸에 대해 어떻게 생각하시나요?', '마지막으로 하고 싶은 말씀이 있나요?']
+        };
+        let currentInterviewCat = '자기소개';
+        function renderInterviewCategories() {
+            document.getElementById('interviewCategory').innerHTML = Object.keys(interviewQuestions).map(c => `<button class="interview-cat-btn ${c===currentInterviewCat?'active':''}" onclick="setInterviewCat('${c}')">${c}</button>`).join('');
+        }
+        function setInterviewCat(c) { currentInterviewCat = c; renderInterviewCategories(); nextInterviewQuestion(); }
+        function nextInterviewQuestion() {
+            const qs = interviewQuestions[currentInterviewCat];
+            const q = qs[Math.floor(Math.random() * qs.length)];
+            document.getElementById('interviewQuestion').textContent = q;
+        }
+
+        // 다크모드
+        let isDarkMode = localStorage.getItem('jobHubDarkMode') === 'true';
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            localStorage.setItem('jobHubDarkMode', isDarkMode);
+            document.getElementById('darkModeBtn').classList.toggle('active', isDarkMode);
+        }
+        function initDarkMode() {
+            if (isDarkMode) { document.body.classList.add('dark-mode'); document.getElementById('darkModeBtn').classList.add('active'); }
+        }
+
+        // 렌더링
+        function renderStats() {
+            const c = getSourceCounts();
+            document.getElementById('statsRow').innerHTML = [
+                { label: '전체 이슈', value: c.all, desc: '실시간 수집' },
+                { label: '네이버', value: c.naver, desc: '뉴스 검색' },
+                { label: '유튜브', value: c.youtube, desc: '영상 검색' },
+                { label: '당근', value: c.daangn, desc: '알바 정보' }
+            ].map(s => `<div class="stat-card"><div class="stat-label">${s.label}</div><div class="stat-value">${s.value}</div><div class="stat-desc">${s.desc}</div></div>`).join('');
+        }
+
+        function renderFilterTabs() {
+            const c = getSourceCounts();
+            document.getElementById('filterTabs').innerHTML = [
+                { f: 'all', n: '전체', c: c.all },
+                { f: 'naver', n: '네이버', c: c.naver },
+                { f: 'google', n: '구글', c: c.google },
+                { f: 'youtube', n: '유튜브', c: c.youtube },
+                { f: 'daangn', n: '당근', c: c.daangn }
+            ].map(t => `<button class="filter-tab ${currentFilter===t.f?'active':''}" data-filter="${t.f}">${t.n}<span class="count">${t.c}</span></button>`).join('');
+            document.querySelectorAll('.filter-tab').forEach(b => b.addEventListener('click', () => { currentFilter = b.dataset.filter; renderFilterTabs(); renderFeed(); }));
+        }
+
+        function renderFeed() {
+            let data = currentFilter === 'all' ? [...issueData] : issueData.filter(i => i.source === currentFilter);
+            data.sort((a, b) => currentSort === 'latest' ? a.timestamp - b.timestamp : b.views - a.views);
+            document.getElementById('totalFeedCount').textContent = `(${data.length}건)`;
+            document.getElementById('feedContainer').innerHTML = data.map(item => {
+                const time = formatTimeAgo(item.timestamp + Math.floor((new Date() - pageLoadTime) / 60000));
+                const isBookmarked = bookmarks.includes(item.id);
+                return `<div class="issue-card ${isBookmarked ? 'bookmarked' : ''}" onclick="window.open('${item.url}','_blank')">
+                    <button class="bookmark-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark(${item.id},event)" title="${isBookmarked ? '북마크 제거' : '북마크 추가'}">
+                        <svg viewBox="0 0 24 24" fill="${isBookmarked ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                    </button>
+                    <div class="issue-meta">
+                        <span class="issue-source ${item.source}">${item.sourceName}</span>
+                        <span class="issue-time">${time}</span>
+                        ${item.isBreaking ? '<span class="issue-badge breaking">NEW</span>' : ''}
+                        ${item.isHot && !item.isBreaking ? '<span class="issue-badge hot">HOT</span>' : ''}
+                    </div>
+                    <h3 class="issue-title">${item.title}</h3>
+                    <p class="issue-summary">${item.summary}</p>
+                    <div class="issue-keywords">${item.keywords.map(k => `<span class="keyword">#${k}</span>`).join('')}</div>
+                </div>`;
+            }).join('');
+        }
+
+        function renderTrending() {
+            document.getElementById('trendingList').innerHTML = trendingKeywords.map((item, i) => `
+                <a href="${item.url}" target="_blank" class="trending-item">
+                    <span class="trending-rank">${i + 1}</span>
+                    <span class="trending-keyword">${item.keyword}</span>
+                    <span class="trending-trend ${item.trend}">${item.trend === 'new' ? 'NEW' : (item.trend === 'up' ? '+'+item.change : '-'+item.change)}</span>
+                </a>
+            `).join('');
+        }
+
+        function renderSourceStats() {
+            const c = getSourceCounts();
+            const max = Math.max(c.naver, c.google, c.youtube, c.daangn);
+            document.getElementById('sourceStats').innerHTML = [
+                { k: 'naver', n: '네이버', i: 'N' },
+                { k: 'youtube', n: '유튜브', i: 'Y' },
+                { k: 'google', n: '구글', i: 'G' },
+                { k: 'daangn', n: '당근', i: 'D' }
+            ].map(s => `<div class="source-item"><div class="source-icon ${s.k}">${s.i}</div><div class="source-info"><div class="source-name">${s.n}</div><div class="source-bar"><div class="source-bar-fill ${s.k}" style="width:${c[s.k]/max*100}%"></div></div></div><span class="source-count">${c[s.k]}</span></div>`).join('');
+        }
+
+        function renderCategoryTags() {
+            document.getElementById('categoryTags').innerHTML = categoryLinks.map(c => `<a href="${c.url}" target="_blank" class="category-tag">${c.name}</a>`).join('');
+        }
+
+        // 이벤트
+        function setupEvents() {
+            // 정렬
+            document.querySelectorAll('.feed-control-btn').forEach(b => b.addEventListener('click', function() {
+                document.querySelectorAll('.feed-control-btn').forEach(x => x.classList.remove('active'));
+                this.classList.add('active');
+                currentSort = this.dataset.sort;
+                renderFeed();
+            }));
+
+            // 검색
+            const searchInput = document.getElementById('searchInput');
+            const search = () => { const q = searchInput.value.trim(); if (q) window.open(`https://search.naver.com/search.naver?where=news&query=${encodeURIComponent(q)}`, '_blank'); };
+            document.getElementById('searchBtn').addEventListener('click', search);
+            searchInput.addEventListener('keypress', e => { if (e.key === 'Enter') search(); });
+
+            // 버튼
+            document.getElementById('scrollTopBtn').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            document.getElementById('refreshBtn').addEventListener('click', () => location.reload());
+
+            // 도구 모달
+            document.getElementById('salaryCalcBtn').addEventListener('click', () => openModal('salaryModal'));
+            document.getElementById('charCountBtn').addEventListener('click', () => openModal('charCountModal'));
+            document.getElementById('bookmarkViewBtn').addEventListener('click', () => { renderBookmarkModal(); openModal('bookmarkModal'); });
+            document.getElementById('severanceCalcBtn').addEventListener('click', () => openModal('severanceModal'));
+            document.getElementById('unemploymentCalcBtn').addEventListener('click', () => openModal('unemploymentModal'));
+            document.getElementById('annualLeaveCalcBtn').addEventListener('click', () => openModal('annualLeaveModal'));
+            document.getElementById('ddayCalcBtn').addEventListener('click', () => { renderDdays(); openModal('ddayModal'); });
+            document.getElementById('interviewBtn').addEventListener('click', () => { renderInterviewCategories(); openModal('interviewModal'); });
+            document.getElementById('darkModeBtn').addEventListener('click', toggleDarkMode);
+
+            // 퇴직금/실업급여/연차 계산
+            ['severanceStartDate','severanceEndDate','severanceAvgSalary'].forEach(id => document.getElementById(id).addEventListener('input', calcSeverance));
+            ['unemploymentAge','unemploymentMonths','unemploymentDailyWage'].forEach(id => document.getElementById(id).addEventListener('input', calcUnemployment));
+            document.getElementById('annualLeaveStartDate').addEventListener('input', calcAnnualLeave);
+
+            // 모달 외부 클릭
+            document.querySelectorAll('.modal-overlay').forEach(m => m.addEventListener('click', e => { if (e.target === m) closeModal(m.id); }));
+
+            // 연봉 계산기
+            document.getElementById('annualSalary').addEventListener('input', calcAnnualSalary);
+            document.getElementById('hourlyWage').addEventListener('input', calcHourlyWage);
+            document.getElementById('weeklyHours').addEventListener('input', calcHourlyWage);
+            document.querySelectorAll('.calc-tab').forEach(t => t.addEventListener('click', function() {
+                document.querySelectorAll('.calc-tab').forEach(x => x.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById('annualCalc').style.display = this.dataset.calc === 'annual' ? 'block' : 'none';
+                document.getElementById('hourlyCalc').style.display = this.dataset.calc === 'hourly' ? 'block' : 'none';
+            }));
+
+            // 글자수 카운터
+            document.getElementById('charTextarea').addEventListener('input', countChars);
+            document.getElementById('charLimit').addEventListener('input', countChars);
+        }
+
+        function updateTime() {
+            document.getElementById('currentTime').textContent = new Date().toLocaleString('ko-KR', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false }).replace(/\. /g, '.').replace(/\.$/g, '');
+        }
+
+        // 초기화
+        function init() {
+            updateTime();
+            setInterval(updateTime, 1000);
+            renderStats();
+            renderFilterTabs();
+            renderFeed();
+            renderTrending();
+            renderSourceStats();
+            renderCategoryTags();
+            updateBookmarkCount();
+            initDarkMode();
+            setupEvents();
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
