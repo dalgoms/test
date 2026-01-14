@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구글이 2년간 180개 팀을 분석해 발견한 최고의 팀의 비밀 | 리더스 인사이트</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --toss-blue: #0064FF;
+            --toss-blue-light: #4D94FF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --white: #FFFFFF;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--white);
+            color: var(--gray-900);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--gray-900);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--toss-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .logo-text { font-weight: 700; font-size: 18px; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 15px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gray-900);
+            background: var(--gray-50);
+        }
+
+        .subscribe-btn {
+            background: var(--gray-900);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--toss-blue);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        .article-header {
+            padding: 140px 24px 60px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-category {
+            display: inline-block;
+            color: var(--toss-blue);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .article-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .article-subtitle {
+            font-size: 18px;
+            color: var(--gray-500);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-100);
+            color: var(--gray-500);
+            font-size: 14px;
+            flex-wrap: wrap;
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #191F28;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .author-info { display: flex; flex-direction: column; }
+        .author-name { color: var(--gray-900); font-weight: 600; }
+
+        .article-content {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .article-content p {
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: 28px;
+            color: var(--gray-700);
+        }
+
+        .article-content h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 56px 0 24px;
+            letter-spacing: -0.5px;
+            color: var(--gray-900);
+        }
+
+        .article-content h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 40px 0 16px;
+            color: var(--gray-900);
+        }
+
+        .article-content strong {
+            color: var(--gray-900);
+            font-weight: 600;
+        }
+
+        .article-content blockquote {
+            border-left: 3px solid var(--toss-blue);
+            padding-left: 24px;
+            margin: 32px 0;
+            font-size: 18px;
+            color: var(--gray-600);
+            font-style: italic;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 24px 0;
+            padding-left: 24px;
+        }
+
+        .article-content li {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            color: var(--gray-700);
+        }
+
+        .highlight-box {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin: 32px 0;
+        }
+
+        .highlight-box h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--toss-blue);
+        }
+
+        .highlight-box p { margin-bottom: 0; }
+
+        .data-card {
+            background: #191F28;
+            border-radius: 16px;
+            padding: 32px;
+            margin: 32px 0;
+            color: white;
+        }
+
+        .data-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--toss-blue-light);
+            margin-bottom: 8px;
+        }
+
+        .data-card .big-number {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .data-card p {
+            color: rgba(255,255,255,0.8);
+            font-size: 15px;
+            margin: 0;
+        }
+
+        .five-factors {
+            display: grid;
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .factor-item {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 24px;
+            border-left: 4px solid var(--toss-blue);
+        }
+
+        .factor-item h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+
+        .factor-item p {
+            font-size: 15px;
+            color: var(--gray-600);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .factor-item.highlight {
+            background: #F3F4F6;
+            border-left-color: var(--toss-blue);
+        }
+
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .tag {
+            padding: 8px 16px;
+            background: var(--gray-100);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .tag:hover {
+            background: var(--gray-200);
+            color: var(--gray-900);
+        }
+
+        .related-section {
+            background: var(--gray-50);
+            padding: 80px 24px;
+        }
+
+        .related-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .related-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .related-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .related-card-category {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--toss-blue);
+            margin-bottom: 12px;
+        }
+
+        .related-card-title {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .related-card-meta {
+            font-size: 13px;
+            color: var(--gray-400);
+        }
+
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--gray-100);
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .copyright {
+            color: var(--gray-400);
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .related-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <header>
+        <nav>
+            <div class="nav-links">
+                <a href="leader-insights.html">전체</a>
+                <a href="leader-insights-leadership.html">리더십</a>
+                <a href="leader-insights-culture.html">조직문화</a>
+                <a href="leader-insights-growth.html">성장전략</a>
+                <a href="leader-insights-communication.html">커뮤니케이션</a>
+            </div>
+        </nav>
+    </header>
+
+    <article>
+        <div class="article-header">
+            <span class="article-category">팀빌딩</span>
+            <h1 class="article-title">구글이 2년간 180개 팀을 분석해 발견한 최고의 팀의 비밀</h1>
+            <p class="article-subtitle">
+                프로젝트 아리스토텔레스가 밝혀낸 고성과 팀의 5가지 특성. 
+                그 중 가장 중요한 것은 '심리적 안전감'이었습니다.
+            </p>
+            <div class="article-meta">
+                <div class="author">
+                    <div class="author-avatar">박</div>
+                    <div class="author-info">
+                        <span class="author-name">박지영</span>
+                        <span>시니어 에디터</span>
+                    </div>
+                </div>
+                <span>2026년 1월 12일</span>
+                <span>7분 읽기</span>
+                <span>3,842명이 읽음</span>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <p>
+                2012년, 구글은 사내에서 중요한 질문을 던졌습니다. 
+                "왜 어떤 팀은 성공하고, 어떤 팀은 실패할까?" 
+                이 질문에 답하기 위해 시작된 것이 바로 <strong>프로젝트 아리스토텔레스</strong>입니다.
+            </p>
+
+            <p>
+                구글의 인사 분석팀(People Analytics)은 2년간 180개 이상의 팀을 분석했습니다. 
+                수백 번의 인터뷰, 수천 개의 데이터 포인트를 수집했죠. 
+                그들이 찾고자 한 것은 '완벽한 팀의 공식'이었습니다.
+            </p>
+
+            <div class="data-card">
+                <h4>프로젝트 아리스토텔레스</h4>
+                <div class="big-number">180+</div>
+                <p>2년간 분석한 구글 내부 팀의 수</p>
+            </div>
+
+            <h2>예상을 뒤엎은 결과</h2>
+
+            <p>
+                연구팀은 처음에 팀 구성에 주목했습니다. 
+                "최고의 인재들이 모이면 최고의 팀이 되지 않을까?" 
+                하지만 결과는 예상과 달랐습니다.
+            </p>
+
+            <p>
+                <strong>누가 팀에 있느냐는 중요하지 않았습니다.</strong> 
+                개인의 능력, 성격, 배경의 조합은 팀 성과와 상관관계가 거의 없었습니다. 
+                중요한 것은 '누가'가 아니라 '어떻게' 함께 일하느냐였습니다.
+            </p>
+
+            <blockquote>
+                "최고의 팀은 최고의 인재들로 구성되지 않는다. 
+                최고의 팀은 구성원들이 서로를 어떻게 대하느냐에 의해 결정된다."
+                <br>— 줄리아 로조프스키, 프로젝트 아리스토텔레스 리드 연구원
+            </blockquote>
+
+            <h2>고성과 팀의 5가지 특성</h2>
+
+            <p>
+                연구팀은 고성과 팀에서 공통적으로 나타나는 5가지 역동성을 발견했습니다. 
+                중요도 순서대로 나열하면 다음과 같습니다.
+            </p>
+
+            <div class="five-factors">
+                <div class="factor-item highlight">
+                    <h4>1. 심리적 안전감 (Psychological Safety)</h4>
+                    <p>팀원들이 위험을 감수해도 안전하다고 느끼는가? 실수해도 비난받지 않을 것이라는 확신이 있는가?</p>
+                </div>
+                <div class="factor-item">
+                    <h4>2. 신뢰성 (Dependability)</h4>
+                    <p>팀원들이 맡은 일을 제시간에, 높은 품질로 완수하는가?</p>
+                </div>
+                <div class="factor-item">
+                    <h4>3. 구조와 명확성 (Structure & Clarity)</h4>
+                    <p>팀의 목표, 역할, 실행 계획이 명확한가?</p>
+                </div>
+                <div class="factor-item">
+                    <h4>4. 의미 (Meaning)</h4>
+                    <p>팀원들이 자신의 일에서 개인적인 의미를 찾는가?</p>
+                </div>
+                <div class="factor-item">
+                    <h4>5. 영향력 (Impact)</h4>
+                    <p>팀원들이 자신의 일이 중요하다고, 변화를 만들고 있다고 느끼는가?</p>
+                </div>
+            </div>
+
+            <h2>심리적 안전감이 가장 중요한 이유</h2>
+
+            <p>
+                5가지 특성 중 단연 가장 중요한 것은 <strong>심리적 안전감</strong>이었습니다. 
+                심리적 안전감이 높은 팀은 나머지 4가지 특성도 자연스럽게 높아지는 경향을 보였습니다.
+            </p>
+
+            <p>
+                심리적 안전감의 개념을 처음 정립한 하버드 경영대학원의 에이미 에드먼드슨 교수는 
+                이를 다음과 같이 정의합니다.
+            </p>
+
+            <blockquote>
+                "심리적 안전감이란 팀 내에서 대인 관계의 위험을 감수해도 안전하다는 
+                공유된 믿음이다. 질문하거나, 우려를 제기하거나, 실수를 인정해도 
+                처벌받거나 창피당하지 않을 것이라는 확신."
+                <br>— 에이미 에드먼드슨, 하버드 경영대학원 교수
+            </blockquote>
+
+            <p>
+                심리적 안전감이 낮은 팀에서는 무슨 일이 일어날까요?
+            </p>
+
+            <ul>
+                <li>팀원들이 질문하기를 두려워합니다. "바보 같은 질문"으로 보일까봐.</li>
+                <li>실수를 숨깁니다. 실수가 발견되면 비난받을까봐.</li>
+                <li>새로운 아이디어를 제안하지 않습니다. 기각되면 창피할까봐.</li>
+                <li>문제를 지적하지 않습니다. "부정적인 사람"으로 낙인찍힐까봐.</li>
+            </ul>
+
+            <p>
+                결과적으로 팀은 학습하지 못하고, 혁신하지 못하며, 같은 실수를 반복하게 됩니다.
+            </p>
+
+            <h2>심리적 안전감을 만드는 리더의 행동</h2>
+
+            <p>
+                구글의 연구와 에드먼드슨 교수의 후속 연구를 종합하면, 
+                심리적 안전감을 구축하기 위해 리더가 취할 수 있는 구체적인 행동들이 있습니다.
+            </p>
+
+            <h3>1. 프레이밍을 바꾸세요</h3>
+            <p>
+                업무를 "실행"이 아닌 "학습"의 관점으로 프레이밍하세요. 
+                "이번 프로젝트에서 우리가 배워야 할 것은 무엇일까요?"라고 물으면 
+                실패가 곧 학습의 기회가 됩니다.
+            </p>
+
+            <h3>2. 자신의 실수를 먼저 인정하세요</h3>
+            <p>
+                리더가 "저도 이 부분에서 실수했었어요"라고 먼저 말하면, 
+                팀원들도 실수를 인정하기 훨씬 쉬워집니다. 
+                완벽한 척하지 마세요. 취약함을 보여주세요.
+            </p>
+
+            <div class="highlight-box">
+                <h4>실전 예시</h4>
+                <p>
+                    "저도 지난주 고객 미팅에서 준비가 부족했어요. 
+                    여러분 중에도 비슷한 경험이 있다면, 어떻게 개선할 수 있을지 
+                    함께 이야기해봅시다."
+                </p>
+            </div>
+
+            <h3>3. 질문을 환영하세요</h3>
+            <p>
+                "좋은 질문이에요"라는 반응은 강력합니다. 
+                누군가 질문했을 때 긍정적으로 반응하면, 다른 팀원들도 질문하기 쉬워집니다. 
+                반대로 질문에 짜증을 내거나 무시하면, 팀 전체가 입을 다물게 됩니다.
+            </p>
+
+            <h3>4. 실패를 학습으로 전환하세요</h3>
+            <p>
+                실패가 발생했을 때 "누구 책임이야?"가 아니라 
+                "무엇을 배울 수 있을까?"를 먼저 물으세요. 
+                비난 대신 개선에 집중하는 문화를 만드세요.
+            </p>
+
+            <h3>5. 발언권을 균등하게 배분하세요</h3>
+            <p>
+                연구에 따르면, 고성과 팀의 공통점 중 하나는 
+                '대화적 전환(conversational turn-taking)'이 균등하다는 것입니다. 
+                특정 사람만 말하는 팀이 아니라, 모든 구성원이 비슷한 양의 발언권을 가진 팀이 
+                더 좋은 성과를 냅니다.
+            </p>
+
+            <h2>측정하기: 당신의 팀은 안전한가?</h2>
+
+            <p>
+                에드먼드슨 교수는 심리적 안전감을 측정하기 위한 7가지 질문을 개발했습니다. 
+                팀원들에게 다음 문항에 동의하는 정도를 1-7점으로 응답하게 하세요.
+            </p>
+
+            <ol>
+                <li>이 팀에서 실수를 하면 그것이 나에게 불리하게 작용한다. (역채점)</li>
+                <li>이 팀의 구성원들은 어려운 문제와 이슈를 제기할 수 있다.</li>
+                <li>이 팀의 구성원들은 때때로 다른 사람이 다르다는 이유로 배척한다. (역채점)</li>
+                <li>이 팀에서 위험을 감수해도 안전하다.</li>
+                <li>이 팀의 다른 구성원들에게 도움을 요청하기 어렵다. (역채점)</li>
+                <li>이 팀의 누구도 내 노력을 의도적으로 깎아내리지 않는다.</li>
+                <li>이 팀에서 일하면서 나의 독특한 기술과 재능이 가치 있게 여겨지고 활용된다.</li>
+            </ol>
+
+            <p>
+                평균 점수가 5점 미만이라면 심리적 안전감 구축에 집중할 필요가 있습니다.
+            </p>
+
+            <h2>마무리: 안전한 팀이 강한 팀이다</h2>
+
+            <p>
+                프로젝트 아리스토텔레스의 가장 중요한 교훈은 이것입니다. 
+                <strong>최고의 팀은 최고의 인재들이 모인 팀이 아니라, 
+                서로를 안전하게 느끼는 팀입니다.</strong>
+            </p>
+
+            <p>
+                심리적 안전감은 '좋으면 좋고'의 문제가 아닙니다. 
+                팀의 학습, 혁신, 성과를 결정하는 핵심 요소입니다. 
+                그리고 다행히도, 이것은 리더의 의도적인 행동으로 만들어갈 수 있습니다.
+            </p>
+
+            <p>
+                오늘 팀 미팅에서 이렇게 시작해보세요. 
+                "최근에 제가 한 실수가 있는데요..."
+            </p>
+
+            <div class="article-tags">
+                <a href="#" class="tag">팀빌딩</a>
+                <a href="#" class="tag">심리적 안전감</a>
+                <a href="#" class="tag">구글</a>
+                <a href="#" class="tag">조직문화</a>
+                <a href="#" class="tag">프로젝트 아리스토텔레스</a>
+            </div>
+        </div>
+    </article>
+
+    <section class="related-section">
+        <div class="related-content">
+            <h2 class="related-title">함께 읽으면 좋은 글</h2>
+            <div class="related-grid">
+                <a href="leader-insights-article-1.html" class="related-card">
+                    <span class="related-card-category">리더십</span>
+                    <h3 class="related-card-title">1on1 미팅, 질문 하나로 팀원의 잠재력을 이끌어내는 법</h3>
+                    <span class="related-card-meta">8분 읽기</span>
+                </a>
+                <a href="leader-insights-article-5.html" class="related-card">
+                    <span class="related-card-category">조직문화</span>
+                    <h3 class="related-card-title">GitLab이 1,500명 전원 원격근무로 문화를 만드는 방법</h3>
+                    <span class="related-card-meta">11분 읽기</span>
+                </a>
+                <a href="leader-insights-article-3.html" class="related-card">
+                    <span class="related-card-category">커뮤니케이션</span>
+                    <h3 class="related-card-title">SBI 모델: 상대를 성장시키는 피드백 프레임워크</h3>
+                    <span class="related-card-meta">6분 읽기</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <span class="copyright">© 2026 SEYOUNG LEE. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
+

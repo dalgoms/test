@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리더를 위한 인사이트 | Leader's Insight</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --toss-blue: #0064FF;
+            --toss-blue-light: #4D94FF;
+            --toss-blue-dark: #0052D4;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --white: #FFFFFF;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--white);
+            color: var(--gray-900);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-100);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            box-shadow: var(--shadow);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--gray-900);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--toss-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 15px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gray-900);
+            background: var(--gray-50);
+        }
+
+        .nav-links a.active {
+            color: var(--toss-blue);
+            background: rgba(0, 100, 255, 0.06);
+        }
+
+        .subscribe-btn {
+            background: var(--gray-900);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .subscribe-btn:hover {
+            background: var(--gray-700);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 24px 80px;
+            text-align: center;
+            background: var(--white);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 100, 255, 0.08);
+            color: var(--toss-blue);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease 0.1s both;
+        }
+
+        .hero h1 span {
+            background: var(--toss-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--gray-500);
+            max-width: 520px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            animation: fadeInUp 0.6s ease 0.3s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -0.5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+
+        /* Category Filter */
+        .category-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 40px;
+        }
+
+        .category-filter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            border-radius: 100px;
+            border: 1px solid var(--gray-200);
+            background: var(--white);
+            color: var(--gray-600);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .category-btn:hover {
+            border-color: var(--gray-300);
+            color: var(--gray-900);
+        }
+
+        .category-btn.active {
+            background: var(--gray-900);
+            border-color: var(--gray-900);
+            color: white;
+        }
+
+        /* Featured Article */
+        .featured-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .see-all {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--gray-500);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .see-all:hover {
+            color: var(--toss-blue);
+        }
+
+        .featured-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            background: var(--gray-50);
+            border-radius: 24px;
+            padding: 48px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .featured-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-category {
+            display: inline-block;
+            color: var(--toss-blue);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .featured-title {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.4;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+
+        .featured-desc {
+            color: var(--gray-500);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--gray-400);
+            font-size: 14px;
+        }
+
+        .featured-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .featured-image {
+            aspect-ratio: 4/3;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #191F28;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .featured-image::before {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: var(--toss-blue);
+            border-radius: 50%;
+            opacity: 0.15;
+            top: 30%;
+            left: 20%;
+        }
+
+        .featured-image::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: var(--toss-blue-light);
+            border-radius: 50%;
+            opacity: 0.1;
+            bottom: 25%;
+            right: 25%;
+        }
+
+        .featured-image-text {
+            color: rgba(255,255,255,0.9);
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            z-index: 1;
+            padding: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        /* Articles Grid */
+        .articles-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid var(--gray-100);
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+
+        .article-thumbnail {
+            aspect-ratio: 16/10;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .article-thumbnail-text {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+            padding: 24px;
+            line-height: 1.6;
+            z-index: 1;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.3px;
+        }
+
+        .article-body {
+            padding: 24px;
+        }
+
+        .article-category {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--toss-blue);
+            margin-bottom: 12px;
+        }
+
+        .article-title {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.5;
+            letter-spacing: -0.3px;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .article-excerpt {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--gray-400);
+            font-size: 13px;
+        }
+
+        .article-meta-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: var(--gray-900);
+            padding: 80px 24px;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .newsletter-content h2 {
+            color: var(--white);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+
+        .newsletter-content p {
+            color: var(--gray-400);
+            font-size: 16px;
+            margin-bottom: 32px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: none;
+            background: var(--gray-800);
+            color: var(--white);
+            font-size: 15px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .newsletter-form input::placeholder {
+            color: var(--gray-500);
+        }
+
+        .newsletter-form input:focus {
+            background: var(--gray-700);
+        }
+
+        .newsletter-form button {
+            padding: 16px 28px;
+            border-radius: 12px;
+            border: none;
+            background: var(--toss-blue);
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--toss-blue-light);
+            transform: translateY(-2px);
+        }
+
+        /* Topics Section */
+        .topics-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .topic-card {
+            background: var(--gray-50);
+            border-radius: 16px;
+            padding: 28px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .topic-card:hover {
+            background: var(--white);
+            border-color: var(--gray-200);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .topic-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .topic-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .topic-count {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+
+        /* Popular Section */
+        .popular-section {
+            background: var(--gray-50);
+            padding: 80px 24px;
+        }
+
+        .popular-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .popular-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .popular-card {
+            display: flex;
+            gap: 24px;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .popular-card:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .popular-rank {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--gray-200);
+            line-height: 1;
+            min-width: 40px;
+        }
+
+        .popular-info {
+            flex: 1;
+        }
+
+        .popular-category {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--toss-blue);
+            margin-bottom: 8px;
+        }
+
+        .popular-title {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .popular-meta {
+            font-size: 13px;
+            color: var(--gray-400);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--gray-100);
+            padding: 60px 24px 40px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .footer-brand p {
+            color: var(--gray-500);
+            font-size: 14px;
+            margin-top: 12px;
+            max-width: 300px;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 80px;
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--gray-900);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--gray-900);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 40px;
+        }
+
+        .copyright {
+            color: var(--gray-400);
+            font-size: 13px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-500);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .social-links a:hover {
+            background: var(--gray-200);
+            color: var(--gray-700);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .articles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .topics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .featured-card {
+                grid-template-columns: 1fr;
+                padding: 32px;
+            }
+            
+            .featured-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                height: 56px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 120px 24px 60px;
+            }
+            
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 24px;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .popular-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .footer-top {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .footer-links {
+                flex-wrap: wrap;
+                gap: 40px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <div class="nav-links">
+                <a href="leader-insights.html" class="active">전체</a>
+                <a href="leader-insights-leadership.html">리더십</a>
+                <a href="leader-insights-culture.html">조직문화</a>
+                <a href="leader-insights-growth.html">성장전략</a>
+                <a href="leader-insights-communication.html">커뮤니케이션</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>
+            성장하는 리더를 위한<br>
+            <span>실전 인사이트</span>
+        </h1>
+        <p>
+            검증된 리더십 이론과 현장 경험을 바탕으로<br>
+            당신의 리더십을 한 단계 성장시킬 인사이트를 제공합니다.
+        </p>
+        </section>
+
+    <!-- Featured Article -->
+    <section class="featured-section">
+        <div class="section-header">
+            <h2 class="section-title">에디터 추천</h2>
+        </div>
+        <a href="leader-insights-article-1.html" class="featured-card">
+            <div class="featured-content">
+                <span class="featured-category">리더십</span>
+                <h3 class="featured-title">1on1 미팅, 질문 하나로 팀원의 잠재력을 이끌어내는 법</h3>
+                <p class="featured-desc">
+                    효과적인 1on1 미팅의 핵심은 '묻는 것'이 아니라 '듣는 것'입니다. 
+                    하버드 비즈니스 리뷰가 검증한 5가지 질문 프레임워크와 
+                    실제 적용 사례를 통해 팀원 성장을 이끄는 방법을 알아봅니다.
+                </p>
+                <div class="featured-meta">
+                    <span>8분 읽기</span>
+                    <span>4,128명이 읽음</span>
+                    <span>2026.01.13</span>
+                </div>
+            </div>
+            <div class="featured-image">
+                <div class="featured-image-text">
+                    "좋은 질문은<br>답보다 강력하다"
+                </div>
+            </div>
+        </a>
+    </section>
+
+    <!-- Articles Grid -->
+    <section class="articles-section">
+        <div class="section-header">
+            <h2 class="section-title">최신 아티클</h2>
+            <a href="#" class="see-all">
+                모두 보기
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </a>
+        </div>
+        <div class="articles-grid">
+            <!-- Article 1 -->
+            <a href="leader-insights-article-2.html" class="article-card">
+                <div class="article-thumbnail" style="background: #0064FF;">
+                    <div class="article-thumbnail-text">
+                        심리적 안전감이<br>성과를 만든다
+                    </div>
+                </div>
+                <div class="article-body">
+                    <span class="article-category">팀빌딩</span>
+                    <h3 class="article-title">구글이 2년간 180개 팀을 분석해 발견한 최고의 팀의 비밀</h3>
+                    <p class="article-excerpt">프로젝트 아리스토텔레스가 밝혀낸 고성과 팀의 5가지 특성. 그 중 가장 중요한 것은 심리적 안전감이었습니다.</p>
+                    <div class="article-meta">
+                        <div class="article-meta-left">
+                            <span>2026.01.12</span>
+                            <span>7분</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Article 2 -->
+            <a href="leader-insights-article-3.html" class="article-card">
+                <div class="article-thumbnail" style="background: #191F28;">
+                    <div class="article-thumbnail-text">
+                        피드백의 기술
+                    </div>
+                </div>
+                <div class="article-body">
+                    <span class="article-category">커뮤니케이션</span>
+                    <h3 class="article-title">SBI 모델: 상대를 성장시키는 피드백 프레임워크</h3>
+                    <p class="article-excerpt">Situation-Behavior-Impact 모델을 활용해 감정적 방어 없이 행동 변화를 이끌어내는 피드백 방법론.</p>
+                    <div class="article-meta">
+                        <div class="article-meta-left">
+                            <span>2026.01.11</span>
+                            <span>6분</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Article 3 -->
+            <a href="leader-insights-article-4.html" class="article-card">
+                <div class="article-thumbnail" style="background: #4B5563;">
+                    <div class="article-thumbnail-text">
+                        OKR vs KPI<br>무엇이 맞을까
+                    </div>
+                </div>
+                <div class="article-body">
+                    <span class="article-category">성장전략</span>
+                    <h3 class="article-title">OKR과 KPI, 조직 상황에 따른 목표 관리 프레임워크 선택 가이드</h3>
+                    <p class="article-excerpt">인텔에서 시작해 구글이 성장시킨 OKR. 언제 OKR이, 언제 KPI가 적합한지 판단하는 기준을 제시합니다.</p>
+                    <div class="article-meta">
+                        <div class="article-meta-left">
+                            <span>2026.01.10</span>
+                            <span>9분</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Article 4 -->
+            <a href="leader-insights-article-5.html" class="article-card">
+                <div class="article-thumbnail" style="background: #0064FF;">
+                    <div class="article-thumbnail-text">
+                        원격근무 시대의<br>조직문화
+                    </div>
+                </div>
+                <div class="article-body">
+                    <span class="article-category">조직문화</span>
+                    <h3 class="article-title">GitLab이 1,500명 전원 원격근무로 문화를 만드는 방법</h3>
+                    <p class="article-excerpt">세계 최대 올리모트 기업 GitLab의 핸드북 공개. 비동기 커뮤니케이션과 문서화 문화의 실제.</p>
+                    <div class="article-meta">
+                        <div class="article-meta-left">
+                            <span>2026.01.09</span>
+                            <span>11분</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Article 5 -->
+            <a href="leader-insights-article-6.html" class="article-card">
+                <div class="article-thumbnail" style="background: #191F28;">
+                    <div class="article-thumbnail-text">
+                        불확실성 속<br>의사결정
+                    </div>
+                </div>
+                <div class="article-body">
+                    <span class="article-category">의사결정</span>
+                    <h3 class="article-title">아마존의 의사결정 프레임워크: Two-Way Door 원칙</h3>
+                    <p class="article-excerpt">되돌릴 수 있는 결정과 없는 결정을 구분하라. 제프 베조스가 아마존에 심은 의사결정 문화.</p>
+                    <div class="article-meta">
+                        <div class="article-meta-left">
+                            <span>2026.01.08</span>
+                            <span>7분</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Article 6 -->
+            <a href="leader-insights-article-7.html" class="article-card">
+                <div class="article-thumbnail" style="background: #4B5563;">
+                    <div class="article-thumbnail-text">
+                        번아웃 예방은<br>리더의 역할
+                    </div>
+                </div>
+                <div class="article-body">
+                    <span class="article-category">리더십</span>
+                    <h3 class="article-title">팀원 번아웃의 6가지 신호와 리더가 해야 할 5가지 행동</h3>
+                    <p class="article-excerpt">WHO가 공식 질병으로 인정한 번아웃. 조기 발견과 예방을 위해 리더가 알아야 할 것들.</p>
+                    <div class="article-meta">
+                        <div class="article-meta-left">
+                            <span>2026.01.07</span>
+                            <span>6분</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Topics Section -->
+    <section class="topics-section">
+        <div class="section-header">
+            <h2 class="section-title">주제별 탐색</h2>
+        </div>
+        <div class="topics-grid">
+            <a href="leader-insights-leadership.html" class="topic-card">
+                <div class="topic-icon" style="background: #0064FF;">L</div>
+                <h3 class="topic-title">리더십</h3>
+                <p class="topic-count">32개의 아티클</p>
+            </a>
+            <a href="leader-insights-culture.html" class="topic-card">
+                <div class="topic-icon" style="background: #3182F6;">C</div>
+                <h3 class="topic-title">조직문화</h3>
+                <p class="topic-count">28개의 아티클</p>
+            </a>
+            <a href="leader-insights-growth.html" class="topic-card">
+                <div class="topic-icon" style="background: #4B5563;">G</div>
+                <h3 class="topic-title">성장전략</h3>
+                <p class="topic-count">24개의 아티클</p>
+            </a>
+            <a href="#" class="topic-card">
+                <div class="topic-icon" style="background: #191F28;">T</div>
+                <h3 class="topic-title">팀빌딩</h3>
+                <p class="topic-count">19개의 아티클</p>
+            </a>
+            <a href="#" class="topic-card">
+                <div class="topic-icon" style="background: #6B7280;">D</div>
+                <h3 class="topic-title">의사결정</h3>
+                <p class="topic-count">15개의 아티클</p>
+            </a>
+            <a href="leader-insights-communication.html" class="topic-card">
+                <div class="topic-icon" style="background: #0064FF;">M</div>
+                <h3 class="topic-title">커뮤니케이션</h3>
+                <p class="topic-count">21개의 아티클</p>
+            </a>
+            <a href="#" class="topic-card">
+                <div class="topic-icon" style="background: #374151;">F</div>
+                <h3 class="topic-title">피드백</h3>
+                <p class="topic-count">12개의 아티클</p>
+            </a>
+            <a href="#" class="topic-card">
+                <div class="topic-icon" style="background: #3182F6;">P</div>
+                <h3 class="topic-title">생산성</h3>
+                <p class="topic-count">16개의 아티클</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-content">
+            <h2>매주 월요일 아침,<br>리더를 위한 인사이트</h2>
+            <p>검증된 리더십 이론과 실전 노하우를 이메일로 받아보세요.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('구독 신청이 완료되었습니다. 감사합니다!');">
+                <input type="email" placeholder="이메일 주소를 입력하세요" required>
+                <button type="submit">구독하기</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Popular Section -->
+    <section class="popular-section">
+        <div class="popular-content">
+            <div class="section-header">
+                <h2 class="section-title">가장 많이 읽은 글</h2>
+            </div>
+            <div class="popular-grid">
+                <a href="leader-insights-article-8.html" class="popular-card">
+                    <span class="popular-rank">01</span>
+                    <div class="popular-info">
+                        <span class="popular-category">리더십</span>
+                        <h3 class="popular-title">신임 리더의 첫 90일: 마이클 왓킨스의 전환 전략</h3>
+                        <span class="popular-meta">12,458명 읽음 · 12분</span>
+                    </div>
+                </a>
+                <a href="leader-insights-article-9.html" class="popular-card">
+                    <span class="popular-rank">02</span>
+                    <div class="popular-info">
+                        <span class="popular-category">팀빌딩</span>
+                        <h3 class="popular-title">Netflix 채용 철학: 최고의 동료만 있는 팀을 만드는 법</h3>
+                        <span class="popular-meta">9,234명 읽음 · 10분</span>
+                    </div>
+                </a>
+                <a href="leader-insights-article-10.html" class="popular-card">
+                    <span class="popular-rank">03</span>
+                    <div class="popular-info">
+                        <span class="popular-category">커뮤니케이션</span>
+                        <h3 class="popular-title">어려운 대화의 기술: 하버드 협상 프로젝트의 교훈</h3>
+                        <span class="popular-meta">8,156명 읽음 · 8분</span>
+                    </div>
+                </a>
+                <a href="leader-insights-article-11.html" class="popular-card">
+                    <span class="popular-rank">04</span>
+                    <div class="popular-info">
+                        <span class="popular-category">성장전략</span>
+                        <h3 class="popular-title">실패에서 배우는 조직: 에드먼드슨의 '실패로부터 배우기'</h3>
+                        <span class="popular-meta">7,892명 읽음 · 9분</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="leader-insights.html" class="logo">
+                        <div class="logo-icon">L</div>
+                        <span class="logo-text">리더스 인사이트</span>
+                    </a>
+                    <p>성장하는 리더를 위한 인사이트 플랫폼. 검증된 이론과 실전 경험을 바탕으로 리더십 성장을 돕습니다.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>콘텐츠</h4>
+                        <ul>
+                            <li><a href="#">전체 아티클</a></li>
+                            <li><a href="#">케이스 스터디</a></li>
+                            <li><a href="#">북 리뷰</a></li>
+                            <li><a href="#">인터뷰</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>소개</h4>
+                        <ul>
+                            <li><a href="#">팀 소개</a></li>
+                            <li><a href="#">에디터 가이드</a></li>
+                            <li><a href="#">기고 안내</a></li>
+                            <li><a href="#">제휴 문의</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>지원</h4>
+                        <ul>
+                            <li><a href="#">자주 묻는 질문</a></li>
+                            <li><a href="#">이용약관</a></li>
+                            <li><a href="#">개인정보처리방침</a></li>
+                            <li><a href="#">문의하기</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="copyright">© 2026 SEYOUNG LEE. All rights reserved.</span>
+                <div class="social-links">
+                    <a href="#">LI</a>
+                    <a href="#">X</a>
+                    <a href="#">YT</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Category filter
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.article-card, .topic-card, .popular-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = `all 0.5s ease ${index * 0.05}s`;
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

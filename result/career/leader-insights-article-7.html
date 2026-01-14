@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀원 번아웃의 6가지 신호와 리더가 해야 할 5가지 행동 | 리더스 인사이트</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --toss-blue: #0064FF;
+            --toss-blue-light: #4D94FF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            --white: #FFFFFF;
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--white);
+            color: var(--gray-900);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--gray-900);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--toss-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .logo-text { font-weight: 700; font-size: 18px; }
+        .nav-links { display: flex; align-items: center; gap: 8px; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 15px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover { color: var(--gray-900); background: var(--gray-50); }
+
+        .subscribe-btn {
+            background: var(--gray-900);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--toss-blue);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        .article-header {
+            padding: 140px 24px 60px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-category {
+            display: inline-block;
+            color: var(--toss-blue);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .article-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .article-subtitle {
+            font-size: 18px;
+            color: var(--gray-500);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-100);
+            color: var(--gray-500);
+            font-size: 14px;
+            flex-wrap: wrap;
+        }
+
+        .author { display: flex; align-items: center; gap: 12px; }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #dc2626;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .author-info { display: flex; flex-direction: column; }
+        .author-name { color: var(--gray-900); font-weight: 600; }
+
+        .article-content {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .article-content p {
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: 28px;
+            color: var(--gray-700);
+        }
+
+        .article-content h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 56px 0 24px;
+            letter-spacing: -0.5px;
+            color: var(--gray-900);
+        }
+
+        .article-content h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 40px 0 16px;
+            color: var(--gray-900);
+        }
+
+        .article-content strong { color: var(--gray-900); font-weight: 600; }
+
+        .article-content blockquote {
+            border-left: 3px solid var(--toss-blue);
+            padding-left: 24px;
+            margin: 32px 0;
+            font-size: 18px;
+            color: var(--gray-600);
+            font-style: italic;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 24px 0;
+            padding-left: 24px;
+        }
+
+        .article-content li {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            color: var(--gray-700);
+        }
+
+        .highlight-box {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin: 32px 0;
+        }
+
+        .highlight-box h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--toss-blue);
+        }
+
+        .highlight-box p { margin-bottom: 0; }
+
+        .signal-card {
+            background: #dc2626;
+            border-radius: 16px;
+            padding: 28px;
+            margin: 24px 0;
+            color: white;
+        }
+
+        .signal-card .number {
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .signal-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .signal-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .action-list {
+            background: var(--gray-900);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 32px 0;
+            color: white;
+        }
+
+        .action-list h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--toss-blue-light);
+            margin-bottom: 20px;
+        }
+
+        .action-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .action-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .action-number {
+            width: 28px;
+            height: 28px;
+            background: var(--toss-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .action-content h5 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .action-content p {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .warning-box {
+            background: #FEF2F2;
+            border-left: 4px solid #dc2626;
+            border-radius: 0 12px 12px 0;
+            padding: 24px 28px;
+            margin: 32px 0;
+        }
+
+        .warning-box h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #dc2626;
+            margin-bottom: 12px;
+        }
+
+        .warning-box p {
+            color: #7F1D1D;
+            margin: 0;
+        }
+
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .tag {
+            padding: 8px 16px;
+            background: var(--gray-100);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .tag:hover { background: var(--gray-200); color: var(--gray-900); }
+
+        .related-section {
+            background: var(--gray-50);
+            padding: 80px 24px;
+        }
+
+        .related-content { max-width: 1200px; margin: 0 auto; }
+
+        .related-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .related-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .related-card-category {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--toss-blue);
+            margin-bottom: 12px;
+        }
+
+        .related-card-title {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .related-card-meta { font-size: 13px; color: var(--gray-400); }
+
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--gray-100);
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .copyright { color: var(--gray-400); font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .related-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <header>
+        <nav>
+            <div class="nav-links">
+                <a href="leader-insights.html">전체</a>
+                <a href="leader-insights-leadership.html">리더십</a>
+                <a href="leader-insights-culture.html">조직문화</a>
+                <a href="leader-insights-growth.html">성장전략</a>
+                <a href="leader-insights-communication.html">커뮤니케이션</a>
+            </div>
+        </nav>
+    </header>
+
+    <article>
+        <div class="article-header">
+            <span class="article-category">리더십</span>
+            <h1 class="article-title">팀원 번아웃의 6가지 신호와 리더가 해야 할 5가지 행동</h1>
+            <p class="article-subtitle">
+                WHO가 공식 질병으로 인정한 번아웃. 
+                조기 발견과 예방을 위해 리더가 알아야 할 것들.
+            </p>
+            <div class="article-meta">
+                <div class="author">
+                    <div class="author-avatar">윤</div>
+                    <div class="author-info">
+                        <span class="author-name">윤지현</span>
+                        <span>에디터</span>
+                    </div>
+                </div>
+                <span>2026년 1월 7일</span>
+                <span>6분 읽기</span>
+                <span>2,341명이 읽음</span>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <p>
+                2019년, 세계보건기구(WHO)는 번아웃을 
+                <strong>공식 질병</strong>으로 분류했습니다. 
+                "직장에서의 만성적 스트레스가 적절히 관리되지 못해 
+                발생하는 증후군"으로 정의됩니다.
+            </p>
+
+            <p>
+                Gallup 조사에 따르면, 직장인의 <strong>76%</strong>가 
+                번아웃을 경험했다고 응답했습니다. 
+                번아웃은 개인의 문제가 아닙니다. 조직의 문제이며, 
+                <strong>리더의 책임</strong> 영역입니다.
+            </p>
+
+            <blockquote>
+                "번아웃은 개인의 나약함이 아니라 직장 환경의 문제다. 
+                리더가 만드는 환경이 번아웃을 유발하기도, 예방하기도 한다."
+                <br>— 크리스티나 매슬락, 번아웃 연구의 선구자
+            </blockquote>
+
+            <h2>번아웃의 6가지 신호</h2>
+
+            <p>
+                팀원이 번아웃에 빠지기 전에 조기 발견하는 것이 중요합니다. 
+                다음 6가지 신호를 주의 깊게 관찰하세요.
+            </p>
+
+            <div class="signal-card">
+                <div class="number">신호 1</div>
+                <h4>에너지 고갈</h4>
+                <p>평소와 달리 지쳐 보이고, 집중력이 떨어집니다. "피곤하다"는 말을 자주 합니다. 월요일 아침이 특히 힘들어 보입니다.</p>
+            </div>
+
+            <div class="signal-card">
+                <div class="number">신호 2</div>
+                <h4>냉소와 거리두기</h4>
+                <p>업무에 대한 열정이 사라집니다. 팀 활동에 참여하지 않고, 동료들과 거리를 둡니다. "어차피 뭘 해도..."라는 태도가 보입니다.</p>
+            </div>
+
+            <div class="signal-card">
+                <div class="number">신호 3</div>
+                <h4>성과 저하</h4>
+                <p>전에는 잘하던 일에서 실수가 늘어납니다. 마감을 놓치거나, 품질이 떨어집니다. 스스로도 자신감을 잃은 것 같습니다.</p>
+            </div>
+
+            <div class="signal-card">
+                <div class="number">신호 4</div>
+                <h4>감정 기복</h4>
+                <p>작은 일에도 크게 반응합니다. 평소와 달리 예민하거나, 반대로 무감각해 보입니다.</p>
+            </div>
+
+            <div class="signal-card">
+                <div class="number">신호 5</div>
+                <h4>신체 증상</h4>
+                <p>두통, 불면, 소화 문제 등을 호소합니다. 병가가 늘어나거나, 아픈 티를 내지 않으면서 컨디션이 안 좋아 보입니다.</p>
+            </div>
+
+            <div class="signal-card">
+                <div class="number">신호 6</div>
+                <h4>고립</h4>
+                <p>팀 미팅에서 말이 줄어듭니다. 점심을 혼자 먹거나, 일찍 퇴근합니다. 예전처럼 농담을 주고받지 않습니다.</p>
+            </div>
+
+            <div class="warning-box">
+                <h4>주의: 이미 늦은 신호</h4>
+                <p>
+                    퇴사 의사를 밝히거나, 장기 휴가를 요청하거나, 
+                    심각한 건강 문제가 발생했다면 이미 심각한 단계입니다. 
+                    위의 6가지 신호 단계에서 조기 개입하는 것이 중요합니다.
+                </p>
+            </div>
+
+            <h2>번아웃의 6가지 원인</h2>
+
+            <p>
+                매슬락 교수의 연구에 따르면, 번아웃에는 6가지 주요 원인이 있습니다. 
+                리더로서 이 원인들을 이해하고 관리해야 합니다.
+            </p>
+
+            <ol>
+                <li><strong>과도한 업무량:</strong> 시간 내에 처리할 수 없는 양의 일</li>
+                <li><strong>통제력 부재:</strong> 업무 방식이나 일정에 대한 자율성이 없음</li>
+                <li><strong>보상 부족:</strong> 금전적, 심리적 인정이 없음</li>
+                <li><strong>공동체 붕괴:</strong> 동료와의 유대감, 소속감 부재</li>
+                <li><strong>공정성 결여:</strong> 불공정한 대우나 의사결정</li>
+                <li><strong>가치 충돌:</strong> 개인 가치와 조직 가치의 불일치</li>
+            </ol>
+
+            <h2>리더가 해야 할 5가지 행동</h2>
+
+            <div class="action-list">
+                <h4>번아웃 예방을 위한 리더의 액션</h4>
+                
+                <div class="action-item">
+                    <div class="action-number">1</div>
+                    <div class="action-content">
+                        <h5>업무량을 현실적으로 관리하세요</h5>
+                        <p>팀원당 업무량을 정기적으로 점검하세요. "더 열심히"가 아닌 "더 현명하게"가 답입니다. 우선순위를 명확히 하고, 불필요한 일은 제거하세요.</p>
+                    </div>
+                </div>
+
+                <div class="action-item">
+                    <div class="action-number">2</div>
+                    <div class="action-content">
+                        <h5>자율성을 부여하세요</h5>
+                        <p>업무의 '무엇'은 정해주되, '어떻게'는 팀원에게 맡기세요. 마이크로매니징은 번아웃의 지름길입니다.</p>
+                    </div>
+                </div>
+
+                <div class="action-item">
+                    <div class="action-number">3</div>
+                    <div class="action-content">
+                        <h5>인정하고 감사를 표현하세요</h5>
+                        <p>좋은 성과에 구체적으로 피드백하세요. "잘했어요"보다 "이 부분이 특히 좋았어요"가 효과적입니다.</p>
+                    </div>
+                </div>
+
+                <div class="action-item">
+                    <div class="action-number">4</div>
+                    <div class="action-content">
+                        <h5>정기적으로 체크인하세요</h5>
+                        <p>1on1에서 업무만 이야기하지 마세요. "요즘 에너지 레벨이 어때요?", "일과 삶의 균형은 괜찮아요?"를 물어보세요.</p>
+                    </div>
+                </div>
+
+                <div class="action-item">
+                    <div class="action-number">5</div>
+                    <div class="action-content">
+                        <h5>모범을 보이세요</h5>
+                        <p>리더가 야근하고 휴가를 안 가면, 팀원도 그래야 한다고 느낍니다. 건강한 경계를 지키는 모습을 보여주세요.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>이미 번아웃 상태인 팀원에게</h2>
+
+            <p>
+                이미 번아웃 상태인 팀원이 있다면, 다음과 같이 접근하세요.
+            </p>
+
+            <h3>1. 먼저 들어주세요</h3>
+            <p>
+                "요즘 많이 힘들어 보여요. 이야기해줄 수 있어요?"로 시작하세요. 
+                조언이나 해결책을 제시하기 전에 충분히 들어주는 것이 먼저입니다.
+            </p>
+
+            <h3>2. 판단하지 마세요</h3>
+            <p>
+                "그 정도는 다들 하잖아요"라는 말은 금물입니다. 
+                같은 상황도 개인마다 다르게 경험합니다. 
+                그 사람의 경험을 있는 그대로 인정해주세요.
+            </p>
+
+            <h3>3. 구체적인 지원을 제안하세요</h3>
+            <p>
+                "뭐 도와줄 거 있어요?"는 너무 추상적입니다. 
+                "이번 프로젝트 마감을 2주 연장할 수 있어요" 
+                "이 업무는 다른 사람에게 넘길게요"처럼 
+                구체적인 지원을 제안하세요.
+            </p>
+
+            <div class="highlight-box">
+                <h4>전문가 도움 연결하기</h4>
+                <p>
+                    심각한 경우, 회사의 EAP(직원지원프로그램)나 
+                    전문 상담 서비스를 연결해주세요. 
+                    리더가 모든 것을 해결할 수 있는 것은 아닙니다. 
+                    전문가의 도움이 필요한 때를 인식하는 것도 리더의 역할입니다.
+                </p>
+            </div>
+
+            <h2>마무리: 예방이 치료보다 낫다</h2>
+
+            <p>
+                번아웃은 발생한 후 회복하는 데 몇 달에서 몇 년이 걸릴 수 있습니다. 
+                조직에게도, 개인에게도 엄청난 비용입니다.
+            </p>
+
+            <p>
+                리더로서 당신이 만드는 환경이 
+                팀원의 번아웃을 유발할 수도, 예방할 수도 있습니다. 
+                오늘 팀원들의 상태를 한 번 살펴보세요. 
+                누군가 위의 신호를 보이고 있지는 않은가요?
+            </p>
+
+            <blockquote>
+                "직원을 잘 돌보면, 직원이 비즈니스를 돌본다."
+                <br>— 리차드 브랜슨
+            </blockquote>
+
+            <div class="article-tags">
+                <a href="#" class="tag">번아웃</a>
+                <a href="#" class="tag">리더십</a>
+                <a href="#" class="tag">웰빙</a>
+                <a href="#" class="tag">팀 관리</a>
+                <a href="#" class="tag">직원 케어</a>
+            </div>
+        </div>
+    </article>
+
+    <section class="related-section">
+        <div class="related-content">
+            <h2 class="related-title">함께 읽으면 좋은 글</h2>
+            <div class="related-grid">
+                <a href="leader-insights-article-1.html" class="related-card">
+                    <span class="related-card-category">리더십</span>
+                    <h3 class="related-card-title">1on1 미팅, 질문 하나로 팀원의 잠재력을 이끌어내는 법</h3>
+                    <span class="related-card-meta">8분 읽기</span>
+                </a>
+                <a href="leader-insights-article-2.html" class="related-card">
+                    <span class="related-card-category">팀빌딩</span>
+                    <h3 class="related-card-title">구글이 2년간 180개 팀을 분석해 발견한 최고의 팀의 비밀</h3>
+                    <span class="related-card-meta">7분 읽기</span>
+                </a>
+                <a href="leader-insights-article-3.html" class="related-card">
+                    <span class="related-card-category">커뮤니케이션</span>
+                    <h3 class="related-card-title">SBI 모델: 상대를 성장시키는 피드백 프레임워크</h3>
+                    <span class="related-card-meta">6분 읽기</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <span class="copyright">© 2026 SEYOUNG LEE. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
+

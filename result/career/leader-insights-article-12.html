@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix 컬처 덱: 규칙 없음이 최고의 규칙인 이유 | 리더스 인사이트</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --toss-blue: #0064FF;
+            --toss-blue-light: #4D94FF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            --white: #FFFFFF;
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--white);
+            color: var(--gray-900);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--gray-900);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--toss-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .logo-text { font-weight: 700; font-size: 18px; }
+        .nav-links { display: flex; align-items: center; gap: 8px; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 15px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover { color: var(--gray-900); background: var(--gray-50); }
+
+        .subscribe-btn {
+            background: var(--gray-900);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--toss-blue);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        .article-header {
+            padding: 140px 24px 60px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-category {
+            display: inline-block;
+            color: var(--toss-blue);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .article-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .article-subtitle {
+            font-size: 18px;
+            color: var(--gray-500);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-100);
+            color: var(--gray-500);
+            font-size: 14px;
+            flex-wrap: wrap;
+        }
+
+        .author { display: flex; align-items: center; gap: 12px; }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e11d48;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .author-info { display: flex; flex-direction: column; }
+        .author-name { color: var(--gray-900); font-weight: 600; }
+
+        .article-content {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .article-content p {
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: 28px;
+            color: var(--gray-700);
+        }
+
+        .article-content h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 56px 0 24px;
+            letter-spacing: -0.5px;
+            color: var(--gray-900);
+        }
+
+        .article-content h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 40px 0 16px;
+            color: var(--gray-900);
+        }
+
+        .article-content strong { color: var(--gray-900); font-weight: 600; }
+
+        .article-content blockquote {
+            border-left: 3px solid #e11d48;
+            padding-left: 24px;
+            margin: 32px 0;
+            font-size: 18px;
+            color: var(--gray-600);
+            font-style: italic;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 24px 0;
+            padding-left: 24px;
+        }
+
+        .article-content li {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            color: var(--gray-700);
+        }
+
+        .highlight-box {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin: 32px 0;
+        }
+
+        .highlight-box h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #e11d48;
+        }
+
+        .highlight-box p { margin-bottom: 0; }
+
+        .netflix-card {
+            background: #e11d48;
+            border-radius: 16px;
+            padding: 28px;
+            margin: 20px 0;
+            color: white;
+        }
+
+        .netflix-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .netflix-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .tag {
+            padding: 8px 16px;
+            background: var(--gray-100);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--gray-600);
+            text-decoration: none;
+        }
+
+        .related-section {
+            background: var(--gray-50);
+            padding: 80px 24px;
+        }
+
+        .related-content { max-width: 1200px; margin: 0 auto; }
+
+        .related-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .related-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .related-card-category {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--toss-blue);
+            margin-bottom: 12px;
+        }
+
+        .related-card-title {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .related-card-meta { font-size: 13px; color: var(--gray-400); }
+
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--gray-100);
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .copyright { color: var(--gray-400); font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .related-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <header>
+        <nav>
+            <div class="nav-links">
+                <a href="leader-insights.html">전체</a>
+                <a href="leader-insights-leadership.html">리더십</a>
+                <a href="leader-insights-culture.html">조직문화</a>
+                <a href="leader-insights-growth.html">성장전략</a>
+                <a href="leader-insights-communication.html">커뮤니케이션</a>
+            </div>
+        </nav>
+    </header>
+
+    <article>
+        <div class="article-header">
+            <span class="article-category">조직문화</span>
+            <h1 class="article-title">Netflix 컬처 덱: 규칙 없음이 최고의 규칙인 이유</h1>
+            <p class="article-subtitle">
+                1억 번 이상 조회된 Netflix의 컬처 덱. 
+                '자유와 책임' 문화가 어떻게 혁신을 이끌어내는지 분석합니다.
+            </p>
+            <div class="article-meta">
+                <div class="author">
+                    <div class="author-avatar">최</div>
+                    <div class="author-info">
+                        <span class="author-name">최서연</span>
+                        <span>에디터</span>
+                    </div>
+                </div>
+                <span>2026년 1월 5일</span>
+                <span>10분 읽기</span>
+                <span>5,234명이 읽음</span>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <p>
+                2009년, Netflix는 124장짜리 슬라이드를 공개했습니다. 
+                제목은 "Netflix Culture: Freedom & Responsibility". 
+                이 슬라이드는 실리콘밸리에서 "역사상 가장 중요한 문서"로 불리며 
+                1억 번 이상 조회되었습니다.
+            </p>
+
+            <p>
+                Netflix의 문화는 단순합니다: <strong>최고의 인재에게 최대의 자유를 준다.</strong> 
+                하지만 그 자유에는 책임이 따릅니다.
+            </p>
+
+            <blockquote>
+                "우리는 규칙이 아닌 맥락을 제공합니다. 
+                뛰어난 직원은 무엇을 해야 할지 알려주지 않아도 압니다."
+                <br>— 리드 헤이스팅스, Netflix CEO
+            </blockquote>
+
+            <h2>Netflix 문화의 5가지 핵심 원칙</h2>
+
+            <div class="netflix-card">
+                <h4>1. Freedom & Responsibility (자유와 책임)</h4>
+                <p>휴가 정책이 없습니다. 경비 정책도 없습니다. 대신 "Netflix의 최선의 이익을 위해 행동하라"는 한 문장만 있습니다.</p>
+            </div>
+
+            <div class="netflix-card">
+                <h4>2. Context, not Control (통제가 아닌 맥락)</h4>
+                <p>직원에게 무엇을 해야 하는지 지시하지 않습니다. 대신 왜 이것이 중요한지, 목표가 무엇인지 충분한 맥락을 제공합니다.</p>
+            </div>
+
+            <div class="netflix-card">
+                <h4>3. Highly Aligned, Loosely Coupled (강한 정렬, 느슨한 결합)</h4>
+                <p>전략과 목표에는 강하게 정렬하되, 실행 방법은 각 팀이 자율적으로 결정합니다.</p>
+            </div>
+
+            <div class="netflix-card">
+                <h4>4. Pay Top of Market (시장 최고 수준의 보상)</h4>
+                <p>A급 인재에게 A급 보상을 합니다. 성과에 따른 연봉이 아닌, 시장가치에 따른 연봉을 제공합니다.</p>
+            </div>
+
+            <div class="netflix-card">
+                <h4>5. Keeper Test (키퍼 테스트)</h4>
+                <p>"이 직원이 다른 회사로 가겠다고 하면, 붙잡기 위해 싸울 것인가?" 아니라면, 그 자리에 더 적합한 사람을 찾습니다.</p>
+            </div>
+
+            <h2>규칙 없는 문화가 작동하는 이유</h2>
+
+            <h3>1. 인재 밀도(Talent Density)</h3>
+            <p>
+                Netflix 문화의 전제조건은 <strong>"뛰어난 인재들로만 구성된 팀"</strong>입니다. 
+                평범한 직원이 섞이면 자유는 혼란이 됩니다. 
+                뛰어난 직원만 있을 때, 자유는 혁신이 됩니다.
+            </p>
+
+            <h3>2. 투명한 정보 공유</h3>
+            <p>
+                Netflix는 재무 정보, 전략 계획, 실패 사례까지 모든 정보를 직원에게 공개합니다. 
+                정보가 있어야 올바른 판단을 내릴 수 있기 때문입니다.
+            </p>
+
+            <h3>3. 솔직한 피드백 문화</h3>
+            <p>
+                "4A 피드백" 원칙: Aim to assist(도움을 목적으로), 
+                Actionable(실행 가능하게), Appreciate(감사하는 마음으로), 
+                Accept or Discard(받아들이거나 버리거나).
+            </p>
+
+            <div class="highlight-box">
+                <h4>Netflix에서 해고되는 이유</h4>
+                <p>
+                    Netflix에서 해고는 실패에 대한 처벌이 아닙니다. 
+                    "적절한 성과(adequate performance)"로는 충분하지 않을 뿐입니다. 
+                    Netflix는 "스타만 원한다"고 명시합니다. 
+                    이것이 높은 연봉의 대가입니다.
+                </p>
+            </div>
+
+            <h2>Netflix 문화의 한계와 비판</h2>
+
+            <p>
+                모든 문화에는 트레이드오프가 있습니다. Netflix 문화도 예외가 아닙니다.
+            </p>
+
+            <ul>
+                <li><strong>높은 스트레스:</strong> 언제든 해고될 수 있다는 불안감</li>
+                <li><strong>팀워크보다 개인주의:</strong> "스타" 문화의 부작용</li>
+                <li><strong>장기 인재 육성의 어려움:</strong> 키우기보다 뽑는 문화</li>
+                <li><strong>모든 조직에 적용 불가:</strong> 충분한 자본과 브랜드 파워 필요</li>
+            </ul>
+
+            <h2>우리 조직에 적용하려면</h2>
+
+            <p>
+                Netflix 문화를 그대로 복사할 필요는 없습니다. 
+                하지만 그 원리는 배울 수 있습니다.
+            </p>
+
+            <ol>
+                <li><strong>규칙 줄이기:</strong> 불필요한 규칙과 절차를 점검하세요. 신뢰를 전제로 한 규칙인가요?</li>
+                <li><strong>맥락 제공하기:</strong> "이거 해"가 아니라 "우리가 달성하려는 것은 이것이고, 당신의 역할은 이것"이라고 설명하세요.</li>
+                <li><strong>솔직하게 피드백하기:</strong> 문제를 뒤에서 말하지 말고, 직접 말하는 문화를 만드세요.</li>
+            </ol>
+
+            <blockquote>
+                "프로세스는 복잡성의 적이 아니다. 
+                좋은 사람이 복잡성의 적이다."
+                <br>— 리드 헤이스팅스
+            </blockquote>
+
+            <div class="article-tags">
+                <a href="#" class="tag">Netflix</a>
+                <a href="#" class="tag">조직문화</a>
+                <a href="#" class="tag">자유와 책임</a>
+                <a href="#" class="tag">인재 밀도</a>
+            </div>
+        </div>
+    </article>
+
+    <section class="related-section">
+        <div class="related-content">
+            <h2 class="related-title">함께 읽으면 좋은 글</h2>
+            <div class="related-grid">
+                <a href="leader-insights-article-13.html" class="related-card">
+                    <span class="related-card-category">조직문화</span>
+                    <h3 class="related-card-title">Buffer의 급진적 투명성: 모든 것을 공개하면 무슨 일이 생기는가</h3>
+                    <span class="related-card-meta">8분 읽기</span>
+                </a>
+                <a href="leader-insights-article-2.html" class="related-card">
+                    <span class="related-card-category">팀빌딩</span>
+                    <h3 class="related-card-title">구글이 2년간 180개 팀을 분석해 발견한 최고의 팀의 비밀</h3>
+                    <span class="related-card-meta">7분 읽기</span>
+                </a>
+                <a href="leader-insights-article-14.html" class="related-card">
+                    <span class="related-card-category">조직문화</span>
+                    <h3 class="related-card-title">신규 입사자 온보딩: 첫 30일이 3년을 결정한다</h3>
+                    <span class="related-card-meta">7분 읽기</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <span class="copyright">© 2026 SEYOUNG LEE. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
+

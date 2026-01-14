@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>효과적인 회고 운영법: KPT, 4Ls, Start-Stop-Continue | 리더스 인사이트</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --toss-blue: #0064FF; --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-400: #9CA3AF; --gray-500: #6B7280; --gray-600: #4B5563; --gray-700: #374151; --gray-900: #111827; --white: #FFFFFF; --accent: #e84393; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans KR', sans-serif; background: var(--white); color: var(--gray-900); line-height: 1.8; }
+        header { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid var(--gray-100); }
+        nav { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: center; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--gray-900); }
+        .logo-icon { width: 32px; height: 32px; background: var(--toss-blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 14px; }
+        .logo-text { font-weight: 700; font-size: 18px; }
+        .nav-links { display: flex; gap: 8px; }
+        .nav-links a { text-decoration: none; color: var(--gray-600); font-size: 15px; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+        .nav-links a:hover { color: var(--gray-900); background: var(--gray-50); }
+        .subscribe-btn { background: var(--gray-900); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; }
+        .progress-bar { position: fixed; top: 64px; left: 0; width: 0%; height: 3px; background: var(--toss-blue); z-index: 1001; }
+        .article-header { padding: 140px 24px 60px; max-width: 800px; margin: 0 auto; }
+        .article-category { color: var(--toss-blue); font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+        .article-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; line-height: 1.3; margin-bottom: 24px; }
+        .article-subtitle { font-size: 18px; color: var(--gray-500); line-height: 1.7; margin-bottom: 32px; }
+        .article-meta { display: flex; gap: 24px; padding-top: 24px; border-top: 1px solid var(--gray-100); color: var(--gray-500); font-size: 14px; flex-wrap: wrap; align-items: center; }
+        .author { display: flex; align-items: center; gap: 12px; }
+        .author-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; }
+        .author-info { display: flex; flex-direction: column; }
+        .author-name { color: var(--gray-900); font-weight: 600; }
+        .article-content { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
+        .article-content p { font-size: 17px; line-height: 1.9; margin-bottom: 28px; color: var(--gray-700); }
+        .article-content h2 { font-size: 24px; font-weight: 700; margin: 56px 0 24px; color: var(--gray-900); }
+        .article-content h3 { font-size: 20px; font-weight: 700; margin: 40px 0 16px; color: var(--gray-900); }
+        .article-content strong { color: var(--gray-900); font-weight: 600; }
+        .article-content blockquote { border-left: 3px solid var(--accent); padding-left: 24px; margin: 32px 0; font-size: 18px; color: var(--gray-600); font-style: italic; }
+        .article-content ul, .article-content ol { margin: 24px 0; padding-left: 24px; }
+        .article-content li { font-size: 17px; line-height: 1.8; margin-bottom: 12px; color: var(--gray-700); }
+        .highlight-box { background: var(--gray-50); border-radius: 12px; padding: 28px 32px; margin: 32px 0; }
+        .highlight-box h4 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--accent); }
+        .framework-card { background: var(--accent); border-radius: 16px; padding: 28px; margin: 20px 0; color: white; }
+        .framework-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+        .framework-card p { font-size: 15px; line-height: 1.6; opacity: 0.9; margin: 0; }
+        .article-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--gray-100); }
+        .tag { padding: 8px 16px; background: var(--gray-100); border-radius: 100px; font-size: 13px; color: var(--gray-600); text-decoration: none; }
+        .related-section { background: var(--gray-50); padding: 80px 24px; }
+        .related-content { max-width: 1200px; margin: 0 auto; }
+        .related-title { font-size: 24px; font-weight: 700; margin-bottom: 32px; text-align: center; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .related-card { background: var(--white); border-radius: 16px; padding: 28px; text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        .related-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .related-card-category { font-size: 12px; font-weight: 600; color: var(--toss-blue); margin-bottom: 12px; }
+        .related-card-title { font-size: 16px; font-weight: 700; line-height: 1.5; margin-bottom: 12px; }
+        .related-card-meta { font-size: 13px; color: var(--gray-400); }
+        footer { background: var(--white); border-top: 1px solid var(--gray-100); padding: 40px 24px; text-align: center; }
+        .copyright { color: var(--gray-400); font-size: 13px; }
+        @media (max-width: 768px) { .nav-links { display: none; } .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <header>
+        <nav>
+            <div class="nav-links">
+                <a href="leader-insights.html">전체</a>
+                <a href="leader-insights-leadership.html">리더십</a>
+                <a href="leader-insights-culture.html">조직문화</a>
+                <a href="leader-insights-growth.html">성장전략</a>
+                <a href="leader-insights-communication.html">커뮤니케이션</a>
+            </div>
+        </nav>
+    </header>
+
+    <article>
+        <div class="article-header">
+            <span class="article-category">성장전략</span>
+            <h1 class="article-title">효과적인 회고 운영법: KPT, 4Ls, Start-Stop-Continue</h1>
+            <p class="article-subtitle">팀 회고가 형식적인 시간 낭비가 되지 않으려면. 다양한 회고 프레임워크와 퍼실리테이션 팁.</p>
+            <div class="article-meta">
+                <div class="author">
+                    <div class="author-avatar">박</div>
+                    <div class="author-info"><span class="author-name">박소영</span><span>에디터</span></div>
+                </div>
+                <span>2025년 12월 27일</span>
+                <span>8분 읽기</span>
+                <span>4,123명이 읽음</span>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <p>"회고요? 매번 같은 얘기만 하고 끝나요." "바쁜데 회고할 시간이 어디 있어요."</p>
+
+            <p>많은 팀이 회고를 포기합니다. 형식적으로 하거나, 아예 안 합니다. 하지만 제대로 된 회고는 <strong>팀을 성장시키는 가장 강력한 도구</strong>입니다.</p>
+
+            <blockquote>"같은 실수를 두 번 하는 것은 실수가 아니라 선택이다."</blockquote>
+
+            <h2>회고가 실패하는 이유</h2>
+
+            <ul>
+                <li><strong>목적 불명확:</strong> "그냥 하는 것" vs "개선하기 위해 하는 것"</li>
+                <li><strong>심리적 안전 부재:</strong> 진짜 문제를 말하면 손해 볼 것 같음</li>
+                <li><strong>액션 아이템 미실행:</strong> 회고에서 나온 개선점이 실제로 적용 안 됨</li>
+                <li><strong>같은 포맷의 반복:</strong> 매번 똑같아서 지루함</li>
+            </ul>
+
+            <h2>회고 프레임워크 5가지</h2>
+
+            <div class="framework-card">
+                <h4>1. KPT (Keep, Problem, Try)</h4>
+                <p>가장 기본적인 프레임워크. Keep(유지할 것), Problem(문제점), Try(시도할 것)을 구분해서 정리합니다. 간단하고 직관적이어서 처음 회고하는 팀에 추천합니다.</p>
+            </div>
+
+            <div class="framework-card">
+                <h4>2. 4Ls (Liked, Learned, Lacked, Longed for)</h4>
+                <p>Liked(좋았던 것), Learned(배운 것), Lacked(부족했던 것), Longed for(바라는 것). 감정과 학습에 초점을 맞춘 프레임워크입니다.</p>
+            </div>
+
+            <div class="framework-card">
+                <h4>3. Start-Stop-Continue</h4>
+                <p>Start(새로 시작할 것), Stop(그만할 것), Continue(계속할 것). 액션 중심의 프레임워크로, 구체적인 행동 변화를 도출하기 좋습니다.</p>
+            </div>
+
+            <div class="framework-card">
+                <h4>4. Mad, Sad, Glad</h4>
+                <p>감정에 집중하는 프레임워크. Mad(화났던 것), Sad(슬펐던 것), Glad(기뻤던 것)를 공유합니다. 팀의 감정 상태를 파악하고 싶을 때 유용합니다.</p>
+            </div>
+
+            <div class="framework-card">
+                <h4>5. Sailboat (범선 회고)</h4>
+                <p>배(팀), 바람(추진력), 닻(방해물), 암초(리스크), 목적지(목표)를 비유로 사용합니다. 시각적이고 창의적이어서 팀원 참여를 유도하기 좋습니다.</p>
+            </div>
+
+            <h2>효과적인 회고 진행 방법</h2>
+
+            <h3>1. 안전한 환경 만들기</h3>
+            <p>회고 시작 전 "여기서 나온 이야기는 비난이나 평가의 대상이 아닙니다"라고 명시하세요. 리더가 먼저 자신의 실수를 공유하면 다른 팀원들도 편하게 이야기합니다.</p>
+
+            <h3>2. 타임박싱</h3>
+            <p>회고는 <strong>45-60분</strong>이 적당합니다. 너무 짧으면 깊이가 없고, 너무 길면 집중력이 떨어집니다. 각 단계별 시간을 정해두세요.</p>
+
+            <div class="highlight-box">
+                <h4>60분 회고 타임라인 예시</h4>
+                <p>
+                    • 0-5분: 체크인 (각자 한마디)<br>
+                    • 5-15분: 데이터 수집 (포스트잇 작성)<br>
+                    • 15-30분: 인사이트 도출 (그루핑, 투표)<br>
+                    • 30-50분: 액션 아이템 결정<br>
+                    • 50-60분: 체크아웃 (소감, 다음 스텝)
+                </p>
+            </div>
+
+            <h3>3. 침묵의 시간</h3>
+            <p>바로 토론하지 마세요. 먼저 <strong>5분간 조용히</strong> 각자 생각을 포스트잇에 적게 하세요. 말 잘하는 사람만 이야기하는 것을 방지합니다.</p>
+
+            <h3>4. 투표로 우선순위 결정</h3>
+            <p>모든 것을 다 할 수 없습니다. 점 투표(Dot Voting)로 가장 중요한 1-3개를 선택하세요.</p>
+
+            <h3>5. 액션 아이템은 구체적으로</h3>
+            <p>"소통을 개선하자"는 액션이 아닙니다. <strong>"매주 월요일 10분 스탠드업 미팅을 한다. 담당: 김팀장, 시작일: 다음주 월요일"</strong>이 액션입니다.</p>
+
+            <h2>회고 주기</h2>
+
+            <ul>
+                <li><strong>스프린트 회고:</strong> 2주마다 (애자일 팀)</li>
+                <li><strong>프로젝트 회고:</strong> 프로젝트 종료 후</li>
+                <li><strong>월간 회고:</strong> 장기 프로젝트나 운영 팀</li>
+                <li><strong>분기 회고:</strong> 조직 전체 또는 리더십 팀</li>
+            </ul>
+
+            <h2>회고의 진짜 가치</h2>
+
+            <p>회고는 "무엇이 잘못됐나"를 찾는 시간이 아닙니다. <strong>"어떻게 더 나아질 수 있나"</strong>를 찾는 시간입니다.</p>
+
+            <blockquote>"회고 없이 반복하면 1년의 경험을 10번 한 것이다. 회고하며 반복하면 10년의 경험을 1년에 한 것이다."</blockquote>
+
+            <p>다음 프로젝트가 끝나면, 30분만 투자해서 회고를 해보세요. 팀의 성장 속도가 달라질 것입니다.</p>
+
+            <div class="article-tags">
+                <a href="#" class="tag">회고</a>
+                <a href="#" class="tag">KPT</a>
+                <a href="#" class="tag">애자일</a>
+                <a href="#" class="tag">팀 성장</a>
+            </div>
+        </div>
+    </article>
+
+    <section class="related-section">
+        <div class="related-content">
+            <h2 class="related-title">함께 읽으면 좋은 글</h2>
+            <div class="related-grid">
+                <a href="leader-insights-article-15.html" class="related-card">
+                    <span class="related-card-category">성장전략</span>
+                    <h3 class="related-card-title">린 스타트업 방법론: 빠르게 실패하고, 빠르게 배우기</h3>
+                    <span class="related-card-meta">10분 읽기</span>
+                </a>
+                <a href="leader-insights-article-17.html" class="related-card">
+                    <span class="related-card-category">성장전략</span>
+                    <h3 class="related-card-title">북극성 지표: 팀이 집중해야 할 단 하나의 숫자</h3>
+                    <span class="related-card-meta">7분 읽기</span>
+                </a>
+                <a href="leader-insights-article-2.html" class="related-card">
+                    <span class="related-card-category">팀빌딩</span>
+                    <h3 class="related-card-title">구글이 2년간 180개 팀을 분석해 발견한 최고의 팀의 비밀</h3>
+                    <span class="related-card-meta">7분 읽기</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer><div class="footer-content"><span class="copyright">© 2026 SEYOUNG LEE. All rights reserved.</span></div></footer>
+    <script>
+        window.addEventListener('scroll', () => {
+            const scrolled = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
+

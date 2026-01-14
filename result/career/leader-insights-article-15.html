@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>린 스타트업 방법론: 빠르게 실패하고, 빠르게 배우기 | 리더스 인사이트</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --toss-blue: #0064FF; --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-400: #9CA3AF; --gray-500: #6B7280; --gray-600: #4B5563; --gray-700: #374151; --gray-900: #111827; --white: #FFFFFF; --accent: #00b894; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans KR', sans-serif; background: var(--white); color: var(--gray-900); line-height: 1.8; }
+        header { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid var(--gray-100); }
+        nav { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: center; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--gray-900); }
+        .logo-icon { width: 32px; height: 32px; background: var(--toss-blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 14px; }
+        .logo-text { font-weight: 700; font-size: 18px; }
+        .nav-links { display: flex; gap: 8px; }
+        .nav-links a { text-decoration: none; color: var(--gray-600); font-size: 15px; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+        .nav-links a:hover { color: var(--gray-900); background: var(--gray-50); }
+        .subscribe-btn { background: var(--gray-900); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; }
+        .progress-bar { position: fixed; top: 64px; left: 0; width: 0%; height: 3px; background: var(--toss-blue); z-index: 1001; }
+        .article-header { padding: 140px 24px 60px; max-width: 800px; margin: 0 auto; }
+        .article-category { color: var(--toss-blue); font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+        .article-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; line-height: 1.3; margin-bottom: 24px; }
+        .article-subtitle { font-size: 18px; color: var(--gray-500); line-height: 1.7; margin-bottom: 32px; }
+        .article-meta { display: flex; gap: 24px; padding-top: 24px; border-top: 1px solid var(--gray-100); color: var(--gray-500); font-size: 14px; flex-wrap: wrap; align-items: center; }
+        .author { display: flex; align-items: center; gap: 12px; }
+        .author-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; }
+        .author-info { display: flex; flex-direction: column; }
+        .author-name { color: var(--gray-900); font-weight: 600; }
+        .article-content { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
+        .article-content p { font-size: 17px; line-height: 1.9; margin-bottom: 28px; color: var(--gray-700); }
+        .article-content h2 { font-size: 24px; font-weight: 700; margin: 56px 0 24px; color: var(--gray-900); }
+        .article-content h3 { font-size: 20px; font-weight: 700; margin: 40px 0 16px; color: var(--gray-900); }
+        .article-content strong { color: var(--gray-900); font-weight: 600; }
+        .article-content blockquote { border-left: 3px solid var(--accent); padding-left: 24px; margin: 32px 0; font-size: 18px; color: var(--gray-600); font-style: italic; }
+        .article-content ul, .article-content ol { margin: 24px 0; padding-left: 24px; }
+        .article-content li { font-size: 17px; line-height: 1.8; margin-bottom: 12px; color: var(--gray-700); }
+        .highlight-box { background: var(--gray-50); border-radius: 12px; padding: 28px 32px; margin: 32px 0; }
+        .highlight-box h4 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--accent); }
+        .concept-card { background: var(--accent); border-radius: 16px; padding: 28px; margin: 20px 0; color: white; }
+        .concept-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+        .concept-card p { font-size: 15px; line-height: 1.6; opacity: 0.9; margin: 0; }
+        .article-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--gray-100); }
+        .tag { padding: 8px 16px; background: var(--gray-100); border-radius: 100px; font-size: 13px; color: var(--gray-600); text-decoration: none; }
+        .related-section { background: var(--gray-50); padding: 80px 24px; }
+        .related-content { max-width: 1200px; margin: 0 auto; }
+        .related-title { font-size: 24px; font-weight: 700; margin-bottom: 32px; text-align: center; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .related-card { background: var(--white); border-radius: 16px; padding: 28px; text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        .related-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .related-card-category { font-size: 12px; font-weight: 600; color: var(--toss-blue); margin-bottom: 12px; }
+        .related-card-title { font-size: 16px; font-weight: 700; line-height: 1.5; margin-bottom: 12px; }
+        .related-card-meta { font-size: 13px; color: var(--gray-400); }
+        footer { background: var(--white); border-top: 1px solid var(--gray-100); padding: 40px 24px; text-align: center; }
+        .copyright { color: var(--gray-400); font-size: 13px; }
+        @media (max-width: 768px) { .nav-links { display: none; } .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <header>
+        <nav>
+            <div class="nav-links">
+                <a href="leader-insights.html">전체</a>
+                <a href="leader-insights-leadership.html">리더십</a>
+                <a href="leader-insights-culture.html">조직문화</a>
+                <a href="leader-insights-growth.html">성장전략</a>
+                <a href="leader-insights-communication.html">커뮤니케이션</a>
+            </div>
+        </nav>
+    </header>
+
+    <article>
+        <div class="article-header">
+            <span class="article-category">성장전략</span>
+            <h1 class="article-title">린 스타트업 방법론: 빠르게 실패하고, 빠르게 배우기</h1>
+            <p class="article-subtitle">에릭 리스의 린 스타트업. 가설 검증과 피벗을 통한 성장 전략을 실제 사례와 함께 분석합니다.</p>
+            <div class="article-meta">
+                <div class="author">
+                    <div class="author-avatar">김</div>
+                    <div class="author-info"><span class="author-name">김태영</span><span>에디터</span></div>
+                </div>
+                <span>2026년 1월 3일</span>
+                <span>10분 읽기</span>
+                <span>3,567명이 읽음</span>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <p>2011년, 에릭 리스(Eric Ries)의 책 "린 스타트업(The Lean Startup)"이 출간되었습니다. 이 책은 스타트업만이 아니라, <strong>불확실성 속에서 새로운 제품을 만드는 모든 조직</strong>의 방법론을 바꿨습니다.</p>
+
+            <p>핵심 메시지는 단순합니다: <strong>완벽한 제품을 만들지 마라. 빠르게 배워라.</strong></p>
+
+            <blockquote>"스타트업의 유일한 자원은 시간이다. 배움의 속도가 성공을 결정한다."<br>— 에릭 리스</blockquote>
+
+            <h2>린 스타트업의 핵심 개념</h2>
+
+            <div class="concept-card">
+                <h4>Build-Measure-Learn (만들기-측정-학습)</h4>
+                <p>아이디어를 빠르게 제품으로 만들고(Build), 고객 반응을 측정하고(Measure), 데이터에서 배웁니다(Learn). 이 사이클을 최대한 빠르게 반복합니다.</p>
+            </div>
+
+            <div class="concept-card">
+                <h4>MVP (Minimum Viable Product)</h4>
+                <p>학습에 필요한 최소한의 기능만 가진 제품. 완벽할 필요 없습니다. 가설을 검증할 수 있으면 됩니다.</p>
+            </div>
+
+            <div class="concept-card">
+                <h4>Validated Learning (검증된 학습)</h4>
+                <p>"우리가 생각하기에"가 아닌, 데이터로 증명된 학습. 의견이 아닌 증거로 의사결정합니다.</p>
+            </div>
+
+            <div class="concept-card">
+                <h4>Pivot or Persevere (피벗 또는 지속)</h4>
+                <p>가설이 틀렸다면 방향을 바꿉니다(피벗). 맞았다면 계속 갑니다(지속). 데이터가 결정합니다.</p>
+            </div>
+
+            <h2>MVP의 실제 사례</h2>
+
+            <h3>Dropbox: 영상 하나로 시작</h3>
+            <p>Drew Houston은 제품을 만들기 전에 3분짜리 데모 영상을 만들었습니다. "이런 제품이 있다면 쓰시겠습니까?" 베타 대기자가 하룻밤에 5,000명에서 75,000명으로 늘었습니다. 제품 없이 시장을 검증한 것입니다.</p>
+
+            <h3>Zappos: 재고 없는 신발 가게</h3>
+            <p>Nick Swinmurn은 "사람들이 온라인으로 신발을 살까?"라는 가설을 검증하고 싶었습니다. 재고를 쌓는 대신, 동네 신발 가게에서 사진을 찍어 올리고, 주문이 들어오면 직접 사서 배송했습니다.</p>
+
+            <h3>Airbnb: 창업자의 아파트</h3>
+            <p>Brian Chesky와 Joe Gebbia는 거창한 플랫폼 대신, 자기 아파트에 에어 매트리스 3개를 놓고 디자인 컨퍼런스 참석자에게 빌려줬습니다. "낯선 사람의 집에서 자는 것"에 대한 가설을 직접 검증한 것입니다.</p>
+
+            <h2>피벗의 유형</h2>
+
+            <div class="highlight-box">
+                <h4>10가지 피벗 유형</h4>
+                <p>
+                    <strong>1. Zoom-in Pivot:</strong> 기능 하나가 전체 제품이 됨<br>
+                    <strong>2. Zoom-out Pivot:</strong> 전체 제품이 하나의 기능이 됨<br>
+                    <strong>3. Customer Segment Pivot:</strong> 다른 고객군으로 전환<br>
+                    <strong>4. Customer Need Pivot:</strong> 같은 고객의 다른 문제 해결<br>
+                    <strong>5. Platform Pivot:</strong> 앱에서 플랫폼으로 (또는 반대)<br>
+                    <strong>6. Business Architecture Pivot:</strong> B2B에서 B2C로<br>
+                    <strong>7. Value Capture Pivot:</strong> 수익 모델 변경<br>
+                    <strong>8. Engine of Growth Pivot:</strong> 성장 전략 변경<br>
+                    <strong>9. Channel Pivot:</strong> 유통 채널 변경<br>
+                    <strong>10. Technology Pivot:</strong> 기술 스택 변경
+                </p>
+            </div>
+
+            <h2>실무 적용 가이드</h2>
+
+            <h3>1. 가설을 명확히 세우세요</h3>
+            <p>"사람들이 좋아할 것이다"는 가설이 아닙니다. "20-30대 직장인 중 주 3회 이상 운동하는 사람의 30%가 유료 구독할 것이다"처럼 <strong>측정 가능한 형태</strong>로 세우세요.</p>
+
+            <h3>2. 가장 위험한 가설부터 검증하세요</h3>
+            <p>모든 가설을 동시에 검증할 수 없습니다. "이게 틀리면 전체가 무너지는" 가장 위험한 가설부터 검증하세요.</p>
+
+            <h3>3. MVP는 창피할 정도로 작아야 합니다</h3>
+            <p>Reid Hoffman의 말처럼, "첫 버전이 창피하지 않다면 너무 늦게 출시한 것입니다."</p>
+
+            <h3>4. 허영 지표를 피하세요</h3>
+            <p>다운로드 수, 가입자 수는 허영 지표입니다. 실제 사용률, 재구매율, NPS가 진짜 지표입니다.</p>
+
+            <blockquote>"계획은 쓸모없다. 계획하기가 중요하다."<br>— 드와이트 아이젠하워</blockquote>
+
+            <p>린 스타트업은 계획을 세우지 말라는 것이 아닙니다. <strong>계획에 집착하지 말고, 배움에 집착하라</strong>는 것입니다.</p>
+
+            <div class="article-tags">
+                <a href="#" class="tag">린 스타트업</a>
+                <a href="#" class="tag">MVP</a>
+                <a href="#" class="tag">피벗</a>
+                <a href="#" class="tag">성장전략</a>
+            </div>
+        </div>
+    </article>
+
+    <section class="related-section">
+        <div class="related-content">
+            <h2 class="related-title">함께 읽으면 좋은 글</h2>
+            <div class="related-grid">
+                <a href="leader-insights-article-16.html" class="related-card">
+                    <span class="related-card-category">성장전략</span>
+                    <h3 class="related-card-title">효과적인 회고 운영법: KPT, 4Ls, Start-Stop-Continue</h3>
+                    <span class="related-card-meta">8분 읽기</span>
+                </a>
+                <a href="leader-insights-article-17.html" class="related-card">
+                    <span class="related-card-category">성장전략</span>
+                    <h3 class="related-card-title">북극성 지표: 팀이 집중해야 할 단 하나의 숫자</h3>
+                    <span class="related-card-meta">7분 읽기</span>
+                </a>
+                <a href="leader-insights-article-4.html" class="related-card">
+                    <span class="related-card-category">성장전략</span>
+                    <h3 class="related-card-title">OKR 실전 가이드: 목표 설정의 기술</h3>
+                    <span class="related-card-meta">10분 읽기</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer><div class="footer-content"><span class="copyright">© 2026 SEYOUNG LEE. All rights reserved.</span></div></footer>
+    <script>
+        window.addEventListener('scroll', () => {
+            const scrolled = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
+

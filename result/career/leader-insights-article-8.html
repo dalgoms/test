@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신임 리더의 첫 90일: 마이클 왓킨스의 전환 전략 | 리더스 인사이트</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --toss-blue: #0064FF;
+            --toss-blue-light: #4D94FF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            --white: #FFFFFF;
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--white);
+            color: var(--gray-900);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--gray-900);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--toss-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .logo-text { font-weight: 700; font-size: 18px; }
+        .nav-links { display: flex; align-items: center; gap: 8px; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 15px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover { color: var(--gray-900); background: var(--gray-50); }
+
+        .subscribe-btn {
+            background: var(--gray-900);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--toss-blue);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        .article-header {
+            padding: 140px 24px 60px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-category {
+            display: inline-block;
+            color: var(--toss-blue);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .article-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .article-subtitle {
+            font-size: 18px;
+            color: var(--gray-500);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-100);
+            color: var(--gray-500);
+            font-size: 14px;
+            flex-wrap: wrap;
+        }
+
+        .author { display: flex; align-items: center; gap: 12px; }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #0064FF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .author-info { display: flex; flex-direction: column; }
+        .author-name { color: var(--gray-900); font-weight: 600; }
+
+        .article-content {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .article-content p {
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: 28px;
+            color: var(--gray-700);
+        }
+
+        .article-content h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 56px 0 24px;
+            letter-spacing: -0.5px;
+            color: var(--gray-900);
+        }
+
+        .article-content h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 40px 0 16px;
+            color: var(--gray-900);
+        }
+
+        .article-content strong { color: var(--gray-900); font-weight: 600; }
+
+        .article-content blockquote {
+            border-left: 3px solid var(--toss-blue);
+            padding-left: 24px;
+            margin: 32px 0;
+            font-size: 18px;
+            color: var(--gray-600);
+            font-style: italic;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 24px 0;
+            padding-left: 24px;
+        }
+
+        .article-content li {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            color: var(--gray-700);
+        }
+
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+            padding-left: 32px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--toss-blue);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 32px;
+            padding-left: 24px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            background: var(--toss-blue);
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 3px var(--toss-blue);
+        }
+
+        .timeline-period {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--toss-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        .highlight-box {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin: 32px 0;
+        }
+
+        .highlight-box h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--toss-blue);
+        }
+
+        .highlight-box p { margin-bottom: 0; }
+
+        .checklist {
+            background: #191F28;
+            border-radius: 16px;
+            padding: 32px;
+            margin: 32px 0;
+            color: white;
+        }
+
+        .checklist h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--toss-blue-light);
+            margin-bottom: 20px;
+        }
+
+        .checklist ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .checklist li::before {
+            content: '□';
+            flex-shrink: 0;
+            font-size: 16px;
+        }
+
+        .trap-card {
+            background: #FEF2F2;
+            border-left: 4px solid #EF4444;
+            border-radius: 0 12px 12px 0;
+            padding: 24px 28px;
+            margin: 32px 0;
+        }
+
+        .trap-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #DC2626;
+            margin-bottom: 12px;
+        }
+
+        .trap-card p {
+            color: #7F1D1D;
+            margin: 0;
+        }
+
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .tag {
+            padding: 8px 16px;
+            background: var(--gray-100);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .tag:hover { background: var(--gray-200); color: var(--gray-900); }
+
+        .related-section {
+            background: var(--gray-50);
+            padding: 80px 24px;
+        }
+
+        .related-content { max-width: 1200px; margin: 0 auto; }
+
+        .related-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .related-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .related-card-category {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--toss-blue);
+            margin-bottom: 12px;
+        }
+
+        .related-card-title {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .related-card-meta { font-size: 13px; color: var(--gray-400); }
+
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--gray-100);
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .copyright { color: var(--gray-400); font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .related-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <header>
+        <nav>
+            <div class="nav-links">
+                <a href="leader-insights.html">전체</a>
+                <a href="leader-insights-leadership.html">리더십</a>
+                <a href="leader-insights-culture.html">조직문화</a>
+                <a href="leader-insights-growth.html">성장전략</a>
+                <a href="leader-insights-communication.html">커뮤니케이션</a>
+            </div>
+        </nav>
+    </header>
+
+    <article>
+        <div class="article-header">
+            <span class="article-category">리더십</span>
+            <h1 class="article-title">신임 리더의 첫 90일: 마이클 왓킨스의 전환 전략</h1>
+            <p class="article-subtitle">
+                새로운 리더 역할을 맡았을 때 가장 중요한 것은 첫 90일입니다. 
+                하버드 경영대학원 교수가 제시하는 성공적인 전환을 위한 실전 가이드.
+            </p>
+            <div class="article-meta">
+                <div class="author">
+                    <div class="author-avatar">정</div>
+                    <div class="author-info">
+                        <span class="author-name">정현우</span>
+                        <span>시니어 에디터</span>
+                    </div>
+                </div>
+                <span>2026년 1월 2일</span>
+                <span>12분 읽기</span>
+                <span>12,458명이 읽음</span>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <p>
+                새로운 팀을 맡게 되었습니다. 
+                승진했거나, 새 회사로 이직했거나, 또는 조직 개편으로 새 역할을 받았을 수 있습니다. 
+                어떤 경우든, 앞으로의 <strong>첫 90일</strong>이 당신의 리더십 성공을 결정합니다.
+            </p>
+
+            <p>
+                하버드 경영대학원의 마이클 왓킨스(Michael Watkins) 교수는 
+                20년간 리더십 전환을 연구한 끝에 '첫 90일(The First 90 Days)'이라는 
+                프레임워크를 개발했습니다. 
+                이 프레임워크는 전 세계 수십만 명의 리더들이 적용한 검증된 방법론입니다.
+            </p>
+
+            <blockquote>
+                "새 역할에서의 성공과 실패는 대부분 첫 몇 달 안에 결정된다. 
+                초기의 작은 실수가 나중에 큰 대가로 돌아온다."
+                <br>— 마이클 왓킨스
+            </blockquote>
+
+            <h2>왜 첫 90일인가</h2>
+
+            <p>
+                왓킨스 교수의 연구에 따르면, 새 역할에서 실패하는 리더의 40%가 
+                첫 18개월 이내에 그렇게 됩니다. 
+                그리고 그 실패의 씨앗은 대부분 <strong>처음 90일 안에</strong> 뿌려집니다.
+            </p>
+
+            <p>
+                첫 90일이 중요한 이유는 다음과 같습니다.
+            </p>
+
+            <ul>
+                <li><strong>첫인상:</strong> 팀원, 동료, 상사가 당신을 평가하는 기준이 형성됩니다.</li>
+                <li><strong>허니문 기간:</strong> 실수에 대한 관용이 있는 유일한 시기입니다.</li>
+                <li><strong>학습 곡선:</strong> 새로운 환경을 빠르게 이해해야 효과적으로 행동할 수 있습니다.</li>
+                <li><strong>모멘텀:</strong> 초기 성과(Early Win)가 이후 신뢰와 자원 확보에 영향을 미칩니다.</li>
+            </ul>
+
+            <h2>첫 90일 로드맵</h2>
+
+            <p>
+                왓킨스 교수는 첫 90일을 크게 3단계로 나눕니다. 
+                각 단계마다 집중해야 할 과제가 다릅니다.
+            </p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-period">Day 1-30</div>
+                    <div class="timeline-title">학습과 진단</div>
+                    <div class="timeline-desc">
+                        조직의 현재 상태를 파악합니다. 사람, 문화, 비즈니스, 정치를 이해합니다. 
+                        성급하게 변화를 시도하지 않습니다. 듣고, 관찰하고, 질문합니다.
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">Day 31-60</div>
+                    <div class="timeline-title">전략 수립과 관계 구축</div>
+                    <div class="timeline-desc">
+                        학습한 내용을 바탕으로 전략 방향을 설정합니다. 핵심 이해관계자와의 관계를 구축합니다. 
+                        팀 구조와 역할을 검토합니다.
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">Day 61-90</div>
+                    <div class="timeline-title">실행과 초기 성과</div>
+                    <div class="timeline-desc">
+                        첫 번째 의미 있는 변화를 실행합니다. 초기 성과(Early Win)를 만들어냅니다. 
+                        장기적 비전과 계획을 공유합니다.
+                    </div>
+                </div>
+            </div>
+
+            <h2>1단계: 학습과 진단 (Day 1-30)</h2>
+
+            <h3>STARS 모델로 상황 진단하기</h3>
+
+            <p>
+                왓킨스 교수는 조직의 상황을 5가지 유형으로 분류합니다. 
+                이를 <strong>STARS 모델</strong>이라고 합니다. 
+                당신이 맡은 조직이 어떤 상황인지 정확히 파악해야 
+                적절한 전략을 세울 수 있습니다.
+            </p>
+
+            <ul>
+                <li><strong>Start-up:</strong> 새로 시작하는 조직. 모든 것을 처음부터 만들어야 함.</li>
+                <li><strong>Turnaround:</strong> 위기 상황. 빠른 결단과 변화가 필요함.</li>
+                <li><strong>Accelerated growth:</strong> 빠르게 성장 중. 확장과 구조화가 과제.</li>
+                <li><strong>Realignment:</strong> 겉으로는 괜찮지만 내부적 변화 필요. 위기 인식이 낮음.</li>
+                <li><strong>Sustaining success:</strong> 현재 잘 되고 있음. 현상 유지가 목표.</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h4>핵심 질문</h4>
+                <p>
+                    "이 조직은 지금 어떤 상황인가?" 
+                    Turnaround 상황에서 Sustaining success 전략을 쓰면 실패합니다. 
+                    반대로, Sustaining success 상황에서 급격한 변화를 시도해도 저항에 부딪힙니다.
+                </p>
+            </div>
+
+            <h3>핵심 질문 5가지</h3>
+
+            <p>
+                첫 30일 동안 다음 질문에 대한 답을 찾으세요.
+            </p>
+
+            <ol>
+                <li><strong>비즈니스 상황:</strong> 우리의 주요 제품/서비스는 무엇인가? 고객은 누구인가? 경쟁 상황은?</li>
+                <li><strong>기대 사항:</strong> 상사와 이해관계자가 나에게 기대하는 것은 무엇인가?</li>
+                <li><strong>팀 역량:</strong> 팀원들의 강점과 약점은? 누가 핵심 인재인가?</li>
+                <li><strong>문화:</strong> 이 조직에서 중요하게 여기는 가치는? 암묵적인 규칙은?</li>
+                <li><strong>정치:</strong> 의사결정 구조는? 영향력 있는 사람은 누구인가?</li>
+            </ol>
+
+            <div class="trap-card">
+                <h4>함정 주의: "내가 다 알아" 증후군</h4>
+                <p>
+                    특히 내부 승진이나 동종 업계 이직의 경우, 
+                    "이미 다 안다"고 착각하기 쉽습니다. 
+                    하지만 같은 회사라도 팀이 다르면 문화가 다릅니다. 
+                    겸손하게 처음부터 배운다는 자세로 접근하세요.
+                </p>
+            </div>
+
+            <h2>2단계: 전략 수립과 관계 구축 (Day 31-60)</h2>
+
+            <h3>상사와 기대 맞추기</h3>
+
+            <p>
+                새 리더가 저지르는 가장 큰 실수 중 하나는 
+                <strong>상사의 기대를 명확히 확인하지 않는 것</strong>입니다. 
+                당신이 생각하는 성공과 상사가 생각하는 성공이 다를 수 있습니다.
+            </p>
+
+            <div class="checklist">
+                <h4>상사와 논의해야 할 5가지</h4>
+                <ul>
+                    <li>첫 90일 동안 달성해야 할 가장 중요한 목표는 무엇인가요?</li>
+                    <li>어떤 결정은 반드시 상의가 필요하고, 어떤 결정은 제가 독립적으로 해도 되나요?</li>
+                    <li>어떤 방식으로 소통하는 것을 선호하시나요? (빈도, 채널, 형식)</li>
+                    <li>제가 주의해야 할 정치적 지뢰밭이 있나요?</li>
+                    <li>제가 활용할 수 있는 자원(예산, 인력, 시간)은 어느 정도인가요?</li>
+                </ul>
+            </div>
+
+            <h3>핵심 이해관계자 매핑</h3>
+
+            <p>
+                성공적인 리더는 위만 바라보지 않습니다. 
+                <strong>360도 관계</strong>를 구축합니다. 
+                상사, 동료, 부하직원, 외부 이해관계자 모두가 중요합니다.
+            </p>
+
+            <p>
+                각 이해관계자에 대해 다음을 파악하세요.
+            </p>
+
+            <ul>
+                <li>이 사람이 나에게 기대하는 것은 무엇인가?</li>
+                <li>이 사람이 가진 자원 중 내가 필요한 것은 무엇인가?</li>
+                <li>이 사람과 나의 잠재적 갈등 요소는 무엇인가?</li>
+                <li>이 사람의 지지를 얻으려면 어떻게 해야 하는가?</li>
+            </ul>
+
+            <h3>팀 평가하기</h3>
+
+            <p>
+                왓킨스 교수는 팀원을 평가할 때 두 가지 축을 사용합니다. 
+                <strong>역량(Competence)</strong>과 <strong>신뢰성(Trustworthiness)</strong>입니다.
+            </p>
+
+            <ul>
+                <li><strong>Keep:</strong> 역량도 높고, 신뢰도 높은 사람. 핵심 인재로 유지.</li>
+                <li><strong>Develop:</strong> 신뢰는 높지만 역량이 부족한 사람. 교육과 코칭 필요.</li>
+                <li><strong>Observe:</strong> 역량은 있지만 신뢰가 불확실한 사람. 더 관찰 필요.</li>
+                <li><strong>Replace:</strong> 역량도 낮고 신뢰도 낮은 사람. 빠른 교체 고려.</li>
+            </ul>
+
+            <div class="trap-card">
+                <h4>함정 주의: 너무 빠른 판단</h4>
+                <p>
+                    첫 30일 안에 팀원을 판단하지 마세요. 
+                    전임자와의 관계, 조직 상황, 역할 적합성 등 
+                    다양한 요소가 성과에 영향을 미칩니다. 
+                    최소 60일은 관찰하세요.
+                </p>
+            </div>
+
+            <h2>3단계: 실행과 초기 성과 (Day 61-90)</h2>
+
+            <h3>Early Win 만들기</h3>
+
+            <p>
+                초기 성과(Early Win)는 당신의 신뢰를 구축하는 데 필수적입니다. 
+                하지만 아무 성과나 되는 것이 아닙니다. 
+                좋은 Early Win의 조건은 다음과 같습니다.
+            </p>
+
+            <ul>
+                <li><strong>가시적:</strong> 다른 사람들이 인지할 수 있어야 합니다.</li>
+                <li><strong>의미 있음:</strong> 조직의 핵심 과제와 연결되어야 합니다.</li>
+                <li><strong>달성 가능:</strong> 90일 안에 실현 가능해야 합니다.</li>
+                <li><strong>위험 낮음:</strong> 실패 시 치명적이지 않아야 합니다.</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h4>Early Win 예시</h4>
+                <p>
+                    오래된 비효율적인 프로세스 개선, 팀원들이 오랫동안 요청했던 작은 변화 실행, 
+                    빠르게 해결 가능한 고객 불만 처리, 팀 간 협업을 막던 장애물 제거 등이 
+                    좋은 Early Win이 될 수 있습니다.
+                </p>
+            </div>
+
+            <h3>변화 시 주의할 점</h3>
+
+            <p>
+                변화를 시도할 때 가장 흔한 실수는 
+                <strong>기존 방식을 비판하는 것</strong>입니다. 
+                "이전에는 왜 이렇게 했어요?"라는 질문은 
+                기존 팀원들을 방어적으로 만듭니다.
+            </p>
+
+            <p>
+                대신 이렇게 접근하세요.
+            </p>
+
+            <ol>
+                <li>현재 방식의 배경과 맥락을 이해합니다.</li>
+                <li>기존 방식의 장점을 인정합니다.</li>
+                <li>변화의 이유를 미래 지향적으로 설명합니다.</li>
+                <li>변화 과정에 팀원들을 참여시킵니다.</li>
+            </ol>
+
+            <h2>90일 체크리스트</h2>
+
+            <div class="checklist">
+                <h4>첫 90일이 끝났을 때 확인할 질문들</h4>
+                <ul>
+                    <li>조직의 STARS 상황을 정확히 파악했는가?</li>
+                    <li>상사의 기대를 명확히 이해하고 합의했는가?</li>
+                    <li>핵심 이해관계자와의 관계를 구축했는가?</li>
+                    <li>팀원 각각의 역량과 잠재력을 파악했는가?</li>
+                    <li>최소 하나의 의미 있는 Early Win을 만들었는가?</li>
+                    <li>앞으로 6개월의 우선순위를 명확히 설정했는가?</li>
+                    <li>나 자신을 돌보는 시간을 확보했는가?</li>
+                </ul>
+            </div>
+
+            <h2>마무리: 전환은 과정이다</h2>
+
+            <p>
+                첫 90일이 끝났다고 모든 것이 끝나는 것이 아닙니다. 
+                리더로서의 적응은 <strong>6-12개월</strong>이 걸리는 긴 여정입니다. 
+                하지만 첫 90일의 기반이 탄탄하면, 이후의 과정이 훨씬 수월해집니다.
+            </p>
+
+            <p>
+                마지막으로, 왓킨스 교수의 조언을 기억하세요.
+            </p>
+
+            <blockquote>
+                "완벽한 첫 90일은 없다. 중요한 것은 배우고, 적응하고, 
+                관계를 구축하면서 점진적으로 영향력을 확대해 나가는 것이다."
+                <br>— 마이클 왓킨스
+            </blockquote>
+
+            <div class="article-tags">
+                <a href="#" class="tag">신임 리더</a>
+                <a href="#" class="tag">첫 90일</a>
+                <a href="#" class="tag">리더십 전환</a>
+                <a href="#" class="tag">온보딩</a>
+                <a href="#" class="tag">마이클 왓킨스</a>
+            </div>
+        </div>
+    </article>
+
+    <section class="related-section">
+        <div class="related-content">
+            <h2 class="related-title">함께 읽으면 좋은 글</h2>
+            <div class="related-grid">
+                <a href="leader-insights-article-1.html" class="related-card">
+                    <span class="related-card-category">리더십</span>
+                    <h3 class="related-card-title">1on1 미팅, 질문 하나로 팀원의 잠재력을 이끌어내는 법</h3>
+                    <span class="related-card-meta">8분 읽기</span>
+                </a>
+                <a href="leader-insights-article-2.html" class="related-card">
+                    <span class="related-card-category">팀빌딩</span>
+                    <h3 class="related-card-title">구글이 2년간 180개 팀을 분석해 발견한 최고의 팀의 비밀</h3>
+                    <span class="related-card-meta">7분 읽기</span>
+                </a>
+                <a href="leader-insights-article-4.html" class="related-card">
+                    <span class="related-card-category">성장전략</span>
+                    <h3 class="related-card-title">OKR과 KPI, 조직 상황에 따른 목표 관리 프레임워크 선택 가이드</h3>
+                    <span class="related-card-meta">9분 읽기</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <span class="copyright">© 2026 SEYOUNG LEE. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
+

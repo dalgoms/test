@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커뮤니케이션 | 리더스 인사이트</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --toss-blue: #0064FF;
+            --toss-blue-light: #4D94FF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-900: #111827;
+            --white: #FFFFFF;
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--white);
+            color: var(--gray-900);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--gray-900);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--toss-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .logo-text { font-weight: 700; font-size: 18px; }
+        .nav-links { display: flex; align-items: center; gap: 8px; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 15px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover { color: var(--gray-900); background: var(--gray-50); }
+        .nav-links a.active { color: var(--toss-blue); background: rgba(0, 100, 255, 0.06); }
+
+        .subscribe-btn {
+            background: var(--gray-900);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+
+        .category-hero {
+            padding: 140px 24px 60px;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .category-badge {
+            display: inline-flex;
+            background: #0064FF;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .category-hero h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .category-hero p {
+            font-size: 18px;
+            color: var(--gray-500);
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .articles-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+
+        .section-title { font-size: 22px; font-weight: 700; }
+        .article-count { color: var(--gray-500); font-size: 14px; }
+        .articles-list { display: flex; flex-direction: column; gap: 24px; }
+
+        .article-card-horizontal {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 32px;
+            padding: 24px;
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            border-radius: 16px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .article-card-horizontal:hover {
+            border-color: transparent;
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .article-thumbnail {
+            aspect-ratio: 16/10;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .article-thumbnail-text {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+            padding: 20px;
+            line-height: 1.5;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .article-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .article-category {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--toss-blue);
+            margin-bottom: 8px;
+        }
+
+        .article-title {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .article-excerpt {
+            font-size: 15px;
+            color: var(--gray-500);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 16px;
+            color: var(--gray-400);
+            font-size: 13px;
+        }
+
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--gray-100);
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .copyright { color: var(--gray-400); font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .article-card-horizontal { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-links">
+                <a href="leader-insights.html">전체</a>
+                <a href="leader-insights-leadership.html">리더십</a>
+                <a href="leader-insights-culture.html">조직문화</a>
+                <a href="leader-insights-growth.html">성장전략</a>
+                <a href="leader-insights-communication.html" class="active">커뮤니케이션</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="category-hero">
+        <div class="category-badge">Communication</div>
+        <h1>커뮤니케이션</h1>
+        <p>
+            효과적인 소통이 팀의 성과를 결정합니다.
+            피드백, 협상, 갈등 해결 등 리더에게 필요한 소통 기술을 다룹니다.
+        </p>
+    </section>
+
+    <section class="articles-section">
+        <div class="section-header">
+            <h2 class="section-title">커뮤니케이션 아티클</h2>
+            <span class="article-count">총 21개의 아티클</span>
+        </div>
+        
+        <div class="articles-list">
+            <a href="leader-insights-article-3.html" class="article-card-horizontal">
+                <div class="article-thumbnail" style="background: #191F28;">
+                    <div class="article-thumbnail-text">피드백의 기술</div>
+                </div>
+                <div class="article-content">
+                    <span class="article-category">커뮤니케이션</span>
+                    <h3 class="article-title">SBI 모델: 상대를 성장시키는 피드백 프레임워크</h3>
+                    <p class="article-excerpt">Situation-Behavior-Impact 모델을 활용해 감정적 방어 없이 행동 변화를 이끌어내는 피드백 방법론.</p>
+                    <div class="article-meta">
+                        <span>2026.01.11</span>
+                        <span>6분 읽기</span>
+                        <span>2,956명 읽음</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="leader-insights-article-18.html" class="article-card-horizontal">
+                <div class="article-thumbnail" style="background: #0064FF;">
+                    <div class="article-thumbnail-text">어려운 대화의<br>기술</div>
+                </div>
+                <div class="article-content">
+                    <span class="article-category">커뮤니케이션</span>
+                    <h3 class="article-title">어려운 대화의 기술: 하버드 협상 프로젝트의 교훈</h3>
+                    <p class="article-excerpt">성과 평가, 해고 통보, 갈등 중재. 피하고 싶지만 피할 수 없는 어려운 대화를 잘 하는 방법.</p>
+                    <div class="article-meta">
+                        <span>2026.01.04</span>
+                        <span>8분 읽기</span>
+                        <span>8,156명 읽음</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="leader-insights-article-19.html" class="article-card-horizontal">
+                <div class="article-thumbnail" style="background: #191F28;">
+                    <div class="article-thumbnail-text">비폭력 대화</div>
+                </div>
+                <div class="article-content">
+                    <span class="article-category">커뮤니케이션</span>
+                    <h3 class="article-title">비폭력 대화(NVC): 마셜 로젠버그의 연결의 언어</h3>
+                    <p class="article-excerpt">관찰, 느낌, 욕구, 부탁. 판단 없이 소통하고, 갈등을 해소하는 비폭력 대화의 4단계 프로세스.</p>
+                    <div class="article-meta">
+                        <span>2025.12.29</span>
+                        <span>9분 읽기</span>
+                        <span>4,567명 읽음</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="leader-insights-article-20.html" class="article-card-horizontal">
+                <div class="article-thumbnail" style="background: #4B5563;">
+                    <div class="article-thumbnail-text">경청의<br>기술</div>
+                </div>
+                <div class="article-content">
+                    <span class="article-category">커뮤니케이션</span>
+                    <h3 class="article-title">액티브 리스닝: 듣는 것만으로 문제의 절반이 해결된다</h3>
+                    <p class="article-excerpt">경청은 수동적 행위가 아닙니다. 적극적 경청(Active Listening)의 5가지 기술과 연습 방법.</p>
+                    <div class="article-meta">
+                        <span>2025.12.22</span>
+                        <span>6분 읽기</span>
+                        <span>3,234명 읽음</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="leader-insights-article-21.html" class="article-card-horizontal">
+                <div class="article-thumbnail" style="background: #0064FF;">
+                    <div class="article-thumbnail-text">설득의<br>심리학</div>
+                </div>
+                <div class="article-content">
+                    <span class="article-category">커뮤니케이션</span>
+                    <h3 class="article-title">설득의 6가지 원칙: 로버트 치알디니의 영향력 법칙</h3>
+                    <p class="article-excerpt">상호성, 일관성, 사회적 증거, 호감, 권위, 희소성. 사람의 마음을 움직이는 과학적 원리.</p>
+                    <div class="article-meta">
+                        <span>2025.12.15</span>
+                        <span>10분 읽기</span>
+                        <span>6,789명 읽음</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <span class="copyright">© 2026 SEYOUNG LEE. All rights reserved.</span>
+        </div>
+    </footer>
+</body>
+</html>
+

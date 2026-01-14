@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>어려운 대화의 기술: 하버드 협상 프로젝트의 교훈 | 리더스 인사이트</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --toss-blue: #0064FF; --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-400: #9CA3AF; --gray-500: #6B7280; --gray-600: #4B5563; --gray-700: #374151; --gray-900: #111827; --white: #FFFFFF; --accent: #d63031; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans KR', sans-serif; background: var(--white); color: var(--gray-900); line-height: 1.8; }
+        header { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid var(--gray-100); }
+        nav { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: center; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--gray-900); }
+        .logo-icon { width: 32px; height: 32px; background: var(--toss-blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 14px; }
+        .logo-text { font-weight: 700; font-size: 18px; }
+        .nav-links { display: flex; gap: 8px; }
+        .nav-links a { text-decoration: none; color: var(--gray-600); font-size: 15px; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+        .nav-links a:hover { color: var(--gray-900); background: var(--gray-50); }
+        .subscribe-btn { background: var(--gray-900); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; }
+        .progress-bar { position: fixed; top: 64px; left: 0; width: 0%; height: 3px; background: var(--toss-blue); z-index: 1001; }
+        .article-header { padding: 140px 24px 60px; max-width: 800px; margin: 0 auto; }
+        .article-category { color: var(--toss-blue); font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+        .article-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; line-height: 1.3; margin-bottom: 24px; }
+        .article-subtitle { font-size: 18px; color: var(--gray-500); line-height: 1.7; margin-bottom: 32px; }
+        .article-meta { display: flex; gap: 24px; padding-top: 24px; border-top: 1px solid var(--gray-100); color: var(--gray-500); font-size: 14px; flex-wrap: wrap; align-items: center; }
+        .author { display: flex; align-items: center; gap: 12px; }
+        .author-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; }
+        .author-info { display: flex; flex-direction: column; }
+        .author-name { color: var(--gray-900); font-weight: 600; }
+        .article-content { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
+        .article-content p { font-size: 17px; line-height: 1.9; margin-bottom: 28px; color: var(--gray-700); }
+        .article-content h2 { font-size: 24px; font-weight: 700; margin: 56px 0 24px; color: var(--gray-900); }
+        .article-content h3 { font-size: 20px; font-weight: 700; margin: 40px 0 16px; color: var(--gray-900); }
+        .article-content strong { color: var(--gray-900); font-weight: 600; }
+        .article-content blockquote { border-left: 3px solid var(--accent); padding-left: 24px; margin: 32px 0; font-size: 18px; color: var(--gray-600); font-style: italic; }
+        .article-content ul, .article-content ol { margin: 24px 0; padding-left: 24px; }
+        .article-content li { font-size: 17px; line-height: 1.8; margin-bottom: 12px; color: var(--gray-700); }
+        .highlight-box { background: var(--gray-50); border-radius: 12px; padding: 28px 32px; margin: 32px 0; }
+        .highlight-box h4 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--accent); }
+        .principle-card { background: var(--accent); border-radius: 16px; padding: 28px; margin: 20px 0; color: white; }
+        .principle-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+        .principle-card p { font-size: 15px; line-height: 1.6; opacity: 0.9; margin: 0; }
+        .article-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--gray-100); }
+        .tag { padding: 8px 16px; background: var(--gray-100); border-radius: 100px; font-size: 13px; color: var(--gray-600); text-decoration: none; }
+        .related-section { background: var(--gray-50); padding: 80px 24px; }
+        .related-content { max-width: 1200px; margin: 0 auto; }
+        .related-title { font-size: 24px; font-weight: 700; margin-bottom: 32px; text-align: center; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .related-card { background: var(--white); border-radius: 16px; padding: 28px; text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        .related-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .related-card-category { font-size: 12px; font-weight: 600; color: var(--toss-blue); margin-bottom: 12px; }
+        .related-card-title { font-size: 16px; font-weight: 700; line-height: 1.5; margin-bottom: 12px; }
+        .related-card-meta { font-size: 13px; color: var(--gray-400); }
+        footer { background: var(--white); border-top: 1px solid var(--gray-100); padding: 40px 24px; text-align: center; }
+        .copyright { color: var(--gray-400); font-size: 13px; }
+        @media (max-width: 768px) { .nav-links { display: none; } .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <header>
+        <nav>
+            <div class="nav-links">
+                <a href="leader-insights.html">전체</a>
+                <a href="leader-insights-leadership.html">리더십</a>
+                <a href="leader-insights-culture.html">조직문화</a>
+                <a href="leader-insights-growth.html">성장전략</a>
+                <a href="leader-insights-communication.html">커뮤니케이션</a>
+            </div>
+        </nav>
+    </header>
+
+    <article>
+        <div class="article-header">
+            <span class="article-category">커뮤니케이션</span>
+            <h1 class="article-title">어려운 대화의 기술: 하버드 협상 프로젝트의 교훈</h1>
+            <p class="article-subtitle">성과 평가, 해고 통보, 갈등 중재. 피하고 싶지만 피할 수 없는 어려운 대화를 잘 하는 방법.</p>
+            <div class="article-meta">
+                <div class="author">
+                    <div class="author-avatar">강</div>
+                    <div class="author-info"><span class="author-name">강민지</span><span>에디터</span></div>
+                </div>
+                <span>2026년 1월 4일</span>
+                <span>8분 읽기</span>
+                <span>8,156명이 읽음</span>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <p>"성과가 기대에 미치지 못합니다." "이 프로젝트에서 빠져주세요." "당신의 행동이 팀에 부정적 영향을 주고 있어요."</p>
+
+            <p>이런 대화를 피하고 싶은 것은 당연합니다. 하지만 리더라면 피할 수 없습니다. <strong>어려운 대화를 잘 하는 것</strong>은 리더십의 핵심 역량입니다.</p>
+
+            <p>하버드 협상 프로젝트(Harvard Negotiation Project)의 연구진이 쓴 "Difficult Conversations"는 이 주제를 체계적으로 다룹니다.</p>
+
+            <blockquote>"어려운 대화를 피하는 것은 문제를 해결하지 않는다. 문제를 키울 뿐이다."</blockquote>
+
+            <h2>모든 어려운 대화에는 3가지 대화가 있다</h2>
+
+            <div class="principle-card">
+                <h4>1. 무슨 일이 있었나 대화 (What Happened)</h4>
+                <p>사실에 대한 대화. "누가 맞고 틀린가"가 아니라, "서로 다른 관점에서 무엇을 봤는가"를 이해하는 것이 중요합니다.</p>
+            </div>
+
+            <div class="principle-card">
+                <h4>2. 감정 대화 (Feelings)</h4>
+                <p>감정을 무시하면 대화가 꼬입니다. "화가 났다", "실망했다"는 감정을 인정하고 다뤄야 합니다.</p>
+            </div>
+
+            <div class="principle-card">
+                <h4>3. 정체성 대화 (Identity)</h4>
+                <p>"나는 좋은 사람인가?", "나는 유능한가?"라는 내면의 질문. 정체성이 위협받으면 방어적이 됩니다.</p>
+            </div>
+
+            <h2>어려운 대화 전: 준비하기</h2>
+
+            <h3>1. 목적을 명확히 하세요</h3>
+            <p>"이 대화로 무엇을 달성하고 싶은가?" 상대를 이기는 것이 아니라, <strong>문제를 해결하고 관계를 유지하는 것</strong>이 목적이어야 합니다.</p>
+
+            <h3>2. 상대의 이야기를 상상해보세요</h3>
+            <p>상대 입장에서 이 상황이 어떻게 보일까요? 합리적인 사람이라면 왜 그렇게 행동했을까요? 선의를 가정하세요.</p>
+
+            <h3>3. 자신의 감정을 점검하세요</h3>
+            <p>화가 난 상태로 대화하면 실패합니다. 감정이 격해있다면 잠시 시간을 두세요.</p>
+
+            <h2>어려운 대화 중: 실전 기술</h2>
+
+            <h3>1. "제3의 이야기"로 시작하세요</h3>
+            <p>"당신이 잘못했어요"로 시작하면 방어벽이 올라갑니다. 대신, 양쪽 모두가 동의할 수 있는 중립적 설명으로 시작하세요.</p>
+
+            <div class="highlight-box">
+                <h4>예시: 제3의 이야기로 시작하기</h4>
+                <p>
+                    X "당신이 미팅에서 무례하게 행동했어요."<br><br>
+                    O "지난 미팅에서 의견 충돌이 있었고, 그 후로 어색한 것 같아요. 이 상황에 대해 이야기해볼 수 있을까요?"
+                </p>
+            </div>
+
+            <h3>2. 경청하고 탐색하세요</h3>
+            <p>말하기 전에 듣기. "그렇게 느꼈군요", "좀 더 말씀해주세요"로 상대의 관점을 충분히 이해하세요.</p>
+
+            <h3>3. "그리고"를 사용하세요</h3>
+            <p>"하지만"은 상대 말을 부정합니다. "그리고"는 양쪽을 모두 인정합니다.</p>
+
+            <div class="highlight-box">
+                <h4>예시: "그리고" 사용하기</h4>
+                <p>
+                    X "당신 말도 이해하지만, 팀 규칙을 지켜야죠."<br><br>
+                    O "당신의 상황이 힘들었다는 것을 이해합니다. 그리고 팀 규칙도 중요합니다. 둘 다 고려하는 방법을 찾아볼까요?"
+                </p>
+            </div>
+
+            <h3>4. 감정을 인정하세요</h3>
+            <p>상대가 화나있다면, "화가 나셨군요"라고 인정해주세요. 감정을 인정받으면 사람들은 이성적이 됩니다.</p>
+
+            <h3>5. 문제 해결에 집중하세요</h3>
+            <p>과거의 잘못을 따지기보다 <strong>"앞으로 어떻게 할까요?"</strong>에 집중하세요.</p>
+
+            <h2>특수 상황 가이드</h2>
+
+            <h3>성과 피드백</h3>
+            <ul>
+                <li>구체적 행동과 영향을 설명</li>
+                <li>개선 방향을 함께 논의</li>
+                <li>지원할 것을 약속</li>
+            </ul>
+
+            <h3>해고 통보</h3>
+            <ul>
+                <li>결정은 확정임을 명확히</li>
+                <li>이유를 간결하게 설명</li>
+                <li>존엄성을 지켜주기</li>
+                <li>다음 단계(퇴직금, 인수인계)를 안내</li>
+            </ul>
+
+            <h3>팀원 간 갈등 중재</h3>
+            <ul>
+                <li>양쪽 이야기를 따로 듣기</li>
+                <li>함께 만나 각자 관점 공유하게 하기</li>
+                <li>공통 목표에 집중</li>
+                <li>해결책을 함께 도출</li>
+            </ul>
+
+            <h2>대화 후: 후속 조치</h2>
+
+            <p>어려운 대화는 한 번으로 끝나지 않습니다. 합의된 내용을 문서화하고, 후속 미팅을 잡고, 약속한 것을 실행하세요.</p>
+
+            <blockquote>"어려운 대화를 잘 하는 능력은 타고나는 것이 아니다. 연습하면 누구나 나아진다."</blockquote>
+
+            <p>다음에 어려운 대화가 있다면, 피하지 마세요. 준비하고, 연습하고, 성장하세요.</p>
+
+            <div class="article-tags">
+                <a href="#" class="tag">어려운 대화</a>
+                <a href="#" class="tag">커뮤니케이션</a>
+                <a href="#" class="tag">갈등 해결</a>
+                <a href="#" class="tag">리더십</a>
+            </div>
+        </div>
+    </article>
+
+    <section class="related-section">
+        <div class="related-content">
+            <h2 class="related-title">함께 읽으면 좋은 글</h2>
+            <div class="related-grid">
+                <a href="leader-insights-article-19.html" class="related-card">
+                    <span class="related-card-category">커뮤니케이션</span>
+                    <h3 class="related-card-title">비폭력 대화(NVC): 마셜 로젠버그의 연결의 언어</h3>
+                    <span class="related-card-meta">9분 읽기</span>
+                </a>
+                <a href="leader-insights-article-3.html" class="related-card">
+                    <span class="related-card-category">커뮤니케이션</span>
+                    <h3 class="related-card-title">SBI 모델: 상대를 성장시키는 피드백 프레임워크</h3>
+                    <span class="related-card-meta">6분 읽기</span>
+                </a>
+                <a href="leader-insights-article-20.html" class="related-card">
+                    <span class="related-card-category">커뮤니케이션</span>
+                    <h3 class="related-card-title">액티브 리스닝: 듣는 것만으로 문제의 절반이 해결된다</h3>
+                    <span class="related-card-meta">6분 읽기</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer><div class="footer-content"><span class="copyright">© 2026 SEYOUNG LEE. All rights reserved.</span></div></footer>
+    <script>
+        window.addEventListener('scroll', () => {
+            const scrolled = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
+

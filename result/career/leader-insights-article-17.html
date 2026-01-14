@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>북극성 지표(North Star Metric): 팀이 집중해야 할 단 하나의 숫자 | 리더스 인사이트</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --toss-blue: #0064FF; --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-400: #9CA3AF; --gray-500: #6B7280; --gray-600: #4B5563; --gray-700: #374151; --gray-900: #111827; --white: #FFFFFF; --accent: #2d3436; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans KR', sans-serif; background: var(--white); color: var(--gray-900); line-height: 1.8; }
+        header { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid var(--gray-100); }
+        nav { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: center; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--gray-900); }
+        .logo-icon { width: 32px; height: 32px; background: var(--toss-blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 14px; }
+        .logo-text { font-weight: 700; font-size: 18px; }
+        .nav-links { display: flex; gap: 8px; }
+        .nav-links a { text-decoration: none; color: var(--gray-600); font-size: 15px; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+        .nav-links a:hover { color: var(--gray-900); background: var(--gray-50); }
+        .subscribe-btn { background: var(--gray-900); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; }
+        .progress-bar { position: fixed; top: 64px; left: 0; width: 0%; height: 3px; background: var(--toss-blue); z-index: 1001; }
+        .article-header { padding: 140px 24px 60px; max-width: 800px; margin: 0 auto; }
+        .article-category { color: var(--toss-blue); font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+        .article-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; line-height: 1.3; margin-bottom: 24px; }
+        .article-subtitle { font-size: 18px; color: var(--gray-500); line-height: 1.7; margin-bottom: 32px; }
+        .article-meta { display: flex; gap: 24px; padding-top: 24px; border-top: 1px solid var(--gray-100); color: var(--gray-500); font-size: 14px; flex-wrap: wrap; align-items: center; }
+        .author { display: flex; align-items: center; gap: 12px; }
+        .author-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; }
+        .author-info { display: flex; flex-direction: column; }
+        .author-name { color: var(--gray-900); font-weight: 600; }
+        .article-content { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
+        .article-content p { font-size: 17px; line-height: 1.9; margin-bottom: 28px; color: var(--gray-700); }
+        .article-content h2 { font-size: 24px; font-weight: 700; margin: 56px 0 24px; color: var(--gray-900); }
+        .article-content h3 { font-size: 20px; font-weight: 700; margin: 40px 0 16px; color: var(--gray-900); }
+        .article-content strong { color: var(--gray-900); font-weight: 600; }
+        .article-content blockquote { border-left: 3px solid var(--accent); padding-left: 24px; margin: 32px 0; font-size: 18px; color: var(--gray-600); font-style: italic; }
+        .article-content ul, .article-content ol { margin: 24px 0; padding-left: 24px; }
+        .article-content li { font-size: 17px; line-height: 1.8; margin-bottom: 12px; color: var(--gray-700); }
+        .highlight-box { background: var(--gray-50); border-radius: 12px; padding: 28px 32px; margin: 32px 0; }
+        .highlight-box h4 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--accent); }
+        .example-card { background: var(--accent); border-radius: 16px; padding: 28px; margin: 20px 0; color: white; }
+        .example-card .company { font-size: 12px; font-weight: 600; opacity: 0.8; margin-bottom: 8px; }
+        .example-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+        .example-card p { font-size: 15px; line-height: 1.6; opacity: 0.9; margin: 0; }
+        .article-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--gray-100); }
+        .tag { padding: 8px 16px; background: var(--gray-100); border-radius: 100px; font-size: 13px; color: var(--gray-600); text-decoration: none; }
+        .related-section { background: var(--gray-50); padding: 80px 24px; }
+        .related-content { max-width: 1200px; margin: 0 auto; }
+        .related-title { font-size: 24px; font-weight: 700; margin-bottom: 32px; text-align: center; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .related-card { background: var(--white); border-radius: 16px; padding: 28px; text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        .related-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .related-card-category { font-size: 12px; font-weight: 600; color: var(--toss-blue); margin-bottom: 12px; }
+        .related-card-title { font-size: 16px; font-weight: 700; line-height: 1.5; margin-bottom: 12px; }
+        .related-card-meta { font-size: 13px; color: var(--gray-400); }
+        footer { background: var(--white); border-top: 1px solid var(--gray-100); padding: 40px 24px; text-align: center; }
+        .copyright { color: var(--gray-400); font-size: 13px; }
+        @media (max-width: 768px) { .nav-links { display: none; } .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <header>
+        <nav>
+            <div class="nav-links">
+                <a href="leader-insights.html">전체</a>
+                <a href="leader-insights-leadership.html">리더십</a>
+                <a href="leader-insights-culture.html">조직문화</a>
+                <a href="leader-insights-growth.html">성장전략</a>
+                <a href="leader-insights-communication.html">커뮤니케이션</a>
+            </div>
+        </nav>
+    </header>
+
+    <article>
+        <div class="article-header">
+            <span class="article-category">성장전략</span>
+            <h1 class="article-title">북극성 지표(North Star Metric): 팀이 집중해야 할 단 하나의 숫자</h1>
+            <p class="article-subtitle">Airbnb의 '예약된 숙박 일수', Spotify의 '청취 시간'. 북극성 지표를 찾고 정렬하는 방법.</p>
+            <div class="article-meta">
+                <div class="author">
+                    <div class="author-avatar">이</div>
+                    <div class="author-info"><span class="author-name">이준혁</span><span>에디터</span></div>
+                </div>
+                <span>2025년 12월 20일</span>
+                <span>7분 읽기</span>
+                <span>5,891명이 읽음</span>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <p>모든 팀이 매일 수십 개의 지표를 봅니다. DAU, MAU, 전환율, 이탈률, NPS, LTV... 숫자의 바다에서 "지금 우리가 집중해야 할 것"을 찾기 어렵습니다.</p>
+
+            <p><strong>북극성 지표(North Star Metric)</strong>는 이 문제를 해결합니다. 수많은 지표 중 <strong>딱 하나</strong>, 팀 전체가 바라봐야 할 가장 중요한 숫자입니다.</p>
+
+            <blockquote>"방향을 잃었을 때, 북극성을 보라. 북극성 지표는 조직의 나침반이다."</blockquote>
+
+            <h2>북극성 지표란?</h2>
+
+            <p>북극성 지표는 세 가지 조건을 만족해야 합니다:</p>
+
+            <ol>
+                <li><strong>고객 가치를 반영:</strong> 매출이 아닌, 고객이 얻는 가치를 측정</li>
+                <li><strong>성장과 연결:</strong> 이 지표가 올라가면 비즈니스가 성장</li>
+                <li><strong>모든 팀이 영향:</strong> 전 조직이 이 지표에 기여할 수 있음</li>
+            </ol>
+
+            <h2>유명 기업의 북극성 지표</h2>
+
+            <div class="example-card">
+                <div class="company">AIRBNB</div>
+                <h4>예약된 숙박 일수 (Nights Booked)</h4>
+                <p>매출이나 사용자 수가 아닌, 실제로 사람들이 Airbnb를 통해 숙박하는 일수. 호스트와 게스트 양쪽에게 가치가 전달됐음을 의미합니다.</p>
+            </div>
+
+            <div class="example-card">
+                <div class="company">SPOTIFY</div>
+                <h4>총 청취 시간 (Time Spent Listening)</h4>
+                <p>사용자가 Spotify에서 음악을 듣는 총 시간. 가입자 수가 아닌 실제 사용을 측정합니다.</p>
+            </div>
+
+            <div class="example-card">
+                <div class="company">FACEBOOK</div>
+                <h4>월간 활성 사용자 (Monthly Active Users)</h4>
+                <p>단순 가입이 아닌, 실제로 매달 Facebook을 사용하는 사람 수.</p>
+            </div>
+
+            <div class="example-card">
+                <div class="company">SLACK</div>
+                <h4>전송된 메시지 수 (Messages Sent)</h4>
+                <p>팀이 Slack을 통해 소통하는 양. 설치가 아닌 실제 사용을 측정합니다.</p>
+            </div>
+
+            <div class="example-card">
+                <div class="company">HUBSPOT</div>
+                <h4>주간 활성 팀 수 (Weekly Active Teams)</h4>
+                <p>개인이 아닌 팀 단위의 활성 사용. B2B 제품의 진짜 가치를 반영합니다.</p>
+            </div>
+
+            <h2>북극성 지표 찾는 법</h2>
+
+            <h3>1. "고객이 얻는 핵심 가치가 뭔가?" 질문하세요</h3>
+            <p>제품/서비스를 통해 고객이 진짜 얻는 것은 무엇인가요? Uber는 "이동"이고, Airbnb는 "숙박"입니다. 매출이나 가입이 아닙니다.</p>
+
+            <h3>2. 선행 지표를 찾으세요</h3>
+            <p>매출은 결과입니다. 매출을 만드는 <strong>원인</strong>이 되는 지표를 찾으세요. 고객이 가치를 느끼면 매출은 따라옵니다.</p>
+
+            <h3>3. 팀 전체가 영향을 줄 수 있는지 확인하세요</h3>
+            <p>마케팅만, 개발팀만 영향을 주는 지표는 북극성이 아닙니다. 전 조직이 이 숫자를 올리기 위해 노력할 수 있어야 합니다.</p>
+
+            <div class="highlight-box">
+                <h4>북극성 지표 체크리스트</h4>
+                <p>
+                    ✓ 고객 가치를 직접 반영하는가?<br>
+                    ✓ 측정 가능하고 추적 가능한가?<br>
+                    ✓ 전 조직이 영향을 줄 수 있는가?<br>
+                    ✓ 이 지표가 올라가면 비즈니스가 성장하는가?<br>
+                    ✓ 허영 지표(vanity metric)가 아닌가?
+                </p>
+            </div>
+
+            <h2>주의할 점</h2>
+
+            <h3>1. 북극성은 하나여야 합니다</h3>
+            <p>"이것도 중요하고 저것도 중요하고"는 아무것도 중요하지 않다는 뜻입니다. <strong>딱 하나</strong>를 고르세요.</p>
+
+            <h3>2. 북극성 아래에 입력 지표가 있습니다</h3>
+            <p>북극성 지표는 결과입니다. 이 결과를 만드는 여러 입력 지표(Input Metrics)가 있습니다. 각 팀은 북극성에 기여하는 자신만의 입력 지표를 가집니다.</p>
+
+            <h3>3. 북극성도 변할 수 있습니다</h3>
+            <p>사업 단계에 따라 북극성이 바뀔 수 있습니다. 초기에는 "활성 사용자 수"가, 성숙기에는 "고객 생애 가치"가 북극성일 수 있습니다.</p>
+
+            <h2>실행: 우리 팀의 북극성 찾기</h2>
+
+            <ol>
+                <li>팀원 전체가 모여 "고객이 우리 제품에서 얻는 진짜 가치는?"을 토론하세요.</li>
+                <li>후보 지표 3-5개를 도출하세요.</li>
+                <li>체크리스트로 검증하세요.</li>
+                <li>하나를 선택하고, 모든 팀이 정렬하세요.</li>
+                <li>대시보드에 크게 띄우고, 매일 트래킹하세요.</li>
+            </ol>
+
+            <blockquote>"모든 것을 측정할 수는 있지만, 모든 것에 집중할 수는 없다."</blockquote>
+
+            <p>지금 당신 팀의 북극성 지표는 무엇인가요? 없다면, 이번 주에 정해보세요.</p>
+
+            <div class="article-tags">
+                <a href="#" class="tag">북극성 지표</a>
+                <a href="#" class="tag">성장전략</a>
+                <a href="#" class="tag">KPI</a>
+                <a href="#" class="tag">제품 관리</a>
+            </div>
+        </div>
+    </article>
+
+    <section class="related-section">
+        <div class="related-content">
+            <h2 class="related-title">함께 읽으면 좋은 글</h2>
+            <div class="related-grid">
+                <a href="leader-insights-article-15.html" class="related-card">
+                    <span class="related-card-category">성장전략</span>
+                    <h3 class="related-card-title">린 스타트업 방법론: 빠르게 실패하고, 빠르게 배우기</h3>
+                    <span class="related-card-meta">10분 읽기</span>
+                </a>
+                <a href="leader-insights-article-16.html" class="related-card">
+                    <span class="related-card-category">성장전략</span>
+                    <h3 class="related-card-title">효과적인 회고 운영법: KPT, 4Ls, Start-Stop-Continue</h3>
+                    <span class="related-card-meta">8분 읽기</span>
+                </a>
+                <a href="leader-insights-article-4.html" class="related-card">
+                    <span class="related-card-category">성장전략</span>
+                    <h3 class="related-card-title">OKR 실전 가이드: 목표 설정의 기술</h3>
+                    <span class="related-card-meta">10분 읽기</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer><div class="footer-content"><span class="copyright">© 2026 SEYOUNG LEE. All rights reserved.</span></div></footer>
+    <script>
+        window.addEventListener('scroll', () => {
+            const scrolled = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
+

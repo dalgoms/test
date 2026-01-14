@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신규 입사자 온보딩: 첫 30일이 3년을 결정한다 | 리더스 인사이트</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --toss-blue: #0064FF; --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-400: #9CA3AF; --gray-500: #6B7280; --gray-600: #4B5563; --gray-700: #374151; --gray-900: #111827; --white: #FFFFFF; --accent: #00b894; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans KR', sans-serif; background: var(--white); color: var(--gray-900); line-height: 1.8; }
+        header { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid var(--gray-100); }
+        nav { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: center; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--gray-900); }
+        .logo-icon { width: 32px; height: 32px; background: var(--toss-blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 14px; }
+        .logo-text { font-weight: 700; font-size: 18px; }
+        .nav-links { display: flex; gap: 8px; }
+        .nav-links a { text-decoration: none; color: var(--gray-600); font-size: 15px; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+        .nav-links a:hover { color: var(--gray-900); background: var(--gray-50); }
+        .subscribe-btn { background: var(--gray-900); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; }
+        .progress-bar { position: fixed; top: 64px; left: 0; width: 0%; height: 3px; background: var(--toss-blue); z-index: 1001; }
+        .article-header { padding: 140px 24px 60px; max-width: 800px; margin: 0 auto; }
+        .article-category { color: var(--toss-blue); font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+        .article-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; line-height: 1.3; margin-bottom: 24px; }
+        .article-subtitle { font-size: 18px; color: var(--gray-500); line-height: 1.7; margin-bottom: 32px; }
+        .article-meta { display: flex; gap: 24px; padding-top: 24px; border-top: 1px solid var(--gray-100); color: var(--gray-500); font-size: 14px; flex-wrap: wrap; align-items: center; }
+        .author { display: flex; align-items: center; gap: 12px; }
+        .author-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; }
+        .author-info { display: flex; flex-direction: column; }
+        .author-name { color: var(--gray-900); font-weight: 600; }
+        .article-content { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
+        .article-content p { font-size: 17px; line-height: 1.9; margin-bottom: 28px; color: var(--gray-700); }
+        .article-content h2 { font-size: 24px; font-weight: 700; margin: 56px 0 24px; color: var(--gray-900); }
+        .article-content h3 { font-size: 20px; font-weight: 700; margin: 40px 0 16px; color: var(--gray-900); }
+        .article-content strong { color: var(--gray-900); font-weight: 600; }
+        .article-content blockquote { border-left: 3px solid var(--accent); padding-left: 24px; margin: 32px 0; font-size: 18px; color: var(--gray-600); font-style: italic; }
+        .article-content ul, .article-content ol { margin: 24px 0; padding-left: 24px; }
+        .article-content li { font-size: 17px; line-height: 1.8; margin-bottom: 12px; color: var(--gray-700); }
+        .highlight-box { background: var(--gray-50); border-radius: 12px; padding: 28px 32px; margin: 32px 0; }
+        .highlight-box h4 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--accent); }
+        .phase-card { background: var(--accent); border-radius: 16px; padding: 28px; margin: 20px 0; color: white; }
+        .phase-card .phase { font-size: 12px; font-weight: 600; opacity: 0.8; margin-bottom: 8px; }
+        .phase-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+        .phase-card p { font-size: 15px; line-height: 1.6; opacity: 0.9; margin: 0; }
+        .article-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--gray-100); }
+        .tag { padding: 8px 16px; background: var(--gray-100); border-radius: 100px; font-size: 13px; color: var(--gray-600); text-decoration: none; }
+        .related-section { background: var(--gray-50); padding: 80px 24px; }
+        .related-content { max-width: 1200px; margin: 0 auto; }
+        .related-title { font-size: 24px; font-weight: 700; margin-bottom: 32px; text-align: center; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .related-card { background: var(--white); border-radius: 16px; padding: 28px; text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        .related-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .related-card-category { font-size: 12px; font-weight: 600; color: var(--toss-blue); margin-bottom: 12px; }
+        .related-card-title { font-size: 16px; font-weight: 700; line-height: 1.5; margin-bottom: 12px; }
+        .related-card-meta { font-size: 13px; color: var(--gray-400); }
+        footer { background: var(--white); border-top: 1px solid var(--gray-100); padding: 40px 24px; text-align: center; }
+        .copyright { color: var(--gray-400); font-size: 13px; }
+        @media (max-width: 768px) { .nav-links { display: none; } .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <header>
+        <nav>
+            <div class="nav-links">
+                <a href="leader-insights.html">전체</a>
+                <a href="leader-insights-leadership.html">리더십</a>
+                <a href="leader-insights-culture.html">조직문화</a>
+                <a href="leader-insights-growth.html">성장전략</a>
+                <a href="leader-insights-communication.html">커뮤니케이션</a>
+            </div>
+        </nav>
+    </header>
+
+    <article>
+        <div class="article-header">
+            <span class="article-category">조직문화</span>
+            <h1 class="article-title">신규 입사자 온보딩: 첫 30일이 3년을 결정한다</h1>
+            <p class="article-subtitle">온보딩 경험이 직원 유지율과 성과에 미치는 영향. 효과적인 온보딩 프로그램 설계 가이드.</p>
+            <div class="article-meta">
+                <div class="author">
+                    <div class="author-avatar">한</div>
+                    <div class="author-info"><span class="author-name">한지민</span><span>에디터</span></div>
+                </div>
+                <span>2025년 12월 23일</span>
+                <span>7분 읽기</span>
+                <span>4,567명이 읽음</span>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <p>신입 직원의 <strong>22%</strong>가 입사 45일 이내에 퇴사합니다. 그리고 1년 이내 퇴사자의 대부분은 첫 6개월 안에 퇴사를 결심합니다.</p>
+
+            <p>첫인상이 중요한 것처럼, 입사 첫 경험도 중요합니다. 온보딩은 단순히 "회사 소개"가 아닙니다. <strong>3년의 근속</strong>을 결정짓는 핵심 경험입니다.</p>
+
+            <blockquote>"온보딩에 투자하는 회사는 신입 직원의 생산성을 70% 더 빨리 끌어올린다."<br>— SHRM 연구 보고서</blockquote>
+
+            <h2>온보딩이 실패하는 이유</h2>
+
+            <h3>1. 정보 과부하</h3>
+            <p>첫날 회사 역사, 조직도, 복지, 보안 교육, 시스템 접근권... 쏟아지는 정보에 압도됩니다. 일주일 후 기억나는 건 10%도 안 됩니다.</p>
+
+            <h3>2. 방치</h3>
+            <p>"일단 적응하세요"라며 자리만 안내합니다. 누구에게 뭘 물어야 하는지, 뭘 해야 하는지 모릅니다. 첫 주를 무기력하게 보냅니다.</p>
+
+            <h3>3. 사회적 고립</h3>
+            <p>점심 먹을 사람이 없습니다. 팀원들은 바쁘고, 말 걸기 어렵습니다. "나만 겉도는 것 같다"는 느낌이 듭니다.</p>
+
+            <h2>효과적인 온보딩의 4단계</h2>
+
+            <div class="phase-card">
+                <div class="phase">PHASE 1: 입사 전 (Pre-boarding)</div>
+                <h4>입사 전부터 시작하세요</h4>
+                <p>입사 전 환영 이메일, 첫날 일정 안내, 필요한 서류 미리 전달. 첫 출근 전부터 "환영받고 있다"는 느낌을 주세요.</p>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase">PHASE 2: 첫 주 (Week 1)</div>
+                <h4>정착에 집중하세요</h4>
+                <p>첫날은 쉽게. 팀원 소개, 자리 셋업, 시스템 접근권. 점심은 팀과 함께. 첫 주는 "여기 있어도 괜찮다"는 안정감을 주세요.</p>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase">PHASE 3: 첫 달 (Month 1)</div>
+                <h4>작은 성공을 만들어주세요</h4>
+                <p>90일 목표를 함께 설정합니다. 첫 달 안에 작은 프로젝트를 완료하게 해주세요. 성취감이 소속감을 만듭니다.</p>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase">PHASE 4: 90일 (Quarter 1)</div>
+                <h4>독립적 기여자로 성장시키세요</h4>
+                <p>90일이 끝나면, 독립적으로 일할 수 있어야 합니다. 정기적인 피드백과 성장 대화를 통해 다음 단계를 설계합니다.</p>
+            </div>
+
+            <h2>온보딩 체크리스트</h2>
+
+            <div class="highlight-box">
+                <h4>첫날 체크리스트</h4>
+                <p>
+                    • 환영 키트 (노트북, 명함, 환영 카드)<br>
+                    • 팀원 전체와 인사<br>
+                    • 버디/멘토 배정<br>
+                    • 팀 점심<br>
+                    • 첫 주 일정 안내<br>
+                    • 퇴근 시간 명확히 안내
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>첫 주 체크리스트</h4>
+                <p>
+                    • 주요 이해관계자와 1:1 미팅<br>
+                    • 팀의 업무 방식, 도구, 프로세스 교육<br>
+                    • 90일 목표 설정<br>
+                    • 회사 문화와 가치 공유<br>
+                    • 주간 피드백 세션
+                </p>
+            </div>
+
+            <h2>버디 시스템의 힘</h2>
+
+            <p>Microsoft 연구에 따르면, <strong>버디가 있는 신입 직원</strong>은 없는 직원보다 온보딩 만족도가 36% 높았습니다. 버디는 공식적 멘토와 다릅니다. 질문하기 쉬운 동료, 점심 함께 먹을 사람, 사소한 것도 물어볼 수 있는 친구입니다.</p>
+
+            <h3>좋은 버디의 조건</h3>
+            <ul>
+                <li>최소 1년 이상 근무한 직원</li>
+                <li>신입과 같은 팀이 아니어도 됨</li>
+                <li>긍정적이고 접근하기 쉬운 성격</li>
+                <li>첫 한 달간 주 1회 이상 만남</li>
+            </ul>
+
+            <h2>온보딩의 ROI</h2>
+
+            <p>좋은 온보딩 프로그램은 비용이 아닌 <strong>투자</strong>입니다.</p>
+
+            <ul>
+                <li><strong>신입 직원 생산성 70% 향상</strong></li>
+                <li><strong>1년 이내 이직률 50% 감소</strong></li>
+                <li><strong>직원 몰입도 33% 향상</strong></li>
+            </ul>
+
+            <blockquote>"첫 90일의 경험이 다음 3년을 결정한다."</blockquote>
+
+            <p>지금 당신 팀의 온보딩은 어떤가요? 신입 직원의 첫 경험을 다시 설계해보세요.</p>
+
+            <div class="article-tags">
+                <a href="#" class="tag">온보딩</a>
+                <a href="#" class="tag">신입 직원</a>
+                <a href="#" class="tag">조직문화</a>
+                <a href="#" class="tag">직원 유지</a>
+            </div>
+        </div>
+    </article>
+
+    <section class="related-section">
+        <div class="related-content">
+            <h2 class="related-title">함께 읽으면 좋은 글</h2>
+            <div class="related-grid">
+                <a href="leader-insights-article-12.html" class="related-card">
+                    <span class="related-card-category">조직문화</span>
+                    <h3 class="related-card-title">Netflix 컬처 덱: 규칙 없음이 최고의 규칙인 이유</h3>
+                    <span class="related-card-meta">10분 읽기</span>
+                </a>
+                <a href="leader-insights-article-13.html" class="related-card">
+                    <span class="related-card-category">조직문화</span>
+                    <h3 class="related-card-title">Buffer의 급진적 투명성: 모든 것을 공개하면 무슨 일이 생기는가</h3>
+                    <span class="related-card-meta">8분 읽기</span>
+                </a>
+                <a href="leader-insights-article-2.html" class="related-card">
+                    <span class="related-card-category">팀빌딩</span>
+                    <h3 class="related-card-title">구글이 2년간 180개 팀을 분석해 발견한 최고의 팀의 비밀</h3>
+                    <span class="related-card-meta">7분 읽기</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer><div class="footer-content"><span class="copyright">© 2026 SEYOUNG LEE. All rights reserved.</span></div></footer>
+    <script>
+        window.addEventListener('scroll', () => {
+            const scrolled = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>액티브 리스닝: 듣는 것만으로 문제의 절반이 해결된다 | 리더스 인사이트</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --toss-blue: #0064FF; --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-400: #9CA3AF; --gray-500: #6B7280; --gray-600: #4B5563; --gray-700: #374151; --gray-900: #111827; --white: #FFFFFF; --accent: #00b894; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans KR', sans-serif; background: var(--white); color: var(--gray-900); line-height: 1.8; }
+        header { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid var(--gray-100); }
+        nav { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: center; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--gray-900); }
+        .logo-icon { width: 32px; height: 32px; background: var(--toss-blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 14px; }
+        .logo-text { font-weight: 700; font-size: 18px; }
+        .nav-links { display: flex; gap: 8px; }
+        .nav-links a { text-decoration: none; color: var(--gray-600); font-size: 15px; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+        .nav-links a:hover { color: var(--gray-900); background: var(--gray-50); }
+        .subscribe-btn { background: var(--gray-900); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; }
+        .progress-bar { position: fixed; top: 64px; left: 0; width: 0%; height: 3px; background: var(--toss-blue); z-index: 1001; }
+        .article-header { padding: 140px 24px 60px; max-width: 800px; margin: 0 auto; }
+        .article-category { color: var(--toss-blue); font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+        .article-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; line-height: 1.3; margin-bottom: 24px; }
+        .article-subtitle { font-size: 18px; color: var(--gray-500); line-height: 1.7; margin-bottom: 32px; }
+        .article-meta { display: flex; gap: 24px; padding-top: 24px; border-top: 1px solid var(--gray-100); color: var(--gray-500); font-size: 14px; flex-wrap: wrap; align-items: center; }
+        .author { display: flex; align-items: center; gap: 12px; }
+        .author-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; }
+        .author-info { display: flex; flex-direction: column; }
+        .author-name { color: var(--gray-900); font-weight: 600; }
+        .article-content { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
+        .article-content p { font-size: 17px; line-height: 1.9; margin-bottom: 28px; color: var(--gray-700); }
+        .article-content h2 { font-size: 24px; font-weight: 700; margin: 56px 0 24px; color: var(--gray-900); }
+        .article-content h3 { font-size: 20px; font-weight: 700; margin: 40px 0 16px; color: var(--gray-900); }
+        .article-content strong { color: var(--gray-900); font-weight: 600; }
+        .article-content blockquote { border-left: 3px solid var(--accent); padding-left: 24px; margin: 32px 0; font-size: 18px; color: var(--gray-600); font-style: italic; }
+        .article-content ul, .article-content ol { margin: 24px 0; padding-left: 24px; }
+        .article-content li { font-size: 17px; line-height: 1.8; margin-bottom: 12px; color: var(--gray-700); }
+        .highlight-box { background: var(--gray-50); border-radius: 12px; padding: 28px 32px; margin: 32px 0; }
+        .highlight-box h4 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--accent); }
+        .skill-card { background: var(--accent); border-radius: 16px; padding: 28px; margin: 20px 0; color: white; }
+        .skill-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+        .skill-card p { font-size: 15px; line-height: 1.6; opacity: 0.9; margin: 0; }
+        .article-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--gray-100); }
+        .tag { padding: 8px 16px; background: var(--gray-100); border-radius: 100px; font-size: 13px; color: var(--gray-600); text-decoration: none; }
+        .related-section { background: var(--gray-50); padding: 80px 24px; }
+        .related-content { max-width: 1200px; margin: 0 auto; }
+        .related-title { font-size: 24px; font-weight: 700; margin-bottom: 32px; text-align: center; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .related-card { background: var(--white); border-radius: 16px; padding: 28px; text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        .related-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .related-card-category { font-size: 12px; font-weight: 600; color: var(--toss-blue); margin-bottom: 12px; }
+        .related-card-title { font-size: 16px; font-weight: 700; line-height: 1.5; margin-bottom: 12px; }
+        .related-card-meta { font-size: 13px; color: var(--gray-400); }
+        footer { background: var(--white); border-top: 1px solid var(--gray-100); padding: 40px 24px; text-align: center; }
+        .copyright { color: var(--gray-400); font-size: 13px; }
+        @media (max-width: 768px) { .nav-links { display: none; } .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <header>
+        <nav>
+            <div class="nav-links">
+                <a href="leader-insights.html">전체</a>
+                <a href="leader-insights-leadership.html">리더십</a>
+                <a href="leader-insights-culture.html">조직문화</a>
+                <a href="leader-insights-growth.html">성장전략</a>
+                <a href="leader-insights-communication.html">커뮤니케이션</a>
+            </div>
+        </nav>
+    </header>
+
+    <article>
+        <div class="article-header">
+            <span class="article-category">커뮤니케이션</span>
+            <h1 class="article-title">액티브 리스닝: 듣는 것만으로 문제의 절반이 해결된다</h1>
+            <p class="article-subtitle">경청은 수동적 행위가 아닙니다. 적극적 경청(Active Listening)의 5가지 기술과 연습 방법.</p>
+            <div class="article-meta">
+                <div class="author">
+                    <div class="author-avatar">조</div>
+                    <div class="author-info"><span class="author-name">조현우</span><span>에디터</span></div>
+                </div>
+                <span>2025년 12월 22일</span>
+                <span>6분 읽기</span>
+                <span>3,234명이 읽음</span>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <p>대부분의 사람들은 상대가 말하는 동안 <strong>"내가 뭐라고 대답할까"</strong>를 생각합니다. 듣는 것이 아니라, 대답을 준비하는 것입니다.</p>
+
+            <p>진정한 경청은 다릅니다. 상대의 말에 온전히 집중하고, 이해하려 노력하고, 상대가 "들렸다"고 느끼게 하는 것입니다. 이것이 <strong>액티브 리스닝(Active Listening)</strong>입니다.</p>
+
+            <blockquote>"대부분의 사람들은 이해하려고 듣지 않는다. 대답하려고 듣는다."<br>— 스티븐 코비</blockquote>
+
+            <h2>왜 경청이 어려운가</h2>
+
+            <ul>
+                <li><strong>말하는 속도 vs 생각 속도:</strong> 우리는 분당 125-175단어를 말하지만, 분당 400단어 이상을 생각합니다. 남는 인지 자원이 다른 생각으로 빠집니다.</li>
+                <li><strong>판단의 유혹:</strong> 상대 말을 들으며 무의식적으로 평가합니다. "틀렸어", "왜 저렇게 생각하지?"</li>
+                <li><strong>해결 욕구:</strong> 특히 리더들은 "어떻게 해결해줄까"를 생각합니다. 하지만 상대는 해결이 아닌 이해를 원할 때가 많습니다.</li>
+            </ul>
+
+            <h2>액티브 리스닝의 5가지 기술</h2>
+
+            <div class="skill-card">
+                <h4>1. 주의 집중 (Attending)</h4>
+                <p>눈을 맞추고, 몸을 상대 쪽으로 향하고, 핸드폰을 치우세요. "당신의 말에 집중하고 있다"는 신호를 보내세요.</p>
+            </div>
+
+            <div class="skill-card">
+                <h4>2. 반영 (Reflecting)</h4>
+                <p>상대 말을 그대로 반복하거나 바꿔 말해보세요. "그러니까, ~라는 말씀이시죠?" 상대는 자신이 제대로 이해됐는지 확인할 수 있습니다.</p>
+            </div>
+
+            <div class="skill-card">
+                <h4>3. 명료화 (Clarifying)</h4>
+                <p>모호한 부분을 질문으로 명확히 하세요. "~라고 하셨을 때, 구체적으로 어떤 상황이었나요?"</p>
+            </div>
+
+            <div class="skill-card">
+                <h4>4. 요약 (Summarizing)</h4>
+                <p>긴 이야기가 끝나면 핵심을 요약해주세요. "정리하면, ~한 상황에서 ~하셨고, 지금 ~가 고민이시군요."</p>
+            </div>
+
+            <div class="skill-card">
+                <h4>5. 공감 (Empathizing)</h4>
+                <p>상대의 감정을 인정하세요. "그 상황에서 정말 답답하셨겠어요." 감정이 인정받으면 사람들은 이성적이 됩니다.</p>
+            </div>
+
+            <h2>실전 대화 예시</h2>
+
+            <div class="highlight-box">
+                <h4>팀원의 고민을 듣는 상황</h4>
+                <p>
+                    <strong>팀원:</strong> "요즘 일이 너무 많아서 힘들어요. 야근도 계속하고, 주말에도 일하는데 끝이 안 보여요."<br><br>
+                    <strong>일반적 응답:</strong> "그래도 조금만 버텨. 다음 달에 프로젝트 끝나면 나아질 거야."<br><br>
+                    <strong>액티브 리스닝:</strong> "(주의 집중) 네, 말씀해주세요. (반영) 야근과 주말 근무가 계속되고 있군요. (공감) 끝이 안 보이는 느낌이면 정말 지치셨겠어요. (명료화) 구체적으로 어떤 업무가 가장 부담이 되세요?"
+                </p>
+            </div>
+
+            <h2>경청의 방해물</h2>
+
+            <h3>피해야 할 반응들</h3>
+
+            <ul>
+                <li><strong>조언 급하게 하기:</strong> "내 생각엔 이렇게 하면 돼..." (상대가 원하지 않을 수 있음)</li>
+                <li><strong>경험 덮어씌우기:</strong> "나도 그런 적 있어. 그때 내가..." (대화의 주인공이 바뀜)</li>
+                <li><strong>축소하기:</strong> "그거 별거 아니야. 더 힘든 사람도 많아." (감정 무시)</li>
+                <li><strong>판단하기:</strong> "왜 그렇게 했어? 그건 좀..." (방어적으로 만듦)</li>
+            </ul>
+
+            <h2>연습 방법</h2>
+
+            <h3>1. 3초 규칙</h3>
+            <p>상대가 말을 끝내면 바로 대답하지 말고 <strong>3초</strong> 기다리세요. 상대가 더 말할 수 있고, 당신은 생각할 시간을 얻습니다.</p>
+
+            <h3>2. "더 말씀해주세요"</h3>
+            <p>대답 대신 이 말을 해보세요. 놀라울 정도로 많은 이야기가 나옵니다.</p>
+
+            <h3>3. 요약 습관</h3>
+            <p>대화 중간중간 "그러니까 ~라는 말씀이시죠?"를 넣어보세요. 상대는 이해받는다고 느끼고, 오해를 줄일 수 있습니다.</p>
+
+            <h3>4. 핸드폰 치우기</h3>
+            <p>중요한 대화에서는 핸드폰을 보이지 않는 곳에 두세요. 화면이 보이기만 해도 집중력이 떨어집니다.</p>
+
+            <h2>경청의 효과</h2>
+
+            <p>제대로 된 경청은 놀라운 효과를 만듭니다:</p>
+
+            <ul>
+                <li>상대는 존중받는다고 느낍니다</li>
+                <li>신뢰가 쌓입니다</li>
+                <li>오해가 줄어듭니다</li>
+                <li>상대 스스로 답을 찾기도 합니다 (말하면서 정리됨)</li>
+            </ul>
+
+            <blockquote>"경청은 말하는 사람에게 주는 가장 큰 선물이다."</blockquote>
+
+            <p>오늘 대화에서, 대답하기 전에 한 번만 더 들어보세요. 그것만으로도 대화의 질이 달라집니다.</p>
+
+            <div class="article-tags">
+                <a href="#" class="tag">경청</a>
+                <a href="#" class="tag">액티브 리스닝</a>
+                <a href="#" class="tag">커뮤니케이션</a>
+                <a href="#" class="tag">대화 기술</a>
+            </div>
+        </div>
+    </article>
+
+    <section class="related-section">
+        <div class="related-content">
+            <h2 class="related-title">함께 읽으면 좋은 글</h2>
+            <div class="related-grid">
+                <a href="leader-insights-article-19.html" class="related-card">
+                    <span class="related-card-category">커뮤니케이션</span>
+                    <h3 class="related-card-title">비폭력 대화(NVC): 마셜 로젠버그의 연결의 언어</h3>
+                    <span class="related-card-meta">9분 읽기</span>
+                </a>
+                <a href="leader-insights-article-18.html" class="related-card">
+                    <span class="related-card-category">커뮤니케이션</span>
+                    <h3 class="related-card-title">어려운 대화의 기술: 하버드 협상 프로젝트의 교훈</h3>
+                    <span class="related-card-meta">8분 읽기</span>
+                </a>
+                <a href="leader-insights-article-1.html" class="related-card">
+                    <span class="related-card-category">리더십</span>
+                    <h3 class="related-card-title">1on1 미팅, 질문 하나로 팀원의 잠재력을 이끌어내는 법</h3>
+                    <span class="related-card-meta">8분 읽기</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer><div class="footer-content"><span class="copyright">© 2026 SEYOUNG LEE. All rights reserved.</span></div></footer>
+    <script>
+        window.addEventListener('scroll', () => {
+            const scrolled = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
+

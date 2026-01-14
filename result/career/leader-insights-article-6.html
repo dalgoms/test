@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아마존의 의사결정 프레임워크: Two-Way Door 원칙 | 리더스 인사이트</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --toss-blue: #0064FF;
+            --toss-blue-light: #4D94FF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            --white: #FFFFFF;
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--white);
+            color: var(--gray-900);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--gray-900);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--toss-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .logo-text { font-weight: 700; font-size: 18px; }
+        .nav-links { display: flex; align-items: center; gap: 8px; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 15px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover { color: var(--gray-900); background: var(--gray-50); }
+
+        .subscribe-btn {
+            background: var(--gray-900);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--toss-blue);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        .article-header {
+            padding: 140px 24px 60px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-category {
+            display: inline-block;
+            color: var(--toss-blue);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .article-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .article-subtitle {
+            font-size: 18px;
+            color: var(--gray-500);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-100);
+            color: var(--gray-500);
+            font-size: 14px;
+            flex-wrap: wrap;
+        }
+
+        .author { display: flex; align-items: center; gap: 12px; }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #7c3aed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .author-info { display: flex; flex-direction: column; }
+        .author-name { color: var(--gray-900); font-weight: 600; }
+
+        .article-content {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .article-content p {
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: 28px;
+            color: var(--gray-700);
+        }
+
+        .article-content h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 56px 0 24px;
+            letter-spacing: -0.5px;
+            color: var(--gray-900);
+        }
+
+        .article-content h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 40px 0 16px;
+            color: var(--gray-900);
+        }
+
+        .article-content strong { color: var(--gray-900); font-weight: 600; }
+
+        .article-content blockquote {
+            border-left: 3px solid var(--toss-blue);
+            padding-left: 24px;
+            margin: 32px 0;
+            font-size: 18px;
+            color: var(--gray-600);
+            font-style: italic;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 24px 0;
+            padding-left: 24px;
+        }
+
+        .article-content li {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            color: var(--gray-700);
+        }
+
+        .highlight-box {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin: 32px 0;
+        }
+
+        .highlight-box h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--toss-blue);
+        }
+
+        .highlight-box p { margin-bottom: 0; }
+
+        .door-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .door-card {
+            border-radius: 16px;
+            padding: 28px;
+        }
+
+        .door-card.two-way {
+            background: #7c3aed;
+            color: white;
+        }
+
+        .door-card.one-way {
+            background: #1a1a2e;
+            color: white;
+        }
+
+        .door-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .door-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .door-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .example-box {
+            background: #7c3aed;
+            border-radius: 16px;
+            padding: 32px;
+            margin: 32px 0;
+            color: white;
+        }
+
+        .example-box h4 {
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.8;
+            margin-bottom: 16px;
+        }
+
+        .example-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .example-box li {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .example-box li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+        }
+
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .tag {
+            padding: 8px 16px;
+            background: var(--gray-100);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .tag:hover { background: var(--gray-200); color: var(--gray-900); }
+
+        .related-section {
+            background: var(--gray-50);
+            padding: 80px 24px;
+        }
+
+        .related-content { max-width: 1200px; margin: 0 auto; }
+
+        .related-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .related-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .related-card-category {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--toss-blue);
+            margin-bottom: 12px;
+        }
+
+        .related-card-title {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .related-card-meta { font-size: 13px; color: var(--gray-400); }
+
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--gray-100);
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .copyright { color: var(--gray-400); font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .related-grid { grid-template-columns: 1fr; }
+            .door-comparison { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <header>
+        <nav>
+            <div class="nav-links">
+                <a href="leader-insights.html">전체</a>
+                <a href="leader-insights-leadership.html">리더십</a>
+                <a href="leader-insights-culture.html">조직문화</a>
+                <a href="leader-insights-growth.html">성장전략</a>
+                <a href="leader-insights-communication.html">커뮤니케이션</a>
+            </div>
+        </nav>
+    </header>
+
+    <article>
+        <div class="article-header">
+            <span class="article-category">의사결정</span>
+            <h1 class="article-title">아마존의 의사결정 프레임워크: Two-Way Door 원칙</h1>
+            <p class="article-subtitle">
+                되돌릴 수 있는 결정과 없는 결정을 구분하라. 
+                제프 베조스가 아마존에 심은 의사결정 문화의 핵심.
+            </p>
+            <div class="article-meta">
+                <div class="author">
+                    <div class="author-avatar">송</div>
+                    <div class="author-info">
+                        <span class="author-name">송태원</span>
+                        <span>에디터</span>
+                    </div>
+                </div>
+                <span>2026년 1월 8일</span>
+                <span>7분 읽기</span>
+                <span>2,456명이 읽음</span>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <p>
+                아마존이 세계 최대 기업 중 하나가 된 비결은 무엇일까요? 
+                기술력? 고객 중심? 물론 맞습니다. 
+                하지만 그 근저에는 <strong>빠른 의사결정 문화</strong>가 있습니다.
+            </p>
+
+            <p>
+                제프 베조스는 2015년 주주 서한에서 이렇게 썼습니다. 
+                "속도는 비즈니스에서 중요합니다. 
+                게다가 빠르게 결정하는 환경이 훨씬 더 재미있습니다."
+            </p>
+
+            <p>
+                그가 제시한 빠른 의사결정의 핵심 원칙이 바로 
+                <strong>'Two-Way Door'</strong>입니다.
+            </p>
+
+            <h2>Two-Way Door vs One-Way Door</h2>
+
+            <p>
+                베조스는 모든 의사결정을 두 가지 유형으로 분류합니다.
+            </p>
+
+            <div class="door-comparison">
+                <div class="door-card two-way">
+                    <h4>TYPE 2</h4>
+                    <h3>Two-Way Door</h3>
+                    <p>되돌릴 수 있는 결정. 잘못되면 다시 문을 열고 돌아오면 됩니다. 대부분의 결정이 여기 속합니다.</p>
+                </div>
+                <div class="door-card one-way">
+                    <h4>TYPE 1</h4>
+                    <h3>One-Way Door</h3>
+                    <p>되돌릴 수 없거나 되돌리기 매우 어려운 결정. 신중하게, 천천히, 충분한 논의를 거쳐야 합니다.</p>
+                </div>
+            </div>
+
+            <blockquote>
+                "대부분의 결정은 되돌릴 수 있다. 
+                하지만 많은 조직이 모든 결정을 One-Way Door처럼 다룬다. 
+                그 결과 느려지고, 위험 회피적이 되고, 실험을 두려워하게 된다."
+                <br>— 제프 베조스, 2015 주주 서한
+            </blockquote>
+
+            <h2>왜 이 구분이 중요한가</h2>
+
+            <p>
+                많은 조직의 문제는 <strong>모든 결정을 One-Way Door처럼 다루는 것</strong>입니다. 
+                작은 기능 하나 출시하는 데도 수많은 회의, 승인, 검토를 거칩니다. 
+                "실패하면 어쩌지?" "책임은 누가 지지?"라는 두려움 때문입니다.
+            </p>
+
+            <p>
+                하지만 생각해보세요. 
+                새로운 마케팅 캠페인을 시도했다가 효과가 없으면? 
+                그냥 중단하면 됩니다. 
+                새 기능을 출시했는데 사용자 반응이 안 좋으면? 
+                롤백하면 됩니다.
+            </p>
+
+            <p>
+                이런 결정들은 Two-Way Door입니다. 
+                빠르게 시도하고, 빠르게 학습하고, 필요하면 빠르게 되돌리면 됩니다.
+            </p>
+
+            <h2>실제 적용: 어떻게 구분하는가</h2>
+
+            <p>
+                결정 앞에서 다음 질문을 해보세요.
+            </p>
+
+            <ol>
+                <li><strong>되돌릴 수 있는가?</strong> 이 결정이 잘못되면 원상복구가 가능한가?</li>
+                <li><strong>되돌리는 비용은 얼마인가?</strong> 금전적, 시간적, 평판적 비용을 고려합니다.</li>
+                <li><strong>결정을 미루는 비용은 얼마인가?</strong> 기회비용, 경쟁사 대비 속도를 고려합니다.</li>
+            </ol>
+
+            <div class="example-box">
+                <h4>Two-Way Door 결정 예시</h4>
+                <ul>
+                    <li>새로운 가격 정책 테스트</li>
+                    <li>베타 기능 출시</li>
+                    <li>마케팅 채널 실험</li>
+                    <li>내부 프로세스 변경</li>
+                    <li>팀 회의 형식 변경</li>
+                    <li>새로운 도구 도입</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h4>One-Way Door 결정 예시</h4>
+                <p>
+                    대규모 인수합병, 새로운 시장 진출, 
+                    핵심 인프라 전환, 대형 파트너십 계약, 
+                    인력 구조조정 등은 One-Way Door입니다. 
+                    이런 결정은 충분한 데이터와 논의가 필요합니다.
+                </p>
+            </div>
+
+            <h2>70% 확신으로 결정하라</h2>
+
+            <p>
+                Two-Way Door 결정에서 베조스가 강조하는 또 다른 원칙이 있습니다. 
+                <strong>"70% 확신이 들면 결정하라."</strong>
+            </p>
+
+            <p>
+                100% 확신을 얻으려면 시간이 너무 오래 걸립니다. 
+                그리고 비즈니스에서 100% 확신은 사실상 불가능합니다. 
+                90%의 확신을 위해 들이는 추가 시간이 
+                30%의 확신 향상만 가져다준다면, 그건 낭비입니다.
+            </p>
+
+            <blockquote>
+                "대부분의 결정은 70% 정도의 정보로 내려야 한다. 
+                90%의 정보를 기다리면 대부분의 경우 너무 늦다."
+                <br>— 제프 베조스
+            </blockquote>
+
+            <h2>빠른 의사결정을 위한 아마존의 다른 원칙들</h2>
+
+            <h3>1. Disagree and Commit</h3>
+            <p>
+                반대 의견이 있어도, 일단 결정되면 전력으로 실행합니다. 
+                "나는 반대했으니까"라며 소극적으로 따르지 않습니다. 
+                이 원칙 덕분에 합의를 위한 긴 논쟁 없이 빠르게 전진할 수 있습니다.
+            </p>
+
+            <h3>2. 6-Page Memo</h3>
+            <p>
+                중요한 결정을 위한 회의에서는 PowerPoint 대신 
+                6페이지 이내의 산문 형식 문서를 사용합니다. 
+                회의 시작 후 20-30분간 모두가 조용히 문서를 읽습니다. 
+                이 방식은 발표자의 말솜씨가 아닌 아이디어의 품질로 판단하게 합니다.
+            </p>
+
+            <h3>3. Working Backwards</h3>
+            <p>
+                제품 개발 전에 먼저 '프레스 릴리스'를 작성합니다. 
+                고객에게 어떤 가치를 줄 것인지 명확히 한 후 개발을 시작합니다. 
+                이 방식은 불필요한 논쟁을 줄이고 빠른 결정을 가능하게 합니다.
+            </p>
+
+            <h2>당신의 조직에 적용하기</h2>
+
+            <p>
+                Two-Way Door 원칙을 적용하려면 먼저 조직의 의사결정 문화를 점검해야 합니다.
+            </p>
+
+            <ul>
+                <li>작은 실험에도 여러 단계의 승인이 필요한가요?</li>
+                <li>"실패하면 누가 책임지나"가 먼저 나오나요?</li>
+                <li>데이터가 완벽해질 때까지 결정을 미루나요?</li>
+                <li>합의에 이르기 위해 긴 회의를 반복하나요?</li>
+            </ul>
+
+            <p>
+                만약 이 중 하나라도 "예"라면, 
+                당신의 조직은 Two-Way Door를 One-Way Door처럼 다루고 있을 가능성이 높습니다.
+            </p>
+
+            <h2>마무리: 속도는 문화다</h2>
+
+            <p>
+                빠른 의사결정은 단순히 "빨리 결정하자"가 아닙니다. 
+                결정의 유형을 구분하고, 각 유형에 맞는 프로세스를 적용하는 것입니다.
+            </p>
+
+            <p>
+                Two-Way Door 결정에는 속도를. 
+                One-Way Door 결정에는 신중함을. 
+                이 구분이 명확해지면 조직 전체가 더 빠르고 대담해집니다.
+            </p>
+
+            <blockquote>
+                "Day 2는 정체다. 그 다음은 고통스러운 쇠퇴, 
+                그 다음은 죽음이다. 그래서 우리는 항상 Day 1이어야 한다."
+                <br>— 제프 베조스, 2016 주주 서한
+            </blockquote>
+
+            <div class="article-tags">
+                <a href="#" class="tag">의사결정</a>
+                <a href="#" class="tag">아마존</a>
+                <a href="#" class="tag">제프 베조스</a>
+                <a href="#" class="tag">리더십</a>
+                <a href="#" class="tag">조직문화</a>
+            </div>
+        </div>
+    </article>
+
+    <section class="related-section">
+        <div class="related-content">
+            <h2 class="related-title">함께 읽으면 좋은 글</h2>
+            <div class="related-grid">
+                <a href="leader-insights-article-4.html" class="related-card">
+                    <span class="related-card-category">성장전략</span>
+                    <h3 class="related-card-title">OKR과 KPI, 조직 상황에 따른 목표 관리 프레임워크 선택 가이드</h3>
+                    <span class="related-card-meta">9분 읽기</span>
+                </a>
+                <a href="leader-insights-article-8.html" class="related-card">
+                    <span class="related-card-category">리더십</span>
+                    <h3 class="related-card-title">신임 리더의 첫 90일: 마이클 왓킨스의 전환 전략</h3>
+                    <span class="related-card-meta">12분 읽기</span>
+                </a>
+                <a href="leader-insights-article-5.html" class="related-card">
+                    <span class="related-card-category">조직문화</span>
+                    <h3 class="related-card-title">GitLab이 1,500명 전원 원격근무로 문화를 만드는 방법</h3>
+                    <span class="related-card-meta">11분 읽기</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <span class="copyright">© 2026 SEYOUNG LEE. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
+
