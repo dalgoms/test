@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>속기사 한 눈에 알아보기</title>
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#3182F6;--blue-light:#E8F3FF;--black:#191F28;--gray-900:#333D4B;--gray-700:#4E5968;--gray-500:#6B7684;--gray-400:#8B95A1;--gray-100:#E5E8EB;--gray-50:#F2F4F6;--white:#FFF}
+body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--gray-50);color:var(--black);line-height:1.6}
+.hero{background:linear-gradient(180deg,var(--white),var(--gray-50));padding:48px 24px 32px;text-align:center}
+.hero h1{font-size:26px;font-weight:800;margin-bottom:12px}
+.hero p{font-size:15px;color:var(--gray-500);max-width:380px;margin:0 auto}
+.filter-section{max-width:768px;margin:0 auto;padding:0 24px}
+.filter-tabs{display:flex;gap:8px;padding:16px 0;overflow-x:auto;scrollbar-width:none}
+.filter-tabs::-webkit-scrollbar{display:none}
+.filter-tab{padding:8px 16px;border-radius:20px;font-size:14px;font-weight:500;white-space:nowrap;cursor:pointer;border:none;background:var(--white);color:var(--gray-700);transition:all .2s}
+.filter-tab:hover{background:var(--gray-100)}
+.filter-tab.active{background:var(--black);color:var(--white)}
+main{max-width:768px;margin:0 auto;padding:8px 24px 100px}
+.card{background:var(--white);border-radius:16px;margin-bottom:12px;padding:20px;cursor:pointer;transition:all .3s}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.meta{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.cat{font-size:11px;font-weight:600;color:var(--blue);background:var(--blue-light);padding:3px 8px;border-radius:5px}
+.date{font-size:12px;color:var(--gray-400)}
+.title{font-size:16px;font-weight:700;margin-bottom:6px;line-height:1.4}
+.preview{font-size:14px;color:var(--gray-700);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card.featured{background:linear-gradient(135deg,#1A1F27,#2D3540)}
+.card.featured .cat{background:rgba(49,130,246,.3);color:#7CB8FF}
+.card.featured .title{color:white;font-size:18px}
+.card.featured .preview{color:rgba(255,255,255,.75)}
+.card.featured .date{color:rgba(255,255,255,.6)}
+.badge{background:linear-gradient(135deg,#FF6B35,#F7931E);color:white;font-size:10px;font-weight:700;padding:3px 6px;border-radius:4px}
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);z-index:1000;opacity:0;visibility:hidden;transition:all .3s;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal.active{opacity:1;visibility:visible}
+.modal-box{width:100%;max-width:680px;max-height:88vh;background:var(--white);border-radius:20px;transform:scale(.9);transition:transform .4s;overflow:hidden;display:flex;flex-direction:column}
+.modal.active .modal-box{transform:scale(1)}
+.modal-head{padding:16px 20px;border-bottom:1px solid var(--gray-100);display:flex;justify-content:space-between;align-items:center}
+.modal-close{width:36px;height:36px;border-radius:50%;border:none;background:var(--gray-100);cursor:pointer;font-size:18px}
+.modal-body{padding:28px 20px 40px;overflow-y:auto;flex:1}
+.modal-cat{display:inline-block;font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-light);padding:5px 10px;border-radius:6px;margin-bottom:14px}
+.modal-title{font-size:22px;font-weight:800;line-height:1.4;margin-bottom:14px}
+.modal-meta{display:flex;gap:14px;margin-bottom:28px;font-size:13px;color:var(--gray-500)}
+.content{font-size:15px;line-height:1.9;color:var(--gray-900)}
+.content p{margin-bottom:20px}
+.content h3{font-size:17px;font-weight:700;margin:32px 0 14px}
+.content blockquote{background:var(--gray-50);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:0 10px 10px 0;font-style:italic;color:var(--gray-700)}
+.content ul,.content ol{margin:14px 0 20px 20px}
+.content li{margin-bottom:8px;color:var(--gray-700)}
+.box{background:linear-gradient(135deg,var(--blue-light),#F0F7FF);border-radius:14px;padding:20px;margin:20px 0}
+.box h4{font-size:14px;font-weight:700;color:var(--blue);margin-bottom:10px}
+.box p{margin-bottom:0;font-size:14px;line-height:1.6}
+.progress{position:absolute;top:0;left:0;height:3px;background:var(--blue);width:0%;border-radius:20px 20px 0 0}
+.count-badge{background:var(--blue);color:white;font-size:11px;padding:2px 8px;border-radius:10px;margin-left:auto}
+@media(max-width:640px){.hero h1{font-size:22px}.title{font-size:15px}.modal-box{max-height:92vh}.modal-title{font-size:19px}}
+</style>
+</head>
+<body>
+<section class="hero">
+<h1>요즘 인기있는 직업, 속기사<br>한 눈에 알아보기</h1>
+<p>재택근무, 프리랜서, 워라밸... 속기사에 대한 모든 이야기를 모았어요.</p>
+</section>
+<div class="filter-section">
+<div class="filter-tabs">
+<button class="filter-tab active" data-filter="all">전체 <span class="count-badge">80</span></button>
+<button class="filter-tab" data-filter="freelance">재택/프리랜서 <span class="count-badge">20</span></button>
+<button class="filter-tab" data-filter="office">직장인 전환 <span class="count-badge">20</span></button>
+<button class="filter-tab" data-filter="housewife">주부 도전기 <span class="count-badge">20</span></button>
+<button class="filter-tab" data-filter="jobseeker">취준생 준비 <span class="count-badge">20</span></button>
+</div>
+</div>
+<main id="list"></main>
+<div class="modal" id="modal">
+<div class="modal-box">
+<div class="progress" id="prog"></div>
+<div class="modal-head">
+<span style="font-weight:600;color:var(--gray-700)">속기홀릭</span>
+<button class="modal-close" onclick="closeModal()">×</button>
+</div>
+<div class="modal-body" id="body"></div>
+</div>
+</div>
+
+<script src="blog-data-1.js"></script>
+<script src="blog-data-2.js"></script>
+<script src="blog-data-3.js"></script>
+<script src="blog-data-4.js"></script>
+<script src="blog-data-5.js"></script>
+<script src="blog-data-6.js"></script>
+<script src="blog-data-7.js"></script>
+<script src="blog-data-8.js"></script>
+
+<script>
+// 모든 데이터 합치기
+const data = [
+    ...freelance1,
+    ...freelance2,
+    ...office1,
+    ...office2,
+    ...housewife1,
+    ...housewife2,
+    ...jobseeker1,
+    ...jobseeker2
+];
+
+let filter='all';
+const list=document.getElementById('list');
+const modal=document.getElementById('modal');
+const body=document.getElementById('body');
+const prog=document.getElementById('prog');
+
+function render(){
+    const items=filter==='all'?data:data.filter(d=>d.cat===filter);
+    list.innerHTML=items.map(d=>`
+        <article class="card${d.featured?' featured':''}" onclick="openModal(${d.id})">
+            <div class="meta">
+                <span class="cat">${d.catName}</span>
+                ${d.featured?'<span class="badge">인기</span>':''}
+                <span class="date">${d.date}</span>
+            </div>
+            <h2 class="title">${d.title}</h2>
+            <p class="preview">${d.preview}</p>
+        </article>
+    `).join('');
+}
+
+function openModal(id){
+    const d=data.find(x=>x.id===id);
+    body.innerHTML=`
+        <span class="modal-cat">${d.catName}</span>
+        <h1 class="modal-title">${d.title}</h1>
+        <div class="modal-meta">
+            <span>📅 ${d.date}</span>
+            <span>⏱️ ${d.time} 소요</span>
+        </div>
+        <div class="content">${d.content}</div>
+    `;
+    modal.classList.add('active');
+    document.body.style.overflow='hidden';
+    body.scrollTop=0;
+    prog.style.width='0%';
+}
+
+function closeModal(){
+    modal.classList.remove('active');
+    document.body.style.overflow='';
+}
+
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+body.addEventListener('scroll',()=>{
+    const p=(body.scrollTop/(body.scrollHeight-body.clientHeight))*100;
+    prog.style.width=Math.min(p,100)+'%';
+});
+
+document.querySelectorAll('.filter-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+        document.querySelector('.filter-tab.active').classList.remove('active');
+        tab.classList.add('active');
+        filter=tab.dataset.filter;
+        render();
+        window.scrollTo({top:0,behavior:'smooth'});
+    });
+});
+
+render();
+</script>
+</body>
+</html>
