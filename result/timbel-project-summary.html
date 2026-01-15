@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀벨 홈페이지 개편 프로젝트 정리</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #F4F6F8;
+            color: #191F28;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #E5E8EB;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #191F28;
+            margin-bottom: 12px;
+        }
+
+        .header .date {
+            font-size: 0.9rem;
+            color: #6B7684;
+        }
+
+        .header .status {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 6px 16px;
+            background: #E8F3FF;
+            color: #0064FF;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Section */
+        section {
+            margin-bottom: 56px;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #191F28;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #0064FF;
+            display: inline-block;
+        }
+
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: #0064FF;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        /* Links Table */
+        .links-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .link-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid #E5E8EB;
+            transition: all 0.2s;
+        }
+
+        .link-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        .link-card .label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #0064FF;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .link-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #191F28;
+            margin-bottom: 8px;
+        }
+
+        .link-card a {
+            color: #0064FF;
+            text-decoration: none;
+            font-size: 0.9rem;
+            word-break: break-all;
+        }
+
+        .link-card a:hover {
+            text-decoration: underline;
+        }
+
+        .link-card .description {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: #6B7684;
+        }
+
+        /* Reference Grid */
+        .reference-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width: 640px) {
+            .reference-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .reference-card {
+            background: #191F28;
+            border-radius: 16px;
+            padding: 24px;
+            color: white;
+        }
+
+        .reference-card.greeting {
+            background: linear-gradient(135deg, #0064FF 0%, #3182F6 100%);
+        }
+
+        .reference-card.saltlux {
+            background: linear-gradient(135deg, #191F28 0%, #333D4B 100%);
+        }
+
+        .reference-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .reference-card a {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.85rem;
+        }
+
+        .reference-card .points {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .reference-card .points li {
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            list-style: none;
+            padding-left: 20px;
+            position: relative;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .reference-card .points li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+        }
+
+        /* Analysis Section */
+        .analysis-box {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid #E5E8EB;
+            margin-bottom: 24px;
+        }
+
+        .analysis-box h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #191F28;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .analysis-box h3 .badge {
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            background: #E8F3FF;
+            color: #0064FF;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .analysis-box h3 .badge.important {
+            background: #FFF0F0;
+            color: #F04452;
+        }
+
+        .analysis-box p {
+            font-size: 0.95rem;
+            color: #4E5968;
+            margin-bottom: 20px;
+        }
+
+        .analysis-box .sub-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #333D4B;
+            margin: 24px 0 12px 0;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.9rem;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border: 1px solid #E5E8EB;
+        }
+
+        .comparison-table th {
+            background: #F4F6F8;
+            font-weight: 600;
+            color: #333D4B;
+        }
+
+        .comparison-table th:first-child {
+            background: #0064FF;
+            color: white;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            background: #FAFBFC;
+            color: #4E5968;
+        }
+
+        .comparison-table .highlight {
+            background: #E8F3FF;
+        }
+
+        /* Pros Cons Table */
+        .pros-cons-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.9rem;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .pros-cons-table th,
+        .pros-cons-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border: 1px solid #E5E8EB;
+            vertical-align: top;
+        }
+
+        .pros-cons-table th {
+            background: #F4F6F8;
+            font-weight: 600;
+            color: #333D4B;
+        }
+
+        .pros-cons-table th:first-child {
+            background: #0064FF;
+            color: white;
+            width: 25%;
+        }
+
+        .pros-cons-table th:nth-child(2) {
+            background: #E8F7F0;
+            color: #00875A;
+        }
+
+        .pros-cons-table th:nth-child(3) {
+            background: #FFF0F0;
+            color: #F04452;
+        }
+
+        .pros-cons-table td:first-child {
+            font-weight: 600;
+            background: #FAFBFC;
+        }
+
+        .pros-cons-table .recommended {
+            background: #E8F3FF;
+        }
+
+        .pros-cons-table .recommended td:first-child {
+            background: #D4E5FF;
+        }
+
+        /* Discussion Items */
+        .discussion-list {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .discussion-list li {
+            padding: 14px 18px;
+            background: #FAFBFC;
+            border-left: 4px solid #0064FF;
+            margin-bottom: 10px;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .discussion-list li strong {
+            color: #0064FF;
+        }
+
+        .discussion-list .depth-info {
+            margin-top: 8px;
+            padding-left: 16px;
+            font-size: 0.85rem;
+            color: #6B7684;
+        }
+
+        /* Pros/Cons List */
+        .pros-list,
+        .cons-list {
+            list-style: none;
+            margin: 12px 0;
+        }
+
+        .pros-list li,
+        .cons-list li {
+            padding: 12px 16px 12px 40px;
+            position: relative;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            border-radius: 12px;
+        }
+
+        .pros-list li {
+            background: #E8F7F0;
+            color: #00875A;
+        }
+
+        .pros-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 16px;
+            color: #00C853;
+            font-weight: bold;
+        }
+
+        .cons-list li {
+            background: #FFF0F0;
+            color: #F04452;
+        }
+
+        .cons-list li::before {
+            content: "!";
+            position: absolute;
+            left: 16px;
+            color: #F04452;
+            font-weight: bold;
+        }
+
+        /* Opinion Box */
+        .opinion-box {
+            background: #E8F3FF;
+            border: none;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-top: 20px;
+        }
+
+        .opinion-box h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #0064FF;
+            margin-bottom: 10px;
+        }
+
+        .opinion-box p {
+            font-size: 0.9rem;
+            color: #191F28;
+            margin-bottom: 0;
+        }
+
+        /* Decision Box */
+        .decision-box {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid #E5E8EB;
+        }
+
+        .decision-category {
+            margin-bottom: 28px;
+        }
+
+        .decision-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .decision-category h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #191F28;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .decision-category h4 .icon {
+            width: 28px;
+            height: 28px;
+            background: #E8F3FF;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+
+        .checkbox-list {
+            list-style: none;
+        }
+
+        .checkbox-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: #FAFBFC;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: #333D4B;
+        }
+
+        .checkbox-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #D1D6DB;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        /* Tech Note */
+        .tech-note {
+            background: #FFF8E6;
+            border: 1px solid #FFCC00;
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .tech-note h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #B38600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tech-note ul {
+            list-style: none;
+        }
+
+        .tech-note li {
+            font-size: 0.9rem;
+            color: #7A5C00;
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .tech-note li:last-child {
+            margin-bottom: 0;
+        }
+
+        .tech-note li::before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #FFCC00;
+            font-weight: bold;
+        }
+
+        .tech-note strong {
+            color: #7A5C00;
+        }
+
+        /* Summary Table */
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .summary-table th,
+        .summary-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid #E5E8EB;
+            font-size: 0.9rem;
+        }
+
+        .summary-table th {
+            background: #FAFBFC;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #6B7684;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .summary-table th:first-child {
+            background: #0064FF;
+            color: white;
+            width: 20%;
+        }
+
+        .summary-table th:nth-child(2) {
+            background: #E8F3FF;
+            color: #0064FF;
+        }
+
+        .summary-table th:nth-child(3) {
+            background: #E8F7F0;
+            color: #00875A;
+        }
+
+        .summary-table td:first-child {
+            font-weight: 600;
+            background: #FAFBFC;
+            color: #333D4B;
+        }
+
+        .summary-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #E5E8EB;
+            text-align: center;
+            color: #8B95A1;
+            font-size: 0.85rem;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+
+            .link-card:hover,
+            .reference-card:hover {
+                box-shadow: none;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>팀벨 홈페이지 개편 프로젝트</h1>
+            <p class="date">2026년 1월 15일</p>
+            <span class="status">📋 의사결정 요청</span>
+        </header>
+
+        <!-- 작업 링크 -->
+        <section>
+            <h2 class="section-title"><span class="section-number">1</span>작업 링크</h2>
+            <div class="links-grid">
+                <div class="link-card" style="border: 2px solid #FFCC00;">
+                    <div class="label">Homepage Draft</div>
+                    <h3>홈페이지 시안</h3>
+                    <a href="https://dalgoms.github.io/test/result/timbel-greeting-style.html" target="_blank">
+                        https://dalgoms.github.io/test/result/timbel-greeting-style.html
+                    </a>
+                    <p class="description">그리팅 스타일 기반 메가메뉴 구조 및 콘텐츠 구성 테스트 버전</p>
+                    <div style="margin-top: 12px; padding: 12px 16px; background: #FFF8E6; border-radius: 12px; font-size: 0.85rem; color: #7A5C00;">
+                        <strong>⚠️ 구조 확인용 (디자인 미적용)</strong><br>
+                        현재 버전은 콘텐츠 구조와 정보 배치를 검토하기 위한 뼈대입니다.<br>
+                        디자인 작업은 콘텐츠 기준 확정 후 진행 예정입니다.
+                    </div>
+                </div>
+                <div class="link-card">
+                    <div class="label">GEO Blog Test</div>
+                    <h3>GEO 블로그 테스트</h3>
+                    <a href="https://dalgoms.github.io/test/result/career/leader-insights.html" target="_blank">
+                        https://dalgoms.github.io/test/result/career/leader-insights.html
+                    </a>
+                    <p class="description">검색 노출 최적화 구조 테스트 · 개별 콘텐츠별 링크 구조 · AI 기반 콘텐츠 배포 설계</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 레퍼런스 사이트 -->
+        <section>
+            <h2 class="section-title"><span class="section-number">2</span>레퍼런스 사이트</h2>
+            <div class="reference-grid">
+                <div class="reference-card greeting">
+                    <h3>그리팅 (Greeting)</h3>
+                    <a href="https://www.greetinghr.com" target="_blank">www.greetinghr.com</a>
+                    <ul class="points">
+                        <li>메가메뉴 구조</li>
+                        <li>톤앤매너</li>
+                        <li>SaaS형 구성</li>
+                    </ul>
+                </div>
+                <div class="reference-card saltlux">
+                    <h3>솔트룩스 (Saltlux)</h3>
+                    <a href="https://www.saltlux.com" target="_blank">www.saltlux.com</a>
+                    <ul class="points">
+                        <li>콘텐츠 밀도</li>
+                        <li>사업부별 구조화</li>
+                        <li>엔터프라이즈 신뢰 구축</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 현황 분석 및 제안 -->
+        <section>
+            <h2 class="section-title"><span class="section-number">3</span>현황 분석 및 제안</h2>
+
+            <!-- 현재 시안 안내 -->
+            <div style="background: #FFF8E6; border: 1px solid #FFCC00; border-radius: 16px; padding: 20px 24px; margin-bottom: 24px;">
+                <h4 style="font-size: 1rem; font-weight: 700; color: #B38600; margin-bottom: 10px;">📌 현재 시안에 대하여</h4>
+                <p style="font-size: 0.95rem; color: #7A5C00; margin: 0;">
+                    공유드린 홈페이지 시안은 <strong>디자인이 적용되지 않은 구조 확인용 뼈대</strong>입니다.<br>
+                    콘텐츠 구성과 정보 배치 방향을 검토하기 위한 목적이며,<br>
+                    <strong>콘텐츠 기준이 확정된 후 디자인 작업을 진행</strong>할 예정입니다.
+                </p>
+            </div>
+
+            <!-- 3-1. 콘텐츠 범위 및 기준 정립 -->
+            <div class="analysis-box">
+                <h3>3-1. 콘텐츠 범위 및 기준 정립 <span class="badge important">핵심 선결과제</span></h3>
+                <p>레퍼런스 적용이나 디자인 이전에, <strong>팀벨 홈페이지에서 어떤 정보를 어떤 밀도로 전달할 것인지에 대한 기준 정리가 먼저 필요</strong>합니다. 이 기준 없이 디자인까지 병행할 경우, 방향 수정에 따른 반복 작업 가능성이 있습니다.</p>
+
+                <p class="sub-title">레퍼런스 사이트 비교 분석</p>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>구분</th>
+                            <th>그리팅 (Greeting)</th>
+                            <th>솔트룩스 (Saltlux)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>콘텐츠 밀도</td>
+                            <td>기능 중심, 간결한 메시지</td>
+                            <td>사업영역별 상세 정보</td>
+                        </tr>
+                        <tr>
+                            <td>메가메뉴 구조</td>
+                            <td>단순 (제품/기능 중심)</td>
+                            <td>복합 (9개 이상 대분류)</td>
+                        </tr>
+                        <tr>
+                            <td>타겟</td>
+                            <td>B2B SaaS, 명확한 CTA</td>
+                            <td>엔터프라이즈, 신뢰 구축 중심</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="sub-title">제안드릴 사전 논의 항목</p>
+                <ul class="discussion-list">
+                    <li>
+                        <strong>1. 팀벨의 주요 타겟 고객군 정의</strong>
+                        <div class="depth-info">B2B / B2G / 엔터프라이즈 중 우선순위</div>
+                    </li>
+                    <li>
+                        <strong>2. 핵심 전달 메시지 우선순위</strong>
+                        <div class="depth-info">솔루션 > 역량 > 레퍼런스 등 순서 결정</div>
+                    </li>
+                    <li>
+                        <strong>3. 각 페이지별 정보 깊이 수준 결정</strong>
+                        <div class="depth-info">
+                            • 1depth: 개요 수준 (메인/서비스 소개)<br>
+                            • 2depth: 상세 수준 (제품별 기능, 사례)<br>
+                            • 3depth: 전문 수준 (기술 문서, 블로그)
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 3-2. 구현 방식 (홈페이지) -->
+            <div class="analysis-box">
+                <h3>3-2. 홈페이지 구현 방식: BO 전제 진행 여부</h3>
+                <p>Wix의 CSS/HTML 분리 구조로 인해 <strong>프론트 오버레이 방식이 불가</strong>한 점이 테스트 결과 확인되었습니다. 이에 따라 현재 구조에서는 BO(관리자) 화면을 전제로 한 작업 방식이 필요한 상황입니다.</p>
+
+                <p class="sub-title">현실적 대안 비교</p>
+                <table class="pros-cons-table">
+                    <thead>
+                        <tr>
+                            <th>방식</th>
+                            <th>장점</th>
+                            <th>단점</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>A.</strong> Wix BO 활용 유지</td>
+                            <td>기존 운영 환경 유지<br>비개발자 수정 가능<br><strong>빠른 교체 가능</strong></td>
+                            <td>디자인 자유도 제한<br>구조 커스텀 어려움</td>
+                        </tr>
+                        <tr>
+                            <td><strong>B.</strong> 외부 호스팅 전환<br><span style="font-size:0.8rem;color:#8B95A1">(Supabase, Vercel 등)</span></td>
+                            <td>완전한 구조/디자인 통제<br>GEO 최적화 용이<br><strong>대표님이 원하시는 방향</strong></td>
+                            <td>BO 환경 별도 구축 필요<br>담당자가 테스트하며 구축하는 시간 소요</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="opinion-box">
+                    <h4>💡 의견: 두 가지 경로</h4>
+                    <p style="margin-bottom: 12px;"><strong>경로 1)</strong> Wix 활용 빠른 교체<br>
+                    <span style="font-size:0.9rem; color:#6B7684;">→ 디자인 제약이 있지만 즉시 진행 가능</span></p>
+                    <p><strong>경로 2)</strong> AI 툴 활용 + BO를 함께 구축해줄 지원자 필요<br>
+                    <span style="font-size:0.9rem; color:#6B7684;">→ 현재 담당자는 프론트엔드만 가능, 백엔드/BO 구축 지원 인력 필요</span></p>
+                </div>
+            </div>
+
+            <!-- 3-3. 블로그 GEO 확장 (별도 프로젝트) -->
+            <div class="analysis-box">
+                <h3>3-3. 블로그 GEO 확장 <span class="badge">별도 프로젝트</span></h3>
+                <p>홈페이지 개편과는 <strong>별개의 프로젝트</strong>로, GEO(검색 노출 구조) 최적화를 위한 블로그 콘텐츠 운영 방안입니다. 공유드린 테스트 페이지(<code>leader-insights.html</code>)의 개별 링크 구조 방식에 대한 분석입니다.</p>
+
+                <p class="sub-title">GEO 블로그 구조의 장점</p>
+                <ul class="pros-list">
+                    <li><strong>검색엔진 크롤링 최적화</strong> — 개별 URL = 개별 인덱싱으로 노출 극대화</li>
+                    <li><strong>AI 기반 콘텐츠 워크플로우 적합</strong> — 1차 AI 가공 → 2차 시간차 보완 방식으로 다수 콘텐츠 효율적 배포 가능</li>
+                    <li><strong>사업부별 키워드 타겟팅 확장 용이</strong> — 각 사업부 핵심 키워드에 맞춰 확장 운영 가능</li>
+                    <li><strong>콘텐츠 품질 단계적 개선</strong> — 기대치에 따라 단계별 품질 향상 가능</li>
+                </ul>
+
+                <p class="sub-title">고려사항</p>
+                <ul class="cons-list">
+                    <li><strong>메인 도메인 확보 시점</strong>과 연계 필요</li>
+                    <li>도메인 구조 및 SEO 전략 사전 설계 필요</li>
+                    <li>콘텐츠 퀄리티 기대치 사전 협의 필요</li>
+                </ul>
+
+                <p class="sub-title">블로그 GEO 진행 시 기대 효과</p>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>항목</th>
+                            <th>내용</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>콘텐츠 생산 방식</td>
+                            <td>1차 AI 기반 가공 → 2차 시간차 보완</td>
+                        </tr>
+                        <tr>
+                            <td>확장 가능성</td>
+                            <td>각 사업부 핵심 키워드에 맞춰 확장 운영</td>
+                        </tr>
+                        <tr>
+                            <td>운영 효율</td>
+                            <td>다수 콘텐츠를 효율적으로 배포 가능한 구조</td>
+                        </tr>
+                        <tr>
+                            <td>선행 조건</td>
+                            <td>메인 도메인 확보</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="opinion-box">
+                    <h4>💡 의견</h4>
+                    <p>홈페이지와 별개로 블로그 GEO를 진행할 경우, 검색 노출 기반을 독립적으로 확보할 수 있습니다. AI 기반 콘텐츠 가공 방식은 다수의 사업부별 키워드를 효율적으로 커버할 수 있어 <strong>운영 효율 측면에서 검토 가치</strong>가 있습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 의사결정 요청 사항 -->
+        <section>
+            <h2 class="section-title"><span class="section-number">4</span>의사결정 요청 사항</h2>
+            <div class="decision-box">
+                <div class="decision-category">
+                    <h4><span class="icon">🌐</span>홈페이지 개편</h4>
+                    <ul class="checkbox-list">
+                        <li><span class="checkbox"></span>타겟 고객군 정의 (B2B / B2G / 엔터프라이즈)</li>
+                        <li><span class="checkbox"></span>핵심 메시지 우선순위 (솔루션 / 역량 / 레퍼런스)</li>
+                        <li><span class="checkbox"></span>페이지별 정보 깊이 수준 (1~3 depth)</li>
+                    </ul>
+                </div>
+                <div class="decision-category">
+                    <h4><span class="icon">⚙️</span>홈페이지 구현 방식</h4>
+                    <ul class="checkbox-list">
+                        <li><span class="checkbox"></span>경로 1. Wix 활용 빠른 교체 (디자인 제약)</li>
+                        <li><span class="checkbox"></span>경로 2. 외부 호스팅 전환 (Supabase 등) + BO 구축 지원 인력 필요</li>
+                    </ul>
+                </div>
+                <div class="decision-category">
+                    <h4><span class="icon">📰</span>블로그 GEO 확장 (별도 프로젝트)</h4>
+                    <ul class="checkbox-list">
+                        <li><span class="checkbox"></span>블로그 GEO 프로젝트 진행 여부</li>
+                        <li><span class="checkbox"></span>메인 도메인 확보 시점</li>
+                        <li><span class="checkbox"></span>콘텐츠 퀄리티 기대치 (AI 1차 가공 수준 등)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 기술적 참고사항 -->
+        <section>
+            <h2 class="section-title"><span class="section-number">5</span>기술적 참고사항</h2>
+            <div class="tech-note">
+                <h4>⚠️ 홈페이지 관련</h4>
+                <ul>
+                    <li><strong>Wix 구조적 제한:</strong> CSS/HTML 분리 구조로 프론트 오버레이 방식 불가 확인</li>
+                    <li><strong>경로 2 선택 시:</strong> 현재 담당자는 프론트엔드만 가능, BO(관리자) 구축을 위한 백엔드 지원 인력 필요</li>
+                </ul>
+            </div>
+            <div class="tech-note" style="margin-top: 16px; background: #E8F7F0; border-color: #00C853;">
+                <h4 style="color: #00875A;">📰 블로그 GEO 관련 (별도 프로젝트)</h4>
+                <ul style="color: #00875A;">
+                    <li><strong>구조 설계:</strong> 개별 콘텐츠별 링크 구조 설계 완료</li>
+                    <li><strong>배포 방식:</strong> 메인 도메인 확보 시 AI 기반 1차 가공 → 2차 보완 방식으로 다수 콘텐츠 효율적 배포 가능</li>
+                    <li><strong>확장 가능성:</strong> 각 사업부 핵심 키워드에 맞춰 블로그 콘텐츠 확장 운영 가능</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 진행 배경 요약 -->
+        <section>
+            <h2 class="section-title"><span class="section-number">6</span>진행 배경 요약</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>홈페이지 개편</th>
+                        <th>블로그 GEO (별도)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>레퍼런스</td>
+                        <td>그리팅(톤앤매너, 메가메뉴), 솔트룩스(콘텐츠 구성)</td>
+                        <td>자체 GEO 구조 설계</td>
+                    </tr>
+                    <tr>
+                        <td>현재 단계</td>
+                        <td>솔루션사업부 중심 콘텐츠 구성 중</td>
+                        <td>테스트 페이지 구축 완료</td>
+                    </tr>
+                    <tr>
+                        <td>작업 방향</td>
+                        <td>콘텐츠 → 구조 안정화 → 디자인</td>
+                        <td>도메인 확보 → AI 콘텐츠 배포</td>
+                    </tr>
+                    <tr>
+                        <td>선결 과제</td>
+                        <td>정보 전달 범위 및 밀도 기준 정립</td>
+                        <td>메인 도메인 확보, 퀄리티 기대치</td>
+                    </tr>
+                    <tr>
+                        <td>기대 효과</td>
+                        <td>반복 작업 최소화</td>
+                        <td>검색 노출 기반 확보</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>팀벨 홈페이지 개편 프로젝트 · 2026.01.15</p>
+        </footer>
+    </div>
+</body>
+</html>
