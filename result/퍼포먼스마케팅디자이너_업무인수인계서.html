@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퍼포먼스 마케팅 디자이너 업무 인수인계서</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    <style>
+        :root {
+            --toss-blue: #0064FF;
+            --toss-blue-light: #E8F3FF;
+            --toss-blue-dark: #0052D4;
+            --toss-black: #191F28;
+            --toss-gray-900: #333D4B;
+            --toss-gray-700: #4E5968;
+            --toss-gray-600: #6B7684;
+            --toss-gray-500: #8B95A1;
+            --toss-gray-400: #B0B8C1;
+            --toss-gray-300: #D1D6DB;
+            --toss-gray-200: #E5E8EB;
+            --toss-gray-100: #F2F4F6;
+            --toss-gray-50: #F9FAFB;
+            --toss-white: #FFFFFF;
+            --toss-red: #F04452;
+            --toss-red-light: #FEE2E2;
+            --toss-orange: #F97316;
+            --toss-orange-light: #FFF4E5;
+            --toss-green: #30C85E;
+            --toss-green-light: #DCFCE7;
+            --toss-purple: #7C3AED;
+            --toss-purple-light: #F3E8FF;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background: var(--toss-gray-50);
+            color: var(--toss-gray-900);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255,255,255,0.95);
+            border-bottom: 1px solid var(--toss-gray-200);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+
+        .header-content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--toss-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .header-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--toss-black);
+        }
+
+        .header-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-badge {
+            background: var(--toss-gray-100);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--toss-gray-600);
+        }
+
+        /* Container */
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 32px 24px 80px;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--toss-blue) 0%, var(--toss-blue-dark) 100%);
+            border-radius: var(--radius-xl);
+            padding: 48px 40px;
+            margin-bottom: 24px;
+            color: var(--toss-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            left: -50px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            font-size: 15px;
+            opacity: 0.9;
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 24px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hero-meta-item {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .hero-meta-item strong {
+            display: block;
+            font-size: 14px;
+            opacity: 1;
+            margin-top: 4px;
+        }
+
+        /* Navigation */
+        .nav-section {
+            background: var(--toss-white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--toss-gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            color: var(--toss-gray-700);
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.15s ease;
+        }
+
+        .nav-item:hover {
+            background: var(--toss-blue-light);
+            color: var(--toss-blue);
+        }
+
+        .nav-number {
+            width: 22px;
+            height: 22px;
+            background: var(--toss-gray-100);
+            color: var(--toss-gray-600);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            transition: all 0.15s ease;
+        }
+
+        .nav-item:hover .nav-number {
+            background: var(--toss-blue);
+            color: white;
+        }
+
+        /* Section */
+        .section {
+            background: var(--toss-white);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--toss-gray-100);
+        }
+
+        .section-number {
+            width: 36px;
+            height: 36px;
+            background: var(--toss-blue);
+            color: var(--toss-white);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .section-title-wrap {
+            flex: 1;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--toss-black);
+            letter-spacing: -0.3px;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--toss-gray-500);
+            margin-top: 4px;
+        }
+
+        /* Subsection */
+        .subsection {
+            margin-bottom: 32px;
+        }
+
+        .subsection:last-child {
+            margin-bottom: 0;
+        }
+
+        .subsection-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--toss-gray-900);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subsection-title::before {
+            content: '';
+            width: 4px;
+            height: 18px;
+            background: var(--toss-blue);
+            border-radius: 2px;
+        }
+
+        /* Typography */
+        p {
+            color: var(--toss-gray-700);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        strong {
+            color: var(--toss-gray-900);
+            font-weight: 600;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: var(--toss-blue-light);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            margin: 20px 0;
+            border-left: 4px solid var(--toss-blue);
+        }
+
+        .highlight-box p {
+            color: var(--toss-blue-dark);
+            font-weight: 600;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: var(--toss-gray-50);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin: 20px 0;
+            border-left: 4px solid var(--toss-gray-400);
+        }
+
+        .quote-box p {
+            color: var(--toss-gray-700);
+            font-size: 14px;
+            line-height: 1.9;
+            margin: 0;
+        }
+
+        .quote-box strong {
+            color: var(--toss-gray-900);
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: var(--toss-orange-light);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            margin: 20px 0;
+            border-left: 4px solid var(--toss-orange);
+        }
+
+        .warning-box p {
+            color: #9A3412;
+            font-weight: 500;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Table */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--toss-gray-200);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th {
+            background: var(--toss-gray-50);
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 700;
+            color: var(--toss-gray-700);
+            white-space: nowrap;
+            border-bottom: 1px solid var(--toss-gray-200);
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--toss-gray-100);
+            color: var(--toss-gray-700);
+            line-height: 1.6;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: var(--toss-gray-50);
+        }
+
+        /* Priority Cards */
+        .priority-cards {
+            display: grid;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .priority-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--toss-gray-200);
+            transition: all 0.2s ease;
+        }
+
+        .priority-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .priority-card.p1 { border-left: 5px solid var(--toss-red); }
+        .priority-card.p2 { border-left: 5px solid var(--toss-orange); }
+        .priority-card.p3 { border-left: 5px solid var(--toss-green); }
+
+        .priority-rank {
+            font-size: 28px;
+            font-weight: 900;
+            width: 50px;
+            text-align: center;
+        }
+
+        .priority-card.p1 .priority-rank { color: var(--toss-red); }
+        .priority-card.p2 .priority-rank { color: var(--toss-orange); }
+        .priority-card.p3 .priority-rank { color: var(--toss-green); }
+
+        .priority-content {
+            flex: 1;
+        }
+
+        .priority-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--toss-gray-900);
+            margin-bottom: 6px;
+        }
+
+        .priority-examples {
+            font-size: 13px;
+            color: var(--toss-gray-600);
+            margin-bottom: 8px;
+        }
+
+        .priority-reason {
+            font-size: 13px;
+            color: var(--toss-gray-500);
+            padding: 8px 12px;
+            background: var(--toss-gray-50);
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        /* Cycle Section */
+        .cycle-overview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        @media (max-width: 640px) {
+            .cycle-overview {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cycle-card {
+            padding: 28px 24px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .cycle-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cycle-card.daily {
+            background: linear-gradient(135deg, #FEF2F2 0%, #FECACA 100%);
+        }
+
+        .cycle-card.weekly {
+            background: linear-gradient(135deg, #EFF6FF 0%, #BFDBFE 100%);
+        }
+
+        .cycle-card.monthly {
+            background: linear-gradient(135deg, #ECFDF5 0%, #A7F3D0 100%);
+        }
+
+        .cycle-label {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .cycle-card.daily .cycle-label { color: var(--toss-red); }
+        .cycle-card.weekly .cycle-label { color: var(--toss-blue); }
+        .cycle-card.monthly .cycle-label { color: #059669; }
+
+        .cycle-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--toss-gray-900);
+            line-height: 1.5;
+        }
+
+        /* Detail Box */
+        .detail-box {
+            background: var(--toss-gray-50);
+            border-radius: var(--radius-md);
+            padding: 28px;
+            margin: 24px 0;
+        }
+
+        .detail-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .detail-badge {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-badge.daily { background: var(--toss-red-light); color: var(--toss-red); }
+        .detail-badge.weekly { background: var(--toss-blue-light); color: var(--toss-blue); }
+        .detail-badge.monthly { background: var(--toss-green-light); color: #059669; }
+
+        .detail-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--toss-gray-900);
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .info-item {
+            background: var(--toss-white);
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--toss-gray-200);
+        }
+
+        .info-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--toss-gray-500);
+            margin-bottom: 6px;
+        }
+
+        .info-value {
+            font-size: 14px;
+            color: var(--toss-gray-900);
+            line-height: 1.6;
+        }
+
+        /* List */
+        .list {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--toss-gray-700);
+            line-height: 1.7;
+        }
+
+        .list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 6px;
+            height: 6px;
+            background: var(--toss-blue);
+            border-radius: 50%;
+        }
+
+        .list li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--toss-gray-900);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            color: #E2E8F0;
+            font-family: 'SF Mono', 'Consolas', 'Monaco', monospace;
+            font-size: 13px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .code-block .keyword { color: #93C5FD; }
+        .code-block .string { color: #86EFAC; }
+        .code-block .comment { color: #64748B; }
+
+        /* Structure Tree */
+        .structure-tree {
+            background: var(--toss-gray-50);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin: 20px 0;
+            font-family: 'SF Mono', 'Consolas', monospace;
+            font-size: 13px;
+            line-height: 2;
+            color: var(--toss-gray-700);
+        }
+
+        .structure-tree .folder {
+            color: var(--toss-blue);
+            font-weight: 600;
+        }
+
+        /* Comparison Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 640px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .comparison-card {
+            border-radius: var(--radius-md);
+            padding: 24px;
+        }
+
+        .comparison-card.before {
+            background: var(--toss-gray-100);
+            border: 1px solid var(--toss-gray-200);
+        }
+
+        .comparison-card.after {
+            background: var(--toss-blue-light);
+            border: 2px solid var(--toss-blue);
+        }
+
+        .comparison-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .comparison-card.before .comparison-label { color: var(--toss-gray-500); }
+        .comparison-card.after .comparison-label { color: var(--toss-blue); }
+
+        .comparison-list {
+            list-style: none;
+        }
+
+        .comparison-list li {
+            font-size: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            color: var(--toss-gray-700);
+        }
+
+        .comparison-list li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        /* Scope Table */
+        .scope-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 640px) {
+            .scope-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scope-card {
+            border-radius: var(--radius-md);
+            padding: 24px;
+        }
+
+        .scope-card.included {
+            background: var(--toss-green-light);
+            border: 1px solid #86EFAC;
+        }
+
+        .scope-card.excluded {
+            background: var(--toss-red-light);
+            border: 1px solid #FECACA;
+        }
+
+        .scope-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .scope-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .scope-card.included .scope-icon {
+            background: var(--toss-green);
+            color: white;
+        }
+
+        .scope-card.excluded .scope-icon {
+            background: var(--toss-red);
+            color: white;
+        }
+
+        .scope-title {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .scope-card.included .scope-title { color: #166534; }
+        .scope-card.excluded .scope-title { color: #991B1B; }
+
+        .scope-list {
+            list-style: none;
+        }
+
+        .scope-list li {
+            font-size: 13px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .scope-card.included .scope-list li { color: #166534; }
+        .scope-card.excluded .scope-list li { color: #991B1B; }
+
+        .scope-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Request Form */
+        .request-form {
+            background: var(--toss-gray-50);
+            border-radius: var(--radius-md);
+            padding: 28px;
+            margin: 20px 0;
+        }
+
+        .request-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .request-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 16px;
+            align-items: start;
+            padding: 16px;
+            background: var(--toss-white);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--toss-gray-200);
+        }
+
+        .request-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--toss-gray-900);
+        }
+
+        .request-desc {
+            font-size: 13px;
+            color: var(--toss-gray-600);
+        }
+
+        .request-example {
+            font-size: 12px;
+            color: var(--toss-gray-500);
+            margin-top: 6px;
+            padding: 8px 12px;
+            background: var(--toss-gray-50);
+            border-radius: 6px;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 18px;
+            background: var(--toss-gray-50);
+            border-radius: var(--radius-sm);
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--toss-gray-700);
+            line-height: 1.6;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--toss-gray-400);
+            border-radius: 5px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Evaluation Grid */
+        .eval-grid {
+            display: grid;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .eval-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: var(--toss-gray-50);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--toss-gray-200);
+        }
+
+        .eval-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--toss-blue-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .eval-content {
+            flex: 1;
+        }
+
+        .eval-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--toss-gray-900);
+            margin-bottom: 4px;
+        }
+
+        .eval-desc {
+            font-size: 13px;
+            color: var(--toss-gray-600);
+        }
+
+        /* Tip Box */
+        .tip-box {
+            display: flex;
+            gap: 16px;
+            background: var(--toss-purple-light);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            margin: 20px 0;
+            border: 1px solid #DDD6FE;
+        }
+
+        .tip-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--toss-purple);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+            color: white;
+        }
+
+        .tip-content {
+            flex: 1;
+        }
+
+        .tip-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #5B21B6;
+            margin-bottom: 6px;
+        }
+
+        .tip-desc {
+            font-size: 13px;
+            color: #6D28D9;
+            line-height: 1.7;
+        }
+
+        /* Closing Section */
+        .closing-section {
+            background: linear-gradient(135deg, var(--toss-gray-100) 0%, var(--toss-white) 100%);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            margin-top: 8px;
+            border: 1px solid var(--toss-gray-200);
+        }
+
+        .closing-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--toss-black);
+            margin-bottom: 24px;
+        }
+
+        .closing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        @media (max-width: 640px) {
+            .closing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .closing-item {
+            background: var(--toss-white);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--toss-gray-200);
+        }
+
+        .closing-question {
+            font-size: 13px;
+            color: var(--toss-gray-500);
+            margin-bottom: 8px;
+        }
+
+        .closing-answer {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--toss-gray-900);
+            line-height: 1.6;
+        }
+
+        .closing-message {
+            background: var(--toss-blue-light);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            border-left: 4px solid var(--toss-blue);
+        }
+
+        .closing-message p {
+            color: var(--toss-blue-dark);
+            font-size: 15px;
+            line-height: 1.9;
+            margin: 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 48px 0;
+            color: var(--toss-gray-500);
+            font-size: 13px;
+        }
+
+        .footer-line {
+            width: 48px;
+            height: 4px;
+            background: var(--toss-gray-300);
+            border-radius: 2px;
+            margin: 0 auto 20px;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .badge.important {
+            background: var(--toss-red-light);
+            color: var(--toss-red);
+        }
+
+        .badge.info {
+            background: var(--toss-blue-light);
+            color: var(--toss-blue);
+        }
+
+        /* Flow Diagram */
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 20px;
+            background: var(--toss-gray-50);
+            border-radius: var(--radius-md);
+            margin: 16px 0;
+        }
+
+        .flow-step {
+            background: var(--toss-white);
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--toss-gray-700);
+            border: 1px solid var(--toss-gray-200);
+        }
+
+        .flow-arrow {
+            color: var(--toss-gray-400);
+            font-size: 18px;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 32px 24px;
+            }
+
+            .hero h1 {
+                font-size: 22px;
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .section {
+                padding: 24px;
+            }
+
+            .section-title {
+                font-size: 18px;
+            }
+
+            .request-item {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+        }
+
+        /* Links */
+        a {
+            color: var(--toss-blue);
+            text-decoration: none;
+            transition: all 0.15s ease;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Print styles */
+        @media print {
+            .header {
+                position: static;
+            }
+            
+            .section {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid var(--toss-gray-200);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="header-icon">PM</div>
+                <div class="header-title">퍼포먼스 마케팅 디자이너 업무 인수인계서</div>
+            </div>
+            <div class="header-meta">
+                <span class="header-badge">v1.0</span>
+                <span class="header-badge">2026.01</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-content">
+                <span class="hero-badge">Performance Marketing Designer</span>
+                <h1>퍼포먼스 마케팅 디자이너<br>업무 인수인계서</h1>
+                <p>후임 디자이너가 추가 설명 없이 즉시 업무를 수행할 수 있도록 작성된 실무 가이드입니다. 동시에 경영진과 HR이 역할 범위, 우선순위, 업무 특성을 정확히 이해할 수 있도록 구조화되었습니다.</p>
+                <div class="hero-meta">
+                    <div class="hero-meta-item">
+                        대상
+                        <strong>후임 디자이너, 경영진, HR</strong>
+                    </div>
+                    <div class="hero-meta-item">
+                        목적
+                        <strong>업무 즉시 수행 및 역할 범위 명확화</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <nav class="nav-section">
+            <div class="nav-title">목차</div>
+            <div class="nav-grid">
+                <a href="#section1" class="nav-item"><span class="nav-number">1</span>포지션 정의</a>
+                <a href="#section2" class="nav-item"><span class="nav-number">2</span>업무 우선순위</a>
+                <a href="#section3" class="nav-item"><span class="nav-number">3</span>주기별 상세 업무</a>
+                <a href="#section4" class="nav-item"><span class="nav-number">4</span>병행 시급 업무</a>
+                <a href="#section5" class="nav-item"><span class="nav-number">5</span>현실적인 특징</a>
+                <a href="#section6" class="nav-item"><span class="nav-number">6</span>업무 범위 명확화</a>
+                <a href="#section7" class="nav-item"><span class="nav-number">7</span>디자인 요청 요건</a>
+                <a href="#section8" class="nav-item"><span class="nav-number">8</span>평가 기준</a>
+                <a href="#section9" class="nav-item"><span class="nav-number">9</span>실무 팁</a>
+                <a href="#section10" class="nav-item"><span class="nav-number">10</span>인수인계 체크리스트</a>
+            </div>
+        </nav>
+
+        <!-- Section 1: 포지션 정의 -->
+        <section id="section1" class="section">
+            <div class="section-header">
+                <span class="section-number">1</span>
+                <div class="section-title-wrap">
+                    <h2 class="section-title">포지션 정의</h2>
+                    <p class="section-subtitle">본 포지션의 핵심 역할과 타 포지션과의 차이</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">역할 요약</h3>
+                <p>본 포지션은 <strong>퍼포먼스 마케팅 디자이너</strong>입니다. 브랜드 아이덴티티 구축, 심미적 완성도를 목표로 하는 브랜드 디자이너와는 업무 목적, 판단 기준, 성과 지표가 근본적으로 다릅니다.</p>
+                
+                <div class="highlight-box">
+                    <p>핵심 원칙: 본 포지션에서 "좋은 디자인"은 "예쁜 디자인"이 아니라 "성과가 나는 디자인"이다.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">브랜드 디자이너 vs 퍼포먼스 마케팅 디자이너</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>구분</th>
+                                <th>브랜드 디자이너</th>
+                                <th>퍼포먼스 마케팅 디자이너</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>핵심 목표</strong></td>
+                                <td>브랜드 인지도, 일관성 유지</td>
+                                <td>CTR, CVR, 매출 기여</td>
+                            </tr>
+                            <tr>
+                                <td><strong>판단 기준</strong></td>
+                                <td>심미성, 톤앤매너 적합성</td>
+                                <td>성과 데이터, A/B 테스트 결과</td>
+                            </tr>
+                            <tr>
+                                <td><strong>작업 주기</strong></td>
+                                <td>중장기 (캠페인/분기 단위)</td>
+                                <td>단기 (일/주 단위), 즉시 반영</td>
+                            </tr>
+                            <tr>
+                                <td><strong>수정 기준</strong></td>
+                                <td>브랜드 가이드라인</td>
+                                <td>클릭률, 전환율 등 성과 지표</td>
+                            </tr>
+                            <tr>
+                                <td><strong>완료 정의</strong></td>
+                                <td>브랜드 일관성 확보</td>
+                                <td>목표 지표 달성 또는 테스트 완료</td>
+                            </tr>
+                            <tr>
+                                <td><strong>주요 산출물</strong></td>
+                                <td>BI/CI, 가이드북, 브랜드 자산</td>
+                                <td>광고소재, 랜딩페이지, 전환 최적화 자산</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">핵심 KPI</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">CTR</div>
+                        <div class="info-value">Click-Through Rate<br>광고소재 클릭률</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">CVR</div>
+                        <div class="info-value">Conversion Rate<br>랜딩페이지 전환율</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">CPA</div>
+                        <div class="info-value">Cost Per Acquisition<br>전환당 비용</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">ROAS</div>
+                        <div class="info-value">Return on Ad Spend<br>광고비 대비 수익률</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: 업무 우선순위 -->
+        <section id="section2" class="section">
+            <div class="section-header">
+                <span class="section-number">2</span>
+                <div class="section-title-wrap">
+                    <h2 class="section-title">업무 우선순위 체계</h2>
+                    <p class="section-subtitle">동시 요청 발생 시 처리 기준</p>
+                </div>
+            </div>
+
+            <div class="priority-cards">
+                <div class="priority-card p1">
+                    <span class="priority-rank">1st</span>
+                    <div class="priority-content">
+                        <div class="priority-title">매출 직결 업무</div>
+                        <div class="priority-examples">랜딩페이지, 프로모션 페이지, 결제 유도 화면</div>
+                        <div class="priority-reason">전환율이 매출에 즉시 반영됨</div>
+                    </div>
+                </div>
+                <div class="priority-card p2">
+                    <span class="priority-rank">2nd</span>
+                    <div class="priority-content">
+                        <div class="priority-title">유입 관련 업무</div>
+                        <div class="priority-examples">광고소재, 배너, SNS 콘텐츠</div>
+                        <div class="priority-reason">유입 없이 전환 불가, 광고비 효율과 직결</div>
+                    </div>
+                </div>
+                <div class="priority-card p3">
+                    <span class="priority-rank">3rd</span>
+                    <div class="priority-content">
+                        <div class="priority-title">브랜딩 업무</div>
+                        <div class="priority-examples">회사 소개서, 홈페이지, 제안서</div>
+                        <div class="priority-reason">중요하나 단기 매출 영향 낮음</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <div class="tip-icon">💡</div>
+                <div class="tip-content">
+                    <div class="tip-title">우선순위 해석 기준</div>
+                    <div class="tip-desc">3순위가 "덜 중요하다"는 의미가 아닙니다. <strong>"즉시성"이 다른 것</strong>입니다. 1순위 업무는 하루 지연이 매출 손실로 직결되고, 3순위 업무는 일정 조율이 상대적으로 가능합니다.</div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">동시 요청 시 처리 원칙</h3>
+                <ul class="list">
+                    <li>위 순위에 따라 우선 처리</li>
+                    <li>같은 순위일 경우 마감일 기준 처리</li>
+                    <li>마감일도 동일할 경우 마케팅팀장과 협의 후 결정</li>
+                    <li>우선순위 변경 시 요청자에게 지연 사유 공유 필수</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 3: 주기별 상세 업무 -->
+        <section id="section3" class="section">
+            <div class="section-header">
+                <span class="section-number">3</span>
+                <div class="section-title-wrap">
+                    <h2 class="section-title">업무 주기별 상세 업무</h2>
+                    <p class="section-subtitle">일간, 주간, 월간 단위 업무 구분</p>
+                </div>
+            </div>
+
+            <div class="cycle-overview">
+                <div class="cycle-card daily">
+                    <div class="cycle-label">Daily</div>
+                    <div class="cycle-title">속기 광고소재<br>이미지 제작</div>
+                </div>
+                <div class="cycle-card weekly">
+                    <div class="cycle-label">Weekly</div>
+                    <div class="cycle-title">랜딩페이지<br>제작 및 전환 최적화</div>
+                </div>
+                <div class="cycle-card monthly">
+                    <div class="cycle-label">Monthly</div>
+                    <div class="cycle-title">캠페인 단위<br>세트 제작</div>
+                </div>
+            </div>
+
+            <!-- Figma Link -->
+            <div class="tip-box" style="margin-bottom: 24px;">
+                <div class="tip-icon">📁</div>
+                <div class="tip-content">
+                    <div class="tip-title">디자인 원본 파일 (Figma)</div>
+                    <div class="tip-desc">
+                        <a href="https://www.figma.com/design/yGQauoq63H9fHLnz3ugwTc/%E2%9C%85--%EB%A7%88%EC%BC%80%ED%8C%85--%EC%86%8D%EA%B8%B0?node-id=0-1&t=G03KWiFQ47mrqWfD-1" target="_blank" style="color: var(--toss-purple); text-decoration: underline;">✅ 마케팅 속기 Figma 파일 열기 →</a>
+                        <br><span style="color: var(--toss-gray-500); font-size: 12px; margin-top: 4px; display: inline-block;">모든 광고소재, 랜딩페이지 디자인이 이 파일 내 페이지별로 관리됩니다.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily -->
+            <div class="detail-box">
+                <div class="detail-header">
+                    <span class="detail-badge daily">DAILY</span>
+                    <span class="detail-title">속기 광고소재 이미지 제작</span>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">목적</div>
+                        <div class="info-value">광고 A/B 테스트 소재 공급, CTR 개선, 광고 피로도 방지</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">작업 기준</div>
+                        <div class="info-value">모바일 피드 환경 기준, 3초 내 메시지 전달 가능</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">핵심 원칙</div>
+                        <div class="info-value">1소재 = 1메시지, 텍스트 20% 이하 권장</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">수정 빈도</div>
+                        <div class="info-value">하루 1~3회 발생 가능 (성과 기반 즉시 수정)</div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 20px;"><strong>작업 흐름</strong></p>
+                <div class="flow-diagram">
+                    <span class="flow-step">마케팅팀 요청</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">소재 제작 (30분~2시간)</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">전달</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">광고 세팅</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">성과 확인</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">수정 요청</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">반영</span>
+                </div>
+
+                <div class="warning-box">
+                    <p><strong>현실적 특성:</strong> 오전에 만든 소재가 오후에 폐기될 수 있음. 이는 실패가 아니라 테스트 데이터 확보 과정.</p>
+                </div>
+            </div>
+
+            <!-- Weekly -->
+            <div class="detail-box">
+                <div class="detail-header">
+                    <span class="detail-badge weekly">WEEKLY</span>
+                    <span class="detail-title">랜딩페이지 제작 및 전환 최적화</span>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">목적</div>
+                        <div class="info-value">광고 유입 트래픽의 전환율 극대화, 이탈률 감소</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">작업 기준</div>
+                        <div class="info-value">전환 중심 구조, 모바일 우선, 로딩 속도 최적화</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">산출물</div>
+                        <div class="info-value">PC용 이미지 + Mobile용 이미지 (각각 별도 제작)</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">최종 세팅</div>
+                        <div class="info-value">Wix 관리자 페이지에서 PC/Mobile 각각 세팅</div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 20px;"><strong>작업 흐름</strong></p>
+                <div class="flow-diagram">
+                    <span class="flow-step">Figma 디자인</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">이미지 제작<br><small style="color: var(--toss-gray-500);">(PC/Mobile 각각)</small></span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">Wix 관리자</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">PC 세팅</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">Mobile 세팅</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">라이브</span>
+                </div>
+
+                <div class="warning-box">
+                    <p><strong>PC/Mobile 세팅 주의:</strong> Wix에서 PC와 Mobile은 별도로 세팅해야 합니다. PC에서 수정해도 Mobile에 자동 반영되지 않습니다. 수정 시 PC, Mobile 둘 다 확인 및 수정 필수.</p>
+                </div>
+
+                <p style="margin-top: 20px;"><strong>전환 중심 페이지 구조</strong></p>
+                <div class="structure-tree">
+                    <span class="folder">[Above the Fold — 첫 화면]</span><br>
+                    ├── 핵심 메시지 (고객이 얻는 가치)<br>
+                    ├── 신뢰 요소 (숫자, 인증, 수상 내역)<br>
+                    ├── CTA 버튼 (명확한 행동 유도 문구)<br>
+                    └── 서브 카피 (부가 설명, 1문장)<br><br>
+                    <span class="folder">[스크롤 영역]</span><br>
+                    ├── 상세 설명 / 기능 소개<br>
+                    ├── 사회적 증거 (고객 후기, 사용 사례)<br>
+                    ├── FAQ (자주 묻는 질문)<br>
+                    ├── 최종 CTA (반복 배치)<br>
+                    └── 푸터
+                </div>
+
+                <div class="highlight-box">
+                    <p>수정 시 PC/Mobile 두 번 작업이 필요하므로 작업 시간 산정 시 고려 필요</p>
+                </div>
+            </div>
+
+            <!-- Monthly -->
+            <div class="detail-box">
+                <div class="detail-header">
+                    <span class="detail-badge monthly">MONTHLY</span>
+                    <span class="detail-title">캠페인 단위 광고소재 + 랜딩페이지 세트 제작</span>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">목적</div>
+                        <div class="info-value">월간 마케팅 캠페인 대응, 프로모션/시즌 이벤트 디자인 통일성 확보</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">작업 기준</div>
+                        <div class="info-value">캠페인 기획서 기반, 광고-랜딩 메시지 일관성 유지</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">핵심 원칙</div>
+                        <div class="info-value">캠페인별 고유 컬러/키비주얼 설정, 확장 가능한 디자인 시스템</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">산출물</div>
+                        <div class="info-value">광고소재 세트 (5~10종) + 랜딩페이지 1~2종 + 배너/팝업</div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 20px;"><strong>월간 업무 사이클</strong></p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>시기</th>
+                                <th>업무 내용</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>월초 (1~5일)</strong></td>
+                                <td>해당 월 캠페인 메인 소재 제작 집중</td>
+                            </tr>
+                            <tr>
+                                <td><strong>중순 (10~20일)</strong></td>
+                                <td>진행 중 캠페인 성과 기반 수정, 일상 업무</td>
+                            </tr>
+                            <tr>
+                                <td><strong>월말 (25~말일)</strong></td>
+                                <td>다음 월 캠페인 사전 준비, 당월 성과 리뷰 기반 개선</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: 병행 시급 업무 -->
+        <section id="section4" class="section">
+            <div class="section-header">
+                <span class="section-number">4</span>
+                <div class="section-title-wrap">
+                    <h2 class="section-title">병행 시급 업무</h2>
+                    <p class="section-subtitle">장기 프로젝트이나 현재 병행 필수인 업무</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">회사 홈페이지 리뉴얼</h3>
+                <p>현재 홈페이지 리뉴얼 진행 중입니다. 장기 프로젝트이나 경영진 요청으로 시급도가 상승했습니다.</p>
+
+                <p><strong>업무 범위:</strong></p>
+                <ul class="list">
+                    <li>전체 IA(Information Architecture) 설계</li>
+                    <li>사업부별 페이지 구조 기획</li>
+                    <li>메인 페이지 및 서브 페이지 디자인</li>
+                    <li>반응형 대응 (Desktop, Tablet, Mobile)</li>
+                </ul>
+
+                <div class="structure-tree">
+                    <span class="folder">[홈페이지 IA 구조]</span><br>
+                    ├── 메인<br>
+                    ├── <span class="folder">회사 소개</span><br>
+                    │&nbsp;&nbsp;&nbsp;├── 비전/미션<br>
+                    │&nbsp;&nbsp;&nbsp;├── 연혁<br>
+                    │&nbsp;&nbsp;&nbsp;└── 조직 소개<br>
+                    ├── <span class="folder">사업 영역</span><br>
+                    │&nbsp;&nbsp;&nbsp;├── 사업부 A<br>
+                    │&nbsp;&nbsp;&nbsp;├── 사업부 B<br>
+                    │&nbsp;&nbsp;&nbsp;└── 사업부 C<br>
+                    ├── 포트폴리오/사례<br>
+                    ├── 채용<br>
+                    └── 문의
+                </div>
+
+                <div class="warning-box">
+                    <p><strong>승인 프로세스:</strong> 와이어프레임 단계에서 경영진/각 사업부 승인 필수. 승인 없이 디자인 진행 시 전면 재작업 리스크 있음.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">회사 소개서 및 제안서 디자인</h3>
+                <p>영업팀, 사업개발팀에서 수시 요청이 발생합니다. 표준 템플릿 부재로 매번 신규 작업이 발생 중입니다.</p>
+
+                <div class="highlight-box">
+                    <p>시급한 이유: 템플릿 1회 제작 시 반복 업무 80% 이상 감소 예상. 현재 요청마다 2~3일 소요 → 템플릿화 시 반일 이내 가능.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: 현실적인 특징 -->
+        <section id="section5" class="section">
+            <div class="section-header">
+                <span class="section-number">5</span>
+                <div class="section-title-wrap">
+                    <h2 class="section-title">이 업무의 현실적인 특징</h2>
+                    <span class="badge important">중요</span>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">일정 변동이 잦다</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>상황</th>
+                                <th>빈도</th>
+                                <th>대응</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>런칭일 앞당겨짐</td>
+                                <td>월 2~3회</td>
+                                <td>우선순위 재조정</td>
+                            </tr>
+                            <tr>
+                                <td>캠페인 기획 변경</td>
+                                <td>월 1~2회</td>
+                                <td>진행 중 작업 수정 또는 폐기</td>
+                            </tr>
+                            <tr>
+                                <td>긴급 프로모션 추가</td>
+                                <td>주 1~2회</td>
+                                <td>기존 일정 밀림</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">수정 요청이 많은 구조</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>업무</th>
+                                <th>평균 수정 횟수</th>
+                                <th>원인</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>광고소재</td>
+                                <td>1~3회/건</td>
+                                <td>성과 데이터 기반 최적화</td>
+                            </tr>
+                            <tr>
+                                <td>랜딩페이지</td>
+                                <td>2~5회/건</td>
+                                <td>A/B 테스트 결과 반영</td>
+                            </tr>
+                            <tr>
+                                <td>캠페인 세트</td>
+                                <td>3~7회/건</td>
+                                <td>기획 변경 + 성과 최적화</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="highlight-box">
+                    <p>핵심 인식: 수정 요청이 많다고 해서 초안 퀄리티가 낮은 것이 아님. "수정 = 최적화 과정"이 이 업무의 본질.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">본질: 빠른 배포 → 테스트 → 개선</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-card before">
+                        <div class="comparison-label">일반 디자인 프로세스</div>
+                        <ul class="comparison-list">
+                            <li>기획 → 디자인 → 검토 → 완성 → 배포</li>
+                            <li>완성도 중심</li>
+                            <li>수정 = 실패</li>
+                            <li>1안 완벽하게</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card after">
+                        <div class="comparison-label">퍼포먼스 마케팅 디자인</div>
+                        <ul class="comparison-list">
+                            <li>기획 → 빠른 제작 → 배포 → 테스트 → 개선</li>
+                            <li>속도 + 테스트 중심</li>
+                            <li>수정 = 데이터 기반 개선</li>
+                            <li>3안 빠르게</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">수정·폐기는 실패가 아니다</h3>
+                <ul class="list">
+                    <li>광고소재가 폐기되는 것은 "테스트 실패"가 아니라 <strong>"해당 소재가 효과 없다는 데이터 확보"</strong></li>
+                    <li>이 데이터가 있어야 다음 소재 방향 설정 가능</li>
+                    <li>10개 소재 중 1~2개만 성과가 나도 정상적인 결과</li>
+                    <li><strong>폐기율 80%는 실패율 80%가 아니라 테스트율 80%</strong></li>
+                </ul>
+            </div>
+
+            <div class="quote-box">
+                <p><strong>구조적 특성 요약:</strong><br><br>
+                본 업무 환경에서 발생하는 잦은 수정, 일정 변동, 소재 폐기는 <strong>개인 역량의 문제가 아니라 퍼포먼스 마케팅 업무 구조의 본질적 특성</strong>이다.<br><br>
+                이 구조를 이해하지 못하면 디자이너는 "왜 계속 수정해야 하지?"라는 좌절감을 느끼고, 관리자는 "왜 한 번에 못 하지?"라는 오해를 하게 된다. 양쪽 모두 구조를 이해해야 건강한 협업이 가능하다.</p>
+            </div>
+        </section>
+
+        <!-- Section 6: 업무 범위 명확화 -->
+        <section id="section6" class="section">
+            <div class="section-header">
+                <span class="section-number">6</span>
+                <div class="section-title-wrap">
+                    <h2 class="section-title">업무 범위 명확화</h2>
+                    <span class="badge important">중요</span>
+                </div>
+            </div>
+
+            <div class="scope-grid">
+                <div class="scope-card included">
+                    <div class="scope-header">
+                        <div class="scope-icon">✓</div>
+                        <div class="scope-title">포함되는 업무</div>
+                    </div>
+                    <ul class="scope-list">
+                        <li>광고소재 제작 (핵심 업무)</li>
+                        <li>랜딩페이지 디자인 (핵심 업무)</li>
+                        <li>프로모션 페이지</li>
+                        <li>이메일 마케팅 템플릿</li>
+                        <li>SNS 콘텐츠 (광고용)</li>
+                        <li>회사 소개서/제안서</li>
+                        <li>홈페이지 리뉴얼 (현재 병행)</li>
+                    </ul>
+                </div>
+                <div class="scope-card excluded">
+                    <div class="scope-header">
+                        <div class="scope-icon">✕</div>
+                        <div class="scope-title">포함되지 않는 업무</div>
+                    </div>
+                    <ul class="scope-list">
+                        <li>순수 BI/CI 개발</li>
+                        <li>브랜드 가이드북 제작</li>
+                        <li>비마케팅 목적 디자인</li>
+                        <li>목적·지표 없는 '예쁘게' 요청</li>
+                        <li>타부서 단순 디자인 대행</li>
+                        <li>인쇄물 (명함, 봉투 등)</li>
+                        <li>사내 행사 디자인</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <div class="tip-icon">⚡</div>
+                <div class="tip-content">
+                    <div class="tip-title">예외 조항</div>
+                    <div class="tip-desc">"포함되지 않는 업무"라 하더라도, <strong>전략적 필요성이 명확하고, 우선순위 조정이 선행되며, 목적과 성과 지표가 정의된 경우</strong> 협의 가능합니다.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: 디자인 요청 요건 -->
+        <section id="section7" class="section">
+            <div class="section-header">
+                <span class="section-number">7</span>
+                <div class="section-title-wrap">
+                    <h2 class="section-title">디자인 요청 최소 요건</h2>
+                    <p class="section-subtitle">모든 요청 시 필수 정보</p>
+                </div>
+            </div>
+
+            <div class="request-form">
+                <div class="request-grid">
+                    <div class="request-item">
+                        <div class="request-label">목적</div>
+                        <div>
+                            <div class="request-desc">이 디자인으로 달성하려는 것</div>
+                            <div class="request-example">예: "신규 가입자 확보", "이벤트 참여 유도"</div>
+                        </div>
+                    </div>
+                    <div class="request-item">
+                        <div class="request-label">타겟</div>
+                        <div>
+                            <div class="request-desc">누구를 대상으로 하는가</div>
+                            <div class="request-example">예: "30대 직장인 여성", "기존 고객 중 이탈 위험군"</div>
+                        </div>
+                    </div>
+                    <div class="request-item">
+                        <div class="request-label">핵심 메시지</div>
+                        <div>
+                            <div class="request-desc">전달할 내용 1문장</div>
+                            <div class="request-example">예: "지금 가입하면 첫 달 무료"</div>
+                        </div>
+                    </div>
+                    <div class="request-item">
+                        <div class="request-label">사용 채널</div>
+                        <div>
+                            <div class="request-desc">어디에 노출되는가</div>
+                            <div class="request-example">예: "페이스북 피드 광고", "카카오 비즈보드"</div>
+                        </div>
+                    </div>
+                    <div class="request-item">
+                        <div class="request-label">마감일</div>
+                        <div>
+                            <div class="request-desc">언제까지 필요한가</div>
+                            <div class="request-example">예: "1월 22일 오전 10시"</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>처리 원칙:</strong> 정보 부족 상태에서는 작업을 시작하지 않습니다. 재질문은 업무 방해가 아니라 필수 절차입니다. 불명확한 요청으로 제작된 결과물은 높은 확률로 재작업을 유발합니다.</p>
+            </div>
+
+            <div class="comparison-grid" style="margin-top: 24px;">
+                <div class="comparison-card before">
+                    <div class="comparison-label">잘못된 요청</div>
+                    <p style="font-size: 14px; margin: 0;">"이번 프로모션 배너 예쁘게 하나 만들어주세요."</p>
+                </div>
+                <div class="comparison-card after">
+                    <div class="comparison-label">올바른 요청</div>
+                    <p style="font-size: 13px; margin: 0; line-height: 1.8;">
+                        <strong>목적:</strong> 1월 할인 프로모션 참여 유도<br>
+                        <strong>타겟:</strong> 기존 앱 설치 유저 중 30일 이상 미접속자<br>
+                        <strong>핵심 메시지:</strong> "다시 돌아온 당신을 위한 50% 할인"<br>
+                        <strong>채널:</strong> 카카오 푸시 알림 이미지<br>
+                        <strong>마감:</strong> 1월 20일 오후 3시
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: 평가 기준 -->
+        <section id="section8" class="section">
+            <div class="section-header">
+                <span class="section-number">8</span>
+                <div class="section-title-wrap">
+                    <h2 class="section-title">평가 기준 명문화</h2>
+                    <p class="section-subtitle">본 포지션의 성과 평가 기준</p>
+                </div>
+            </div>
+
+            <p>본 포지션은 <strong>디자인 심미적 완성도</strong>가 아닌 아래 기준으로 평가되어야 합니다.</p>
+
+            <div class="eval-grid">
+                <div class="eval-item">
+                    <div class="eval-icon">⚡</div>
+                    <div class="eval-content">
+                        <div class="eval-title">시안 제작 속도</div>
+                        <div class="eval-desc">요청 접수 후 초안 전달까지 소요 시간 (평균 TAT)</div>
+                    </div>
+                </div>
+                <div class="eval-item">
+                    <div class="eval-icon">🔄</div>
+                    <div class="eval-content">
+                        <div class="eval-title">피드백 반영 속도</div>
+                        <div class="eval-desc">수정 요청 후 반영 완료까지 소요 시간</div>
+                    </div>
+                </div>
+                <div class="eval-item">
+                    <div class="eval-icon">📊</div>
+                    <div class="eval-content">
+                        <div class="eval-title">테스트 구조 설계 능력</div>
+                        <div class="eval-desc">A/B 테스트에 적합한 변수 분리 설계</div>
+                    </div>
+                </div>
+                <div class="eval-item">
+                    <div class="eval-icon">📈</div>
+                    <div class="eval-content">
+                        <div class="eval-title">데이터 기반 개선 여부</div>
+                        <div class="eval-desc">성과 데이터를 반영한 개선 제안 및 실행</div>
+                    </div>
+                </div>
+                <div class="eval-item">
+                    <div class="eval-icon">🤝</div>
+                    <div class="eval-content">
+                        <div class="eval-title">협업 효율성</div>
+                        <div class="eval-desc">마케팅팀과의 커뮤니케이션 원활성</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <p>핵심 평가 원칙: 빠른 3안 > 완벽한 1안</p>
+            </div>
+
+            <div class="subsection" style="margin-top: 24px;">
+                <h3 class="subsection-title">평가하지 않아야 할 것</h3>
+                <ul class="list">
+                    <li>폐기된 소재 수 (테스트 과정의 정상적 결과)</li>
+                    <li>수정 요청 횟수 (업무 구조상 필연적)</li>
+                    <li>디자인 트렌드 적용 여부 (성과와 무관할 경우)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 9: 실무 팁 -->
+        <section id="section9" class="section">
+            <div class="section-header">
+                <span class="section-number">9</span>
+                <div class="section-title-wrap">
+                    <h2 class="section-title">실무 팁</h2>
+                    <p class="section-subtitle">효율적인 업무 수행을 위한 가이드</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">디자인 원본 파일</h3>
+                <div class="tip-box" style="background: var(--toss-blue-light); border-color: var(--toss-blue);">
+                    <div class="tip-icon" style="background: var(--toss-blue);">📁</div>
+                    <div class="tip-content">
+                        <div class="tip-title" style="color: var(--toss-blue-dark);">Figma 마케팅 속기 파일 (메인 작업 파일)</div>
+                        <div class="tip-desc" style="color: var(--toss-blue);">
+                            <a href="https://www.figma.com/design/yGQauoq63H9fHLnz3ugwTc/%E2%9C%85--%EB%A7%88%EC%BC%80%ED%8C%85--%EC%86%8D%EA%B8%B0?node-id=0-1&t=G03KWiFQ47mrqWfD-1" target="_blank" style="color: var(--toss-blue); font-weight: 600;">✅ 마케팅 속기 Figma 파일 열기 →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">파일 관리 구조 (Figma 기반)</h3>
+                <p>본 포지션의 디자인 작업은 <strong>Figma 내 페이지 단위</strong>로 데이터를 축적해 나가는 방식입니다.</p>
+                <div class="structure-tree">
+                    📁 Figma: ✅ 마케팅 속기<br>
+                    ├── 📄 <span class="folder">[페이지] 2026-01 캠페인명</span><br>
+                    │&nbsp;&nbsp;&nbsp;├── 광고소재 시안들<br>
+                    │&nbsp;&nbsp;&nbsp;├── 배너 사이즈별<br>
+                    │&nbsp;&nbsp;&nbsp;└── 테스트 완료/폐기 소재<br>
+                    ├── 📄 <span class="folder">[페이지] 2026-02 캠페인명</span><br>
+                    │&nbsp;&nbsp;&nbsp;└── ...<br>
+                    ├── 📄 <span class="folder">[페이지] 랜딩페이지</span><br>
+                    │&nbsp;&nbsp;&nbsp;├── LP_제품명_PC<br>
+                    │&nbsp;&nbsp;&nbsp;├── LP_제품명_Mobile<br>
+                    │&nbsp;&nbsp;&nbsp;└── 히스토리 (버전별)<br>
+                    ├── 📄 <span class="folder">[페이지] 제안서/소개서</span><br>
+                    └── 📄 <span class="folder">[페이지] 공통 에셋</span>
+                </div>
+                <div class="info-box" style="margin-top: 16px;">
+                    <p><strong>관리 원칙:</strong> 월별/캠페인별로 Figma 페이지를 생성하여 작업물 축적. 테스트 완료된 소재도 삭제하지 않고 별도 프레임으로 보관 (레퍼런스 용도)</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">파일 명명 규칙</h3>
+                <div class="code-block">
+                    <pre><span class="comment">// 형식</span>
+[카테고리]_[프로젝트명]_[날짜]_[버전].[확장자]
+
+<span class="comment">// 예시</span>
+<span class="string">광고소재_1월프로모션_20260119_v1.psd</span>
+<span class="string">LP_서비스소개_20260115_v3.fig</span>
+<span class="string">제안서_A사업부_20260120_final.pptx</span></pre>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">수정 대응을 위한 레이어 관리 원칙</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>원칙</th>
+                                <th>설명</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>텍스트 레이어 유지</strong></td>
+                                <td>아웃라인 처리하지 않음 (수정 대비)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>요소별 그룹핑</strong></td>
+                                <td>헤더/본문/CTA/이미지 등 기능별 그룹</td>
+                            </tr>
+                            <tr>
+                                <td><strong>네이밍 명확화</strong></td>
+                                <td>"레이어 1" 금지, 기능 기반 명명</td>
+                            </tr>
+                            <tr>
+                                <td><strong>스마트 오브젝트 활용</strong></td>
+                                <td>반복 요소는 링크 유지</td>
+                            </tr>
+                            <tr>
+                                <td><strong>버전 분리 저장</strong></td>
+                                <td>대규모 수정 전 별도 버전 저장</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">협업 커뮤니케이션 팁</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>상황</th>
+                                <th>권장 대응</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>요청 접수 시</td>
+                                <td>목적/타겟/메시지/채널/마감 확인</td>
+                            </tr>
+                            <tr>
+                                <td>"예쁘게 해주세요"</td>
+                                <td>"어떤 행동을 유도할 건가요?" 재질문</td>
+                            </tr>
+                            <tr>
+                                <td>피드백 수신 시</td>
+                                <td>당일 반영 원칙, 불가 시 일정 공유</td>
+                            </tr>
+                            <tr>
+                                <td>대량 수정 요청 시</td>
+                                <td>우선순위 협의 후 순차 진행</td>
+                            </tr>
+                            <tr>
+                                <td>반영 완료 시</td>
+                                <td>확인 요청 메시지 발송</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 10: 인수인계 체크리스트 -->
+        <section id="section10" class="section">
+            <div class="section-header">
+                <span class="section-number">10</span>
+                <div class="section-title-wrap">
+                    <h2 class="section-title">인수인계 마무리 체크리스트</h2>
+                    <p class="section-subtitle">필수 전달 항목</p>
+                </div>
+            </div>
+
+            <ul class="checklist">
+                <li><span class="checkbox"></span>현재 진행 중인 프로젝트 목록 (우선순위, 마감일 포함)</li>
+                <li><span class="checkbox"></span>Figma 마케팅 속기 파일 접근 권한 공유</li>
+                <li><span class="checkbox"></span>Wix 관리자 페이지 접근 권한 및 사용법 안내</li>
+                <li><span class="checkbox"></span>주요 협업 담당자 연락처 (마케팅팀, 개발팀, 사업부)</li>
+                <li><span class="checkbox"></span>사용 중인 툴 목록 (Figma, Wix, Adobe CC, 기타)</li>
+                <li><span class="checkbox"></span>계정 정보 (스톡 이미지, 폰트 라이선스 등)</li>
+                <li><span class="checkbox"></span>정기 회의 일정 (주간 회의, 캠페인 미팅 등)</li>
+                <li><span class="checkbox"></span>과거 캠페인 히스토리 (성과 데이터 포함)</li>
+            </ul>
+        </section>
+
+        <!-- Closing Section -->
+        <section class="closing-section">
+            <h2 class="closing-title">마무리: 이 문서의 핵심</h2>
+            
+            <div class="closing-grid">
+                <div class="closing-item">
+                    <div class="closing-question">왜 이 포지션이 힘든지?</div>
+                    <div class="closing-answer">빠른 속도, 잦은 수정, 일정 변동이 업무 구조의 본질</div>
+                </div>
+                <div class="closing-item">
+                    <div class="closing-question">왜 수정이 많은지?</div>
+                    <div class="closing-answer">데이터 기반 개선 사이클이 핵심 업무 방식</div>
+                </div>
+                <div class="closing-item">
+                    <div class="closing-question">왜 속도가 중요한지?</div>
+                    <div class="closing-answer">완벽한 1안보다 빠른 테스트가 성과에 직결</div>
+                </div>
+                <div class="closing-item">
+                    <div class="closing-question">왜 소재가 폐기되는지?</div>
+                    <div class="closing-answer">실패가 아니라 테스트 데이터 확보 과정</div>
+                </div>
+            </div>
+
+            <div class="closing-message">
+                <p><strong>이 모든 것은 개인 역량의 문제가 아니라 퍼포먼스 마케팅 업무 구조의 특성입니다.</strong><br><br>
+                처음에는 속도와 수정 요청에 부담을 느낄 수 있습니다. 그러나 업무 흐름에 익숙해지면 효율적인 대응이 가능해집니다. 수정 요청을 개인적 비판으로 받아들이지 말고, 완벽보다 속도를 우선하며, 불명확한 요청에는 반드시 질문하시기 바랍니다.<br><br>
+                추가 문의 사항이 있을 경우, 인수인계 기간 내 질문을 남겨주시면 답변 드리겠습니다.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-line"></div>
+            <p>본 문서는 업무 수행을 위한 실무 가이드이며, 조직 상황에 따라 내용이 업데이트될 수 있습니다.</p>
+            <p style="margin-top: 8px;">최종 수정일: 2026년 1월</p>
+        </footer>
+    </main>
+</body>
+</html>
