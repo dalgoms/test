@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사업 영역 | 팀벨</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <style>
+        :root { --primary: #4593FC; --primary-dark: #2B7DE9; --primary-light: #6AABFF; --secondary: #00C9B7; --dark: #191F28; --gray-700: #6B7684; --gray-600: #8B95A1; --gray-400: #D1D6DB; --gray-300: #E5E8EB; --gray-200: #F2F4F6; --gray-100: #F9FAFB; --white: #FFFFFF; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; background: var(--white); color: var(--dark); line-height: 1.7; }
+
+        .page-hero { padding: 180px 24px 100px; background: linear-gradient(135deg, var(--dark) 0%, #2d3748 100%); text-align: center; color: var(--white); }
+        .page-hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 20px; }
+        .page-hero p { font-size: 18px; color: var(--gray-400); }
+
+        .section { padding: 100px 24px; }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 64px; }
+        .section-label { display: inline-block; font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+        .section-title { font-size: 36px; font-weight: 800; color: var(--dark); margin-bottom: 20px; }
+        .section-subtitle { font-size: 17px; color: var(--gray-600); line-height: 1.75; }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .business-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        .business-card { background: var(--white); border-radius: 24px; padding: 48px; border: 1px solid var(--gray-200); transition: all 0.3s; }
+        .business-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--primary); }
+        .business-icon { width: 72px; height: 72px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+        .business-icon svg { width: 36px; height: 36px; color: white; }
+        .business-card h3 { font-size: 24px; font-weight: 700; color: var(--dark); margin-bottom: 16px; }
+        .business-card p { font-size: 16px; color: var(--gray-600); line-height: 1.8; margin-bottom: 20px; }
+        .business-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .business-tag { padding: 6px 14px; background: var(--gray-100); border-radius: 100px; font-size: 13px; color: var(--gray-700); }
+
+        .cta-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); padding: 80px 24px; text-align: center; color: var(--white); }
+        .cta-section h2 { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
+        .cta-section p { font-size: 17px; opacity: 0.9; margin-bottom: 32px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 18px 36px; font-size: 16px; font-weight: 600; border-radius: 12px; text-decoration: none; }
+        .cta-section .btn { background: var(--white); color: var(--primary); }
+
+        @media (max-width: 1024px) { .business-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) {
+            .page-hero { padding: 120px 16px 60px; }
+            .page-hero h1 { font-size: 32px; }
+            .section { padding: 60px 16px; }
+            .business-card { padding: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="page-hero">
+        <h1>사업 영역</h1>
+        <p>AI 기반 솔루션, 자막, 미디어, 데이터 서비스를 제공합니다</p>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Business Areas</span>
+                <h2 class="section-title">4대 핵심 사업 영역</h2>
+                <p class="section-subtitle">20년 이상 축적된 기술력을 바탕으로 다양한 AI 솔루션을 제공합니다</p>
+            </div>
+            <div class="business-grid">
+                <div class="business-card">
+                    <div class="business-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+                    </div>
+                    <h3>인공지능 플랫폼</h3>
+                    <p>LLM·RAG 기반 지식 AI 플랫폼, 음성인식/합성 솔루션, 초거대 언어모델 구축 플랫폼을 제공합니다.</p>
+                    <div class="business-tags">
+                        <span class="business-tag">LLM</span>
+                        <span class="business-tag">RAG</span>
+                        <span class="business-tag">STT/TTS</span>
+                        <span class="business-tag">NLP</span>
+                    </div>
+                </div>
+                <div class="business-card">
+                    <div class="business-icon" style="background: linear-gradient(135deg, var(--secondary) 0%, #00a89a 100%);">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    </div>
+                    <h3>AICC 솔루션</h3>
+                    <p>AI 기반 컨택센터 통합 플랫폼, 콜봇/챗봇, 상담 어드바이저, IVR 연동 솔루션을 제공합니다.</p>
+                    <div class="business-tags">
+                        <span class="business-tag">콜봇</span>
+                        <span class="business-tag">챗봇</span>
+                        <span class="business-tag">TA/QA</span>
+                        <span class="business-tag">IVR</span>
+                    </div>
+                </div>
+                <div class="business-card">
+                    <div class="business-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <h3>속기·자막·회의록</h3>
+                    <p>AI 속기 솔루션, 실시간 자막, 문자통역, 지능형 회의록 자동화 솔루션을 제공합니다.</p>
+                    <div class="business-tags">
+                        <span class="business-tag">속기</span>
+                        <span class="business-tag">자막</span>
+                        <span class="business-tag">회의록</span>
+                        <span class="business-tag">문자통역</span>
+                    </div>
+                </div>
+                <div class="business-card">
+                    <div class="business-icon" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3>미디어·교육·일자리</h3>
+                    <p>AI 미디어 편집 플랫폼, 속기사 교육 아카데미, 일자리 매칭 플랫폼을 운영합니다.</p>
+                    <div class="business-tags">
+                        <span class="business-tag">미디어</span>
+                        <span class="business-tag">교육</span>
+                        <span class="business-tag">일자리</span>
+                        <span class="business-tag">매칭</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>어떤 솔루션이 필요하신가요?</h2>
+        <p>팀벨 전문가가 최적의 솔루션을 제안해 드립니다.</p>
+        <a href="../contact.html" class="btn">도입 상담 신청</a>
+    </section>
+
+    <div id="footer-placeholder"></div>
+    <script src="../js/common.js"></script>
+</body>
+</html>

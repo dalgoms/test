@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 콜봇 및 챗봇 솔루션 | 팀벨</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <style>
+        :root { --primary: #4593FC; --primary-dark: #2B7DE9; --secondary: #00C9B7; --dark: #191F28; --gray-600: #8B95A1; --gray-100: #F9FAFB; --white: #FFFFFF; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Pretendard Variable', Pretendard, sans-serif; background: var(--white); color: var(--dark); line-height: 1.7; }
+        .product-hero { padding: 180px 24px 100px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); text-align: center; color: var(--white); }
+        .product-hero-badge { display: inline-flex; padding: 8px 16px; background: rgba(255,255,255,0.2); border-radius: 100px; font-size: 13px; font-weight: 600; margin-bottom: 24px; }
+        .product-hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 24px; }
+        .product-hero p { font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto 32px; }
+        .btn { display: inline-flex; padding: 18px 36px; font-size: 16px; font-weight: 600; border-radius: 12px; text-decoration: none; }
+        .product-hero .btn { background: var(--white); color: var(--primary); }
+        .section { padding: 100px 24px; }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 64px; }
+        .section-label { font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+        .section-title { font-size: 36px; font-weight: 800; margin-bottom: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        .feature-card { background: var(--gray-100); border-radius: 24px; padding: 48px; }
+        .feature-card h3 { font-size: 24px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+        .feature-card h3 span { padding: 4px 12px; background: var(--primary); color: white; border-radius: 6px; font-size: 14px; }
+        .feature-card p { font-size: 16px; color: var(--gray-600); }
+        .cta-section { background: linear-gradient(135deg, var(--secondary) 0%, #00a89a 100%); padding: 80px 24px; text-align: center; color: var(--white); }
+        .cta-section h2 { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
+        .cta-section p { font-size: 17px; opacity: 0.9; margin-bottom: 32px; }
+        .cta-section .btn { background: var(--white); color: var(--secondary); }
+        @media (max-width: 1024px) { .features-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .product-hero { padding: 120px 16px 60px; } .product-hero h1 { font-size: 32px; } .section { padding: 60px 16px; } }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <section class="product-hero">
+        <div class="product-hero-badge">Callbot & Chatbot</div>
+        <h1>AI 상담 콜봇 및<br>챗봇 솔루션</h1>
+        <p>24시간 자동 응대 기능으로 신속하고 정확한 고객 응대를 지원합니다.</p>
+        <a href="../contact.html" class="btn">도입 상담 신청</a>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Solutions</span>
+                <h2 class="section-title">솔루션 구성</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>AI 콜봇 <span>Voice</span></h3>
+                    <p>음성 기반 자동 상담으로 전화 문의를 처리합니다. 자연어 이해와 음성합성 기술로 자연스러운 대화를 구현합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>AI 챗봇 <span>Text</span></h3>
+                    <p>텍스트 기반 자동 응대로 웹, 앱, 메신저 등 다양한 채널에서 고객 문의를 처리합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="cta-section">
+        <h2>고객 응대를 자동화하고 싶으신가요?</h2>
+        <p>팀벨 전문가가 최적의 솔루션을 제안해 드립니다.</p>
+        <a href="../contact.html" class="btn">도입 상담 신청</a>
+    </section>
+    <div id="footer-placeholder"></div>
+    <script src="../js/common.js"></script>
+</body>
+</html>

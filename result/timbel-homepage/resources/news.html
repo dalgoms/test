@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>최신 소식 | 팀벨</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <style>
+        :root { --primary: #4593FC; --primary-dark: #2B7DE9; --secondary: #00C9B7; --dark: #191F28; --gray-600: #8B95A1; --gray-400: #D1D6DB; --gray-200: #F2F4F6; --gray-100: #F9FAFB; --white: #FFFFFF; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Pretendard Variable', Pretendard, sans-serif; background: var(--white); color: var(--dark); line-height: 1.7; }
+        .page-hero { padding: 180px 24px 80px; background: linear-gradient(135deg, var(--dark) 0%, #2d3748 100%); text-align: center; color: var(--white); }
+        .page-hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 16px; }
+        .page-hero p { font-size: 18px; color: var(--gray-400); }
+        .section { padding: 80px 24px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .news-list { display: flex; flex-direction: column; gap: 24px; }
+        .news-card { display: flex; gap: 24px; padding: 24px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 16px; transition: all 0.3s; text-decoration: none; }
+        .news-card:hover { border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .news-date { flex-shrink: 0; width: 80px; text-align: center; padding: 16px 0; background: var(--gray-100); border-radius: 12px; }
+        .news-date .day { font-size: 28px; font-weight: 800; color: var(--primary); display: block; }
+        .news-date .month { font-size: 13px; color: var(--gray-600); }
+        .news-content { flex: 1; }
+        .news-badge { display: inline-block; padding: 4px 10px; background: rgba(69,147,252,0.1); color: var(--primary); font-size: 12px; font-weight: 600; border-radius: 100px; margin-bottom: 8px; }
+        .news-card h3 { font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+        .news-card p { font-size: 14px; color: var(--gray-600); }
+        @media (max-width: 768px) {
+            .page-hero { padding: 120px 16px 60px; }
+            .page-hero h1 { font-size: 32px; }
+            .section { padding: 60px 16px; }
+            .news-card { flex-direction: column; gap: 16px; }
+            .news-date { width: 100%; display: flex; align-items: center; gap: 8px; padding: 12px 16px; }
+            .news-date .day { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <section class="page-hero">
+        <h1>최신 소식</h1>
+        <p>팀벨의 새로운 소식과 업데이트를 확인해 보세요.</p>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="news-list">
+                <a href="#" class="news-card">
+                    <div class="news-date"><span class="day">15</span><span class="month">2026.01</span></div>
+                    <div class="news-content">
+                        <span class="news-badge">보도자료</span>
+                        <h3>팀벨, AI 회의록 솔루션 '팀블로' 정식 출시</h3>
+                        <p>화자분리 기술과 LLM을 결합한 지능형 회의록 솔루션으로 기업 생산성 향상 지원</p>
+                    </div>
+                </a>
+                <a href="#" class="news-card">
+                    <div class="news-date"><span class="day">08</span><span class="month">2026.01</span></div>
+                    <div class="news-content">
+                        <span class="news-badge">수상</span>
+                        <h3>SORIBARO, 정보접근성 우수 솔루션 선정</h3>
+                        <p>청각장애인 정보접근성 향상에 기여한 공로로 장관 표창 수상</p>
+                    </div>
+                </a>
+                <a href="#" class="news-card">
+                    <div class="news-date"><span class="day">20</span><span class="month">2025.12</span></div>
+                    <div class="news-content">
+                        <span class="news-badge">제휴</span>
+                        <h3>국내 대형 금융사와 AICC 구축 계약 체결</h3>
+                        <p>AI 콜봇, 상담 어드바이저 등 AICC 통합 플랫폼 구축 프로젝트 수주</p>
+                    </div>
+                </a>
+                <a href="#" class="news-card">
+                    <div class="news-date"><span class="day">05</span><span class="month">2025.12</span></div>
+                    <div class="news-content">
+                        <span class="news-badge">신제품</span>
+                        <h3>AI 메타휴먼 수어 아바타 베타 서비스 시작</h3>
+                        <p>청각장애인을 위한 실시간 수어 통역 아바타 서비스 공개</p>
+                    </div>
+                </a>
+                <a href="#" class="news-card">
+                    <div class="news-date"><span class="day">15</span><span class="month">2025.11</span></div>
+                    <div class="news-content">
+                        <span class="news-badge">인증</span>
+                        <h3>AI CORE 플랫폼, GS인증 1등급 획득</h3>
+                        <p>LLM·RAG 기반 지식 AI 플랫폼의 품질과 안정성 공식 인증</p>
+                    </div>
+                </a>
+                <a href="#" class="news-card">
+                    <div class="news-date"><span class="day">01</span><span class="month">2025.11</span></div>
+                    <div class="news-content">
+                        <span class="news-badge">행사</span>
+                        <h3>AI EXPO 2025 참가 및 솔루션 시연</h3>
+                        <p>COEX에서 열린 AI EXPO에서 최신 AI 솔루션 라인업 공개</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <div id="footer-placeholder"></div>
+    <script src="../js/common.js"></script>
+</body>
+</html>

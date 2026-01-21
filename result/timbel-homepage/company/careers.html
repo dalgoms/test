@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>채용 | 팀벨</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <style>
+        :root { --primary: #4593FC; --primary-dark: #2B7DE9; --secondary: #00C9B7; --dark: #191F28; --gray-600: #8B95A1; --gray-400: #D1D6DB; --gray-200: #F2F4F6; --gray-100: #F9FAFB; --white: #FFFFFF; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; background: var(--white); color: var(--dark); line-height: 1.7; }
+
+        .page-hero { padding: 180px 24px 100px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); text-align: center; color: var(--white); }
+        .page-hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 20px; }
+        .page-hero p { font-size: 18px; opacity: 0.9; }
+
+        .section { padding: 100px 24px; }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 64px; }
+        .section-label { font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+        .section-title { font-size: 36px; font-weight: 800; margin-bottom: 20px; }
+        .section-subtitle { font-size: 17px; color: var(--gray-600); }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .culture-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .culture-card { background: var(--gray-100); border-radius: 20px; padding: 40px; text-align: center; }
+        .culture-icon { width: 64px; height: 64px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+        .culture-icon svg { width: 32px; height: 32px; color: white; }
+        .culture-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+        .culture-card p { font-size: 15px; color: var(--gray-600); }
+
+        .jobs-section { background: var(--gray-100); }
+        .job-list { display: flex; flex-direction: column; gap: 16px; }
+        .job-card { background: var(--white); border-radius: 16px; padding: 32px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--gray-200); transition: all 0.3s; }
+        .job-card:hover { border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .job-info h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+        .job-meta { display: flex; gap: 16px; font-size: 14px; color: var(--gray-600); }
+        .job-apply { padding: 12px 24px; background: var(--primary); color: white; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; }
+
+        .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .benefit-item { text-align: center; padding: 24px; }
+        .benefit-item svg { width: 48px; height: 48px; color: var(--primary); margin-bottom: 16px; }
+        .benefit-item h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+        .benefit-item p { font-size: 14px; color: var(--gray-600); }
+
+        .cta-section { background: var(--dark); padding: 80px 24px; text-align: center; color: var(--white); }
+        .cta-section h2 { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
+        .cta-section p { font-size: 17px; color: var(--gray-400); margin-bottom: 32px; }
+        .btn { display: inline-flex; padding: 18px 36px; font-size: 16px; font-weight: 600; border-radius: 12px; text-decoration: none; }
+        .cta-section .btn { background: var(--primary); color: var(--white); }
+
+        @media (max-width: 1024px) { .culture-grid, .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .page-hero { padding: 120px 16px 60px; }
+            .page-hero h1 { font-size: 32px; }
+            .section { padding: 60px 16px; }
+            .culture-grid, .benefits-grid { grid-template-columns: 1fr; }
+            .job-card { flex-direction: column; align-items: flex-start; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="page-hero">
+        <h1>함께 성장할 인재를 찾습니다</h1>
+        <p>AI 기술로 세상을 바꾸는 여정에 함께해 주세요</p>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Culture</span>
+                <h2 class="section-title">팀벨의 문화</h2>
+            </div>
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3>도전과 혁신</h3>
+                    <p>새로운 기술에 도전하고 끊임없이 혁신합니다</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <h3>협업과 소통</h3>
+                    <p>열린 소통으로 함께 문제를 해결합니다</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </div>
+                    <h3>성장과 학습</h3>
+                    <p>개인의 성장이 곧 회사의 성장입니다</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section jobs-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Open Positions</span>
+                <h2 class="section-title">채용 중인 포지션</h2>
+            </div>
+            <div class="job-list">
+                <div class="job-card">
+                    <div class="job-info">
+                        <h3>AI 연구원 (NLP/LLM)</h3>
+                        <div class="job-meta">
+                            <span>연구개발팀</span>
+                            <span>정규직</span>
+                            <span>서울 강남</span>
+                        </div>
+                    </div>
+                    <a href="../contact.html" class="job-apply">지원하기</a>
+                </div>
+                <div class="job-card">
+                    <div class="job-info">
+                        <h3>백엔드 개발자 (Python/FastAPI)</h3>
+                        <div class="job-meta">
+                            <span>개발팀</span>
+                            <span>정규직</span>
+                            <span>서울 강남</span>
+                        </div>
+                    </div>
+                    <a href="../contact.html" class="job-apply">지원하기</a>
+                </div>
+                <div class="job-card">
+                    <div class="job-info">
+                        <h3>프론트엔드 개발자 (React/Next.js)</h3>
+                        <div class="job-meta">
+                            <span>개발팀</span>
+                            <span>정규직</span>
+                            <span>서울 강남</span>
+                        </div>
+                    </div>
+                    <a href="../contact.html" class="job-apply">지원하기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Benefits</span>
+                <h2 class="section-title">복리후생</h2>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <h4>유연근무제</h4>
+                    <p>자율 출퇴근</p>
+                </div>
+                <div class="benefit-item">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    <h4>교육 지원</h4>
+                    <p>도서/강의 지원</p>
+                </div>
+                <div class="benefit-item">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                    <h4>장비 지원</h4>
+                    <p>최신 개발 장비</p>
+                </div>
+                <div class="benefit-item">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                    <h4>건강검진</h4>
+                    <p>연 1회 종합검진</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>팀벨과 함께 성장하세요</h2>
+        <p>AI 기술로 세상을 바꾸는 여정에 함께해 주세요</p>
+        <a href="../contact.html" class="btn">지원 문의하기</a>
+    </section>
+
+    <div id="footer-placeholder"></div>
+    <script src="../js/common.js"></script>
+</body>
+</html>
