@@ -1,0 +1,12 @@
+# Timbel Website Robots.txt
+# https://timbel.net
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://timbel.net/sitemap.xml
+
+# Disallow admin or private paths (if any in future)
+# Disallow: /admin/
+# Disallow: /private/

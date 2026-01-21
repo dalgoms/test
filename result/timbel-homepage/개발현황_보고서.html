@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀벨 홈페이지 개발 현황 보고서</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4593FC 0%, #2B7DE9 100%);
+            color: white;
+            padding: 48px 40px;
+            border-radius: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .header-meta {
+            display: flex;
+            gap: 24px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        
+        .section h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #191F28;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #4593FC;
+        }
+        
+        .section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin: 24px 0 12px;
+        }
+        
+        .section h3:first-of-type {
+            margin-top: 0;
+        }
+        
+        p {
+            margin-bottom: 12px;
+            color: #555;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e5e8eb;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #191F28;
+        }
+        
+        tr:hover {
+            background: #fafbfc;
+        }
+        
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #4593FC;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+        
+        .highlight-box.warning {
+            background: #fff8f0;
+            border-left-color: #ff9500;
+        }
+        
+        .highlight-box.success {
+            background: #f0fff4;
+            border-left-color: #00c853;
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 16px 0;
+            line-height: 1.5;
+        }
+        
+        .code-inline {
+            background: #f1f3f5;
+            color: #e83e8c;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            font-size: 13px;
+        }
+        
+        .folder-tree {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .folder-tree .folder {
+            color: #dcdcaa;
+        }
+        
+        .folder-tree .file {
+            color: #9cdcfe;
+        }
+        
+        .folder-tree .comment {
+            color: #6a9955;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #4593FC 0%, #2B7DE9 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stat-card .number {
+            font-size: 32px;
+            font-weight: 700;
+        }
+        
+        .stat-card .label {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+        
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .checklist li {
+            padding: 8px 0;
+            padding-left: 28px;
+            position: relative;
+            color: #555;
+        }
+        
+        .checklist li::before {
+            content: '[ ]';
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 16px 0;
+        }
+        
+        .tech-tag {
+            background: #e8f4ff;
+            color: #4593FC;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .dev-required {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #475569 0%, #334155 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        
+        .dev-section {
+            border: 2px solid #475569;
+            position: relative;
+        }
+        
+        .dev-section::before {
+            content: 'DEV 개발 협업 필요';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: linear-gradient(135deg, #475569 0%, #334155 100%);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .dev-item {
+            background: #f8fafc;
+            border-left: 4px solid #475569;
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .dev-item strong {
+            color: #475569;
+        }
+        
+        .dev-legend {
+            background: linear-gradient(135deg, #475569 0%, #334155 100%);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .dev-legend-icon {
+            font-size: 14px;
+            font-weight: 700;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+        
+        .dev-legend-text {
+            flex: 1;
+        }
+        
+        .dev-legend-text strong {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+        
+        .dev-legend-text span {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 16px 0;
+        }
+        
+        .compare-box {
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .compare-box.before {
+            background: #fff5f5;
+            border: 1px solid #ffccc7;
+        }
+        
+        .compare-box.after {
+            background: #f6ffed;
+            border: 1px solid #b7eb8f;
+        }
+        
+        .compare-box h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .compare-box.before h4 {
+            color: #cf1322;
+        }
+        
+        .compare-box.after h4 {
+            color: #389e0d;
+        }
+        
+        .compare-box ul {
+            padding-left: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .compare-box li {
+            margin-bottom: 6px;
+        }
+        
+        .steps {
+            counter-reset: step;
+        }
+        
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: #4593FC;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        .step-content span {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 16px;
+            }
+            
+            .header {
+                padding: 32px 24px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
+            }
+            
+            .header-meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .section {
+                padding: 24px 20px;
+            }
+            
+            .compare-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .container {
+                max-width: 100%;
+            }
+            
+            .section {
+                box-shadow: none;
+                border: 1px solid #e5e8eb;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>팀벨 홈페이지 개발 현황 보고서</h1>
+            <div class="header-meta">
+                <span>작성일: 2026년 1월 21일</span>
+                <span>작성자: 이세영 팀장</span>
+                <span>프로젝트: 팀벨 기업 홈페이지 리뉴얼</span>
+            </div>
+        </div>
+
+        <!-- 개발 협업 범례 -->
+        <div class="dev-legend">
+            <div class="dev-legend-icon">DEV</div>
+            <div class="dev-legend-text">
+                <strong>개발 협업 필요 항목 안내</strong>
+                <span>회색으로 표시된 항목은 개발팀 협업이 필요한 기술적 작업입니다.</span>
+            </div>
+        </div>
+
+        <!-- 1. 프로젝트 개요 -->
+        <div class="section">
+            <h2>1. 프로젝트 개요</h2>
+            <p>팀벨 홈페이지의 메뉴별 상세 페이지 콘텐츠 구축 및 공통 컴포넌트 시스템 개발</p>
+            
+            <h3>목표</h3>
+            <ul style="padding-left: 20px; color: #555;">
+                <li>메인 페이지 기반 일관된 디자인 시스템으로 전체 서브페이지 구축</li>
+                <li>헤더/푸터 공통화로 유지보수 효율성 확보</li>
+                <li>GitHub Pages 배포 준비</li>
+            </ul>
+        </div>
+
+        <!-- 2. 완료된 작업 -->
+        <div class="section">
+            <h2>2. 완료된 작업</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">28</div>
+                    <div class="label">총 페이지</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">7</div>
+                    <div class="label">카테고리</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">5</div>
+                    <div class="label">SEO 작업 완료</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">100%</div>
+                    <div class="label">완료율</div>
+                </div>
+            </div>
+
+            <h3>페이지 구축 현황</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>카테고리</th>
+                        <th>페이지 수</th>
+                        <th>파일 목록</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>메인</strong></td>
+                        <td>1</td>
+                        <td><span class="code-inline">index.html</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>문의</strong></td>
+                        <td>1</td>
+                        <td><span class="code-inline">contact.html</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>회사소개</strong></td>
+                        <td>5</td>
+                        <td>overview, business, history, certifications, careers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>제품 (인공지능)</strong></td>
+                        <td>4</td>
+                        <td>ai-core, speech-language, llm-platform, sign-avatar</td>
+                    </tr>
+                    <tr>
+                        <td><strong>제품 (AI 회의록)</strong></td>
+                        <td>2</td>
+                        <td>baronote, timblo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>제품 (미디어/교육)</strong></td>
+                        <td>3</td>
+                        <td>clipdesk, worksfy, sorizava-academy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AICC 솔루션</strong></td>
+                        <td>5</td>
+                        <td>knowledge-management, aicc-platform, callbot-chatbot, advisor-ta-qa, ivr-integration</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AI 기록·자막</strong></td>
+                        <td>4</td>
+                        <td>soribaro, textar, sorizava, webfos</td>
+                    </tr>
+                    <tr>
+                        <td><strong>자료 센터</strong></td>
+                        <td>2</td>
+                        <td>case-studies, news</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>공통 컴포넌트 시스템 구축</h3>
+            <div class="compare-grid">
+                <div class="compare-box before">
+                    <h4>Before (문제점)</h4>
+                    <ul>
+                        <li>28개 페이지에 헤더/푸터 코드 중복</li>
+                        <li>메뉴 수정 시 28개 파일 모두 수정 필요</li>
+                        <li>유지보수 비용 증가</li>
+                    </ul>
+                </div>
+                <div class="compare-box after">
+                    <h4>After (해결)</h4>
+                    <ul>
+                        <li>JavaScript 공통 컴포넌트 도입</li>
+                        <li>1개 파일 수정으로 전체 반영</li>
+                        <li>유지보수 효율성 극대화</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. 기술 구조 -->
+        <div class="section">
+            <h2>3. 기술 구조 (개발자용)</h2>
+            
+            <h3>폴더 구조</h3>
+            <div class="folder-tree">
+<span class="folder">timbel-homepage/</span>
+├── <span class="file">index.html</span>                 <span class="comment"># 메인 페이지 (SEO + Schema.org)</span>
+├── <span class="file">contact.html</span>               <span class="comment"># 문의하기 (Formspree 연동)</span>
+├── <span class="file">sitemap.xml</span>                <span class="comment"># 사이트맵 (SEO)</span>
+├── <span class="file">robots.txt</span>                 <span class="comment"># 크롤링 규칙 (SEO)</span>
+├── <span class="folder">js/</span>
+│   └── <span class="file">common.js</span>              <span class="comment"># 공통 헤더/푸터 컴포넌트 (핵심)</span>
+├── <span class="folder">img/</span>
+│   └── <span class="file">timbellogo.png</span>         <span class="comment"># 로고 이미지</span>
+├── <span class="folder">company/</span>                   <span class="comment"># 회사소개 (5개)</span>
+├── <span class="folder">products/</span>                  <span class="comment"># 제품 (9개)</span>
+├── <span class="folder">solutions/</span>                 <span class="comment"># AICC 솔루션 (5개)</span>
+├── <span class="folder">stenography/</span>               <span class="comment"># AI 기록·자막 (4개)</span>
+└── <span class="folder">resources/</span>                 <span class="comment"># 자료 센터 (2개)</span>
+            </div>
+
+            <h3>공통 컴포넌트 핵심 함수 (<span class="code-inline">common.js</span>)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>함수명</th>
+                        <th>역할</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="code-inline">getBasePath()</span></td>
+                        <td>현재 페이지 위치에 따른 상대 경로 자동 계산</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-inline">getHeaderHTML(basePath)</span></td>
+                        <td>헤더 + 메가메뉴 + 모바일 메뉴 HTML 생성</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-inline">getFooterHTML(basePath)</span></td>
+                        <td>푸터 HTML 생성</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-inline">getCommonStyles()</span></td>
+                        <td>헤더/푸터 공통 CSS 생성</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-inline">initCommonEvents()</span></td>
+                        <td>스크롤 효과, 모바일 메뉴 토글 이벤트 바인딩</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-inline">renderCommon()</span></td>
+                        <td>DOMContentLoaded 시 전체 렌더링 실행</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>사용 방법</h3>
+            <div class="highlight-box">
+                각 HTML 페이지에 플레이스홀더와 스크립트만 추가하면 헤더/푸터가 자동 렌더링됩니다.
+            </div>
+            <div class="code-block">
+&lt;body&gt;
+    &lt;div id="header-placeholder"&gt;&lt;/div&gt;
+    
+    &lt;main&gt;
+        &lt;!-- 페이지 고유 콘텐츠 --&gt;
+    &lt;/main&gt;
+    
+    &lt;div id="footer-placeholder"&gt;&lt;/div&gt;
+    
+    &lt;!-- 루트 페이지 --&gt;
+    &lt;script src="js/common.js"&gt;&lt;/script&gt;
+    
+    &lt;!-- 서브폴더 페이지 --&gt;
+    &lt;script src="../js/common.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+            </div>
+
+            <h3>경로 자동 처리</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>페이지 위치</th>
+                        <th>basePath 값</th>
+                        <th>예시</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>루트</td>
+                        <td><span class="code-inline">''</span> (빈 문자열)</td>
+                        <td>index.html</td>
+                    </tr>
+                    <tr>
+                        <td>서브폴더</td>
+                        <td><span class="code-inline">'../'</span></td>
+                        <td>company/overview.html</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>CSS 변수 (디자인 시스템)</h3>
+            <div class="code-block">
+:root {
+    --primary: #4593FC;        /* 메인 컬러 */
+    --primary-dark: #2B7DE9;   /* 메인 컬러 (어두운) */
+    --primary-light: #6AABFF;  /* 메인 컬러 (밝은) */
+    --dark: #191F28;           /* 다크 배경 */
+    --white: #fff;             /* 흰색 */
+}
+            </div>
+
+            <h3>반응형 브레이크포인트</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>브레이크포인트</th>
+                        <th>적용 내용</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1200px</td>
+                        <td>태블릿 대형 레이아웃</td>
+                    </tr>
+                    <tr>
+                        <td>1024px</td>
+                        <td>모바일 메뉴 전환</td>
+                    </tr>
+                    <tr>
+                        <td>768px</td>
+                        <td>모바일 최적화</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 4. 배포 방법 -->
+        <div class="section">
+            <h2>4. 배포 방법 (GitHub Pages)</h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>GitHub에 새 Repository 생성</strong>
+                        <span>예: timbel-homepage</span>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>timbel-homepage 폴더 내 모든 파일 업로드</strong>
+                        <span>드래그 앤 드롭 또는 git push</span>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>Settings → Pages → Source 설정</strong>
+                        <span>main 브랜치 선택</span>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <strong>접속 확인</strong>
+                        <span>https://[사용자명].github.io/[repository명]/</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box warning">
+                <strong>주의사항</strong>
+                <ul style="margin-top: 8px; padding-left: 20px; font-size: 14px;">
+                    <li>정적 호스팅 환경 (서버사이드 불필요)</li>
+                    <li>이미지 추가 시 <span class="code-inline">img/</span> 폴더에 저장</li>
+                    <li>새 페이지 추가 시 <span class="code-inline">common.js</span> 스크립트 포함 필수</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 5. Wix 데이터 이관 작업 -->
+        <div class="section">
+            <h2>5. Wix 데이터 이관 작업</h2>
+            
+            <div class="highlight-box warning">
+                <strong>필수 작업</strong> - 기존 Wix 사이트에서 운영 중인 데이터를 새 홈페이지로 이관해야 합니다.
+            </div>
+
+            <h3>이관 대상 데이터</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>내용</th>
+                        <th>비고</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>이미지 자산</strong></td>
+                        <td>제품 이미지, 로고, 배너, 아이콘 등</td>
+                        <td>Wix Media에서 다운로드 필요</td>
+                    </tr>
+                    <tr>
+                        <td><strong>텍스트 콘텐츠</strong></td>
+                        <td>제품 설명, 회사 소개, 연혁 등</td>
+                        <td>각 페이지별 복사</td>
+                    </tr>
+                    <tr>
+                        <td><strong>고객 사례</strong></td>
+                        <td>도입 사례, 고객사 로고, 후기</td>
+                        <td>case-studies 페이지 반영</td>
+                    </tr>
+                    <tr>
+                        <td><strong>뉴스/공지</strong></td>
+                        <td>기존 게시된 뉴스 및 공지사항</td>
+                        <td>news 페이지 반영</td>
+                    </tr>
+                    <tr>
+                        <td><strong>문서 파일</strong></td>
+                        <td>제품 브로슈어, 카탈로그 PDF 등</td>
+                        <td>다운로드 링크 연결</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>이관 절차</h3>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>Wix 미디어 라이브러리 백업</strong>
+                        <span>이미지, 동영상, 문서 파일 전체 다운로드</span>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>콘텐츠 정리 및 매핑</strong>
+                        <span>기존 페이지 ↔ 신규 페이지 콘텐츠 대응표 작성</span>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>이미지 최적화 및 적용</strong>
+                        <span>img 폴더에 정리, 각 페이지에 삽입</span>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <strong>텍스트 콘텐츠 반영</strong>
+                        <span>각 HTML 페이지에 실제 내용 업데이트</span>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <strong>검수 및 테스트</strong>
+                        <span>링크, 이미지, 반응형 확인</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>주의사항</h3>
+            <div class="highlight-box">
+                <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+                    <li>Wix 이미지 URL은 외부 링크이므로 반드시 다운로드 후 로컬 저장</li>
+                    <li>이미지 파일명은 영문으로 통일 (한글 파일명 사용 X)</li>
+                    <li>고해상도 이미지는 웹 최적화 필요 (용량 1MB 이하 권장)</li>
+                </ul>
+            </div>
+
+            <h3>SEO (검색엔진 최적화) 이관 <span class="dev-required">DEV</span></h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>항목</th>
+                        <th>현재 상태</th>
+                        <th>필요 작업</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>메타 태그</strong></td>
+                        <td>Wix 자동 생성</td>
+                        <td>각 페이지에 title, description, og 태그 직접 추가</td>
+                    </tr>
+                    <tr>
+                        <td><strong>URL 구조</strong></td>
+                        <td>Wix 형식</td>
+                        <td>새 URL 구조로 변경됨 (SEO 영향 있음)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>sitemap.xml</strong></td>
+                        <td>Wix 자동 생성</td>
+                        <td>새로 생성 필요</td>
+                    </tr>
+                    <tr>
+                        <td><strong>robots.txt</strong></td>
+                        <td>Wix 자동 생성</td>
+                        <td>새로 생성 필요</td>
+                    </tr>
+                    <tr>
+                        <td><strong>구조화 데이터</strong></td>
+                        <td>Wix 자동 생성</td>
+                        <td>Schema.org JSON-LD 직접 추가 권장</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>백링크 및 리다이렉트 <span class="dev-required">DEV</span></h3>
+            <div class="highlight-box warning">
+                <strong>주의</strong> - 기존 Wix URL로 연결된 외부 링크(백링크)가 있다면 검색 순위에 영향을 줄 수 있습니다.
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>상황</th>
+                        <th>해결 방안</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>동일 도메인 유지</td>
+                        <td>301 리다이렉트 설정 (서버 또는 호스팅 설정 필요)</td>
+                    </tr>
+                    <tr>
+                        <td>새 도메인 사용</td>
+                        <td>기존 도메인에서 새 도메인으로 301 리다이렉트</td>
+                    </tr>
+                    <tr>
+                        <td>GitHub Pages 사용</td>
+                        <td>커스텀 도메인 연결 가능 (CNAME 설정)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 14px; color: #666; margin-top: 12px;">
+                * GitHub Pages는 서버 리다이렉트를 지원하지 않음. 필요시 Netlify, Vercel 등 대안 검토
+            </p>
+
+            <h3>문의/신청 폼 처리 <span class="dev-required">DEV</span></h3>
+            <div class="compare-grid">
+                <div class="compare-box before">
+                    <h4>현재 상태</h4>
+                    <ul>
+                        <li>Wix Forms 사용 중</li>
+                        <li>Wix 자체 백엔드로 데이터 저장</li>
+                        <li>이메일 알림 자동 발송</li>
+                    </ul>
+                </div>
+                <div class="compare-box after">
+                    <h4>대안 필요</h4>
+                    <ul>
+                        <li>GitHub Pages는 정적 호스팅 (백엔드 없음)</li>
+                        <li>외부 폼 서비스 연동 필요</li>
+                        <li>또는 자체 백엔드 서버 구축</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4 style="margin-top: 20px;">폼 서비스 대안</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>서비스</th>
+                        <th>특징</th>
+                        <th>비용</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Formspree</strong></td>
+                        <td>간단한 HTML 폼, 이메일 전송</td>
+                        <td>월 50건 무료</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Google Forms</strong></td>
+                        <td>스프레드시트 연동, 무제한</td>
+                        <td>무료</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Netlify Forms</strong></td>
+                        <td>Netlify 호스팅 시 자동 지원</td>
+                        <td>월 100건 무료</td>
+                    </tr>
+                    <tr>
+                        <td><strong>자체 백엔드</strong></td>
+                        <td>완전한 커스터마이징 가능</td>
+                        <td>서버 비용 발생</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 6. 향후 작업 -->
+        <div class="section">
+            <h2>6. 향후 추가 작업 (선택)</h2>
+
+            <h3>기능 추가 <span class="dev-required">DEV</span></h3>
+            <ul class="checklist">
+                <li><strong style="color: #475569;">문의하기 폼 백엔드 연동</strong> - 외부 서비스 또는 자체 API 개발</li>
+                <li><strong style="color: #475569;">뉴스/공지사항 동적 로딩</strong> - CMS 연동 또는 JSON 데이터 관리</li>
+                <li><strong style="color: #475569;">다국어 지원</strong> - i18n 라이브러리 적용</li>
+            </ul>
+
+            <h3>성능 최적화 <span class="dev-required">DEV</span></h3>
+            <ul class="checklist">
+                <li><strong style="color: #475569;">이미지 최적화 (WebP 변환)</strong> - 빌드 파이프라인 설정</li>
+                <li><strong style="color: #475569;">CSS/JS 압축 (Minify)</strong> - 빌드 도구 설정 (Webpack, Vite 등)</li>
+                <li><strong style="color: #475569;">CDN 적용</strong> - Cloudflare, AWS CloudFront 등</li>
+            </ul>
+        </div>
+
+        <!-- 7. 개발 협업 필요 항목 요약 -->
+        <div class="section dev-section" style="margin-top: 40px;">
+            <h2 style="margin-top: 8px;">7. 개발 협업 필요 항목 요약</h2>
+            
+            <p>아래 항목 중 완료된 작업은 녹색으로 표시됩니다.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 50px;">No.</th>
+                        <th>작업 항목</th>
+                        <th>상세 내용</th>
+                        <th>상태</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: #f6ffed;">
+                        <td><strong>1</strong></td>
+                        <td><strong>sitemap.xml 생성</strong></td>
+                        <td>검색엔진 크롤링을 위한 사이트맵 파일 생성</td>
+                        <td style="color: #389e0d; font-weight: 600;">완료</td>
+                    </tr>
+                    <tr style="background: #f6ffed;">
+                        <td><strong>2</strong></td>
+                        <td><strong>robots.txt 생성</strong></td>
+                        <td>검색엔진 크롤링 규칙 설정 파일 생성</td>
+                        <td style="color: #389e0d; font-weight: 600;">완료</td>
+                    </tr>
+                    <tr style="background: #f6ffed;">
+                        <td><strong>3</strong></td>
+                        <td><strong>메타 태그 추가</strong></td>
+                        <td>전체 28개 페이지에 SEO 메타 태그 적용 완료</td>
+                        <td style="color: #389e0d; font-weight: 600;">완료</td>
+                    </tr>
+                    <tr style="background: #f6ffed;">
+                        <td><strong>4</strong></td>
+                        <td><strong>문의 폼 백엔드 연동</strong></td>
+                        <td>Formspree 연동 완료 (ID 교체 필요)</td>
+                        <td style="color: #389e0d; font-weight: 600;">완료</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5</strong></td>
+                        <td><strong>301 리다이렉트 설정</strong></td>
+                        <td>기존 Wix URL → 새 URL 리다이렉트 (Netlify/Vercel 필요)</td>
+                        <td style="color: #fa8c16;">대기</td>
+                    </tr>
+                    <tr style="background: #f6ffed;">
+                        <td><strong>6</strong></td>
+                        <td><strong>구조화 데이터 추가</strong></td>
+                        <td>Schema.org JSON-LD (Organization, WebSite) 적용 완료</td>
+                        <td style="color: #389e0d; font-weight: 600;">완료</td>
+                    </tr>
+                    <tr>
+                        <td><strong>7</strong></td>
+                        <td><strong>커스텀 도메인 연결</strong></td>
+                        <td>GitHub Pages CNAME 설정, DNS 레코드 수정</td>
+                        <td style="color: #fa8c16;">대기</td>
+                    </tr>
+                    <tr>
+                        <td><strong>8</strong></td>
+                        <td><strong>이미지 최적화 자동화</strong></td>
+                        <td>WebP 변환, 리사이징 빌드 파이프라인</td>
+                        <td style="color: #8B95A1;">선택</td>
+                    </tr>
+                    <tr>
+                        <td><strong>9</strong></td>
+                        <td><strong>CSS/JS 압축</strong></td>
+                        <td>프로덕션 빌드 시 Minify 적용</td>
+                        <td style="color: #8B95A1;">선택</td>
+                    </tr>
+                    <tr>
+                        <td><strong>10</strong></td>
+                        <td><strong>다국어 지원</strong></td>
+                        <td>i18n 라이브러리 적용 (필요시)</td>
+                        <td style="color: #8B95A1;">선택</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box success" style="margin-top: 24px;">
+                <strong>완료된 SEO/기술 작업 (5/10)</strong>
+                <ul style="margin: 12px 0 0 20px; font-size: 14px;">
+                    <li>sitemap.xml - 28개 페이지 URL 포함</li>
+                    <li>robots.txt - 크롤링 규칙 설정</li>
+                    <li>메타 태그 - 전체 페이지 SEO 태그 적용</li>
+                    <li>구조화 데이터 - Schema.org JSON-LD (Organization, WebSite)</li>
+                    <li>문의 폼 - Formspree 연동 (ID만 교체하면 작동)</li>
+                </ul>
+            </div>
+            
+            <div class="highlight-box warning" style="margin-top: 16px;">
+                <strong>남은 작업 (외부 설정 필요)</strong>
+                <ul style="margin: 12px 0 0 20px; font-size: 14px;">
+                    <li>301 리다이렉트 - Netlify/Vercel 호스팅 시 _redirects 파일로 설정</li>
+                    <li>커스텀 도메인 - DNS 설정에서 직접 CNAME 추가</li>
+                    <li>Formspree ID 교체 - formspree.io 가입 후 폼 ID 발급 필요</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 8. 기술 스택 -->
+        <div class="section">
+            <h2>8. 기술 스택 요약</h2>
+            
+            <div class="tech-stack">
+                <span class="tech-tag">HTML5 Semantic</span>
+                <span class="tech-tag">CSS3 Variables</span>
+                <span class="tech-tag">Flexbox</span>
+                <span class="tech-tag">CSS Grid</span>
+                <span class="tech-tag">Vanilla JavaScript</span>
+                <span class="tech-tag">ES6+ Template Literals</span>
+                <span class="tech-tag">Mobile-First</span>
+                <span class="tech-tag">Media Queries</span>
+                <span class="tech-tag">GitHub Pages</span>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>기술</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>마크업</td>
+                        <td>HTML5 Semantic</td>
+                    </tr>
+                    <tr>
+                        <td>스타일</td>
+                        <td>CSS3 (CSS Variables, Flexbox, Grid)</td>
+                    </tr>
+                    <tr>
+                        <td>인터랙션</td>
+                        <td>Vanilla JavaScript (ES6+)</td>
+                    </tr>
+                    <tr>
+                        <td>컴포넌트</td>
+                        <td>JavaScript Template Literals</td>
+                    </tr>
+                    <tr>
+                        <td>반응형</td>
+                        <td>Mobile-First, Media Queries</td>
+                    </tr>
+                    <tr>
+                        <td>호스팅</td>
+                        <td>GitHub Pages (정적 호스팅)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        </div>
+</body>
+</html>
