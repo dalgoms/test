@@ -22,7 +22,7 @@ function getHeaderHTML(basePath) {
     return `
     <header class="header" id="header">
         <div class="header-inner">
-            <a href="${basePath}timbel-greeting-style.html" class="logo">
+            <a href="${basePath}index.html" class="logo">
                 <img src="${basePath}img/timbellogo.png" alt="팀벨" class="logo-img">
             </a>
             <nav class="nav">
@@ -220,7 +220,7 @@ function getHeaderHTML(basePath) {
     <div class="mobile-menu-overlay" id="mobileMenuOverlay">
         <div class="mobile-menu-container">
             <div class="mobile-menu-header">
-                <a href="${basePath}timbel-greeting-style.html" class="logo">
+                <a href="${basePath}index.html" class="logo">
                     <img src="${basePath}img/timbellogo.png" alt="팀벨" class="logo-img">
                 </a>
                 <button class="mobile-menu-close" id="mobileMenuClose" aria-label="메뉴 닫기">
