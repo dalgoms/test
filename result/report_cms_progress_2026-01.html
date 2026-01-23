@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>콘텐츠 마케팅 허브(CMS) 진행 현황 보고</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background-color: #f7f8fa;
+      color: #191f28;
+      line-height: 1.7;
+      padding: 40px 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Comparison Section */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .comparison-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .comparison-card-highlight {
+      border: 2px solid #3182f6;
+      box-shadow: 0 4px 20px rgba(49, 130, 246, 0.15);
+    }
+
+    .comparison-header {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #f2f4f6;
+    }
+
+    .comparison-header-highlight {
+      background: #e8f3ff;
+    }
+
+    .comparison-title {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #191f28;
+    }
+
+    .comparison-title-highlight {
+      color: #3182f6;
+    }
+
+    .comparison-viewer {
+      width: 100%;
+      height: 600px;
+      border: none;
+      background: #f7f8fa;
+      transform: scale(0.75);
+      transform-origin: top left;
+      width: 133.33%;
+      height: 800px;
+    }
+
+    .comparison-viewer-wrap {
+      width: 100%;
+      height: 600px;
+      overflow: hidden;
+      background: #f7f8fa;
+    }
+
+    .comparison-footer {
+      padding: 16px 24px;
+      background: #f7f8fa;
+      text-align: center;
+    }
+
+    .comparison-footer .link-btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Bottom Grid */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .bottom-grid .section {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 1200px) {
+      .bottom-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .bottom-grid .section:first-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bottom-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison-viewer-wrap {
+        height: 400px;
+      }
+
+      .comparison-viewer {
+        height: 533px;
+      }
+    }
+
+    /* Header - Toss Style */
+    .header {
+      background: #fff;
+      padding: 48px 40px;
+      border-radius: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.4;
+      color: #191f28;
+      letter-spacing: -0.03em;
+    }
+
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 0.95rem;
+      color: #8b95a1;
+    }
+
+    .header-meta span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Section Card - Toss Style */
+    .section {
+      background: #fff;
+      border-radius: 24px;
+      padding: 32px 36px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #191f28;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #3182f6;
+      border-radius: 50%;
+    }
+
+    /* Highlights - Toss Style */
+    .highlights-list {
+      list-style: none;
+    }
+
+    .highlights-list li {
+      padding: 16px 0;
+      padding-left: 32px;
+      position: relative;
+      border-bottom: 1px solid #f2f4f6;
+      color: #4e5968;
+      font-size: 1rem;
+    }
+
+    .highlights-list li:last-child {
+      border-bottom: none;
+    }
+
+    .highlights-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #3182f6;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .highlights-list li strong {
+      color: #191f28;
+      font-weight: 600;
+    }
+
+    /* Link Cards - Toss Style */
+    .link-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .link-card {
+      border: none;
+      border-radius: 20px;
+      padding: 28px;
+      background: #f7f8fa;
+      transition: all 0.2s ease;
+    }
+
+    .link-card:hover {
+      background: #f2f4f6;
+      transform: translateY(-2px);
+    }
+
+    .link-card-highlight {
+      background: #e8f3ff;
+      border: 2px solid #3182f6;
+      box-shadow: 0 4px 20px rgba(49, 130, 246, 0.15);
+    }
+
+    .link-card-highlight:hover {
+      background: #dceeff;
+    }
+
+    .link-card-highlight .link-card-title {
+      color: #3182f6;
+    }
+
+    .link-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .link-card-title {
+      font-weight: 600;
+      color: #191f28;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .badge-current {
+      background: #e8f3ff;
+      color: #3182f6;
+    }
+
+    .badge-previous {
+      background: #f2f4f6;
+      color: #8b95a1;
+    }
+
+    .badge-progress {
+      background: #fff3e0;
+      color: #e67e22;
+    }
+
+    .badge-warning {
+      background: #ffefef;
+      color: #f04452;
+    }
+
+    .link-card-desc {
+      font-size: 0.95rem;
+      color: #6b7684;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 24px;
+      background: #3182f6;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .link-btn:hover {
+      background: #1b64da;
+      transform: scale(1.02);
+    }
+
+    .link-btn-dark {
+      background: #4e5968;
+    }
+
+    .link-btn-dark:hover {
+      background: #3a4049;
+    }
+
+    /* Attachment - Toss Style */
+    .attachment-box {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px;
+      background: #f7f8fa;
+      border: none;
+      border-radius: 16px;
+    }
+
+    .attachment-icon {
+      font-size: 1.75rem;
+      width: 48px;
+      height: 48px;
+      background: #fff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .attachment-text {
+      font-weight: 600;
+      color: #191f28;
+      font-size: 1rem;
+    }
+
+    /* Checklist - Toss Style */
+    .checklist {
+      list-style: none;
+    }
+
+    .checklist li {
+      padding: 18px 0;
+      padding-left: 44px;
+      position: relative;
+      border-bottom: 1px solid #f2f4f6;
+      color: #4e5968;
+      font-size: 1rem;
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .checklist li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20px;
+      width: 24px;
+      height: 24px;
+      border: 2px solid #d1d6db;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .checklist-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: #3182f6;
+      color: #fff;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-right: 12px;
+    }
+
+    .feedback-intro {
+      background: #e8f3ff;
+      padding: 20px 24px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      color: #3182f6;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* Schedule - Toss Style */
+    .schedule-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .schedule-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+      background: #f7f8fa;
+      border-radius: 16px;
+      border: none;
+    }
+
+    .schedule-date {
+      font-weight: 700;
+      color: #3182f6;
+      min-width: 80px;
+      font-size: 1rem;
+    }
+
+    .schedule-desc {
+      color: #4e5968;
+      font-size: 1rem;
+    }
+
+    /* Footer - Toss Style */
+    .footer {
+      text-align: center;
+      padding: 32px 20px;
+      color: #8b95a1;
+      font-size: 0.9rem;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+
+      .section {
+        box-shadow: none;
+        border: 1px solid #f2f4f6;
+        break-inside: avoid;
+      }
+
+      .header {
+        box-shadow: none;
+      }
+
+      .link-btn {
+        background: #3182f6 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .badge {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        padding: 24px 12px;
+      }
+
+      .container {
+        padding: 0 12px;
+      }
+
+      .header {
+        padding: 28px 20px;
+        border-radius: 20px;
+      }
+
+      .header h1 {
+        font-size: 1.25rem;
+      }
+
+      .header-meta {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .section {
+        padding: 20px 16px;
+        border-radius: 16px;
+      }
+
+      .section-title {
+        font-size: 1.1rem;
+      }
+
+      .link-card {
+        padding: 16px;
+      }
+
+      .link-card-header {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .comparison-header {
+        padding: 16px;
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+      }
+
+      .comparison-footer {
+        padding: 12px 16px;
+      }
+
+      .link-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+      }
+
+      .comparison-viewer-wrap {
+        height: 350px;
+      }
+
+      .comparison-viewer {
+        height: 466px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1>콘텐츠 마케팅 허브(CMS) 진행 현황 사전 공유 및 베타 화면 피드백 요청</h1>
+      <div class="header-meta">
+        <span>작성자: 이세영 팀장</span>
+        <span>작성일: 2026-01-23</span>
+      </div>
+    </header>
+
+    <!-- 요약 (Highlights) -->
+    <section class="section">
+      <h2 class="section-title">요약 (Highlights)</h2>
+      <ul class="highlights-list">
+        <li>다음 주 회의 전 <strong>사전 피드백</strong>을 위한 진행 현황 공유</li>
+        <li>1/22 회의 내용을 토대로 <strong>메뉴 구조 간소화</strong> 완료 (캘린더, 뷰어, 메모 기능으로 구성)</li>
+        <li>링크 기반 <strong>가이드 영상</strong> 제작 및 공유</li>
+        <li><strong>1월 말</strong> QA/보완 → <strong>2월</strong> 본격 운영 계획</li>
+        <li>향후 <strong>BO/DB 연동</strong> 시 Teams 원본 콘텐츠 자료 연계 확장 검토</li>
+      </ul>
+    </section>
+
+    <!-- 화면 비교 섹션 -->
+    <section class="section">
+      <h2 class="section-title">베타 화면 비교</h2>
+      <div class="comparison-grid">
+        <!-- 현재 베타 화면 -->
+        <div class="comparison-card comparison-card-highlight">
+          <div class="comparison-header comparison-header-highlight">
+            <span class="comparison-title comparison-title-highlight">콘텐츠 마케팅 허브(CMS) 베타 화면</span>
+            <span class="badge badge-current">현재</span>
+          </div>
+          <div class="comparison-viewer-wrap">
+            <iframe class="comparison-viewer" src="https://dalgoms.github.io/test/result/content-team-hub.html"></iframe>
+          </div>
+          <div class="comparison-footer">
+            <a href="https://dalgoms.github.io/test/result/content-team-hub.html" class="link-btn" target="_blank">
+              새 창에서 열기 →
+            </a>
+          </div>
+        </div>
+
+        <!-- 변경 전 화면 -->
+        <div class="comparison-card">
+          <div class="comparison-header">
+            <span class="comparison-title">콘텐츠 마케팅 허브(CMS) 이전 화면</span>
+            <span class="badge badge-previous">변경 전</span>
+          </div>
+          <div class="comparison-viewer-wrap">
+            <iframe class="comparison-viewer" src="https://dalgoms.github.io/test/result/cms-content-marketing.html"></iframe>
+          </div>
+          <div class="comparison-footer">
+            <a href="https://dalgoms.github.io/test/result/cms-content-marketing.html" class="link-btn link-btn-dark" target="_blank">
+              새 창에서 열기 →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 하단 3컬럼 그리드 -->
+    <div class="bottom-grid">
+      <!-- 팀벨 홈페이지 링크 -->
+      <section class="section">
+        <h2 class="section-title">기타 관련 링크</h2>
+        <div class="link-cards">
+          <!-- 팀벨 홈페이지 -->
+          <div class="link-card">
+            <div class="link-card-header">
+              <span class="link-card-title">팀벨 홈페이지 진행 화면</span>
+              <span class="badge badge-progress">진행중</span>
+            </div>
+            <p class="link-card-desc">
+              IA 구조를 기반으로 메가 메뉴 및 전체 페이지 뼈대를 구성한 홈페이지 진행 화면
+              <span style="display: block; color: #8b95a1; font-size: 0.9rem; margin-top: 4px;">(상세 페이지 콘텐츠 고도화 이후 최종 디자인 진행 예정)</span>
+            </p>
+            <a href="https://dalgoms.github.io/test/result/timbel-homepage/index.html" class="link-btn link-btn-dark" target="_blank">
+              화면 바로가기 →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 첨부 섹션 -->
+      <section class="section">
+        <h2 class="section-title">첨부 자료</h2>
+        <div class="attachment-box">
+          <span class="attachment-text">첨부: 링크 기반 가이드 영상 (1차)</span>
+        </div>
+      </section>
+
+      <!-- 다음 일정 -->
+      <section class="section">
+        <h2 class="section-title">다음 일정</h2>
+        <div class="schedule-list">
+          <div class="schedule-item">
+            <span class="schedule-date">1월 말</span>
+            <span class="schedule-desc">QA 및 구조 보완 진행</span>
+          </div>
+          <div class="schedule-item">
+            <span class="schedule-date">2월</span>
+            <span class="schedule-desc">콘텐츠 마케팅 운영 본격 시작</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>본 문서는 사내 공유용으로 작성되었습니다.</p>
+    </footer>
+  </div>
+</body>
+</html>
