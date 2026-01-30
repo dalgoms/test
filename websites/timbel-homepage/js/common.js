@@ -117,8 +117,8 @@ function getHeaderHTML(basePath) {
                                         <span>실시간 상담 분석과 품질 제공</span>
                                     </a>
                                     <a href="${basePath}solutions/ivr-integration.html" class="mega-menu-link">
-                                        <strong>AI IVR 연동 및 전화 시스템 통합</strong>
-                                        <span>AI 상담 서비스 흐름 확장 지원</span>
+                                        <strong>AI TA/QA 상담 품질 분석</strong>
+                                        <span>실시간 텍스트 분석 및 품질 평가 자동화</span>
                                     </a>
                                 </div>
                                 <div class="mega-menu-column">
@@ -259,7 +259,7 @@ function getHeaderHTML(basePath) {
                         <a href="${basePath}solutions/aicc-platform.html">AI 기반 컨택센터 통합 플랫폼</a>
                         <a href="${basePath}solutions/callbot-chatbot.html">AI 콜봇 및 챗봇</a>
                         <a href="${basePath}solutions/advisor-ta-qa.html">AI 상담 어드바이저</a>
-                        <a href="${basePath}solutions/ivr-integration.html">AI IVR 연동</a>
+                        <a href="${basePath}solutions/ivr-integration.html">AI TA/QA 상담 품질 분석</a>
                         <span class="mobile-submenu-title">지능형 AI 회의록</span>
                         <a href="${basePath}products/baronote.html">바로노트</a>
                         <a href="${basePath}products/timblo.html">팀블로</a>
