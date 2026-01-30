@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - YSTUDIO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #000000;
+            --bg-secondary: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #666666;
+            --accent: #ff3c00;
+            --accent-secondary: #00ff88;
+            --accent-tertiary: #7000ff;
+            --gradient-1: linear-gradient(135deg, #ff3c00, #ff00aa, #7000ff);
+            --gradient-2: linear-gradient(45deg, #00ff88, #00d4ff, #7000ff);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            cursor: none;
+            perspective: 1000px;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--bg-dark);
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+        }
+
+        .cursor.hover {
+            transform: scale(2);
+            background: rgba(255, 60, 0, 0.1);
+        }
+
+        /* Noise */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.02;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Page Transition */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            z-index: 100000;
+            transform: scaleY(1);
+            transform-origin: top;
+            animation: pageReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+
+        @keyframes pageReveal {
+            0% { transform: scaleY(1); }
+            100% { transform: scaleY(0); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 50px;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            position: relative;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        nav a:hover::before,
+        nav a.active::before {
+            transform: scaleX(1);
+        }
+
+        nav a .nav-index {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--accent);
+            margin-right: 5px;
+        }
+
+        /* Hero */
+        .hero-about {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-about-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .bg-text {
+            position: absolute;
+            font-size: 40vw;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+            animation: bgTextMove 30s linear infinite;
+        }
+
+        .bg-text:nth-child(1) {
+            top: 10%;
+            left: 0;
+        }
+
+        .bg-text:nth-child(2) {
+            bottom: 10%;
+            right: 0;
+            animation-direction: reverse;
+        }
+
+        @keyframes bgTextMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .hero-about-content {
+            text-align: center;
+            max-width: 1000px;
+            padding: 0 50px;
+        }
+
+        .page-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.5s;
+        }
+
+        .page-label::before,
+        .page-label::after {
+            content: '';
+            width: 50px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .hero-about-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.7s;
+        }
+
+        .hero-about-title span {
+            display: inline-block;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: colorShift 5s ease infinite;
+        }
+
+        @keyframes colorShift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(30deg); }
+        }
+
+        .hero-about-sub {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.9s;
+        }
+
+        /* 3D Card Section */
+        .team-section {
+            padding: 200px 50px;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 700;
+        }
+
+        .team-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            perspective: 1000px;
+        }
+
+        .team-card {
+            position: relative;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+        }
+
+        .team-card:hover {
+            transform: rotateY(15deg) rotateX(5deg) scale(1.05);
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 60, 0, 0.3) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .team-card:hover::before {
+            opacity: 1;
+        }
+
+        .team-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .team-card:nth-child(1) .team-card-bg {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .team-card:nth-child(2) .team-card-bg {
+            background: linear-gradient(180deg, #2d132c 0%, #801336 100%);
+        }
+
+        .team-card:nth-child(3) .team-card-bg {
+            background: linear-gradient(180deg, #0a192f 0%, #172a45 100%);
+        }
+
+        .team-card:nth-child(4) .team-card-bg {
+            background: linear-gradient(180deg, #1a1a1a 0%, #3d3d3d 100%);
+        }
+
+        .team-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+            z-index: 2;
+        }
+
+        .team-role {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .team-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .team-bio {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .team-number {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-family: 'Space Mono', monospace;
+            font-size: 4rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.05);
+            z-index: 2;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 200px 50px;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .values-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+        }
+
+        .value-item {
+            padding: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .value-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px);
+        }
+
+        .value-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .value-item:hover::before {
+            opacity: 0.05;
+        }
+
+        .value-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 5rem;
+            font-weight: 700;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+            line-height: 1;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .value-item:hover .value-number {
+            -webkit-text-stroke: 1px var(--accent);
+        }
+
+        .value-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .value-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            padding: 200px 50px;
+            position: relative;
+        }
+
+        .skills-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .skills-visual {
+            position: relative;
+            height: 600px;
+        }
+
+        .skill-orb {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            animation: float 6s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .skill-orb:hover {
+            transform: scale(1.2);
+            z-index: 10;
+        }
+
+        .skill-orb:nth-child(1) {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, rgba(255, 60, 0, 0.3), rgba(255, 0, 170, 0.3));
+            border: 1px solid rgba(255, 60, 0, 0.5);
+            animation-delay: 0s;
+        }
+
+        .skill-orb:nth-child(2) {
+            top: 30%;
+            left: 10%;
+            background: linear-gradient(135deg, rgba(112, 0, 255, 0.3), rgba(0, 212, 255, 0.3));
+            border: 1px solid rgba(112, 0, 255, 0.5);
+            animation-delay: 1s;
+        }
+
+        .skill-orb:nth-child(3) {
+            top: 30%;
+            right: 10%;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.3), rgba(0, 212, 255, 0.3));
+            border: 1px solid rgba(0, 255, 136, 0.5);
+            animation-delay: 2s;
+        }
+
+        .skill-orb:nth-child(4) {
+            bottom: 20%;
+            left: 25%;
+            background: linear-gradient(135deg, rgba(255, 0, 170, 0.3), rgba(112, 0, 255, 0.3));
+            border: 1px solid rgba(255, 0, 170, 0.5);
+            animation-delay: 3s;
+        }
+
+        .skill-orb:nth-child(5) {
+            bottom: 20%;
+            right: 25%;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(0, 255, 136, 0.3));
+            border: 1px solid rgba(0, 212, 255, 0.5);
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .skill-orb:nth-child(1) {
+            animation-name: floatCenter;
+        }
+
+        @keyframes floatCenter {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-30px); }
+        }
+
+        .skills-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 40px;
+        }
+
+        .skills-content p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 50px;
+        }
+
+        .skill-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .skill-bar {
+            position: relative;
+        }
+
+        .skill-bar-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .skill-bar-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .skill-bar-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+
+        .skill-bar-track {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .skill-bar.visible .skill-bar-fill {
+            transform: scaleX(1);
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 200px 50px;
+            background: var(--bg-secondary);
+        }
+
+        .timeline {
+            max-width: 1200px;
+            margin: 100px auto 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent), var(--accent-tertiary));
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: calc(50% + 50px);
+            position: relative;
+            margin-bottom: 80px;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: calc(50% + 50px);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 4px solid var(--bg-secondary);
+        }
+
+        .timeline-content {
+            max-width: 400px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--accent);
+            transform: translateX(-10px);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content:hover {
+            transform: translateX(10px);
+        }
+
+        .timeline-year {
+            font-family: 'Space Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .timeline-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 200px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 60, 0, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .cta-title span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-desc {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 25px 50px;
+            background: var(--gradient-1);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(255, 60, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .skills-visual {
+                height: 400px;
+            }
+
+            .skill-orb {
+                width: 150px;
+                height: 150px;
+                font-size: 0.75rem;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 80px;
+                padding-right: 0;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 30px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero-about,
+            .team-section,
+            .values-section,
+            .skills-section,
+            .timeline-section,
+            .cta-section {
+                padding: 100px 30px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-card {
+                height: 400px;
+            }
+
+            .cursor,
+            .cursor-dot {
+                display: none;
+            }
+
+            body {
+                cursor: auto;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Transition -->
+    <div class="page-transition"></div>
+
+    <!-- Noise -->
+    <div class="noise"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Header -->
+    <header>
+        <a href="ystudio-clone.html" class="logo">YSTUDIO</a>
+        <nav>
+            <a href="ystudio-about.html" class="active"><span class="nav-index">01</span>About</a>
+            <a href="ystudio-works.html"><span class="nav-index">02</span>Works</a>
+            <a href="ystudio-contact.html"><span class="nav-index">03</span>Contact</a>
+            <a href="ystudio-lab.html"><span class="nav-index">04</span>Lab</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero-about">
+        <div class="hero-about-bg">
+            <span class="bg-text">ABOUT ABOUT</span>
+            <span class="bg-text">STUDIO STUDIO</span>
+        </div>
+        <div class="hero-about-content">
+            <div class="page-label">ABOUT US</div>
+            <h1 class="hero-about-title">We Are <span>YSTUDIO</span></h1>
+            <p class="hero-about-sub">
+                AI 시대를 선도하는 크리에이티브 스튜디오.<br>
+                혁신적인 디자인과 기술로 브랜드의 미래를 만듭니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="section-header">
+            <h2 class="section-title">Our Team</h2>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-card-bg"></div>
+                <span class="team-number">01</span>
+                <div class="team-card-content">
+                    <span class="team-role">CREATIVE DIRECTOR</span>
+                    <h3 class="team-name">김창의</h3>
+                    <p class="team-bio">10년 이상의 디지털 디자인 경험으로 브랜드의 비전을 현실로 만듭니다.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-bg"></div>
+                <span class="team-number">02</span>
+                <div class="team-card-content">
+                    <span class="team-role">TECH LEAD</span>
+                    <h3 class="team-name">이혁신</h3>
+                    <p class="team-bio">AI와 최신 기술을 결합하여 놀라운 디지털 경험을 창조합니다.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-bg"></div>
+                <span class="team-number">03</span>
+                <div class="team-card-content">
+                    <span class="team-role">UX DESIGNER</span>
+                    <h3 class="team-name">박경험</h3>
+                    <p class="team-bio">사용자 중심의 디자인으로 직관적이고 아름다운 경험을 설계합니다.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-bg"></div>
+                <span class="team-number">04</span>
+                <div class="team-card-content">
+                    <span class="team-role">DEVELOPER</span>
+                    <h3 class="team-name">최코드</h3>
+                    <p class="team-bio">완벽한 코드로 디자인의 모든 디테일을 구현합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="section-header">
+            <h2 class="section-title">Our Values</h2>
+        </div>
+        <div class="values-grid">
+            <div class="value-item">
+                <div class="value-number">01</div>
+                <h3 class="value-title">Innovation First</h3>
+                <p class="value-desc">
+                    우리는 항상 새로운 것을 추구합니다. 기존의 방식에 안주하지 않고, 
+                    혁신적인 솔루션으로 클라이언트의 기대를 뛰어넘습니다.
+                </p>
+            </div>
+            <div class="value-item">
+                <div class="value-number">02</div>
+                <h3 class="value-title">Quality Obsessed</h3>
+                <p class="value-desc">
+                    모든 픽셀, 모든 코드에 심혈을 기울입니다. 
+                    완벽한 결과물을 위해 타협하지 않는 것이 우리의 철학입니다.
+                </p>
+            </div>
+            <div class="value-item">
+                <div class="value-number">03</div>
+                <h3 class="value-title">Human Centered</h3>
+                <p class="value-desc">
+                    기술은 사람을 위해 존재합니다. 
+                    사용자의 니즈를 깊이 이해하고 진정한 가치를 제공합니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section">
+        <div class="skills-grid">
+            <div class="skills-visual">
+                <div class="skill-orb">WEB DESIGN</div>
+                <div class="skill-orb">AI/ML</div>
+                <div class="skill-orb">BRANDING</div>
+                <div class="skill-orb">MOTION</div>
+                <div class="skill-orb">DEVELOPMENT</div>
+            </div>
+            <div class="skills-content">
+                <h2>What We Do Best</h2>
+                <p>
+                    웹 디자인부터 AI 통합, 브랜딩까지 - 디지털 세계에서 브랜드가 
+                    빛날 수 있도록 종합적인 크리에이티브 서비스를 제공합니다.
+                </p>
+                <div class="skill-bars">
+                    <div class="skill-bar">
+                        <div class="skill-bar-header">
+                            <span class="skill-bar-name">Web Design & Development</span>
+                            <span class="skill-bar-value">95%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-header">
+                            <span class="skill-bar-name">AI Integration</span>
+                            <span class="skill-bar-value">90%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-header">
+                            <span class="skill-bar-name">Brand Identity</span>
+                            <span class="skill-bar-value">88%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill" style="width: 88%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-header">
+                            <span class="skill-bar-name">Motion Design</span>
+                            <span class="skill-bar-value">85%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="section-header">
+            <h2 class="section-title">Our Journey</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2020</div>
+                    <h3 class="timeline-title">Studio Founded</h3>
+                    <p class="timeline-desc">작은 팀으로 시작, 큰 꿈을 품고 YSTUDIO가 탄생했습니다.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2021</div>
+                    <h3 class="timeline-title">First Major Client</h3>
+                    <p class="timeline-desc">첫 대형 클라이언트와의 성공적인 프로젝트로 업계에서 인정받기 시작.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2023</div>
+                    <h3 class="timeline-title">AI Integration</h3>
+                    <p class="timeline-desc">AI 기술을 워크플로우에 통합, 새로운 차원의 크리에이티브 시작.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2025</div>
+                    <h3 class="timeline-title">Global Expansion</h3>
+                    <p class="timeline-desc">글로벌 클라이언트와 함께 세계 무대로 나아가고 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2 class="cta-title">Ready to <span>Create</span> Together?</h2>
+        <p class="cta-desc">새로운 프로젝트에 대해 이야기해 보세요</p>
+        <a href="ystudio-contact.html" class="btn-primary">
+            Get in Touch
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-copy">© 2025 YSTUDIO. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="#">Behance</a>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 20 + 'px';
+            cursor.style.top = e.clientY - 20 + 'px';
+            cursorDot.style.left = e.clientX - 4 + 'px';
+            cursorDot.style.top = e.clientY - 4 + 'px';
+        });
+
+        document.querySelectorAll('a, button, .team-card, .value-item, .skill-orb').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Skill Bars Animation
+        const skillBars = document.querySelectorAll('.skill-bar');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillBars.forEach(bar => skillObserver.observe(bar));
+
+        // 3D Card Effect
+        document.querySelectorAll('.team-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
+

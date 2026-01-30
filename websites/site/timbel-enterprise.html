@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timbel - 회의·상담·미디어의 음성을 검증 가능한 기록 자산으로</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Pretendard:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="timbel-enterprise.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <span class="logo-main"><span class="logo-blue">Tim</span>bel</span>
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#benchmark">성능</a></li>
+                    <li class="nav-item"><a href="#solutions">솔루션</a></li>
+                    <li class="nav-item"><a href="#case-studies">고객사례</a></li>
+                    <li class="nav-item"><a href="#studio">Studio</a></li>
+                    <li class="nav-item highlight"><a href="#developers">Developers</a></li>
+                    <li class="nav-item"><a href="#contact">문의</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <a href="#demo" class="btn-demo">무료 데모</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-bg">
+                <div class="hero-gradient"></div>
+                <div class="hero-grid"></div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>GS인증 1등급 · 24년 기술력 · 국내 점유율 90%</span>
+                </div>
+                <h1 class="hero-title">
+                    회의·상담·미디어의 음성을<br>
+                    <span class="gradient-text">검증 가능한 기록 자산</span>으로
+                </h1>
+                <p class="hero-subtitle">AI 음성인식 · 화자분리 · 요약 · 번역을 하나의 플랫폼에서</p>
+                
+                <!-- 증거 3종 세트 -->
+                <div class="hero-proof">
+                    <div class="proof-item">
+                        <div class="proof-icon">🏛️</div>
+                        <div class="proof-text">
+                            <span class="proof-number">180+</span>
+                            <span class="proof-label">공공·기업 레퍼런스</span>
+                        </div>
+                    </div>
+                    <div class="proof-divider"></div>
+                    <div class="proof-item">
+                        <div class="proof-icon">📊</div>
+                        <div class="proof-text">
+                            <span class="proof-number">97.8%</span>
+                            <span class="proof-label">도메인별 정확도</span>
+                        </div>
+                    </div>
+                    <div class="proof-divider"></div>
+                    <div class="proof-item">
+                        <div class="proof-icon">⚡</div>
+                        <div class="proof-text">
+                            <span class="proof-number">실시간</span>
+                            <span class="proof-label">지연 300ms 이하</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-cta">
+                    <a href="#demo" class="btn-primary">
+                        <span>샘플 결과 확인하기</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#benchmark" class="btn-secondary">성능 비교표 보기</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benchmark/Performance Section -->
+        <section class="benchmark" id="benchmark">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">BENCHMARK</span>
+                    <h2>HAIV STT 성능 카드</h2>
+                    <p>마케팅 문장이 아닌, 숫자로 증명합니다</p>
+                </div>
+
+                <div class="benchmark-grid">
+                    <!-- 정확도 카드 -->
+                    <div class="benchmark-card accuracy">
+                        <div class="card-header">
+                            <div class="card-icon">🎯</div>
+                            <h3>도메인별 정확도</h3>
+                        </div>
+                        <div class="accuracy-table">
+                            <div class="acc-row">
+                                <span class="acc-domain">회의/컨퍼런스</span>
+                                <div class="acc-bar"><div class="bar-fill" style="width: 97.8%"></div></div>
+                                <span class="acc-value">97.8%</span>
+                            </div>
+                            <div class="acc-row">
+                                <span class="acc-domain">콜센터 상담</span>
+                                <div class="acc-bar"><div class="bar-fill" style="width: 96.5%"></div></div>
+                                <span class="acc-value">96.5%</span>
+                            </div>
+                            <div class="acc-row">
+                                <span class="acc-domain">방송/뉴스</span>
+                                <div class="acc-bar"><div class="bar-fill" style="width: 98.2%"></div></div>
+                                <span class="acc-value">98.2%</span>
+                            </div>
+                            <div class="acc-row">
+                                <span class="acc-domain">의료/법률</span>
+                                <div class="acc-bar"><div class="bar-fill" style="width: 95.3%"></div></div>
+                                <span class="acc-value">95.3%</span>
+                            </div>
+                            <div class="acc-row">
+                                <span class="acc-domain">방언 (경상/전라)</span>
+                                <div class="acc-bar"><div class="bar-fill" style="width: 92.1%"></div></div>
+                                <span class="acc-value">92.1%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 속도 카드 -->
+                    <div class="benchmark-card speed">
+                        <div class="card-header">
+                            <div class="card-icon">⚡</div>
+                            <h3>처리 속도</h3>
+                        </div>
+                        <div class="speed-metrics">
+                            <div class="speed-item">
+                                <span class="speed-label">실시간 지연</span>
+                                <span class="speed-value">< 300<small>ms</small></span>
+                            </div>
+                            <div class="speed-item">
+                                <span class="speed-label">1시간 음성 처리</span>
+                                <span class="speed-value">3<small>분</small></span>
+                            </div>
+                            <div class="speed-item">
+                                <span class="speed-label">화자분리 인원</span>
+                                <span class="speed-value">최대 20<small>명</small></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 배포 옵션 -->
+                    <div class="benchmark-card deploy">
+                        <div class="card-header">
+                            <div class="card-icon">🖥️</div>
+                            <h3>배포 옵션</h3>
+                        </div>
+                        <div class="deploy-options">
+                            <div class="deploy-item active">
+                                <div class="deploy-icon">☁️</div>
+                                <span class="deploy-name">Cloud</span>
+                                <span class="deploy-desc">빠른 도입, 자동 확장</span>
+                            </div>
+                            <div class="deploy-item">
+                                <div class="deploy-icon">🏢</div>
+                                <span class="deploy-name">On-Premise</span>
+                                <span class="deploy-desc">내부망, 보안 준수</span>
+                            </div>
+                            <div class="deploy-item">
+                                <div class="deploy-icon">📦</div>
+                                <span class="deploy-name">Appliance</span>
+                                <span class="deploy-desc">전용 하드웨어 일체형</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 인증 카드 -->
+                    <div class="benchmark-card cert">
+                        <div class="card-header">
+                            <div class="card-icon">🏆</div>
+                            <h3>품질 인증</h3>
+                        </div>
+                        <div class="cert-badges">
+                            <div class="cert-badge">
+                                <span class="cert-name">GS인증 1등급</span>
+                                <span class="cert-org">한국정보통신기술협회</span>
+                            </div>
+                            <div class="cert-badge">
+                                <span class="cert-name">ISO 27001</span>
+                                <span class="cert-org">정보보안 국제표준</span>
+                            </div>
+                            <div class="cert-badge">
+                                <span class="cert-name">CSAP</span>
+                                <span class="cert-org">클라우드 보안인증</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA: 샘플 결과 -->
+                <div class="benchmark-cta">
+                    <div class="cta-card">
+                        <div class="cta-content">
+                            <h3>직접 확인해 보세요</h3>
+                            <p>샘플 음성으로 HAIV STT의 정확도를 체험하거나, 상세 결과 리포트를 다운로드하세요.</p>
+                        </div>
+                        <div class="cta-buttons">
+                            <a href="#demo" class="btn-primary">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17,8 12,3 7,8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                샘플 음성 업로드
+                            </a>
+                            <a href="#" class="btn-outline">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                                결과 PDF 다운로드
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Audience-based Solutions -->
+        <section class="solutions" id="solutions">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">SOLUTIONS</span>
+                    <h2>누가 사용하나요?</h2>
+                    <p>역할에 맞는 솔루션을 찾아보세요</p>
+                </div>
+
+                <!-- Audience Tabs -->
+                <div class="audience-tabs">
+                    <button class="tab-btn active" data-tab="public">
+                        <span class="tab-icon">🏛️</span>
+                        <span class="tab-label">공공/기관</span>
+                    </button>
+                    <button class="tab-btn" data-tab="enterprise">
+                        <span class="tab-icon">🏢</span>
+                        <span class="tab-label">기업 (운영/CS)</span>
+                    </button>
+                    <button class="tab-btn" data-tab="media">
+                        <span class="tab-icon">🎬</span>
+                        <span class="tab-label">미디어/콘텐츠</span>
+                    </button>
+                    <button class="tab-btn" data-tab="developer">
+                        <span class="tab-icon">💻</span>
+                        <span class="tab-label">개발/IT팀</span>
+                    </button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="tab-contents">
+                    <!-- 공공/기관 -->
+                    <div class="tab-content active" id="tab-public">
+                        <div class="audience-hero">
+                            <div class="audience-info">
+                                <h3>공공/기관 담당자를 위한 솔루션</h3>
+                                <p>조달 등록, 보안 인증, 온프레미스 구축, 레퍼런스까지 — 공공 SI 요구사항을 완벽히 충족합니다.</p>
+                                <ul class="audience-features">
+                                    <li><span class="check">✓</span> 조달청 등록 제품</li>
+                                    <li><span class="check">✓</span> GS인증 1등급 / ISO 27001</li>
+                                    <li><span class="check">✓</span> 온프레미스 / 폐쇄망 지원</li>
+                                    <li><span class="check">✓</span> 유지보수 SLA 계약</li>
+                                    <li><span class="check">✓</span> 국회, 법원, 지자체 레퍼런스</li>
+                                </ul>
+                                <a href="#contact" class="btn-primary">도입 문의</a>
+                            </div>
+                            <div class="audience-products">
+                                <div class="product-card">
+                                    <h4>SORIZAVA</h4>
+                                    <p>국회/지자체 회의록 AI 속기</p>
+                                </div>
+                                <div class="product-card">
+                                    <h4>바로노트</h4>
+                                    <p>기관 회의 자동 기록 시스템</p>
+                                </div>
+                                <div class="product-card">
+                                    <h4>HAIV On-Prem</h4>
+                                    <p>폐쇄망 AI 엔진 구축</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 기업 -->
+                    <div class="tab-content" id="tab-enterprise">
+                        <div class="audience-hero">
+                            <div class="audience-info">
+                                <h3>기업 운영/CS 리더를 위한 솔루션</h3>
+                                <p>콜센터 상담, 내부 회의, 영업 미팅의 효율을 극대화하고 품질을 관리하세요.</p>
+                                <ul class="audience-features">
+                                    <li><span class="check">✓</span> 콜/상담 실시간 전사</li>
+                                    <li><span class="check">✓</span> 자동 QA 및 VOC 분석</li>
+                                    <li><span class="check">✓</span> 회의 요약 리포트</li>
+                                    <li><span class="check">✓</span> CRM/ERP 연동</li>
+                                    <li><span class="check">✓</span> 카카오페이, KB은행 사례</li>
+                                </ul>
+                                <a href="#contact" class="btn-primary">데모 신청</a>
+                            </div>
+                            <div class="audience-products">
+                                <div class="product-card">
+                                    <h4>AICC</h4>
+                                    <p>AI 컨택센터 구축</p>
+                                </div>
+                                <div class="product-card">
+                                    <h4>바로노트 Pro</h4>
+                                    <p>기업 회의록 자동화</p>
+                                </div>
+                                <div class="product-card">
+                                    <h4>HAIV Cloud</h4>
+                                    <p>API 기반 음성인식</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 미디어 -->
+                    <div class="tab-content" id="tab-media">
+                        <div class="audience-hero">
+                            <div class="audience-info">
+                                <h3>미디어/콘텐츠 팀을 위한 솔루션</h3>
+                                <p>자막 생성, 다국어 번역, AI 더빙, 클립 편집까지 — 콘텐츠 제작 워크플로우를 혁신합니다.</p>
+                                <ul class="audience-features">
+                                    <li><span class="check">✓</span> 실시간 생방송 자막</li>
+                                    <li><span class="check">✓</span> 30개국 다국어 번역</li>
+                                    <li><span class="check">✓</span> AI 음성 더빙</li>
+                                    <li><span class="check">✓</span> 클립 자동 편집</li>
+                                    <li><span class="check">✓</span> KBS, MBC, SBS 도입</li>
+                                </ul>
+                                <a href="#contact" class="btn-primary">체험하기</a>
+                            </div>
+                            <div class="audience-products">
+                                <div class="product-card">
+                                    <h4>CLIPDESK</h4>
+                                    <p>AI 영상 편집 스튜디오</p>
+                                </div>
+                                <div class="product-card">
+                                    <h4>TEXTAR</h4>
+                                    <p>자막/번역 플랫폼</p>
+                                </div>
+                                <div class="product-card">
+                                    <h4>LANGSA</h4>
+                                    <p>다국어 더빙 서비스</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 개발자 -->
+                    <div class="tab-content" id="tab-developer">
+                        <div class="audience-hero">
+                            <div class="audience-info">
+                                <h3>개발/IT팀을 위한 솔루션</h3>
+                                <p>빠른 통합을 위한 API, SDK, 샘플 코드. 명확한 요금과 SLA를 제공합니다.</p>
+                                <ul class="audience-features">
+                                    <li><span class="check">✓</span> RESTful API / WebSocket</li>
+                                    <li><span class="check">✓</span> Python, Node.js SDK</li>
+                                    <li><span class="check">✓</span> 5분 Quickstart</li>
+                                    <li><span class="check">✓</span> 99.9% SLA 보장</li>
+                                    <li><span class="check">✓</span> 기술 문서 & 샘플 코드</li>
+                                </ul>
+                                <a href="#developers" class="btn-primary">API Docs 보기</a>
+                            </div>
+                            <div class="audience-products">
+                                <div class="product-card code">
+                                    <h4>HAIV API</h4>
+                                    <p>음성인식/합성 API</p>
+                                </div>
+                                <div class="product-card code">
+                                    <h4>Speaker Diarization</h4>
+                                    <p>화자분리 API</p>
+                                </div>
+                                <div class="product-card code">
+                                    <h4>Summarization</h4>
+                                    <p>요약 API</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies -->
+        <section class="case-studies" id="case-studies">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">CASE STUDIES</span>
+                    <h2>고객 성과 스토리</h2>
+                    <p>로고 나열이 아닌, 실제 성과로 증명합니다</p>
+                </div>
+
+                <div class="cases-grid">
+                    <!-- Case 1: 카카오페이 -->
+                    <article class="case-card">
+                        <div class="case-header">
+                            <div class="case-logo">카카오페이</div>
+                            <div class="case-meta">
+                                <span class="case-industry">금융</span>
+                                <span class="case-deploy">☁️ Cloud</span>
+                            </div>
+                        </div>
+                        <div class="case-body">
+                            <div class="case-section problem">
+                                <span class="case-label">문제 (As-is)</span>
+                                <p>고객 상담 품질 모니터링에 인력 과투입, 상담 데이터 활용 불가</p>
+                            </div>
+                            <div class="case-section solution">
+                                <span class="case-label">해결 (To-be)</span>
+                                <p>HAIV STT + 화자분리 + 실시간 전사 + CRM 연동</p>
+                            </div>
+                            <div class="case-section result">
+                                <span class="case-label">성과</span>
+                                <div class="result-metrics">
+                                    <div class="metric">
+                                        <span class="metric-value">70%</span>
+                                        <span class="metric-label">QA 인력 절감</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-value">3배</span>
+                                        <span class="metric-label">상담 분석 속도</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="case-link">상세 보기 →</a>
+                    </article>
+
+                    <!-- Case 2: 국회 -->
+                    <article class="case-card">
+                        <div class="case-header">
+                            <div class="case-logo">국회사무처</div>
+                            <div class="case-meta">
+                                <span class="case-industry">공공</span>
+                                <span class="case-deploy">🏢 On-Prem</span>
+                            </div>
+                        </div>
+                        <div class="case-body">
+                            <div class="case-section problem">
+                                <span class="case-label">문제 (As-is)</span>
+                                <p>회의록 작성 리드타임 3일, 속기사 인력 부족</p>
+                            </div>
+                            <div class="case-section solution">
+                                <span class="case-label">해결 (To-be)</span>
+                                <p>SORIZAVA AI 속기 + 전문용어 사전 + 온프레미스 구축</p>
+                            </div>
+                            <div class="case-section result">
+                                <span class="case-label">성과</span>
+                                <div class="result-metrics">
+                                    <div class="metric">
+                                        <span class="metric-value">80%</span>
+                                        <span class="metric-label">작성시간 단축</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-value">97%+</span>
+                                        <span class="metric-label">인식 정확도</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="case-link">상세 보기 →</a>
+                    </article>
+
+                    <!-- Case 3: KBS -->
+                    <article class="case-card">
+                        <div class="case-header">
+                            <div class="case-logo">KBS</div>
+                            <div class="case-meta">
+                                <span class="case-industry">방송</span>
+                                <span class="case-deploy">📦 Appliance</span>
+                            </div>
+                        </div>
+                        <div class="case-body">
+                            <div class="case-section problem">
+                                <span class="case-label">문제 (As-is)</span>
+                                <p>생방송 자막 지연, 청각장애인 시청자 민원 증가</p>
+                            </div>
+                            <div class="case-section solution">
+                                <span class="case-label">해결 (To-be)</span>
+                                <p>HAIV 실시간 자막 + AI 속기사 협업 시스템</p>
+                            </div>
+                            <div class="case-section result">
+                                <span class="case-label">성과</span>
+                                <div class="result-metrics">
+                                    <div class="metric">
+                                        <span class="metric-value">0.5초</span>
+                                        <span class="metric-label">자막 지연</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-value">24/7</span>
+                                        <span class="metric-label">무중단 운영</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="case-link">상세 보기 →</a>
+                    </article>
+
+                    <!-- Case 4: SK하이닉스 -->
+                    <article class="case-card">
+                        <div class="case-header">
+                            <div class="case-logo">SK하이닉스</div>
+                            <div class="case-meta">
+                                <span class="case-industry">제조</span>
+                                <span class="case-deploy">🏢 On-Prem</span>
+                            </div>
+                        </div>
+                        <div class="case-body">
+                            <div class="case-section problem">
+                                <span class="case-label">문제 (As-is)</span>
+                                <p>글로벌 회의 다국어 소통 장벽, 회의록 누락</p>
+                            </div>
+                            <div class="case-section solution">
+                                <span class="case-label">해결 (To-be)</span>
+                                <p>바로노트 + 실시간 번역 + 요약 리포트 자동화</p>
+                            </div>
+                            <div class="case-section result">
+                                <span class="case-label">성과</span>
+                                <div class="result-metrics">
+                                    <div class="metric">
+                                        <span class="metric-value">5개국</span>
+                                        <span class="metric-label">실시간 번역</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-value">90%</span>
+                                        <span class="metric-label">회의록 자동화</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="case-link">상세 보기 →</a>
+                    </article>
+                </div>
+
+                <div class="cases-cta">
+                    <a href="#" class="btn-outline-dark">전체 고객사례 보기 →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Studio/Admin Section -->
+        <section class="studio" id="studio">
+            <div class="container">
+                <div class="section-header light">
+                    <span class="section-badge">STUDIO & ADMIN</span>
+                    <h2>담당자가 매일 쓰는 화면</h2>
+                    <p>기술만이 아닌, 운영 도구까지 제공합니다</p>
+                </div>
+
+                <div class="studio-showcase">
+                    <div class="studio-tabs">
+                        <button class="studio-tab active" data-screen="dashboard">대시보드</button>
+                        <button class="studio-tab" data-screen="editor">편집기</button>
+                        <button class="studio-tab" data-screen="dictionary">사전 관리</button>
+                        <button class="studio-tab" data-screen="analytics">분석/통계</button>
+                        <button class="studio-tab" data-screen="users">권한 관리</button>
+                    </div>
+
+                    <div class="studio-screens">
+                        <div class="screen active" id="screen-dashboard">
+                            <div class="screen-mockup">
+                                <div class="mockup-header">
+                                    <div class="mockup-dots">
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                    <span class="mockup-title">TIMBEL Admin Dashboard</span>
+                                </div>
+                                <div class="mockup-body dashboard">
+                                    <div class="mock-sidebar">
+                                        <div class="mock-nav-item active"></div>
+                                        <div class="mock-nav-item"></div>
+                                        <div class="mock-nav-item"></div>
+                                        <div class="mock-nav-item"></div>
+                                    </div>
+                                    <div class="mock-content">
+                                        <div class="mock-stats">
+                                            <div class="mock-stat-card"></div>
+                                            <div class="mock-stat-card"></div>
+                                            <div class="mock-stat-card"></div>
+                                            <div class="mock-stat-card"></div>
+                                        </div>
+                                        <div class="mock-chart"></div>
+                                        <div class="mock-table"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="screen-info">
+                                <h4>통합 대시보드</h4>
+                                <p>실시간 처리 현황, 사용량 통계, 품질 지표를 한눈에 모니터링</p>
+                            </div>
+                        </div>
+
+                        <div class="screen" id="screen-editor">
+                            <div class="screen-mockup">
+                                <div class="mockup-header">
+                                    <div class="mockup-dots"><span></span><span></span><span></span></div>
+                                    <span class="mockup-title">TIMBEL Editor</span>
+                                </div>
+                                <div class="mockup-body editor">
+                                    <div class="mock-timeline"></div>
+                                    <div class="mock-transcript">
+                                        <div class="mock-speaker"></div>
+                                        <div class="mock-text"></div>
+                                        <div class="mock-speaker"></div>
+                                        <div class="mock-text"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="screen-info">
+                                <h4>전사 편집기</h4>
+                                <p>화자별 구분, 타임코드 동기화, 실시간 교정 지원</p>
+                            </div>
+                        </div>
+
+                        <div class="screen" id="screen-dictionary">
+                            <div class="screen-mockup">
+                                <div class="mockup-header">
+                                    <div class="mockup-dots"><span></span><span></span><span></span></div>
+                                    <span class="mockup-title">사전/용어 관리</span>
+                                </div>
+                                <div class="mockup-body dictionary">
+                                    <div class="mock-search"></div>
+                                    <div class="mock-word-list">
+                                        <div class="mock-word"></div>
+                                        <div class="mock-word"></div>
+                                        <div class="mock-word"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="screen-info">
+                                <h4>사전/용어 관리</h4>
+                                <p>도메인별 전문용어, 고유명사, 약어 등록 및 학습</p>
+                            </div>
+                        </div>
+
+                        <div class="screen" id="screen-analytics">
+                            <div class="screen-mockup">
+                                <div class="mockup-header">
+                                    <div class="mockup-dots"><span></span><span></span><span></span></div>
+                                    <span class="mockup-title">분석 리포트</span>
+                                </div>
+                                <div class="mockup-body analytics">
+                                    <div class="mock-big-chart"></div>
+                                    <div class="mock-metrics-row"></div>
+                                </div>
+                            </div>
+                            <div class="screen-info">
+                                <h4>분석/통계</h4>
+                                <p>정확도 추이, 사용량 분석, 품질 리포트 자동 생성</p>
+                            </div>
+                        </div>
+
+                        <div class="screen" id="screen-users">
+                            <div class="screen-mockup">
+                                <div class="mockup-header">
+                                    <div class="mockup-dots"><span></span><span></span><span></span></div>
+                                    <span class="mockup-title">권한 관리</span>
+                                </div>
+                                <div class="mockup-body users">
+                                    <div class="mock-user-table"></div>
+                                    <div class="mock-role-panel"></div>
+                                </div>
+                            </div>
+                            <div class="screen-info">
+                                <h4>권한 관리</h4>
+                                <p>팀/부서별 접근 권한, 감사 로그, 보안 정책 설정</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="studio-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">📊</div>
+                        <span>실시간 통계</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📝</div>
+                        <span>사전/용어 관리</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">👥</div>
+                        <span>화자 프로필</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📋</div>
+                        <span>템플릿 관리</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔐</div>
+                        <span>권한/보안</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📤</div>
+                        <span>다양한 내보내기</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Developers Section -->
+        <section class="developers" id="developers">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge dev">DEVELOPERS</span>
+                    <h2>개발자를 위한 빠른 시작</h2>
+                    <p>5분 안에 첫 번째 API 호출을 완료하세요</p>
+                </div>
+
+                <div class="dev-grid">
+                    <!-- Quickstart -->
+                    <div class="dev-card quickstart">
+                        <div class="dev-card-header">
+                            <h3>⚡ Quickstart (5분)</h3>
+                        </div>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Python</span>
+                                <button class="copy-btn">복사</button>
+                            </div>
+                            <pre><code><span class="keyword">import</span> haiv
+
+client = haiv.Client(api_key=<span class="string">"YOUR_API_KEY"</span>)
+
+<span class="comment"># 음성 파일 업로드 & 전사</span>
+result = client.transcribe(
+    file=<span class="string">"meeting.mp3"</span>,
+    speaker_diarization=<span class="keyword">True</span>,
+    language=<span class="string">"ko"</span>
+)
+
+<span class="comment"># 결과 출력</span>
+<span class="keyword">for</span> segment <span class="keyword">in</span> result.segments:
+    <span class="keyword">print</span>(<span class="string">f"[{segment.speaker}] {segment.text}"</span>)</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- API 기능 -->
+                    <div class="dev-card features">
+                        <div class="dev-card-header">
+                            <h3>📡 API 기능</h3>
+                        </div>
+                        <div class="api-features">
+                            <div class="api-item">
+                                <span class="api-method post">POST</span>
+                                <span class="api-endpoint">/v1/transcribe</span>
+                                <span class="api-desc">음성 → 텍스트</span>
+                            </div>
+                            <div class="api-item">
+                                <span class="api-method post">POST</span>
+                                <span class="api-endpoint">/v1/diarize</span>
+                                <span class="api-desc">화자분리</span>
+                            </div>
+                            <div class="api-item">
+                                <span class="api-method post">POST</span>
+                                <span class="api-endpoint">/v1/summarize</span>
+                                <span class="api-desc">요약</span>
+                            </div>
+                            <div class="api-item">
+                                <span class="api-method ws">WS</span>
+                                <span class="api-endpoint">/v1/stream</span>
+                                <span class="api-desc">실시간 스트리밍</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SLA/보안 -->
+                    <div class="dev-card sla">
+                        <div class="dev-card-header">
+                            <h3>🛡️ SLA & 보안</h3>
+                        </div>
+                        <div class="sla-items">
+                            <div class="sla-item">
+                                <span class="sla-value">99.9%</span>
+                                <span class="sla-label">Uptime SLA</span>
+                            </div>
+                            <div class="sla-item">
+                                <span class="sla-value">TLS 1.3</span>
+                                <span class="sla-label">통신 암호화</span>
+                            </div>
+                            <div class="sla-item">
+                                <span class="sla-value">AES-256</span>
+                                <span class="sla-label">데이터 암호화</span>
+                            </div>
+                            <div class="sla-item">
+                                <span class="sla-value">24시간</span>
+                                <span class="sla-label">기술 지원</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 요금 -->
+                    <div class="dev-card pricing">
+                        <div class="dev-card-header">
+                            <h3>💰 요금 안내</h3>
+                        </div>
+                        <div class="pricing-tiers">
+                            <div class="tier">
+                                <span class="tier-name">Free</span>
+                                <span class="tier-quota">월 60분</span>
+                            </div>
+                            <div class="tier popular">
+                                <span class="tier-badge">인기</span>
+                                <span class="tier-name">Pro</span>
+                                <span class="tier-quota">월 1,000분</span>
+                            </div>
+                            <div class="tier">
+                                <span class="tier-name">Enterprise</span>
+                                <span class="tier-quota">맞춤형</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dev-cta">
+                    <a href="#" class="btn-dev">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+                        API 문서 보기
+                    </a>
+                    <a href="#" class="btn-dev outline">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                        샘플 코드 (GitHub)
+                    </a>
+                    <a href="#tech-contact" class="btn-dev outline">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        기술 문의
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <span class="section-badge light">CONTACT</span>
+                        <h2>지금 바로 시작하세요</h2>
+                        <p>AI 음성 솔루션 도입에 대해 상담해 드립니다.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="contact-icon">📞</span>
+                                <div>
+                                    <span class="contact-label">전화</span>
+                                    <a href="tel:02-584-8181">02-584-8181</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">✉️</span>
+                                <div>
+                                    <span class="contact-label">이메일</span>
+                                    <a href="mailto:sales@timbel.net">sales@timbel.net</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">💻</span>
+                                <div>
+                                    <span class="contact-label">기술 문의</span>
+                                    <a href="mailto:dev@timbel.net">dev@timbel.net</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">이름 *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="company">회사명</label>
+                                <input type="text" id="company" name="company">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">이메일 *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">연락처 *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="type">문의 유형</label>
+                            <select id="type" name="type">
+                                <option value="">선택해주세요</option>
+                                <option value="demo">데모/체험 신청</option>
+                                <option value="quote">견적 요청</option>
+                                <option value="tech">기술 문의</option>
+                                <option value="partner">파트너십</option>
+                                <option value="other">기타</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">문의 내용 *</label>
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">문의하기</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo"><span class="logo-blue">Tim</span>bel</span>
+                    <p>Voice into Value</p>
+                    <p class="footer-copy">© 2025 Timbel. All rights reserved.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>제품</h4>
+                        <a href="#">HAIV STT/TTS</a>
+                        <a href="#">SORIZAVA</a>
+                        <a href="#">CLIPDESK</a>
+                        <a href="#">TEXTAR</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>솔루션</h4>
+                        <a href="#">공공/기관</a>
+                        <a href="#">기업</a>
+                        <a href="#">미디어</a>
+                        <a href="#">API</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>리소스</h4>
+                        <a href="#">API Docs</a>
+                        <a href="#">고객사례</a>
+                        <a href="#">블로그</a>
+                        <a href="#">채용</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>회사</h4>
+                        <a href="#">회사소개</a>
+                        <a href="#">연혁</a>
+                        <a href="#">오시는 길</a>
+                        <a href="#">제휴 문의</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="timbel-enterprise.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

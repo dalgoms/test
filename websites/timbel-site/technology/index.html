@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAIV 엔진 기술 - AI 음성인식 핵심 기술 | 팀벨</title>
+    <meta name="description" content="GS인증 1등급, 온프레미스 구축, 97.8% 인식률. 공공·대기업 기준을 통과한 AI 음성 엔진.">
+    <link rel="stylesheet" href="/assets/css/globals.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/pages/technology.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="/" class="header-logo"><img src="/assets/img/timbel-logo.png" alt="Timbel"></a>
+            <nav class="nav" role="menubar">
+                <div class="nav-item"><button class="nav-link" aria-expanded="false" aria-haspopup="true">서비스<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg></button><div class="mega-menu"><div class="mega-menu-inner"><div class="mega-menu-intro"><h3>업무 목적에 맞는 AI 음성 서비스</h3><p>회의록부터 자막, 컨택센터까지 — 필요한 기능만 선택하세요</p></div><div class="mega-menu-sections"><div class="mega-menu-section"><h4>Use Case Services</h4><div class="mega-menu-links"><a href="/services/sorizava.html" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">SORIZAVA 속기</span><span class="mega-menu-link-desc">공공기관 AI 속기 솔루션</span></span></a><a href="/services/baronote.html" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">바로노트 회의록</span><span class="mega-menu-link-desc">기업용 AI 회의록 솔루션</span></span></a><a href="/services/textar.html" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">TEXTAR 자막·번역</span><span class="mega-menu-link-desc">다국어 자막 자동 생성</span></span></a><a href="/services/clipdesk.html" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">CLIPDESK 영상편집</span><span class="mega-menu-link-desc">AI 기반 영상 편집</span></span></a></div></div><div class="mega-menu-section"><h4>Industry Solutions</h4><div class="mega-menu-links"><a href="/services/aicc.html" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">AICC 컨택센터</span><span class="mega-menu-link-desc">AI 고객센터 솔루션</span></span></a><a href="/services/sign-language-avatar.html" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">수어 아바타</span><span class="mega-menu-link-desc">접근성 안내 서비스</span></span></a><a href="/services/smart-signage.html" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">스마트 사이니지</span><span class="mega-menu-link-desc">운영형 안내 시스템</span></span></a></div></div></div></div></div></div>
+                <div class="nav-item"><button class="nav-link" aria-expanded="false" aria-haspopup="true">기술<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg></button><div class="mega-menu"><div class="mega-menu-inner"><div class="mega-menu-intro"><h3>공공·대기업 기준을 통과한 AI 음성 기술</h3><p>GS인증 1등급, 온프레미스 구축 지원</p></div><div class="mega-menu-sections"><div class="mega-menu-section"><h4>Core Technology</h4><div class="mega-menu-links"><a href="/technology/index.html" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">HAIV AI 엔진</span><span class="mega-menu-link-desc">STT · TTS · 화자분리</span></span></a></div></div><div class="mega-menu-section"><h4>인증 & 검증</h4><div class="mega-menu-links"><a href="/technology/index.html#certifications" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">GS인증 · ISO27001</span><span class="mega-menu-link-desc">공인 인증 현황</span></span></a><a href="/technology/index.html#onpremise" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">On-Premise 구축</span><span class="mega-menu-link-desc">보안 환경 맞춤 배포</span></span></a></div></div></div></div></div></div>
+                <div class="nav-item"><button class="nav-link" aria-expanded="false" aria-haspopup="true">고객사례<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg></button><div class="mega-menu"><div class="mega-menu-inner"><div class="mega-menu-intro"><h3>180+ 공공·금융·대기업 레퍼런스</h3><p>보안 심사가 까다로운 기관일수록 HAIV를 선택합니다</p></div><div class="mega-menu-sections"><div class="mega-menu-section"><h4>산업별 사례</h4><div class="mega-menu-links"><a href="/clients/index.html#public" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">공공기관</span><span class="mega-menu-link-desc">국회, 법원, 지자체</span></span></a><a href="/clients/index.html#finance" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">금융기관</span><span class="mega-menu-link-desc">은행, 증권, 보험</span></span></a><a href="/clients/index.html#enterprise" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">대기업</span><span class="mega-menu-link-desc">제조, IT, 유통</span></span></a></div></div></div></div></div></div>
+                <div class="nav-item"><button class="nav-link" aria-expanded="false" aria-haspopup="true">회사소개<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg></button><div class="mega-menu"><div class="mega-menu-inner"><div class="mega-menu-intro"><h3>2001년 설립 · 24년 운영</h3><p>AI 음성기록 솔루션 전문기업</p></div><div class="mega-menu-sections"><div class="mega-menu-section"><h4>회사</h4><div class="mega-menu-links"><a href="/company/index.html" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">회사 소개</span><span class="mega-menu-link-desc">비전과 미션</span></span></a><a href="/company/history.html" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">연혁</span><span class="mega-menu-link-desc">24년의 역사</span></span></a><a href="/careers/index.html" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">채용</span><span class="mega-menu-link-desc">함께할 동료를 찾습니다</span></span></a></div></div><div class="mega-menu-section"><h4>문의</h4><div class="mega-menu-links"><a href="/company/contact.html" class="mega-menu-link"><span class="mega-menu-link-content"><span class="mega-menu-link-title">오시는 길</span><span class="mega-menu-link-desc">위치 및 연락처</span></span></a></div></div></div></div></div></div>
+            </nav>
+            <div class="header-cta"><a href="/company/contact.html" class="btn btn-primary">문의하기</a></div>
+            <button class="mobile-toggle" aria-label="메뉴 열기" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu"><button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="메뉴 닫기"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button><nav class="mobile-menu-nav"><details class="mobile-menu-item"><summary>서비스</summary><div class="mobile-menu-links"><a href="/services/sorizava.html">SORIZAVA 속기</a><a href="/services/baronote.html">바로노트 회의록</a><a href="/services/textar.html">TEXTAR 자막·번역</a><a href="/services/clipdesk.html">CLIPDESK 영상편집</a><a href="/services/aicc.html">AICC 컨택센터</a><a href="/services/sign-language-avatar.html">수어 아바타</a><a href="/services/smart-signage.html">스마트 사이니지</a></div></details><details class="mobile-menu-item"><summary>기술</summary><div class="mobile-menu-links"><a href="/technology/index.html">HAIV AI 엔진</a><a href="/technology/index.html#certifications">인증 현황</a></div></details><details class="mobile-menu-item"><summary>고객사례</summary><div class="mobile-menu-links"><a href="/clients/index.html">전체 사례</a></div></details><details class="mobile-menu-item"><summary>회사소개</summary><div class="mobile-menu-links"><a href="/company/index.html">회사 소개</a><a href="/company/history.html">연혁</a><a href="/careers/index.html">채용</a><a href="/company/contact.html">오시는 길</a></div></details></nav><div class="mobile-menu-cta"><a href="/company/contact.html" class="btn btn-primary">문의하기</a></div></div>
+
+    <main>
+        <!-- Hero -->
+        <section class="section tech-hero">
+            <div class="container">
+                <div class="section-eyebrow">
+                    <span class="section-eyebrow-line"></span>
+                    <span class="section-eyebrow-text">Technology</span>
+                </div>
+                <h1>
+                    공공·대기업 기준을 통과한<br>
+                    <span class="text-timbel-blue">AI 음성 엔진</span>
+                </h1>
+                <p class="tech-hero-desc">
+                    HAIV 엔진은 보안 심사, 정확도 검증, 실시간 운영 요구를 충족합니다.<br>
+                    24년간 음성인식만 연구한 기술력이 담겨 있습니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- Decision Criteria -->
+        <section class="section">
+            <div class="container">
+                <h2>AI 음성 엔진 선택 기준</h2>
+                <p class="section-desc">
+                    공공기관과 대기업이 AI 음성 엔진을 도입할 때<br>
+                    반드시 확인하는 세 가지 조건
+                </p>
+                
+                <div class="criteria-grid">
+                    <div class="criteria-card">
+                        <div class="criteria-num">01</div>
+                        <h3>보안 정책을 통과하는가?</h3>
+                        <p>데이터가 외부로 나가지 않는 구조인가.<br>공인 인증을 획득했는가.</p>
+                        <a href="#pillar-trust" class="criteria-link">HAIV의 대응 →</a>
+                    </div>
+                    
+                    <div class="criteria-card">
+                        <div class="criteria-num">02</div>
+                        <h3>정확하게 기록하는가?</h3>
+                        <p>회의록을 다시 들을 필요가 없는 수준인가.<br>다수 화자를 구분하는가.</p>
+                        <a href="#pillar-accuracy" class="criteria-link">HAIV의 대응 →</a>
+                    </div>
+                    
+                    <div class="criteria-card">
+                        <div class="criteria-num">03</div>
+                        <h3>실시간으로 동작하는가?</h3>
+                        <p>회의 종료 직후 사용 가능한가.<br>기존 시스템과 연동되는가.</p>
+                        <a href="#pillar-realtime" class="criteria-link">HAIV의 대응 →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pillar 1: Trust & Security -->
+        <section id="pillar-trust" class="section section-alt">
+            <div class="container">
+                <div class="pillar-header">
+                    <span class="pillar-num">01</span>
+                    <h2>신뢰·보안</h2>
+                    <p>보안 심사를 통과할 수 있는가?</p>
+                </div>
+                
+                <div class="tech-cards">
+                    <div class="tech-card" id="certifications">
+                        <div class="tech-card-badge">인증</div>
+                        <h3>GS인증 1등급</h3>
+                        <div class="tech-card-section">
+                            <h4>Why it matters</h4>
+                            <p>공공조달 납품과 대기업 도입의 필수 조건.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>HAIV Approach</h4>
+                            <p>국가 공인 시험기관(TTA)의 기능·성능·보안 심사 통과.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>Outcome</h4>
+                            <p>보안 심사 기간 단축, 조달청 등록 납품 가능.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-card" id="deployment">
+                        <div class="tech-card-badge">구축</div>
+                        <h3>온프레미스 구축</h3>
+                        <div class="tech-card-section">
+                            <h4>Why it matters</h4>
+                            <p>외부망 차단 환경에서 데이터 유출 원천 방지.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>HAIV Approach</h4>
+                            <p>고객사 내부 서버에 직접 설치, 독립적 운영.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>Outcome</h4>
+                            <p>최고 수준의 보안 환경 유지, 데이터 주권 확보.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-card-badge">표준</div>
+                        <h3>ISO27001 인증</h3>
+                        <div class="tech-card-section">
+                            <h4>Why it matters</h4>
+                            <p>정보보호 관리체계의 국제 표준 준수 증명.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>HAIV Approach</h4>
+                            <p>개발·운영 전 과정에 정보보호 정책 적용.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>Outcome</h4>
+                            <p>글로벌 기업 요구사항 충족, 해외 진출 기반 확보.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pillar 2: Accuracy -->
+        <section id="pillar-accuracy" class="section">
+            <div class="container">
+                <div class="pillar-header">
+                    <span class="pillar-num">02</span>
+                    <h2>정확한 기록</h2>
+                    <p>회의록을 다시 들을 필요가 없는가?</p>
+                </div>
+                
+                <div class="tech-cards">
+                    <div class="tech-card" id="stt">
+                        <div class="tech-card-badge">STT</div>
+                        <h3>97.8% 인식률</h3>
+                        <div class="tech-card-section">
+                            <h4>Why it matters</h4>
+                            <p>회의록 작성 시간 단축의 핵심 지표.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>HAIV Approach</h4>
+                            <p>24년간 축적된 음성 데이터 학습, 한국어 특화 엔진.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>Outcome</h4>
+                            <p>최소한의 교정으로 완성도 높은 회의록.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-card" id="speaker">
+                        <div class="tech-card-badge">분석</div>
+                        <h3>정교한 화자 분리</h3>
+                        <div class="tech-card-section">
+                            <h4>Why it matters</h4>
+                            <p>다수 화자 회의록의 가독성 및 정확도 향상.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>HAIV Approach</h4>
+                            <p>음성 특징 분석 기반, 최대 10명 화자 자동 분리.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>Outcome</h4>
+                            <p>누가 어떤 말을 했는지 명확하게 파악.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-card" id="translation">
+                        <div class="tech-card-badge">번역</div>
+                        <h3>실시간 다국어 번역</h3>
+                        <div class="tech-card-section">
+                            <h4>Why it matters</h4>
+                            <p>글로벌 회의, 다국어 콘텐츠 제작 효율화.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>HAIV Approach</h4>
+                            <p>30개 언어 동시 번역, 맥락 기반 번역 품질.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>Outcome</h4>
+                            <p>번역 외주 비용 절감, 시간 단축.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-card" id="tts">
+                        <div class="tech-card-badge">TTS</div>
+                        <h3>자연스러운 음성 합성</h3>
+                        <div class="tech-card-section">
+                            <h4>Why it matters</h4>
+                            <p>ARS, 안내 방송, 접근성 서비스에 필수.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>HAIV Approach</h4>
+                            <p>딥러닝 기반 자연스러운 억양, 감정 표현 지원.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>Outcome</h4>
+                            <p>기계음이 아닌 사람 같은 음성 서비스.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pillar 3: Real-time -->
+        <section id="pillar-realtime" class="section section-alt">
+            <div class="container">
+                <div class="pillar-header">
+                    <span class="pillar-num">03</span>
+                    <h2>실시간 운영</h2>
+                    <p>즉시 활용 가능한가?</p>
+                </div>
+                
+                <div class="tech-cards">
+                    <div class="tech-card">
+                        <div class="tech-card-badge">속도</div>
+                        <h3>초고속 처리 속도</h3>
+                        <div class="tech-card-section">
+                            <h4>Why it matters</h4>
+                            <p>실시간 회의록, 자막 생성의 핵심 경쟁력.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>HAIV Approach</h4>
+                            <p>최적화된 AI 모델과 병렬 처리 시스템.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>Outcome</h4>
+                            <p>회의 종료 즉시 기록 완성, 업무 효율 극대화.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-card" id="api">
+                        <div class="tech-card-badge">연동</div>
+                        <h3>유연한 API 연동</h3>
+                        <div class="tech-card-section">
+                            <h4>Why it matters</h4>
+                            <p>기존 시스템과의 원활한 통합 및 확장성.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>HAIV Approach</h4>
+                            <p>표준화된 RESTful API 제공, 상세 문서 지원.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>Outcome</h4>
+                            <p>개발 시간 단축, 다양한 서비스에 AI 음성 기능 적용.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-card-badge">확장</div>
+                        <h3>스케일 아웃 지원</h3>
+                        <div class="tech-card-section">
+                            <h4>Why it matters</h4>
+                            <p>사용량 증가에 따른 안정적 확장 필요.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>HAIV Approach</h4>
+                            <p>분산 아키텍처로 서버 추가만으로 용량 확장.</p>
+                        </div>
+                        <div class="tech-card-section">
+                            <h4>Outcome</h4>
+                            <p>수천 건 동시 처리도 안정적 운영.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Specs -->
+        <section id="whitepaper" class="section">
+            <div class="container">
+                <h2>기술 스펙</h2>
+                <p class="section-desc">
+                    HAIV 엔진의 상세 기술 사양
+                </p>
+                
+                <div class="specs-table">
+                    <div class="spec-row">
+                        <span class="spec-label">음성인식(STT) 인식률</span>
+                        <span class="spec-value">97.8% (한국어, 표준 환경)</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">지원 언어</span>
+                        <span class="spec-value">30개 언어 (한국어, 영어, 일본어, 중국어 등)</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">화자 분리</span>
+                        <span class="spec-value">최대 10명 자동 분리</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">처리 속도</span>
+                        <span class="spec-value">실시간 (1시간 음성 → 5분 내 완료)</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">배포 방식</span>
+                        <span class="spec-value">온프레미스 / 프라이빗 클라우드 / SaaS</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">인증</span>
+                        <span class="spec-value">GS인증 1등급, ISO27001, 조달청 등록</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">API</span>
+                        <span class="spec-value">RESTful API, WebSocket (실시간)</span>
+                    </div>
+                </div>
+                
+                <div class="specs-cta">
+                    <a href="#" class="btn btn-primary">기술 백서 다운로드 (PDF)</a>
+                    <a href="#" class="btn btn-outline">API 문서 보기</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact CTA -->
+        <section id="contact" class="section section-cta">
+            <div class="container">
+                <h2>
+                    기술 검토가 필요하신가요?<br>
+                    <span class="text-white">엔지니어가 직접 답변드립니다</span>
+                </h2>
+                <p class="cta-desc">
+                    환경 적합성, 연동 방식, 성능 검증까지<br>
+                    기술 전문가와 상담하세요.
+                </p>
+                <div class="cta-buttons">
+                    <a href="/company/contact.html" class="btn btn-white">기술 상담 요청</a>
+                    <a href="#api" class="btn btn-outline-white">API 문서 확인</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-trust"><div class="footer-trust-inner"><div class="footer-trust-badges"><span class="footer-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>GS인증 1등급</span><span class="footer-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>온프레미스 구축</span><span class="footer-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>조달청 등록</span></div><div class="footer-trust-contact"><a href="mailto:sales@timbel.net" class="footer-email">sales@timbel.net</a></div></div></div>
+        <div class="footer-main"><div class="footer-inner"><div class="footer-top"><div class="footer-brand"><div class="footer-logo"><img src="/assets/img/timbel-logo.png" alt="Timbel" class="footer-logo-img"></div><p class="footer-tagline">AI 음성기록 솔루션 전문기업<br><span class="footer-tagline-sub">Since 2001 · 24년 기술력</span></p></div><div class="footer-section"><h4>서비스</h4><div class="footer-links"><a href="/services/index.html">회의록·속기</a><a href="/services/textar.html">자막·번역</a><a href="/services/aicc.html">컨택센터(AICC)</a></div></div><div class="footer-section"><h4>기술 & 인증</h4><div class="footer-links"><a href="/technology/index.html">GS인증 · ISO27001</a><a href="/technology/index.html#onpremise">On-Premise 구축</a></div></div><div class="footer-section"><h4>고객 & 사례</h4><div class="footer-links"><a href="/clients/index.html">도입 고객사</a></div></div><div class="footer-section"><h4>회사</h4><div class="footer-links"><a href="/company/index.html">회사 소개</a><a href="/careers/index.html">채용 정보</a><a href="/company/contact.html">오시는 길</a></div></div></div></div></div>
+        <div class="footer-bottom-bar"><div class="footer-bottom-inner"><div class="footer-company-info"><p><strong>(주)팀벨</strong><span class="footer-divider">|</span>대표이사: 홍길동<span class="footer-divider">|</span>사업자등록번호: 000-00-00000</p><p>서울특별시 서초구 강남대로 00길 00 팀벨빌딩<span class="footer-divider">|</span>통신판매업: 2020-서울서초-0000</p></div><div class="footer-legal-links"><a href="#" class="highlight">개인정보처리방침</a><a href="#">이용약관</a><a href="#">이메일무단수집거부</a></div></div></div>
+        <div class="footer-copyright"><div class="footer-copyright-inner"><span>© 2025 TIMBEL CORP. All Rights Reserved.</span><div class="footer-social"><a href="https://timbel.net" target="_blank" aria-label="Website"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a></div></div></div>
+    </footer>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/mega-menu.js"></script>
+</body>
+</html>
