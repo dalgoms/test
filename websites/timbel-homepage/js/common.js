@@ -100,25 +100,25 @@ function getHeaderHTML(basePath) {
                                 </div>
                                 <div class="mega-menu-column">
                                     <div class="mega-menu-column-title">AICC 솔루션</div>
-                                    <a href="${basePath}solutions/knowledge-management.html" class="mega-menu-link">
-                                        <strong>차세대 문서 및 지식 관리 솔루션</strong>
-                                        <span>계층형 플랜 에이전트 워크플로우</span>
-                                    </a>
                                     <a href="${basePath}solutions/aicc-platform.html" class="mega-menu-link">
-                                        <strong>AI 기반 컨택센터 통합 운영 플랫폼</strong>
-                                        <span>AI 기능을 하나의 플랫폼으로 결합</span>
+                                        <strong>AI 음성 대화 엔진</strong>
+                                        <span>STT/TTS 기반 실시간 음성 대화 처리</span>
                                     </a>
                                     <a href="${basePath}solutions/callbot-chatbot.html" class="mega-menu-link">
-                                        <strong>AI 상담·콜봇 및 챗봇 솔루션</strong>
-                                        <span>24시간 자동 응대 기능</span>
+                                        <strong>AI 콜봇 · 챗봇</strong>
+                                        <span>24시간 무인 자동 응대 솔루션</span>
+                                    </a>
+                                    <a href="${basePath}solutions/knowledge-management.html" class="mega-menu-link">
+                                        <strong>AI KMS 지식관리 시스템</strong>
+                                        <span>상담 지식 통합 관리 및 자동 추천</span>
                                     </a>
                                     <a href="${basePath}solutions/advisor-ta-qa.html" class="mega-menu-link">
-                                        <strong>AI 상담·어드바이저 지원 시스템</strong>
-                                        <span>실시간 상담 분석과 품질 제공</span>
+                                        <strong>AI 상담 어드바이저</strong>
+                                        <span>실시간 상담 어시스트 및 가이드 제공</span>
                                     </a>
                                     <a href="${basePath}solutions/ivr-integration.html" class="mega-menu-link">
-                                        <strong>AI TA/QA 상담 품질 분석</strong>
-                                        <span>실시간 텍스트 분석 및 품질 평가 자동화</span>
+                                        <strong>AI TA/QA 품질 분석</strong>
+                                        <span>상담 텍스트 분석 및 품질 평가 자동화</span>
                                     </a>
                                 </div>
                                 <div class="mega-menu-column">
@@ -255,11 +255,11 @@ function getHeaderHTML(basePath) {
                         <a href="${basePath}products/llm-platform.html">초거대 언어모델 구축 플랫폼</a>
                         <a href="${basePath}products/sign-avatar.html">AI 메타휴먼 수어 아바타</a>
                         <span class="mobile-submenu-title">AICC 솔루션</span>
-                        <a href="${basePath}solutions/knowledge-management.html">차세대 문서 및 지식 관리</a>
-                        <a href="${basePath}solutions/aicc-platform.html">AI 기반 컨택센터 통합 플랫폼</a>
-                        <a href="${basePath}solutions/callbot-chatbot.html">AI 콜봇 및 챗봇</a>
+                        <a href="${basePath}solutions/aicc-platform.html">AI 음성 대화 엔진</a>
+                        <a href="${basePath}solutions/callbot-chatbot.html">AI 콜봇 · 챗봇</a>
+                        <a href="${basePath}solutions/knowledge-management.html">AI KMS 지식관리</a>
                         <a href="${basePath}solutions/advisor-ta-qa.html">AI 상담 어드바이저</a>
-                        <a href="${basePath}solutions/ivr-integration.html">AI TA/QA 상담 품질 분석</a>
+                        <a href="${basePath}solutions/ivr-integration.html">AI TA/QA 품질 분석</a>
                         <span class="mobile-submenu-title">지능형 AI 회의록</span>
                         <a href="${basePath}products/baronote.html">바로노트</a>
                         <a href="${basePath}products/timblo.html">팀블로</a>
