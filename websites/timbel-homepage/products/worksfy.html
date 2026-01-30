@@ -4,81 +4,194 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WORKSFY - AI 일자리 매칭 플랫폼 | 팀벨</title>
-    <meta name="description" content="WORKSFY는 AI 속기사를 위한 일자리 매칭 플랫폼입니다. 속기 전문가와 기업을 연결합니다.">
-    <meta name="keywords" content="WORKSFY, 속기사, 일자리, 프리랜서, 속기 플랫폼, 팀벨">
+    <meta name="description" content="WORKSFY는 AI 기반 일자리 매칭 플랫폼입니다. 구직자와 기업을 AI가 최적으로 매칭합니다.">
+    <meta name="keywords" content="워크스파이, WORKSFY, AI 채용, 일자리 매칭, 구인구직, 팀벨">
     <link rel="canonical" href="https://timbel.net/products/worksfy.html">
     <meta property="og:title" content="WORKSFY - AI 일자리 매칭 플랫폼 | 팀벨">
-    <meta property="og:description" content="AI 속기사 일자리 매칭 플랫폼">
-    <meta property="og:url" content="https://timbel.net/products/worksfy.html">
-    <meta property="og:image" content="https://timbel.net/img/og-image.png">
+    <meta property="og:description" content="AI 기반 일자리 매칭 플랫폼">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
     <style>
-        :root { --primary: #4593FC; --primary-dark: #2B7DE9; --dark: #191F28; --gray-600: #8B95A1; --gray-100: #F9FAFB; --white: #FFFFFF; }
+        :root {
+            --primary: #f59e0b;
+            --primary-dark: #d97706;
+            --primary-light: #fbbf24;
+            --secondary: #8b5cf6;
+            --dark: #0a0a0f;
+            --dark-800: #1a1a2e;
+            --dark-700: #252540;
+            --dark-600: #2d2d4a;
+            --gray-900: #111827;
+            --gray-600: #4b5563;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+            --gray-50: #f9fafb;
+            --white: #FFFFFF;
+            --gradient-primary: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Pretendard Variable', Pretendard, sans-serif; background: var(--white); color: var(--dark); line-height: 1.7; }
-        .product-hero { padding: 180px 24px 100px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); text-align: center; color: var(--white); }
-        .product-hero-badge { display: inline-flex; padding: 8px 16px; background: rgba(255,255,255,0.2); border-radius: 100px; font-size: 13px; font-weight: 600; margin-bottom: 24px; }
-        .product-hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 24px; }
-        .product-hero p { font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto 32px; }
-        .btn { display: inline-flex; padding: 18px 36px; font-size: 16px; font-weight: 600; border-radius: 12px; text-decoration: none; }
-        .product-hero .btn { background: var(--white); color: #059669; }
-        .section { padding: 100px 24px; }
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 64px; }
-        .section-label { font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
-        .section-title { font-size: 36px; font-weight: 800; margin-bottom: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-        .feature-card { background: var(--gray-100); border-radius: 24px; padding: 40px; text-align: center; }
-        .feature-icon { width: 64px; height: 64px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
-        .feature-icon svg { width: 32px; height: 32px; color: white; }
-        .feature-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
-        .feature-card p { font-size: 15px; color: var(--gray-600); }
-        .cta-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); padding: 80px 24px; text-align: center; color: var(--white); }
-        .cta-section h2 { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
-        .cta-section p { font-size: 17px; opacity: 0.9; margin-bottom: 32px; }
-        .cta-section .btn { background: var(--white); color: var(--primary); }
-        @media (max-width: 1024px) { .features-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { .product-hero { padding: 120px 16px 60px; } .product-hero h1 { font-size: 32px; } .section { padding: 60px 16px; } }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--dark); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+        @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 160px 0 120px; background: var(--dark); overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -40%; left: 50%; transform: translateX(-50%); width: 100%; height: 150%; background: radial-gradient(ellipse, rgba(245, 158, 11, 0.15) 0%, transparent 50%); }
+        .hero-content { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; text-align: center; }
+        .hero-label { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-light); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 32px; }
+        .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--primary); }
+        .hero-title { font-size: clamp(48px, 8vw, 80px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 32px; }
+        .hero-title .line { display: block; }
+        .hero-title .highlight { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-desc { font-size: 18px; color: var(--gray-400); line-height: 1.8; max-width: 600px; margin: 0 auto 48px; }
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 18px 36px; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: var(--gradient-primary); color: var(--white); box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245, 158, 11, 0.4); }
+        .btn-ghost { background: transparent; color: var(--gray-300); border: 1px solid var(--dark-600); }
+        .btn-ghost:hover { background: var(--dark-700); border-color: var(--gray-600); color: var(--white); }
+        .btn svg { width: 18px; height: 18px; }
+
+        .section { padding: 160px 0; position: relative; }
+        .section-dark-alt { background: var(--dark-800); }
+        .section-light { background: var(--gray-50); color: var(--gray-900); }
+        .section-header { margin-bottom: 80px; }
+        .section-header.center { text-align: center; }
+        .section-label { display: inline-flex; font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; }
+        .section-title { font-size: clamp(36px, 5vw, 52px); font-weight: 800; line-height: 1.2; letter-spacing: -1px; margin-bottom: 24px; }
+        .section-light .section-title { color: var(--gray-900); }
+        .section-desc { font-size: 17px; color: var(--gray-400); line-height: 1.8; max-width: 600px; }
+        .section-header.center .section-desc { margin: 0 auto; }
+        .section-light .section-desc { color: var(--gray-600); }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        .feature-card { padding: 48px 40px; background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 24px; transition: all 0.4s; }
+        .feature-card:hover { border-color: var(--primary); transform: translateY(-8px); }
+        .feature-card-badge { display: inline-flex; padding: 6px 14px; background: var(--gradient-primary); font-size: 12px; font-weight: 700; color: white; border-radius: 100px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+        .feature-card h3 { font-size: 24px; font-weight: 700; margin-bottom: 16px; }
+        .feature-card > p { font-size: 15px; color: var(--gray-400); line-height: 1.8; margin-bottom: 24px; }
+        .feature-list { list-style: none; }
+        .feature-list li { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--dark-600); font-size: 14px; color: var(--gray-300); }
+        .feature-list li:last-child { border-bottom: none; }
+        .feature-list li svg { width: 20px; height: 20px; color: var(--primary); flex-shrink: 0; }
+
+        .benefit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .benefit-card { padding: 36px 24px; background: var(--white); border-radius: 20px; border: 1px solid var(--gray-200); text-align: center; transition: all 0.3s; }
+        .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08); }
+        .benefit-num { font-size: 48px; font-weight: 800; color: var(--primary); opacity: 0.2; margin-bottom: 12px; line-height: 1; }
+        .benefit-card h4 { font-size: 16px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+        .benefit-card p { font-size: 13px; color: var(--gray-600); line-height: 1.5; }
+
+        .stats-section { background: linear-gradient(180deg, var(--dark) 0%, var(--dark-800) 100%); padding: 120px 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 64px; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 12px; }
+        .stat-label { font-size: 15px; color: var(--gray-400); }
+
+        .cta-section { background: var(--gradient-primary); padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 50%); }
+        .cta-content { position: relative; z-index: 10; }
+        .cta-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
+        .cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta-section .btn-primary { background: var(--white); color: var(--primary-dark); }
+        .cta-section .btn-ghost { border-color: rgba(255,255,255,0.3); color: var(--white); }
+
+        @media (max-width: 1024px) { .section { padding: 100px 0; } .feature-grid { grid-template-columns: 1fr; } .benefit-grid { grid-template-columns: repeat(2, 1fr); } .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; } }
+        @media (max-width: 768px) { .hero { padding: 120px 0 80px; } .section { padding: 80px 0; } .hero-actions { flex-direction: column; } .btn { width: 100%; justify-content: center; } .benefit-grid { grid-template-columns: 1fr; } .stats-grid { grid-template-columns: 1fr; gap: 40px; } }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
-    <section class="product-hero">
-        <div class="product-hero-badge">WORKSFY</div>
-        <h1>WORKSFY</h1>
-        <p>AI 속기사 일자리 매칭 플랫폼</p>
-        <a href="../contact.html" class="btn">도입 상담 신청</a>
-    </section>
-    <section class="section">
+
+    <section class="hero">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">Features</span>
-                <h2 class="section-title">핵심 기능</h2>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
-                    <h3>AI 매칭</h3>
-                    <p>프로젝트와 전문가를 AI가 최적 매칭</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-                    <h3>품질 검증</h3>
-                    <p>작업 품질 자동 검증 시스템</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-                    <h3>정산 관리</h3>
-                    <p>투명한 정산 및 수익 관리</p>
+            <div class="hero-content">
+                <div class="hero-label">WORKSFY</div>
+                <h1 class="hero-title">
+                    <span class="line">AI가 연결하는</span>
+                    <span class="line">최적의 일자리</span>
+                    <span class="line"><span class="highlight">워크스파이</span></span>
+                </h1>
+                <p class="hero-desc">AI 기반 일자리 매칭 플랫폼으로 구직자와 기업을 최적으로 연결합니다.</p>
+                <div class="hero-actions">
+                    <a href="../contact.html" class="btn btn-primary">도입 문의<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                    <a href="#features" class="btn btn-ghost">기능 살펴보기</a>
                 </div>
             </div>
         </div>
     </section>
-    <section class="cta-section">
-        <h2>속기 전문가를 찾고 계신가요?</h2>
-        <p>팀벨 전문가가 최적의 솔루션을 제안해 드립니다.</p>
-        <a href="../contact.html" class="btn">도입 상담 신청</a>
+
+    <section class="section section-dark-alt" id="features">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label">Features</div>
+                <h2 class="section-title">핵심 기능</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-card-badge">구직자</div>
+                    <h3>AI 맞춤 일자리 추천</h3>
+                    <p>이력서와 경력을 분석하여 가장 적합한 일자리를 AI가 추천합니다.</p>
+                    <ul class="feature-list">
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>이력서 기반 맞춤 추천</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>관심 분야 학습</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>실시간 채용 알림</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-badge" style="background: linear-gradient(135deg, var(--secondary) 0%, #7c3aed 100%);">기업</div>
+                    <h3>AI 인재 매칭</h3>
+                    <p>채용 요건에 가장 적합한 인재를 AI가 자동으로 매칭합니다.</p>
+                    <ul class="feature-list">
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>적합도 점수 제공</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>자동 스크리닝</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>채용 분석 리포트</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label" style="color: var(--primary-dark);">Benefits</div>
+                <h2 class="section-title">도입 효과</h2>
+            </div>
+            <div class="benefit-grid">
+                <div class="benefit-card"><div class="benefit-num">01</div><h4>매칭 정확도</h4><p>AI 분석으로 90% 이상 적합도 매칭</p></div>
+                <div class="benefit-card"><div class="benefit-num">02</div><h4>시간 절감</h4><p>채용 프로세스 시간 60% 단축</p></div>
+                <div class="benefit-card"><div class="benefit-num">03</div><h4>비용 절감</h4><p>인재 채용 비용 40% 절감</p></div>
+                <div class="benefit-card"><div class="benefit-num">04</div><h4>이직률 감소</h4><p>정확한 매칭으로 이직률 감소</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item"><div class="stat-value">90%</div><div class="stat-label">매칭 정확도</div></div>
+                <div class="stat-item"><div class="stat-value">60%</div><div class="stat-label">채용 시간 단축</div></div>
+                <div class="stat-item"><div class="stat-value">10K+</div><div class="stat-label">등록 기업</div></div>
+                <div class="stat-item"><div class="stat-value">100K+</div><div class="stat-label">구직자</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">AI가 연결하는 일자리<br>WORKSFY</h2>
+                <p class="cta-desc">지금 바로 워크스파이를 경험해보세요.</p>
+                <div class="hero-actions" style="justify-content: center;">
+                    <a href="../contact.html" class="btn btn-primary">도입 문의</a>
+                    <a href="../contact.html" class="btn btn-ghost">기술 상담</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <div id="footer-placeholder"></div>
     <script src="../js/common.js"></script>
 </body>

@@ -3,82 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SORIZAVA ACADEMY - 속기 교육 플랫폼 | 팀벨</title>
-    <meta name="description" content="SORIZAVA ACADEMY는 AI 속기사 양성을 위한 온라인 교육 기관입니다. 전문 속기 기술을 온라인으로 학습하세요.">
-    <meta name="keywords" content="SORIZAVA ACADEMY, 속기 교육, AI 속기사, 온라인 교육, 팀벨">
+    <title>SORIZAVA ACADEMY - AI 속기 교육 플랫폼 | 팀벨</title>
+    <meta name="description" content="SORIZAVA ACADEMY는 AI 기반 속기 교육 플랫폼입니다. 전문 속기사 양성을 위한 체계적인 커리큘럼을 제공합니다.">
+    <meta name="keywords" content="소리자바 아카데미, 속기 교육, 전문 속기사, AI 교육, 팀벨">
     <link rel="canonical" href="https://timbel.net/products/sorizava-academy.html">
-    <meta property="og:title" content="SORIZAVA ACADEMY - 속기 교육 플랫폼 | 팀벨">
-    <meta property="og:description" content="AI 속기사 양성 온라인 교육 기관">
-    <meta property="og:url" content="https://timbel.net/products/sorizava-academy.html">
-    <meta property="og:image" content="https://timbel.net/img/og-image.png">
+    <meta property="og:title" content="SORIZAVA ACADEMY - AI 속기 교육 플랫폼 | 팀벨">
+    <meta property="og:description" content="AI 기반 속기 교육 플랫폼">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
     <style>
-        :root { --primary: #4593FC; --primary-dark: #2B7DE9; --dark: #191F28; --gray-600: #8B95A1; --gray-100: #F9FAFB; --white: #FFFFFF; }
+        :root {
+            --primary: #06b6d4;
+            --primary-dark: #0891b2;
+            --primary-light: #22d3ee;
+            --secondary: #8b5cf6;
+            --dark: #0a0a0f;
+            --dark-800: #1a1a2e;
+            --dark-700: #252540;
+            --dark-600: #2d2d4a;
+            --gray-900: #111827;
+            --gray-600: #4b5563;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+            --gray-50: #f9fafb;
+            --white: #FFFFFF;
+            --gradient-primary: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Pretendard Variable', Pretendard, sans-serif; background: var(--white); color: var(--dark); line-height: 1.7; }
-        .product-hero { padding: 180px 24px 100px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); text-align: center; color: var(--white); }
-        .product-hero-badge { display: inline-flex; padding: 8px 16px; background: rgba(255,255,255,0.2); border-radius: 100px; font-size: 13px; font-weight: 600; margin-bottom: 24px; }
-        .product-hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 24px; }
-        .product-hero p { font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto 32px; }
-        .btn { display: inline-flex; padding: 18px 36px; font-size: 16px; font-weight: 600; border-radius: 12px; text-decoration: none; }
-        .product-hero .btn { background: var(--white); color: #d97706; }
-        .section { padding: 100px 24px; }
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 64px; }
-        .section-label { font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
-        .section-title { font-size: 36px; font-weight: 800; margin-bottom: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-        .feature-card { background: var(--gray-100); border-radius: 24px; padding: 40px; text-align: center; }
-        .feature-icon { width: 64px; height: 64px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
-        .feature-icon svg { width: 32px; height: 32px; color: white; }
-        .feature-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
-        .feature-card p { font-size: 15px; color: var(--gray-600); }
-        .cta-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); padding: 80px 24px; text-align: center; color: var(--white); }
-        .cta-section h2 { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
-        .cta-section p { font-size: 17px; opacity: 0.9; margin-bottom: 32px; }
-        .cta-section .btn { background: var(--white); color: var(--primary); }
-        @media (max-width: 1024px) { .features-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { .product-hero { padding: 120px 16px 60px; } .product-hero h1 { font-size: 32px; } .section { padding: 60px 16px; } }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--dark); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+        @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 160px 0 120px; background: var(--dark); overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -30%; right: -20%; width: 70%; height: 140%; background: radial-gradient(ellipse, rgba(6, 182, 212, 0.12) 0%, transparent 60%); }
+        .hero-content { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; text-align: center; }
+        .hero-label { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-light); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 32px; }
+        .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--primary); }
+        .hero-title { font-size: clamp(48px, 8vw, 80px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 32px; }
+        .hero-title .line { display: block; }
+        .hero-title .highlight { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-desc { font-size: 18px; color: var(--gray-400); line-height: 1.8; max-width: 600px; margin: 0 auto 48px; }
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 18px 36px; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: var(--gradient-primary); color: var(--white); box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(6, 182, 212, 0.4); }
+        .btn-ghost { background: transparent; color: var(--gray-300); border: 1px solid var(--dark-600); }
+        .btn-ghost:hover { background: var(--dark-700); border-color: var(--gray-600); color: var(--white); }
+        .btn svg { width: 18px; height: 18px; }
+
+        .section { padding: 160px 0; position: relative; }
+        .section-dark-alt { background: var(--dark-800); }
+        .section-light { background: var(--gray-50); color: var(--gray-900); }
+        .section-header { margin-bottom: 80px; }
+        .section-header.center { text-align: center; }
+        .section-label { display: inline-flex; font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; }
+        .section-title { font-size: clamp(36px, 5vw, 52px); font-weight: 800; line-height: 1.2; letter-spacing: -1px; margin-bottom: 24px; }
+        .section-light .section-title { color: var(--gray-900); }
+        .section-desc { font-size: 17px; color: var(--gray-400); line-height: 1.8; max-width: 600px; }
+        .section-header.center .section-desc { margin: 0 auto; }
+        .section-light .section-desc { color: var(--gray-600); }
+
+        .curriculum-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .curriculum-card { padding: 40px 32px; background: var(--white); border-radius: 20px; border: 1px solid var(--gray-200); transition: all 0.4s; position: relative; overflow: hidden; }
+        .curriculum-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gradient-primary); transform: scaleX(0); transition: transform 0.4s; }
+        .curriculum-card:hover::before { transform: scaleX(1); }
+        .curriculum-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
+        .curriculum-step { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 16px; }
+        .curriculum-card h4 { font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 12px; }
+        .curriculum-card p { font-size: 14px; color: var(--gray-600); line-height: 1.7; margin-bottom: 20px; }
+        .curriculum-list { list-style: none; }
+        .curriculum-list li { font-size: 13px; color: var(--gray-600); padding: 8px 0; padding-left: 20px; position: relative; }
+        .curriculum-list li::before { content: '•'; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .feature-card { padding: 36px 24px; background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 20px; text-align: center; transition: all 0.3s; }
+        .feature-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+        .feature-card-icon { width: 56px; height: 56px; background: var(--gradient-primary); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+        .feature-card-icon svg { width: 28px; height: 28px; color: white; }
+        .feature-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+        .feature-card p { font-size: 13px; color: var(--gray-400); line-height: 1.5; }
+
+        .stats-section { background: linear-gradient(180deg, var(--dark) 0%, var(--dark-800) 100%); padding: 120px 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 64px; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 12px; }
+        .stat-label { font-size: 15px; color: var(--gray-400); }
+
+        .cta-section { background: var(--gradient-primary); padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 50%); }
+        .cta-content { position: relative; z-index: 10; }
+        .cta-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
+        .cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta-section .btn-primary { background: var(--white); color: var(--primary-dark); }
+        .cta-section .btn-ghost { border-color: rgba(255,255,255,0.3); color: var(--white); }
+
+        @media (max-width: 1024px) { .section { padding: 100px 0; } .curriculum-grid { grid-template-columns: 1fr; } .feature-grid { grid-template-columns: repeat(2, 1fr); } .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; } }
+        @media (max-width: 768px) { .hero { padding: 120px 0 80px; } .section { padding: 80px 0; } .hero-actions { flex-direction: column; } .btn { width: 100%; justify-content: center; } .feature-grid { grid-template-columns: 1fr; } .stats-grid { grid-template-columns: 1fr; gap: 40px; } }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
-    <section class="product-hero">
-        <div class="product-hero-badge">ACADEMY</div>
-        <h1>SORIZAVA ACADEMY</h1>
-        <p>AI 속기사 양성 온라인 교육 기관</p>
-        <a href="../contact.html" class="btn">교육 문의</a>
-    </section>
-    <section class="section">
+
+    <section class="hero">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">Curriculum</span>
-                <h2 class="section-title">교육 과정</h2>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div>
-                    <h3>체계적 커리큘럼</h3>
-                    <p>입문부터 전문가까지 단계별 교육</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
-                    <h3>실습 중심</h3>
-                    <p>실제 프로젝트 기반 실습 교육</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></div>
-                    <h3>자격 취득</h3>
-                    <p>수료 후 취업 연계 지원</p>
+            <div class="hero-content">
+                <div class="hero-label">SORIZAVA ACADEMY</div>
+                <h1 class="hero-title">
+                    <span class="line">전문 속기사</span>
+                    <span class="line">양성 플랫폼</span>
+                    <span class="line"><span class="highlight">소리자바 아카데미</span></span>
+                </h1>
+                <p class="hero-desc">AI 기반 속기 교육 플랫폼으로 전문 속기사 양성을 위한 체계적인 커리큘럼을 제공합니다.</p>
+                <div class="hero-actions">
+                    <a href="../contact.html" class="btn btn-primary">수강 신청<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                    <a href="#curriculum" class="btn btn-ghost">커리큘럼 보기</a>
                 </div>
             </div>
         </div>
     </section>
-    <section class="cta-section">
-        <h2>속기 전문가가 되고 싶으신가요?</h2>
-        <p>SORIZAVA ACADEMY에서 시작하세요.</p>
-        <a href="../contact.html" class="btn">교육 문의</a>
+
+    <section class="section section-light" id="curriculum">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label" style="color: var(--primary-dark);">Curriculum</div>
+                <h2 class="section-title">교육 과정</h2>
+            </div>
+            <div class="curriculum-grid">
+                <div class="curriculum-card">
+                    <div class="curriculum-step">STEP 01</div>
+                    <h4>기초 과정</h4>
+                    <p>속기의 기본 원리와 타자 속도 향상을 위한 기초 훈련</p>
+                    <ul class="curriculum-list">
+                        <li>속기 개론 및 역사</li>
+                        <li>타자 속도 향상 훈련</li>
+                        <li>기본 약어 학습</li>
+                        <li>음성 인식 기초</li>
+                    </ul>
+                </div>
+                <div class="curriculum-card">
+                    <div class="curriculum-step">STEP 02</div>
+                    <h4>심화 과정</h4>
+                    <p>전문 분야별 속기 기술과 실무 능력 향상</p>
+                    <ul class="curriculum-list">
+                        <li>법률 속기 전문</li>
+                        <li>의료 속기 전문</li>
+                        <li>방송 속기 전문</li>
+                        <li>실시간 속기 훈련</li>
+                    </ul>
+                </div>
+                <div class="curriculum-card">
+                    <div class="curriculum-step">STEP 03</div>
+                    <h4>실무 과정</h4>
+                    <p>실제 현장 경험과 취업 연계 프로그램</p>
+                    <ul class="curriculum-list">
+                        <li>현장 실습</li>
+                        <li>프로젝트 참여</li>
+                        <li>포트폴리오 구축</li>
+                        <li>취업 연계 지원</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <section class="section section-dark-alt">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label">Features</div>
+                <h2 class="section-title">교육 특징</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-card-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+                    <h4>AI 맞춤 학습</h4>
+                    <p>개인별 학습 수준에 맞는 AI 커리큘럼</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></div>
+                    <h4>실시간 피드백</h4>
+                    <p>속기 정확도 실시간 분석 및 피드백</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
+                    <h4>전문가 멘토링</h4>
+                    <p>현직 전문 속기사의 1:1 멘토링</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
+                    <h4>취업 연계</h4>
+                    <p>수료 후 협력사 취업 연계 지원</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item"><div class="stat-value">95%</div><div class="stat-label">수료율</div></div>
+                <div class="stat-item"><div class="stat-value">90%</div><div class="stat-label">취업률</div></div>
+                <div class="stat-item"><div class="stat-value">1000+</div><div class="stat-label">수료생</div></div>
+                <div class="stat-item"><div class="stat-value">50+</div><div class="stat-label">협력 기관</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">전문 속기사의 꿈<br>소리자바 아카데미에서 시작하세요</h2>
+                <p class="cta-desc">지금 바로 수강 신청하세요.</p>
+                <div class="hero-actions" style="justify-content: center;">
+                    <a href="../contact.html" class="btn btn-primary">수강 신청</a>
+                    <a href="../contact.html" class="btn btn-ghost">상담 문의</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <div id="footer-placeholder"></div>
     <script src="../js/common.js"></script>
 </body>

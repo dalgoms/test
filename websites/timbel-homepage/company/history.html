@@ -3,109 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>연혁 | 팀벨</title>
-    <meta name="description" content="2001년 설립 이후 팀벨의 성장 역사를 소개합니다. 20년 이상의 기술 축적과 혁신의 여정을 확인하세요.">
-    <meta name="keywords" content="팀벨 연혁, 회사 역사, 기업 성장">
+    <title>연혁 - 팀벨 | AI 기술의 발자취</title>
+    <meta name="description" content="팀벨의 설립부터 현재까지의 성장 과정과 주요 이정표를 소개합니다.">
+    <meta name="keywords" content="팀벨 연혁, 회사 역사, AI 기업 연혁">
     <link rel="canonical" href="https://timbel.net/company/history.html">
-    <meta property="og:title" content="연혁 | 팀벨">
-    <meta property="og:description" content="2001년 설립 이후 팀벨의 20년 성장 역사">
-    <meta property="og:url" content="https://timbel.net/company/history.html">
-    <meta property="og:image" content="https://timbel.net/img/og-image.png">
+    <meta property="og:title" content="연혁 - 팀벨">
+    <meta property="og:description" content="팀벨의 성장 이야기">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
     <style>
-        :root { --primary: #4593FC; --primary-dark: #2B7DE9; --primary-light: #6AABFF; --secondary: #00C9B7; --dark: #191F28; --gray-700: #6B7684; --gray-600: #8B95A1; --gray-400: #D1D6DB; --gray-200: #F2F4F6; --gray-100: #F9FAFB; --white: #FFFFFF; }
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #06b6d4;
+            --dark: #0a0a0f;
+            --dark-800: #1a1a2e;
+            --dark-700: #252540;
+            --dark-600: #2d2d4a;
+            --gray-900: #111827;
+            --gray-600: #4b5563;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+            --gray-50: #f9fafb;
+            --white: #FFFFFF;
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; background: var(--white); color: var(--dark); line-height: 1.7; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--dark); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+        @media (max-width: 768px) { .container { padding: 0 20px; } }
 
-        .page-hero { padding: 180px 24px 100px; background: linear-gradient(135deg, var(--dark) 0%, #2d3748 100%); text-align: center; color: var(--white); }
-        .page-hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 20px; }
-        .page-hero p { font-size: 18px; color: var(--gray-400); }
+        .hero { min-height: 80vh; display: flex; align-items: center; position: relative; padding: 160px 0 120px; background: var(--dark); overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -30%; right: -20%; width: 70%; height: 140%; background: radial-gradient(ellipse, rgba(99, 102, 241, 0.12) 0%, transparent 60%); }
+        .hero-content { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; text-align: center; }
+        .hero-label { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-light); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 32px; }
+        .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--primary); }
+        .hero-title { font-size: clamp(48px, 8vw, 80px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 32px; }
+        .hero-title .line { display: block; }
+        .hero-title .highlight { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-desc { font-size: 18px; color: var(--gray-400); line-height: 1.8; max-width: 600px; margin: 0 auto; }
 
-        .section { padding: 100px 24px; }
-        .container { max-width: 900px; margin: 0 auto; }
+        .section { padding: 160px 0; position: relative; }
+        .section-dark { background: var(--dark); }
+        .section-dark-alt { background: var(--dark-800); }
+        .section-header { margin-bottom: 80px; }
+        .section-header.center { text-align: center; }
+        .section-label { display: inline-flex; font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; }
+        .section-title { font-size: clamp(36px, 5vw, 52px); font-weight: 800; line-height: 1.2; letter-spacing: -1px; margin-bottom: 24px; }
 
-        .timeline { position: relative; padding-left: 40px; }
-        .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--gray-200); }
-        .timeline-item { position: relative; padding-bottom: 48px; }
-        .timeline-item:last-child { padding-bottom: 0; }
-        .timeline-dot { position: absolute; left: -40px; top: 4px; width: 18px; height: 18px; background: var(--primary); border-radius: 50%; border: 4px solid var(--white); box-shadow: 0 0 0 2px var(--primary); }
-        .timeline-year { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
-        .timeline-content { background: var(--gray-100); border-radius: 16px; padding: 24px; }
-        .timeline-content h3 { font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
-        .timeline-content p { font-size: 15px; color: var(--gray-600); }
+        /* Timeline */
+        .timeline { position: relative; max-width: 900px; margin: 0 auto; }
+        .timeline::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: var(--dark-600); }
+        .timeline-item { position: relative; margin-bottom: 60px; display: flex; align-items: flex-start; }
+        .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
+        .timeline-item:nth-child(odd) .timeline-content { text-align: right; padding-right: 60px; padding-left: 0; }
+        .timeline-item:nth-child(even) .timeline-content { padding-left: 60px; }
+        .timeline-dot { position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--gradient-primary); border-radius: 50%; z-index: 10; box-shadow: 0 0 20px rgba(99, 102, 241, 0.5); }
+        .timeline-content { width: 50%; }
+        .timeline-year { font-size: 48px; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; line-height: 1; }
+        .timeline-card { background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 16px; padding: 32px; transition: all 0.3s; }
+        .timeline-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+        .timeline-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+        .timeline-card p { font-size: 14px; color: var(--gray-400); line-height: 1.7; }
+        .timeline-card ul { list-style: none; margin-top: 16px; }
+        .timeline-card ul li { font-size: 13px; color: var(--gray-400); padding: 6px 0; padding-left: 16px; position: relative; }
+        .timeline-card ul li::before { content: '•'; position: absolute; left: 0; color: var(--primary); }
 
-        .cta-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); padding: 80px 24px; text-align: center; color: var(--white); }
-        .cta-section h2 { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
-        .cta-section p { font-size: 17px; opacity: 0.9; margin-bottom: 32px; }
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 18px 36px; font-size: 16px; font-weight: 600; border-radius: 12px; text-decoration: none; }
-        .cta-section .btn { background: var(--white); color: var(--primary); }
+        /* Stats */
+        .stats-section { background: linear-gradient(180deg, var(--dark-800) 0%, var(--dark) 100%); padding: 120px 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 64px; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 12px; }
+        .stat-label { font-size: 15px; color: var(--gray-400); }
 
-        @media (max-width: 768px) {
-            .page-hero { padding: 120px 16px 60px; }
-            .page-hero h1 { font-size: 32px; }
-            .section { padding: 60px 16px; }
+        /* CTA */
+        .cta-section { background: var(--gradient-primary); padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 50%); }
+        .cta-content { position: relative; z-index: 10; }
+        .cta-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
+        .cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 18px 36px; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .cta-section .btn-primary { background: var(--white); color: var(--primary-dark); }
+        .cta-section .btn-ghost { border: 1px solid rgba(255,255,255,0.3); background: transparent; color: var(--white); }
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+        @media (max-width: 1024px) { .section { padding: 100px 0; } .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; } }
+        @media (max-width: 768px) { 
+            .hero { padding: 120px 0 80px; } 
+            .section { padding: 80px 0; } 
+            .timeline::before { left: 20px; }
+            .timeline-dot { left: 20px; }
+            .timeline-item, .timeline-item:nth-child(odd) { flex-direction: column; padding-left: 50px; }
+            .timeline-content, .timeline-item:nth-child(odd) .timeline-content { width: 100%; text-align: left; padding: 0 !important; }
+            .stats-grid { grid-template-columns: 1fr; gap: 40px; }
+            .hero-actions { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
-    <section class="page-hero">
-        <h1>연혁</h1>
-        <p>2001년 설립 이래 20년 이상의 기술 축적</p>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-label">History</div>
+                <h1 class="hero-title">
+                    <span class="line">혁신의</span>
+                    <span class="line"><span class="highlight">발자취</span></span>
+                </h1>
+                <p class="hero-desc">팀벨은 AI 기술의 선두주자로서 끊임없는 혁신과 도전으로 성장해왔습니다.</p>
+            </div>
+        </div>
     </section>
 
-    <section class="section">
+    <section class="section section-dark-alt">
         <div class="container">
+            <div class="section-header center">
+                <div class="section-label">Milestones</div>
+                <h2 class="section-title">주요 연혁</h2>
+            </div>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-year">2024 - 현재</div>
                     <div class="timeline-content">
-                        <h3>AI 플랫폼 고도화</h3>
-                        <p>LLM·RAG 기반 지식 AI 플랫폼 출시, AICC 솔루션 확장, AI 메타휴먼 수어 아바타 개발</p>
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-card">
+                            <h4>AI 기술 혁신</h4>
+                            <p>LLM/RAG 기반 차세대 AI 플랫폼 출시</p>
+                            <ul>
+                                <li>Agentic RAG 기술 도입</li>
+                                <li>AI 상담 어드바이저 고도화</li>
+                                <li>AI 메타휴먼 수어 아바타 출시</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-year">2020 - 2023</div>
                     <div class="timeline-content">
-                        <h3>AI 솔루션 다각화</h3>
-                        <p>GS인증 1등급 획득, AI 회의록 솔루션 출시, 음성인식/합성 기술 고도화</p>
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-card">
+                            <h4>AICC 솔루션 확대</h4>
+                            <p>AI 컨택센터 솔루션 라인업 강화</p>
+                            <ul>
+                                <li>AI 콜봇/챗봇 솔루션 출시</li>
+                                <li>KMS 지식관리 시스템 고도화</li>
+                                <li>TA/QA 품질 분석 솔루션 출시</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-year">2015 - 2019</div>
                     <div class="timeline-content">
-                        <h3>속기·자막 시장 선도</h3>
-                        <p>SORIBARO, TEXTAR, SORIZAVA 등 속기·자막 솔루션 라인업 확대</p>
+                        <div class="timeline-year">2022</div>
+                        <div class="timeline-card">
+                            <h4>시장 확대</h4>
+                            <p>AI 회의록 및 속기 솔루션 사업 확대</p>
+                            <ul>
+                                <li>바로노트/팀블로 출시</li>
+                                <li>SORIBARO/SORIZAVA 서비스 런칭</li>
+                                <li>공공기관 대상 서비스 확대</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-year">2010 - 2014</div>
                     <div class="timeline-content">
-                        <h3>기술 연구 강화</h3>
-                        <p>음성인식 기술 연구 본격화, 다수 특허 출원 및 등록</p>
+                        <div class="timeline-year">2021</div>
+                        <div class="timeline-card">
+                            <h4>기술 고도화</h4>
+                            <p>음성인식/자연어처리 기술 고도화</p>
+                            <ul>
+                                <li>STT/TTS 엔진 성능 향상</li>
+                                <li>자체 NLU 엔진 개발</li>
+                                <li>AI 대화엔진 출시</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-year">2001</div>
                     <div class="timeline-content">
-                        <h3>회사 설립</h3>
-                        <p>(주)팀벨 설립, 속기 키보드 및 관련 솔루션 개발 시작</p>
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-card">
+                            <h4>성장 기반 구축</h4>
+                            <p>AI 음성·언어 기술 기반 사업 본격화</p>
+                            <ul>
+                                <li>AI 음성인식 솔루션 출시</li>
+                                <li>주요 기업 고객사 확보</li>
+                                <li>R&D 인력 확충</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item"><div class="stat-value">5+</div><div class="stat-label">Years</div></div>
+                <div class="stat-item"><div class="stat-value">500+</div><div class="stat-label">고객사</div></div>
+                <div class="stat-item"><div class="stat-value">20+</div><div class="stat-label">AI 제품</div></div>
+                <div class="stat-item"><div class="stat-value">100+</div><div class="stat-label">전문 인력</div></div>
+            </div>
+        </div>
+    </section>
+
     <section class="cta-section">
-        <h2>함께 성장할 파트너를 찾고 계신가요?</h2>
-        <p>팀벨과 함께 AI 혁신을 시작하세요.</p>
-        <a href="../contact.html" class="btn">도입 상담 신청</a>
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">함께 미래를<br>만들어가세요</h2>
+                <p class="cta-desc">팀벨과 함께 AI 기술의 새로운 역사를 써나갑니다.</p>
+                <div class="hero-actions" style="justify-content: center;">
+                    <a href="careers.html" class="btn btn-primary">채용 정보</a>
+                    <a href="../contact.html" class="btn btn-ghost">문의하기</a>
+                </div>
+            </div>
+        </div>
     </section>
 
     <div id="footer-placeholder"></div>

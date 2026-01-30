@@ -3,105 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>최신 소식 | 팀벨</title>
-    <meta name="description" content="팀벨의 최신 뉴스와 공지사항을 확인하세요. 신제품 출시, 이벤트, 기업 소식을 전해드립니다.">
-    <meta name="keywords" content="팀벨 뉴스, 공지사항, 최신소식, 보도자료">
+    <title>최신 소식 - 팀벨 | 뉴스 및 공지사항</title>
+    <meta name="description" content="팀벨의 최신 뉴스, 보도자료, 공지사항을 확인하세요.">
+    <meta name="keywords" content="팀벨 뉴스, 보도자료, 공지사항, AI 소식">
     <link rel="canonical" href="https://timbel.net/resources/news.html">
-    <meta property="og:title" content="최신 소식 | 팀벨">
-    <meta property="og:description" content="팀벨의 최신 뉴스와 공지사항">
-    <meta property="og:url" content="https://timbel.net/resources/news.html">
-    <meta property="og:image" content="https://timbel.net/img/og-image.png">
+    <meta property="og:title" content="최신 소식 - 팀벨">
+    <meta property="og:description" content="뉴스 및 공지사항">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
     <style>
-        :root { --primary: #4593FC; --primary-dark: #2B7DE9; --secondary: #00C9B7; --dark: #191F28; --gray-600: #8B95A1; --gray-400: #D1D6DB; --gray-200: #F2F4F6; --gray-100: #F9FAFB; --white: #FFFFFF; }
+        :root {
+            --primary: #4593FC;
+            --primary-dark: #2B7DE9;
+            --primary-light: #6BA8FD;
+            --dark: #191F28;
+            --gray-900: #111827;
+            --gray-700: #374151;
+            --gray-600: #4b5563;
+            --gray-500: #6b7280;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+            --gray-50: #f9fafb;
+            --white: #FFFFFF;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Pretendard Variable', Pretendard, sans-serif; background: var(--white); color: var(--dark); line-height: 1.7; }
-        .page-hero { padding: 180px 24px 80px; background: linear-gradient(135deg, var(--dark) 0%, #2d3748 100%); text-align: center; color: var(--white); }
-        .page-hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 16px; }
-        .page-hero p { font-size: 18px; color: var(--gray-400); }
-        .section { padding: 80px 24px; }
-        .container { max-width: 900px; margin: 0 auto; }
-        .news-list { display: flex; flex-direction: column; gap: 24px; }
-        .news-card { display: flex; gap: 24px; padding: 24px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 16px; transition: all 0.3s; text-decoration: none; }
-        .news-card:hover { border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-        .news-date { flex-shrink: 0; width: 80px; text-align: center; padding: 16px 0; background: var(--gray-100); border-radius: 12px; }
-        .news-date .day { font-size: 28px; font-weight: 800; color: var(--primary); display: block; }
-        .news-date .month { font-size: 13px; color: var(--gray-600); }
-        .news-content { flex: 1; }
-        .news-badge { display: inline-block; padding: 4px 10px; background: rgba(69,147,252,0.1); color: var(--primary); font-size: 12px; font-weight: 600; border-radius: 100px; margin-bottom: 8px; }
-        .news-card h3 { font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
-        .news-card p { font-size: 14px; color: var(--gray-600); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--white); color: var(--gray-900); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Page Header */
+        .page-header { padding: 160px 0 80px; background: var(--gray-50); border-bottom: 1px solid var(--gray-200); }
+        .page-header-inner { max-width: 800px; }
+        .page-title { font-size: 48px; font-weight: 800; color: var(--gray-900); margin-bottom: 16px; letter-spacing: -1px; }
+        .page-desc { font-size: 18px; color: var(--gray-600); line-height: 1.7; }
+
+        /* Category Tabs */
+        .category-section { padding: 32px 0; border-bottom: 1px solid var(--gray-200); position: sticky; top: 80px; background: var(--white); z-index: 50; }
+        .category-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+        .category-tab { padding: 10px 20px; font-size: 14px; font-weight: 600; color: var(--gray-600); background: var(--gray-100); border: none; border-radius: 100px; cursor: pointer; transition: all 0.2s; }
+        .category-tab:hover { background: var(--gray-200); color: var(--gray-900); }
+        .category-tab.active { background: var(--primary); color: var(--white); }
+
+        /* Content Section */
+        .content-section { padding: 60px 0 120px; }
+
+        /* News Cards */
+        .news-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .news-card { padding: 32px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 16px; transition: all 0.3s; display: flex; flex-direction: column; }
+        .news-card:hover { border-color: var(--primary); box-shadow: 0 8px 30px rgba(0,0,0,0.08); transform: translateY(-4px); }
+        .news-meta { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; }
+        .news-category { padding: 4px 12px; background: var(--gray-100); color: var(--gray-700); border-radius: 100px; font-size: 12px; font-weight: 600; }
+        .news-category.press { background: #dbeafe; color: #1d4ed8; }
+        .news-category.notice { background: #fef3c7; color: #b45309; }
+        .news-category.event { background: #d1fae5; color: #047857; }
+        .news-date { font-size: 13px; color: var(--gray-500); }
+        .news-title { font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 12px; line-height: 1.4; flex: 1; }
+        .news-title:hover { color: var(--primary); }
+        .news-excerpt { font-size: 14px; color: var(--gray-600); line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 16px; }
+        .news-link { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--primary); text-decoration: none; transition: gap 0.2s; }
+        .news-link:hover { gap: 10px; }
+        .news-link svg { width: 16px; height: 16px; }
+
+        /* Featured News */
+        .featured-news { grid-column: span 2; display: flex; gap: 32px; padding: 40px; background: linear-gradient(135deg, var(--gray-900) 0%, #1e293b 100%); border-radius: 20px; color: white; }
+        .featured-news .news-thumbnail { width: 400px; height: 240px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; }
+        .featured-news .news-content { display: flex; flex-direction: column; }
+        .featured-news .news-category { background: var(--primary); color: white; }
+        .featured-news .news-date { color: var(--gray-400); }
+        .featured-news .news-title { font-size: 26px; color: white; }
+        .featured-news .news-excerpt { color: var(--gray-300); -webkit-line-clamp: 3; }
+        .featured-news .news-link { color: var(--primary-light); }
+
+        /* Load More */
+        .load-more { text-align: center; padding: 40px 0; }
+        .btn-load-more { padding: 16px 48px; font-size: 15px; font-weight: 600; color: var(--gray-700); background: var(--white); border: 2px solid var(--gray-300); border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+        .btn-load-more:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* Newsletter Section */
+        .newsletter-section { background: var(--gray-50); padding: 80px 0; }
+        .newsletter-inner { max-width: 600px; margin: 0 auto; text-align: center; }
+        .newsletter-inner h3 { font-size: 28px; font-weight: 700; color: var(--gray-900); margin-bottom: 12px; }
+        .newsletter-inner p { font-size: 16px; color: var(--gray-600); margin-bottom: 32px; }
+        .newsletter-form { display: flex; gap: 12px; }
+        .newsletter-form input { flex: 1; padding: 16px 20px; font-size: 15px; border: 1px solid var(--gray-300); border-radius: 8px; outline: none; transition: border-color 0.2s; }
+        .newsletter-form input:focus { border-color: var(--primary); }
+        .newsletter-form button { padding: 16px 32px; font-size: 15px; font-weight: 600; color: var(--white); background: var(--primary); border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+        .newsletter-form button:hover { background: var(--primary-dark); }
+
+        @media (max-width: 1024px) {
+            .news-grid { grid-template-columns: 1fr; }
+            .featured-news { grid-column: span 1; flex-direction: column; }
+            .featured-news .news-thumbnail { width: 100%; height: 200px; }
+        }
         @media (max-width: 768px) {
-            .page-hero { padding: 120px 16px 60px; }
-            .page-hero h1 { font-size: 32px; }
-            .section { padding: 60px 16px; }
-            .news-card { flex-direction: column; gap: 16px; }
-            .news-date { width: 100%; display: flex; align-items: center; gap: 8px; padding: 12px 16px; }
-            .news-date .day { font-size: 20px; }
+            .page-header { padding: 120px 0 60px; }
+            .page-title { font-size: 32px; }
+            .news-card { padding: 24px; }
+            .newsletter-form { flex-direction: column; }
         }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
-    <section class="page-hero">
-        <h1>최신 소식</h1>
-        <p>팀벨의 새로운 소식과 업데이트를 확인해 보세요.</p>
-    </section>
-    <section class="section">
+
+    <section class="page-header">
         <div class="container">
-            <div class="news-list">
-                <a href="#" class="news-card">
-                    <div class="news-date"><span class="day">15</span><span class="month">2026.01</span></div>
-                    <div class="news-content">
-                        <span class="news-badge">보도자료</span>
-                        <h3>팀벨, AI 회의록 솔루션 '팀블로' 정식 출시</h3>
-                        <p>화자분리 기술과 LLM을 결합한 지능형 회의록 솔루션으로 기업 생산성 향상 지원</p>
-                    </div>
-                </a>
-                <a href="#" class="news-card">
-                    <div class="news-date"><span class="day">08</span><span class="month">2026.01</span></div>
-                    <div class="news-content">
-                        <span class="news-badge">수상</span>
-                        <h3>SORIBARO, 정보접근성 우수 솔루션 선정</h3>
-                        <p>청각장애인 정보접근성 향상에 기여한 공로로 장관 표창 수상</p>
-                    </div>
-                </a>
-                <a href="#" class="news-card">
-                    <div class="news-date"><span class="day">20</span><span class="month">2025.12</span></div>
-                    <div class="news-content">
-                        <span class="news-badge">제휴</span>
-                        <h3>국내 대형 금융사와 AICC 구축 계약 체결</h3>
-                        <p>AI 콜봇, 상담 어드바이저 등 AICC 통합 플랫폼 구축 프로젝트 수주</p>
-                    </div>
-                </a>
-                <a href="#" class="news-card">
-                    <div class="news-date"><span class="day">05</span><span class="month">2025.12</span></div>
-                    <div class="news-content">
-                        <span class="news-badge">신제품</span>
-                        <h3>AI 메타휴먼 수어 아바타 베타 서비스 시작</h3>
-                        <p>청각장애인을 위한 실시간 수어 통역 아바타 서비스 공개</p>
-                    </div>
-                </a>
-                <a href="#" class="news-card">
-                    <div class="news-date"><span class="day">15</span><span class="month">2025.11</span></div>
-                    <div class="news-content">
-                        <span class="news-badge">인증</span>
-                        <h3>AI CORE 플랫폼, GS인증 1등급 획득</h3>
-                        <p>LLM·RAG 기반 지식 AI 플랫폼의 품질과 안정성 공식 인증</p>
-                    </div>
-                </a>
-                <a href="#" class="news-card">
-                    <div class="news-date"><span class="day">01</span><span class="month">2025.11</span></div>
-                    <div class="news-content">
-                        <span class="news-badge">행사</span>
-                        <h3>AI EXPO 2025 참가 및 솔루션 시연</h3>
-                        <p>COEX에서 열린 AI EXPO에서 최신 AI 솔루션 라인업 공개</p>
-                    </div>
-                </a>
+            <div class="page-header-inner">
+                <h1 class="page-title">최신 소식</h1>
+                <p class="page-desc">팀벨의 새로운 소식, 보도자료, 이벤트 정보를 가장 빠르게 확인하세요.</p>
             </div>
         </div>
     </section>
+
+    <section class="category-section">
+        <div class="container">
+            <div class="category-tabs">
+                <button class="category-tab active">전체보기</button>
+                <button class="category-tab">보도자료</button>
+                <button class="category-tab">공지사항</button>
+                <button class="category-tab">이벤트</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="news-grid">
+                <article class="news-card featured-news">
+                    <div class="news-thumbnail">NEW</div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-category">보도자료</span>
+                            <span class="news-date">2024.12.20</span>
+                        </div>
+                        <h2 class="news-title">팀벨, LLM 기반 차세대 AI 플랫폼 출시… "기업 AI 도입 문턱 낮춘다"</h2>
+                        <p class="news-excerpt">팀벨이 LLM과 RAG 기술을 결합한 차세대 AI 플랫폼을 출시했다. 이번 플랫폼은 기업이 보유한 내부 데이터를 활용해 맞춤형 AI 서비스를 쉽게 구축할 수 있도록 지원한다.</p>
+                        <a href="#" class="news-link">자세히 보기 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-meta">
+                        <span class="news-category press">보도자료</span>
+                        <span class="news-date">2024.12.10</span>
+                    </div>
+                    <h2 class="news-title">팀벨, ISO 27001 정보보안 인증 획득</h2>
+                    <p class="news-excerpt">팀벨이 국제 정보보안 관리체계 인증인 ISO 27001을 획득했다. 이로써 기업 고객에게 더욱 안전한 AI 서비스를 제공할 수 있게 되었다.</p>
+                    <a href="#" class="news-link">자세히 보기 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-meta">
+                        <span class="news-category notice">공지사항</span>
+                        <span class="news-date">2024.12.05</span>
+                    </div>
+                    <h2 class="news-title">연말연시 고객센터 운영 안내</h2>
+                    <p class="news-excerpt">2024년 연말연시 기간 동안 고객센터 운영 시간이 일부 변경됩니다. 자세한 내용을 확인해주세요.</p>
+                    <a href="#" class="news-link">자세히 보기 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-meta">
+                        <span class="news-category event">이벤트</span>
+                        <span class="news-date">2024.11.25</span>
+                    </div>
+                    <h2 class="news-title">[웨비나] AI 컨택센터 구축 전략 세미나 개최</h2>
+                    <p class="news-excerpt">AICC 도입을 고민하는 기업을 위한 무료 웨비나를 개최합니다. 실제 도입 사례와 함께 성공적인 AI 컨택센터 구축 전략을 공유합니다.</p>
+                    <a href="#" class="news-link">자세히 보기 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-meta">
+                        <span class="news-category press">보도자료</span>
+                        <span class="news-date">2024.11.15</span>
+                    </div>
+                    <h2 class="news-title">팀벨, AI 메타휴먼 수어 아바타 '리나&바로' 공개</h2>
+                    <p class="news-excerpt">팀벨이 청각장애인의 정보 접근성 향상을 위한 AI 수어 아바타 서비스를 공개했다. 실시간 수어 통역이 가능해 공공기관 및 방송에서 활용될 전망이다.</p>
+                    <a href="#" class="news-link">자세히 보기 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-meta">
+                        <span class="news-category press">보도자료</span>
+                        <span class="news-date">2024.10.30</span>
+                    </div>
+                    <h2 class="news-title">팀벨, 'AI 기술 혁신상' 수상</h2>
+                    <p class="news-excerpt">팀벨이 한국AI산업협회가 주관하는 'AI 기술 혁신상'을 수상했다. 음성인식 및 자연어처리 분야의 기술 혁신을 인정받았다.</p>
+                    <a href="#" class="news-link">자세히 보기 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </article>
+            </div>
+
+            <div class="load-more">
+                <button class="btn-load-more">더보기</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-inner">
+                <h3>팀벨 소식을 받아보세요</h3>
+                <p>새로운 제품 출시, 이벤트, 인사이트를 이메일로 받아보세요.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="이메일 주소를 입력하세요">
+                    <button type="submit">구독하기</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <div id="footer-placeholder"></div>
     <script src="../js/common.js"></script>
+    <script>
+        // Category tab interaction
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>

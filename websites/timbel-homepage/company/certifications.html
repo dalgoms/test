@@ -3,132 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>인증 및 특허 | 팀벨</title>
-    <meta name="description" content="팀벨의 GS인증 1등급, 기술 특허 보유 현황을 소개합니다. 검증된 기술력으로 신뢰할 수 있는 솔루션을 제공합니다.">
-    <meta name="keywords" content="팀벨 인증, GS인증, 기술특허, 품질인증">
+    <title>인증 및 특허 - 팀벨 | 기술력의 증명</title>
+    <meta name="description" content="팀벨이 보유한 각종 인증, 특허, 수상 내역을 소개합니다.">
+    <meta name="keywords" content="팀벨 인증, 특허, AI 기술 인증, ISO 인증">
     <link rel="canonical" href="https://timbel.net/company/certifications.html">
-    <meta property="og:title" content="인증 및 특허 | 팀벨">
-    <meta property="og:description" content="GS인증 1등급, 다수의 기술 특허 보유">
-    <meta property="og:url" content="https://timbel.net/company/certifications.html">
-    <meta property="og:image" content="https://timbel.net/img/og-image.png">
+    <meta property="og:title" content="인증 및 특허 - 팀벨">
+    <meta property="og:description" content="기술력의 증명">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
     <style>
-        :root { --primary: #4593FC; --primary-dark: #2B7DE9; --secondary: #00C9B7; --dark: #191F28; --gray-600: #8B95A1; --gray-400: #D1D6DB; --gray-200: #F2F4F6; --gray-100: #F9FAFB; --white: #FFFFFF; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; background: var(--white); color: var(--dark); line-height: 1.7; }
-
-        .page-hero { padding: 180px 24px 100px; background: linear-gradient(135deg, var(--dark) 0%, #2d3748 100%); text-align: center; color: var(--white); }
-        .page-hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 20px; }
-        .page-hero p { font-size: 18px; color: var(--gray-400); }
-
-        .section { padding: 100px 24px; }
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 64px; }
-        .section-label { font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
-        .section-title { font-size: 36px; font-weight: 800; margin-bottom: 20px; }
-        .section-subtitle { font-size: 17px; color: var(--gray-600); }
-        .container { max-width: 1200px; margin: 0 auto; }
-
-        .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-        .cert-card { background: var(--gray-100); border-radius: 20px; padding: 40px; text-align: center; transition: all 0.3s; }
-        .cert-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-        .cert-icon { width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
-        .cert-icon svg { width: 40px; height: 40px; color: white; }
-        .cert-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
-        .cert-card p { font-size: 15px; color: var(--gray-600); }
-
-        .patent-section { background: var(--gray-100); }
-        .patent-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-        .patent-item { background: var(--white); border-radius: 16px; padding: 24px; border-left: 4px solid var(--primary); }
-        .patent-item h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-        .patent-item p { font-size: 14px; color: var(--gray-600); }
-
-        .cta-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); padding: 80px 24px; text-align: center; color: var(--white); }
-        .cta-section h2 { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
-        .cta-section p { font-size: 17px; opacity: 0.9; margin-bottom: 32px; }
-        .btn { display: inline-flex; padding: 18px 36px; font-size: 16px; font-weight: 600; border-radius: 12px; text-decoration: none; }
-        .cta-section .btn { background: var(--white); color: var(--primary); }
-
-        @media (max-width: 1024px) { .cert-grid, .patent-list { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) {
-            .page-hero { padding: 120px 16px 60px; }
-            .page-hero h1 { font-size: 32px; }
-            .section { padding: 60px 16px; }
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --primary-light: #34d399;
+            --secondary: #8b5cf6;
+            --dark: #0a0a0f;
+            --dark-800: #1a1a2e;
+            --dark-700: #252540;
+            --dark-600: #2d2d4a;
+            --gray-900: #111827;
+            --gray-600: #4b5563;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+            --gray-50: #f9fafb;
+            --white: #FFFFFF;
+            --gradient-primary: linear-gradient(135deg, #10b981 0%, #059669 100%);
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--dark); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+        @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+        .hero { min-height: 80vh; display: flex; align-items: center; position: relative; padding: 160px 0 120px; background: var(--dark); overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -30%; right: -20%; width: 70%; height: 140%; background: radial-gradient(ellipse, rgba(16, 185, 129, 0.12) 0%, transparent 60%); }
+        .hero-content { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; text-align: center; }
+        .hero-label { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-light); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 32px; }
+        .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--primary); }
+        .hero-title { font-size: clamp(48px, 8vw, 80px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 32px; }
+        .hero-title .line { display: block; }
+        .hero-title .highlight { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-desc { font-size: 18px; color: var(--gray-400); line-height: 1.8; max-width: 600px; margin: 0 auto; }
+
+        .section { padding: 160px 0; position: relative; }
+        .section-dark-alt { background: var(--dark-800); }
+        .section-light { background: var(--gray-50); color: var(--gray-900); }
+        .section-header { margin-bottom: 80px; }
+        .section-header.center { text-align: center; }
+        .section-label { display: inline-flex; font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; }
+        .section-title { font-size: clamp(36px, 5vw, 52px); font-weight: 800; line-height: 1.2; letter-spacing: -1px; margin-bottom: 24px; }
+        .section-light .section-title { color: var(--gray-900); }
+        .section-desc { font-size: 17px; color: var(--gray-400); line-height: 1.8; max-width: 600px; }
+        .section-header.center .section-desc { margin: 0 auto; }
+        .section-light .section-desc { color: var(--gray-600); }
+
+        /* Certifications */
+        .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .cert-card { padding: 48px 36px; background: var(--white); border-radius: 24px; border: 1px solid var(--gray-200); text-align: center; transition: all 0.4s; }
+        .cert-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
+        .cert-icon { width: 80px; height: 80px; background: var(--gradient-primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
+        .cert-icon svg { width: 40px; height: 40px; color: white; }
+        .cert-card h4 { font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 12px; }
+        .cert-card p { font-size: 14px; color: var(--gray-600); line-height: 1.7; }
+
+        /* Patents */
+        .patent-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .patent-card { padding: 36px 32px; background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 20px; display: flex; gap: 24px; align-items: flex-start; transition: all 0.3s; }
+        .patent-card:hover { border-color: var(--primary); transform: translateX(8px); }
+        .patent-num { font-size: 48px; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.5; line-height: 1; flex-shrink: 0; }
+        .patent-content h4 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .patent-content p { font-size: 14px; color: var(--gray-400); line-height: 1.6; }
+        .patent-tag { display: inline-block; padding: 4px 10px; background: var(--dark-600); border-radius: 100px; font-size: 11px; color: var(--primary-light); font-weight: 600; margin-top: 12px; }
+
+        /* Awards */
+        .award-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .award-card { padding: 36px 24px; background: var(--white); border-radius: 20px; border: 1px solid var(--gray-200); text-align: center; transition: all 0.3s; }
+        .award-card:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08); }
+        .award-year { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+        .award-card h4 { font-size: 16px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; line-height: 1.4; }
+        .award-card p { font-size: 13px; color: var(--gray-600); }
+
+        /* Stats */
+        .stats-section { background: linear-gradient(180deg, var(--dark) 0%, var(--dark-800) 100%); padding: 120px 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 64px; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 12px; }
+        .stat-label { font-size: 15px; color: var(--gray-400); }
+
+        /* CTA */
+        .cta-section { background: var(--gradient-primary); padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 50%); }
+        .cta-content { position: relative; z-index: 10; }
+        .cta-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
+        .cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 18px 36px; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .cta-section .btn-primary { background: var(--white); color: var(--primary-dark); }
+        .cta-section .btn-ghost { border: 1px solid rgba(255,255,255,0.3); background: transparent; color: var(--white); }
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+        @media (max-width: 1024px) { .section { padding: 100px 0; } .cert-grid { grid-template-columns: 1fr; } .patent-grid { grid-template-columns: 1fr; } .award-grid { grid-template-columns: repeat(2, 1fr); } .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; } }
+        @media (max-width: 768px) { .hero { padding: 120px 0 80px; } .section { padding: 80px 0; } .patent-card { flex-direction: column; gap: 16px; } .award-grid { grid-template-columns: 1fr; } .stats-grid { grid-template-columns: 1fr; gap: 40px; } .hero-actions { flex-direction: column; } .btn { width: 100%; justify-content: center; } }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
-    <section class="page-hero">
-        <h1>인증 및 특허</h1>
-        <p>GS인증 1등급 · 기술 특허 다수 보유</p>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-label">Certifications & Patents</div>
+                <h1 class="hero-title">
+                    <span class="line">기술력의</span>
+                    <span class="line"><span class="highlight">증명</span></span>
+                </h1>
+                <p class="hero-desc">팀벨은 검증된 기술력과 품질로 고객의 신뢰에 보답합니다.</p>
+            </div>
+        </div>
     </section>
 
-    <section class="section">
+    <section class="section section-light">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">Certifications</span>
+            <div class="section-header center">
+                <div class="section-label" style="color: var(--primary-dark);">Certifications</div>
                 <h2 class="section-title">주요 인증</h2>
-                <p class="section-subtitle">검증된 품질과 기술력을 인정받았습니다</p>
             </div>
             <div class="cert-grid">
                 <div class="cert-card">
-                    <div class="cert-icon">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-                    </div>
-                    <h3>GS인증 1등급</h3>
-                    <p>소프트웨어 품질 인증 최고 등급 획득</p>
+                    <div class="cert-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+                    <h4>ISO 27001</h4>
+                    <p>정보보안 경영시스템 국제 인증으로 고객 데이터를 안전하게 보호합니다.</p>
                 </div>
                 <div class="cert-card">
-                    <div class="cert-icon" style="background: linear-gradient(135deg, var(--secondary) 0%, #00a89a 100%);">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                    </div>
-                    <h3>ISO 27001</h3>
-                    <p>정보보안경영시스템 국제 인증</p>
+                    <div class="cert-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+                    <h4>기업부설연구소</h4>
+                    <p>한국산업기술진흥협회 인정 기업부설연구소를 운영하며 R&D에 투자합니다.</p>
                 </div>
                 <div class="cert-card">
-                    <div class="cert-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
-                    </div>
-                    <h3>기업부설연구소</h3>
-                    <p>AI 기술 연구 및 개발 인정</p>
+                    <div class="cert-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg></div>
+                    <h4>이노비즈 인증</h4>
+                    <p>기술혁신형 중소기업 인증으로 우수한 기술력을 인정받았습니다.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section patent-section">
+    <section class="section section-dark-alt">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">Patents</span>
+            <div class="section-header center">
+                <div class="section-label">Patents</div>
                 <h2 class="section-title">주요 특허</h2>
-                <p class="section-subtitle">50건 이상의 특허 및 지적재산권 보유</p>
             </div>
-            <div class="patent-list">
-                <div class="patent-item">
-                    <h4>음성인식 기반 실시간 자막 생성 시스템</h4>
-                    <p>특허 제10-XXXXXXX호</p>
+            <div class="patent-grid">
+                <div class="patent-card">
+                    <div class="patent-num">01</div>
+                    <div class="patent-content">
+                        <h4>AI 음성인식 기술</h4>
+                        <p>딥러닝 기반 실시간 음성인식 및 화자 분리 기술</p>
+                        <span class="patent-tag">등록 특허</span>
+                    </div>
                 </div>
-                <div class="patent-item">
-                    <h4>AI 속기 키보드 및 입력 방법</h4>
-                    <p>특허 제10-XXXXXXX호</p>
+                <div class="patent-card">
+                    <div class="patent-num">02</div>
+                    <div class="patent-content">
+                        <h4>자연어처리 엔진</h4>
+                        <p>한국어 특화 자연어 이해 및 의도 분석 기술</p>
+                        <span class="patent-tag">등록 특허</span>
+                    </div>
                 </div>
-                <div class="patent-item">
-                    <h4>화자분리 기반 회의록 자동 생성 방법</h4>
-                    <p>특허 제10-XXXXXXX호</p>
+                <div class="patent-card">
+                    <div class="patent-num">03</div>
+                    <div class="patent-content">
+                        <h4>AI 대화 시스템</h4>
+                        <p>컨텍스트 기반 멀티턴 대화 처리 기술</p>
+                        <span class="patent-tag">등록 특허</span>
+                    </div>
                 </div>
-                <div class="patent-item">
-                    <h4>LLM 기반 지식 검색 시스템</h4>
-                    <p>특허 제10-XXXXXXX호</p>
+                <div class="patent-card">
+                    <div class="patent-num">04</div>
+                    <div class="patent-content">
+                        <h4>음성합성 기술</h4>
+                        <p>자연스러운 음성 생성 및 감정 표현 기술</p>
+                        <span class="patent-tag">출원 특허</span>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label" style="color: var(--primary-dark);">Awards</div>
+                <h2 class="section-title">수상 내역</h2>
+            </div>
+            <div class="award-grid">
+                <div class="award-card">
+                    <div class="award-year">2024</div>
+                    <h4>AI 기술 혁신상</h4>
+                    <p>한국AI산업협회</p>
+                </div>
+                <div class="award-card">
+                    <div class="award-year">2023</div>
+                    <h4>디지털 서비스 우수기업</h4>
+                    <p>과학기술정보통신부</p>
+                </div>
+                <div class="award-card">
+                    <div class="award-year">2022</div>
+                    <h4>기술혁신 대상</h4>
+                    <p>중소벤처기업부</p>
+                </div>
+                <div class="award-card">
+                    <div class="award-year">2021</div>
+                    <h4>우수 스타트업 선정</h4>
+                    <p>창업진흥원</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item"><div class="stat-value">10+</div><div class="stat-label">등록 특허</div></div>
+                <div class="stat-item"><div class="stat-value">5+</div><div class="stat-label">주요 인증</div></div>
+                <div class="stat-item"><div class="stat-value">15+</div><div class="stat-label">수상 내역</div></div>
+                <div class="stat-item"><div class="stat-value">100%</div><div class="stat-label">품질 보증</div></div>
             </div>
         </div>
     </section>
 
     <section class="cta-section">
-        <h2>검증된 기술력을 경험하세요</h2>
-        <p>팀벨의 인증된 솔루션으로 비즈니스를 혁신하세요.</p>
-        <a href="../contact.html" class="btn">도입 상담 신청</a>
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">검증된 기술력으로<br>비즈니스를 혁신합니다</h2>
+                <p class="cta-desc">팀벨의 AI 솔루션을 경험해보세요.</p>
+                <div class="hero-actions" style="justify-content: center;">
+                    <a href="../contact.html" class="btn btn-primary">문의하기</a>
+                    <a href="business.html" class="btn btn-ghost">사업 영역</a>
+                </div>
+            </div>
+        </div>
     </section>
 
     <div id="footer-placeholder"></div>

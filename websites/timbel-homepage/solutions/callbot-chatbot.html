@@ -3,74 +3,742 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 콜봇 및 챗봇 솔루션 | 팀벨</title>
-    <meta name="description" content="24시간 자동 응대가 가능한 AI 상담 콜봇 및 챗봇 솔루션. 고객 문의를 자동으로 처리하여 업무 효율을 높입니다.">
-    <meta name="keywords" content="콜봇, 챗봇, AI 상담, 자동응대, 고객상담, 팀벨">
+    <title>AI 콜봇 · 챗봇 | 팀벨</title>
+    <meta name="description" content="LLM과 RAG 기반의 AI 콜봇 및 챗봇 솔루션. 24시간 자동 고객 응대로 상담 효율을 높이고 운영 비용을 절감합니다.">
+    <meta name="keywords" content="콜봇, 챗봇, AI 상담, 자동응대, LLM, RAG, 24시간 상담, 팀벨">
     <link rel="canonical" href="https://timbel.net/solutions/callbot-chatbot.html">
-    <meta property="og:title" content="AI 콜봇 및 챗봇 솔루션 | 팀벨">
-    <meta property="og:description" content="24시간 자동 응대 AI 콜봇 및 챗봇">
-    <meta property="og:url" content="https://timbel.net/solutions/callbot-chatbot.html">
-    <meta property="og:image" content="https://timbel.net/img/og-image.png">
+    <meta property="og:title" content="AI 콜봇 · 챗봇 | 팀벨">
+    <meta property="og:description" content="LLM과 RAG 기반 24시간 자동 고객 응대 솔루션">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
     <style>
-        :root { --primary: #4593FC; --primary-dark: #2B7DE9; --secondary: #00C9B7; --dark: #191F28; --gray-600: #8B95A1; --gray-100: #F9FAFB; --white: #FFFFFF; }
+        :root {
+            --primary: #06b6d4;
+            --primary-dark: #0891b2;
+            --primary-light: #22d3ee;
+            --secondary: #8b5cf6;
+            --accent: #f97316;
+            --dark: #0a0a0f;
+            --dark-800: #1a1a2e;
+            --dark-700: #252540;
+            --dark-600: #2d2d4a;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-700: #374151;
+            --gray-600: #4b5563;
+            --gray-500: #6b7280;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+            --gray-50: #f9fafb;
+            --white: #FFFFFF;
+            --gradient-primary: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Pretendard Variable', Pretendard, sans-serif; background: var(--white); color: var(--dark); line-height: 1.7; }
-        .product-hero { padding: 180px 24px 100px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); text-align: center; color: var(--white); }
-        .product-hero-badge { display: inline-flex; padding: 8px 16px; background: rgba(255,255,255,0.2); border-radius: 100px; font-size: 13px; font-weight: 600; margin-bottom: 24px; }
-        .product-hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 24px; }
-        .product-hero p { font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto 32px; }
-        .btn { display: inline-flex; padding: 18px 36px; font-size: 16px; font-weight: 600; border-radius: 12px; text-decoration: none; }
-        .product-hero .btn { background: var(--white); color: var(--primary); }
-        .section { padding: 100px 24px; }
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 64px; }
-        .section-label { font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
-        .section-title { font-size: 36px; font-weight: 800; margin-bottom: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
-        .feature-card { background: var(--gray-100); border-radius: 24px; padding: 48px; }
-        .feature-card h3 { font-size: 24px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
-        .feature-card h3 span { padding: 4px 12px; background: var(--primary); color: white; border-radius: 6px; font-size: 14px; }
-        .feature-card p { font-size: 16px; color: var(--gray-600); }
-        .cta-section { background: linear-gradient(135deg, var(--secondary) 0%, #00a89a 100%); padding: 80px 24px; text-align: center; color: var(--white); }
-        .cta-section h2 { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
-        .cta-section p { font-size: 17px; opacity: 0.9; margin-bottom: 32px; }
-        .cta-section .btn { background: var(--white); color: var(--secondary); }
-        @media (max-width: 1024px) { .features-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { .product-hero { padding: 120px 16px 60px; } .product-hero h1 { font-size: 32px; } .section { padding: 60px 16px; } }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; 
+            background: var(--dark); 
+            color: var(--white); 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+        @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 160px 0 120px;
+            background: var(--dark);
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -20%;
+            width: 70%;
+            height: 140%;
+            background: radial-gradient(ellipse, rgba(6, 182, 212, 0.1) 0%, transparent 60%);
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 50%;
+            height: 80%;
+            background: radial-gradient(ellipse, rgba(139, 92, 246, 0.08) 0%, transparent 60%);
+        }
+        .hero-content { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; text-align: center; }
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary-light);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 32px;
+        }
+        .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--primary); }
+        .hero-title {
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 32px;
+        }
+        .hero-title .line { display: block; }
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-desc {
+            font-size: 18px;
+            color: var(--gray-400);
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px 36px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(6, 182, 212, 0.4); }
+        .btn-ghost {
+            background: transparent;
+            color: var(--gray-300);
+            border: 1px solid var(--dark-600);
+        }
+        .btn-ghost:hover { background: var(--dark-700); border-color: var(--gray-600); color: var(--white); }
+        .btn svg { width: 18px; height: 18px; }
+
+        /* Section */
+        .section { padding: 160px 0; position: relative; }
+        .section-dark { background: var(--dark); }
+        .section-dark-alt { background: var(--dark-800); }
+        .section-light { background: var(--gray-50); color: var(--gray-900); }
+
+        .section-header { margin-bottom: 80px; }
+        .section-header.center { text-align: center; }
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+        .section-light .section-title { color: var(--gray-900); }
+        .section-desc {
+            font-size: 17px;
+            color: var(--gray-400);
+            line-height: 1.8;
+            max-width: 600px;
+        }
+        .section-header.center .section-desc { margin: 0 auto; }
+        .section-light .section-desc { color: var(--gray-600); }
+
+        /* Chatbot/Callbot Tabs */
+        .tabs-section { background: var(--dark-800); padding: 160px 0; }
+        .tabs-nav {
+            display: flex;
+            gap: 4px;
+            background: var(--dark);
+            padding: 6px;
+            border-radius: 12px;
+            width: fit-content;
+            margin-bottom: 60px;
+        }
+        .tabs-nav-item {
+            padding: 16px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-500);
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .tabs-nav-item:hover { color: var(--gray-300); }
+        .tabs-nav-item.active {
+            color: var(--white);
+            background: var(--gradient-primary);
+        }
+        .tabs-content { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .tabs-text h3 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+        .tabs-text p {
+            font-size: 16px;
+            color: var(--gray-400);
+            line-height: 1.9;
+            margin-bottom: 40px;
+        }
+        .tabs-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .tabs-feature {
+            padding: 24px;
+            background: var(--dark);
+            border: 1px solid var(--dark-600);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+        .tabs-feature:hover { border-color: var(--primary); transform: translateY(-4px); }
+        .tabs-feature h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+        .tabs-feature p {
+            font-size: 13px;
+            color: var(--gray-400);
+            line-height: 1.6;
+            margin: 0;
+        }
+        .tabs-visual {
+            position: relative;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .tabs-visual-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid var(--dark-600);
+            animation: pulse-ring 3s ease-out infinite;
+        }
+        .tabs-visual-circle:nth-child(1) { width: 100%; height: 100%; animation-delay: 0s; }
+        .tabs-visual-circle:nth-child(2) { width: 75%; height: 75%; animation-delay: 0.5s; }
+        .tabs-visual-circle:nth-child(3) { width: 50%; height: 50%; animation-delay: 1s; }
+        @keyframes pulse-ring {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+            100% { opacity: 0.3; }
+        }
+        .tabs-visual-center {
+            width: 140px;
+            height: 140px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 60px rgba(6, 182, 212, 0.4);
+            position: relative;
+            z-index: 10;
+        }
+        .tabs-visual-center svg { width: 60px; height: 60px; color: white; }
+
+        /* Core Features */
+        .core-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .core-card {
+            padding: 48px 32px;
+            background: var(--white);
+            border-radius: 20px;
+            transition: all 0.4s;
+            border: 1px solid var(--gray-200);
+            position: relative;
+            overflow: hidden;
+        }
+        .core-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+        .core-card:hover::before { transform: scaleX(1); }
+        .core-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
+        .core-card-num {
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--primary);
+            opacity: 0.15;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+        .core-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+        .core-card-desc {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* Spec Table */
+        .spec-section { background: var(--dark); padding: 160px 0; }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--dark-700);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .spec-table th, .spec-table td {
+            padding: 20px 24px;
+            text-align: left;
+            border-bottom: 1px solid var(--dark-600);
+        }
+        .spec-table th {
+            background: var(--dark-800);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .spec-table td { font-size: 14px; color: var(--gray-300); }
+        .spec-table tr:last-child td { border-bottom: none; }
+        .spec-category {
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .spec-item { font-weight: 600; color: var(--white); }
+
+        /* Use Cases */
+        .usecase-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        .usecase-card {
+            background: var(--dark-700);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--dark-600);
+            transition: all 0.4s;
+        }
+        .usecase-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .usecase-header {
+            padding: 48px 32px;
+            background: var(--gradient-primary);
+            text-align: center;
+        }
+        .usecase-header svg { width: 48px; height: 48px; color: white; margin-bottom: 16px; }
+        .usecase-header h3 { font-size: 20px; font-weight: 700; }
+        .usecase-body { padding: 32px; }
+        .usecase-body ul { list-style: none; }
+        .usecase-body li {
+            font-size: 14px;
+            color: var(--gray-400);
+            padding: 12px 0;
+            padding-left: 24px;
+            position: relative;
+            border-bottom: 1px solid var(--dark-600);
+        }
+        .usecase-body li:last-child { border-bottom: none; }
+        .usecase-body li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        /* Stats */
+        .stats-section {
+            background: linear-gradient(180deg, var(--dark-800) 0%, var(--dark) 100%);
+            padding: 120px 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+        .stat-item { text-align: center; }
+        .stat-value {
+            font-size: 64px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+        .stat-label { font-size: 15px; color: var(--gray-400); }
+
+        /* CTA */
+        .cta-section {
+            background: var(--gradient-primary);
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+        .cta-content { position: relative; z-index: 10; }
+        .cta-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
+        .cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta-section .btn-primary { background: var(--white); color: var(--primary-dark); }
+        .cta-section .btn-ghost { border-color: rgba(255,255,255,0.3); color: var(--white); }
+        .cta-section .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .section { padding: 100px 0; }
+            .tabs-content { grid-template-columns: 1fr; gap: 48px; }
+            .tabs-features { grid-template-columns: 1fr; }
+            .core-grid { grid-template-columns: repeat(2, 1fr); }
+            .usecase-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; }
+        }
+        @media (max-width: 768px) {
+            .hero { padding: 120px 0 80px; }
+            .section { padding: 80px 0; }
+            .hero-actions { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .tabs-nav { flex-direction: column; width: 100%; }
+            .tabs-nav-item { text-align: center; }
+            .core-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; gap: 40px; }
+            .spec-table { font-size: 13px; }
+        }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
-    <section class="product-hero">
-        <div class="product-hero-badge">Callbot & Chatbot</div>
-        <h1>AI 상담 콜봇 및<br>챗봇 솔루션</h1>
-        <p>24시간 자동 응대 기능으로 신속하고 정확한 고객 응대를 지원합니다.</p>
-        <a href="../contact.html" class="btn">도입 상담 신청</a>
-    </section>
-    <section class="section">
+
+    <!-- Hero -->
+    <section class="hero">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">Solutions</span>
-                <h2 class="section-title">솔루션 구성</h2>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>AI 콜봇 <span>Voice</span></h3>
-                    <p>음성 기반 자동 상담으로 전화 문의를 처리합니다. 자연어 이해와 음성합성 기술로 자연스러운 대화를 구현합니다.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>AI 챗봇 <span>Text</span></h3>
-                    <p>텍스트 기반 자동 응대로 웹, 앱, 메신저 등 다양한 채널에서 고객 문의를 처리합니다.</p>
+            <div class="hero-content">
+                <div class="hero-label">24/7 Automated Service</div>
+                <h1 class="hero-title">
+                    <span class="line">고객 응대의</span>
+                    <span class="line">새로운 기준</span>
+                    <span class="line"><span class="highlight">AI 콜봇 · 챗봇</span></span>
+                </h1>
+                <p class="hero-desc">
+                    LLM과 RAG 기반의 지능형 대화 시스템으로 고객 문의에 실시간 대응하여 
+                    상담 효율을 높이고 운영 비용을 절감합니다.
+                </p>
+                <div class="hero-actions">
+                    <a href="../contact.html" class="btn btn-primary">
+                        도입 문의
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                    <a href="#chatbot" class="btn btn-ghost">솔루션 살펴보기</a>
                 </div>
             </div>
         </div>
     </section>
-    <section class="cta-section">
-        <h2>고객 응대를 자동화하고 싶으신가요?</h2>
-        <p>팀벨 전문가가 최적의 솔루션을 제안해 드립니다.</p>
-        <a href="../contact.html" class="btn">도입 상담 신청</a>
+
+    <!-- Chatbot/Callbot Tabs -->
+    <section class="tabs-section" id="chatbot">
+        <div class="container">
+            <div class="tabs-nav">
+                <button class="tabs-nav-item active">AI 챗봇</button>
+                <button class="tabs-nav-item">AI 콜봇</button>
+            </div>
+            <div class="tabs-content">
+                <div class="tabs-text">
+                    <h3>LLM + RAG 기반<br>AI 챗봇 솔루션</h3>
+                    <p>
+                        인텐트 관리 기능과 시나리오 편집 기능을 제공하여 챗봇을 손쉽게 설정하고 
+                        유연하게 운영할 수 있습니다. 카카오톡, 웹 채팅 등 다양한 채널과 연동됩니다.
+                    </p>
+                    <div class="tabs-features">
+                        <div class="tabs-feature">
+                            <h4>LLM 엔터티 추출</h4>
+                            <p>슬롯 필링으로 예약봇 등 구현</p>
+                        </div>
+                        <div class="tabs-feature">
+                            <h4>시나리오 에디터</h4>
+                            <p>코딩 없이 대화 흐름 설계</p>
+                        </div>
+                        <div class="tabs-feature">
+                            <h4>RAG 기반 응답</h4>
+                            <p>지식베이스 기반 정확한 답변</p>
+                        </div>
+                        <div class="tabs-feature">
+                            <h4>멀티채널 연동</h4>
+                            <p>카카오톡, 웹채팅, 앱 지원</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabs-visual">
+                    <div class="tabs-visual-circle"></div>
+                    <div class="tabs-visual-circle"></div>
+                    <div class="tabs-visual-circle"></div>
+                    <div class="tabs-visual-center">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <!-- Core Features -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label">Core Technology</div>
+                <h2 class="section-title">독자적인 AI 엔진으로<br>더 정확하고 더 빠르게</h2>
+                <p class="section-desc">
+                    고객별, 사용 목적별로 다양한 구성이 가능하며 
+                    방대한 데이터를 효과적으로 처리합니다.
+                </p>
+            </div>
+            <div class="core-grid">
+                <div class="core-card">
+                    <div class="core-card-num">01</div>
+                    <h4 class="core-card-title">엔터티 추출</h4>
+                    <p class="core-card-desc">LLM이 발화에서 키워드를 추출하고 필요 정보가 충족될 때까지 대화 진행</p>
+                </div>
+                <div class="core-card">
+                    <div class="core-card-num">02</div>
+                    <h4 class="core-card-title">시나리오 기능</h4>
+                    <p class="core-card-desc">정해진 시나리오에 따라 질문을 유도하고 목적 달성까지 안내</p>
+                </div>
+                <div class="core-card">
+                    <div class="core-card-num">03</div>
+                    <h4 class="core-card-title">슬롯필링</h4>
+                    <p class="core-card-desc">필요 엔터티가 모두 채워질 때까지 대화를 통해 점진적으로 데이터 확보</p>
+                </div>
+                <div class="core-card">
+                    <div class="core-card-num">04</div>
+                    <h4 class="core-card-title">액션메쏘드</h4>
+                    <p class="core-card-desc">외부 시스템 API나 레거시 연동하여 결과를 엔터티로 처리</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spec Table -->
+    <section class="spec-section">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label">Specifications</div>
+                <h2 class="section-title">상세 기능 사양</h2>
+            </div>
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">구분</th>
+                        <th style="width: 20%;">항목</th>
+                        <th>상세 기능</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="spec-category" rowspan="4">챗봇 엔진</td>
+                        <td class="spec-item">슬롯필링</td>
+                        <td>LLM 엔터티 추출 기능 활용, 필요 엔터티 충족 시점까지 재질문 생성</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-item">액션메쏘드</td>
+                        <td>외부 시스템 API나 레거시 연동하여 결과를 엔터티로 처리</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-item">룰베이스 분석</td>
+                        <td>형태소 분석, 유사도 분석, 유의어/동의어 등을 사용하여 의도 분석</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-item">LLM 분석</td>
+                        <td>고객의 자유 발화에 대하여 LLM으로 분류하여 의도 분석</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-category" rowspan="3">RAG 기능</td>
+                        <td class="spec-item">Vector DB</td>
+                        <td>파일 업로드 또는 웹사이트 스크래핑을 통하여 Vector DB화</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-item">앙상블 검색</td>
+                        <td>검색엔진과 동시 사용하여 리랭킹 후 답변 생성</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-item">보정모드</td>
+                        <td>RAG가 답변이 없는 경우 즉각 수정 답변 수행</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-category" rowspan="3">서비스 기능</td>
+                        <td class="spec-item">모니터링</td>
+                        <td>인입된 콜이나 채팅의 대화를 실시간 STT로 모니터링</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-item">챗봇 에디터</td>
+                        <td>시나리오 및 기타 기능의 에디팅이 가능한 통합 에디터</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-item">통계</td>
+                        <td>호출 빈도에 따른 시나리오 랭킹, 관심 블록 호출 통계 등</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="section section-dark-alt">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label">Use Cases</div>
+                <h2 class="section-title">활용 분야</h2>
+                <p class="section-desc">다양한 산업에서 AI 콜봇 · 챗봇을 활용하여 고객 서비스를 혁신합니다.</p>
+            </div>
+            <div class="usecase-grid">
+                <div class="usecase-card">
+                    <div class="usecase-header">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                        <h3>병원 · 메디컬</h3>
+                    </div>
+                    <div class="usecase-body">
+                        <ul>
+                            <li>상담사 연결 대기 없이 고객 응대</li>
+                            <li>안내에 따라 원하는 서비스 선택</li>
+                            <li>단순 예약 및 취소 확인 자동 안내</li>
+                            <li>진료 일정 조회 및 변경</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="usecase-card">
+                    <div class="usecase-header" style="background: linear-gradient(135deg, var(--secondary) 0%, #7c3aed 100%);">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        <h3>유통 · 이커머스</h3>
+                    </div>
+                    <div class="usecase-body">
+                        <ul>
+                            <li>주문 조회 및 배송 상태 안내</li>
+                            <li>반품/교환 신청 자동 처리</li>
+                            <li>보이스봇 활용 마케팅 기능 수행</li>
+                            <li>고객 동의 획득 자동화</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="usecase-card">
+                    <div class="usecase-header" style="background: linear-gradient(135deg, var(--accent) 0%, #ea580c 100%);">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg>
+                        <h3>공공기관 · 금융</h3>
+                    </div>
+                    <div class="usecase-body">
+                        <ul>
+                            <li>본인 확인 요청, 서류 발급 안내</li>
+                            <li>민원 처리, 분실 신고 접수</li>
+                            <li>계좌 조회, 이체 한도 안내</li>
+                            <li>단순 문의를 AI 봇으로 쉽게 응대</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">70%</div>
+                    <div class="stat-label">단순 문의 자동 처리</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">50%</div>
+                    <div class="stat-label">상담 대기 시간 감소</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">40%</div>
+                    <div class="stat-label">운영 비용 절감</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-label">연중무휴 서비스</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">
+                    고객 경험을 혁신하는<br>
+                    AI 콜봇 · 챗봇
+                </h2>
+                <p class="cta-desc">지금 바로 팀벨의 AI 솔루션을 경험해보세요.</p>
+                <div class="hero-actions" style="justify-content: center;">
+                    <a href="../contact.html" class="btn btn-primary">도입 문의</a>
+                    <a href="../contact.html" class="btn btn-ghost">기술 상담</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <div id="footer-placeholder"></div>
     <script src="../js/common.js"></script>
 </body>

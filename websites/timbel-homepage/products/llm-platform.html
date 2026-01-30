@@ -4,82 +4,622 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>초거대 언어모델 구축 플랫폼 | 팀벨</title>
-    <meta name="description" content="정확하고 일관된 고품질 데이터를 확보하는 초거대 언어모델 구축 플랫폼. 기업 맞춤형 LLM 솔루션을 제공합니다.">
-    <meta name="keywords" content="LLM 구축, 언어모델, AI 데이터, 초거대 AI, 팀벨">
+    <meta name="description" content="정확하고 일관된 고품질 데이터 확보를 위한 초거대 언어모델(LLM) 구축 플랫폼. 데이터 수집부터 학습까지 End-to-End 솔루션.">
+    <meta name="keywords" content="LLM, 언어모델, 데이터 구축, AI 학습, 데이터 라벨링, 팀벨">
     <link rel="canonical" href="https://timbel.net/products/llm-platform.html">
     <meta property="og:title" content="초거대 언어모델 구축 플랫폼 | 팀벨">
-    <meta property="og:description" content="고품질 데이터 기반 초거대 언어모델 구축">
-    <meta property="og:url" content="https://timbel.net/products/llm-platform.html">
-    <meta property="og:image" content="https://timbel.net/img/og-image.png">
+    <meta property="og:description" content="정확하고 일관된 고품질 데이터 확보를 위한 LLM 구축 플랫폼">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
     <style>
-        :root { --primary: #4593FC; --primary-dark: #2B7DE9; --secondary: #00C9B7; --dark: #191F28; --gray-600: #8B95A1; --gray-400: #D1D6DB; --gray-200: #F2F4F6; --gray-100: #F9FAFB; --white: #FFFFFF; }
+        :root {
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --primary-light: #a78bfa;
+            --secondary: #06b6d4;
+            --accent: #f97316;
+            --dark: #0a0a0f;
+            --dark-800: #1a1a2e;
+            --dark-700: #252540;
+            --dark-600: #2d2d4a;
+            --gray-900: #111827;
+            --gray-600: #4b5563;
+            --gray-500: #6b7280;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+            --gray-50: #f9fafb;
+            --white: #FFFFFF;
+            --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; background: var(--white); color: var(--dark); line-height: 1.7; }
-        .product-hero { padding: 180px 24px 100px; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); text-align: center; color: var(--white); }
-        .product-hero-badge { display: inline-flex; padding: 8px 16px; background: rgba(255,255,255,0.2); border-radius: 100px; font-size: 13px; font-weight: 600; margin-bottom: 24px; }
-        .product-hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 24px; }
-        .product-hero p { font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto 32px; }
-        .btn { display: inline-flex; padding: 18px 36px; font-size: 16px; font-weight: 600; border-radius: 12px; text-decoration: none; }
-        .product-hero .btn { background: var(--white); color: #7c3aed; }
-        .section { padding: 100px 24px; }
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 64px; }
-        .section-label { font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
-        .section-title { font-size: 36px; font-weight: 800; margin-bottom: 20px; }
-        .section-subtitle { font-size: 17px; color: var(--gray-600); }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-        .feature-card { background: var(--gray-100); border-radius: 24px; padding: 40px; text-align: center; }
-        .feature-icon { width: 64px; height: 64px; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
-        .feature-icon svg { width: 32px; height: 32px; color: white; }
-        .feature-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
-        .feature-card p { font-size: 15px; color: var(--gray-600); }
-        .cta-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); padding: 80px 24px; text-align: center; color: var(--white); }
-        .cta-section h2 { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
-        .cta-section p { font-size: 17px; opacity: 0.9; margin-bottom: 32px; }
-        .cta-section .btn { background: var(--white); color: var(--primary); }
-        @media (max-width: 1024px) { .features-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { .product-hero { padding: 120px 16px 60px; } .product-hero h1 { font-size: 32px; } .section { padding: 60px 16px; } }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; 
+            background: var(--dark); 
+            color: var(--white); 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+        @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 160px 0 120px;
+            background: var(--dark);
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 150%;
+            background: radial-gradient(ellipse, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+        }
+        .hero-content { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; text-align: center; }
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary-light);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 32px;
+        }
+        .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--primary); }
+        .hero-title {
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 32px;
+        }
+        .hero-title .line { display: block; }
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-desc {
+            font-size: 18px;
+            color: var(--gray-400);
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px 36px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4); }
+        .btn-ghost {
+            background: transparent;
+            color: var(--gray-300);
+            border: 1px solid var(--dark-600);
+        }
+        .btn-ghost:hover { background: var(--dark-700); border-color: var(--gray-600); color: var(--white); }
+        .btn svg { width: 18px; height: 18px; }
+
+        /* Section */
+        .section { padding: 160px 0; position: relative; }
+        .section-dark { background: var(--dark); }
+        .section-dark-alt { background: var(--dark-800); }
+        .section-light { background: var(--gray-50); color: var(--gray-900); }
+
+        .section-header { margin-bottom: 80px; }
+        .section-header.center { text-align: center; }
+        .section-label {
+            display: inline-flex;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+        .section-light .section-title { color: var(--gray-900); }
+        .section-desc {
+            font-size: 17px;
+            color: var(--gray-400);
+            line-height: 1.8;
+            max-width: 600px;
+        }
+        .section-header.center .section-desc { margin: 0 auto; }
+        .section-light .section-desc { color: var(--gray-600); }
+
+        /* Process Flow */
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            position: relative;
+        }
+        .process-flow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            right: 5%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--dark-600), var(--primary), var(--dark-600));
+            z-index: 0;
+        }
+        .process-step {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--dark-700);
+            border: 1px solid var(--dark-600);
+            border-radius: 20px;
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+        .process-step:hover { border-color: var(--primary); transform: translateY(-4px); }
+        .process-step-num {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 800;
+            margin: 0 auto 20px;
+        }
+        .process-step h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+        .process-step p { font-size: 13px; color: var(--gray-400); line-height: 1.5; }
+
+        /* Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        .feature-card {
+            padding: 48px 36px;
+            background: var(--white);
+            border-radius: 24px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+        .feature-card:hover::before { transform: scaleX(1); }
+        .feature-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
+        .feature-card-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .feature-card-icon svg { width: 32px; height: 32px; color: var(--primary); }
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+        .feature-card p {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* Data Types */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .data-card {
+            padding: 32px 24px;
+            background: var(--dark-700);
+            border: 1px solid var(--dark-600);
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .data-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+        .data-card-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-primary);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+        .data-card-icon svg { width: 28px; height: 28px; color: white; }
+        .data-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .data-card p {
+            font-size: 13px;
+            color: var(--gray-400);
+            line-height: 1.5;
+        }
+
+        /* Benefits */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+        .benefit-card {
+            padding: 40px 36px;
+            background: var(--dark-700);
+            border: 1px solid var(--dark-600);
+            border-radius: 20px;
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            transition: all 0.3s;
+        }
+        .benefit-card:hover { border-color: var(--primary); transform: translateX(8px); }
+        .benefit-card-num {
+            font-size: 48px;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.5;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        .benefit-card-content h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .benefit-card-content p {
+            font-size: 15px;
+            color: var(--gray-400);
+            line-height: 1.7;
+        }
+
+        /* Stats */
+        .stats-section {
+            background: linear-gradient(180deg, var(--dark) 0%, var(--dark-800) 100%);
+            padding: 120px 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+        .stat-item { text-align: center; }
+        .stat-value {
+            font-size: 64px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+        .stat-label { font-size: 15px; color: var(--gray-400); }
+
+        /* CTA */
+        .cta-section {
+            background: var(--gradient-primary);
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+        .cta-content { position: relative; z-index: 10; }
+        .cta-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
+        .cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta-section .btn-primary { background: var(--white); color: var(--primary-dark); }
+        .cta-section .btn-ghost { border-color: rgba(255,255,255,0.3); color: var(--white); }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .section { padding: 100px 0; }
+            .process-flow { grid-template-columns: repeat(3, 1fr); }
+            .process-flow::before { display: none; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .data-grid { grid-template-columns: repeat(2, 1fr); }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; }
+        }
+        @media (max-width: 768px) {
+            .hero { padding: 120px 0 80px; }
+            .section { padding: 80px 0; }
+            .hero-actions { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .process-flow { grid-template-columns: 1fr; }
+            .data-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
-    <section class="product-hero">
-        <div class="product-hero-badge">LLM Platform</div>
-        <h1>초거대 언어모델<br>구축 플랫폼</h1>
-        <p>정확하고 일관된 고품질 데이터 확보로 기업 맞춤형 LLM을 구축할 수 있습니다.</p>
-        <a href="../contact.html" class="btn">도입 상담 신청</a>
-    </section>
-    <section class="section">
+
+    <!-- Hero -->
+    <section class="hero">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">Features</span>
-                <h2 class="section-title">핵심 기능</h2>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg></div>
-                    <h3>데이터 수집·정제</h3>
-                    <p>대규모 데이터 수집 및 정제 파이프라인 구축</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-                    <h3>품질 검증</h3>
-                    <p>AI 기반 자동 품질 검증 및 라벨링</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
-                    <h3>모델 학습</h3>
-                    <p>분산 학습 환경에서 효율적인 모델 훈련</p>
+            <div class="hero-content">
+                <div class="hero-label">LLM Data Platform</div>
+                <h1 class="hero-title">
+                    <span class="line">데이터의 가치를</span>
+                    <span class="line">높이는</span>
+                    <span class="line"><span class="highlight">LLM 구축 플랫폼</span></span>
+                </h1>
+                <p class="hero-desc">
+                    정확하고 일관된 고품질 데이터 확보를 위한 초거대 언어모델 구축 플랫폼. 
+                    데이터 수집부터 학습까지 End-to-End 솔루션을 제공합니다.
+                </p>
+                <div class="hero-actions">
+                    <a href="../contact.html" class="btn btn-primary">
+                        도입 문의
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                    <a href="#process" class="btn btn-ghost">프로세스 보기</a>
                 </div>
             </div>
         </div>
     </section>
-    <section class="cta-section">
-        <h2>맞춤형 LLM이 필요하신가요?</h2>
-        <p>팀벨 전문가가 최적의 솔루션을 제안해 드립니다.</p>
-        <a href="../contact.html" class="btn">도입 상담 신청</a>
+
+    <!-- Process -->
+    <section class="section section-dark-alt" id="process">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label">Data Pipeline</div>
+                <h2 class="section-title">데이터 구축 프로세스</h2>
+                <p class="section-desc">
+                    체계적인 파이프라인으로 고품질 학습 데이터를 
+                    효율적으로 구축합니다.
+                </p>
+            </div>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="process-step-num">1</div>
+                    <h4>데이터 수집</h4>
+                    <p>웹 크롤링, API 연동<br>문서 변환</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-num">2</div>
+                    <h4>전처리</h4>
+                    <p>정제, 필터링<br>중복 제거</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-num">3</div>
+                    <h4>라벨링</h4>
+                    <p>전문가 어노테이션<br>품질 검수</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-num">4</div>
+                    <h4>검증</h4>
+                    <p>일관성 검사<br>품질 평가</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-num">5</div>
+                    <h4>배포</h4>
+                    <p>포맷 변환<br>학습 연동</p>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <!-- Features -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label" style="color: var(--primary-dark);">Platform Features</div>
+                <h2 class="section-title">플랫폼 핵심 기능</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-card-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
+                    </div>
+                    <h3>통합 데이터 관리</h3>
+                    <p>다양한 형식의 데이터를 한 곳에서 관리하고 버전 컨트롤을 지원합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                    </div>
+                    <h3>라벨링 워크벤치</h3>
+                    <p>직관적인 UI로 효율적인 어노테이션 작업과 품질 관리를 지원합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    </div>
+                    <h3>품질 대시보드</h3>
+                    <p>실시간으로 데이터 품질 지표를 모니터링하고 개선점을 파악합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Types -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label">Data Types</div>
+                <h2 class="section-title">지원 데이터 유형</h2>
+            </div>
+            <div class="data-grid">
+                <div class="data-card">
+                    <div class="data-card-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <h4>텍스트 데이터</h4>
+                    <p>문서, 대화, Q&A<br>요약, 번역</p>
+                </div>
+                <div class="data-card">
+                    <div class="data-card-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                    </div>
+                    <h4>음성 데이터</h4>
+                    <p>음성 인식, 화자 분리<br>감정 라벨링</p>
+                </div>
+                <div class="data-card">
+                    <div class="data-card-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h4>이미지 데이터</h4>
+                    <p>객체 인식, 분류<br>OCR, 캡셔닝</p>
+                </div>
+                <div class="data-card">
+                    <div class="data-card-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h4>영상 데이터</h4>
+                    <p>행동 인식, 장면 분류<br>자막 생성</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="section section-dark-alt">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label">Benefits</div>
+                <h2 class="section-title">도입 효과</h2>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-card-num">01</div>
+                    <div class="benefit-card-content">
+                        <h4>데이터 품질 향상</h4>
+                        <p>체계적인 검수 프로세스와 품질 관리로 학습 데이터의 정확도와 일관성을 보장합니다.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-card-num">02</div>
+                    <div class="benefit-card-content">
+                        <h4>구축 시간 단축</h4>
+                        <p>자동화된 파이프라인과 효율적인 워크플로우로 데이터 구축 시간을 50% 이상 단축합니다.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-card-num">03</div>
+                    <div class="benefit-card-content">
+                        <h4>비용 효율화</h4>
+                        <p>반복 작업 자동화와 품질 기반 작업 배분으로 구축 비용을 최적화합니다.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-card-num">04</div>
+                    <div class="benefit-card-content">
+                        <h4>확장성 확보</h4>
+                        <p>클라우드 기반 인프라로 데이터 볼륨 증가에도 유연하게 대응합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">98%</div>
+                    <div class="stat-label">데이터 정확도</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">50%</div>
+                    <div class="stat-label">구축 시간 단축</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">10M+</div>
+                    <div class="stat-label">처리 데이터 건수</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100+</div>
+                    <div class="stat-label">구축 프로젝트</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">
+                    AI의 시작은 데이터입니다
+                </h2>
+                <p class="cta-desc">지금 바로 팀벨의 LLM 구축 플랫폼을 경험해보세요.</p>
+                <div class="hero-actions" style="justify-content: center;">
+                    <a href="../contact.html" class="btn btn-primary">도입 문의</a>
+                    <a href="../contact.html" class="btn btn-ghost">기술 상담</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <div id="footer-placeholder"></div>
     <script src="../js/common.js"></script>
 </body>

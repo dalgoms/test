@@ -3,82 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SORIZAVA - 문자통역 솔루션 | 팀벨</title>
-    <meta name="description" content="SORIZAVA는 대한민국 대표 NO.1 AI 속기키보드입니다. 빠르고 정확한 문자통역 서비스를 제공합니다.">
-    <meta name="keywords" content="SORIZAVA, 소리자바, 속기키보드, 문자통역, AI 속기, 팀벨">
+    <title>SORIZAVA - AI 속기 솔루션 | 팀벨</title>
+    <meta name="description" content="SORIZAVA는 AI 기반 속기 솔루션입니다. 전문 속기 품질의 기록을 AI로 자동화합니다.">
+    <meta name="keywords" content="소리자바, SORIZAVA, AI 속기, 전문 속기, 기록 자동화, 팀벨">
     <link rel="canonical" href="https://timbel.net/stenography/sorizava.html">
-    <meta property="og:title" content="SORIZAVA - 문자통역 솔루션 | 팀벨">
-    <meta property="og:description" content="대한민국 대표 NO.1 AI 속기키보드">
-    <meta property="og:url" content="https://timbel.net/stenography/sorizava.html">
-    <meta property="og:image" content="https://timbel.net/img/og-image.png">
+    <meta property="og:title" content="SORIZAVA - AI 속기 솔루션 | 팀벨">
+    <meta property="og:description" content="AI 기반 속기 솔루션">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
     <style>
-        :root { --primary: #4593FC; --primary-dark: #2B7DE9; --secondary: #00C9B7; --dark: #191F28; --gray-600: #8B95A1; --gray-100: #F9FAFB; --white: #FFFFFF; }
+        :root {
+            --primary: #a855f7;
+            --primary-dark: #9333ea;
+            --primary-light: #c084fc;
+            --secondary: #06b6d4;
+            --dark: #0a0a0f;
+            --dark-800: #1a1a2e;
+            --dark-700: #252540;
+            --dark-600: #2d2d4a;
+            --gray-900: #111827;
+            --gray-600: #4b5563;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+            --gray-50: #f9fafb;
+            --white: #FFFFFF;
+            --gradient-primary: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Pretendard Variable', Pretendard, sans-serif; background: var(--white); color: var(--dark); line-height: 1.7; }
-        .product-hero { padding: 180px 24px 100px; background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); text-align: center; color: var(--white); }
-        .product-hero-badge { display: inline-flex; padding: 8px 16px; background: rgba(255,255,255,0.2); border-radius: 100px; font-size: 13px; font-weight: 600; margin-bottom: 24px; }
-        .product-hero h1 { font-size: 56px; font-weight: 800; margin-bottom: 24px; }
-        .product-hero p { font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto 32px; }
-        .btn { display: inline-flex; padding: 18px 36px; font-size: 16px; font-weight: 600; border-radius: 12px; text-decoration: none; }
-        .product-hero .btn { background: var(--white); color: #db2777; }
-        .section { padding: 100px 24px; }
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 64px; }
-        .section-label { font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
-        .section-title { font-size: 36px; font-weight: 800; margin-bottom: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-        .feature-card { background: var(--gray-100); border-radius: 24px; padding: 40px; text-align: center; }
-        .feature-icon { width: 64px; height: 64px; background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
-        .feature-icon svg { width: 32px; height: 32px; color: white; }
-        .feature-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
-        .feature-card p { font-size: 15px; color: var(--gray-600); }
-        .cta-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); padding: 80px 24px; text-align: center; color: var(--white); }
-        .cta-section h2 { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
-        .cta-section p { font-size: 17px; opacity: 0.9; margin-bottom: 32px; }
-        .cta-section .btn { background: var(--white); color: var(--primary); }
-        @media (max-width: 1024px) { .features-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { .product-hero { padding: 120px 16px 60px; } .product-hero h1 { font-size: 40px; } .section { padding: 60px 16px; } }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--dark); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+        @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 160px 0 120px; background: var(--dark); overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -30%; right: -20%; width: 70%; height: 140%; background: radial-gradient(ellipse, rgba(168, 85, 247, 0.12) 0%, transparent 60%); }
+        .hero-content { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; text-align: center; }
+        .hero-label { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-light); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 32px; }
+        .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--primary); }
+        .hero-title { font-size: clamp(48px, 8vw, 80px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 32px; }
+        .hero-title .line { display: block; }
+        .hero-title .highlight { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-desc { font-size: 18px; color: var(--gray-400); line-height: 1.8; max-width: 600px; margin: 0 auto 48px; }
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 18px 36px; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: var(--gradient-primary); color: var(--white); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(168, 85, 247, 0.4); }
+        .btn-ghost { background: transparent; color: var(--gray-300); border: 1px solid var(--dark-600); }
+        .btn-ghost:hover { background: var(--dark-700); border-color: var(--gray-600); color: var(--white); }
+        .btn svg { width: 18px; height: 18px; }
+
+        .section { padding: 160px 0; position: relative; }
+        .section-dark-alt { background: var(--dark-800); }
+        .section-light { background: var(--gray-50); color: var(--gray-900); }
+        .section-header { margin-bottom: 80px; }
+        .section-header.center { text-align: center; }
+        .section-label { display: inline-flex; font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; }
+        .section-title { font-size: clamp(36px, 5vw, 52px); font-weight: 800; line-height: 1.2; letter-spacing: -1px; margin-bottom: 24px; }
+        .section-light .section-title { color: var(--gray-900); }
+        .section-desc { font-size: 17px; color: var(--gray-400); line-height: 1.8; max-width: 600px; }
+        .section-header.center .section-desc { margin: 0 auto; }
+        .section-light .section-desc { color: var(--gray-600); }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .feature-card { padding: 40px 32px; background: var(--white); border-radius: 20px; border: 1px solid var(--gray-200); transition: all 0.4s; }
+        .feature-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
+        .feature-card-icon { width: 56px; height: 56px; background: var(--gradient-primary); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+        .feature-card-icon svg { width: 28px; height: 28px; color: white; }
+        .feature-card h4 { font-size: 18px; font-weight: 700; color: var(--gray-900); margin-bottom: 12px; }
+        .feature-card p { font-size: 14px; color: var(--gray-600); line-height: 1.7; }
+
+        .benefit-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        .benefit-card { padding: 40px 36px; background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 20px; display: flex; gap: 24px; align-items: flex-start; transition: all 0.3s; }
+        .benefit-card:hover { border-color: var(--primary); transform: translateX(8px); }
+        .benefit-num { font-size: 48px; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.5; line-height: 1; flex-shrink: 0; }
+        .benefit-content h4 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+        .benefit-content p { font-size: 15px; color: var(--gray-400); line-height: 1.7; }
+
+        .stats-section { background: linear-gradient(180deg, var(--dark) 0%, var(--dark-800) 100%); padding: 120px 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 64px; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 12px; }
+        .stat-label { font-size: 15px; color: var(--gray-400); }
+
+        .cta-section { background: var(--gradient-primary); padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 50%); }
+        .cta-content { position: relative; z-index: 10; }
+        .cta-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
+        .cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta-section .btn-primary { background: var(--white); color: var(--primary-dark); }
+        .cta-section .btn-ghost { border-color: rgba(255,255,255,0.3); color: var(--white); }
+
+        @media (max-width: 1024px) { .section { padding: 100px 0; } .feature-grid { grid-template-columns: 1fr; } .benefit-grid { grid-template-columns: 1fr; } .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; } }
+        @media (max-width: 768px) { .hero { padding: 120px 0 80px; } .section { padding: 80px 0; } .hero-actions { flex-direction: column; } .btn { width: 100%; justify-content: center; } .stats-grid { grid-template-columns: 1fr; gap: 40px; } }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
-    <section class="product-hero">
-        <div class="product-hero-badge">NO.1 Stenography</div>
-        <h1>SORIZAVA</h1>
-        <p>대한민국 대표 NO.1 AI 속기키보드 전문 서비스</p>
-        <a href="../contact.html" class="btn">도입 상담 신청</a>
-    </section>
-    <section class="section">
+
+    <section class="hero">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">Features</span>
-                <h2 class="section-title">핵심 기능</h2>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></div>
-                    <h3>속기 키보드</h3>
-                    <p>전문 속기사용 고속 입력 키보드</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg></div>
-                    <h3>AI 보조</h3>
-                    <p>AI 기반 자동 완성 및 교정</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
-                    <h3>실시간 전송</h3>
-                    <p>실시간 문자 통역 전송</p>
+            <div class="hero-content">
+                <div class="hero-label">SORIZAVA</div>
+                <h1 class="hero-title">
+                    <span class="line">전문 속기의</span>
+                    <span class="line">AI 혁신</span>
+                    <span class="line"><span class="highlight">소리자바</span></span>
+                </h1>
+                <p class="hero-desc">AI 기반 속기 솔루션으로 전문 속기사 품질의 기록을 자동화합니다.</p>
+                <div class="hero-actions">
+                    <a href="../contact.html" class="btn btn-primary">도입 문의<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                    <a href="#features" class="btn btn-ghost">기능 살펴보기</a>
                 </div>
             </div>
         </div>
     </section>
-    <section class="cta-section">
-        <h2>속기 솔루션이 필요하신가요?</h2>
-        <p>팀벨 전문가가 최적의 솔루션을 제안해 드립니다.</p>
-        <a href="../contact.html" class="btn">도입 상담 신청</a>
+
+    <section class="section section-light" id="features">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label" style="color: var(--primary-dark);">Features</div>
+                <h2 class="section-title">핵심 기능</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-card-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+                    <h4>실시간 속기</h4>
+                    <p>전문 속기사 수준의 실시간 기록을 AI가 자동으로 생성</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+                    <h4>전문 용어 인식</h4>
+                    <p>법률, 의료, 기술 등 분야별 전문 용어를 정확하게 인식</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
+                    <h4>화자 구분</h4>
+                    <p>다수의 발언자를 자동으로 구분하여 명확한 기록 제공</p>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <section class="section section-dark-alt">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label">Benefits</div>
+                <h2 class="section-title">도입 효과</h2>
+            </div>
+            <div class="benefit-grid">
+                <div class="benefit-card">
+                    <div class="benefit-num">01</div>
+                    <div class="benefit-content"><h4>비용 절감</h4><p>전문 속기사 비용 대비 80% 이상 비용 절감 효과</p></div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-num">02</div>
+                    <div class="benefit-content"><h4>시간 단축</h4><p>실시간 기록으로 별도의 작성 시간이 필요 없음</p></div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-num">03</div>
+                    <div class="benefit-content"><h4>일관된 품질</h4><p>AI 기반 일관된 품질의 기록 유지</p></div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-num">04</div>
+                    <div class="benefit-content"><h4>확장성</h4><p>동시에 여러 회의/행사 기록 가능</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item"><div class="stat-value">97%</div><div class="stat-label">속기 정확도</div></div>
+                <div class="stat-item"><div class="stat-value">80%</div><div class="stat-label">비용 절감</div></div>
+                <div class="stat-item"><div class="stat-value">실시간</div><div class="stat-label">기록 생성</div></div>
+                <div class="stat-item"><div class="stat-value">500+</div><div class="stat-label">도입 기관</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">전문 속기의 새로운 기준<br>SORIZAVA</h2>
+                <p class="cta-desc">지금 바로 소리자바를 경험해보세요.</p>
+                <div class="hero-actions" style="justify-content: center;">
+                    <a href="../contact.html" class="btn btn-primary">도입 문의</a>
+                    <a href="../contact.html" class="btn btn-ghost">기술 상담</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <div id="footer-placeholder"></div>
     <script src="../js/common.js"></script>
 </body>
