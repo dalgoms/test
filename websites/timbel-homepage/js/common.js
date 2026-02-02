@@ -309,10 +309,11 @@ function getFooterHTML(basePath) {
                     <div class="footer-column">
                         <h4>제품</h4>
                         <div class="footer-links">
-                            <a href="${basePath}products/ai-core.html">AI CORE 플랫폼</a>
-                            <a href="${basePath}products/speech-language.html">음성인식/음성합성</a>
-                            <a href="${basePath}solutions/aicc-platform.html">AICC 플랫폼</a>
+                            <a href="${basePath}products/ai-core.html">인공지능</a>
+                            <a href="${basePath}solutions/aicc-platform.html">AICC 솔루션</a>
                             <a href="${basePath}products/baronote.html">AI 회의록</a>
+                            <a href="${basePath}stenography/soribaro.html">AI 기록·자막</a>
+                            <a href="${basePath}products/clipdesk.html">미디어·교육</a>
                         </div>
                     </div>
                     <div class="footer-column">
@@ -349,7 +350,7 @@ function getFooterHTML(basePath) {
                     <span class="footer-divider">|</span>
                     <span>사업자등록번호: 206-81-58545</span>
                     <span class="footer-divider">|</span>
-                    <span>서울 강남구 강남대로94길 66 산돌빌딩 3층</span>
+                    <span>서울 강남구 강남대로94길 66 산돌빌딩 3~5층</span>
                 </div>
                 <div class="footer-info-row">
                     <span>Tel: 02-561-8182</span>
