@@ -387,7 +387,7 @@ function getCommonStyles() {
     return `
     <style id="common-styles">
         /* Header */
-        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: #000000; transition: all 0.3s ease; }
+        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: #0A1628; transition: all 0.3s ease; }
         .header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
         .header-inner { max-width: 1600px; margin: 0 auto; padding: 0 60px; height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
         .logo { display: flex; align-items: center; text-decoration: none; }
@@ -450,7 +450,7 @@ function getCommonStyles() {
         .mobile-menu-cta .btn { width: 100%; justify-content: center; padding: 16px; font-size: 16px; font-weight: 600; background: linear-gradient(135deg, #4593FC 0%, #2B7DE9 100%); color: #fff; border-radius: 12px; text-decoration: none; display: flex; align-items: center; }
 
         /* Footer */
-        .footer { background: #191F28; color: #D1D6DB; padding: 60px 24px 40px; }
+        .footer { background: #000000; color: #D1D6DB; padding: 60px 24px 40px; }
         .footer-inner { max-width: 1200px; margin: 0 auto; }
         .footer-top { display: flex; justify-content: space-between; gap: 60px; margin-bottom: 48px; }
         .footer-brand { flex-shrink: 0; max-width: 220px; }
