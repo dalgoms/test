@@ -162,6 +162,23 @@ body {
             font-size: 14px; font-weight: 600;
             color: var(--accent-mint); letter-spacing: 2px;
         }
+        .evolution-link {
+            font-size: 14px; font-weight: 500;
+            color: var(--gray-400);
+            text-decoration: none;
+            display: flex; align-items: center; gap: 8px;
+            transition: color 0.2s ease;
+        }
+        .evolution-link:hover {
+            color: var(--accent-mint);
+        }
+        .evolution-link svg {
+            width: 16px; height: 16px;
+            transition: transform 0.2s ease;
+        }
+        .evolution-link:hover svg {
+            transform: translateX(4px);
+        }
         .evolution-list { 
             display: flex; flex-direction: column;
             position: relative;
@@ -462,6 +479,12 @@ body {
         <div class="container">
             <div class="evolution-header">
                 <div class="evolution-title">OUR EVOLUTION</div>
+                <a href="history.html" class="evolution-link">
+                    상세보기
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
             </div>
             <div class="evolution-list">
                 <div class="evolution-item">
