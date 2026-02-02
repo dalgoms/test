@@ -316,7 +316,6 @@ function getFooterHTML(basePath) {
             <div class="footer-top">
                 <div class="footer-brand">
                     <img src="${basePath}img/timbellogo.png" alt="TIMBEL" class="footer-logo">
-                    <p class="footer-tagline">AI 기술을 실제 운영 가능한<br>솔루션으로 제공합니다.</p>
                 </div>
                 <div class="footer-nav">
                     <div class="footer-column">
@@ -454,8 +453,7 @@ function getCommonStyles() {
         .footer-inner { max-width: 1200px; margin: 0 auto; }
         .footer-top { display: flex; justify-content: space-between; gap: 60px; margin-bottom: 48px; }
         .footer-brand { flex-shrink: 0; max-width: 220px; }
-        .footer-logo { height: 28px; filter: brightness(0) invert(1); }
-        .footer-tagline { font-size: 14px; line-height: 1.7; margin-top: 16px; }
+        .footer-logo { height: 32px; filter: brightness(0) invert(1); }
         .footer-nav { display: flex; gap: 48px; flex-wrap: wrap; }
         .footer-column h4 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 20px; }
         .footer-links { display: flex; flex-direction: column; gap: 12px; }
@@ -485,7 +483,6 @@ function getCommonStyles() {
             .footer-top { flex-direction: column; gap: 48px; }
             .footer-brand { max-width: 100%; text-align: center; }
             .footer-logo { margin: 0 auto; }
-            .footer-tagline { text-align: center; }
             .footer-nav { justify-content: center; gap: 40px; }
         }
         @media (max-width: 768px) {
