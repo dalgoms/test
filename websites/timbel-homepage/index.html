@@ -60,7 +60,14 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--white); color: var(--dark); line-height: 1.6; overflow-x: hidden; }
+        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--dark); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+        
+        /* Toss Style Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+        * { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparent; }
 
         /* Utility */
         .container { max-width: 1400px; margin: 0 auto; padding: 0 80px; }

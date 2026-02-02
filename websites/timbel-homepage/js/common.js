@@ -3,6 +3,19 @@
  * 수정 시 이 파일만 수정하면 모든 페이지에 반영됩니다.
  */
 
+// 전역 스타일 주입 (Toss 스타일 스크롤바)
+(function() {
+    const globalStyles = document.createElement('style');
+    globalStyles.textContent = `
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+        * { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparent; }
+    `;
+    document.head.appendChild(globalStyles);
+})();
+
 // 현재 페이지의 깊이에 따른 상대 경로 계산
 function getBasePath() {
     const path = window.location.pathname;
