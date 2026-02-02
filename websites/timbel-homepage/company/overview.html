@@ -43,53 +43,7 @@ body {
         .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
         @media (max-width: 768px) { .container { padding: 0 24px; } }
 
-        /* ===== CUSTOM CURSOR ===== */
-        .cursor-dot {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background: var(--accent-mint);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s ease, opacity 0.2s ease, background 0.2s ease;
-            mix-blend-mode: difference;
-        }
-        .cursor-ring {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(255,255,255,0.5);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
-        }
-        .cursor-dot.hover {
-            transform: translate(-50%, -50%) scale(2.5);
-            background: var(--accent-blue);
-        }
-        .cursor-ring.hover {
-            width: 60px;
-            height: 60px;
-            border-color: var(--accent-mint);
-        }
-        .cursor-ring.click {
-            width: 30px;
-            height: 30px;
-        }
-        @media (hover: hover) {
-            body { cursor: none; }
-            a, button { cursor: none; }
-        }
-        @media (max-width: 1024px) {
-            .cursor-dot, .cursor-ring { display: none; }
-            body, a, button { cursor: auto; }
-        }
-
-        /* ===== HERO / MISSION ===== */
+/* ===== HERO / MISSION ===== */
         .hero {
             height: 700px;
             max-height: 80vh;
@@ -186,15 +140,17 @@ body {
         .evolution-list::before {
             content: '';
             position: absolute;
-            left: 155px;
-            top: 0;
+            left: 145px;
+            top: 72px;
+            bottom: 72px;
             width: 2px;
-            height: 0;
             background: linear-gradient(180deg, var(--accent-blue) 0%, var(--accent-mint) 100%);
-            transition: height 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .evolution-list.visible::before {
-            height: 100%;
+            transform: scaleY(1);
         }
         .evolution-item {
             display: grid; grid-template-columns: 140px 1fr;
@@ -214,11 +170,13 @@ body {
             font-size: 48px; font-weight: 700;
             color: var(--white); line-height: 1;
             position: relative;
+            display: flex;
+            align-items: center;
         }
         .evolution-item::after {
             content: '';
             position: absolute;
-            left: 151px;
+            left: 141px;
             top: 50%;
             width: 10px;
             height: 10px;
@@ -312,14 +270,14 @@ body {
         }
         .cap-grid {
             display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 1px; background: var(--gray-200);
-            border: 1px solid var(--gray-200);
+            gap: 1px; background: #E3EFF7;
+            border: 1px solid #E3EFF7;
         }
         .cap-card {
             padding: 48px 36px; background: var(--white);
             transition: background 0.2s;
         }
-        .cap-card:hover { background: var(--gray-50); }
+        .cap-card:hover { background: #E8F4FD; }
         .cap-num {
             font-size: 12px; font-weight: 600;
             color: var(--accent-mint); letter-spacing: 1px;
@@ -408,8 +366,8 @@ body {
             .section { padding: 100px 0; }
             .about-grid { grid-template-columns: 1fr; gap: 48px; }
             .evolution-item { grid-template-columns: 100px 1fr; gap: 32px; }
-            .evolution-item::after { left: 111px; }
-            .evolution-list::before { left: 115px; }
+            .evolution-item::after { left: 101px; }
+            .evolution-list::before { left: 105px; }
             .evolution-year { font-size: 36px; }
             .cap-grid { grid-template-columns: 1fr; }
             .ref-grid { grid-template-columns: repeat(2, 1fr); }
@@ -427,10 +385,6 @@ body {
     </style>
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-ring"></div>
-    
     <div id="header-placeholder"></div>
 
     <!-- HERO / MISSION -->
@@ -601,61 +555,6 @@ body {
     <div id="footer-placeholder"></div>
     <script src="../js/common.js"></script>
     <script>
-        // Custom Cursor
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorRing = document.querySelector('.cursor-ring');
-        
-        let mouseX = 0, mouseY = 0;
-        let ringX = 0, ringY = 0;
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            // 점은 즉시 따라감
-            cursorDot.style.left = mouseX + 'px';
-            cursorDot.style.top = mouseY + 'px';
-        });
-        
-        // 링은 부드럽게 따라감
-        const animateRing = () => {
-            ringX += (mouseX - ringX) * 0.15;
-            ringY += (mouseY - ringY) * 0.15;
-            
-            cursorRing.style.left = ringX + 'px';
-            cursorRing.style.top = ringY + 'px';
-            
-            requestAnimationFrame(animateRing);
-        };
-        animateRing();
-        
-        // 호버 효과
-        const hoverTargets = document.querySelectorAll('a, button, .cap-card, .evolution-item');
-        hoverTargets.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorDot.classList.add('hover');
-                cursorRing.classList.add('hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorDot.classList.remove('hover');
-                cursorRing.classList.remove('hover');
-            });
-        });
-        
-        // 클릭 효과
-        document.addEventListener('mousedown', () => cursorRing.classList.add('click'));
-        document.addEventListener('mouseup', () => cursorRing.classList.remove('click'));
-        
-        // 페이지 벗어나면 숨김
-        document.addEventListener('mouseleave', () => {
-            cursorDot.style.opacity = '0';
-            cursorRing.style.opacity = '0';
-        });
-        document.addEventListener('mouseenter', () => {
-            cursorDot.style.opacity = '1';
-            cursorRing.style.opacity = '1';
-        });
-
         // 히어로 배경 스크롤 확대 효과
         const hero = document.querySelector('.hero');
         const heroBg = document.querySelector('.hero::before');
