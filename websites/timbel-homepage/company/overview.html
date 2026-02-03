@@ -465,6 +465,22 @@
             border-color: var(--white);
         }
 
+        /* ===== SECTION MAP ===== */
+        .section-map {
+            width: 100%;
+            height: 500px;
+        }
+        .section-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+        .section-map iframe:hover {
+            filter: grayscale(0%);
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .vision-title { font-size: 72px; min-height: 200px; }
@@ -681,6 +697,11 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- SECTION MAP -->
+    <section class="section-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.3!2d127.0285!3d37.4975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca159000000%3A0x0!2z7ISc7Jq47Yq567OE7IucIOqwleuCqOq1rCDqsJXrgqjrjIDroZwgOTTquLggNjY!5e0!3m2!1sko!2skr!4v1700000000000!5m2!1sko!2skr&q=서울특별시+강남구+강남대로94길+66" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </section>
 
     <!-- SECTION 9: CLOSING -->
