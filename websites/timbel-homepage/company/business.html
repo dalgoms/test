@@ -78,7 +78,7 @@
             margin-bottom: 56px;
         }
         .hero-title {
-            font-size: 56px;
+            font-size: 64px;
             font-weight: 700;
             line-height: 1.4;
             letter-spacing: -2px;
@@ -258,76 +258,95 @@
             text-align: center;
             margin-bottom: 80px;
         }
-        .business-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
         .business-card {
-            display: grid;
-            grid-template-columns: 100px 1fr auto;
-            align-items: center;
-            gap: 48px;
-            background: var(--gray-800);
-            border: 1px solid transparent;
-            border-radius: 16px;
-            padding: 40px 48px;
-            transition: all 0.4s ease;
+            position: relative;
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
             cursor: pointer;
             text-decoration: none;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+            z-index: 1;
+            border: 1px solid transparent;
         }
         .business-card:hover {
-            background: var(--gray-700);
-            border-color: var(--accent);
-            padding-left: 56px;
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            z-index: 10;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .business-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--bg-image) center/cover no-repeat;
+            background-size: cover;
+            transition: transform 0.5s ease;
+            will-change: transform;
+            transform: translateZ(0);
+        }
+        .business-card:hover::before {
+            transform: scale(1.1) translateZ(0);
+        }
+        .business-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 0%, transparent 40%, var(--gray-900) 70%, var(--gray-900) 100%);
+        }
+        .business-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            z-index: 2;
         }
         .business-num {
-            font-size: 64px;
-            font-weight: 800;
-            color: var(--gray-700);
-            line-height: 1;
-            transition: color 0.4s ease;
-        }
-        .business-card:hover .business-num {
+            font-size: 14px;
+            font-weight: 600;
             color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
         }
         .business-content h3 {
             font-size: 24px;
             font-weight: 700;
             color: var(--white);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             letter-spacing: -0.5px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
         .business-content p {
-            font-size: 15px;
-            color: var(--gray-400);
-            line-height: 1.7;
-            margin-bottom: 24px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
         .business-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            justify-content: flex-end;
+            gap: 8px;
         }
         .business-tag {
-            padding: 8px 16px;
-            background: transparent;
-            border: 1px solid var(--gray-600);
+            padding: 6px 12px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
             border-radius: 100px;
-            font-size: 13px;
-            color: var(--gray-400);
-            transition: all 0.3s ease;
-        }
-        .business-card:hover .business-tag {
-            border-color: var(--accent);
-            color: var(--white);
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
         }
 
         /* ===== SECTION 4: PROCESS ===== */
         .section-process {
             padding: 160px 0 200px;
-            background: var(--white);
+            background: var(--gray-50);
         }
         .section-process .container {
             max-width: 1400px;
@@ -361,7 +380,18 @@
             padding: 56px 0;
             border-bottom: 1px solid var(--gray-200);
             align-items: center;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
+        .process-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .process-item:nth-child(1) { transition-delay: 0s; }
+        .process-item:nth-child(2) { transition-delay: 0.15s; }
+        .process-item:nth-child(3) { transition-delay: 0.3s; }
+        .process-item:nth-child(4) { transition-delay: 0.45s; }
         .process-item:first-child { padding-top: 0; }
         .process-item:last-child { border-bottom: none; }
         .process-num {
@@ -382,40 +412,7 @@
             line-height: 1.7;
         }
 
-        /* ===== SECTION 5: STATS ===== */
-        .section-stats {
-            padding: 180px 0 200px;
-            background: url('../img/bk (4).png') center/cover no-repeat;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            text-align: center;
-        }
-        .stat-card {
-            padding: 20px;
-        }
-        .stat-number {
-            font-size: 72px;
-            font-weight: 700;
-            letter-spacing: -3px;
-            line-height: 1;
-            margin-bottom: 16px;
-            font-variant-numeric: tabular-nums;
-        }
-        .stat-number .unit {
-            font-size: 32px;
-            font-weight: 500;
-            letter-spacing: 0;
-        }
-        .stat-label {
-            font-size: 16px;
-            font-weight: 400;
-            color: var(--gray-400);
-        }
-
-        /* ===== SECTION 6: REFERENCE ===== */
+        /* ===== SECTION 5: REFERENCE ===== */
         .section-reference {
             padding: 160px 0 200px;
             background: var(--white);
@@ -446,61 +443,19 @@
             font-size: 17px;
             color: var(--gray-600);
         }
-        .ref-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+        .ref-image {
+            width: 100%;
         }
-        .ref-card {
-            padding: 32px 28px;
-            background: var(--gray-50);
-            border-radius: 16px;
-            transition: all 0.3s ease;
-        }
-        .ref-card:hover {
-            background: var(--white);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-            transform: translateY(-4px);
-        }
-        .ref-category {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-        }
-        .ref-card h4 {
-            font-size: 17px;
-            font-weight: 600;
-            color: var(--black);
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-        .ref-card p {
-            font-size: 14px;
-            color: var(--gray-600);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .ref-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-        .ref-tags span {
-            padding: 5px 12px;
-            background: var(--white);
-            border-radius: 100px;
-            font-size: 12px;
-            color: var(--gray-600);
+        .ref-image img {
+            width: 100%;
+            height: auto;
         }
 
         /* ===== SECTION 7: CLOSING ===== */
         .section-closing {
-            padding: 220px 0;
+            padding: 140px 0;
             text-align: center;
-            background: url('../img/bk07.png') center/cover no-repeat;
+            background: url('../img/blue (8).png') center/cover no-repeat;
         }
         .closing-title {
             font-size: 36px;
@@ -540,10 +495,9 @@
             .hero-title { font-size: 44px; }
             .why-grid { grid-template-columns: repeat(2, 1fr); }
             .why-title { font-size: 40px; }
-            .business-card { gap: 32px; }
-            .business-num { font-size: 48px; }
+            .business-grid { grid-template-columns: repeat(2, 1fr); }
+            .business-card { height: 350px; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; }
-            .ref-grid { grid-template-columns: repeat(2, 1fr); }
             .process-item { grid-template-columns: 140px 1fr; gap: 60px; }
             .process-num { font-size: 48px; }
         }
@@ -560,23 +514,17 @@
             .why-icon { width: 48px; height: 48px; }
             .why-icon svg { width: 24px; height: 24px; }
             .section-business { padding: 120px 0 140px; }
-            .business-card { grid-template-columns: 60px 1fr; gap: 24px; padding: 28px 24px; }
-            .business-num { font-size: 40px; }
-            .business-content h3 { font-size: 18px; }
-            .business-content p { font-size: 14px; }
-            .business-tags { display: none; }
+            .business-grid { grid-template-columns: 1fr; gap: 16px; }
+            .business-card { height: 300px; }
+            .business-content h3 { font-size: 20px; }
             .section-process { padding: 100px 0 120px; }
             .process-title { font-size: 36px; }
             .process-item { grid-template-columns: 80px 1fr; gap: 24px; padding: 36px 0; }
             .process-num { font-size: 32px; }
             .process-content h4 { font-size: 18px; }
             .process-content p { font-size: 15px; }
-            .section-stats { padding: 120px 0 140px; }
-            .stats-grid { grid-template-columns: 1fr; gap: 40px; }
-            .stat-number { font-size: 56px; }
             .section-reference { padding: 100px 0 120px; }
             .reference-title { font-size: 32px; }
-            .ref-grid { grid-template-columns: 1fr; }
             .section-closing { padding: 140px 0; }
             .closing-title { font-size: 24px; }
             .closing-btn { font-size: 15px; padding: 16px 32px; }
@@ -650,78 +598,73 @@
         <div class="container">
             <p class="business-label">Business Areas</p>
             <h2 class="business-title">사업 영역</h2>
-            <div class="business-list">
-                <a href="../solutions/aicc-platform.html" class="business-card">
-                    <div class="business-num">01</div>
+            <div class="business-grid">
+                <a href="../solutions/aicc-platform.html" class="business-card" style="--bg-image: url('../img/card01.jpg')">
                     <div class="business-content">
+                        <div class="business-num">01</div>
                         <h3>AICC 솔루션</h3>
                         <p>AI 기반 컨택센터 솔루션으로 상담 품질 향상과 업무 효율화를 실현합니다</p>
-                    </div>
-                    <div class="business-tags">
-                        <span class="business-tag">AI 음성 대화 엔진</span>
-                        <span class="business-tag">AI 콜봇·챗봇</span>
-                        <span class="business-tag">AI KMS 지식관리</span>
-                        <span class="business-tag">AI 상담 어드바이저</span>
-                        <span class="business-tag">AI TA/QA 품질 분석</span>
+                        <div class="business-tags">
+                            <span class="business-tag">AI 음성 대화 엔진</span>
+                            <span class="business-tag">AI 콜봇·챗봇</span>
+                            <span class="business-tag">AI KMS</span>
+                        </div>
                     </div>
                 </a>
-                <a href="../products/ai-core.html" class="business-card">
-                    <div class="business-num">02</div>
+                <a href="../products/ai-core.html" class="business-card" style="--bg-image: url('../img/card02.jpg')">
                     <div class="business-content">
+                        <div class="business-num">02</div>
                         <h3>인공지능</h3>
                         <p>LLM, RAG 기반 지식 AI 플랫폼으로 기업의 지식 관리를 혁신합니다</p>
-                    </div>
-                    <div class="business-tags">
-                        <span class="business-tag">LLM·RAG 지식 AI 플랫폼</span>
-                        <span class="business-tag">음성인식·음성합성 AI</span>
-                        <span class="business-tag">초거대 언어모델 구축</span>
+                        <div class="business-tags">
+                            <span class="business-tag">LLM·RAG</span>
+                            <span class="business-tag">음성인식·음성합성</span>
+                        </div>
                     </div>
                 </a>
-                <a href="../products/baronote.html" class="business-card">
-                    <div class="business-num">03</div>
+                <a href="../products/baronote.html" class="business-card" style="--bg-image: url('../img/card04.jpg')">
                     <div class="business-content">
+                        <div class="business-num">03</div>
                         <h3>지능형 AI 회의록</h3>
                         <p>실시간 음성인식과 AI 요약으로 회의록 작성을 자동화합니다</p>
-                    </div>
-                    <div class="business-tags">
-                        <span class="business-tag">바로노트</span>
-                        <span class="business-tag">팀블로</span>
+                        <div class="business-tags">
+                            <span class="business-tag">바로노트</span>
+                            <span class="business-tag">팀블로</span>
+                        </div>
                     </div>
                 </a>
-                <a href="../stenography/soribaro.html" class="business-card">
-                    <div class="business-num">04</div>
+                <a href="../stenography/soribaro.html" class="business-card" style="--bg-image: url('../img/card06.jpg')">
                     <div class="business-content">
+                        <div class="business-num">04</div>
                         <h3>AI 기록·자막</h3>
                         <p>전문 속기 품질의 기록과 자막 생성을 AI로 자동화합니다</p>
-                    </div>
-                    <div class="business-tags">
-                        <span class="business-tag">SORIBARO</span>
-                        <span class="business-tag">TEXTAR</span>
-                        <span class="business-tag">SORIZAVA</span>
-                        <span class="business-tag">WEBFOS</span>
+                        <div class="business-tags">
+                            <span class="business-tag">SORIBARO</span>
+                            <span class="business-tag">TEXTAR</span>
+                            <span class="business-tag">SORIZAVA</span>
+                        </div>
                     </div>
                 </a>
-                <a href="../products/clipdesk.html" class="business-card">
-                    <div class="business-num">05</div>
+                <a href="../products/clipdesk.html" class="business-card" style="--bg-image: url('../img/card05.jpg')">
                     <div class="business-content">
+                        <div class="business-num">05</div>
                         <h3>AI 미디어·교육·일자리</h3>
                         <p>AI 기반 영상 편집, 속기 교육, 일자리 플랫폼을 제공합니다</p>
-                    </div>
-                    <div class="business-tags">
-                        <span class="business-tag">CLIPDESK</span>
-                        <span class="business-tag">WORKSFY</span>
-                        <span class="business-tag">SORIZAVA ACADEMY</span>
+                        <div class="business-tags">
+                            <span class="business-tag">CLIPDESK</span>
+                            <span class="business-tag">WORKSFY</span>
+                        </div>
                     </div>
                 </a>
-                <a href="../products/sign-avatar.html" class="business-card">
-                    <div class="business-num">06</div>
+                <a href="../products/sign-avatar.html" class="business-card" style="--bg-image: url('../img/card07.png')">
                     <div class="business-content">
+                        <div class="business-num">06</div>
                         <h3>AI 접근성</h3>
                         <p>AI 수어 아바타 등 접근성 기술로 정보 격차를 해소합니다</p>
-                    </div>
-                    <div class="business-tags">
-                        <span class="business-tag">AI 메타휴먼 수어 아바타</span>
-                        <span class="business-tag">리나&바로</span>
+                        <div class="business-tags">
+                            <span class="business-tag">수어 아바타</span>
+                            <span class="business-tag">리나&바로</span>
+                        </div>
                     </div>
                 </a>
             </div>
@@ -768,111 +711,15 @@
         </div>
     </section>
 
-    <!-- SECTION 5: STATS -->
-    <section class="section-stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number"><span data-count="6">0</span><span class="unit">개</span></div>
-                    <p class="stat-label">핵심 사업 영역</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number"><span data-count="20">0</span><span class="unit">+</span></div>
-                    <p class="stat-label">AI 제품</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number"><span data-count="500">0</span><span class="unit">+</span></div>
-                    <p class="stat-label">도입 고객사</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number"><span data-count="95">0</span><span class="unit">%</span></div>
-                    <p class="stat-label">고객 만족도</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 6: REFERENCE -->
+    <!-- SECTION 5: REFERENCE -->
     <section class="section-reference">
         <div class="container">
             <div class="reference-header">
-                <p class="reference-label">reference</p>
-                <h2 class="reference-title">주요 고객사 및 프로젝트</h2>
-                <p class="reference-desc">공공, 금융, 방송, 기업 등 다양한 산업에서 팀벨 AI 솔루션이 운영되고 있습니다</p>
+                <p class="reference-label">partners</p>
+                <h2 class="reference-title">팀벨과 함께하는 파트너사</h2>
             </div>
-            <div class="ref-grid">
-                <div class="ref-card">
-                    <div class="ref-category">정부·공공</div>
-                    <h4>국회 본회의 속기 시스템</h4>
-                    <p>실시간 음성인식 기반 본회의·상임위 속기록 자동 생성</p>
-                    <div class="ref-tags">
-                        <span>#STT</span>
-                        <span>#속기</span>
-                    </div>
-                </div>
-                <div class="ref-card">
-                    <div class="ref-category">정부·공공</div>
-                    <h4>법원 재판 기록 시스템</h4>
-                    <p>재판 녹취 및 조서 작성 자동화</p>
-                    <div class="ref-tags">
-                        <span>#회의록</span>
-                        <span>#법률</span>
-                    </div>
-                </div>
-                <div class="ref-card">
-                    <div class="ref-category">정부·공공</div>
-                    <h4>전국 지자체 회의록</h4>
-                    <p>지방의회 본회의·위원회 회의록 시스템</p>
-                    <div class="ref-tags">
-                        <span>#바로노트</span>
-                        <span>#공공</span>
-                    </div>
-                </div>
-                <div class="ref-card">
-                    <div class="ref-category">금융</div>
-                    <h4>은행 상담 녹취 분석</h4>
-                    <p>금융 상담 녹취 및 컴플라이언스 분석</p>
-                    <div class="ref-tags">
-                        <span>#AICC</span>
-                        <span>#TA</span>
-                    </div>
-                </div>
-                <div class="ref-card">
-                    <div class="ref-category">금융</div>
-                    <h4>보험 불완전판매 모니터링</h4>
-                    <p>AI 기반 상담 품질 자동 분석</p>
-                    <div class="ref-tags">
-                        <span>#QA</span>
-                        <span>#금융</span>
-                    </div>
-                </div>
-                <div class="ref-card">
-                    <div class="ref-category">방송·미디어</div>
-                    <h4>지상파 실시간 자막</h4>
-                    <p>생방송 뉴스·프로그램 실시간 자막 생성</p>
-                    <div class="ref-tags">
-                        <span>#TEXTAR</span>
-                        <span>#방송</span>
-                    </div>
-                </div>
-                <div class="ref-card">
-                    <div class="ref-category">방송·미디어</div>
-                    <h4>OTT VOD 자막 자동화</h4>
-                    <p>대량 영상 콘텐츠 자막 자동 생성</p>
-                    <div class="ref-tags">
-                        <span>#자막</span>
-                        <span>#VOD</span>
-                    </div>
-                </div>
-                <div class="ref-card">
-                    <div class="ref-category">통신·AICC</div>
-                    <h4>대형 콜센터 상담 자동화</h4>
-                    <p>AI 콜봇·챗봇 기반 상담 자동화</p>
-                    <div class="ref-tags">
-                        <span>#콜봇</span>
-                        <span>#챗봇</span>
-                    </div>
-                </div>
+            <div class="ref-image">
+                <img src="../img/reference.png" alt="파트너사">
             </div>
         </div>
     </section>
@@ -906,37 +753,20 @@
             }
         });
 
-
-        // Stats 카운팅 애니메이션
-        const countUp = (element, target) => {
-            let current = 0;
-            const increment = target / 60;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    element.textContent = target;
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(current);
-                }
-            }, 16);
-        };
-
-        const statsObserver = new IntersectionObserver((entries) => {
+        // 도입 프로세스 순차 등장 애니메이션
+        const processItems = document.querySelectorAll('.process-item');
+        const processObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const counters = entry.target.querySelectorAll('[data-count]');
-                    counters.forEach(counter => {
-                        const target = parseInt(counter.dataset.count);
-                        countUp(counter, target);
-                    });
-                    statsObserver.unobserve(entry.target);
+                    processItems.forEach(item => item.classList.add('visible'));
+                    processObserver.disconnect();
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.2 });
 
-        const statsSection = document.querySelector('.section-stats');
-        if (statsSection) statsObserver.observe(statsSection);
+        if (processItems.length > 0) {
+            processObserver.observe(processItems[0]);
+        }
     </script>
 </body>
 </html>
