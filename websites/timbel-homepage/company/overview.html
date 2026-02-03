@@ -9,546 +9,673 @@
     <style>
         :root {
             --black: #000000;
-            --gray-900: #111111;
-            --gray-800: #1a1a1a;
-            --gray-700: #2a2a2a;
-            --gray-600: #444444;
+            --gray-900: #0a0a0a;
+            --gray-800: #111111;
+            --gray-700: #1a1a1a;
+            --gray-600: #333333;
             --gray-500: #666666;
             --gray-400: #888888;
             --gray-300: #aaaaaa;
             --gray-200: #cccccc;
-            --gray-100: #eeeeee;
-            --gray-50: #f7f7f7;
+            --gray-100: #e5e5e5;
+            --gray-50: #f5f5f5;
             --white: #ffffff;
+            --accent: #2DD4BF;
             --accent-blue: #0066FF;
-            --accent-mint: #2DD4BF;
-            --accent: #0066FF;
+            --accent-orange: #E07830;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
-        * { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparent; }
-body { 
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--gray-900); }
+        ::-webkit-scrollbar-thumb { background: var(--gray-700); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gray-600); }
+
+        body { 
             font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; 
-            background: var(--black); color: var(--white);
-            line-height: 1.6; -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
+            background: var(--black); 
+            color: var(--white);
+            line-height: 1.6; 
+            -webkit-font-smoothing: antialiased;
             word-break: keep-all;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
-        @media (max-width: 768px) { .container { padding: 0 24px; } }
-
-/* ===== HERO / MISSION ===== */
-        .hero {
-            height: 700px;
-            max-height: 80vh;
-            display: flex; align-items: center;
-            padding: 120px 0 80px;
-            position: relative;
-            background: var(--black);
-            overflow: hidden;
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 60px; 
         }
-        .hero::before {
-            content: '';
-            position: absolute; inset: 0;
-            background-image: url('../img/bk09.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 1;
-            z-index: 1;
-            transform: scale(var(--bg-scale, 1));
-            will-change: transform;
-        }
-        .hero::after {
-            content: '';
-            position: absolute; inset: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 2;
-        }
-        .hero .container { position: relative; z-index: 10; }
-        .hero-content { max-width: 900px; margin: 0 auto; text-align: center; }
-        .hero-title {
-            font-size: clamp(48px, 8vw, 80px);
-            font-weight: 800; line-height: 1.2;
-            letter-spacing: -2px; margin-bottom: 32px;
-            color: var(--white);
-        }
-        .hero-title-en {
-            font-size: clamp(15px, 2vw, 18px);
-            font-weight: 400; line-height: 1.8;
-            color: rgba(255,255,255,0.6);
+        @media (max-width: 768px) { 
+            .container { padding: 0 24px; } 
         }
 
-        /* ===== SECTION ===== */
-        .section { padding: 140px 0; background: var(--white); color: var(--black); }
-        .section-dark { background: var(--gray-900); color: var(--white); }
-        .section-light { background: var(--gray-50); color: var(--black); }
-        
-        .section-label {
-            font-size: 14px; font-weight: 600;
-            color: var(--accent-blue); letter-spacing: 1px;
-            margin-bottom: 48px;
-        }
-        .section-dark .section-label { color: var(--accent-mint); }
-
-        /* ===== EVOLUTION TIMELINE ===== */
-        .evolution { background: var(--black); color: var(--white); overflow: hidden; }
-        .evolution-header {
-            display: flex; justify-content: space-between;
-            align-items: flex-end; margin-bottom: 80px;
-            border-bottom: 1px solid var(--gray-700);
-            padding-bottom: 24px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .evolution-header.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .evolution-title {
-            font-size: 14px; font-weight: 600;
-            color: var(--accent-mint); letter-spacing: 2px;
-        }
-        .evolution-link {
-            font-size: 14px; font-weight: 500;
-            color: var(--gray-400);
-            text-decoration: none;
-            display: flex; align-items: center; gap: 8px;
-            transition: color 0.2s ease;
-        }
-        .evolution-link:hover {
-            color: var(--accent-mint);
-        }
-        .evolution-link svg {
-            width: 16px; height: 16px;
-            transition: transform 0.2s ease;
-        }
-        .evolution-link:hover svg {
-            transform: translateX(4px);
-        }
-        .evolution-list { 
-            display: flex; flex-direction: column;
-            position: relative;
-        }
-        .evolution-list::before {
-            content: '';
-            position: absolute;
-            left: 145px;
-            top: 72px;
-            bottom: 72px;
-            width: 2px;
-            background: linear-gradient(180deg, var(--accent-blue) 0%, var(--accent-mint) 100%);
-            transform: scaleY(0);
-            transform-origin: top;
-            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .evolution-list.visible::before {
-            transform: scaleY(1);
-        }
-        .evolution-item {
-            display: grid; grid-template-columns: 140px 1fr;
-            gap: 60px; padding: 48px 0;
-            border-bottom: 1px solid var(--gray-800);
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-        }
-        .evolution-item.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .evolution-item:last-child { border-bottom: none; }
-        .evolution-year {
-            font-size: 48px; font-weight: 700;
-            color: var(--white); line-height: 1;
-            position: relative;
+        /* ===== SECTION 1: VISION ===== */
+        .section-vision {
+            min-height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
         }
-        .evolution-item::after {
+        .section-vision::before {
             content: '';
             position: absolute;
-            left: 141px;
+            inset: 0;
+            background: url('../img/blue (7).png') center/cover no-repeat;
+            transform: scale(var(--bg-scale, 1.3));
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+            z-index: 1;
+        }
+        .section-vision .container {
+            position: relative;
+            z-index: 10;
+        }
+        .vision-label {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--white);
+            letter-spacing: 2px;
+            margin-bottom: 56px;
+        }
+        .vision-title {
+            font-size: 92px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -3px;
+            margin-bottom: 0;
+            color: var(--white);
+            min-height: 240px;
+        }
+        .vision-title .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 0.9em;
+            background: var(--white);
+            margin-left: 4px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+        .vision-title .typing-cursor.hide {
+            opacity: 0;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        .vision-title .highlight {
+            position: relative;
+            display: inline;
+            padding: 4px 16px;
+            margin: 0 -16px;
+        }
+        .vision-title .highlight::after {
+            content: '';
+            position: absolute;
+            left: 0;
             top: 50%;
-            width: 10px;
-            height: 10px;
-            background: var(--accent-mint);
-            border-radius: 50%;
-            transform: translateY(-50%) scale(0);
-            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            z-index: 2;
+            transform: translateY(-50%);
+            width: 0;
+            height: 100%;
+            background: rgba(0, 72, 255, 0.85);
+            z-index: -1;
+            transition: width 0.8s ease;
+            border-radius: 4px;
         }
-        .evolution-item.visible::after {
-            transform: translateY(-50%) scale(1);
+        .vision-title .highlight.active::after {
+            width: 100%;
         }
-        .evolution-content {
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
-        }
-        .evolution-item.visible .evolution-content {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        .evolution-content h3 {
-            font-size: 22px; font-weight: 600;
-            margin-bottom: 12px; color: var(--white);
-        }
-        .evolution-content p {
-            font-size: 16px; color: var(--gray-400);
-            line-height: 1.8;
+        .vision-title-en {
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--gray-100);
+            font-style: normal;
+            letter-spacing: 1px;
         }
 
-        /* ===== ABOUT GRID ===== */
-        .about-grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 120px;
-        }
-        .about-title {
-            font-size: clamp(28px, 4vw, 40px);
-            font-weight: 700; line-height: 1.4;
-            letter-spacing: -0.5px;
-        }
-        .about-text {
-            font-size: 17px; color: var(--gray-600);
-            line-height: 2;
-        }
-        .about-text p { margin-bottom: 24px; }
-        .about-text p:last-child { margin-bottom: 0; }
-
-        /* ===== STATS ===== */
-        .stats {
-            display: grid; grid-template-columns: repeat(4, 1fr);
-            gap: 40px; margin-top: 80px;
-            padding-top: 80px; border-top: 1px solid var(--gray-200);
+        /* ===== SECTION 2: MISSION ===== */
+        .section-mission {
+            padding: 200px 0 160px;
             text-align: center;
-        }
-        .stat-item {
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .stat-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .stat-value {
-            font-size: clamp(28px, 3vw, 36px); font-weight: 800;
-            color: var(--black); margin-bottom: 12px;
-            letter-spacing: -1px;
-            font-variant-numeric: tabular-nums;
-            white-space: nowrap;
-        }
-        .stat-label {
-            font-size: 14px; color: var(--gray-500);
-            font-weight: 500;
-        }
-
-        /* ===== CAPABILITIES ===== */
-        .cap-header {
-            margin-bottom: 64px;
-        }
-        .cap-title {
-            font-size: clamp(28px, 4vw, 40px);
-            font-weight: 700; line-height: 1.4;
-            margin-bottom: 16px;
-            color: var(--black);
-        }
-        .cap-desc {
-            font-size: 17px; color: var(--gray-500);
-            max-width: 560px;
-        }
-        .cap-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 1px; background: #E3EFF7;
-            border: 1px solid #E3EFF7;
-        }
-        .cap-card {
-            padding: 48px 36px; background: var(--white);
-            transition: background 0.2s;
-        }
-        .cap-card:hover { background: #E8F4FD; }
-        .cap-num {
-            font-size: 12px; font-weight: 600;
-            color: var(--accent-mint); letter-spacing: 1px;
-            margin-bottom: 24px;
-        }
-        .cap-card h3 {
-            font-size: 20px; font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--black);
-        }
-        .cap-card p {
-            font-size: 15px; color: var(--gray-500);
-            line-height: 1.7;
-        }
-
-        /* ===== REFERENCES ===== */
-        .section-ref {
             background: var(--white);
             color: var(--black);
         }
-        .ref-image {
-            text-align: center;
+        .mission-label {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--gray-500);
+            letter-spacing: 0;
+            margin-bottom: 56px;
+            text-transform: lowercase;
         }
-        .ref-image img {
-            width: 100%;
-            max-width: 1400px;
-            height: auto;
-            border-radius: 16px;
+        .mission-title {
+            font-size: 34px;
+            font-weight: 600;
+            line-height: 1.8;
+            color: var(--black);
+            max-width: 900px;
+            margin: 0 auto 36px;
+            letter-spacing: -0.5px;
+        }
+        .mission-title-en {
+            font-size: 18px;
+            color: var(--gray-500);
+            font-weight: 300;
+            color: var(--gray-500);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.9;
+            letter-spacing: 0;
         }
 
-        /* ===== DOWNLOAD CTA ===== */
-        .contact-cta {
-            position: relative;
+        /* ===== SECTION 3: SLOGAN ===== */
+        .section-slogan {
+            padding: 140px 0;
             text-align: center;
-            color: var(--black);
-            overflow: hidden;
         }
-        .contact-cta::before {
-            content: '';
-            position: absolute; inset: 0;
-            background-image: url('../img/bk02.png');
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
+        .slogan-label {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--gray-400);
+            letter-spacing: 0;
+            margin-bottom: 48px;
+            text-transform: lowercase;
         }
-        .contact-cta .container {
-            position: relative;
-            z-index: 3;
+        .slogan-title {
+            font-size: 64px;
+            font-weight: 400;
+            color: var(--accent);
+            letter-spacing: -1px;
         }
-        .contact-label {
-            font-size: 14px; font-weight: 600;
+        .slogan-title-en {
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--gray-500);
+            margin-top: 28px;
+            letter-spacing: 0;
+        }
+
+        /* ===== SECTION 3: CORE VALUE ===== */
+        .section-core-value {
+            padding: 200px 0 240px;
+            text-align: center;
+            background: url('../img/blue (6).png') center/cover no-repeat;
+            background-size: 120%;
+        }
+        .section-core-value .container {
+            max-width: 1400px;
+        }
+        .core-value-label {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--white);
+            letter-spacing: 2px;
+            margin-bottom: 100px;
+        }
+        .core-value-grid {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+        }
+        .core-value-item {
+            width: 380px;
+            height: 380px;
+            min-width: 380px;
+            min-height: 380px;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.4s ease;
+            aspect-ratio: 1 / 1;
+            opacity: 0;
+            transform: translateY(60px);
+        }
+        .core-value-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .core-value-item:nth-child(1) { transition-delay: 0s; }
+        .core-value-item:nth-child(2) { transition-delay: 0.2s; }
+        .core-value-item:nth-child(3) { transition-delay: 0.4s; }
+        .core-value-item:hover {
+            border-color: rgba(255,255,255,0.9);
+            transform: translateY(0) scale(1.03);
+        }
+        .core-value-item h4 {
+            font-size: 34px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+        .core-value-item p {
+            font-size: 15px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* ===== SECTION 5: STATS ===== */
+        .section-stats {
+            padding: 180px 0 200px;
+            background: var(--gray-900);
+        }
+        .stats-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 120px;
+            gap: 60px;
+        }
+        .stats-title {
+            font-size: 48px;
+            font-weight: 400;
+            line-height: 1.4;
+            letter-spacing: -1px;
+        }
+        .stats-title span {
+            color: var(--accent);
+        }
+        .stats-desc {
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--gray-400);
+            max-width: 320px;
+            text-align: right;
+            line-height: 1.8;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 80px;
+        }
+        .stat-card {
+            text-align: center;
+        }
+        .stat-top-label {
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--gray-400);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+        .stat-number {
+            font-size: 140px;
+            font-weight: 200;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 0;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -8px;
+        }
+        .stat-number .unit {
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--white);
+            margin-left: 4px;
+            letter-spacing: 0;
+        }
+
+        /* ===== SECTION 7: HISTORY ===== */
+        .section-history {
+            padding: 160px 0 200px;
+            background: var(--white);
+        }
+        .section-history .container {
+            max-width: 1400px;
+        }
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 80px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .history-label {
+            font-size: 14px;
+            font-weight: 500;
             color: var(--gray-500);
             letter-spacing: 2px;
-            margin-bottom: 32px;
+            text-transform: uppercase;
         }
-        .contact-title {
-            font-size: clamp(28px, 5vw, 44px);
-            font-weight: 700; line-height: 1.5;
-            margin-bottom: 24px;
+        .history-link {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--gray-600);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+        .history-link:hover { color: var(--black); }
+        .history-link svg { width: 16px; height: 16px; }
+
+        .history-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .history-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 80px;
+            padding: 56px 0;
+            border-bottom: 1px solid var(--gray-200);
+            align-items: center;
+        }
+        .history-item:first-child { padding-top: 0; }
+        .history-item:last-child { border-bottom: none; }
+        .history-year {
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: -2px;
+        }
+        .history-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .history-row {
+            display: flex;
+            align-items: center;
+        }
+        .history-text {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--gray-700);
+            line-height: 1.7;
+        }
+
+        /* ===== SECTION 9: CLOSING ===== */
+        .section-closing {
+            padding: 220px 0;
+            text-align: center;
+            background: url('../img/bk07.png') center/cover no-repeat;
+        }
+        .closing-title {
+            font-size: 36px;
+            font-weight: 600;
+            line-height: 1.8;
+            margin-bottom: 48px;
+            letter-spacing: -0.5px;
+        }
+        .closing-desc {
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--gray-400);
+            line-height: 2;
+            max-width: 900px;
+            margin: 0 auto 64px;
+        }
+        .closing-btns {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .closing-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 40px;
+            font-size: 17px;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.25s ease;
+        }
+        .closing-btn.primary {
+            background: var(--white);
             color: var(--black);
         }
-        .contact-desc {
-            font-size: 17px;
-            color: var(--gray-600);
-            line-height: 1.9; max-width: 600px;
-            margin: 0 auto 40px;
-        }
-        .contact-btn {
-            display: inline-block;
-            padding: 16px 48px;
+        .closing-btn.primary:hover {
             background: var(--black);
             color: var(--white);
-            font-size: 16px; font-weight: 600;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s;
         }
-        .contact-btn:hover {
-            background: var(--accent-blue);
+        .closing-btn.secondary {
+            background: transparent;
             color: var(--white);
-            transform: translateY(-2px);
+            border: 1px solid var(--gray-600);
+        }
+        .closing-btn.secondary:hover {
+            border-color: var(--white);
         }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .section { padding: 100px 0; }
-            .about-grid { grid-template-columns: 1fr; gap: 48px; }
-            .evolution-item { grid-template-columns: 100px 1fr; gap: 32px; }
-            .evolution-item::after { left: 101px; }
-            .evolution-list::before { left: 105px; }
-            .evolution-year { font-size: 36px; }
-            .cap-grid { grid-template-columns: 1fr; }
-            .ref-grid { grid-template-columns: repeat(2, 1fr); }
-            .stats { grid-template-columns: repeat(2, 1fr); }
+            .vision-title { font-size: 72px; min-height: 200px; }
+            .mission-title { font-size: 28px; }
+            .slogan-title { font-size: 52px; }
+            .stats-title { font-size: 40px; }
+            .stat-number { font-size: 100px; letter-spacing: -5px; }
+            .stat-number .unit { font-size: 36px; }
+            .history-intro-title { font-size: 34px; }
+            .closing-title { font-size: 30px; }
+            
+            .stats-header { flex-direction: column; gap: 32px; }
+            .stats-desc { text-align: left; max-width: 100%; }
+            .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+            .core-value-grid { gap: 32px; }
+            .core-value-item { width: 300px; height: 300px; min-width: 300px; min-height: 300px; }
+            .core-value-item h4 { font-size: 28px; }
+            .history-item { grid-template-columns: 140px 1fr; gap: 60px; }
+            .history-year { font-size: 48px; }
+            .history-text { font-size: 18px; }
         }
-        @media (max-width: 640px) {
-            .hero { padding: 140px 0 80px; }
-            .evolution-item { grid-template-columns: 1fr; gap: 16px; }
-            .evolution-item::after { display: none; }
-            .evolution-list::before { display: none; }
-            .evolution-year { font-size: 32px; }
-            .ref-grid { grid-template-columns: 1fr; }
-            .stats { grid-template-columns: 1fr; gap: 32px; }
+        @media (max-width: 768px) {
+            .vision-title { font-size: 44px; letter-spacing: -1px; min-height: 140px; }
+            .vision-label { font-size: 16px; }
+            .mission-title { font-size: 18px; }
+            .mission-title-en { font-size: 15px; }
+            .mission-label { font-size: 14px; }
+            .slogan-title { font-size: 36px; }
+            .slogan-label { font-size: 14px; }
+            .core-value-label { font-size: 14px; }
+            .core-value-item h4 { font-size: 18px; }
+            .core-value-item p { font-size: 14px; }
+            .stats-title { font-size: 30px; }
+            .stats-desc { font-size: 15px; }
+            .stat-number { font-size: 72px; letter-spacing: -3px; }
+            .stat-number .unit { font-size: 28px; }
+            .stat-top-label { font-size: 15px; }
+            .history-intro-title { font-size: 26px; }
+            .history-label { font-size: 14px; }
+            .closing-title { font-size: 24px; }
+            .closing-desc { font-size: 16px; }
+            .closing-btn { font-size: 15px; padding: 16px 32px; }
+            
+            .section-vision { min-height: 80vh; padding: 100px 0; }
+            .section-mission { padding: 120px 0 100px; }
+            .section-slogan { padding: 100px 0; }
+            .section-core-value { padding: 100px 0 140px; }
+            .section-stats { padding: 120px 0 140px; }
+            .stats-grid { grid-template-columns: 1fr; gap: 56px; }
+            .stat-card { 
+                padding: 40px 24px;
+                background: var(--gray-800);
+                border-radius: 12px;
+            }
+            .section-history-intro { padding: 140px 0 80px; }
+            .section-history { padding: 80px 0 120px; }
+            .history-header { margin-bottom: 48px; }
+            .history-item { grid-template-columns: 100px 1fr; gap: 24px; padding: 36px 0; }
+            .history-year { font-size: 36px; }
+            .history-text { font-size: 16px; }
+            .section-closing { padding: 140px 0; }
+            .core-value-grid { flex-direction: column; align-items: center; gap: 32px; }
+            .core-value-item { width: 280px; height: 280px; min-width: 280px; min-height: 280px; }
+            .core-value-item h4 { font-size: 24px; margin-bottom: 12px; }
+            .core-value-item p { font-size: 14px; }
+            .section-core-value { padding: 120px 0 140px; }
+            .core-value-label { margin-bottom: 60px; }
+            .award-item { grid-template-columns: 28px 1fr; gap: 16px; }
         }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
-    <!-- HERO / MISSION -->
-    <section class="hero">
+    <!-- SECTION 1: VISION -->
+    <section class="section-vision">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    음성인식 기반<br>
-                    AI 솔루션 전문기업, 팀벨
-                </h1>
-                <p class="hero-title-en">
-                    기업의 커뮤니케이션 데이터를 지식으로 전환해<br>
-                    연결과 협업의 방식을 바꿉니다.
-                </p>
-            </div>
+            <p class="vision-label">Vision</p>
+            <h1 class="vision-title" id="typing-title"></h1>
         </div>
     </section>
 
-    <!-- ABOUT -->
-    <section class="section section-light">
+    <!-- SECTION 2: MISSION -->
+    <section class="section-mission">
         <div class="container">
-            <div class="section-label">ABOUT</div>
-            <div class="about-grid">
-                <h2 class="about-title">
-                    핵심 기술을 직접 만들고<br>
-                    직접 운영합니다
-                </h2>
-                <div class="about-text">
-                    <p>
-                        팀벨은 2001년부터 음성인식과 자연어처리, 기록 시스템을 개발해 온<br>
-                        AI 솔루션 전문 기업으로, 국회·법원·금융기관·방송사 등<br>
-                        고정밀성과 신뢰성이 요구되는 환경에서 20년 이상 기술을 축적해 왔습니다.
-                    </p>
-                    <p>
-                        이러한 경험을 바탕으로 LLM · RAG 기반 지식 AI를 비롯해<br>
-                        AICC 콜봇·챗봇, AI 회의록, 자막·속기 시스템까지<br>
-                        전 영역을 자체 기술로 설계·개발합니다.
-                    </p>
+            <p class="mission-label">mission</p>
+            <h2 class="mission-title">
+                고정밀 음성 AI와 지식 AI 기술로<br>
+                기업의 회의·상담·기록을 하나의 지식 자산으로 만듭니다
+            </h2>
+        </div>
+    </section>
+
+    <!-- SECTION 3: CORE VALUE -->
+    <section class="section-core-value">
+        <div class="container">
+            <p class="core-value-label">Core Value</p>
+            <div class="core-value-grid">
+                <div class="core-value-item">
+                    <h4>끊임없는 혁신</h4>
+                    <p>Innovation</p>
+                </div>
+                <div class="core-value-item">
+                    <h4>신뢰의 파트너십</h4>
+                    <p>Trust</p>
+                </div>
+                <div class="core-value-item">
+                    <h4>함께하는 성장</h4>
+                    <p>Growth</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- EVOLUTION -->
-    <section class="section evolution">
+    <!-- SECTION 5: STATS -->
+    <section class="section-stats">
         <div class="container">
-            <div class="evolution-header">
-                <div class="evolution-title">OUR EVOLUTION</div>
-                <a href="history.html" class="evolution-link">
-                    상세보기
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <p class="stat-top-label">업력<br>(2001년 5월 설립)</p>
+                    <div class="stat-number"><span data-count="24">0</span><span class="unit">년+</span></div>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-top-label">연간 매출액<br>(2024년 기준)</p>
+                    <div class="stat-number"><span data-count="270">0</span><span class="unit">억</span></div>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-top-label">국내 / 해외지사<br>(2023년 인도지부 설립)</p>
+                    <div class="stat-number"><span data-count="7">0</span><span class="unit">개</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: HISTORY -->
+    <section class="section-history">
+        <div class="container">
+            <div class="history-header">
+                <p class="history-label">history</p>
+                <a href="history.html" class="history-link">
+                    전체 연혁 보기
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
                 </a>
             </div>
-            <div class="evolution-list">
-                <div class="evolution-item">
-                    <div class="evolution-year" data-count="2025">2025</div>
-                    <div class="evolution-content">
-                        <h3>LLM · RAG 기반 지식 AI 플랫폼 확장</h3>
-                        <p>AICC, 지식 AI, AI 에이전트 등<br>기업용 AI 솔루션 전 영역으로 사업을 확장하고 있습니다.</p>
+            <div class="history-list">
+                <div class="history-item">
+                    <span class="history-year" data-year="2026">0</span>
+                    <div class="history-content">
+                        <div class="history-row no-month">
+                            <p class="history-text">LLM · RAG 기반 지식 AI 플랫폼 확장</p>
+                        </div>
                     </div>
                 </div>
-                <div class="evolution-item">
-                    <div class="evolution-year" data-count="2023">2023</div>
-                    <div class="evolution-content">
-                        <h3>팀벨로 사명 변경, 인도 법인 설립</h3>
-                        <p>소리자바에서 팀벨로 사명을 변경하고,<br>글로벌 시장 진출을 위해 인도 법인을 설립했습니다.</p>
+                <div class="history-item">
+                    <span class="history-year" data-year="2025">0</span>
+                    <div class="history-content">
+                        <div class="history-row no-month">
+                            <p class="history-text">한국경제TV 생방송 AI텍스트 서비스 구축</p>
+                        </div>
                     </div>
                 </div>
-                <div class="evolution-item">
-                    <div class="evolution-year" data-count="2020">2020</div>
-                    <div class="evolution-content">
-                        <h3>전국 교육지원청 AI 회의록 시스템 구축</h3>
-                        <p>61개 교육지원청에 AI 음성인식 회의지원시스템을 구축하며<br>공공 시장을 본격 확대했습니다.</p>
+                <div class="history-item">
+                    <span class="history-year" data-year="2023">0</span>
+                    <div class="history-content">
+                        <div class="history-row no-month">
+                            <p class="history-text">팀벨로 사명 변경 (소리자바 → 팀벨)</p>
+                        </div>
+                        <div class="history-row no-month">
+                            <p class="history-text">인도 뱅갈로르 법인 설립</p>
+                        </div>
                     </div>
                 </div>
-                <div class="evolution-item">
-                    <div class="evolution-year" data-count="2017">2017</div>
-                    <div class="evolution-content">
-                        <h3>인공지능 속기 시스템 상용화</h3>
-                        <p>MBC 실시간 자막방송 송출을 시작으로<br>AI 음성인식 기술을 본격 상용화했습니다.</p>
+                <div class="history-item">
+                    <span class="history-year" data-year="2020">0</span>
+                    <div class="history-content">
+                        <div class="history-row no-month">
+                            <p class="history-text">전국 61개 교육지원청 AI 회의록 시스템 구축</p>
+                        </div>
                     </div>
                 </div>
-                <div class="evolution-item">
-                    <div class="evolution-year" data-count="2001">2001</div>
-                    <div class="evolution-content">
-                        <h3>소리자바 법인 설립, 음성인식 개발 시작</h3>
-                        <p>디지털 속기 시스템과 음성인식 기술 개발을 시작하며<br>국내 AI 속기 시스템의 기반을 마련했습니다.</p>
+                <div class="history-item">
+                    <span class="history-year" data-year="2017">0</span>
+                    <div class="history-content">
+                        <div class="history-row no-month">
+                            <p class="history-text">MBC 실시간 자막방송 시스템 상용화</p>
+                        </div>
+                        <div class="history-row no-month">
+                            <p class="history-text">인공지능 속기 시스템 개발 완료</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="history-item">
+                    <span class="history-year" data-year="2010">0</span>
+                    <div class="history-content">
+                        <div class="history-row no-month">
+                            <p class="history-text">국회 속기 시스템 공급 시작</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="history-item">
+                    <span class="history-year" data-year="2001">0</span>
+                    <div class="history-content">
+                        <div class="history-row no-month">
+                            <p class="history-text">소리자바 법인 설립, 디지털 속기 시스템 개발 시작</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CAPABILITIES -->
-    <section class="section">
+    <!-- SECTION 9: CLOSING -->
+    <section class="section-closing">
         <div class="container">
-            <div class="cap-header">
-                <div class="section-label">CAPABILITIES</div>
-                <h2 class="cap-title">핵심 기술 역량</h2>
-                <p class="cap-desc">
-                    외부 엔진에 의존하지 않습니다.<br>
-                    모든 핵심 기술을 자체 개발하고 실환경에서 검증합니다.
-                </p>
-            </div>
-            <div class="cap-grid">
-                <div class="cap-card">
-                    <div class="cap-num">01</div>
-                    <h3>음성·언어 AI</h3>
-                    <p>STT, TTS, 화자 분리, 다국어 처리. AICC 환경 정확도 95%.</p>
-                </div>
-                <div class="cap-card">
-                    <div class="cap-num">02</div>
-                    <h3>AI 회의록</h3>
-                    <p>다자간 회의 최적화. 국회, 법원, 금융기관 실운영.</p>
-                </div>
-                <div class="cap-card">
-                    <div class="cap-num">03</div>
-                    <h3>LLM · RAG</h3>
-                    <p>Document AI, RAG 기반 환각 최소화, 근거 기반 답변.</p>
-                </div>
-                <div class="cap-card">
-                    <div class="cap-num">04</div>
-                    <h3>AICC 솔루션</h3>
-                    <p>콜봇, 챗봇, 상담 어드바이저, TA/QA 품질 분석.</p>
-                </div>
-                <div class="cap-card">
-                    <div class="cap-num">05</div>
-                    <h3>자막·속기</h3>
-                    <p>실시간 자막, 방송 송출, 전문 속기 시스템.</p>
-                </div>
-                <div class="cap-card">
-                    <div class="cap-num">06</div>
-                    <h3>학습 데이터</h3>
-                    <p>100,000시간+ 고품질 라벨링. 도메인 특화 모델.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- REFERENCES -->
-    <section class="section section-ref">
-        <div class="container">
-            <div class="section-label">REFERENCES</div>
-            <h2 class="cap-title" style="margin-bottom: 48px;">팀벨과 함께하는 고객사</h2>
-            <div class="ref-image">
-                <img src="../img/reference.png?v=2" alt="팀벨과 함께하는 고객사 로고">
-            </div>
-        </div>
-    </section>
-
-    <!-- DOWNLOAD CTA -->
-    <section class="section contact-cta">
-        <div class="container">
-            <h2 class="contact-title">
-                지속 가능한 AI 기술 혁신으로<br>
-                팀벨과 함께하세요
+            <h2 class="closing-title">
+                기업 환경에 최적화된 AI 맞춤형 솔루션을<br>
+                팀벨과 함께 하세요.
             </h2>
-            <p class="contact-desc">
-                회사소개서에서 팀벨의 기술력과 솔루션,<br>
-                주요 레퍼런스를 확인하실 수 있습니다.
-            </p>
-            <a href="#" class="contact-btn">회사소개서 다운로드</a>
+            <div class="closing-btns">
+                <a href="#" class="closing-btn primary">
+                    회사소개서 다운로드
+                </a>
+            </div>
         </div>
     </section>
 
@@ -556,28 +683,60 @@ body {
     <script src="../js/common.js"></script>
     <script>
         // 히어로 배경 스크롤 확대 효과
-        const hero = document.querySelector('.hero');
-        const heroBg = document.querySelector('.hero::before');
-        
+        const hero = document.querySelector('.section-vision');
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const heroHeight = hero.offsetHeight;
-            
             if (scrolled <= heroHeight) {
-                const scale = 1 + (scrolled / heroHeight) * 0.2;
+                const scale = 1 + (scrolled / heroHeight) * 0.15;
                 hero.style.setProperty('--bg-scale', scale);
             }
         });
 
+        // 타이핑 효과
+        const typingTitle = document.getElementById('typing-title');
+        const lines = ['대한민국을 대표하는 AI 음성기록 솔루션 전문기업'];
+        let lineIndex = 0;
+        let charIndex = 0;
+        let currentText = '';
+        const cursor = document.createElement('span');
+        cursor.className = 'typing-cursor';
+        
+        function typeText() {
+            if (lineIndex < lines.length) {
+                if (charIndex < lines[lineIndex].length) {
+                    currentText += lines[lineIndex][charIndex];
+                    typingTitle.innerHTML = currentText.replace('\n', '<br>') + cursor.outerHTML;
+                    charIndex++;
+                    setTimeout(typeText, 80);
+                } else {
+                    if (lineIndex < lines.length - 1) {
+                        currentText += '<br>';
+                        lineIndex++;
+                        charIndex = 0;
+                        setTimeout(typeText, 300);
+                    } else {
+                        // 타이핑 완료
+                        setTimeout(() => {
+                            typingTitle.innerHTML = '대한민국을 대표하는 AI 음성기록 솔루션 전문기업';
+                        }, 500);
+                    }
+                }
+            }
+        }
+        
+        // 페이지 로드 후 타이핑 시작
+        setTimeout(typeText, 500);
+
         // 숫자 카운팅 애니메이션
-        const countUp = (el, target, duration = 1500) => {
-            const start = 1990;
+        const countUp = (el, target, duration = 1800) => {
+            const start = 0;
             const startTime = performance.now();
             
             const animate = (currentTime) => {
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const easeOut = 1 - Math.pow(1 - progress, 4);
                 const current = Math.floor(start + (target - start) * easeOut);
                 el.textContent = current;
                 
@@ -590,77 +749,78 @@ body {
             requestAnimationFrame(animate);
         };
 
-        // Evolution 연도 카운팅
-        const evolutionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const years = entry.target.querySelectorAll('.evolution-year[data-count]');
-                    years.forEach((el, index) => {
-                        setTimeout(() => {
-                            countUp(el, parseInt(el.dataset.count), 1200);
-                        }, index * 300);
-                    });
-                    evolutionObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.2 });
-
-        const evolutionSection = document.querySelector('.evolution-list');
-        if (evolutionSection) evolutionObserver.observe(evolutionSection);
-
-        // Stats 서서히 나타나는 효과
+        // Stats 카운팅 옵저버
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const statItems = entry.target.querySelectorAll('.stat-item');
-                    statItems.forEach((el, index) => {
+                    const countEls = entry.target.querySelectorAll('[data-count]');
+                    countEls.forEach((el, index) => {
                         setTimeout(() => {
-                            el.classList.add('visible');
-                        }, index * 150);
+                            countUp(el, parseInt(el.dataset.count), 1800);
+                        }, index * 300);
                     });
                     statsObserver.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.3 });
 
-        const statsSection = document.querySelector('.stats');
-        if (statsSection) statsObserver.observe(statsSection);
+        const statsGrid = document.querySelector('.stats-grid');
+        if (statsGrid) statsObserver.observe(statsGrid);
 
-        // Evolution 스크롤 인터랙션
-        const evolutionHeader = document.querySelector('.evolution-header');
-        const evolutionList = document.querySelector('.evolution-list');
-        const evolutionItems = document.querySelectorAll('.evolution-item');
-
-        const evolutionHeaderObserver = new IntersectionObserver((entries) => {
+        // Core Value 애니메이션
+        const coreValueObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    evolutionHeaderObserver.unobserve(entry.target);
+                    const items = entry.target.querySelectorAll('.core-value-item');
+                    items.forEach(item => {
+                        item.classList.add('visible');
+                    });
+                    coreValueObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const coreValueGrid = document.querySelector('.core-value-grid');
+        if (coreValueGrid) coreValueObserver.observe(coreValueGrid);
+
+        // History 연도 카운팅 애니메이션
+        const historyYears = document.querySelectorAll('.history-year[data-year]');
+        
+        const countUpYear = (element) => {
+            const target = parseInt(element.dataset.year);
+            const duration = 1500;
+            const start = 1990;
+            const range = target - start;
+            const startTime = performance.now();
+            
+            const updateCount = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(start + (range * easeOut));
+                element.textContent = current;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCount);
+                } else {
+                    element.textContent = target;
+                }
+            };
+            
+            requestAnimationFrame(updateCount);
+        };
+
+        const historyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                    entry.target.classList.add('counted');
+                    countUpYear(entry.target);
                 }
             });
         }, { threshold: 0.5 });
 
-        const evolutionListObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    evolutionListObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
+        historyYears.forEach(year => historyObserver.observe(year));
 
-        const evolutionItemObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    evolutionItemObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3, rootMargin: '0px 0px -50px 0px' });
-
-        if (evolutionHeader) evolutionHeaderObserver.observe(evolutionHeader);
-        if (evolutionList) evolutionListObserver.observe(evolutionList);
-        evolutionItems.forEach(item => evolutionItemObserver.observe(item));
     </script>
 </body>
 </html>
