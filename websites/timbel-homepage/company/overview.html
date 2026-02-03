@@ -26,27 +26,20 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--gray-900); }
-        ::-webkit-scrollbar-thumb { background: var(--gray-700); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--gray-600); }
-
         body { 
             font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; 
             background: var(--black); 
-            color: var(--white);
+            color: var(--white); 
             line-height: 1.6; 
-            -webkit-font-smoothing: antialiased;
-            word-break: keep-all;
+            overflow-x: hidden; 
         }
         .container { 
-            max-width: 1200px; 
+            max-width: 1280px; 
             margin: 0 auto; 
-            padding: 0 60px; 
+            padding: 0 40px; 
         }
         @media (max-width: 768px) { 
-            .container { padding: 0 24px; } 
+            .container { padding: 0 20px; } 
         }
 
         /* ===== SECTION 1: VISION ===== */
@@ -75,11 +68,12 @@
             z-index: 10;
         }
         .vision-label {
-            font-size: 20px;
-            font-weight: 400;
+            font-size: 14px;
+            font-weight: 500;
             color: var(--white);
             letter-spacing: 2px;
-            margin-bottom: 56px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
         }
         .vision-title {
             font-size: 92px;
@@ -144,12 +138,12 @@
             color: var(--black);
         }
         .mission-label {
-            font-size: 20px;
-            font-weight: 400;
+            font-size: 14px;
+            font-weight: 500;
             color: var(--gray-500);
-            letter-spacing: 0;
-            margin-bottom: 56px;
-            text-transform: lowercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            text-transform: uppercase;
         }
         .mission-title {
             font-size: 34px;
@@ -223,11 +217,12 @@
             max-width: 1400px;
         }
         .core-value-label {
-            font-size: 18px;
-            font-weight: 400;
+            font-size: 14px;
+            font-weight: 500;
             color: var(--white);
             letter-spacing: 2px;
-            margin-bottom: 100px;
+            text-transform: uppercase;
+            margin-bottom: 80px;
         }
         .core-value-grid {
             display: flex;
@@ -504,13 +499,13 @@
         }
         @media (max-width: 768px) {
             .vision-title { font-size: 44px; letter-spacing: -1px; min-height: 140px; }
-            .vision-label { font-size: 16px; }
+            .vision-label { font-size: 12px; }
             .mission-title { font-size: 18px; }
             .mission-title-en { font-size: 15px; }
-            .mission-label { font-size: 14px; }
+            .mission-label { font-size: 12px; }
             .slogan-title { font-size: 36px; }
-            .slogan-label { font-size: 14px; }
-            .core-value-label { font-size: 14px; }
+            .slogan-label { font-size: 12px; }
+            .core-value-label { font-size: 12px; }
             .core-value-item h4 { font-size: 18px; }
             .core-value-item p { font-size: 14px; }
             .stats-title { font-size: 30px; }

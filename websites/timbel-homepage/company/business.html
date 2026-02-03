@@ -12,305 +12,793 @@
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
     <style>
         :root {
-            --primary: #06b6d4;
-            --primary-dark: #0891b2;
-            --primary-light: #22d3ee;
-            --secondary: #8b5cf6;
-            --dark: #0a0a0f;
-            --dark-800: #1a1a2e;
-            --dark-700: #252540;
-            --dark-600: #2d2d4a;
-            --gray-900: #111827;
-            --gray-600: #4b5563;
-            --gray-400: #9ca3af;
-            --gray-300: #d1d5db;
-            --gray-200: #e5e7eb;
-            --gray-100: #f3f4f6;
-            --gray-50: #f9fafb;
-            --white: #FFFFFF;
-            --gradient-primary: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            --black: #000000;
+            --gray-900: #0a0a0a;
+            --gray-800: #111111;
+            --gray-700: #1a1a1a;
+            --gray-600: #333333;
+            --gray-500: #666666;
+            --gray-400: #888888;
+            --gray-300: #aaaaaa;
+            --gray-200: #cccccc;
+            --gray-100: #e5e5e5;
+            --gray-50: #f5f5f5;
+            --white: #ffffff;
+            --accent: #3B82F6;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--dark); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+        body { 
+            font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; 
+            background: var(--black); 
+            color: var(--white); 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+        }
         .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
         @media (max-width: 768px) { .container { padding: 0 20px; } }
 
-        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 160px 0 120px; background: var(--dark); overflow: hidden; }
-        .hero::before { content: ''; position: absolute; top: -40%; left: 50%; transform: translateX(-50%); width: 100%; height: 150%; background: radial-gradient(ellipse, rgba(6, 182, 212, 0.15) 0%, transparent 50%); }
-        .hero-content { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; text-align: center; }
-        .hero-label { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-light); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 32px; }
-        .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--primary); }
-        .hero-title { font-size: clamp(48px, 8vw, 80px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 32px; }
-        .hero-title .line { display: block; }
-        .hero-title .highlight { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero-desc { font-size: 18px; color: var(--gray-400); line-height: 1.8; max-width: 600px; margin: 0 auto 32px; }
-        .hero-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-        .hero-tag { padding: 8px 16px; background: rgba(6, 182, 212, 0.15); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 100px; font-size: 13px; font-weight: 600; color: var(--primary-light); }
-        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 18px 36px; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
-        .btn-primary { background: var(--gradient-primary); color: var(--white); box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(6, 182, 212, 0.4); }
-        .btn-ghost { background: transparent; color: var(--gray-300); border: 1px solid var(--dark-600); }
-        .btn-ghost:hover { background: var(--dark-700); border-color: var(--gray-600); color: var(--white); }
-        .btn svg { width: 18px; height: 18px; }
+        /* ===== SECTION 1: HERO ===== */
+        .section-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .section-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('../img/getty5.jpg') center/cover no-repeat;
+            transform: scale(var(--bg-scale, 1.3));
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+            z-index: 1;
+        }
+        .section-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 2;
+        }
+        .section-hero .container {
+            position: relative;
+            z-index: 10;
+        }
+        .hero-label {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--white);
+            letter-spacing: 2px;
+            margin-bottom: 56px;
+        }
+        .hero-title {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.4;
+            letter-spacing: -2px;
+            margin-bottom: 0;
+            color: var(--white);
+        }
+        .rolling-wrapper {
+            display: inline-flex;
+            align-items: center;
+            vertical-align: bottom;
+        }
+        .rolling-wrapper::before {
+            content: '[';
+            margin-right: 8px;
+        }
+        .rolling-wrapper::after {
+            content: ']';
+            margin-left: 8px;
+        }
+        .rolling-inner {
+            display: inline-block;
+            position: relative;
+            height: 1.4em;
+            width: 4.5em;
+            overflow: hidden;
+        }
+        .rolling-text {
+            display: block;
+            color: var(--white);
+            animation: rolling 10s infinite;
+            text-align: center;
+        }
+        @keyframes rolling {
+            0%, 13% { transform: translateY(0); }
+            16.66%, 30% { transform: translateY(-100%); }
+            33.33%, 46% { transform: translateY(-200%); }
+            50%, 63% { transform: translateY(-300%); }
+            66.66%, 80% { transform: translateY(-400%); }
+            83.33%, 96% { transform: translateY(-500%); }
+            100% { transform: translateY(0); }
+        }
 
-        .section { padding: 160px 0; position: relative; }
-        .section-dark-alt { background: var(--dark-800); }
-        .section-light { background: var(--gray-50); color: var(--gray-900); }
-        .section-header { margin-bottom: 80px; }
-        .section-header.center { text-align: center; }
-        .section-label { display: inline-flex; font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; }
-        .section-title { font-size: clamp(36px, 5vw, 52px); font-weight: 800; line-height: 1.2; letter-spacing: -1px; margin-bottom: 24px; }
-        .section-light .section-title { color: var(--gray-900); }
-        .section-desc { font-size: 17px; color: var(--gray-400); line-height: 1.8; max-width: 600px; }
-        .section-header.center .section-desc { margin: 0 auto; }
-        .section-light .section-desc { color: var(--gray-600); }
+        /* ===== SECTION 2: WHY TIMBEL ===== */
+        .section-why {
+            padding: 180px 0;
+            background: var(--white);
+            color: var(--black);
+        }
+        .section-why .container {
+            max-width: 1400px;
+        }
+        .why-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .why-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .why-title {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--black);
+            letter-spacing: -1px;
+        }
+        .why-desc {
+            font-size: 17px;
+            color: var(--gray-500);
+            line-height: 1.8;
+            max-width: 400px;
+            text-align: right;
+        }
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .why-card {
+            position: relative;
+            background: var(--gray-50);
+            border-radius: 24px;
+            padding: 48px 32px;
+            text-align: left;
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+        .why-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        .why-card:hover {
+            background: var(--white);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+        }
+        .why-card:hover::before {
+            transform: scaleX(1);
+        }
+        .why-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--white);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 28px;
+            transition: all 0.3s ease;
+        }
+        .why-card:hover .why-icon {
+            background: var(--accent);
+        }
+        .why-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--accent);
+            transition: color 0.3s ease;
+        }
+        .why-card:hover .why-icon svg {
+            color: var(--white);
+        }
+        .why-num {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-400);
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        .why-card h4 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+        .why-card p {
+            font-size: 15px;
+            color: var(--gray-500);
+            line-height: 1.7;
+        }
 
-        /* Why Timbel */
-        .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-        .why-card { padding: 40px 36px; background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 16px; transition: all 0.3s; }
-        .why-card:hover { border-color: var(--primary); }
-        .why-num { font-size: 32px; font-weight: 800; color: var(--primary); opacity: 0.5; margin-bottom: 16px; }
-        .why-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
-        .why-card p { font-size: 14px; color: var(--gray-400); line-height: 1.8; }
+        /* ===== SECTION 3: BUSINESS AREAS ===== */
+        .section-business {
+            padding: 200px 0 240px;
+            background: var(--gray-900);
+        }
+        .section-business .container {
+            max-width: 1200px;
+        }
+        .business-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-400);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .business-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -1px;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .business-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .business-card {
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            align-items: center;
+            gap: 48px;
+            background: var(--gray-800);
+            border: 1px solid transparent;
+            border-radius: 16px;
+            padding: 40px 48px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .business-card:hover {
+            background: var(--gray-700);
+            border-color: var(--accent);
+            padding-left: 56px;
+        }
+        .business-num {
+            font-size: 64px;
+            font-weight: 800;
+            color: var(--gray-700);
+            line-height: 1;
+            transition: color 0.4s ease;
+        }
+        .business-card:hover .business-num {
+            color: var(--accent);
+        }
+        .business-content h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+        .business-content p {
+            font-size: 15px;
+            color: var(--gray-400);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        .business-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        .business-tag {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid var(--gray-600);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--gray-400);
+            transition: all 0.3s ease;
+        }
+        .business-card:hover .business-tag {
+            border-color: var(--accent);
+            color: var(--white);
+        }
 
-        /* Business Areas */
-        .business-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .business-card { padding: 48px 36px; background: var(--white); border-radius: 24px; border: 1px solid var(--gray-200); transition: all 0.4s; position: relative; overflow: hidden; }
-        .business-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gradient-primary); transform: scaleX(0); transition: transform 0.4s; }
-        .business-card:hover::before { transform: scaleX(1); }
-        .business-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
-        .business-num { font-size: 48px; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.3; margin-bottom: 20px; line-height: 1; }
-        .business-card h3 { font-size: 22px; font-weight: 700; color: var(--gray-900); margin-bottom: 16px; }
-        .business-card p { font-size: 15px; color: var(--gray-600); line-height: 1.7; margin-bottom: 24px; }
-        .business-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-        .business-tag { padding: 6px 12px; background: var(--gray-100); border-radius: 100px; font-size: 12px; color: var(--gray-600); font-weight: 500; }
+        /* ===== SECTION 4: PROCESS ===== */
+        .section-process {
+            padding: 160px 0 200px;
+            background: var(--white);
+        }
+        .section-process .container {
+            max-width: 1400px;
+        }
+        .process-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .process-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-500);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .process-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: -1px;
+        }
+        .process-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .process-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 80px;
+            padding: 56px 0;
+            border-bottom: 1px solid var(--gray-200);
+            align-items: center;
+        }
+        .process-item:first-child { padding-top: 0; }
+        .process-item:last-child { border-bottom: none; }
+        .process-num {
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: -2px;
+        }
+        .process-content h4 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 12px;
+        }
+        .process-content p {
+            font-size: 17px;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
 
-        /* Process */
-        .process-list { display: flex; flex-direction: column; gap: 24px; }
-        .process-item { display: flex; gap: 32px; padding: 40px; background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 20px; transition: all 0.3s; }
-        .process-item:hover { border-color: var(--primary); transform: translateX(8px); }
-        .process-num { font-size: 64px; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.5; line-height: 1; flex-shrink: 0; width: 80px; }
-        .process-content h4 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
-        .process-content p { font-size: 15px; color: var(--gray-400); line-height: 1.7; }
+        /* ===== SECTION 5: STATS ===== */
+        .section-stats {
+            padding: 180px 0 200px;
+            background: url('../img/bk (4).png') center/cover no-repeat;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        .stat-card {
+            padding: 20px;
+        }
+        .stat-number {
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: -3px;
+            line-height: 1;
+            margin-bottom: 16px;
+            font-variant-numeric: tabular-nums;
+        }
+        .stat-number .unit {
+            font-size: 32px;
+            font-weight: 500;
+            letter-spacing: 0;
+        }
+        .stat-label {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--gray-400);
+        }
 
-        /* Stats */
-        .stats-section { background: linear-gradient(180deg, var(--dark) 0%, var(--dark-800) 100%); padding: 120px 0; }
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
-        .stat-item { text-align: center; }
-        .stat-value { font-size: 64px; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 12px; }
-        .stat-label { font-size: 15px; color: var(--gray-400); }
+        /* ===== SECTION 6: REFERENCE ===== */
+        .section-reference {
+            padding: 160px 0 200px;
+            background: var(--white);
+        }
+        .section-reference .container {
+            max-width: 1400px;
+        }
+        .reference-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .reference-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-500);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .reference-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+        .reference-desc {
+            font-size: 17px;
+            color: var(--gray-600);
+        }
+        .ref-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .ref-card {
+            padding: 32px 28px;
+            background: var(--gray-50);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        .ref-card:hover {
+            background: var(--white);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px);
+        }
+        .ref-category {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        .ref-card h4 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .ref-card p {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .ref-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .ref-tags span {
+            padding: 5px 12px;
+            background: var(--white);
+            border-radius: 100px;
+            font-size: 12px;
+            color: var(--gray-600);
+        }
 
-        /* Reference */
-        .ref-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .ref-card { padding: 28px 24px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 16px; transition: all 0.3s; }
-        .ref-card:hover { box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08); transform: translateY(-4px); }
-        .ref-category { font-size: 11px; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
-        .ref-card h4 { font-size: 15px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; line-height: 1.4; }
-        .ref-card p { font-size: 13px; color: var(--gray-600); line-height: 1.5; margin-bottom: 16px; }
-        .ref-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-        .ref-tags span { padding: 4px 10px; background: var(--gray-100); border-radius: 100px; font-size: 11px; color: var(--gray-600); }
+        /* ===== SECTION 7: CLOSING ===== */
+        .section-closing {
+            padding: 220px 0;
+            text-align: center;
+            background: url('../img/bk07.png') center/cover no-repeat;
+        }
+        .closing-title {
+            font-size: 36px;
+            font-weight: 600;
+            line-height: 1.8;
+            margin-bottom: 48px;
+            letter-spacing: -0.5px;
+        }
+        .closing-btns {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .closing-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 40px;
+            font-size: 17px;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.25s ease;
+        }
+        .closing-btn.primary {
+            background: var(--white);
+            color: var(--black);
+        }
+        .closing-btn.primary:hover {
+            background: var(--black);
+            color: var(--white);
+        }
 
-        /* CTA */
-        .cta-section { background: var(--gradient-primary); padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
-        .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 50%); }
-        .cta-content { position: relative; z-index: 10; }
-        .cta-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
-        .cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
-        .cta-section .btn-primary { background: var(--white); color: var(--primary-dark); }
-        .cta-section .btn-ghost { border-color: rgba(255,255,255,0.3); color: var(--white); }
-
-        @media (max-width: 1024px) { .section { padding: 100px 0; } .why-grid { grid-template-columns: 1fr; } .business-grid { grid-template-columns: 1fr; } .process-item { flex-direction: column; gap: 16px; } .process-num { width: auto; } .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; } .ref-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { .hero { padding: 120px 0 80px; } .section { padding: 80px 0; } .hero-actions { flex-direction: column; } .hero-tags { gap: 8px; } .hero-tag { font-size: 12px; padding: 6px 12px; } .btn { width: 100%; justify-content: center; } .stats-grid { grid-template-columns: 1fr; gap: 40px; } .ref-grid { grid-template-columns: 1fr; } }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-title { font-size: 44px; }
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .why-title { font-size: 40px; }
+            .business-card { gap: 32px; }
+            .business-num { font-size: 48px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; }
+            .ref-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-item { grid-template-columns: 140px 1fr; gap: 60px; }
+            .process-num { font-size: 48px; }
+        }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 24px; letter-spacing: -1px; }
+            .rolling-wrapper { height: 1.3em; }
+            .hero-label { font-size: 16px; }
+            .section-hero { min-height: 80vh; padding: 100px 0; }
+            .section-why { padding: 100px 0; }
+            .why-title { font-size: 32px; }
+            .why-grid { grid-template-columns: 1fr; gap: 16px; }
+            .why-card { padding: 32px 24px; }
+            .why-card h4 { font-size: 18px; }
+            .why-icon { width: 48px; height: 48px; }
+            .why-icon svg { width: 24px; height: 24px; }
+            .section-business { padding: 120px 0 140px; }
+            .business-card { grid-template-columns: 60px 1fr; gap: 24px; padding: 28px 24px; }
+            .business-num { font-size: 40px; }
+            .business-content h3 { font-size: 18px; }
+            .business-content p { font-size: 14px; }
+            .business-tags { display: none; }
+            .section-process { padding: 100px 0 120px; }
+            .process-title { font-size: 36px; }
+            .process-item { grid-template-columns: 80px 1fr; gap: 24px; padding: 36px 0; }
+            .process-num { font-size: 32px; }
+            .process-content h4 { font-size: 18px; }
+            .process-content p { font-size: 15px; }
+            .section-stats { padding: 120px 0 140px; }
+            .stats-grid { grid-template-columns: 1fr; gap: 40px; }
+            .stat-number { font-size: 56px; }
+            .section-reference { padding: 100px 0 120px; }
+            .reference-title { font-size: 32px; }
+            .ref-grid { grid-template-columns: 1fr; }
+            .section-closing { padding: 140px 0; }
+            .closing-title { font-size: 24px; }
+            .closing-btn { font-size: 15px; padding: 16px 32px; }
+        }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
-    <section class="hero">
+    <!-- SECTION 1: HERO -->
+    <section class="section-hero">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="line">기업에 필요한</span>
-                    <span class="line"><span class="highlight">AI 솔루션</span>을</span>
-                    <span class="line">직접 만듭니다</span>
-                </h1>
-                <p class="hero-desc">
-                    AICC, 지식 AI, 회의록, 자막·속기까지.<br>
-                    20년간 축적한 기술로 기업의 AI 전환을 지원합니다.
-                </p>
-                <div class="hero-tags">
-                    <span class="hero-tag">#AICC</span>
-                    <span class="hero-tag">#LLM_RAG</span>
-                    <span class="hero-tag">#AI회의록</span>
-                    <span class="hero-tag">#자막_속기</span>
-                    <span class="hero-tag">#음성AI</span>
-                </div>
-            </div>
+            <p class="hero-label">Business</p>
+            <h1 class="hero-title">
+                기업의 <span class="rolling-wrapper"><span class="rolling-inner"><span class="rolling-text">회의록</span><span class="rolling-text">녹취록</span><span class="rolling-text">영상 자막</span><span class="rolling-text">영상 편집</span><span class="rolling-text">번역</span><span class="rolling-text">지식 관리</span></span></span>를 아우르는<br>
+                AI 솔루션과 플랫폼을 직접 설계하고 개발합니다
+            </h1>
         </div>
     </section>
 
-    <!-- Why Timbel -->
-    <section class="section section-dark-alt">
+    <!-- SECTION 2: WHY TIMBEL -->
+    <section class="section-why">
         <div class="container">
-            <div class="section-header center">
-                <div class="section-label">Why Timbel</div>
-                <h2 class="section-title">왜 팀벨인가</h2>
+            <div class="why-header">
+                <p class="why-label">why timbel</p>
+                <h2 class="why-title">왜 팀벨인가</h2>
             </div>
             <div class="why-grid">
                 <div class="why-card">
-                    <div class="why-num">01</div>
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        </svg>
+                    </div>
                     <h4>핵심 엔진 자체 개발</h4>
-                    <p>STT, TTS, NLU, RAG 등 핵심 엔진을 모두 자체 개발합니다. 외부 API 의존 없이 온프레미스 구축이 가능하고, 고객 데이터가 외부로 유출되지 않습니다.</p>
+                    <p>STT, TTS, NLU, RAG 등 핵심 엔진을 모두 자체 개발합니다</p>
                 </div>
                 <div class="why-card">
-                    <div class="why-num">02</div>
-                    <h4>20년 실운영 레퍼런스</h4>
-                    <p>국회, 법원, 금융기관에서 매일 실제 업무에 사용됩니다. PoC 레퍼런스가 아닌, 장애가 발생하면 안 되는 환경에서 검증된 기술입니다.</p>
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h4>24년 실운영 레퍼런스</h4>
+                    <p>국회, 법원, 금융기관에서 매일 실제 업무에 사용됩니다</p>
                 </div>
                 <div class="why-card">
-                    <div class="why-num">03</div>
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
+                        </svg>
+                    </div>
                     <h4>도메인 특화 데이터</h4>
-                    <p>100,000시간 이상의 학습 데이터를 직접 라벨링했습니다. 공공, 금융, 법률, 방송 도메인에 특화된 고품질 데이터입니다.</p>
+                    <p>100,000시간 이상의 학습 데이터를 직접 라벨링했습니다</p>
                 </div>
                 <div class="why-card">
-                    <div class="why-num">04</div>
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
                     <h4>엔드투엔드 지원</h4>
-                    <p>컨설팅부터 구축, 운영, 고도화까지 전 과정을 직접 지원합니다. 외주 없이 자체 엔지니어가 대응합니다.</p>
+                    <p>컨설팅부터 구축, 운영, 고도화까지 전 과정을 직접 지원합니다</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section section-light" id="areas">
+    <!-- SECTION 3: BUSINESS AREAS -->
+    <section class="section-business">
         <div class="container">
-            <div class="section-header center">
-                <div class="section-label" style="color: var(--primary-dark);">Business Areas</div>
-                <h2 class="section-title">사업 영역</h2>
-            </div>
-            <div class="business-grid">
-                <div class="business-card">
+            <p class="business-label">Business Areas</p>
+            <h2 class="business-title">사업 영역</h2>
+            <div class="business-list">
+                <a href="../solutions/aicc-platform.html" class="business-card">
                     <div class="business-num">01</div>
-                    <h3>AICC 솔루션</h3>
-                    <p>AI 기반 컨택센터 솔루션으로 상담 품질 향상과 업무 효율화를 실현합니다.</p>
-                    <div class="business-tags">
-                        <span class="business-tag">AI 대화엔진</span>
-                        <span class="business-tag">콜봇/챗봇</span>
-                        <span class="business-tag">상담 어드바이저</span>
+                    <div class="business-content">
+                        <h3>AICC 솔루션</h3>
+                        <p>AI 기반 컨택센터 솔루션으로 상담 품질 향상과 업무 효율화를 실현합니다</p>
                     </div>
-                </div>
-                <div class="business-card">
+                    <div class="business-tags">
+                        <span class="business-tag">AI 음성 대화 엔진</span>
+                        <span class="business-tag">AI 콜봇·챗봇</span>
+                        <span class="business-tag">AI KMS 지식관리</span>
+                        <span class="business-tag">AI 상담 어드바이저</span>
+                        <span class="business-tag">AI TA/QA 품질 분석</span>
+                    </div>
+                </a>
+                <a href="../products/ai-core.html" class="business-card">
                     <div class="business-num">02</div>
-                    <h3>AI 플랫폼</h3>
-                    <p>LLM, RAG 기반 지식 AI 플랫폼으로 기업의 지식 관리를 혁신합니다.</p>
-                    <div class="business-tags">
-                        <span class="business-tag">LLM/RAG</span>
-                        <span class="business-tag">지식 AI</span>
-                        <span class="business-tag">KMS</span>
+                    <div class="business-content">
+                        <h3>인공지능</h3>
+                        <p>LLM, RAG 기반 지식 AI 플랫폼으로 기업의 지식 관리를 혁신합니다</p>
                     </div>
-                </div>
-                <div class="business-card">
+                    <div class="business-tags">
+                        <span class="business-tag">LLM·RAG 지식 AI 플랫폼</span>
+                        <span class="business-tag">음성인식·음성합성 AI</span>
+                        <span class="business-tag">초거대 언어모델 구축</span>
+                    </div>
+                </a>
+                <a href="../products/baronote.html" class="business-card">
                     <div class="business-num">03</div>
-                    <h3>음성·언어 AI</h3>
-                    <p>고성능 음성인식, 음성합성 기술로 자연스러운 인간-AI 소통을 구현합니다.</p>
-                    <div class="business-tags">
-                        <span class="business-tag">STT/TTS</span>
-                        <span class="business-tag">NLU</span>
-                        <span class="business-tag">음성합성</span>
+                    <div class="business-content">
+                        <h3>지능형 AI 회의록</h3>
+                        <p>실시간 음성인식과 AI 요약으로 회의록 작성을 자동화합니다</p>
                     </div>
-                </div>
-                <div class="business-card">
-                    <div class="business-num">04</div>
-                    <h3>AI 회의록</h3>
-                    <p>실시간 음성인식과 AI 요약으로 회의록 작성을 자동화합니다.</p>
                     <div class="business-tags">
                         <span class="business-tag">바로노트</span>
                         <span class="business-tag">팀블로</span>
-                        <span class="business-tag">실시간 기록</span>
                     </div>
-                </div>
-                <div class="business-card">
-                    <div class="business-num">05</div>
-                    <h3>AI 속기·자막</h3>
-                    <p>전문 속기 품질의 기록과 자막 생성을 AI로 자동화합니다.</p>
+                </a>
+                <a href="../stenography/soribaro.html" class="business-card">
+                    <div class="business-num">04</div>
+                    <div class="business-content">
+                        <h3>AI 기록·자막</h3>
+                        <p>전문 속기 품질의 기록과 자막 생성을 AI로 자동화합니다</p>
+                    </div>
                     <div class="business-tags">
                         <span class="business-tag">SORIBARO</span>
                         <span class="business-tag">TEXTAR</span>
                         <span class="business-tag">SORIZAVA</span>
+                        <span class="business-tag">WEBFOS</span>
                     </div>
-                </div>
-                <div class="business-card">
-                    <div class="business-num">06</div>
-                    <h3>AI 접근성</h3>
-                    <p>AI 수어 아바타 등 접근성 기술로 정보 격차를 해소합니다.</p>
+                </a>
+                <a href="../products/clipdesk.html" class="business-card">
+                    <div class="business-num">05</div>
+                    <div class="business-content">
+                        <h3>AI 미디어·교육·일자리</h3>
+                        <p>AI 기반 영상 편집, 속기 교육, 일자리 플랫폼을 제공합니다</p>
+                    </div>
                     <div class="business-tags">
-                        <span class="business-tag">수어 아바타</span>
-                        <span class="business-tag">리나&바로</span>
-                        <span class="business-tag">접근성</span>
+                        <span class="business-tag">CLIPDESK</span>
+                        <span class="business-tag">WORKSFY</span>
+                        <span class="business-tag">SORIZAVA ACADEMY</span>
                     </div>
-                </div>
+                </a>
+                <a href="../products/sign-avatar.html" class="business-card">
+                    <div class="business-num">06</div>
+                    <div class="business-content">
+                        <h3>AI 접근성</h3>
+                        <p>AI 수어 아바타 등 접근성 기술로 정보 격차를 해소합니다</p>
+                    </div>
+                    <div class="business-tags">
+                        <span class="business-tag">AI 메타휴먼 수어 아바타</span>
+                        <span class="business-tag">리나&바로</span>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <section class="section section-dark-alt">
+    <!-- SECTION 4: PROCESS -->
+    <section class="section-process">
         <div class="container">
-            <div class="section-header center">
-                <div class="section-label">Process</div>
-                <h2 class="section-title">도입 프로세스</h2>
+            <div class="process-header">
+                <p class="process-label">process</p>
+                <h2 class="process-title">도입 프로세스</h2>
             </div>
             <div class="process-list">
                 <div class="process-item">
-                    <div class="process-num">01</div>
+                    <span class="process-num">01</span>
                     <div class="process-content">
                         <h4>상담 및 요구사항 분석</h4>
-                        <p>전문 컨설턴트가 고객의 비즈니스 환경과 요구사항을 분석하여 최적의 솔루션을 제안합니다.</p>
+                        <p>전문 컨설턴트가 고객의 비즈니스 환경과 요구사항을 분석하여 최적의 솔루션을 제안합니다</p>
                     </div>
                 </div>
                 <div class="process-item">
-                    <div class="process-num">02</div>
+                    <span class="process-num">02</span>
                     <div class="process-content">
                         <h4>PoC 및 커스터마이징</h4>
-                        <p>실제 환경에서의 검증과 고객 맞춤 설정을 통해 최적의 성능을 보장합니다.</p>
+                        <p>실제 환경에서의 검증과 고객 맞춤 설정을 통해 최적의 성능을 보장합니다</p>
                     </div>
                 </div>
                 <div class="process-item">
-                    <div class="process-num">03</div>
+                    <span class="process-num">03</span>
                     <div class="process-content">
                         <h4>구축 및 연동</h4>
-                        <p>기존 시스템과의 원활한 연동과 안정적인 구축을 진행합니다.</p>
+                        <p>기존 시스템과의 원활한 연동과 안정적인 구축을 진행합니다</p>
                     </div>
                 </div>
                 <div class="process-item">
-                    <div class="process-num">04</div>
+                    <span class="process-num">04</span>
                     <div class="process-content">
                         <h4>교육 및 운영 지원</h4>
-                        <p>사용자 교육과 지속적인 기술 지원으로 안정적인 운영을 돕습니다.</p>
+                        <p>사용자 교육과 지속적인 기술 지원으로 안정적인 운영을 돕습니다</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="stats-section">
+    <!-- SECTION 5: STATS -->
+    <section class="section-stats">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-item"><div class="stat-value">6</div><div class="stat-label">핵심 사업 영역</div></div>
-                <div class="stat-item"><div class="stat-value">20+</div><div class="stat-label">AI 제품</div></div>
-                <div class="stat-item"><div class="stat-value">500+</div><div class="stat-label">도입 고객사</div></div>
-                <div class="stat-item"><div class="stat-value">95%</div><div class="stat-label">고객 만족도</div></div>
+                <div class="stat-card">
+                    <div class="stat-number"><span data-count="6">0</span><span class="unit">개</span></div>
+                    <p class="stat-label">핵심 사업 영역</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><span data-count="20">0</span><span class="unit">+</span></div>
+                    <p class="stat-label">AI 제품</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><span data-count="500">0</span><span class="unit">+</span></div>
+                    <p class="stat-label">도입 고객사</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><span data-count="95">0</span><span class="unit">%</span></div>
+                    <p class="stat-label">고객 만족도</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Reference -->
-    <section class="section section-light">
+    <!-- SECTION 6: REFERENCE -->
+    <section class="section-reference">
         <div class="container">
-            <div class="section-header center">
-                <div class="section-label" style="color: var(--primary-dark);">Reference</div>
-                <h2 class="section-title">주요 고객사 및 프로젝트</h2>
-                <p class="section-desc">공공, 금융, 방송, 기업 등 다양한 산업에서 팀벨 AI 솔루션이 운영되고 있습니다.</p>
+            <div class="reference-header">
+                <p class="reference-label">reference</p>
+                <h2 class="reference-title">주요 고객사 및 프로젝트</h2>
+                <p class="reference-desc">공공, 금융, 방송, 기업 등 다양한 산업에서 팀벨 AI 솔루션이 운영되고 있습니다</p>
             </div>
             <div class="ref-grid">
                 <div class="ref-card">
@@ -389,20 +877,66 @@
         </div>
     </section>
 
-    <section class="cta-section">
+    <!-- SECTION 7: CLOSING -->
+    <section class="section-closing">
         <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">비즈니스 혁신을 위한<br>AI 솔루션</h2>
-                <p class="cta-desc">팀벨의 전문가가 최적의 솔루션을 제안해 드립니다.</p>
-                <div class="hero-actions" style="justify-content: center;">
-                    <a href="../contact.html" class="btn btn-primary">문의하기</a>
-                    <a href="../contact.html" class="btn btn-ghost">기술 상담</a>
-                </div>
+            <h2 class="closing-title">
+                비즈니스 혁신을 위한 AI 솔루션<br>
+                팀벨과 함께 하세요
+            </h2>
+            <div class="closing-btns">
+                <a href="../contact.html" class="closing-btn primary">
+                    문의하기
+                </a>
             </div>
         </div>
     </section>
 
     <div id="footer-placeholder"></div>
     <script src="../js/common.js"></script>
+    <script>
+        // 히어로 배경 스크롤 확대 효과
+        const hero = document.querySelector('.section-hero');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroHeight = hero.offsetHeight;
+            if (scrolled <= heroHeight) {
+                const scale = 1.3 + (scrolled / heroHeight) * 0.15;
+                hero.style.setProperty('--bg-scale', scale);
+            }
+        });
+
+
+        // Stats 카운팅 애니메이션
+        const countUp = (element, target) => {
+            let current = 0;
+            const increment = target / 60;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('[data-count]');
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.dataset.count);
+                        countUp(counter, target);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.section-stats');
+        if (statsSection) statsObserver.observe(statsSection);
+    </script>
 </body>
 </html>
