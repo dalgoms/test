@@ -386,7 +386,7 @@ function getCommonStyles() {
     return `
     <style id="common-styles">
         /* Header */
-        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: #0A1628; transition: all 0.3s ease; }
+        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: #2563EB; transition: all 0.3s ease; }
         .header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
         .header-inner { max-width: 1600px; margin: 0 auto; padding: 0 60px; height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
         .logo { display: flex; align-items: center; text-decoration: none; }
