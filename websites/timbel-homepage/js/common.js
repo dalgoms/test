@@ -58,7 +58,7 @@ function getHeaderHTML(basePath) {
                                     </a>
                                     <a href="${basePath}company/business.html" class="mega-menu-link">
                                         <strong>사업 영역</strong>
-                                        <span>AI 기반 솔루션, 자막, 미디어, 데이터</span>
+                                        <span>인공지능 · AICC · AI 회의록 · AI 미디어</span>
                                     </a>
                                     <a href="${basePath}company/history.html" class="mega-menu-link">
                                         <strong>연혁</strong>
@@ -91,24 +91,20 @@ function getHeaderHTML(basePath) {
                     </a>
                     <div class="mega-menu">
                         <div class="mega-menu-inner">
-                            <div class="mega-menu-left five-cols">
+                            <div class="mega-menu-left four-cols">
                                 <div class="mega-menu-column">
                                     <div class="mega-menu-column-title">인공지능</div>
-                                    <a href="${basePath}products/ai-core.html" class="mega-menu-link">
-                                        <strong>LLM · RAG 기반 지식 AI 플랫폼</strong>
-                                        <span>데이터베이스 기반 지능형 AI 에이전트</span>
-                                    </a>
                                     <a href="${basePath}products/speech-language.html" class="mega-menu-link">
                                         <strong>음성인식 · 음성합성 AI 솔루션</strong>
-                                        <span>3rd Party AI 연계 음성인식 및 합성 기술</span>
+                                        <span>HAIV – 외부 AI 연동 음성 인식·합성 엔진</span>
                                     </a>
                                     <a href="${basePath}products/llm-platform.html" class="mega-menu-link">
-                                        <strong>초거대 언어모델 구축 플랫폼</strong>
-                                        <span>정확하고 일관된 고품질 데이터 확보</span>
+                                        <strong>대규모 AI 모델 개발</strong>
+                                        <span>RAG 기반 지식 구축 · 업무 시나리오 설계</span>
                                     </a>
                                     <a href="${basePath}products/sign-avatar.html" class="mega-menu-link">
                                         <strong>AI 메타휴먼 수어 아바타</strong>
-                                        <span>접근성 향상 AI 수어 서비스 리나&바로</span>
+                                        <span>AI 수어 서비스 리나 & 바로</span>
                                     </a>
                                 </div>
                                 <div class="mega-menu-column">
@@ -146,37 +142,18 @@ function getHeaderHTML(basePath) {
                                     </a>
                                 </div>
                                 <div class="mega-menu-column">
-                                    <div class="mega-menu-column-title">AI 기록·자막</div>
-                                    <a href="${basePath}stenography/soribaro.html" class="mega-menu-link">
-                                        <strong>SORIBARO</strong>
-                                        <span>AI 기반 녹취, 회의록, VOD 자막</span>
+                                    <div class="mega-menu-column-title">AI 미디어 클립데스크</div>
+                                    <a href="${basePath}products/clipdesk-caption.html" class="mega-menu-link">
+                                        <strong>실시간 AI 자막 · 기록 자동화</strong>
+                                        <span>STT 기반 실시간 자막 생성 및 기록 전문가 검수</span>
                                     </a>
-                                    <a href="${basePath}stenography/textar.html" class="mega-menu-link">
-                                        <strong>TEXTAR</strong>
-                                        <span>AI 기반 자막·번역·실시간 문자 통역</span>
+                                    <a href="${basePath}products/clipdesk-translate.html" class="mega-menu-link">
+                                        <strong>영상 자막 다국어 번역</strong>
+                                        <span>AI 번역 + 현지 원어민 번역 워크플로우</span>
                                     </a>
-                                    <a href="${basePath}stenography/sorizava.html" class="mega-menu-link">
-                                        <strong>SORIZAVA</strong>
-                                        <span>대한민국 대표 NO.1 AI 속기키보드</span>
-                                    </a>
-                                    <a href="${basePath}stenography/webfos.html" class="mega-menu-link">
-                                        <strong>WEBFOS</strong>
-                                        <span>전세계 어디서나 실시간 자막 송출</span>
-                                    </a>
-                                </div>
-                                <div class="mega-menu-column">
-                                    <div class="mega-menu-column-title">AI 미디어·교육·일자리</div>
-                                    <a href="${basePath}products/clipdesk.html" class="mega-menu-link">
-                                        <strong>CLIPDESK</strong>
-                                        <span>기록전문가 기반 지능형 영상편집</span>
-                                    </a>
-                                    <a href="${basePath}products/worksfy.html" class="mega-menu-link">
-                                        <strong>WORKSFY</strong>
-                                        <span>AI 속기사 일자리 플랫폼</span>
-                                    </a>
-                                    <a href="${basePath}products/sorizava-academy.html" class="mega-menu-link">
-                                        <strong>SORIZAVA ACADEMY</strong>
-                                        <span>AI 속기사 양성 온라인 교육 기관</span>
+                                    <a href="${basePath}products/clipdesk-edit.html" class="mega-menu-link">
+                                        <strong>AI 기반 영상 편집</strong>
+                                        <span>텍스트 기반 편집 + 영상 전문가 제작 지원</span>
                                     </a>
                                 </div>
                             </div>
@@ -184,10 +161,10 @@ function getHeaderHTML(basePath) {
                     </div>
                 </div>
 
-                <!-- 3. 자료 센터 -->
+                <!-- 3. 홍보센터 -->
                 <div class="nav-item">
                     <a href="#" class="nav-link">
-                        자료 센터
+                        홍보센터
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
@@ -196,14 +173,14 @@ function getHeaderHTML(basePath) {
                         <div class="mega-menu-inner">
                             <div class="mega-menu-left">
                                 <div class="mega-menu-column">
-                                    <div class="mega-menu-column-title">콘텐츠 허브</div>
+                                    <div class="mega-menu-column-title">팀벨 소식</div>
                                     <a href="${basePath}resources/case-studies.html" class="mega-menu-link">
                                         <strong>고객 사례</strong>
-                                        <span>도입 성공 사례 모음</span>
+                                        <span>공공·금융·기업 도입 성공 사례</span>
                                     </a>
                                     <a href="${basePath}resources/news.html" class="mega-menu-link">
                                         <strong>최신 소식</strong>
-                                        <span>팀벨 뉴스 및 공지</span>
+                                        <span>보도자료 · 이벤트 · 기술 블로그</span>
                                     </a>
                                 </div>
                             </div>
@@ -263,9 +240,8 @@ function getHeaderHTML(basePath) {
                     </button>
                     <div class="mobile-submenu" id="submenu-products">
                         <span class="mobile-submenu-title">인공지능</span>
-                        <a href="${basePath}products/ai-core.html">LLM · RAG 기반 지식 AI 플랫폼</a>
                         <a href="${basePath}products/speech-language.html">음성인식 · 음성합성 AI 솔루션</a>
-                        <a href="${basePath}products/llm-platform.html">초거대 언어모델 구축 플랫폼</a>
+                        <a href="${basePath}products/llm-platform.html">대규모 AI 모델 개발</a>
                         <a href="${basePath}products/sign-avatar.html">AI 메타휴먼 수어 아바타</a>
                         <span class="mobile-submenu-title">AICC 솔루션</span>
                         <a href="${basePath}solutions/aicc-platform.html">AI 음성 대화 엔진</a>
@@ -276,20 +252,15 @@ function getHeaderHTML(basePath) {
                         <span class="mobile-submenu-title">지능형 AI 회의록</span>
                         <a href="${basePath}products/baronote.html">바로노트</a>
                         <a href="${basePath}products/timblo.html">팀블로</a>
-                        <span class="mobile-submenu-title">AI 기록·자막</span>
-                        <a href="${basePath}stenography/soribaro.html">SORIBARO</a>
-                        <a href="${basePath}stenography/textar.html">TEXTAR</a>
-                        <a href="${basePath}stenography/sorizava.html">SORIZAVA</a>
-                        <a href="${basePath}stenography/webfos.html">WEBFOS</a>
-                        <span class="mobile-submenu-title">AI 미디어·교육·일자리</span>
-                        <a href="${basePath}products/clipdesk.html">CLIPDESK</a>
-                        <a href="${basePath}products/worksfy.html">WORKSFY</a>
-                        <a href="${basePath}products/sorizava-academy.html">SORIZAVA ACADEMY</a>
+                        <span class="mobile-submenu-title">AI 미디어 클립데스크</span>
+                        <a href="${basePath}products/clipdesk-caption.html">실시간 AI 자막 · 기록 자동화</a>
+                        <a href="${basePath}products/clipdesk-translate.html">영상 자막 다국어 번역</a>
+                        <a href="${basePath}products/clipdesk-edit.html">AI 기반 영상 편집</a>
                     </div>
                 </div>
                 <div class="mobile-nav-item">
                     <button class="mobile-nav-link" data-submenu="resources">
-                        자료 센터
+                        홍보센터
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
                     </button>
                     <div class="mobile-submenu" id="submenu-resources">
@@ -324,8 +295,7 @@ function getFooterHTML(basePath) {
                             <a href="${basePath}products/ai-core.html">인공지능</a>
                             <a href="${basePath}solutions/aicc-platform.html">AICC 솔루션</a>
                             <a href="${basePath}products/baronote.html">AI 회의록</a>
-                            <a href="${basePath}stenography/soribaro.html">AI 기록·자막</a>
-                            <a href="${basePath}products/clipdesk.html">미디어·교육</a>
+                            <a href="${basePath}products/clipdesk-caption.html">AI 미디어</a>
                         </div>
                     </div>
                     <div class="footer-column">
@@ -339,7 +309,7 @@ function getFooterHTML(basePath) {
                         </div>
                     </div>
                     <div class="footer-column">
-                        <h4>자료 센터</h4>
+                        <h4>홍보센터</h4>
                         <div class="footer-links">
                             <a href="${basePath}resources/case-studies.html">고객 사례</a>
                             <a href="${basePath}resources/news.html">최신 소식</a>

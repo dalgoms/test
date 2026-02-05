@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLIPDESK Caption - 실시간 AI 자막 솔루션 | 팀벨</title>
+    <meta name="description" content="CLIPDESK Caption은 실시간 AI 자막과 기록 전문가 검수를 결합한 정확한 자막 솔루션입니다.">
+    <meta name="keywords" content="클립데스크, CLIPDESK Caption, AI 자막, 실시간 자막, 기록 전문가, 팀벨">
+    <link rel="canonical" href="https://timbel.net/products/clipdesk-caption.html">
+    <meta property="og:title" content="CLIPDESK Caption - 실시간 AI 자막 솔루션 | 팀벨">
+    <meta property="og:description" content="실시간 AI 자막 + 기록 전문가 검수">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <style>
+        :root {
+            --primary: #3B82F6;
+            --primary-dark: #2563EB;
+            --primary-light: #60A5FA;
+            --secondary: #06B6D4;
+            --dark: #0a0a0f;
+            --dark-800: #1a1a2e;
+            --dark-700: #252540;
+            --dark-600: #2d2d4a;
+            --gray-900: #111827;
+            --gray-600: #4b5563;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+            --gray-50: #f9fafb;
+            --white: #FFFFFF;
+            --gradient-primary: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--dark); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+        @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 160px 0 120px; background: var(--dark); overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -30%; right: -20%; width: 70%; height: 140%; background: radial-gradient(ellipse, rgba(59, 130, 246, 0.12) 0%, transparent 60%); }
+        .hero-content { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; text-align: center; }
+        .hero-label { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-light); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 32px; }
+        .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--primary); }
+        .hero-title { font-size: clamp(48px, 8vw, 80px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 32px; }
+        .hero-title .line { display: block; }
+        .hero-title .highlight { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-desc { font-size: 18px; color: var(--gray-400); line-height: 1.8; max-width: 650px; margin: 0 auto 48px; }
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 18px 36px; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: var(--gradient-primary); color: var(--white); box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4); }
+        .btn-ghost { background: transparent; color: var(--gray-300); border: 1px solid var(--dark-600); }
+        .btn-ghost:hover { background: var(--dark-700); border-color: var(--gray-600); color: var(--white); }
+        .btn svg { width: 18px; height: 18px; }
+
+        .section { padding: 160px 0; position: relative; }
+        .section-dark-alt { background: var(--dark-800); }
+        .section-light { background: var(--gray-50); color: var(--gray-900); }
+        .section-header { margin-bottom: 80px; }
+        .section-header.center { text-align: center; }
+        .section-label { display: inline-flex; font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; }
+        .section-title { font-size: clamp(36px, 5vw, 52px); font-weight: 800; line-height: 1.2; letter-spacing: -1px; margin-bottom: 24px; }
+        .section-light .section-title { color: var(--gray-900); }
+        .section-desc { font-size: 17px; color: var(--gray-400); line-height: 1.8; max-width: 600px; }
+        .section-header.center .section-desc { margin: 0 auto; }
+        .section-light .section-desc { color: var(--gray-600); }
+
+        .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .process-card { padding: 48px 32px; background: var(--white); border-radius: 24px; border: 1px solid var(--gray-200); text-align: center; position: relative; transition: all 0.4s; }
+        .process-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
+        .process-num { position: absolute; top: 24px; left: 32px; font-size: 14px; font-weight: 700; color: var(--primary); }
+        .process-icon { width: 72px; height: 72px; background: var(--gradient-primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; }
+        .process-icon svg { width: 36px; height: 36px; color: white; }
+        .process-card h4 { font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 16px; }
+        .process-card p { font-size: 15px; color: var(--gray-600); line-height: 1.7; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .feature-card { padding: 40px 32px; background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 20px; transition: all 0.3s; }
+        .feature-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+        .feature-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--white); }
+        .feature-card p { font-size: 14px; color: var(--gray-400); line-height: 1.7; }
+
+        .usecase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .usecase-card { padding: 36px 24px; background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 20px; text-align: center; transition: all 0.3s; }
+        .usecase-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+        .usecase-num { font-size: 48px; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.5; margin-bottom: 12px; line-height: 1; }
+        .usecase-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+        .usecase-card p { font-size: 13px; color: var(--gray-400); line-height: 1.5; }
+
+        .stats-section { background: linear-gradient(180deg, var(--dark) 0%, var(--dark-800) 100%); padding: 120px 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 64px; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 12px; }
+        .stat-label { font-size: 15px; color: var(--gray-400); }
+
+        .cta-section { background: var(--gradient-primary); padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 50%); }
+        .cta-content { position: relative; z-index: 10; }
+        .cta-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
+        .cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta-section .btn-primary { background: var(--white); color: var(--primary-dark); }
+        .cta-section .btn-ghost { border-color: rgba(255,255,255,0.3); color: var(--white); }
+
+        @media (max-width: 1024px) { .section { padding: 100px 0; } .process-grid { grid-template-columns: 1fr; } .feature-grid { grid-template-columns: 1fr; } .usecase-grid { grid-template-columns: repeat(2, 1fr); } .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; } }
+        @media (max-width: 768px) { .hero { padding: 120px 0 80px; } .section { padding: 80px 0; } .hero-actions { flex-direction: column; } .btn { width: 100%; justify-content: center; } .usecase-grid { grid-template-columns: 1fr; } .stats-grid { grid-template-columns: 1fr; gap: 40px; } }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-label">CLIPDESK Caption</span>
+                <h1 class="hero-title">
+                    <span class="line">실시간 AI 자막</span>
+                    <span class="line"><span class="highlight">+ 기록 전문가 검수</span></span>
+                </h1>
+                <p class="hero-desc">라이브 자막부터 자동 기록까지, 기록 전문가와 협업해 정확도를 완성합니다. AI의 속도와 전문가의 정확성을 결합한 최적의 자막 솔루션.</p>
+                <div class="hero-actions">
+                    <a href="../contact.html" class="btn btn-primary">도입 문의</a>
+                    <a href="../contact.html" class="btn btn-ghost">데모 신청</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light" id="process">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label" style="color: var(--primary-dark);">Process</div>
+                <h2 class="section-title">AI + 전문가 협업 프로세스</h2>
+                <p class="section-desc">AI가 빠르게 초안을 생성하고, 기록 전문가가 정확하게 검수합니다</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-card">
+                    <span class="process-num">01</span>
+                    <div class="process-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div>
+                    <h4>AI 실시간 인식</h4>
+                    <p>음성을 실시간으로 인식하여 AI가 자막 초안을 즉시 생성합니다</p>
+                </div>
+                <div class="process-card">
+                    <span class="process-num">02</span>
+                    <div class="process-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                    <h4>전문가 실시간 검수</h4>
+                    <p>기록 전문가가 AI 결과물을 실시간으로 확인하고 수정합니다</p>
+                </div>
+                <div class="process-card">
+                    <span class="process-num">03</span>
+                    <div class="process-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
+                    <h4>완성된 자막 송출</h4>
+                    <p>검수가 완료된 정확한 자막을 라이브 또는 VOD로 송출합니다</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-dark-alt">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label">Features</div>
+                <h2 class="section-title">주요 기능</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>실시간 라이브 자막</h4>
+                    <p>생방송, 라이브 스트리밍, 웨비나 등 실시간 이벤트에 즉시 자막을 제공합니다. 지연 시간을 최소화하여 시청자에게 원활한 경험을 선사합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>VOD 자막 자동 생성</h4>
+                    <p>녹화된 영상에 대해 AI가 자동으로 자막을 생성하고, 전문가가 검수하여 완성도 높은 자막 파일을 제공합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>회의록 자동 작성</h4>
+                    <p>회의, 세미나, 강연 등의 내용을 자동으로 기록하여 텍스트 회의록으로 변환합니다. 키워드 추출과 요약 기능도 제공합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>다국어 자막 지원</h4>
+                    <p>한국어를 비롯한 다양한 언어의 자막 생성을 지원하며, CLIPDESK Translate와 연계하여 번역 자막도 제공합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label">Use Cases</div>
+                <h2 class="section-title">활용 분야</h2>
+            </div>
+            <div class="usecase-grid">
+                <div class="usecase-card"><div class="usecase-num">01</div><h4>국회/지자체</h4><p>회의 속기록 및 실시간 자막</p></div>
+                <div class="usecase-card"><div class="usecase-num">02</div><h4>방송/미디어</h4><p>생방송 실시간 자막 송출</p></div>
+                <div class="usecase-card"><div class="usecase-num">03</div><h4>기업 행사</h4><p>컨퍼런스, 웨비나 자막</p></div>
+                <div class="usecase-card"><div class="usecase-num">04</div><h4>교육 기관</h4><p>강의 영상 자막 및 기록</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item"><div class="stat-value">99%</div><div class="stat-label">자막 정확도</div></div>
+                <div class="stat-item"><div class="stat-value">실시간</div><div class="stat-label">라이브 자막</div></div>
+                <div class="stat-item"><div class="stat-value">AI+전문가</div><div class="stat-label">하이브리드 검수</div></div>
+                <div class="stat-item"><div class="stat-value">다국어</div><div class="stat-label">자막 지원</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">정확한 자막의 새로운 기준<br>CLIPDESK Caption</h2>
+                <p class="cta-desc">AI의 속도와 전문가의 정확성을 경험해보세요.</p>
+                <div class="hero-actions" style="justify-content: center;">
+                    <a href="../contact.html" class="btn btn-primary">도입 문의</a>
+                    <a href="../contact.html" class="btn btn-ghost">기술 상담</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+    <script src="../js/common.js"></script>
+</body>
+</html>
