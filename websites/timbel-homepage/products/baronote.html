@@ -3,32 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>바로노트 - AI 회의록 자동화 | 팀벨</title>
-    <meta name="description" content="바로노트는 AI 기반 상담 녹취 및 회의록 자동 생성 솔루션입니다. 음성을 텍스트로 변환하고 요약까지 자동화합니다.">
-    <meta name="keywords" content="바로노트, AI 회의록, 녹취록, 음성 텍스트 변환, 회의 요약, 팀벨">
+    <title>바로노트 - AI 기반 상담 녹취 회의록 솔루션 | 팀벨</title>
+    <meta name="description" content="바로노트는 AI 음성인식 기술로 회의록, 상담일지, 조서 등 기록 업무를 자동화하는 솔루션입니다. 실시간 음성 기록부터 AI 요약까지.">
+    <meta name="keywords" content="바로노트, AI 회의록, 녹취록, 음성 텍스트 변환, 회의 요약, 상담 기록, 조서, 팀벨">
     <link rel="canonical" href="https://timbel.net/products/baronote.html">
-    <meta property="og:title" content="바로노트 - AI 회의록 자동화 | 팀벨">
-    <meta property="og:description" content="AI 기반 상담 녹취 및 회의록 자동 생성">
+    <meta property="og:title" content="바로노트 - AI 기반 상담 녹취 회의록 솔루션 | 팀벨">
+    <meta property="og:description" content="AI 음성인식으로 회의록·상담일지·조서 작성을 자동화합니다">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
     <style>
         :root {
-            --primary: #f97316;
-            --primary-dark: #ea580c;
-            --primary-light: #fb923c;
-            --secondary: #8b5cf6;
-            --dark: #0a0a0f;
-            --dark-800: #1a1a2e;
-            --dark-700: #252540;
-            --dark-600: #2d2d4a;
+            --primary: #00C5F2;
+            --primary-dark: #00A8D1;
+            --primary-light: #33D4F5;
+            --secondary: #1E3A5F;
+            --dark: #0F172A;
+            --dark-800: #1E293B;
+            --dark-700: #334155;
+            --dark-600: #475569;
             --gray-900: #111827;
+            --gray-700: #374151;
             --gray-600: #4b5563;
+            --gray-500: #6b7280;
             --gray-400: #9ca3af;
             --gray-300: #d1d5db;
             --gray-200: #e5e7eb;
             --gray-100: #f3f4f6;
             --gray-50: #f9fafb;
             --white: #FFFFFF;
-            --gradient-primary: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            --gradient-primary: linear-gradient(135deg, #00C5F2 0%, #00A8D1 100%);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -36,145 +38,438 @@
         .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
         @media (max-width: 768px) { .container { padding: 0 20px; } }
 
-        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 160px 0 120px; background: var(--dark); overflow: hidden; }
-        .hero::before { content: ''; position: absolute; top: -30%; right: -20%; width: 70%; height: 140%; background: radial-gradient(ellipse, rgba(249, 115, 22, 0.12) 0%, transparent 60%); }
-        .hero-content { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; text-align: center; }
-        .hero-label { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-light); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 32px; }
-        .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--primary); }
-        .hero-title { font-size: clamp(48px, 8vw, 80px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 32px; }
-        .hero-title .line { display: block; }
-        .hero-title .highlight { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero-desc { font-size: 18px; color: var(--gray-400); line-height: 1.8; max-width: 600px; margin: 0 auto 48px; }
+        /* Hero Section */
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 140px 0 80px; background: url('../img/bk18.jpg') center/cover no-repeat; overflow: hidden; }
+        .hero::before { display: none; }
+        .hero-inner { position: relative; z-index: 10; text-align: center; }
+        .hero-content { max-width: 800px; margin: 0 auto; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(0, 197, 242, 0.1); border: 1px solid rgba(0, 197, 242, 0.3); border-radius: 100px; font-size: 13px; font-weight: 600; color: var(--primary-light); margin-bottom: 24px; }
+        .hero-title { font-size: 77px; font-weight: 800; line-height: 1.2; letter-spacing: -2px; margin-bottom: 24px; }
+        .hero-title .typing-text { color: var(--primary); display: inline; border-right: 3px solid var(--primary); padding-right: 12px; margin-right: 8px; animation: blink 0.7s infinite; }
+        .hero-title-line { display: block; }
+        @keyframes blink { 0%, 100% { border-color: var(--primary); } 50% { border-color: transparent; } }
+        .hero-desc { font-size: 18px; color: var(--gray-400); line-height: 1.8; margin-bottom: 40px; }
         .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 18px 36px; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
-        .btn-primary { background: var(--gradient-primary); color: var(--white); box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(249, 115, 22, 0.4); }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 32px; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: var(--gradient-primary); color: var(--white); box-shadow: 0 4px 20px rgba(0, 197, 242, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0, 197, 242, 0.4); }
         .btn-ghost { background: transparent; color: var(--gray-300); border: 1px solid var(--dark-600); }
         .btn-ghost:hover { background: var(--dark-700); border-color: var(--gray-600); color: var(--white); }
-        .btn svg { width: 18px; height: 18px; }
+        
+        /* Hero Image Placeholder */
+        .hero-visual { margin-top: 60px; }
+        .hero-image-placeholder { 
+            background: var(--dark-700); 
+            border: 2px dashed var(--dark-600); 
+            border-radius: 20px; 
+            width: 1000px;
+            max-width: 100%;
+            height: 450px;
+            margin: 0 auto;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            color: var(--gray-500);
+            font-size: 14px;
+        }
 
-        .section { padding: 160px 0; position: relative; }
+        /* Section Common */
+        .section { padding: 140px 0; position: relative; }
         .section-dark { background: var(--dark); }
         .section-dark-alt { background: var(--dark-800); }
         .section-light { background: var(--gray-50); color: var(--gray-900); }
-        .section-header { margin-bottom: 80px; }
+        .section-header { margin-bottom: 64px; }
         .section-header.center { text-align: center; }
-        .section-label { display: inline-flex; font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; }
-        .section-title { font-size: clamp(36px, 5vw, 52px); font-weight: 800; line-height: 1.2; letter-spacing: -1px; margin-bottom: 24px; }
+        .section-label { display: inline-flex; font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 16px; }
+        .section-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; line-height: 1.25; letter-spacing: -1px; margin-bottom: 20px; }
         .section-light .section-title { color: var(--gray-900); }
         .section-desc { font-size: 17px; color: var(--gray-400); line-height: 1.8; max-width: 600px; }
         .section-header.center .section-desc { margin: 0 auto; }
         .section-light .section-desc { color: var(--gray-600); }
 
-        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .feature-card { padding: 40px 32px; background: var(--white); border-radius: 20px; border: 1px solid var(--gray-200); text-align: center; transition: all 0.4s; }
-        .feature-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
-        .feature-card-icon { width: 64px; height: 64px; background: var(--gradient-primary); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
-        .feature-card-icon svg { width: 32px; height: 32px; color: white; }
-        .feature-card h4 { font-size: 18px; font-weight: 700; color: var(--gray-900); margin-bottom: 12px; }
-        .feature-card p { font-size: 14px; color: var(--gray-600); line-height: 1.7; }
+        /* Intro Section */
+        .intro-section { background: var(--white); padding: 140px 0; }
+        .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .intro-content h2 { font-size: clamp(28px, 3.5vw, 40px); font-weight: 800; color: var(--gray-900); line-height: 1.3; margin-bottom: 24px; }
+        .intro-content h2 .highlight { color: var(--primary); }
+        .intro-content p { font-size: 17px; color: var(--gray-600); line-height: 1.9; margin-bottom: 16px; }
+        .intro-image-placeholder { 
+            background: var(--gray-100); 
+            border: 2px dashed var(--gray-300); 
+            border-radius: 20px; 
+            aspect-ratio: 4/3; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            color: var(--gray-500);
+            font-size: 14px;
+        }
 
-        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-        .process-card { padding: 36px 24px; background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 20px; text-align: center; transition: all 0.3s; }
-        .process-card:hover { border-color: var(--primary); transform: translateY(-4px); }
-        .process-num { font-size: 48px; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.5; margin-bottom: 16px; line-height: 1; }
-        .process-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-        .process-card p { font-size: 13px; color: var(--gray-400); line-height: 1.5; }
+        /* Feature Sections (Left-Right Layout) */
+        .feature-section { padding: 120px 0; }
+        .feature-section:nth-child(even) { background: var(--gray-50); }
+        .feature-section:nth-child(odd) { background: var(--white); }
+        .feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .feature-row.reverse { direction: rtl; }
+        .feature-row.reverse > * { direction: ltr; }
+        .feature-content { }
+        .feature-label { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+        .feature-title { font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: var(--gray-900); line-height: 1.3; margin-bottom: 20px; }
+        .feature-desc { font-size: 16px; color: var(--gray-600); line-height: 1.8; margin-bottom: 24px; }
+        .feature-list { list-style: none; }
+        .feature-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--gray-700); margin-bottom: 12px; }
+        .feature-list li::before { content: '✓'; color: var(--primary); font-weight: 700; flex-shrink: 0; }
+        .feature-image-placeholder { 
+            background: var(--gray-100); 
+            border: 2px dashed var(--gray-300); 
+            border-radius: 16px; 
+            aspect-ratio: 16/10; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            color: var(--gray-500);
+            font-size: 14px;
+        }
 
-        .stats-section { background: linear-gradient(180deg, var(--dark) 0%, var(--dark-800) 100%); padding: 120px 0; }
+        /* Use Cases Section */
+        .usecase-section { padding: 140px 0; background: var(--dark); }
+        .usecase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .usecase-card { background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 20px; padding: 40px 32px; transition: all 0.3s; }
+        .usecase-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+        .usecase-icon { width: 56px; height: 56px; background: var(--gradient-primary); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+        .usecase-icon svg { width: 28px; height: 28px; color: white; }
+        .usecase-card h4 { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 16px; }
+        .usecase-steps { }
+        .usecase-step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+        .usecase-step-num { width: 24px; height: 24px; background: rgba(0, 197, 242, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--primary-light); flex-shrink: 0; }
+        .usecase-step-text { font-size: 14px; color: var(--gray-400); line-height: 1.5; }
+
+        /* Clients Section */
+        .clients-section { padding: 100px 0; background: var(--gray-50); }
+        .clients-title { text-align: center; font-size: 18px; font-weight: 600; color: var(--gray-500); margin-bottom: 48px; }
+        .clients-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px; }
+        .client-logo-placeholder { 
+            background: var(--white); 
+            border: 1px solid var(--gray-200); 
+            border-radius: 12px; 
+            aspect-ratio: 3/2; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            color: var(--gray-400);
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+        .client-logo-placeholder:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+
+        /* Stats Section */
+        .stats-section { background: linear-gradient(180deg, var(--dark) 0%, var(--dark-800) 100%); padding: 100px 0; }
         .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
         .stat-item { text-align: center; }
-        .stat-value { font-size: 64px; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 12px; }
+        .stat-value { font-size: 56px; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 12px; }
         .stat-label { font-size: 15px; color: var(--gray-400); }
 
+        /* CTA Section */
         .cta-section { background: var(--gradient-primary); padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
         .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 50%); }
         .cta-content { position: relative; z-index: 10; }
+        .cta-badge { display: inline-flex; padding: 8px 16px; background: rgba(255,255,255,0.2); border-radius: 100px; font-size: 13px; font-weight: 600; margin-bottom: 24px; }
         .cta-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
         .cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
         .cta-section .btn-primary { background: var(--white); color: var(--primary-dark); }
         .cta-section .btn-ghost { border-color: rgba(255,255,255,0.3); color: var(--white); }
+        .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
-        @media (max-width: 1024px) { .section { padding: 100px 0; } .feature-grid { grid-template-columns: 1fr; } .process-grid { grid-template-columns: repeat(2, 1fr); } .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; } }
-        @media (max-width: 768px) { .hero { padding: 120px 0 80px; } .section { padding: 80px 0; } .hero-actions { flex-direction: column; } .btn { width: 100%; justify-content: center; } .process-grid { grid-template-columns: 1fr; } .stats-grid { grid-template-columns: 1fr; gap: 40px; } }
+        /* Responsive */
+        @media (max-width: 1024px) { 
+            .hero-title { font-size: 44px; }
+            .hero-image-placeholder { height: 350px; }
+            .intro-grid { grid-template-columns: 1fr; gap: 48px; }
+            .feature-row { grid-template-columns: 1fr; gap: 48px; }
+            .feature-row.reverse { direction: ltr; }
+            .usecase-grid { grid-template-columns: 1fr; }
+            .clients-grid { grid-template-columns: repeat(3, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; }
+        }
+        @media (max-width: 768px) { 
+            .hero-title { font-size: 24px; letter-spacing: -1px; }
+            .section { padding: 80px 0; }
+            .hero { padding: 120px 0 60px; }
+            .hero-actions { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .clients-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: 1fr; gap: 40px; }
+            .cta-actions { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="line">회의를</span>
-                    <span class="line">기록하다</span>
-                    <span class="line"><span class="highlight">바로노트</span></span>
-                </h1>
-                <p class="hero-desc">AI 기반 상담 녹취 및 회의록 자동화 솔루션으로 음성을 텍스트로 변환하고 요약까지 자동화합니다.</p>
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        이제는 AI로 쉽고 빠른<br>
+                        <span class="hero-title-line"><span class="typing-text" id="typingText">회의록</span>작성이 가능합니다.</span>
+                    </h1>
+                    <p class="hero-desc">
+                        기록 업무의 AX(AI Transformation),<br>
+                        바로노트로 시작해 보세요.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="../contact.html" class="btn btn-primary">데모 신청</a>
+                        <a href="../contact.html" class="btn btn-ghost">제품 소개서 다운로드</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-image-placeholder">
+                        [바로노트 인터페이스 이미지 - 1000x450]
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section section-light" id="features">
+    <!-- Intro Section -->
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-grid">
+                <div class="intro-content">
+                    <h2><span class="highlight">팀벨</span>이<br>기업의 기록 업무를 책임집니다.</h2>
+                    <p>
+                        바로노트는 마이크 또는 녹음파일을 통해 수집된 대화 내용을 
+                        자체 개발 AI 기술로 자동 기록 및 요약해 주는 솔루션입니다.
+                    </p>
+                    <p>
+                        회의록, 상담일지, 조서, 보고서 등 다양한 기록 업무 시간을 단축하여 
+                        더 중요한 업무에 집중할 수 있도록 도와드립니다.
+                    </p>
+                </div>
+                <div class="intro-visual">
+                    <div class="intro-image-placeholder">
+                        [제품 소개 이미지]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature 1: AI 요약 및 키워드 추출 -->
+    <section class="feature-section">
+        <div class="container">
+            <div class="feature-row">
+                <div class="feature-content">
+                    <div class="feature-label">Feature 01</div>
+                    <h3 class="feature-title">AI 요약 및 키워드 추출</h3>
+                    <p class="feature-desc">
+                        AI 요약 기능이 대화 전체를 요약하고 다빈도 키워드를 자동으로 추출합니다.
+                        요약된 내용은 복사하기 또는 파일 내보내기로 회의록·보고서·조서 작성 시 활용이 가능합니다.
+                    </p>
+                    <ul class="feature-list">
+                        <li>긴 회의 내용을 핵심 포인트로 자동 요약</li>
+                        <li>다빈도 키워드 자동 추출 및 태그 생성</li>
+                        <li>다양한 포맷으로 내보내기 지원</li>
+                    </ul>
+                </div>
+                <div class="feature-visual">
+                    <div class="feature-image-placeholder">
+                        [AI 요약 기능 스크린샷]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature 2: 실시간 음성 기록 및 화자 분리 -->
+    <section class="feature-section">
+        <div class="container">
+            <div class="feature-row reverse">
+                <div class="feature-content">
+                    <div class="feature-label">Feature 02</div>
+                    <h3 class="feature-title">실시간 음성 기록 및 화자 분리</h3>
+                    <p class="feature-desc">
+                        대화 내용을 실시간 텍스트로 확인하고, 참석자별로 발언을 자동 구분합니다.
+                        누가 무슨 말을 했는지 명확하게 기록하여 회의록 작성이 더욱 편리해집니다.
+                    </p>
+                    <ul class="feature-list">
+                        <li>실시간 음성-텍스트 변환 (STT)</li>
+                        <li>AI 기반 화자 자동 분리</li>
+                        <li>타임스탬프 자동 생성</li>
+                    </ul>
+                </div>
+                <div class="feature-visual">
+                    <div class="feature-image-placeholder">
+                        [화자 분리 기능 스크린샷]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature 3: 북마크 및 메모 -->
+    <section class="feature-section">
+        <div class="container">
+            <div class="feature-row">
+                <div class="feature-content">
+                    <div class="feature-label">Feature 03</div>
+                    <h3 class="feature-title">주요 내용 북마크 및 메모</h3>
+                    <p class="feature-desc">
+                        북마크로 중요 단어 및 문장을 표시해 빠르게 기록 확인이 가능합니다.
+                        대화 내용을 실시간으로 확인하면서 편집 또는 메모를 추가할 수 있습니다.
+                    </p>
+                    <ul class="feature-list">
+                        <li>중요 발언 북마크 기능</li>
+                        <li>실시간 메모 및 편집</li>
+                        <li>북마크 기반 빠른 검색</li>
+                    </ul>
+                </div>
+                <div class="feature-visual">
+                    <div class="feature-image-placeholder">
+                        [북마크 및 메모 기능 스크린샷]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature 4: 파일 업로드 -->
+    <section class="feature-section">
+        <div class="container">
+            <div class="feature-row reverse">
+                <div class="feature-content">
+                    <div class="feature-label">Feature 04</div>
+                    <h3 class="feature-title">파일 · 폴더 한번에 업로드</h3>
+                    <p class="feature-desc">
+                        여러 개의 녹음 파일 또는 폴더를 한번에 업로드하여 기록으로 변환할 수 있습니다.
+                        바로노트가 파일을 변환하는 동안 자유롭게 다른 업무를 진행하세요.
+                    </p>
+                    <ul class="feature-list">
+                        <li>다양한 오디오 포맷 지원</li>
+                        <li>대용량 파일 일괄 업로드</li>
+                        <li>백그라운드 변환 처리</li>
+                    </ul>
+                </div>
+                <div class="feature-visual">
+                    <div class="feature-image-placeholder">
+                        [파일 업로드 기능 스크린샷]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="usecase-section">
         <div class="container">
             <div class="section-header center">
-                <div class="section-label" style="color: var(--primary-dark);">Features</div>
-                <h2 class="section-title">핵심 기능</h2>
+                <div class="section-label">Use Cases</div>
+                <h2 class="section-title">바로노트,<br>다양한 업무에 활용 가능합니다</h2>
             </div>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-card-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div>
-                    <h4>실시간 음성 인식</h4>
-                    <p>회의 중 음성을 실시간으로 텍스트로 변환하여 즉시 확인 가능</p>
+            <div class="usecase-grid">
+                <div class="usecase-card">
+                    <div class="usecase-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <h4>회의록</h4>
+                    <div class="usecase-steps">
+                        <div class="usecase-step">
+                            <span class="usecase-step-num">1</span>
+                            <span class="usecase-step-text">회의 내용을 바로노트로 실시간 텍스트 기록</span>
+                        </div>
+                        <div class="usecase-step">
+                            <span class="usecase-step-num">2</span>
+                            <span class="usecase-step-text">주요 내용 북마크 및 메모 작성</span>
+                        </div>
+                        <div class="usecase-step">
+                            <span class="usecase-step-num">3</span>
+                            <span class="usecase-step-text">담당자 확인 후 회의록 작성 완료!</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-card-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
-                    <h4>화자 분리</h4>
-                    <p>참석자별로 발언을 자동 구분하여 누가 무슨 말을 했는지 명확히 기록</p>
+                <div class="usecase-card">
+                    <div class="usecase-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    </div>
+                    <h4>상담일지</h4>
+                    <div class="usecase-steps">
+                        <div class="usecase-step">
+                            <span class="usecase-step-num">1</span>
+                            <span class="usecase-step-text">상담 내용을 바로노트로 실시간 텍스트 기록</span>
+                        </div>
+                        <div class="usecase-step">
+                            <span class="usecase-step-num">2</span>
+                            <span class="usecase-step-text">AI 검색으로 대화 중 원하는 내용 빠르게 확인</span>
+                        </div>
+                        <div class="usecase-step">
+                            <span class="usecase-step-num">3</span>
+                            <span class="usecase-step-text">담당자 확인 후 상담일지 작성 완료!</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-card-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
-                    <h4>AI 요약</h4>
-                    <p>긴 회의 내용을 핵심 포인트 중심으로 자동 요약하여 시간 절약</p>
+                <div class="usecase-card">
+                    <div class="usecase-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                    </div>
+                    <h4>조서 작성</h4>
+                    <div class="usecase-steps">
+                        <div class="usecase-step">
+                            <span class="usecase-step-num">1</span>
+                            <span class="usecase-step-text">확보된 증거 녹취파일을 바로노트에 업로드</span>
+                        </div>
+                        <div class="usecase-step">
+                            <span class="usecase-step-num">2</span>
+                            <span class="usecase-step-text">AI 음성기록 · AI 요약 · 키워드 확인</span>
+                        </div>
+                        <div class="usecase-step">
+                            <span class="usecase-step-num">3</span>
+                            <span class="usecase-step-text">담당자 확인 후 조서 작성 완료!</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section section-dark-alt">
+    <!-- Clients Section -->
+    <section class="clients-section">
         <div class="container">
-            <div class="section-header center">
-                <div class="section-label">Process</div>
-                <h2 class="section-title">사용 방법</h2>
-            </div>
-            <div class="process-grid">
-                <div class="process-card"><div class="process-num">01</div><h4>회의 녹음</h4><p>회의 시작과 함께 녹음 버튼 클릭</p></div>
-                <div class="process-card"><div class="process-num">02</div><h4>실시간 변환</h4><p>음성이 텍스트로 실시간 변환</p></div>
-                <div class="process-card"><div class="process-num">03</div><h4>AI 요약</h4><p>회의 종료 후 자동 요약 생성</p></div>
-                <div class="process-card"><div class="process-num">04</div><h4>공유 및 저장</h4><p>팀원에게 공유하고 아카이브</p></div>
+            <p class="clients-title">다양한 분야에서 바로노트가 사용되고 있습니다</p>
+            <div class="clients-grid">
+                <div class="client-logo-placeholder">[고객사 로고 1]</div>
+                <div class="client-logo-placeholder">[고객사 로고 2]</div>
+                <div class="client-logo-placeholder">[고객사 로고 3]</div>
+                <div class="client-logo-placeholder">[고객사 로고 4]</div>
+                <div class="client-logo-placeholder">[고객사 로고 5]</div>
+                <div class="client-logo-placeholder">[고객사 로고 6]</div>
             </div>
         </div>
     </section>
 
+    <!-- Stats Section -->
     <section class="stats-section">
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item"><div class="stat-value">95%</div><div class="stat-label">음성 인식 정확도</div></div>
-                <div class="stat-item"><div class="stat-value">70%</div><div class="stat-label">회의록 작성 시간 절감</div></div>
-                <div class="stat-item"><div class="stat-value">실시간</div><div class="stat-label">텍스트 변환</div></div>
-                <div class="stat-item"><div class="stat-value">24/7</div><div class="stat-label">클라우드 서비스</div></div>
+                <div class="stat-item"><div class="stat-value">70%</div><div class="stat-label">기록 업무 시간 절감</div></div>
+                <div class="stat-item"><div class="stat-value">GS인증</div><div class="stat-label">1등급 획득</div></div>
+                <div class="stat-item"><div class="stat-value">300+</div><div class="stat-label">도입 기관</div></div>
             </div>
         </div>
     </section>
 
+    <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
             <div class="cta-content">
-                <h2 class="cta-title">회의록 작성,<br>바로노트에 맡기세요</h2>
-                <p class="cta-desc">지금 바로 바로노트를 경험해보세요.</p>
-                <div class="hero-actions" style="justify-content: center;">
-                    <a href="../contact.html" class="btn btn-primary">도입 문의</a>
-                    <a href="../contact.html" class="btn btn-ghost">기술 상담</a>
+                <div class="cta-badge">GS인증 1등급 · 공공기관 우선 구매 대상</div>
+                <h2 class="cta-title">AI 음성기록 솔루션 바로노트로<br>업무 효율을 높이세요</h2>
+                <p class="cta-desc">지금 바로 데모를 신청하고 바로노트를 경험해보세요.</p>
+                <div class="cta-actions">
+                    <a href="../contact.html" class="btn btn-primary">데모 신청</a>
+                    <a href="../contact.html" class="btn btn-ghost">제품 문의</a>
                 </div>
             </div>
         </div>
@@ -182,5 +477,52 @@
 
     <div id="footer-placeholder"></div>
     <script src="../js/common.js"></script>
+    <script>
+        // 타이핑 효과
+        (function() {
+            const words = ['회의록', '진술서', '보고서', '조서', '상담 내용'];
+            const typingElement = document.getElementById('typingText');
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typingSpeed = 100;
+            const deletingSpeed = 50;
+            const pauseTime = 2000;
+
+            function type() {
+                const currentWord = words[wordIndex];
+                
+                if (isDeleting) {
+                    typingElement.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingElement.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                let delay = isDeleting ? deletingSpeed : typingSpeed;
+
+                if (!isDeleting && charIndex === currentWord.length) {
+                    delay = pauseTime;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    delay = 300;
+                }
+
+                setTimeout(type, delay);
+            }
+
+            // 페이지 로드 후 타이핑 시작
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    setTimeout(type, 1000);
+                });
+            } else {
+                setTimeout(type, 1000);
+            }
+        })();
+    </script>
 </body>
 </html>
