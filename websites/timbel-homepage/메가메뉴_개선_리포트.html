@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메가메뉴 구조 개선 리포트 | 팀벨</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <style>
+        :root {
+            --primary: #2563EB;
+            --primary-light: #3B82F6;
+            --dark: #0f172a;
+            --dark-800: #1e293b;
+            --gray-900: #111827;
+            --gray-700: #374151;
+            --gray-600: #4b5563;
+            --gray-400: #9ca3af;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+            --gray-50: #f9fafb;
+            --white: #ffffff;
+            --green: #10B981;
+            --red: #EF4444;
+            --orange: #F97316;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; 
+            background: var(--gray-50); 
+            color: var(--gray-900); 
+            line-height: 1.7;
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 60px 40px; }
+        
+        .header { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--gray-200); }
+        .header h1 { font-size: 32px; font-weight: 800; color: var(--dark); margin-bottom: 12px; }
+        .header .meta { font-size: 14px; color: var(--gray-600); }
+        .header .meta span { margin-right: 24px; }
+        
+        .section { margin-bottom: 56px; }
+        .section-title { 
+            font-size: 22px; 
+            font-weight: 700; 
+            color: var(--dark); 
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+        .section-num {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-right: 12px;
+        }
+        
+        /* Before/After 테이블 */
+        .compare-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-bottom: 32px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .compare-table th { 
+            background: var(--dark); 
+            color: white; 
+            padding: 16px 20px; 
+            text-align: left; 
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .compare-table th:first-child { width: 25%; }
+        .compare-table th:nth-child(2) { width: 37.5%; background: var(--gray-700); }
+        .compare-table th:nth-child(3) { width: 37.5%; background: var(--primary); }
+        .compare-table td { 
+            padding: 16px 20px; 
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 14px;
+        }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table td:first-child { 
+            font-weight: 600; 
+            color: var(--gray-700);
+            background: var(--gray-50);
+        }
+        .compare-table td:nth-child(2) { color: var(--gray-600); }
+        .compare-table td:nth-child(3) { color: var(--gray-900); font-weight: 500; }
+        
+        /* 핵심 메시지 박스 */
+        .message-box {
+            background: linear-gradient(135deg, var(--primary) 0%, #1D4ED8 100%);
+            color: white;
+            padding: 32px;
+            border-radius: 16px;
+            margin: 32px 0;
+        }
+        .message-box h4 { font-size: 16px; font-weight: 700; margin-bottom: 16px; opacity: 0.9; }
+        .message-box p { font-size: 16px; line-height: 1.8; }
+        .message-box strong { color: #93C5FD; }
+        
+        /* 일반 테이블 */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            margin-bottom: 24px;
+        }
+        .data-table th {
+            background: var(--gray-100);
+            padding: 14px 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--gray-700);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .data-table td {
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 14px;
+        }
+        .data-table tr:last-child td { border-bottom: none; }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-delete { background: rgba(239, 68, 68, 0.1); color: var(--red); }
+        .badge-new { background: rgba(16, 185, 129, 0.1); color: var(--green); }
+        .badge-change { background: rgba(249, 115, 22, 0.1); color: var(--orange); }
+        
+        /* 구조도 */
+        .structure-box {
+            background: var(--dark);
+            color: var(--gray-300);
+            padding: 32px;
+            border-radius: 12px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 13px;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+        .structure-box .folder { color: #60A5FA; font-weight: 600; }
+        .structure-box .file { color: #A5B4FC; }
+        
+        /* 기대효과 카드 */
+        .effect-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .effect-card {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--primary);
+        }
+        .effect-card h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        .effect-card p {
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+        
+        .sub-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin: 32px 0 16px;
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 40px 20px; }
+            .effect-grid { grid-template-columns: 1fr; }
+            .compare-table { font-size: 12px; }
+            .compare-table th, .compare-table td { padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>메가메뉴 구조 개선 리포트</h1>
+            <div class="meta">
+                <span>작성일: 2026년 2월 2일</span>
+                <span>작성자: 이세영 팀장</span>
+                <span>작업 범위: 메가메뉴 전체 구조 정리 및 문구 개선</span>
+            </div>
+        </div>
+        
+        <!-- 섹션 1: Before/After -->
+        <div class="section">
+            <h2 class="section-title"><span class="section-num">1</span>메가메뉴 구조 개선 — Before / After</h2>
+            
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>Before</th>
+                        <th>After</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>AI 미디어 상위</td>
+                        <td>AI 미디어</td>
+                        <td>AI 미디어 클립데스크</td>
+                    </tr>
+                    <tr>
+                        <td>제품 인식</td>
+                        <td>개별 기능 나열</td>
+                        <td>AI 미디어 제품군(플랫폼) 인식</td>
+                    </tr>
+                    <tr>
+                        <td>하위 메뉴 방식</td>
+                        <td>Caption / Translate / Edit<br>(내부 제품명 중심)</td>
+                        <td>실시간 AI 자막 / 영상 자막 번역 / AI 기반 영상 편집<br>(기능 중심)</td>
+                    </tr>
+                    <tr>
+                        <td>사용자 이해도</td>
+                        <td>기능 의미 추측 필요</td>
+                        <td>첫 화면에서 바로 이해 가능</td>
+                    </tr>
+                    <tr>
+                        <td>전체 톤 정합성</td>
+                        <td>일부 B2C 서비스 느낌</td>
+                        <td>전체 B2B 솔루션 톤 통일</td>
+                    </tr>
+                    <tr>
+                        <td>Clipdesk 포지션</td>
+                        <td>단일 서비스</td>
+                        <td>AI 미디어 대표 제품군</td>
+                    </tr>
+                    <tr>
+                        <td>확장성</td>
+                        <td>기능 추가 시 구조 애매</td>
+                        <td>향후 기능 확장 자연스럽게 수용 가능</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="message-box">
+                <h4>핵심 메시지</h4>
+                <p>
+                    Before는 내부 명칭 중심 구조였다면,<br>
+                    After는 고객 관점에서 <strong>"무엇을 할 수 있는지"</strong>가 보이도록 재설계했습니다.<br>
+                    Clipdesk를 서비스가 아닌 <strong>AI 미디어 제품군</strong>으로 포지셔닝한 구조입니다.
+                </p>
+            </div>
+        </div>
+        
+        <!-- 섹션 2: 상세 변경 내역 -->
+        <div class="section">
+            <h2 class="section-title"><span class="section-num">2</span>상세 변경 내역</h2>
+            
+            <h3 class="sub-title">2.1 삭제된 메뉴</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>삭제 항목</th>
+                        <th>비고</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge badge-delete">삭제</span> LLM · RAG 기반 지식 AI 플랫폼</td>
+                        <td>인공지능 섹션에서 삭제</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-delete">삭제</span> AI 기록·자막 전체 (SORIBARO, TEXTAR, SORIZAVA, WEBFOS)</td>
+                        <td>컬럼 전체 삭제</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-delete">삭제</span> WORKSFY</td>
+                        <td>AI 미디어에서 삭제</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-delete">삭제</span> SORIZAVA ACADEMY</td>
+                        <td>AI 미디어에서 삭제</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3 class="sub-title">2.2 인공지능 섹션</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>메뉴</th>
+                        <th>서브 문구</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>음성인식 · 음성합성 AI 솔루션</td>
+                        <td>HAIV – 외부 AI 연동 음성 인식·합성 엔진</td>
+                    </tr>
+                    <tr>
+                        <td>대규모 AI 모델 개발</td>
+                        <td>RAG 기반 지식 구축 · 업무 시나리오 설계</td>
+                    </tr>
+                    <tr>
+                        <td>AI 메타휴먼 수어 아바타</td>
+                        <td>AI 수어 서비스 리나 & 바로</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3 class="sub-title">2.3 AI 미디어 클립데스크 섹션</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>메뉴</th>
+                        <th>서브 문구</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge badge-new">신규</span> 실시간 AI 자막 · 기록 자동화</td>
+                        <td>STT 기반 실시간 자막 생성 및 기록 전문가 검수</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-new">신규</span> 영상 자막 다국어 번역</td>
+                        <td>AI 번역 + 현지 원어민 번역 워크플로우</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-new">신규</span> AI 기반 영상 편집</td>
+                        <td>텍스트 기반 편집 + 영상 전문가 제작 지원</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3 class="sub-title">2.4 홍보센터 섹션 (구 자료 센터)</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>변경 전</th>
+                        <th>변경 후</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>자료 센터</td>
+                        <td><span class="badge badge-change">변경</span> 홍보센터</td>
+                    </tr>
+                    <tr>
+                        <td>콘텐츠 허브</td>
+                        <td><span class="badge badge-change">변경</span> 팀벨 소식</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>메뉴</th>
+                        <th>서브 문구</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>고객 사례</td>
+                        <td>공공·금융·기업 도입 성공 사례</td>
+                    </tr>
+                    <tr>
+                        <td>최신 소식</td>
+                        <td>보도자료 · 이벤트 · 기술 블로그</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3 class="sub-title">2.5 회사소개 섹션</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>메뉴</th>
+                        <th>서브 문구</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>사업 영역</td>
+                        <td><span class="badge badge-change">변경</span> 인공지능 · AICC · AI 회의록 · AI 미디어</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 섹션 3: 신규 생성 페이지 -->
+        <div class="section">
+            <h2 class="section-title"><span class="section-num">3</span>신규 생성 페이지</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>파일명</th>
+                        <th>설명</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge badge-new">NEW</span> clipdesk-caption.html</td>
+                        <td>실시간 AI 자막 · 기록 자동화 랜딩페이지</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-new">NEW</span> clipdesk-translate.html</td>
+                        <td>영상 자막 다국어 번역 랜딩페이지</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-new">NEW</span> clipdesk-edit.html</td>
+                        <td>AI 기반 영상 편집 랜딩페이지</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 섹션 4: 메가메뉴 최종 구조 -->
+        <div class="section">
+            <h2 class="section-title"><span class="section-num">4</span>메가메뉴 최종 구조</h2>
+            <div class="structure-box">
+<span class="folder">제품</span>
+├── <span class="folder">인공지능</span>
+│   ├── <span class="file">음성인식 · 음성합성 AI 솔루션</span>
+│   ├── <span class="file">대규모 AI 모델 개발</span>
+│   └── <span class="file">AI 메타휴먼 수어 아바타</span>
+├── <span class="folder">AICC 솔루션</span>
+│   ├── <span class="file">AI 음성 대화 엔진</span>
+│   ├── <span class="file">AI 콜봇 · 챗봇</span>
+│   ├── <span class="file">AI KMS 지식관리 시스템</span>
+│   ├── <span class="file">AI 상담 어드바이저</span>
+│   └── <span class="file">AI TA/QA 품질 분석</span>
+├── <span class="folder">지능형 AI 회의록</span>
+│   ├── <span class="file">바로노트</span>
+│   └── <span class="file">팀블로</span>
+└── <span class="folder">AI 미디어 클립데스크</span>
+    ├── <span class="file">실시간 AI 자막 · 기록 자동화</span>
+    ├── <span class="file">영상 자막 다국어 번역</span>
+    └── <span class="file">AI 기반 영상 편집</span>
+
+<span class="folder">홍보센터</span>
+└── <span class="folder">팀벨 소식</span>
+    ├── <span class="file">고객 사례</span>
+    └── <span class="file">최신 소식</span>
+
+<span class="folder">회사소개</span>
+├── <span class="file">회사개요</span>
+├── <span class="file">사업 영역</span>
+├── <span class="file">연혁</span>
+├── <span class="file">인증 및 특허</span>
+└── <span class="file">채용</span>
+            </div>
+        </div>
+        
+        <!-- 섹션 5: 기대 효과 -->
+        <div class="section">
+            <h2 class="section-title"><span class="section-num">5</span>기대 효과</h2>
+            <div class="effect-grid">
+                <div class="effect-card">
+                    <h4>사용자 이해도 향상</h4>
+                    <p>기능 중심 메뉴명으로 첫 화면에서 바로 이해 가능</p>
+                </div>
+                <div class="effect-card">
+                    <h4>B2B 톤 통일</h4>
+                    <p>전체 메뉴가 기업 솔루션 느낌으로 일관성 확보</p>
+                </div>
+                <div class="effect-card">
+                    <h4>확장성 확보</h4>
+                    <p>향후 Clipdesk 신규 기능 추가 시 자연스러운 메뉴 확장 가능</p>
+                </div>
+                <div class="effect-card">
+                    <h4>브랜드 인식 강화</h4>
+                    <p>Clipdesk를 AI 미디어 대표 제품군으로 포지셔닝</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
