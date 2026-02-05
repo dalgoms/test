@@ -131,14 +131,14 @@ function getHeaderHTML(basePath) {
                                     </a>
                                 </div>
                                 <div class="mega-menu-column">
-                                    <div class="mega-menu-column-title">지능형 AI 회의록</div>
+                                    <div class="mega-menu-column-title">AI 회의록</div>
+                                    <a href="${basePath}products/timblo.html" class="mega-menu-link">
+                                        <strong>AI 음성인식 요약 · 회의록 솔루션</strong>
+                                        <span>팀블로</span>
+                                    </a>
                                     <a href="${basePath}products/baronote.html" class="mega-menu-link">
                                         <strong>AI 기반 상담 녹취 회의록 솔루션</strong>
                                         <span>바로노트</span>
-                                    </a>
-                                    <a href="${basePath}products/timblo.html" class="mega-menu-link">
-                                        <strong>화자분리 결합 지능형 AI 회의록</strong>
-                                        <span>팀블로</span>
                                     </a>
                                 </div>
                                 <div class="mega-menu-column">
@@ -249,9 +249,9 @@ function getHeaderHTML(basePath) {
                         <a href="${basePath}solutions/knowledge-management.html">AI KMS 지식관리</a>
                         <a href="${basePath}solutions/advisor-ta-qa.html">AI 상담 어드바이저</a>
                         <a href="${basePath}solutions/ivr-integration.html">AI TA/QA 품질 분석</a>
-                        <span class="mobile-submenu-title">지능형 AI 회의록</span>
-                        <a href="${basePath}products/baronote.html">바로노트</a>
+                        <span class="mobile-submenu-title">AI 회의록</span>
                         <a href="${basePath}products/timblo.html">팀블로</a>
+                        <a href="${basePath}products/baronote.html">바로노트</a>
                         <span class="mobile-submenu-title">AI 미디어 클립데스크</span>
                         <a href="${basePath}products/clipdesk-caption.html">실시간 AI 자막 · 기록 자동화</a>
                         <a href="${basePath}products/clipdesk-translate.html">영상 자막 다국어 번역</a>
