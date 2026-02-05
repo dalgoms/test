@@ -376,15 +376,17 @@ function getCommonStyles() {
         .mega-menu { position: fixed; top: 80px; left: 0; right: 0; background: #fff; box-shadow: 0 20px 60px -12px rgba(0,0,0,0.2); padding: 60px 0; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 100; }
         .nav-item:hover .mega-menu { opacity: 1; visibility: visible; }
         .mega-menu-inner { max-width: 1600px; margin: 0 auto; padding: 0 80px; }
-        .mega-menu-left { display: flex; gap: 32px; }
+        .mega-menu-left { display: flex; gap: 48px; }
+        .mega-menu-left.four-cols { display: flex; gap: 56px; }
         .mega-menu-left.five-cols { display: flex; gap: 24px; }
-        .mega-menu-column { min-width: 180px; flex: 1; max-width: 260px; }
-        .mega-menu-column-title { font-size: 14px; font-weight: 700; color: #4593FC; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #4593FC; }
-        .mega-menu-link { display: block; padding: 12px 0; text-decoration: none; border-bottom: 1px solid #F2F4F6; transition: all 0.2s; }
+        .mega-menu-column { min-width: 220px; flex: 1; max-width: 320px; }
+        .mega-menu-column-title { font-size: 16px; font-weight: 700; color: #4593FC; margin-bottom: 28px; padding-bottom: 14px; border-bottom: 2px solid #4593FC; }
+        .mega-menu-link { display: block; padding: 16px 0; text-decoration: none; border-bottom: 1px solid #F2F4F6; transition: all 0.2s; }
         .mega-menu-link:last-child { border-bottom: none; }
-        .mega-menu-link:hover { padding-left: 8px; }
+        .mega-menu-link:hover { padding-left: 10px; }
         .mega-menu-link:hover strong { color: #4593FC; }
-        .mega-menu-link strong { display: block; font-size: 14px; font-weight: 600; color: #191F28; margin-bottom: 3px; transition: color 0.2s; }
+        .mega-menu-link strong { display: block; font-size: 16px; font-weight: 600; color: #191F28; margin-bottom: 6px; transition: color 0.2s; }
+        .mega-menu-link span { font-size: 14px; }
         .mega-menu-link span { font-size: 12px; color: #8B95A1; line-height: 1.4; }
 
         /* Header Actions */
@@ -442,8 +444,8 @@ function getCommonStyles() {
         /* Responsive */
         @media (max-width: 1200px) {
             .header-inner { padding: 0 40px; }
-            .mega-menu-left.five-cols { flex-wrap: wrap; }
-            .mega-menu-column { min-width: 200px; }
+            .mega-menu-left.four-cols, .mega-menu-left.five-cols { flex-wrap: wrap; gap: 32px; }
+            .mega-menu-column { min-width: 220px; }
         }
         @media (max-width: 1024px) {
             .nav { display: none; }
