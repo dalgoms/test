@@ -133,7 +133,7 @@ function getHeaderHTML(basePath) {
                                 <div class="mega-menu-column">
                                     <div class="mega-menu-column-title">AI 회의록</div>
                                     <a href="${basePath}products/timblo.html" class="mega-menu-link">
-                                        <strong>AI 음성인식 요약 · 회의록 솔루션</strong>
+                                        <strong>AI 음성인식 회의록 솔루션</strong>
                                         <span>팀블로</span>
                                     </a>
                                     <a href="${basePath}products/baronote.html" class="mega-menu-link">
@@ -195,7 +195,7 @@ function getHeaderHTML(basePath) {
             </nav>
 
             <div class="header-actions">
-                <a href="${basePath}contact.html" class="btn btn-primary">도입 상담</a>
+                <a href="${basePath}contact.html" class="btn btn-primary">데모 신청</a>
             </div>
 
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="메뉴 열기">
@@ -273,7 +273,7 @@ function getHeaderHTML(basePath) {
                 </div>
             </nav>
             <div class="mobile-menu-cta">
-                <a href="${basePath}contact.html" class="btn btn-primary">도입 상담 신청</a>
+                <a href="${basePath}contact.html" class="btn btn-primary">데모 신청</a>
             </div>
         </div>
     </div>`;
@@ -318,7 +318,7 @@ function getFooterHTML(basePath) {
                     <div class="footer-column">
                         <h4>문의</h4>
                         <div class="footer-links">
-                            <a href="${basePath}contact.html">도입 상담</a>
+                            <a href="${basePath}contact.html">데모 신청</a>
                             <a href="${basePath}contact.html">기술 문의</a>
                         </div>
                     </div>
