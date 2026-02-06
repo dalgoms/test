@@ -21,7 +21,10 @@
             --dark-700: #252540;
             --dark-600: #2d2d4a;
             --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-700: #374151;
             --gray-600: #4b5563;
+            --gray-500: #6b7280;
             --gray-400: #9ca3af;
             --gray-300: #d1d5db;
             --gray-200: #e5e7eb;
@@ -32,190 +35,307 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--dark); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--white); color: var(--gray-900); line-height: 1.6; overflow-x: hidden; }
         .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
         @media (max-width: 768px) { .container { padding: 0 20px; } }
 
-        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 160px 0 120px; background: var(--dark); overflow: hidden; }
-        .hero::before { content: ''; position: absolute; top: -30%; right: -20%; width: 70%; height: 140%; background: radial-gradient(ellipse, rgba(59, 130, 246, 0.12) 0%, transparent 60%); }
-        .hero-content { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; text-align: center; }
-        .hero-label { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-light); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 32px; }
-        .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--primary); }
-        .hero-title { font-size: clamp(48px, 8vw, 80px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 32px; }
-        .hero-title .line { display: block; }
-        .hero-title .highlight { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero-desc { font-size: 18px; color: var(--gray-400); line-height: 1.8; max-width: 650px; margin: 0 auto 48px; }
+        /* Hero Section */
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 200px 0 40px; background: linear-gradient(180deg, #EFF6FF 0%, #DBEAFE 100%); overflow: visible; }
+        .hero-inner { position: relative; z-index: 10; text-align: center; }
+        .hero-content { max-width: 800px; margin: 0 auto; }
+        .hero-title { font-size: clamp(36px, 5vw, 72px); font-weight: 800; line-height: 1.4; letter-spacing: -2px; margin-bottom: 24px; color: var(--gray-900); text-align: center; }
+        .hero-title .typing-text { color: var(--primary); display: inline-block; border-right: 3px solid var(--primary); padding-right: 8px; animation: blink 0.7s infinite; min-width: 180px; }
+        @keyframes blink { 0%, 100% { border-color: var(--primary); } 50% { border-color: transparent; } }
+        .hero-desc { font-size: 18px; color: var(--gray-600); line-height: 1.8; margin-bottom: 40px; }
         .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 18px 36px; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
-        .btn-primary { background: var(--gradient-primary); color: var(--white); box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4); }
-        .btn-ghost { background: transparent; color: var(--gray-300); border: 1px solid var(--dark-600); }
-        .btn-ghost:hover { background: var(--dark-700); border-color: var(--gray-600); color: var(--white); }
-        .btn svg { width: 18px; height: 18px; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 32px; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: #000000; color: var(--white); }
+        .btn-primary:hover { transform: translateY(-2px); background: #333333; }
 
-        .section { padding: 160px 0; position: relative; }
-        .section-dark-alt { background: var(--dark-800); }
-        .section-light { background: var(--gray-50); color: var(--gray-900); }
-        .section-header { margin-bottom: 80px; }
+        /* Hero Image */
+        .hero-visual { margin-top: 60px; }
+        .hero-image { width: 85vw; max-width: 1200px; height: auto; margin: 40px auto -60px; display: block; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+
+        /* Section Common */
+        .section { padding: 140px 0; position: relative; }
+        .section-header { margin-bottom: 60px; }
         .section-header.center { text-align: center; }
-        .section-label { display: inline-flex; font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; }
-        .section-title { font-size: clamp(36px, 5vw, 52px); font-weight: 800; line-height: 1.2; letter-spacing: -1px; margin-bottom: 24px; }
-        .section-light .section-title { color: var(--gray-900); }
-        .section-desc { font-size: 17px; color: var(--gray-400); line-height: 1.8; max-width: 600px; }
-        .section-header.center .section-desc { margin: 0 auto; }
-        .section-light .section-desc { color: var(--gray-600); }
+        .section-title { font-size: clamp(32px, 4vw, 52px); font-weight: 800; line-height: 1.4; letter-spacing: -1px; margin-bottom: 20px; color: var(--gray-900); }
 
-        .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-        .process-card { padding: 48px 32px; background: var(--white); border-radius: 24px; border: 1px solid var(--gray-200); text-align: center; position: relative; transition: all 0.4s; }
-        .process-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
-        .process-num { position: absolute; top: 24px; left: 32px; font-size: 14px; font-weight: 700; color: var(--primary); }
-        .process-icon { width: 72px; height: 72px; background: var(--gradient-primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; }
-        .process-icon svg { width: 36px; height: 36px; color: white; }
-        .process-card h4 { font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 16px; }
-        .process-card p { font-size: 15px; color: var(--gray-600); line-height: 1.7; }
+        /* Intro Section */
+        .intro-section { background: var(--white); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .intro-section-2 { background: var(--gray-50); transition: background 1s ease; }
+        .intro-section-2.inverted { background: #1E3A5F; }
+        .intro-section-2.inverted .intro-title { color: var(--white); }
+        .intro-section-2.inverted .typing-word { color: var(--white); }
+        .intro-section-2.inverted .typing-word .keyword { color: var(--primary-light); }
+        .intro-grid { display: block; text-align: center; }
+        .intro-title { font-size: clamp(36px, 5vw, 72px); font-weight: 800; color: var(--gray-900); line-height: 1.4; margin-bottom: 0; opacity: 0; transform: translateY(40px); transition: opacity 1s ease, transform 1s ease; }
+        .intro-title.visible { opacity: 1; transform: translateY(0); }
+        .typing-intro { border-right: 3px solid var(--gray-900); padding-right: 4px; animation: blink 0.7s infinite; }
+        .typing-intro.done { border-right: none; padding-right: 0; animation: none; }
+        .intro-title .underline-animate { display: inline; position: relative; }
+        .intro-title .underline-animate::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 8px; background: linear-gradient(90deg, var(--primary), var(--primary-light)); border-radius: 4px; transition: width 0.8s ease 0.5s; }
+        .intro-title.visible .underline-animate::after { width: 100%; }
+        .typing-word { color: var(--gray-900); }
+        .typing-word .keyword { color: var(--primary); }
+        .typing-word .cursor { border-right: 3px solid var(--primary); padding-right: 4px; animation: blink 0.7s infinite; }
+        .typing-word .cursor.done { border-right: none; padding-right: 0; animation: none; }
 
-        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-        .feature-card { padding: 40px 32px; background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 20px; transition: all 0.3s; }
-        .feature-card:hover { border-color: var(--primary); transform: translateY(-4px); }
-        .feature-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--white); }
-        .feature-card p { font-size: 14px; color: var(--gray-400); line-height: 1.7; }
+        /* Solution Section */
+        .solution-section { background: #EFF6FF; padding: 150px 0; min-height: 100vh; display: flex; align-items: center; }
+        .solution-content { text-align: center; }
+        .solution-arrow { margin-bottom: 40px; opacity: 0; transform: translateY(-20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .solution-arrow.visible { opacity: 1; transform: translateY(0); }
+        .solution-arrow svg { animation: bounce 2s ease-in-out infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+        .solution-title { font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; color: var(--gray-900); line-height: 1.5; margin-bottom: 60px; opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s; }
+        .solution-title.visible { opacity: 1; transform: translateY(0); }
+        .solution-title .highlight { color: var(--primary); }
+        .solution-image { max-width: 1200px; margin: 0 auto; opacity: 0; transform: translateY(40px); transition: opacity 1s ease 0.6s, transform 1s ease 0.6s; }
+        .solution-image.visible { opacity: 1; transform: translateY(0); }
+        .solution-image img { width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
 
-        .usecase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-        .usecase-card { padding: 36px 24px; background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 20px; text-align: center; transition: all 0.3s; }
-        .usecase-card:hover { border-color: var(--primary); transform: translateY(-4px); }
-        .usecase-num { font-size: 48px; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.5; margin-bottom: 12px; line-height: 1; }
-        .usecase-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-        .usecase-card p { font-size: 13px; color: var(--gray-400); line-height: 1.5; }
+        /* Feature Cards Section */
+        .feature-cards-section { padding: 120px 0; background: var(--white); }
+        .feature-cards-title { font-size: clamp(32px, 4vw, 52px); font-weight: 800; text-align: center; color: var(--gray-900); line-height: 1.4; margin-bottom: 60px; }
+        .feature-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .feature-card-item { min-height: 420px; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; justify-content: flex-start; transition: transform 0.3s, box-shadow 0.3s; }
+        .feature-card-item:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+        .feature-card-item.blue { background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%); }
+        .feature-card-item.white { background: var(--white); border: 1px solid var(--gray-200); }
+        .feature-card-item.cyan { background: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%); }
+        .feature-card-heading { font-size: 26px; font-weight: 800; color: var(--white); margin-bottom: 16px; line-height: 1.4; }
+        .feature-card-item.white .feature-card-heading { color: var(--gray-900); }
+        .feature-card-desc { font-size: 15px; color: rgba(255,255,255,0.9); line-height: 1.7; }
+        .feature-card-item.white .feature-card-desc { color: var(--gray-600); }
 
-        .stats-section { background: linear-gradient(180deg, var(--dark) 0%, var(--dark-800) 100%); padding: 120px 0; }
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
-        .stat-item { text-align: center; }
-        .stat-value { font-size: 64px; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 12px; }
-        .stat-label { font-size: 15px; color: var(--gray-400); }
+        /* Feature Special Section */
+        .feature-special-section { padding: 100px 0; background: var(--white); }
+        .feature-special-title { font-size: clamp(32px, 4vw, 52px); font-weight: 800; color: var(--gray-900); text-align: center; margin-bottom: 60px; line-height: 1.4; }
+        .feature-special-title span { color: var(--primary); }
+        .feature-special-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+        .feature-special-card { display: flex; align-items: flex-start; gap: 20px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 16px; padding: 28px; transition: all 0.3s; }
+        .feature-special-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-4px); }
+        .feature-special-icon { width: 56px; height: 56px; min-width: 56px; background: var(--dark-800); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .feature-special-icon svg { width: 28px; height: 28px; color: white; }
+        .feature-special-content h4 { font-size: 18px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+        .feature-special-content p { font-size: 14px; color: var(--gray-600); line-height: 1.6; margin: 0; }
 
-        .cta-section { background: var(--gradient-primary); padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
-        .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 50%); }
+        /* CTA Section */
+        .cta-section { background: url('../img/bk18.jpg') center/cover no-repeat; padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
         .cta-content { position: relative; z-index: 10; }
-        .cta-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
-        .cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
-        .cta-section .btn-primary { background: var(--white); color: var(--primary-dark); }
-        .cta-section .btn-ghost { border-color: rgba(255,255,255,0.3); color: var(--white); }
+        .cta-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 24px; line-height: 1.3; color: var(--white); }
+        .cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; color: var(--white); }
+        .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .cta-section .btn-primary { background: #000000; color: var(--white); border: 2px solid var(--white); }
+        .cta-section .btn-primary:hover { background: var(--white); color: #000000; }
 
-        @media (max-width: 1024px) { .section { padding: 100px 0; } .process-grid { grid-template-columns: 1fr; } .feature-grid { grid-template-columns: 1fr; } .usecase-grid { grid-template-columns: repeat(2, 1fr); } .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; } }
-        @media (max-width: 768px) { .hero { padding: 120px 0 80px; } .section { padding: 80px 0; } .hero-actions { flex-direction: column; } .btn { width: 100%; justify-content: center; } .usecase-grid { grid-template-columns: 1fr; } .stats-grid { grid-template-columns: 1fr; gap: 40px; } }
+        /* Responsive */
+        @media (max-width: 1024px) { 
+            .hero-title { font-size: 44px; }
+            .hero-image { width: 100%; }
+            .feature-cards-grid { grid-template-columns: 1fr; gap: 20px; }
+            .feature-special-grid { grid-template-columns: 1fr; }
+            .solution-image { max-width: 100%; padding: 0 20px; }
+        }
+        @media (max-width: 768px) { 
+            .hero { padding: 140px 0 40px; }
+            .hero-title { font-size: 28px; letter-spacing: -1px; line-height: 1.4; }
+            .hero-title .typing-text { min-width: 100px; font-size: 28px; }
+            .hero-desc { font-size: 15px; margin-bottom: 24px; }
+            .hero-actions { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; padding: 14px 24px; }
+            .section { padding: 80px 0; }
+            .intro-section { min-height: 70vh; padding: 60px 0; }
+            .intro-title { font-size: 28px; line-height: 1.5; }
+            .solution-section { padding: 80px 0; min-height: auto; }
+            .solution-title { font-size: 24px; line-height: 1.6; margin-bottom: 40px; }
+            .feature-cards-section { padding: 80px 0; }
+            .feature-card-item { min-height: 380px; padding: 24px; }
+            .feature-card-heading { font-size: 22px; }
+            .feature-special-section { padding: 60px 0; }
+            .feature-special-title { font-size: 28px; margin-bottom: 40px; }
+            .cta-section { padding: 80px 0; }
+            .cta-title { font-size: 28px; }
+            .cta-actions { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <span class="hero-label">CLIPDESK Caption</span>
-                <h1 class="hero-title">
-                    <span class="line">실시간 AI 자막</span>
-                    <span class="line"><span class="highlight">+ 기록 전문가 검수</span></span>
-                </h1>
-                <p class="hero-desc">라이브 자막부터 자동 기록까지, 기록 전문가와 협업해 정확도를 완성합니다. AI의 속도와 전문가의 정확성을 결합한 최적의 자막 솔루션.</p>
-                <div class="hero-actions">
-                    <a href="../contact.html" class="btn btn-primary">도입 문의</a>
-                    <a href="../contact.html" class="btn btn-ghost">데모 신청</a>
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        AI로 정확하게,<br>
+                        <span class="typing-text" id="typingText">실시간 자막</span><br>
+                        전문가가 검수합니다!
+                    </h1>
+                    <p class="hero-desc">AI의 속도와 전문가의 정확성을 결합한 최적의 자막 솔루션.</p>
+                    <div class="hero-actions">
+                        <a href="../contact.html" class="btn btn-primary">도입 문의하기</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <img src="../img/clipdesk-caption-hero.png" alt="CLIPDESK Caption 인터페이스" class="hero-image">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section section-light" id="process">
+    <!-- Intro Section 1 -->
+    <section class="intro-section">
         <div class="container">
-            <div class="section-header center">
-                <div class="section-label" style="color: var(--primary-dark);">Process</div>
-                <h2 class="section-title">AI + 전문가 협업 프로세스</h2>
-                <p class="section-desc">AI가 빠르게 초안을 생성하고, 기록 전문가가 정확하게 검수합니다</p>
-            </div>
-            <div class="process-grid">
-                <div class="process-card">
-                    <span class="process-num">01</span>
-                    <div class="process-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div>
-                    <h4>AI 실시간 인식</h4>
-                    <p>음성을 실시간으로 인식하여 AI가 자막 초안을 즉시 생성합니다</p>
-                </div>
-                <div class="process-card">
-                    <span class="process-num">02</span>
-                    <div class="process-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-                    <h4>전문가 실시간 검수</h4>
-                    <p>기록 전문가가 AI 결과물을 실시간으로 확인하고 수정합니다</p>
-                </div>
-                <div class="process-card">
-                    <span class="process-num">03</span>
-                    <div class="process-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
-                    <h4>완성된 자막 송출</h4>
-                    <p>검수가 완료된 정확한 자막을 라이브 또는 VOD로 송출합니다</p>
+            <div class="intro-grid">
+                <div class="intro-content">
+                    <h2 class="intro-title animate-text">
+                        <span class="line1 typing-intro" id="typingIntro"></span><br>
+                        <span class="line2">자막 제작이 <span class="underline-animate">어렵</span>지 않나요?</span>
+                    </h2>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section section-dark-alt">
+    <!-- Intro Section 2 -->
+    <section class="intro-section intro-section-2">
         <div class="container">
-            <div class="section-header center">
-                <div class="section-label">Features</div>
-                <h2 class="section-title">주요 기능</h2>
-            </div>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h4>실시간 라이브 자막</h4>
-                    <p>생방송, 라이브 스트리밍, 웨비나 등 실시간 이벤트에 즉시 자막을 제공합니다. 지연 시간을 최소화하여 시청자에게 원활한 경험을 선사합니다.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>VOD 자막 자동 생성</h4>
-                    <p>녹화된 영상에 대해 AI가 자동으로 자막을 생성하고, 전문가가 검수하여 완성도 높은 자막 파일을 제공합니다.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>회의록 자동 작성</h4>
-                    <p>회의, 세미나, 강연 등의 내용을 자동으로 기록하여 텍스트 회의록으로 변환합니다. 키워드 추출과 요약 기능도 제공합니다.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>다국어 자막 지원</h4>
-                    <p>한국어를 비롯한 다양한 언어의 자막 생성을 지원하며, CLIPDESK Translate와 연계하여 번역 자막도 제공합니다.</p>
+            <div class="intro-grid">
+                <div class="intro-content">
+                    <h2 class="intro-title animate-text-2">
+                        <span class="typing-word" id="typingWord1" data-text="속도" data-suffix="는 필요하고,"></span><br>
+                        <span class="typing-word" id="typingWord2" data-text="정확도" data-suffix="는 중요하고,"></span><br>
+                        <span class="typing-word" id="typingWord3" data-text="비용" data-suffix="도 고려해야 한다면?"></span>
+                    </h2>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section">
+    <!-- Solution Section -->
+    <section class="solution-section">
         <div class="container">
-            <div class="section-header center">
-                <div class="section-label">Use Cases</div>
-                <h2 class="section-title">활용 분야</h2>
-            </div>
-            <div class="usecase-grid">
-                <div class="usecase-card"><div class="usecase-num">01</div><h4>국회/지자체</h4><p>회의 속기록 및 실시간 자막</p></div>
-                <div class="usecase-card"><div class="usecase-num">02</div><h4>방송/미디어</h4><p>생방송 실시간 자막 송출</p></div>
-                <div class="usecase-card"><div class="usecase-num">03</div><h4>기업 행사</h4><p>컨퍼런스, 웨비나 자막</p></div>
-                <div class="usecase-card"><div class="usecase-num">04</div><h4>교육 기관</h4><p>강의 영상 자막 및 기록</p></div>
+            <div class="solution-content">
+                <div class="solution-arrow animate-arrow">
+                    <svg width="140" height="50" viewBox="0 0 140 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="arrowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:0" />
+                                <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="70,50 0,0 140,0" fill="url(#arrowGradient)"/>
+                    </svg>
+                </div>
+                <h2 class="solution-title animate-solution">
+                    CLIPDESK Caption으로<br>
+                    <span class="highlight">AI 실시간 자막</span>부터<br>
+                    <span class="highlight">전문가 검수</span>까지 한 번에!
+                </h2>
+                <div class="solution-image animate-solution-img">
+                    <img src="../img/clipdesk-caption-demo.png" alt="CLIPDESK Caption 데모">
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="stats-section">
+    <!-- Feature Cards Section -->
+    <section class="feature-cards-section">
         <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item"><div class="stat-value">99%</div><div class="stat-label">자막 정확도</div></div>
-                <div class="stat-item"><div class="stat-value">실시간</div><div class="stat-label">라이브 자막</div></div>
-                <div class="stat-item"><div class="stat-value">AI+전문가</div><div class="stat-label">하이브리드 검수</div></div>
-                <div class="stat-item"><div class="stat-value">다국어</div><div class="stat-label">자막 지원</div></div>
+            <h2 class="feature-cards-title">CLIPDESK Caption과 함께하는<br>정확한 자막 솔루션</h2>
+            <div class="feature-cards-grid">
+                <div class="feature-card-item blue">
+                    <h3 class="feature-card-heading">실시간 라이브 자막<br>즉시 송출</h3>
+                    <p class="feature-card-desc">생방송, 웨비나, 라이브 스트리밍에<br>AI가 실시간으로 자막을 생성해<br>지연 없이 송출합니다.</p>
+                </div>
+                <div class="feature-card-item white">
+                    <h3 class="feature-card-heading">VOD 자막 자동 생성<br>전문가 검수</h3>
+                    <p class="feature-card-desc">녹화 영상에 AI가 자막을 생성하고<br>기록 전문가가 검수해<br>99% 정확도를 보장합니다.</p>
+                </div>
+                <div class="feature-card-item cyan">
+                    <h3 class="feature-card-heading">회의록 자동 작성<br>핵심 요약까지</h3>
+                    <p class="feature-card-desc">회의, 세미나, 강연 내용을<br>자동으로 기록하고<br>키워드와 요약을 제공합니다.</p>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Feature Special Section -->
+    <section class="feature-special-section">
+        <div class="container">
+            <h2 class="feature-special-title">자막 제작,<br><span>CLIPDESK Caption</span>만의 특별함</h2>
+            <div class="feature-special-grid">
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>실시간 처리</h4>
+                        <p>라이브 이벤트에 즉시 자막 송출</p>
+                    </div>
+                </div>
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>99% 정확도</h4>
+                        <p>AI + 전문가 검수로 완벽한 품질</p>
+                    </div>
+                </div>
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>다국어 지원</h4>
+                        <p>한국어 포함 다양한 언어 자막 생성</p>
+                    </div>
+                </div>
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>회의록 변환</h4>
+                        <p>음성을 텍스트 문서로 자동 변환</p>
+                    </div>
+                </div>
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>전문가 네트워크</h4>
+                        <p>숙련된 기록 전문가가 검수</p>
+                    </div>
+                </div>
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>다양한 포맷 지원</h4>
+                        <p>SRT, VTT, 텍스트 등 원하는 형식</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
             <div class="cta-content">
                 <h2 class="cta-title">정확한 자막의 새로운 기준<br>CLIPDESK Caption</h2>
                 <p class="cta-desc">AI의 속도와 전문가의 정확성을 경험해보세요.</p>
-                <div class="hero-actions" style="justify-content: center;">
-                    <a href="../contact.html" class="btn btn-primary">도입 문의</a>
-                    <a href="../contact.html" class="btn btn-ghost">기술 상담</a>
+                <div class="cta-actions">
+                    <a href="../contact.html" class="btn btn-primary">도입 문의하기</a>
                 </div>
             </div>
         </div>
@@ -223,5 +343,157 @@
 
     <div id="footer-placeholder"></div>
     <script src="../js/common.js"></script>
+    <script>
+        // 타이핑 효과
+        (function() {
+            const words = ['실시간 자막', '회의록', 'VOD 자막', '강연 기록', '웨비나 자막', '속기록'];
+            const typingElement = document.getElementById('typingText');
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typingSpeed = 100;
+            const deletingSpeed = 50;
+            const pauseTime = 2000;
+
+            function type() {
+                const currentWord = words[wordIndex];
+                if (isDeleting) {
+                    typingElement.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingElement.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+                if (!isDeleting && charIndex === currentWord.length) {
+                    setTimeout(() => { isDeleting = true; type(); }, pauseTime);
+                    return;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+                setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+            }
+            type();
+        })();
+
+        // 인트로 타이핑 효과
+        (function() {
+            const typingIntro = document.getElementById('typingIntro');
+            const introText = '정확한 기록이 필요한데,';
+            let introTyped = false;
+            let charIndex = 0;
+
+            function typeIntro() {
+                if (charIndex < introText.length) {
+                    typingIntro.textContent += introText.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeIntro, 80);
+                } else {
+                    typingIntro.classList.add('done');
+                }
+            }
+
+            window.startIntroTyping = function() {
+                if (!introTyped && typingIntro) {
+                    introTyped = true;
+                    typeIntro();
+                }
+            };
+        })();
+
+        // 단어 타이핑 효과
+        (function() {
+            let wordTyped = false;
+            const words = [
+                { id: 'typingWord1', keyword: '속도', suffix: '는 필요하고,' },
+                { id: 'typingWord2', keyword: '정확도', suffix: '는 중요하고,' },
+                { id: 'typingWord3', keyword: '비용', suffix: '도 고려해야 한다면?' }
+            ];
+
+            function typeWord(wordIndex, charIndex, isKeyword) {
+                if (wordIndex >= words.length) {
+                    setTimeout(() => {
+                        document.querySelector('.intro-section-2').classList.add('inverted');
+                    }, 800);
+                    return;
+                }
+                const word = words[wordIndex];
+                const element = document.getElementById(word.id);
+                const text = isKeyword ? word.keyword : word.suffix;
+
+                if (charIndex < text.length) {
+                    if (charIndex === 0 && isKeyword) {
+                        element.innerHTML = '<span class="keyword cursor"></span>';
+                    }
+                    const keywordSpan = element.querySelector('.keyword');
+                    if (isKeyword) {
+                        keywordSpan.textContent += text.charAt(charIndex);
+                    } else {
+                        if (charIndex === 0) {
+                            keywordSpan.classList.remove('cursor');
+                            keywordSpan.classList.add('done');
+                        }
+                        element.innerHTML = '<span class="keyword done">' + word.keyword + '</span>' + word.suffix.substring(0, charIndex + 1);
+                    }
+                    setTimeout(() => typeWord(wordIndex, charIndex + 1, isKeyword), 60);
+                } else {
+                    if (isKeyword) {
+                        setTimeout(() => typeWord(wordIndex, 0, false), 100);
+                    } else {
+                        setTimeout(() => typeWord(wordIndex + 1, 0, true), 400);
+                    }
+                }
+            }
+
+            window.startWordTyping = function() {
+                if (!wordTyped) {
+                    wordTyped = true;
+                    typeWord(0, 0, true);
+                }
+            };
+        })();
+
+        // 스크롤 애니메이션
+        (function() {
+            const introTitle1 = document.querySelector('.animate-text');
+            const introTitle2 = document.querySelector('.animate-text-2');
+            const solutionArrow = document.querySelector('.animate-arrow');
+            const solutionTitle = document.querySelector('.animate-solution');
+            const solutionImage = document.querySelector('.animate-solution-img');
+
+            function checkScroll() {
+                const windowHeight = window.innerHeight;
+
+                if (introTitle1) {
+                    const rect1 = introTitle1.getBoundingClientRect();
+                    if (rect1.top < windowHeight * 0.8) {
+                        introTitle1.classList.add('visible');
+                        window.startIntroTyping();
+                    }
+                }
+                if (introTitle2) {
+                    const rect2 = introTitle2.getBoundingClientRect();
+                    if (rect2.top < windowHeight * 0.8) {
+                        introTitle2.classList.add('visible');
+                        window.startWordTyping();
+                    }
+                }
+                if (solutionArrow) {
+                    const rect = solutionArrow.getBoundingClientRect();
+                    if (rect.top < windowHeight * 0.9) solutionArrow.classList.add('visible');
+                }
+                if (solutionTitle) {
+                    const rect = solutionTitle.getBoundingClientRect();
+                    if (rect.top < windowHeight * 0.85) solutionTitle.classList.add('visible');
+                }
+                if (solutionImage) {
+                    const rect = solutionImage.getBoundingClientRect();
+                    if (rect.top < windowHeight * 0.9) solutionImage.classList.add('visible');
+                }
+            }
+            window.addEventListener('scroll', checkScroll);
+            checkScroll();
+        })();
+    </script>
 </body>
 </html>

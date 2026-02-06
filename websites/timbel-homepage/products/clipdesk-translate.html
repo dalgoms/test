@@ -21,7 +21,10 @@
             --dark-700: #252540;
             --dark-600: #2d2d4a;
             --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-700: #374151;
             --gray-600: #4b5563;
+            --gray-500: #6b7280;
             --gray-400: #9ca3af;
             --gray-300: #d1d5db;
             --gray-200: #e5e7eb;
@@ -32,220 +35,342 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--dark); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--white); color: var(--gray-900); line-height: 1.6; overflow-x: hidden; }
         .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
         @media (max-width: 768px) { .container { padding: 0 20px; } }
 
-        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 160px 0 120px; background: var(--dark); overflow: hidden; }
-        .hero::before { content: ''; position: absolute; top: -30%; right: -20%; width: 70%; height: 140%; background: radial-gradient(ellipse, rgba(139, 92, 246, 0.12) 0%, transparent 60%); }
-        .hero-content { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; text-align: center; }
-        .hero-label { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-light); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 32px; }
-        .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--primary); }
-        .hero-title { font-size: clamp(48px, 8vw, 80px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 32px; }
-        .hero-title .line { display: block; }
-        .hero-title .highlight { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero-desc { font-size: 18px; color: var(--gray-400); line-height: 1.8; max-width: 650px; margin: 0 auto 48px; }
+        /* Hero Section */
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 200px 0 40px; background: linear-gradient(180deg, #F5F3FF 0%, #EDE9FE 100%); overflow: visible; }
+        .hero-inner { position: relative; z-index: 10; text-align: center; }
+        .hero-content { max-width: 800px; margin: 0 auto; }
+        .hero-title { font-size: clamp(36px, 5vw, 72px); font-weight: 800; line-height: 1.4; letter-spacing: -2px; margin-bottom: 24px; color: var(--gray-900); text-align: center; }
+        .hero-title .typing-text { color: var(--primary); display: inline-block; border-right: 3px solid var(--primary); padding-right: 8px; animation: blink 0.7s infinite; min-width: 180px; }
+        @keyframes blink { 0%, 100% { border-color: var(--primary); } 50% { border-color: transparent; } }
+        .hero-desc { font-size: 18px; color: var(--gray-600); line-height: 1.8; margin-bottom: 40px; }
         .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 18px 36px; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
-        .btn-primary { background: var(--gradient-primary); color: var(--white); box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4); }
-        .btn-ghost { background: transparent; color: var(--gray-300); border: 1px solid var(--dark-600); }
-        .btn-ghost:hover { background: var(--dark-700); border-color: var(--gray-600); color: var(--white); }
-        .btn svg { width: 18px; height: 18px; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 32px; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: #000000; color: var(--white); }
+        .btn-primary:hover { transform: translateY(-2px); background: #333333; }
 
-        .section { padding: 160px 0; position: relative; }
-        .section-dark-alt { background: var(--dark-800); }
-        .section-light { background: var(--gray-50); color: var(--gray-900); }
-        .section-header { margin-bottom: 80px; }
+        /* Hero Image */
+        .hero-visual { margin-top: 60px; }
+        .hero-image { width: 85vw; max-width: 1200px; height: auto; margin: 40px auto -60px; display: block; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+
+        /* Section Common */
+        .section { padding: 140px 0; position: relative; }
+        .section-header { margin-bottom: 60px; }
         .section-header.center { text-align: center; }
-        .section-label { display: inline-flex; font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; }
-        .section-title { font-size: clamp(36px, 5vw, 52px); font-weight: 800; line-height: 1.2; letter-spacing: -1px; margin-bottom: 24px; }
-        .section-light .section-title { color: var(--gray-900); }
-        .section-desc { font-size: 17px; color: var(--gray-400); line-height: 1.8; max-width: 600px; }
-        .section-header.center .section-desc { margin: 0 auto; }
-        .section-light .section-desc { color: var(--gray-600); }
+        .section-title { font-size: clamp(32px, 4vw, 52px); font-weight: 800; line-height: 1.4; letter-spacing: -1px; margin-bottom: 20px; color: var(--gray-900); }
 
-        .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-        .process-card { padding: 48px 32px; background: var(--white); border-radius: 24px; border: 1px solid var(--gray-200); text-align: center; position: relative; transition: all 0.4s; }
-        .process-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
-        .process-num { position: absolute; top: 24px; left: 32px; font-size: 14px; font-weight: 700; color: var(--primary); }
-        .process-icon { width: 72px; height: 72px; background: var(--gradient-primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; }
-        .process-icon svg { width: 36px; height: 36px; color: white; }
-        .process-card h4 { font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 16px; }
-        .process-card p { font-size: 15px; color: var(--gray-600); line-height: 1.7; }
+        /* Intro Section */
+        .intro-section { background: var(--white); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .intro-section-2 { background: var(--gray-50); transition: background 1s ease; }
+        .intro-section-2.inverted { background: #2E1065; }
+        .intro-section-2.inverted .intro-title { color: var(--white); }
+        .intro-section-2.inverted .typing-word { color: var(--white); }
+        .intro-section-2.inverted .typing-word .keyword { color: var(--primary-light); }
+        .intro-grid { display: block; text-align: center; }
+        .intro-title { font-size: clamp(36px, 5vw, 72px); font-weight: 800; color: var(--gray-900); line-height: 1.4; margin-bottom: 0; opacity: 0; transform: translateY(40px); transition: opacity 1s ease, transform 1s ease; }
+        .intro-title.visible { opacity: 1; transform: translateY(0); }
+        .typing-intro { border-right: 3px solid var(--gray-900); padding-right: 4px; animation: blink 0.7s infinite; }
+        .typing-intro.done { border-right: none; padding-right: 0; animation: none; }
+        .intro-title .underline-animate { display: inline; position: relative; }
+        .intro-title .underline-animate::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 8px; background: linear-gradient(90deg, var(--primary), var(--primary-light)); border-radius: 4px; transition: width 0.8s ease 0.5s; }
+        .intro-title.visible .underline-animate::after { width: 100%; }
+        .typing-word { color: var(--gray-900); }
+        .typing-word .keyword { color: var(--primary); }
+        .typing-word .cursor { border-right: 3px solid var(--primary); padding-right: 4px; animation: blink 0.7s infinite; }
+        .typing-word .cursor.done { border-right: none; padding-right: 0; animation: none; }
 
-        .lang-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-top: 60px; }
-        .lang-card { padding: 24px 16px; background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 16px; text-align: center; transition: all 0.3s; }
-        .lang-card:hover { border-color: var(--primary); transform: translateY(-4px); }
-        .lang-flag { font-size: 32px; margin-bottom: 12px; }
-        .lang-name { font-size: 14px; font-weight: 600; color: var(--white); }
+        /* Solution Section */
+        .solution-section { background: #F5F3FF; padding: 150px 0; min-height: 100vh; display: flex; align-items: center; }
+        .solution-content { text-align: center; }
+        .solution-arrow { margin-bottom: 40px; opacity: 0; transform: translateY(-20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .solution-arrow.visible { opacity: 1; transform: translateY(0); }
+        .solution-arrow svg { animation: bounce 2s ease-in-out infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+        .solution-title { font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; color: var(--gray-900); line-height: 1.5; margin-bottom: 60px; opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s; }
+        .solution-title.visible { opacity: 1; transform: translateY(0); }
+        .solution-title .highlight { color: var(--primary); }
+        .solution-image { max-width: 1200px; margin: 0 auto; opacity: 0; transform: translateY(40px); transition: opacity 1s ease 0.6s, transform 1s ease 0.6s; }
+        .solution-image.visible { opacity: 1; transform: translateY(0); }
+        .solution-image img { width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
 
-        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-        .feature-card { padding: 40px 32px; background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 20px; transition: all 0.3s; }
-        .feature-card:hover { border-color: var(--primary); transform: translateY(-4px); }
-        .feature-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--white); }
-        .feature-card p { font-size: 14px; color: var(--gray-400); line-height: 1.7; }
+        /* Feature Cards Section */
+        .feature-cards-section { padding: 120px 0; background: var(--white); }
+        .feature-cards-title { font-size: clamp(32px, 4vw, 52px); font-weight: 800; text-align: center; color: var(--gray-900); line-height: 1.4; margin-bottom: 60px; }
+        .feature-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .feature-card-item { min-height: 420px; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; justify-content: flex-start; transition: transform 0.3s, box-shadow 0.3s; }
+        .feature-card-item:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+        .feature-card-item.purple { background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%); }
+        .feature-card-item.white { background: var(--white); border: 1px solid var(--gray-200); }
+        .feature-card-item.pink { background: linear-gradient(135deg, #EC4899 0%, #DB2777 100%); }
+        .feature-card-heading { font-size: 26px; font-weight: 800; color: var(--white); margin-bottom: 16px; line-height: 1.4; }
+        .feature-card-item.white .feature-card-heading { color: var(--gray-900); }
+        .feature-card-desc { font-size: 15px; color: rgba(255,255,255,0.9); line-height: 1.7; }
+        .feature-card-item.white .feature-card-desc { color: var(--gray-600); }
 
-        .usecase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-        .usecase-card { padding: 36px 24px; background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 20px; text-align: center; transition: all 0.3s; }
-        .usecase-card:hover { border-color: var(--primary); transform: translateY(-4px); }
-        .usecase-num { font-size: 48px; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.5; margin-bottom: 12px; line-height: 1; }
-        .usecase-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-        .usecase-card p { font-size: 13px; color: var(--gray-400); line-height: 1.5; }
+        /* Language Section */
+        .language-section { padding: 100px 0; background: var(--gray-50); }
+        .language-title { font-size: clamp(32px, 4vw, 52px); font-weight: 800; color: var(--gray-900); text-align: center; margin-bottom: 60px; line-height: 1.4; }
+        .language-title span { color: var(--primary); }
+        .language-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; max-width: 900px; margin: 0 auto; }
+        .language-card { padding: 24px 16px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 16px; text-align: center; transition: all 0.3s; }
+        .language-card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .language-flag { font-size: 32px; margin-bottom: 12px; }
+        .language-name { font-size: 14px; font-weight: 600; color: var(--gray-900); }
 
-        .stats-section { background: linear-gradient(180deg, var(--dark) 0%, var(--dark-800) 100%); padding: 120px 0; }
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
-        .stat-item { text-align: center; }
-        .stat-value { font-size: 64px; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 12px; }
-        .stat-label { font-size: 15px; color: var(--gray-400); }
+        /* Feature Special Section */
+        .feature-special-section { padding: 100px 0; background: var(--white); }
+        .feature-special-title { font-size: clamp(32px, 4vw, 52px); font-weight: 800; color: var(--gray-900); text-align: center; margin-bottom: 60px; line-height: 1.4; }
+        .feature-special-title span { color: var(--primary); }
+        .feature-special-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+        .feature-special-card { display: flex; align-items: flex-start; gap: 20px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 16px; padding: 28px; transition: all 0.3s; }
+        .feature-special-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-4px); }
+        .feature-special-icon { width: 56px; height: 56px; min-width: 56px; background: var(--dark-800); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .feature-special-icon svg { width: 28px; height: 28px; color: white; }
+        .feature-special-content h4 { font-size: 18px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+        .feature-special-content p { font-size: 14px; color: var(--gray-600); line-height: 1.6; margin: 0; }
 
-        .cta-section { background: var(--gradient-primary); padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
-        .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 50%); }
+        /* CTA Section */
+        .cta-section { background: url('../img/bk18.jpg') center/cover no-repeat; padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
         .cta-content { position: relative; z-index: 10; }
-        .cta-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
-        .cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
-        .cta-section .btn-primary { background: var(--white); color: var(--primary-dark); }
-        .cta-section .btn-ghost { border-color: rgba(255,255,255,0.3); color: var(--white); }
+        .cta-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 24px; line-height: 1.3; color: var(--white); }
+        .cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; color: var(--white); }
+        .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .cta-section .btn-primary { background: #000000; color: var(--white); border: 2px solid var(--white); }
+        .cta-section .btn-primary:hover { background: var(--white); color: #000000; }
 
-        @media (max-width: 1024px) { .section { padding: 100px 0; } .process-grid { grid-template-columns: 1fr; } .feature-grid { grid-template-columns: 1fr; } .lang-grid { grid-template-columns: repeat(3, 1fr); } .usecase-grid { grid-template-columns: repeat(2, 1fr); } .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; } }
-        @media (max-width: 768px) { .hero { padding: 120px 0 80px; } .section { padding: 80px 0; } .hero-actions { flex-direction: column; } .btn { width: 100%; justify-content: center; } .lang-grid { grid-template-columns: repeat(2, 1fr); } .usecase-grid { grid-template-columns: 1fr; } .stats-grid { grid-template-columns: 1fr; gap: 40px; } }
+        /* Responsive */
+        @media (max-width: 1024px) { 
+            .hero-title { font-size: 44px; }
+            .hero-image { width: 100%; }
+            .feature-cards-grid { grid-template-columns: 1fr; gap: 20px; }
+            .feature-special-grid { grid-template-columns: 1fr; }
+            .language-grid { grid-template-columns: repeat(3, 1fr); }
+            .solution-image { max-width: 100%; padding: 0 20px; }
+        }
+        @media (max-width: 768px) { 
+            .hero { padding: 140px 0 40px; }
+            .hero-title { font-size: 28px; letter-spacing: -1px; line-height: 1.4; }
+            .hero-title .typing-text { min-width: 100px; font-size: 28px; }
+            .hero-desc { font-size: 15px; margin-bottom: 24px; }
+            .hero-actions { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; padding: 14px 24px; }
+            .section { padding: 80px 0; }
+            .intro-section { min-height: 70vh; padding: 60px 0; }
+            .intro-title { font-size: 28px; line-height: 1.5; }
+            .solution-section { padding: 80px 0; min-height: auto; }
+            .solution-title { font-size: 24px; line-height: 1.6; margin-bottom: 40px; }
+            .feature-cards-section { padding: 80px 0; }
+            .feature-card-item { min-height: 380px; padding: 24px; }
+            .feature-card-heading { font-size: 22px; }
+            .language-section { padding: 60px 0; }
+            .language-title { font-size: 28px; margin-bottom: 40px; }
+            .language-grid { grid-template-columns: repeat(2, 1fr); }
+            .feature-special-section { padding: 60px 0; }
+            .feature-special-title { font-size: 28px; margin-bottom: 40px; }
+            .cta-section { padding: 80px 0; }
+            .cta-title { font-size: 28px; }
+            .cta-actions { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <span class="hero-label">CLIPDESK Translate</span>
-                <h1 class="hero-title">
-                    <span class="line">AI 번역</span>
-                    <span class="line"><span class="highlight">+ 원어민 감수</span></span>
-                </h1>
-                <p class="hero-desc">AI 초안 위에 원어민이 직접 다듬는 자연스러운 영상 번역. 기계적인 번역이 아닌, 현지 문화와 뉘앙스를 담은 진정한 로컬라이제이션을 제공합니다.</p>
-                <div class="hero-actions">
-                    <a href="../contact.html" class="btn btn-primary">도입 문의</a>
-                    <a href="../contact.html" class="btn btn-ghost">샘플 요청</a>
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        AI로 빠르게 번역,<br>
+                        <span class="typing-text" id="typingText">영어 자막</span><br>
+                        원어민이 다듬습니다!
+                    </h1>
+                    <p class="hero-desc">AI 번역 위에 원어민이 직접 다듬는 자연스러운 로컬라이제이션.</p>
+                    <div class="hero-actions">
+                        <a href="../contact.html" class="btn btn-primary">도입 문의하기</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <img src="../img/clipdesk-translate-hero.png" alt="CLIPDESK Translate 인터페이스" class="hero-image">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section section-light" id="process">
+    <!-- Intro Section 1 -->
+    <section class="intro-section">
         <div class="container">
-            <div class="section-header center">
-                <div class="section-label" style="color: var(--primary-dark);">Process</div>
-                <h2 class="section-title">AI + 원어민 협업 프로세스</h2>
-                <p class="section-desc">AI가 빠르게 번역하고, 원어민 전문가가 자연스럽게 다듬습니다</p>
-            </div>
-            <div class="process-grid">
-                <div class="process-card">
-                    <span class="process-num">01</span>
-                    <div class="process-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
-                    <h4>AI 자동 번역</h4>
-                    <p>최신 AI 번역 엔진이 원본 자막을 빠르게 번역하여 초안을 생성합니다</p>
-                </div>
-                <div class="process-card">
-                    <span class="process-num">02</span>
-                    <div class="process-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
-                    <h4>원어민 감수</h4>
-                    <p>현지 원어민 번역가가 문화적 맥락과 뉘앙스를 반영하여 자연스럽게 수정합니다</p>
-                </div>
-                <div class="process-card">
-                    <span class="process-num">03</span>
-                    <div class="process-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
-                    <h4>품질 검증 및 납품</h4>
-                    <p>최종 품질 검증 후 영상에 적용된 번역 자막을 납품합니다</p>
+            <div class="intro-grid">
+                <div class="intro-content">
+                    <h2 class="intro-title animate-text">
+                        <span class="line1 typing-intro" id="typingIntro"></span><br>
+                        <span class="line2">번역 품질이 <span class="underline-animate">걱정</span>되지 않나요?</span>
+                    </h2>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section section-dark-alt">
+    <!-- Intro Section 2 -->
+    <section class="intro-section intro-section-2">
         <div class="container">
-            <div class="section-header center">
-                <div class="section-label">Languages</div>
-                <h2 class="section-title">지원 언어</h2>
-                <p class="section-desc">전 세계 주요 언어를 원어민 품질로 번역합니다</p>
-            </div>
-            <div class="lang-grid">
-                <div class="lang-card"><div class="lang-flag">🇺🇸</div><div class="lang-name">영어</div></div>
-                <div class="lang-card"><div class="lang-flag">🇯🇵</div><div class="lang-name">일본어</div></div>
-                <div class="lang-card"><div class="lang-flag">🇨🇳</div><div class="lang-name">중국어</div></div>
-                <div class="lang-card"><div class="lang-flag">🇪🇸</div><div class="lang-name">스페인어</div></div>
-                <div class="lang-card"><div class="lang-flag">🇫🇷</div><div class="lang-name">프랑스어</div></div>
-                <div class="lang-card"><div class="lang-flag">🇩🇪</div><div class="lang-name">독일어</div></div>
-                <div class="lang-card"><div class="lang-flag">🇻🇳</div><div class="lang-name">베트남어</div></div>
-                <div class="lang-card"><div class="lang-flag">🇹🇭</div><div class="lang-name">태국어</div></div>
-                <div class="lang-card"><div class="lang-flag">🇮🇩</div><div class="lang-name">인도네시아어</div></div>
-                <div class="lang-card"><div class="lang-flag">🇷🇺</div><div class="lang-name">러시아어</div></div>
-                <div class="lang-card"><div class="lang-flag">🇵🇹</div><div class="lang-name">포르투갈어</div></div>
-                <div class="lang-card"><div class="lang-flag">🇸🇦</div><div class="lang-name">아랍어</div></div>
+            <div class="intro-grid">
+                <div class="intro-content">
+                    <h2 class="intro-title animate-text-2">
+                        <span class="typing-word" id="typingWord1" data-text="기계 번역" data-suffix="은 어색하고,"></span><br>
+                        <span class="typing-word" id="typingWord2" data-text="전문 번역" data-suffix="은 비싸고,"></span><br>
+                        <span class="typing-word" id="typingWord3" data-text="시간" data-suffix="도 부족하다면?"></span>
+                    </h2>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section">
+    <!-- Solution Section -->
+    <section class="solution-section">
         <div class="container">
-            <div class="section-header center">
-                <div class="section-label">Features</div>
-                <h2 class="section-title">주요 기능</h2>
-            </div>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h4>컨텍스트 기반 번역</h4>
-                    <p>단순 직역이 아닌, 영상의 맥락과 장르를 이해하여 상황에 맞는 자연스러운 번역을 제공합니다.</p>
+            <div class="solution-content">
+                <div class="solution-arrow animate-arrow">
+                    <svg width="140" height="50" viewBox="0 0 140 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="arrowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:0" />
+                                <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="70,50 0,0 140,0" fill="url(#arrowGradient)"/>
+                    </svg>
                 </div>
-                <div class="feature-card">
-                    <h4>전문 분야 용어 관리</h4>
-                    <p>IT, 의료, 법률 등 전문 분야별 용어집을 관리하여 일관된 품질의 번역을 보장합니다.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>실시간 협업 시스템</h4>
-                    <p>번역가, 감수자, 클라이언트가 실시간으로 소통하며 피드백을 반영할 수 있습니다.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>다양한 포맷 지원</h4>
-                    <p>SRT, VTT, ASS 등 다양한 자막 포맷과 영상 파일 형식을 지원합니다.</p>
+                <h2 class="solution-title animate-solution">
+                    CLIPDESK Translate로<br>
+                    <span class="highlight">AI 자동 번역</span>부터<br>
+                    <span class="highlight">원어민 감수</span>까지 한 번에!
+                </h2>
+                <div class="solution-image animate-solution-img">
+                    <img src="../img/clipdesk-translate-demo.png" alt="CLIPDESK Translate 데모">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section section-dark-alt">
+    <!-- Feature Cards Section -->
+    <section class="feature-cards-section">
         <div class="container">
-            <div class="section-header center">
-                <div class="section-label">Use Cases</div>
-                <h2 class="section-title">활용 분야</h2>
-            </div>
-            <div class="usecase-grid">
-                <div class="usecase-card"><div class="usecase-num">01</div><h4>OTT/영화</h4><p>글로벌 콘텐츠 로컬라이제이션</p></div>
-                <div class="usecase-card"><div class="usecase-num">02</div><h4>유튜브/크리에이터</h4><p>다국어 채널 운영 지원</p></div>
-                <div class="usecase-card"><div class="usecase-num">03</div><h4>기업 교육</h4><p>글로벌 교육 콘텐츠 제작</p></div>
-                <div class="usecase-card"><div class="usecase-num">04</div><h4>게임/엔터테인먼트</h4><p>게임 영상 현지화</p></div>
+            <h2 class="feature-cards-title">CLIPDESK Translate와 함께하는<br>자연스러운 영상 번역</h2>
+            <div class="feature-cards-grid">
+                <div class="feature-card-item purple">
+                    <h3 class="feature-card-heading">AI가 빠르게<br>초벌 번역</h3>
+                    <p class="feature-card-desc">최신 AI 번역 엔진이<br>원본 자막을 빠르게 번역해<br>작업 시간을 대폭 단축합니다.</p>
+                </div>
+                <div class="feature-card-item white">
+                    <h3 class="feature-card-heading">원어민이 직접<br>자연스럽게 다듬기</h3>
+                    <p class="feature-card-desc">현지 원어민 번역가가<br>문화적 맥락과 뉘앙스를 반영해<br>자연스러운 표현으로 수정합니다.</p>
+                </div>
+                <div class="feature-card-item pink">
+                    <h3 class="feature-card-heading">글로벌 콘텐츠<br>완성</h3>
+                    <p class="feature-card-desc">50개 이상 언어 지원으로<br>전 세계 어디서나 이해되는<br>콘텐츠를 만들어 드립니다.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="stats-section">
+    <!-- Language Section -->
+    <section class="language-section">
         <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item"><div class="stat-value">50+</div><div class="stat-label">지원 언어</div></div>
-                <div class="stat-item"><div class="stat-value">원어민</div><div class="stat-label">번역 품질</div></div>
-                <div class="stat-item"><div class="stat-value">AI+휴먼</div><div class="stat-label">하이브리드 번역</div></div>
-                <div class="stat-item"><div class="stat-value">빠른</div><div class="stat-label">납품 속도</div></div>
+            <h2 class="language-title"><span>50개 이상</span> 언어 지원</h2>
+            <div class="language-grid">
+                <div class="language-card"><div class="language-flag">🇺🇸</div><div class="language-name">영어</div></div>
+                <div class="language-card"><div class="language-flag">🇯🇵</div><div class="language-name">일본어</div></div>
+                <div class="language-card"><div class="language-flag">🇨🇳</div><div class="language-name">중국어</div></div>
+                <div class="language-card"><div class="language-flag">🇪🇸</div><div class="language-name">스페인어</div></div>
+                <div class="language-card"><div class="language-flag">🇫🇷</div><div class="language-name">프랑스어</div></div>
+                <div class="language-card"><div class="language-flag">🇩🇪</div><div class="language-name">독일어</div></div>
+                <div class="language-card"><div class="language-flag">🇻🇳</div><div class="language-name">베트남어</div></div>
+                <div class="language-card"><div class="language-flag">🇹🇭</div><div class="language-name">태국어</div></div>
+                <div class="language-card"><div class="language-flag">🇮🇩</div><div class="language-name">인도네시아어</div></div>
+                <div class="language-card"><div class="language-flag">🇷🇺</div><div class="language-name">러시아어</div></div>
+                <div class="language-card"><div class="language-flag">🇵🇹</div><div class="language-name">포르투갈어</div></div>
+                <div class="language-card"><div class="language-flag">🇸🇦</div><div class="language-name">아랍어</div></div>
             </div>
         </div>
     </section>
 
+    <!-- Feature Special Section -->
+    <section class="feature-special-section">
+        <div class="container">
+            <h2 class="feature-special-title">영상 번역,<br><span>CLIPDESK Translate</span>만의 특별함</h2>
+            <div class="feature-special-grid">
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>컨텍스트 번역</h4>
+                        <p>영상 맥락과 장르를 이해한 자연스러운 번역</p>
+                    </div>
+                </div>
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>원어민 네트워크</h4>
+                        <p>각 언어별 전문 원어민 번역가 보유</p>
+                    </div>
+                </div>
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>용어집 관리</h4>
+                        <p>전문 분야별 용어 일관성 유지</p>
+                    </div>
+                </div>
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>실시간 협업</h4>
+                        <p>번역가, 감수자와 실시간 소통</p>
+                    </div>
+                </div>
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>다양한 포맷</h4>
+                        <p>SRT, VTT, ASS 등 모든 자막 포맷</p>
+                    </div>
+                </div>
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>빠른 납품</h4>
+                        <p>AI 효율로 빠른 작업 완료</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
             <div class="cta-content">
                 <h2 class="cta-title">자연스러운 번역의 새로운 기준<br>CLIPDESK Translate</h2>
                 <p class="cta-desc">AI의 속도와 원어민의 감각을 경험해보세요.</p>
-                <div class="hero-actions" style="justify-content: center;">
-                    <a href="../contact.html" class="btn btn-primary">도입 문의</a>
-                    <a href="../contact.html" class="btn btn-ghost">샘플 요청</a>
+                <div class="cta-actions">
+                    <a href="../contact.html" class="btn btn-primary">도입 문의하기</a>
                 </div>
             </div>
         </div>
@@ -253,5 +378,157 @@
 
     <div id="footer-placeholder"></div>
     <script src="../js/common.js"></script>
+    <script>
+        // 타이핑 효과
+        (function() {
+            const words = ['영어 자막', '일본어 자막', '중국어 자막', '스페인어 자막', '프랑스어 자막', '독일어 자막'];
+            const typingElement = document.getElementById('typingText');
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typingSpeed = 100;
+            const deletingSpeed = 50;
+            const pauseTime = 2000;
+
+            function type() {
+                const currentWord = words[wordIndex];
+                if (isDeleting) {
+                    typingElement.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingElement.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+                if (!isDeleting && charIndex === currentWord.length) {
+                    setTimeout(() => { isDeleting = true; type(); }, pauseTime);
+                    return;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+                setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+            }
+            type();
+        })();
+
+        // 인트로 타이핑 효과
+        (function() {
+            const typingIntro = document.getElementById('typingIntro');
+            const introText = '글로벌 진출을 원하는데,';
+            let introTyped = false;
+            let charIndex = 0;
+
+            function typeIntro() {
+                if (charIndex < introText.length) {
+                    typingIntro.textContent += introText.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeIntro, 80);
+                } else {
+                    typingIntro.classList.add('done');
+                }
+            }
+
+            window.startIntroTyping = function() {
+                if (!introTyped && typingIntro) {
+                    introTyped = true;
+                    typeIntro();
+                }
+            };
+        })();
+
+        // 단어 타이핑 효과
+        (function() {
+            let wordTyped = false;
+            const words = [
+                { id: 'typingWord1', keyword: '기계 번역', suffix: '은 어색하고,' },
+                { id: 'typingWord2', keyword: '전문 번역', suffix: '은 비싸고,' },
+                { id: 'typingWord3', keyword: '시간', suffix: '도 부족하다면?' }
+            ];
+
+            function typeWord(wordIndex, charIndex, isKeyword) {
+                if (wordIndex >= words.length) {
+                    setTimeout(() => {
+                        document.querySelector('.intro-section-2').classList.add('inverted');
+                    }, 800);
+                    return;
+                }
+                const word = words[wordIndex];
+                const element = document.getElementById(word.id);
+                const text = isKeyword ? word.keyword : word.suffix;
+
+                if (charIndex < text.length) {
+                    if (charIndex === 0 && isKeyword) {
+                        element.innerHTML = '<span class="keyword cursor"></span>';
+                    }
+                    const keywordSpan = element.querySelector('.keyword');
+                    if (isKeyword) {
+                        keywordSpan.textContent += text.charAt(charIndex);
+                    } else {
+                        if (charIndex === 0) {
+                            keywordSpan.classList.remove('cursor');
+                            keywordSpan.classList.add('done');
+                        }
+                        element.innerHTML = '<span class="keyword done">' + word.keyword + '</span>' + word.suffix.substring(0, charIndex + 1);
+                    }
+                    setTimeout(() => typeWord(wordIndex, charIndex + 1, isKeyword), 60);
+                } else {
+                    if (isKeyword) {
+                        setTimeout(() => typeWord(wordIndex, 0, false), 100);
+                    } else {
+                        setTimeout(() => typeWord(wordIndex + 1, 0, true), 400);
+                    }
+                }
+            }
+
+            window.startWordTyping = function() {
+                if (!wordTyped) {
+                    wordTyped = true;
+                    typeWord(0, 0, true);
+                }
+            };
+        })();
+
+        // 스크롤 애니메이션
+        (function() {
+            const introTitle1 = document.querySelector('.animate-text');
+            const introTitle2 = document.querySelector('.animate-text-2');
+            const solutionArrow = document.querySelector('.animate-arrow');
+            const solutionTitle = document.querySelector('.animate-solution');
+            const solutionImage = document.querySelector('.animate-solution-img');
+
+            function checkScroll() {
+                const windowHeight = window.innerHeight;
+
+                if (introTitle1) {
+                    const rect1 = introTitle1.getBoundingClientRect();
+                    if (rect1.top < windowHeight * 0.8) {
+                        introTitle1.classList.add('visible');
+                        window.startIntroTyping();
+                    }
+                }
+                if (introTitle2) {
+                    const rect2 = introTitle2.getBoundingClientRect();
+                    if (rect2.top < windowHeight * 0.8) {
+                        introTitle2.classList.add('visible');
+                        window.startWordTyping();
+                    }
+                }
+                if (solutionArrow) {
+                    const rect = solutionArrow.getBoundingClientRect();
+                    if (rect.top < windowHeight * 0.9) solutionArrow.classList.add('visible');
+                }
+                if (solutionTitle) {
+                    const rect = solutionTitle.getBoundingClientRect();
+                    if (rect.top < windowHeight * 0.85) solutionTitle.classList.add('visible');
+                }
+                if (solutionImage) {
+                    const rect = solutionImage.getBoundingClientRect();
+                    if (rect.top < windowHeight * 0.9) solutionImage.classList.add('visible');
+                }
+            }
+            window.addEventListener('scroll', checkScroll);
+            checkScroll();
+        })();
+    </script>
 </body>
 </html>

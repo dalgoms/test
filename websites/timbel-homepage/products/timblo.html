@@ -21,7 +21,10 @@
             --dark-700: #252540;
             --dark-600: #2d2d4a;
             --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-700: #374151;
             --gray-600: #4b5563;
+            --gray-500: #6b7280;
             --gray-400: #9ca3af;
             --gray-300: #d1d5db;
             --gray-200: #e5e7eb;
@@ -32,149 +35,351 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--dark); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--white); color: var(--gray-900); line-height: 1.6; overflow-x: hidden; }
         .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
         @media (max-width: 768px) { .container { padding: 0 20px; } }
 
-        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 160px 0 120px; background: var(--dark); overflow: hidden; }
-        .hero::before { content: ''; position: absolute; top: -40%; left: 50%; transform: translateX(-50%); width: 100%; height: 150%; background: radial-gradient(ellipse, rgba(99, 102, 241, 0.15) 0%, transparent 50%); }
-        .hero-content { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; text-align: center; }
-        .hero-label { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--primary-light); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 32px; }
-        .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--primary); }
-        .hero-title { font-size: clamp(48px, 8vw, 80px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 32px; }
-        .hero-title .line { display: block; }
-        .hero-title .highlight { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero-desc { font-size: 18px; color: var(--gray-400); line-height: 1.8; max-width: 600px; margin: 0 auto 48px; }
+        /* Hero Section */
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 200px 0 40px; background: linear-gradient(180deg, #F0F4FF 0%, #E8EDFF 100%); overflow: visible; }
+        .hero-inner { position: relative; z-index: 10; text-align: center; }
+        .hero-content { max-width: 800px; margin: 0 auto; }
+        .hero-title { font-size: clamp(36px, 5vw, 72px); font-weight: 800; line-height: 1.4; letter-spacing: -2px; margin-bottom: 24px; color: var(--gray-900); text-align: center; }
+        .hero-title .typing-text { color: var(--primary); display: inline-block; border-right: 3px solid var(--primary); padding-right: 8px; animation: blink 0.7s infinite; min-width: 180px; }
+        @keyframes blink { 0%, 100% { border-color: var(--primary); } 50% { border-color: transparent; } }
+        .hero-desc { font-size: 18px; color: var(--gray-600); line-height: 1.8; margin-bottom: 40px; }
         .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 18px 36px; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
-        .btn-primary { background: var(--gradient-primary); color: var(--white); box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4); }
-        .btn-ghost { background: transparent; color: var(--gray-300); border: 1px solid var(--dark-600); }
-        .btn-ghost:hover { background: var(--dark-700); border-color: var(--gray-600); color: var(--white); }
-        .btn svg { width: 18px; height: 18px; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 32px; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: #000000; color: var(--white); border: 2px solid #000000; }
+        .btn-primary:hover { transform: translateY(-2px); background: #333333; }
+        .btn-ghost { background: transparent; color: var(--gray-700); border: 1px solid var(--gray-400); }
+        .btn-ghost:hover { background: var(--gray-100); border-color: var(--gray-500); color: var(--gray-900); }
 
-        .section { padding: 160px 0; position: relative; }
-        .section-dark { background: var(--dark); }
-        .section-dark-alt { background: var(--dark-800); }
-        .section-light { background: var(--gray-50); color: var(--gray-900); }
-        .section-header { margin-bottom: 80px; }
+        /* Hero Image */
+        .hero-visual { margin-top: 60px; }
+        .hero-image { 
+            width: 85vw;
+            max-width: 1200px;
+            height: auto;
+            margin: 40px auto -60px;
+            display: block;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        /* Section Common */
+        .section { padding: 140px 0; position: relative; }
+        .section-header { margin-bottom: 60px; }
         .section-header.center { text-align: center; }
-        .section-label { display: inline-flex; font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; }
-        .section-title { font-size: clamp(36px, 5vw, 52px); font-weight: 800; line-height: 1.2; letter-spacing: -1px; margin-bottom: 24px; }
-        .section-light .section-title { color: var(--gray-900); }
-        .section-desc { font-size: 17px; color: var(--gray-400); line-height: 1.8; max-width: 600px; }
-        .section-header.center .section-desc { margin: 0 auto; }
-        .section-light .section-desc { color: var(--gray-600); }
+        .section-title { font-size: clamp(32px, 4vw, 52px); font-weight: 800; line-height: 1.4; letter-spacing: -1px; margin-bottom: 20px; color: var(--gray-900); }
 
-        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .feature-card { padding: 40px 32px; background: var(--dark-700); border: 1px solid var(--dark-600); border-radius: 20px; transition: all 0.4s; }
-        .feature-card:hover { border-color: var(--primary); transform: translateY(-8px); }
-        .feature-card-icon { width: 56px; height: 56px; background: var(--gradient-primary); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
-        .feature-card-icon svg { width: 28px; height: 28px; color: white; }
-        .feature-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
-        .feature-card p { font-size: 14px; color: var(--gray-400); line-height: 1.7; }
+        /* Intro Section */
+        .intro-section { background: var(--white); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .intro-section-1 { background: var(--white); }
+        .intro-section-2 { background: var(--gray-50); transition: background 1s ease; }
+        .intro-section-2.inverted { background: #1a1a2e; }
+        .intro-section-2.inverted .intro-title { color: var(--white); }
+        .intro-section-2.inverted .typing-word { color: var(--white); }
+        .intro-section-2.inverted .typing-word .keyword { color: var(--primary-light); }
+        .intro-grid { display: block; text-align: center; }
+        .intro-title { font-size: clamp(36px, 5vw, 72px); font-weight: 800; color: var(--gray-900); line-height: 1.4; margin-bottom: 0; opacity: 0; transform: translateY(40px); transition: opacity 1s ease, transform 1s ease; }
+        .intro-title.visible { opacity: 1; transform: translateY(0); }
+        .typing-intro { border-right: 3px solid var(--gray-900); padding-right: 4px; animation: blink 0.7s infinite; }
+        .typing-intro.done { border-right: none; padding-right: 0; animation: none; }
+        .intro-title .underline-animate { display: inline; position: relative; }
+        .intro-title .underline-animate::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 8px; background: linear-gradient(90deg, var(--primary), var(--primary-light)); border-radius: 4px; transition: width 0.8s ease 0.5s; }
+        .intro-title.visible .underline-animate::after { width: 100%; }
+        .typing-word { color: var(--gray-900); }
+        .typing-word .keyword { color: var(--primary); }
+        .typing-word .cursor { border-right: 3px solid var(--primary); padding-right: 4px; animation: blink 0.7s infinite; }
+        .typing-word .cursor.done { border-right: none; padding-right: 0; animation: none; }
 
-        .benefit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-        .benefit-card { padding: 36px 24px; background: var(--white); border-radius: 20px; border: 1px solid var(--gray-200); text-align: center; transition: all 0.3s; }
-        .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08); }
-        .benefit-num { font-size: 48px; font-weight: 800; color: var(--primary); opacity: 0.2; margin-bottom: 12px; line-height: 1; }
-        .benefit-card h4 { font-size: 16px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
-        .benefit-card p { font-size: 13px; color: var(--gray-600); line-height: 1.5; }
+        /* Solution Section */
+        .solution-section { background: #F0F4FF; padding: 150px 0; min-height: 100vh; display: flex; align-items: center; }
+        .solution-content { text-align: center; }
+        .solution-arrow { margin-bottom: 40px; opacity: 0; transform: translateY(-20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .solution-arrow.visible { opacity: 1; transform: translateY(0); }
+        .solution-arrow svg { animation: bounce 2s ease-in-out infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+        .solution-title { font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; color: var(--gray-900); line-height: 1.5; margin-bottom: 60px; opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s; }
+        .solution-title.visible { opacity: 1; transform: translateY(0); }
+        .solution-title .highlight { color: var(--primary); }
+        .solution-image { max-width: 1200px; margin: 0 auto; opacity: 0; transform: translateY(40px); transition: opacity 1s ease 0.6s, transform 1s ease 0.6s; }
+        .solution-image.visible { opacity: 1; transform: translateY(0); }
+        .solution-image img { width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
 
-        .stats-section { background: linear-gradient(180deg, var(--dark) 0%, var(--dark-800) 100%); padding: 120px 0; }
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
-        .stat-item { text-align: center; }
-        .stat-value { font-size: 64px; font-weight: 800; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 12px; }
-        .stat-label { font-size: 15px; color: var(--gray-400); }
+        /* Feature Cards Section */
+        .feature-cards-section { padding: 120px 0; background: var(--white); }
+        .feature-cards-title { font-size: clamp(32px, 4vw, 52px); font-weight: 800; text-align: center; color: var(--gray-900); line-height: 1.4; margin-bottom: 60px; }
+        .feature-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .feature-card-item { min-height: 420px; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; justify-content: flex-start; transition: transform 0.3s, box-shadow 0.3s; background-size: cover; background-position: center; background-repeat: no-repeat; }
+        .feature-card-item:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+        .feature-card-item.purple { background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); }
+        .feature-card-item.white { background: var(--white); border: 1px solid var(--gray-200); }
+        .feature-card-item.cyan { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); }
+        .feature-card-heading { font-size: 26px; font-weight: 800; color: var(--white); margin-bottom: 16px; line-height: 1.4; }
+        .feature-card-item.white .feature-card-heading { color: var(--gray-900); }
+        .feature-card-desc { font-size: 15px; color: rgba(255,255,255,0.9); line-height: 1.7; }
+        .feature-card-item.white .feature-card-desc { color: var(--gray-600); }
 
-        .cta-section { background: var(--gradient-primary); padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
-        .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 50%); }
+        /* Feature Special Section */
+        .feature-special-section { padding: 100px 0; background: var(--white); }
+        .feature-special-title { font-size: clamp(32px, 4vw, 52px); font-weight: 800; color: var(--gray-900); text-align: center; margin-bottom: 60px; line-height: 1.4; }
+        .feature-special-title span { color: var(--primary); }
+        .feature-special-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+        .feature-special-card { display: flex; align-items: flex-start; gap: 20px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 16px; padding: 28px; transition: all 0.3s; }
+        .feature-special-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-4px); }
+        .feature-special-icon { width: 56px; height: 56px; min-width: 56px; background: var(--dark-800); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .feature-special-icon svg { width: 28px; height: 28px; color: white; }
+        .feature-special-content h4 { font-size: 18px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+        .feature-special-content p { font-size: 14px; color: var(--gray-600); line-height: 1.6; margin: 0; }
+
+        /* Reference Section */
+        .reference-section { padding: 120px 0; background: var(--white); }
+        .reference-title { font-size: clamp(32px, 4vw, 52px); font-weight: 800; color: var(--gray-900); text-align: center; margin-bottom: 80px; line-height: 1.4; }
+        .reference-list { max-width: 1200px; margin: 0 auto; }
+        .reference-item { display: grid; grid-template-columns: 260px 1fr 280px; gap: 48px; padding: 28px 0; border-bottom: 1px dashed var(--gray-200); align-items: center; transition: all 0.3s; }
+        .reference-item:hover { background: var(--white); margin: 0 -32px; padding: 28px 32px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .reference-item:last-child { border-bottom: none; }
+        .reference-logo { font-size: 24px; font-weight: 800; color: var(--gray-900); display: flex; align-items: center; gap: 16px; }
+        .reference-logo img { height: auto; width: 100%; max-width: 200px; object-fit: contain; }
+        .reference-desc { font-size: 20px; color: var(--gray-600); line-height: 1.6; font-weight: 500; }
+        .reference-note { font-size: 18px; color: var(--primary); text-align: right; font-weight: 600; }
+
+        /* CTA Section */
+        .cta-section { background: url('../img/bk18.jpg') center/cover no-repeat; padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
         .cta-content { position: relative; z-index: 10; }
-        .cta-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 24px; line-height: 1.3; }
-        .cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
-        .cta-section .btn-primary { background: var(--white); color: var(--primary-dark); }
-        .cta-section .btn-ghost { border-color: rgba(255,255,255,0.3); color: var(--white); }
+        .cta-title { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 24px; line-height: 1.3; color: var(--white); }
+        .cta-desc { font-size: 17px; opacity: 0.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; color: var(--white); }
+        .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .cta-section .btn-primary { background: #000000; color: var(--white); border: 2px solid var(--white); }
+        .cta-section .btn-primary:hover { background: var(--white); color: #000000; }
 
-        @media (max-width: 1024px) { .section { padding: 100px 0; } .feature-grid { grid-template-columns: 1fr; } .benefit-grid { grid-template-columns: repeat(2, 1fr); } .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; } }
-        @media (max-width: 768px) { .hero { padding: 120px 0 80px; } .section { padding: 80px 0; } .hero-actions { flex-direction: column; } .btn { width: 100%; justify-content: center; } .benefit-grid { grid-template-columns: 1fr; } .stats-grid { grid-template-columns: 1fr; gap: 40px; } }
+        /* Responsive */
+        @media (max-width: 1024px) { 
+            .hero-title { font-size: 44px; }
+            .hero-image { width: 100%; }
+            .feature-cards-grid { grid-template-columns: 1fr; gap: 20px; }
+            .feature-special-grid { grid-template-columns: 1fr; }
+            .reference-item { grid-template-columns: 180px 1fr 180px; gap: 24px; }
+            .solution-image { max-width: 100%; padding: 0 20px; }
+        }
+        @media (max-width: 768px) { 
+            .hero { padding: 140px 0 40px; }
+            .hero-title { font-size: 28px; letter-spacing: -1px; line-height: 1.4; }
+            .hero-title .typing-text { min-width: 100px; font-size: 28px; }
+            .hero-desc { font-size: 15px; margin-bottom: 24px; }
+            .hero-actions { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; padding: 14px 24px; }
+            .hero-image { border-radius: 8px; }
+            
+            .section { padding: 80px 0; }
+            .intro-section { min-height: 70vh; padding: 60px 0; }
+            .intro-title { font-size: 28px; line-height: 1.5; }
+            
+            .solution-section { padding: 80px 0; min-height: auto; }
+            .solution-title { font-size: 24px; line-height: 1.6; margin-bottom: 40px; }
+            
+            .feature-cards-section { padding: 80px 0; }
+            .feature-card-item { min-height: 380px; padding: 24px; }
+            .feature-card-heading { font-size: 22px; }
+            .feature-card-desc { font-size: 14px; }
+            
+            .feature-special-section { padding: 60px 0; }
+            .feature-special-title { font-size: 28px; margin-bottom: 40px; }
+            .feature-special-card { padding: 20px; }
+            .feature-special-icon { width: 48px; height: 48px; min-width: 48px; }
+            .feature-special-content h4 { font-size: 16px; }
+            .feature-special-content p { font-size: 13px; }
+            
+            .reference-section { padding: 60px 0; }
+            .reference-title { font-size: 28px; margin-bottom: 40px; }
+            .reference-item { grid-template-columns: 1fr; gap: 12px; text-align: center; padding: 24px 0; }
+            .reference-logo { justify-content: center; font-size: 18px; }
+            .reference-logo img { max-width: 150px; }
+            .reference-desc { font-size: 16px; }
+            .reference-note { text-align: center; font-size: 14px; }
+            
+            .cta-section { padding: 80px 0; }
+            .cta-title { font-size: 28px; }
+            .cta-desc { font-size: 15px; }
+            .cta-actions { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="line">팀 협업의</span>
-                    <span class="line">새로운 방식</span>
-                    <span class="line"><span class="highlight">팀블로</span></span>
-                </h1>
-                <p class="hero-desc">실시간 회의록, 작업 관리, 지식 공유를 한 곳에서. AI가 팀의 생산성을 높여드립니다.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section section-dark-alt" id="features">
-        <div class="container">
-            <div class="section-header center">
-                <div class="section-label">Features</div>
-                <h2 class="section-title">핵심 기능</h2>
-            </div>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-card-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
-                    <h4>실시간 회의록</h4>
-                    <p>회의 내용을 실시간으로 기록하고 참석자 모두가 동시에 확인 가능</p>
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        AI로 더 스마트하게,<br>
+                        <span class="typing-text" id="typingText">회의록</span><br>
+                        자동으로 관리하세요!
+                    </h1>
+                    <p class="hero-desc">팀 협업의 새로운 기준, 팀블로로 시작하세요.</p>
+                    <div class="hero-actions">
+                        <a href="../contact.html" class="btn btn-primary">데모 신청하기</a>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-card-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></div>
-                    <h4>작업 관리</h4>
-                    <p>회의에서 나온 액션 아이템을 자동 추출하고 담당자 배정</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-card-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div>
-                    <h4>지식 공유</h4>
-                    <p>팀의 모든 회의록과 자료를 검색 가능한 형태로 아카이브</p>
+                <div class="hero-visual">
+                    <img src="../img/timblo-hero.png" alt="팀블로 인터페이스" class="hero-image">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section section-light">
+    <!-- Intro Section 1 -->
+    <section class="intro-section intro-section-1">
         <div class="container">
-            <div class="section-header center">
-                <div class="section-label" style="color: var(--primary-dark);">Benefits</div>
-                <h2 class="section-title">도입 효과</h2>
-            </div>
-            <div class="benefit-grid">
-                <div class="benefit-card"><div class="benefit-num">01</div><h4>업무 효율 향상</h4><p>회의록 작성 시간 70% 절감</p></div>
-                <div class="benefit-card"><div class="benefit-num">02</div><h4>정보 투명성</h4><p>모든 팀원이 실시간 정보 공유</p></div>
-                <div class="benefit-card"><div class="benefit-num">03</div><h4>작업 추적</h4><p>액션 아이템 완료율 추적</p></div>
-                <div class="benefit-card"><div class="benefit-num">04</div><h4>지식 축적</h4><p>팀 노하우 체계적 관리</p></div>
+            <div class="intro-grid">
+                <div class="intro-content">
+                    <h2 class="intro-title animate-text">
+                        <span class="line1 typing-intro" id="typingIntro"></span><br>
+                        <span class="line2">팀 협업이 <span class="underline-animate">복잡해</span>지진 않나요?</span>
+                    </h2>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="stats-section">
+    <!-- Intro Section 2 -->
+    <section class="intro-section intro-section-2">
         <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item"><div class="stat-value">70%</div><div class="stat-label">회의록 작성 시간 절감</div></div>
-                <div class="stat-item"><div class="stat-value">50%</div><div class="stat-label">작업 완료율 향상</div></div>
-                <div class="stat-item"><div class="stat-value">무제한</div><div class="stat-label">회의록 저장</div></div>
-                <div class="stat-item"><div class="stat-value">실시간</div><div class="stat-label">팀 협업</div></div>
+            <div class="intro-grid">
+                <div class="intro-content">
+                    <h2 class="intro-title animate-text-2">
+                        <span class="typing-word" id="typingWord1" data-text="회의록" data-suffix="은 쌓이고,"></span><br>
+                        <span class="typing-word" id="typingWord2" data-text="업무" data-suffix="는 흩어지고,"></span><br>
+                        <span class="typing-word" id="typingWord3" data-text="정보" data-suffix="는 사라진다면?"></span>
+                    </h2>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Solution Section -->
+    <section class="solution-section">
+        <div class="container">
+            <div class="solution-content">
+                <div class="solution-arrow animate-arrow">
+                    <svg width="140" height="50" viewBox="0 0 140 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="arrowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0" />
+                                <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="70,50 0,0 140,0" fill="url(#arrowGradient)"/>
+                    </svg>
+                </div>
+                <h2 class="solution-title animate-solution">
+                    흩어진 정보, 팀블로로<br>
+                    <span class="highlight">실시간 협업</span>부터<br>
+                    <span class="highlight">지식 아카이브</span>까지 한 번에!
+                </h2>
+                <div class="solution-image animate-solution-img">
+                    <img src="../img/timblo-demo.png" alt="팀블로 데모">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Cards Section -->
+    <section class="feature-cards-section">
+        <div class="container">
+            <h2 class="feature-cards-title">팀블로와 함께하는<br>스마트한 팀 협업</h2>
+            <div class="feature-cards-grid">
+                <div class="feature-card-item purple">
+                    <h3 class="feature-card-heading">실시간 회의록 작성부터<br>자동 요약까지</h3>
+                    <p class="feature-card-desc">회의 중 실시간으로 내용을 기록하고<br>AI가 핵심 내용을 자동으로 요약해<br>모든 팀원과 즉시 공유할 수 있어요.</p>
+                </div>
+                <div class="feature-card-item white">
+                    <h3 class="feature-card-heading">액션 아이템 자동 추출로<br>업무 누락 제로</h3>
+                    <p class="feature-card-desc">회의에서 나온 할 일을 자동으로 추출해<br>담당자를 배정하고 진행 상황을 추적합니다.<br>더 이상 업무가 빠지지 않아요.</p>
+                </div>
+                <div class="feature-card-item cyan">
+                    <h3 class="feature-card-heading">팀의 모든 지식을<br>검색 가능한 아카이브로</h3>
+                    <p class="feature-card-desc">회의록, 문서, 자료를 체계적으로 저장하고<br>언제든 검색해서 찾을 수 있어요.<br>팀 노하우가 자산이 됩니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Special Section -->
+    <section class="feature-special-section">
+        <div class="container">
+            <h2 class="feature-special-title">팀 협업,<br><span>팀블로</span>만의 특별한 기능</h2>
+            <div class="feature-special-grid">
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>실시간 동시 편집</h4>
+                        <p>여러 팀원이 동시에 문서를 편집하고 수정</p>
+                    </div>
+                </div>
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>작업 자동 추적</h4>
+                        <p>액션 아이템 진행률과 완료 현황 대시보드</p>
+                    </div>
+                </div>
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>스마트 검색</h4>
+                        <p>AI 기반 자연어 검색으로 원하는 정보 즉시 찾기</p>
+                    </div>
+                </div>
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>팀 권한 관리</h4>
+                        <p>프로젝트별 접근 권한과 역할 설정</p>
+                    </div>
+                </div>
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>일정 연동</h4>
+                        <p>캘린더 연동으로 회의 일정 자동 관리</p>
+                    </div>
+                </div>
+                <div class="feature-special-card">
+                    <div class="feature-special-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    </div>
+                    <div class="feature-special-content">
+                        <h4>보안 관리</h4>
+                        <p>기업 수준의 데이터 암호화 및 보안</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
             <div class="cta-content">
-                <h2 class="cta-title">팀 협업의 새로운 기준<br>팀블로</h2>
-                <p class="cta-desc">지금 바로 팀블로를 경험해보세요.</p>
-                <div class="hero-actions" style="justify-content: center;">
-                    <a href="../contact.html" class="btn btn-primary">도입 문의</a>
-                    <a href="../contact.html" class="btn btn-ghost">기술 상담</a>
+                <h2 class="cta-title">AI 팀 협업 솔루션 팀블로로<br>업무 효율을 높이세요</h2>
+                <p class="cta-desc">지금 바로 데모를 신청하고 팀블로를 경험해보세요.</p>
+                <div class="cta-actions">
+                    <a href="../contact.html" class="btn btn-primary">데모 신청하기</a>
                 </div>
             </div>
         </div>
@@ -182,5 +387,186 @@
 
     <div id="footer-placeholder"></div>
     <script src="../js/common.js"></script>
+    <script>
+        // 타이핑 효과
+        (function() {
+            const words = ['회의록', '작업 관리', '지식 공유', '팀 소통', '프로젝트', '일정 관리'];
+            const typingElement = document.getElementById('typingText');
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typingSpeed = 100;
+            const deletingSpeed = 50;
+            const pauseTime = 2000;
+
+            function type() {
+                const currentWord = words[wordIndex];
+                
+                if (isDeleting) {
+                    typingElement.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingElement.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                if (!isDeleting && charIndex === currentWord.length) {
+                    setTimeout(() => { isDeleting = true; type(); }, pauseTime);
+                    return;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+
+                setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+            }
+            type();
+        })();
+
+        // 인트로 타이핑 효과
+        (function() {
+            const typingIntro = document.getElementById('typingIntro');
+            const introText = '일이 많아질수록,';
+            let introTyped = false;
+            let charIndex = 0;
+
+            function typeIntro() {
+                if (charIndex < introText.length) {
+                    typingIntro.textContent += introText.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeIntro, 80);
+                } else {
+                    typingIntro.classList.add('done');
+                }
+            }
+
+            window.startIntroTyping = function() {
+                if (!introTyped && typingIntro) {
+                    introTyped = true;
+                    typeIntro();
+                }
+            };
+        })();
+
+        // 문서, 사람, 시간 타이핑 효과
+        (function() {
+            let wordTyped = false;
+            const words = [
+                { id: 'typingWord1', keyword: '회의록', suffix: '은 쌓이고,' },
+                { id: 'typingWord2', keyword: '업무', suffix: '는 흩어지고,' },
+                { id: 'typingWord3', keyword: '정보', suffix: '는 사라진다면?' }
+            ];
+
+            function typeWord(wordIndex, charIndex, isKeyword) {
+                if (wordIndex >= words.length) {
+                    setTimeout(() => {
+                        document.querySelector('.intro-section-2').classList.add('inverted');
+                    }, 800);
+                    return;
+                }
+
+                const word = words[wordIndex];
+                const element = document.getElementById(word.id);
+                const text = isKeyword ? word.keyword : word.suffix;
+
+                if (charIndex < text.length) {
+                    if (charIndex === 0 && isKeyword) {
+                        element.innerHTML = '<span class="keyword cursor"></span>';
+                    }
+                    
+                    const keywordSpan = element.querySelector('.keyword');
+                    
+                    if (isKeyword) {
+                        keywordSpan.textContent += text.charAt(charIndex);
+                    } else {
+                        if (charIndex === 0) {
+                            keywordSpan.classList.remove('cursor');
+                            keywordSpan.classList.add('done');
+                        }
+                        element.innerHTML = '<span class="keyword done">' + word.keyword + '</span>' + word.suffix.substring(0, charIndex + 1);
+                    }
+                    
+                    setTimeout(() => typeWord(wordIndex, charIndex + 1, isKeyword), 60);
+                } else {
+                    if (isKeyword) {
+                        setTimeout(() => typeWord(wordIndex, 0, false), 100);
+                    } else {
+                        setTimeout(() => typeWord(wordIndex + 1, 0, true), 400);
+                    }
+                }
+            }
+
+            window.startWordTyping = function() {
+                if (!wordTyped) {
+                    wordTyped = true;
+                    typeWord(0, 0, true);
+                }
+            };
+        })();
+
+        // 인트로 섹션 스크롤 애니메이션
+        (function() {
+            const introTitle1 = document.querySelector('.animate-text');
+            const introTitle2 = document.querySelector('.animate-text-2');
+
+            function checkScroll() {
+                const windowHeight = window.innerHeight;
+
+                if (introTitle1) {
+                    const rect1 = introTitle1.getBoundingClientRect();
+                    if (rect1.top < windowHeight * 0.8) {
+                        introTitle1.classList.add('visible');
+                        window.startIntroTyping();
+                    }
+                }
+
+                if (introTitle2) {
+                    const rect2 = introTitle2.getBoundingClientRect();
+                    if (rect2.top < windowHeight * 0.8) {
+                        introTitle2.classList.add('visible');
+                        window.startWordTyping();
+                    }
+                }
+            }
+
+            window.addEventListener('scroll', checkScroll);
+            checkScroll();
+        })();
+
+        // 솔루션 섹션 스크롤 애니메이션
+        (function() {
+            const solutionArrow = document.querySelector('.animate-arrow');
+            const solutionTitle = document.querySelector('.animate-solution');
+            const solutionImage = document.querySelector('.animate-solution-img');
+
+            function checkSolutionScroll() {
+                const windowHeight = window.innerHeight;
+
+                if (solutionArrow) {
+                    const rect = solutionArrow.getBoundingClientRect();
+                    if (rect.top < windowHeight * 0.9) {
+                        solutionArrow.classList.add('visible');
+                    }
+                }
+
+                if (solutionTitle) {
+                    const rect = solutionTitle.getBoundingClientRect();
+                    if (rect.top < windowHeight * 0.85) {
+                        solutionTitle.classList.add('visible');
+                    }
+                }
+
+                if (solutionImage) {
+                    const rect = solutionImage.getBoundingClientRect();
+                    if (rect.top < windowHeight * 0.9) {
+                        solutionImage.classList.add('visible');
+                    }
+                }
+            }
+
+            window.addEventListener('scroll', checkSolutionScroll);
+            checkSolutionScroll();
+        })();
+    </script>
 </body>
 </html>
