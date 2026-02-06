@@ -95,11 +95,11 @@ function getHeaderHTML(basePath) {
                                 <div class="mega-menu-column">
                                     <div class="mega-menu-column-title">인공지능</div>
                                     <a href="${basePath}products/speech-language.html" class="mega-menu-link">
-                                        <strong>음성인식 · 음성합성 AI 솔루션</strong>
+                                        <strong>AI 음성인식 · 음성합성 솔루션</strong>
                                         <span>HAIV – 외부 AI 연동 음성 인식·합성 엔진</span>
                                     </a>
                                     <a href="${basePath}products/llm-platform.html" class="mega-menu-link">
-                                        <strong>대규모 AI 모델 개발</strong>
+                                        <strong>AI 데이터 허브 구축</strong>
                                         <span>RAG 기반 지식 구축 · 업무 시나리오 설계</span>
                                     </a>
                                     <a href="${basePath}products/sign-avatar.html" class="mega-menu-link">
@@ -142,18 +142,18 @@ function getHeaderHTML(basePath) {
                                     </a>
                                 </div>
                                 <div class="mega-menu-column">
-                                    <div class="mega-menu-column-title">AI 미디어 클립데스크</div>
+                                    <div class="mega-menu-column-title">AI 미디어</div>
+                                    <a href="${basePath}products/clipdesk-edit.html" class="mega-menu-link">
+                                        <strong>AI 기반 영상 편집</strong>
+                                        <span>Clipdesk Edit</span>
+                                    </a>
                                     <a href="${basePath}products/clipdesk-caption.html" class="mega-menu-link">
                                         <strong>실시간 AI 자막 · 기록 자동화</strong>
-                                        <span>STT 기반 실시간 자막 생성 및 기록 전문가 검수</span>
+                                        <span>Clipdesk Caption</span>
                                     </a>
                                     <a href="${basePath}products/clipdesk-translate.html" class="mega-menu-link">
                                         <strong>영상 자막 다국어 번역</strong>
-                                        <span>AI 번역 + 현지 원어민 번역 워크플로우</span>
-                                    </a>
-                                    <a href="${basePath}products/clipdesk-edit.html" class="mega-menu-link">
-                                        <strong>AI 기반 영상 편집</strong>
-                                        <span>텍스트 기반 편집 + 영상 전문가 제작 지원</span>
+                                        <span>Clipdesk Translate</span>
                                     </a>
                                 </div>
                             </div>
@@ -240,8 +240,8 @@ function getHeaderHTML(basePath) {
                     </button>
                     <div class="mobile-submenu" id="submenu-products">
                         <span class="mobile-submenu-title">인공지능</span>
-                        <a href="${basePath}products/speech-language.html">음성인식 · 음성합성 AI 솔루션</a>
-                        <a href="${basePath}products/llm-platform.html">대규모 AI 모델 개발</a>
+                        <a href="${basePath}products/speech-language.html">AI 음성인식 · 음성합성 솔루션</a>
+                        <a href="${basePath}products/llm-platform.html">AI 데이터 허브 구축</a>
                         <a href="${basePath}products/sign-avatar.html">AI 메타휴먼 수어 아바타</a>
                         <span class="mobile-submenu-title">AICC 솔루션</span>
                         <a href="${basePath}solutions/aicc-platform.html">AI 음성 대화 엔진</a>
@@ -252,10 +252,10 @@ function getHeaderHTML(basePath) {
                         <span class="mobile-submenu-title">AI 회의록</span>
                         <a href="${basePath}products/timblo.html">팀블로</a>
                         <a href="${basePath}products/baronote.html">바로노트</a>
-                        <span class="mobile-submenu-title">AI 미디어 클립데스크</span>
+                        <span class="mobile-submenu-title">AI 미디어</span>
+                        <a href="${basePath}products/clipdesk-edit.html">AI 기반 영상 편집</a>
                         <a href="${basePath}products/clipdesk-caption.html">실시간 AI 자막 · 기록 자동화</a>
                         <a href="${basePath}products/clipdesk-translate.html">영상 자막 다국어 번역</a>
-                        <a href="${basePath}products/clipdesk-edit.html">AI 기반 영상 편집</a>
                     </div>
                 </div>
                 <div class="mobile-nav-item">
