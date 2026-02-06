@@ -39,14 +39,13 @@
         @media (max-width: 768px) { .container { padding: 0 20px; } }
 
         /* Hero Section */
-        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 140px 0 40px; background: url('../img/img1.png?v=2') center/cover no-repeat; overflow: visible; }
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 260px 0 40px; background: url('../img/img1.png?v=2') center/cover no-repeat; overflow: visible; }
         .hero::before { display: none; }
         .hero-inner { position: relative; z-index: 10; text-align: center; }
         .hero-content { max-width: 800px; margin: 0 auto; }
         .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(0, 201, 107, 0.1); border: 1px solid rgba(0, 201, 107, 0.3); border-radius: 100px; font-size: 13px; font-weight: 600; color: var(--primary-light); margin-bottom: 24px; }
         .hero-title { font-size: clamp(36px, 5vw, 77px); font-weight: 800; line-height: 1.2; letter-spacing: -2px; margin-bottom: 24px; color: var(--gray-900); text-align: center; }
-        .hero-title .typing-text { color: var(--primary); display: inline; border-right: 3px solid var(--primary); padding-right: 8px; animation: blink 0.7s infinite; }
-        .hero-title-line { display: inline-block; white-space: nowrap; }
+        .hero-title .typing-text { color: var(--primary); display: inline-block; border-right: 3px solid var(--primary); padding-right: 8px; animation: blink 0.7s infinite; min-width: 200px; }
         @keyframes blink { 0%, 100% { border-color: var(--primary); } 50% { border-color: transparent; } }
         .hero-desc { font-size: 18px; color: var(--gray-600); line-height: 1.8; margin-bottom: 40px; }
         .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
@@ -59,12 +58,12 @@
         /* Hero Image Placeholder */
         .hero-visual { margin-top: 60px; }
         .hero-image { 
-            width: 1200px;
-            max-width: 100%;
+            width: 85vw;
+            max-width: 1200px;
             height: auto;
             margin: 40px auto -60px;
             display: block;
-            border-radius: 20px;
+            border-radius: 16px;
         }
 
         /* Section Common */
@@ -286,7 +285,8 @@
                 <div class="hero-content">
                     <h1 class="hero-title">
                         AI로 쉽고 빠르게,<br>
-                        <span class="hero-title-line"><span class="typing-text" id="typingText">회의록</span>을 자동으로 기록하세요!</span>
+                        <span class="typing-text" id="typingText">회의록</span><br>
+                        자동으로 기록하세요!
                     </h1>
                     <p class="hero-desc">기록 업무의 새로운 기준, 바로노트로 시작하세요.</p>
                     <div class="hero-actions">
