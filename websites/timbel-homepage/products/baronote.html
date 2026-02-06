@@ -87,16 +87,20 @@
         .intro-section-2 { background: var(--gray-50); transition: background 1s ease; }
         .intro-section-2.inverted { background: #0A1628; }
         .intro-section-2.inverted .intro-title { color: var(--white); }
-        .intro-section-2.inverted .word-animate { color: rgba(255,255,255,0.3); }
-        .intro-section-2.inverted .word-animate.active { color: #00E676; }
+        .intro-section-2.inverted .typing-word { color: var(--white); }
+        .intro-section-2.inverted .typing-word .keyword { color: #00E676; }
         .intro-grid { display: block; text-align: center; }
         .intro-title { font-size: clamp(36px, 5vw, 72px); font-weight: 800; color: var(--gray-900); line-height: 1.4; margin-bottom: 0; opacity: 0; transform: translateY(40px); transition: opacity 1s ease, transform 1s ease; }
         .intro-title.visible { opacity: 1; transform: translateY(0); }
+        .typing-intro { border-right: 3px solid var(--gray-900); padding-right: 4px; animation: blink 0.7s infinite; }
+        .typing-intro.done { border-right: none; padding-right: 0; animation: none; }
         .intro-title .underline-animate { display: inline; position: relative; }
         .intro-title .underline-animate::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 8px; background: linear-gradient(90deg, #00C96B, #00E676); border-radius: 4px; transition: width 0.8s ease 0.5s; }
         .intro-title.visible .underline-animate::after { width: 100%; }
-        .word-animate { color: var(--gray-300); transition: color 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
-        .word-animate.active { color: #00C96B; }
+        .typing-word { color: var(--gray-900); }
+        .typing-word .keyword { color: #00C96B; }
+        .typing-word .cursor { border-right: 3px solid #00C96B; padding-right: 4px; animation: blink 0.7s infinite; }
+        .typing-word .cursor.done { border-right: none; padding-right: 0; animation: none; }
         .intro-image-placeholder { 
             background: var(--gray-100); 
             border: 2px dashed var(--gray-300); 
@@ -207,7 +211,7 @@
         /* System Spec Section */
         .system-spec-section { padding: 100px 0; background: url('../img/bk07.png') center/cover no-repeat; }
         .system-spec-title { font-size: clamp(32px, 4vw, 52px); font-weight: 800; color: var(--white); text-align: center; margin-bottom: 60px; line-height: 1.4; }
-        .system-spec-table { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.25); max-width: 1100px; margin: 0 auto; }
+        .system-spec-table { background: var(--white); border-radius: 16px; overflow: hidden; max-width: 1100px; margin: 0 auto; }
         .system-spec-table table { width: 100%; border-collapse: collapse; table-layout: fixed; }
         .system-spec-table thead { background: #479BFA; }
         .system-spec-table th { padding: 22px 28px; color: var(--white); font-size: 18px; font-weight: 700; text-align: center; letter-spacing: 0.5px; }
@@ -302,7 +306,7 @@
             <div class="intro-grid">
                 <div class="intro-content">
                     <h2 class="intro-title animate-text">
-                        <span class="line1">시작이 반이라지만,</span><br>
+                        <span class="line1 typing-intro" id="typingIntro"></span><br>
                         <span class="line2">기록 때문에 <span class="underline-animate">업무가 늦어</span>지진 않나요?</span>
                     </h2>
                 </div>
@@ -316,9 +320,9 @@
             <div class="intro-grid">
                 <div class="intro-content">
                     <h2 class="intro-title animate-text-2">
-                        <span class="word-animate" data-order="1">문서</span>는 많고,<br>
-                        <span class="word-animate" data-order="2">사람</span>은 없고,<br>
-                        <span class="word-animate" data-order="3">시간</span>도 없다면?
+                        <span class="typing-word" id="typingWord1" data-text="문서" data-suffix="는 많고,"></span><br>
+                        <span class="typing-word" id="typingWord2" data-text="사람" data-suffix="은 없고,"></span><br>
+                        <span class="typing-word" id="typingWord3" data-text="시간" data-suffix="마저 없다면?"></span>
                     </h2>
                 </div>
             </div>
@@ -697,11 +701,95 @@
             }
         })();
 
+        // 인트로 타이핑 효과
+        (function() {
+            const typingIntro = document.getElementById('typingIntro');
+            const introText = '시작이 반이라지만,';
+            let introTyped = false;
+            let charIndex = 0;
+
+            function typeIntro() {
+                if (charIndex < introText.length) {
+                    typingIntro.textContent += introText.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeIntro, 80);
+                } else {
+                    typingIntro.classList.add('done');
+                }
+            }
+
+            window.startIntroTyping = function() {
+                if (!introTyped && typingIntro) {
+                    introTyped = true;
+                    typeIntro();
+                }
+            };
+        })();
+
+        // 문서, 사람, 시간 타이핑 효과
+        (function() {
+            let wordTyped = false;
+            const words = [
+                { id: 'typingWord1', keyword: '문서', suffix: '는 많고,' },
+                { id: 'typingWord2', keyword: '사람', suffix: '은 없고,' },
+                { id: 'typingWord3', keyword: '시간', suffix: '마저 없다면?' }
+            ];
+
+            function typeWord(wordIndex, charIndex, isKeyword) {
+                if (wordIndex >= words.length) {
+                    // 모든 타이핑 완료 후 반전 효과
+                    setTimeout(() => {
+                        document.querySelector('.intro-section-2').classList.add('inverted');
+                    }, 800);
+                    return;
+                }
+
+                const word = words[wordIndex];
+                const element = document.getElementById(word.id);
+                const text = isKeyword ? word.keyword : word.suffix;
+
+                if (charIndex < text.length) {
+                    if (charIndex === 0 && isKeyword) {
+                        element.innerHTML = '<span class="keyword cursor"></span>';
+                    }
+                    
+                    const keywordSpan = element.querySelector('.keyword');
+                    const currentText = isKeyword ? keywordSpan.textContent : element.textContent.replace(word.keyword, '');
+                    
+                    if (isKeyword) {
+                        keywordSpan.textContent += text.charAt(charIndex);
+                    } else {
+                        if (charIndex === 0) {
+                            keywordSpan.classList.remove('cursor');
+                            keywordSpan.classList.add('done');
+                        }
+                        element.innerHTML = '<span class="keyword done">' + word.keyword + '</span>' + word.suffix.substring(0, charIndex + 1);
+                    }
+                    
+                    setTimeout(() => typeWord(wordIndex, charIndex + 1, isKeyword), 60);
+                } else {
+                    if (isKeyword) {
+                        // 키워드 완료, suffix 시작
+                        setTimeout(() => typeWord(wordIndex, 0, false), 100);
+                    } else {
+                        // 다음 단어로
+                        setTimeout(() => typeWord(wordIndex + 1, 0, true), 400);
+                    }
+                }
+            }
+
+            window.startWordTyping = function() {
+                if (!wordTyped) {
+                    wordTyped = true;
+                    typeWord(0, 0, true);
+                }
+            };
+        })();
+
         // 인트로 섹션 스크롤 애니메이션
         (function() {
             const introTitle1 = document.querySelector('.animate-text');
             const introTitle2 = document.querySelector('.animate-text-2');
-            const wordAnimates = document.querySelectorAll('.word-animate');
 
             function checkScroll() {
                 const scrollTop = window.scrollY;
@@ -712,27 +800,16 @@
                     const rect1 = introTitle1.getBoundingClientRect();
                     if (rect1.top < windowHeight * 0.8) {
                         introTitle1.classList.add('visible');
+                        window.startIntroTyping();
                     }
                 }
 
-                // 두 번째 문장 애니메이션
+                // 두 번째 문장 애니메이션 (타이핑 효과)
                 if (introTitle2) {
                     const rect2 = introTitle2.getBoundingClientRect();
                     if (rect2.top < windowHeight * 0.8) {
                         introTitle2.classList.add('visible');
-                        
-                        // 단어별 순차 색상 변경
-                        wordAnimates.forEach((word, index) => {
-                            setTimeout(() => {
-                                word.classList.add('active');
-                            }, 500 + (index * 800));
-                        });
-                        
-                        // 모든 단어 애니메이션 완료 후 반전 효과
-                        const totalDelay = 500 + (wordAnimates.length * 800) + 800;
-                        setTimeout(() => {
-                            document.querySelector('.intro-section-2').classList.add('inverted');
-                        }, totalDelay);
+                        window.startWordTyping();
                     }
                 }
             }
