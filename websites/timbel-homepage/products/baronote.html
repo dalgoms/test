@@ -12,8 +12,8 @@
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
     <style>
         :root {
-            --primary: #00C5F2;
-            --primary-dark: #00A8D1;
+            --primary: #005CFF;
+            --primary-dark: #0047CC;
             --primary-light: #33D4F5;
             --secondary: #1E3A5F;
             --dark: #0F172A;
@@ -30,7 +30,7 @@
             --gray-100: #f3f4f6;
             --gray-50: #f9fafb;
             --white: #FFFFFF;
-            --gradient-primary: linear-gradient(135deg, #00C5F2 0%, #00A8D1 100%);
+            --gradient-primary: linear-gradient(135deg, #005CFF 0%, #0047CC 100%);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -39,38 +39,32 @@
         @media (max-width: 768px) { .container { padding: 0 20px; } }
 
         /* Hero Section */
-        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 140px 0 80px; background: url('../img/bk18.jpg') center/cover no-repeat; overflow: hidden; }
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 140px 0 40px; background: url('../img/img1.png?v=2') center/cover no-repeat; overflow: visible; }
         .hero::before { display: none; }
         .hero-inner { position: relative; z-index: 10; text-align: center; }
         .hero-content { max-width: 800px; margin: 0 auto; }
-        .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(0, 197, 242, 0.1); border: 1px solid rgba(0, 197, 242, 0.3); border-radius: 100px; font-size: 13px; font-weight: 600; color: var(--primary-light); margin-bottom: 24px; }
-        .hero-title { font-size: 77px; font-weight: 800; line-height: 1.2; letter-spacing: -2px; margin-bottom: 24px; }
-        .hero-title .typing-text { color: var(--primary); display: inline; border-right: 3px solid var(--primary); padding-right: 12px; margin-right: 8px; animation: blink 0.7s infinite; }
-        .hero-title-line { display: block; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(0, 92, 255, 0.1); border: 1px solid rgba(0, 92, 255, 0.3); border-radius: 100px; font-size: 13px; font-weight: 600; color: var(--primary-light); margin-bottom: 24px; }
+        .hero-title { font-size: clamp(36px, 5vw, 77px); font-weight: 800; line-height: 1.2; letter-spacing: -2px; margin-bottom: 24px; color: var(--gray-900); }
+        .hero-title .typing-text { color: var(--primary); display: inline-block; width: 280px; text-align: center; border-right: 3px solid var(--primary); padding-right: 12px; margin-right: 8px; animation: blink 0.7s infinite; }
+        .hero-title-line { display: block; white-space: nowrap; }
         @keyframes blink { 0%, 100% { border-color: var(--primary); } 50% { border-color: transparent; } }
-        .hero-desc { font-size: 18px; color: var(--gray-400); line-height: 1.8; margin-bottom: 40px; }
+        .hero-desc { font-size: 18px; color: var(--gray-600); line-height: 1.8; margin-bottom: 40px; }
         .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
         .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 32px; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
-        .btn-primary { background: var(--gradient-primary); color: var(--white); box-shadow: 0 4px 20px rgba(0, 197, 242, 0.3); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0, 197, 242, 0.4); }
-        .btn-ghost { background: transparent; color: var(--gray-300); border: 1px solid var(--dark-600); }
-        .btn-ghost:hover { background: var(--dark-700); border-color: var(--gray-600); color: var(--white); }
+        .btn-primary { background: #000000; color: var(--white); box-shadow: none; }
+        .btn-primary:hover { transform: translateY(-2px); background: #333333; }
+        .btn-ghost { background: transparent; color: var(--gray-700); border: 1px solid var(--gray-400); }
+        .btn-ghost:hover { background: var(--gray-100); border-color: var(--gray-500); color: var(--gray-900); }
         
         /* Hero Image Placeholder */
         .hero-visual { margin-top: 60px; }
-        .hero-image-placeholder { 
-            background: var(--dark-700); 
-            border: 2px dashed var(--dark-600); 
-            border-radius: 20px; 
-            width: 1000px;
+        .hero-image { 
+            width: 1200px;
             max-width: 100%;
-            height: 450px;
-            margin: 0 auto;
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            color: var(--gray-500);
-            font-size: 14px;
+            height: auto;
+            margin: 40px auto -60px;
+            display: block;
+            border-radius: 20px;
         }
 
         /* Section Common */
@@ -141,7 +135,7 @@
         .usecase-card h4 { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 16px; }
         .usecase-steps { }
         .usecase-step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
-        .usecase-step-num { width: 24px; height: 24px; background: rgba(0, 197, 242, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--primary-light); flex-shrink: 0; }
+        .usecase-step-num { width: 24px; height: 24px; background: rgba(0, 92, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--primary-light); flex-shrink: 0; }
         .usecase-step-text { font-size: 14px; color: var(--gray-400); line-height: 1.5; }
 
         /* Clients Section */
@@ -183,7 +177,7 @@
         /* Responsive */
         @media (max-width: 1024px) { 
             .hero-title { font-size: 44px; }
-            .hero-image-placeholder { height: 350px; }
+            .hero-image { width: 100%; }
             .intro-grid { grid-template-columns: 1fr; gap: 48px; }
             .feature-row { grid-template-columns: 1fr; gap: 48px; }
             .feature-row.reverse { direction: ltr; }
@@ -212,22 +206,16 @@
             <div class="hero-inner">
                 <div class="hero-content">
                     <h1 class="hero-title">
-                        이제는 AI로 쉽고 빠른<br>
-                        <span class="hero-title-line"><span class="typing-text" id="typingText">회의록</span>작성이 가능합니다.</span>
+                        AI로 쉽고 빠르게,<br>
+                        <span class="hero-title-line"><span class="typing-text" id="typingText">회의록</span> 자동으로 기록하세요!</span>
                     </h1>
-                    <p class="hero-desc">
-                        기록 업무의 AX(AI Transformation),<br>
-                        바로노트로 시작해 보세요.
-                    </p>
+                    <p class="hero-desc">기록 업무의 새로운 기준, 바로노트로 시작하세요.</p>
                     <div class="hero-actions">
-                        <a href="../contact.html" class="btn btn-primary">데모 신청</a>
-                        <a href="../contact.html" class="btn btn-ghost">제품 소개서 다운로드</a>
+                        <a href="https://digitalmall.g2b.go.kr/link/GDSF001_01/?ctrtItemMngNo=R25TA00793548010000001" target="_blank" class="btn btn-primary">조달청 디지털서비스몰 바로가기</a>
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <div class="hero-image-placeholder">
-                        [바로노트 인터페이스 이미지 - 1000x450]
-                    </div>
+                    <img src="../img/baronote.jpg" alt="바로노트 인터페이스" class="hero-image">
                 </div>
             </div>
         </div>
@@ -480,7 +468,7 @@
     <script>
         // 타이핑 효과
         (function() {
-            const words = ['회의록', '진술서', '보고서', '조서', '상담 내용'];
+            const words = ['상담 내용', '회의 기록', '통화 요약', '고객 메모', '업무 로그', '진술서', '보고서', '조서 기록', '초안 작성'];
             const typingElement = document.getElementById('typingText');
             let wordIndex = 0;
             let charIndex = 0;
