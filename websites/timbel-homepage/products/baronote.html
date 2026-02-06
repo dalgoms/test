@@ -44,7 +44,7 @@
         .hero-inner { position: relative; z-index: 10; text-align: center; }
         .hero-content { max-width: 800px; margin: 0 auto; }
         .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(0, 201, 107, 0.1); border: 1px solid rgba(0, 201, 107, 0.3); border-radius: 100px; font-size: 13px; font-weight: 600; color: var(--primary-light); margin-bottom: 24px; }
-        .hero-title { font-size: clamp(36px, 5vw, 77px); font-weight: 800; line-height: 1.2; letter-spacing: -2px; margin-bottom: 24px; color: var(--gray-900); text-align: center; }
+        .hero-title { font-size: clamp(36px, 5vw, 72px); font-weight: 800; line-height: 1.4; letter-spacing: -2px; margin-bottom: 24px; color: var(--gray-900); text-align: center; }
         .hero-title .typing-text { color: var(--primary); display: inline-block; border-right: 3px solid var(--primary); padding-right: 8px; animation: blink 0.7s infinite; min-width: 200px; }
         @keyframes blink { 0%, 100% { border-color: var(--primary); } 50% { border-color: transparent; } }
         .hero-desc { font-size: 18px; color: var(--gray-600); line-height: 1.8; margin-bottom: 40px; }
@@ -260,17 +260,66 @@
             .feature-special-grid { grid-template-columns: 1fr; }
             .system-spec-table { overflow-x: auto; }
             .reference-item { grid-template-columns: 180px 1fr 180px; gap: 24px; }
+            .automation-icons { grid-template-columns: repeat(2, 1fr); }
+            .solution-image { max-width: 100%; padding: 0 20px; }
         }
         @media (max-width: 768px) { 
-            .hero-title { font-size: 24px; letter-spacing: -1px; }
-            .section { padding: 80px 0; }
-            .hero { padding: 120px 0 60px; }
+            .hero { padding: 140px 0 40px; }
+            .hero-title { font-size: 28px; letter-spacing: -1px; line-height: 1.4; }
+            .hero-title .typing-text { min-width: 120px; font-size: 28px; }
+            .hero-desc { font-size: 15px; margin-bottom: 24px; }
             .hero-actions { flex-direction: column; }
-            .btn { width: 100%; justify-content: center; }
-            .template-grid { grid-template-columns: 1fr; }
-            .reference-item { grid-template-columns: 1fr; gap: 16px; text-align: center; }
-            .reference-note { text-align: center; }
-            .reference-logo { justify-content: center; }
+            .btn { width: 100%; justify-content: center; padding: 14px 24px; }
+            .hero-image { border-radius: 8px; }
+            
+            .section { padding: 80px 0; }
+            .intro-section { min-height: 70vh; padding: 60px 0; }
+            .intro-title { font-size: 28px; line-height: 1.5; }
+            .typing-intro, .typing-word .keyword { font-size: 28px; }
+            
+            .solution-section { padding: 80px 0; min-height: auto; }
+            .solution-title { font-size: 24px; line-height: 1.6; margin-bottom: 40px; }
+            .solution-image img { border-radius: 12px; }
+            
+            .feature-cards-section { padding: 80px 0; }
+            .feature-card-item { min-height: 380px; padding: 24px; }
+            .feature-card-heading { font-size: 22px; }
+            .feature-card-desc { font-size: 14px; }
+            
+            .automation-section { padding: 80px 0; }
+            .automation-icons { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .automation-icon-box { padding: 20px 16px; }
+            .automation-icon-box span { font-size: 13px; }
+            
+            .template-section { padding: 80px 0; }
+            .template-section-title { font-size: 28px; margin-bottom: 40px; }
+            .template-card { min-width: 260px; min-height: 360px; }
+            
+            .feature-special-section { padding: 60px 0; }
+            .feature-special-title { font-size: 28px; margin-bottom: 40px; }
+            .feature-special-card { padding: 20px; }
+            .feature-special-icon { width: 48px; height: 48px; min-width: 48px; }
+            .feature-special-content h4 { font-size: 16px; }
+            .feature-special-content p { font-size: 13px; }
+            
+            .system-spec-section { padding: 60px 0; }
+            .system-spec-title { font-size: 28px; margin-bottom: 40px; }
+            .system-spec-table th { padding: 14px 12px; font-size: 14px; }
+            .system-spec-table td { padding: 16px 12px; font-size: 14px; }
+            .system-spec-table td:first-child { font-size: 14px; }
+            .spec-detail { font-size: 12px; }
+            
+            .reference-section { padding: 60px 0; }
+            .reference-title { font-size: 28px; margin-bottom: 40px; }
+            .reference-item { grid-template-columns: 1fr; gap: 12px; text-align: center; padding: 24px 0; }
+            .reference-logo { justify-content: center; font-size: 18px; }
+            .reference-logo img { max-width: 150px; }
+            .reference-desc { font-size: 16px; }
+            .reference-note { text-align: center; font-size: 14px; }
+            
+            .cta-section { padding: 80px 0; }
+            .cta-title { font-size: 28px; }
+            .cta-desc { font-size: 15px; }
             .cta-actions { flex-direction: column; }
         }
     </style>
